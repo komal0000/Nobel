@@ -1,0 +1,37 @@
+[means nullable]
+if there is title make  slug
+
+users
+    role<int>
+sliders 
+    desktop_image,mobile_image,[has_link,link_url,link_text,extra_data<text>]
+specialties
+    title,icon,short_description,single_page_image,[parent_specialty_id]
+specialty_galleries
+        icon,specialty_id,description,title
+specialty_gallery_items
+    icon,title,description,[extra_data]
+
+treatments
+    title,icon,short_description,single_page_image,[specialty_id]
+treatment_sections
+    title,description,style_type,treatment_id
+treatment_steps
+    treatment_section_id,title,icon,short_description,long_description,
+
+aliment_section_types
+    title,icon,[description]
+
+aliments
+    title,icon,short_description,single_page_image,[specialty_id]
+aliment_sections
+    aliment_id,aliment_section_type_id,title,description,show_on_frontend
+
+
+
+
+
+
+
+
+
