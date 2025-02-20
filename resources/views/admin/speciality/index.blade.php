@@ -34,6 +34,7 @@
                         <td>
                             <a href="{{route('admin.speciality.edit', ['speciality_id' => $speciality->id])}}" class="btn btn-primary btn-sm me-2">Edit</a>
                             <a href="{{route('admin.speciality.del', ['speciality_id' => $speciality->id])}}" class="btn btn-danger btn-sm">Delete</a>
+                            <a href="{{route('admin.speciality.gallery.index',['speciality_id' => $speciality->id])}}" class="btn btn-success btn-sm">Manage Gallery </a>
                         </td>
                     </tr>
                     @endforeach
