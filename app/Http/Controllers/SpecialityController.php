@@ -54,10 +54,10 @@ class SpecialityController extends Controller
             $speciality->title = $request->title;
             $speciality->short_description = $request->short_description;
             if ($request->hasFile('icon')) {
-                $speciality->icon = $request->file('icon')->store('uploads/images');
+                $speciality->icon = $request->file('icon')->store('uploads/images','public');
             }
             if ($request->hasFile('single_page_image')) {
-                $speciality->single_page_image = $request->file('single_page_image')->store('uploads/images');
+                $speciality->single_page_image = $request->file('single_page_image')->store('uploads/images','public');
             }
             $speciality->save();
             return redirect()->route('admin.speciality.index')->with('success', 'Speciality updated successfully.');
