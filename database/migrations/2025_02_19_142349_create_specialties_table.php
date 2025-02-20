@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('specialties', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('blog');
             $table->text('icon')->nullable();
             $table->text('short_description')->nullable();
             $table->text('single_page_image')->nullable();

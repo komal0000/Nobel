@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('aliment_section_types', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('blog');
             $table->string('icon')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('speciality_galleries', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('blog');
             $table->text('icon')->nullable();
             $table->foreignId('specialty_id')->constrained();
             $table->text('description')->nullable();

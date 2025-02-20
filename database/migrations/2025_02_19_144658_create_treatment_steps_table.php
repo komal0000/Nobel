@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('treatment_steps', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('treatment_section_id')->constrained();
             $table->string('title');
+            $table->string('blog');
+            $table->foreignId('treatment_section_id')->constrained();
             $table->text('icon')->nullable();
             $table->text('short_description')->nullable();
             $table->text('long_description')->nullable();
