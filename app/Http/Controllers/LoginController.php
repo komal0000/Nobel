@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -9,7 +10,7 @@ class LoginController extends Controller
 {
     public function login(Request $request)
     {
-        if ($request->isMethod('get')) {
+        if (Helper::G($request)) {
             return view('admin.login');
         } else {
             if(Auth::attempt(['email'=>$request->email,'password'=>$request->password])){
