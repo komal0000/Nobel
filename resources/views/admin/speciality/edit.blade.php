@@ -11,25 +11,19 @@
                 <label for="title">Title</label>
                 <input type="text" class="form-control" id="title" name="title" value="{{ $speciality->title }}" required>
             </div>
-            <div class="col-md-4 mb-3">
-                <label for="icon">Icon</label>
-                <input type="file" class="form-control" id="icon" name="icon">
-                @if($speciality->icon)
-                    <img src="{{ asset($speciality->icon) }}" alt="Icon" width="100">
-                @endif
-            </div>
-            <div class="col-md-4 mb-3">
-                <label for="single_page_image">Single Page Image</label>
-                <input type="file" class="form-control" id="single_page_image" name="single_page_image">
-                @if($speciality->single_page_image)
-                    <img src="{{ asset($speciality->single_page_image) }}" alt="Single Page Image" width="100">
-                @endif
-            </div>
             <div class="col-md-6 mb-3">
                 <label for="short_description">Short Description</label>
                 <textarea class="form-control" id="short_description" name="short_description">{{ $speciality->short_description }}</textarea>
             </div>
-            <div class="col-md-6 d-flex align-items-end">
+            <div class="col-md-4 mb-3">
+                <label for="icon">Icon</label>
+                <input type="file" class="form-control dropify" id="icon" name="icon" accept="image/*" data-default-file="{{$speciality->icon}}">
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="single_page_image">Single Page Image</label>
+                <input type="file" class="form-control dropify" id="single_page_image" name="single_page_image" accept="image/*" data-default-file="{{$speciality->single_page_image}}">
+            </div>
+            <div class="col-md-4 d-flex align-items-end">
                 <button type="submit" class="btn btn-primary">
                     Update
                 </button>

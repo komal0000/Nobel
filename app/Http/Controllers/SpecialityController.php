@@ -10,7 +10,7 @@ class SpecialityController extends Controller
 {
     public function index()
     {
-        $specialties = DB::table('specialties')->get(['title','short_description']);
+        $specialties = DB::table('specialties')->get(['id','title','short_description']);
         return view('admin.speciality.index',compact('specialties'));
     }
 
@@ -22,7 +22,6 @@ class SpecialityController extends Controller
             $speciality = new Speciality();
             $speciality->title = $request->title;
             $speciality->short_description = $request->short_description;
-            $speciality->span = $request->title;
             if ($request->hasFile('icon')) {
                 $speciality->icon = $request->file('icon')->store('uploads/images');
             }
@@ -43,7 +42,6 @@ class SpecialityController extends Controller
         } else {
             $speciality->title = $request->title;
             $speciality->short_description = $request->short_description;
-            $speciality->span = $request->title;
             if ($request->hasFile('icon')) {
                 $speciality->icon = $request->file('icon')->store('uploads/images');
             }
@@ -53,6 +51,11 @@ class SpecialityController extends Controller
             $speciality->save();
             return redirect()->route('admin.speciality.index')->with('success', 'Speciality updated successfully.');
         }
+    }
+
+    public function del($speciality_id){
+        Speciality::where("id",$speciality_id)->delete();
+        return redirect()->back();
     }
 
 
