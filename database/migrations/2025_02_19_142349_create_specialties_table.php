@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('specialties', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('blog');
+            $table->string('slug')->nullable();
             $table->text('icon')->nullable();
             $table->text('short_description')->nullable();
             $table->text('single_page_image')->nullable();
-            $table->foreignId('parent_specialty_id')->nullable();
+            $table->foreignId('parent_speciality_id')->nullable();
             $table->timestamps();
         });
     }

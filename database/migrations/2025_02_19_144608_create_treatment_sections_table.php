@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('treatment_sections', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('blog');
+            $table->string('slug')->nullable();
             $table->text('description')->nullable();
             $table->string('style_type');
             $table->foreignId('treatment_id')->constrained();

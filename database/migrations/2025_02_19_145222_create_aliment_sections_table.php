@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('aliment_sections', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('blog');
+            $table->string('slug')->nullable();
             $table->text('description')->nullable();
             $table->foreignId('aliment_id')->constrained();
             $table->foreignId('aliment_section_type_id')->constrained();

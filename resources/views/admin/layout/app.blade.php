@@ -17,6 +17,16 @@
         .card-title a {
             color: #232D42;
             font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+        }
+
+        .card-title a:hover {
+            color: #01070d;
+            text-shadow: 0px 0px 8px rgba(0, 2, 5, 0.5);
+        }
+        .card-action a:hover {
+
         }
     </style>
 </head>
@@ -37,7 +47,7 @@
                                 <div class="card-body d-flex justify-content-between align-items-center">
                                     <div class="card-title">
                                         <h4>
-                                            @yield('title')
+                                           @yield('title')
                                         </h4>
                                     </div>
                                     <div class="card-action">

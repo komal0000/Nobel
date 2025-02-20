@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('treatments', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('blog');
+            $table->string('slug')->nullable();
             $table->string('icon')->nullable();
             $table->text('short_description')->nullable();
             $table->string('single_page_image')->nullable();

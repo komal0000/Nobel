@@ -7,4 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Speciality extends Model
 {
     //
+    protected $table='specialties';
+    const tableName='specialties';
 }
