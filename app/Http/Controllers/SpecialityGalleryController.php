@@ -6,6 +6,7 @@ use App\Helpers\Helper;
 use App\Models\SpecialityGallery;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class SpecialityGalleryController extends Controller
 {
@@ -35,7 +36,10 @@ class SpecialityGalleryController extends Controller
     {
         $specialityGallery = SpecialityGallery::where("id", $gallery_id)->first();
 
+
         if (Helper::G($request)) {
+            $url = Storage::url($specialityGallery->icon);
+            $specialityGallery->icon = $url;
             return view('admin.speciality.gallery.edit', compact('specialityGallery'));
         } else {
             $specialityGallery->title = $request->title;
