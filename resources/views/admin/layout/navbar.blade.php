@@ -2,7 +2,7 @@
     <!--Nav Start-->
     <nav class="nav navbar navbar-expand-xl navbar-light iq-navbar">
         <div class="container-fluid navbar-inner">
-            <a href="../dashboard/index.html" class="navbar-brand">
+            <a href="{{ route('admin.index') }}" class="navbar-brand">
 
                 <!--Logo start-->
                 <div class="logo-main">
@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 <!--logo End-->
-                <h4 class="logo-title">Hope UI</h4>
+                <h4 class="logo-title">Nobel</h4>
             </a>
             <div class="sidebar-toggle" data-toggle="sidebar" data-active="true">
                 <i class="icon">
@@ -75,7 +75,7 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="{{route('logout')}}">Logout</a></li>
+                            <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
                         </ul>
                     </li>
                 </ul>

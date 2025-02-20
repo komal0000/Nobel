@@ -26,7 +26,6 @@ class Admin extends Command
      */
     public function handle()
     {
-        // Ask user for attributes
         $name = $this->ask('Enter admin name');
         $email = $this->ask('Enter admin email');
         $password = $this->ask('Enter password');
