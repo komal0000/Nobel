@@ -791,3 +791,21 @@ body.uikit .btn-download {
   max-height: calc(80vh + 4rem);
   overflow: auto;
 }
+
+.btn-primary:hover, .btn-primary:active {
+    color: #3a57e8 !important;
+    background-color: transparent !important;
+    border-color: #3a57e8 !important;
+}
+
+.btn-danger:hover, .btn-danger:active {
+    color: #c03221 !important;
+    background-color: transparent !important;
+    border-color: #c03221 !important;
+}
+
+.btn-success:hover, .btn-success:active {
+    color: #1aa053 !important;
+    background-color: transparent !important;
+    border-color: #1aa053 !important;
+}

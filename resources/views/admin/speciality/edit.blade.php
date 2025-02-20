@@ -11,7 +11,7 @@
                 <label for="title">Title</label>
                 <input type="text" class="form-control" id="title" name="title" value="{{ $speciality->title }}" required>
             </div>
-            <div class="col-md-6 mb-3">
+            <div class="col-md-8 mb-3">
                 <label for="short_description">Short Description</label>
                 <textarea class="form-control" id="short_description" name="short_description">{{ $speciality->short_description }}</textarea>
             </div>

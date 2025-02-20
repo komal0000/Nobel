@@ -6,13 +6,14 @@ use App\Helpers\Helper;
 use App\Models\Speciality;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class SpecialityController extends Controller
 {
     public function index()
     {
-        $specialties = DB::table('specialties')->get(['id','title','short_description']);
-        return view('admin.speciality.index',compact('specialties'));
+        $specialties = DB::table('specialties')->get(['id', 'title', 'short_description']);
+        return view('admin.speciality.index', compact('specialties'));
     }
     public function add(Request $request)
     {
@@ -41,9 +42,13 @@ class SpecialityController extends Controller
 
     public function edit(Request $request, $speciality_id)
     {
-        $speciality = Speciality::where("id",$speciality_id)->first();
+        $speciality = Speciality::where("id", $speciality_id)->first();
 
         if (Helper::G($request)) {
+            $IconUrl = Storage::url($speciality->icon);
+            $speciality->icon = $IconUrl;
+            $SingleImageUrl = Storage::url($speciality->single_page_image);
+            $speciality->single_page_image = $SingleImageUrl;
             return view('admin.speciality.edit', compact('speciality'));
         } else {
             $speciality->title = $request->title;
@@ -59,10 +64,9 @@ class SpecialityController extends Controller
         }
     }
 
-    public function del($speciality_id){
-        Speciality::where("id",$speciality_id)->delete();
+    public function del($speciality_id)
+    {
+        Speciality::where("id", $speciality_id)->delete();
         return redirect()->back();
     }
-
-
 }

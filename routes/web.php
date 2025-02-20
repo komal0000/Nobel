@@ -22,6 +22,9 @@ Route::prefix('admin')->name('admin.')->group(function(){
             Route::match(["GET","POST"],'add/{speciality_id}',[SpecialityGalleryController::class,'add'])->name('add');
             Route::match(["GET","POST"],'edit/{gallery_id}',[SpecialityGalleryController::class,'edit'])->name('edit');
             Route::match(["GET","POST"],'del/{gallery_id}',[SpecialityGalleryController::class,'del'])->name('del');
+            Route::prefix('item')->name('item.')->group(function(){
+                Route::match(['GET','POST'],'itemindex',[SpecialityGalleryController::class,'itemindex'])->name('itemindex');
+            });
         });
     });
 });

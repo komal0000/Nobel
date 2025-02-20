@@ -11,11 +11,6 @@
 <div class="row">
     <div class="col-sm-12">
        <div class="card">
-          <div class="card-header d-flex justify-content-between">
-             <div class="header-title">
-                <h4 class="card-title">Bootstrap Datatables</h4>
-             </div>
-          </div>
           <div class="card-body">
              <div class="custom-datatable-entries">
                 <table id="datatable" class="table table-striped" data-toggle="data-table">
@@ -32,7 +27,7 @@
                         <td>{{$speciality->title}}</td>
                         <td>{{$speciality->short_description}}</td>
                         <td>
-                            <a href="{{route('admin.speciality.edit', ['speciality_id' => $speciality->id])}}" class="btn btn-primary btn-sm me-2">Edit</a>
+                            <a href="{{route('admin.speciality.edit', ['speciality_id' => $speciality->id])}}" class="btn btn-primary btn-sm ">Edit</a>
                             <a href="{{route('admin.speciality.del', ['speciality_id' => $speciality->id])}}" class="btn btn-danger btn-sm">Delete</a>
                             <a href="{{route('admin.speciality.gallery.index',['speciality_id' => $speciality->id])}}" class="btn btn-success btn-sm">Manage Gallery </a>
                         </td>
