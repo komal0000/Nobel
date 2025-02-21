@@ -23,7 +23,10 @@ Route::prefix('admin')->name('admin.')->group(function(){
             Route::match(["GET","POST"],'edit/{gallery_id}',[SpecialityGalleryController::class,'edit'])->name('edit');
             Route::match(["GET","POST"],'del/{gallery_id}',[SpecialityGalleryController::class,'del'])->name('del');
             Route::prefix('item')->name('item.')->group(function(){
-                Route::match(['GET','POST'],'itemindex/{gallery_id}',[SpecialityGalleryController::class,'itemindex'])->name('itemindex');
+                Route::match(['GET','POST'],'itemIndex/{gallery_id}',[SpecialityGalleryController::class,'itemIndex'])->name('itemIndex');
+                Route::match(['POST'],'itemEdit/{item_id}',[SpecialityGalleryController::class,'itemEdit'])->name('itemEdit');
+                Route::match(['GET'],'itemDelete/{item_id}',[SpecialityGalleryController::class,'itemDelete'])->name('itemDelete');
+
             });
         });
     });

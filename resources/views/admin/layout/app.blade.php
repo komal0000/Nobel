@@ -12,10 +12,10 @@
     <link rel="stylesheet" href="{{ asset('assets/css/custom.min.css?v=5.0.0') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/customizer.min.css?v=5.0.0') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/rtl.min.css?v=5.0.0') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/custom.css?v=5.0.0') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css"
         integrity="sha512-In/+MILhf6UMDJU4ZhDL0R0fEpsp4D3Le23m6+ujDWXwl3whwpucJG1PEmI3B07nyJx+875ccs+yX2CqQJUxUw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="{{ asset('assets/css/custom.css?v=5.0.0') }}">
     <title>Document</title>
     <style>
         .card-title a {
@@ -120,6 +120,7 @@
 
     <!-- App Script -->
     <script src="{{ asset('assets/js/hope-ui.js') }}" defer></script>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"
         integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew=="

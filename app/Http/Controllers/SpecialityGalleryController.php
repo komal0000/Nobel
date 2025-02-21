@@ -63,7 +63,10 @@ class SpecialityGalleryController extends Controller
     {
         $speciality = DB::table('speciality_galleries')->where('id', $gallery_id)->first(['id']);
         if (Helper::G($request)) {
-            return view('admin.speciality.gallery.item.index', compact('gallery_id', 'speciality'));
+            $galleryItems = DB::table('speciality_gallery_items')->where('specialty_gallery_id',$gallery_id)->get();
+
+
+            return view('admin.speciality.gallery.item.index', compact('gallery_id', 'speciality','galleryItems'));
         } else {
             if ($request->hasFile('icon')) {
                 foreach ($request->file('icon') as $index => $file) {
@@ -80,5 +83,11 @@ class SpecialityGalleryController extends Controller
             }
             return redirect()->back()->with('success', 'Items added successfully!');
         }
+    }
+    public function itemUpdate(Request $request,$item_id){
+    }
+    public function itemDelete($item_id){
+        SpecialityGalleryItem::where('id',$item_id)->delete();
+        return redirect()->back();
     }
 }
