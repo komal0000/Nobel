@@ -5,6 +5,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\SpecialityController;
 use App\Http\Controllers\SpecialityGalleryController;
+use App\Http\Controllers\TreatmentController;
+use App\Http\Controllers\TreatmentSectionController;
 use Illuminate\Support\Facades\Route;
 
 Route::match(["GET","POST"],'login',[LoginController::class,'login'])->name('login');
@@ -37,6 +39,19 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function(){
         Route::match(["GET","POST"],'edit/{slider_id}',[SliderController::class,'edit'])->name('edit');
         Route::match(["GET","POST"],'del/{slider_id}',[SliderController::class,'del'])->name('del');
 
+    });
+    Route::prefix('treatment')->name('treatment.')->group(function(){
+        Route::get('',[TreatmentController::class,'index'])->name('index');
+        Route::match(["GET","POST"],'add',[TreatmentController::class,'add'])->name('add');
+        Route::match(["GET","POST"],'edit/{treatment_id}',[TreatmentController::class,'edit'])->name('edit');
+        Route::match(["GET","POST"],'del/{treatment_id}',[TreatmentController::class,'del'])->name('del');
+
+        Route::prefix('section')->name('section.')->group(function(){
+            Route::get('index/{treatment_id}',[TreatmentSectionController::class,'index'])->name('index');
+            Route::match(["GET","POST"],'add/{treatment_id}',[TreatmentSectionController::class,'add'])->name('add');
+            Route::match(["GET","POST"],'edit/{section_id}',[TreatmentSectionController::class,'edit'])->name('edit');
+            Route::match(["GET","POST"],'del/{section_id}',[TreatmentSectionController::class,'del'])->name('del');
+        });
     });
 });
 
