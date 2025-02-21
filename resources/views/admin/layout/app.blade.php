@@ -29,6 +29,7 @@
             color: #01070d;
             text-shadow: 0px 0px 8px rgba(0, 2, 5, 0.5);
         }
+
         .dropify-wrapper {
             font-size: 16px !important;
             /* Adjust as needed */
@@ -44,6 +45,7 @@
             /* Remove button text */
         }
     </style>
+    @yield('css')
 </head>
 <div id="loading">
     <div class="loader simple-loader">
@@ -118,9 +120,11 @@
 
     <!-- App Script -->
     <script src="{{ asset('assets/js/hope-ui.js') }}" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"
         integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <script>
         $(document).ready(function() {
             $('.dropify').dropify({
@@ -134,6 +138,7 @@
         });
     </script>
 
+    @yield('js')
 </div>
 
 </html>
