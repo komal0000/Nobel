@@ -36,11 +36,7 @@ class SpecialityGalleryController extends Controller
     public function edit(Request $request, $gallery_id)
     {
         $specialityGallery = SpecialityGallery::where("id", $gallery_id)->first();
-
-
         if (Helper::G($request)) {
-            $url = $specialityGallery->icon ? Storage::url($specialityGallery->icon) : null;
-            $specialityGallery->icon = $url;
             return view('admin.speciality.gallery.edit', compact('specialityGallery'));
         } else {
             $specialityGallery->title = $request->title;

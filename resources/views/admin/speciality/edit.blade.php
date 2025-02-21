@@ -17,11 +17,11 @@
             </div>
             <div class="col-md-4 mb-3">
                 <label for="icon">Icon</label>
-                <input type="file" class="form-control dropify" id="icon" name="icon" accept="image/*" data-default-file="{{$speciality->icon}}">
+                <input type="file" class="form-control dropify" id="icon" name="icon" accept="image/*" data-default-file="{{Storage::url($speciality->icon)}}">
             </div>
             <div class="col-md-4 mb-3">
                 <label for="single_page_image">Single Page Image</label>
-                <input type="file" class="form-control dropify" id="single_page_image" name="single_page_image" accept="image/*" data-default-file="{{$speciality->single_page_image}}">
+                <input type="file" class="form-control dropify" id="single_page_image" name="single_page_image" accept="image/*" data-default-file="{{ Storage::url($speciality->single_page_image)}}">
             </div>
             <div class="col-md-4 d-flex align-items-end">
                 <button type="submit" class="btn btn-primary">

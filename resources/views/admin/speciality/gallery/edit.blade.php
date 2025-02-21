@@ -19,9 +19,9 @@
             </div>
             <div class="col-md-4 mb-3">
                 <label for="icon">Icon</label>
-                <input type="file" class="form-control dropify" id="icon" name="icon" accept="image/*" data-default-file="{{ asset($specialityGallery->icon) }}">
+                <input type="file" class="form-control dropify" id="icon" name="icon" accept="image/*" data-default-file="{{ Storage::url($specialityGallery->icon) }}">
             </div>
-            <div class="col-md-4 d-flex align-items-end">
+            <div class="col-md-4 mb-3 d-flex align-items-end">
                 <button type="submit" class="btn btn-primary">
                     Update
                 </button>

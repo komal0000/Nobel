@@ -22,7 +22,7 @@
             </div>
             <div class="col-md-2 mb-3 d-flex align-items-end">
                 <button type="submit" class="btn btn-primary">
-                    Add Section
+                    Add
                 </button>
             </div>
         </div>

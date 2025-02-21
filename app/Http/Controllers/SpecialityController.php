@@ -45,10 +45,6 @@ class SpecialityController extends Controller
         $speciality = Speciality::where("id", $speciality_id)->first();
 
         if (Helper::G($request)) {
-            $IconUrl = $speciality->icon ? Storage::url($speciality->icon) : null;
-            $speciality->icon = $IconUrl;
-            $SingleImageUrl = $speciality->single_page_image ? Storage::url($speciality->single_page_image) : null;
-            $speciality->single_page_image = $SingleImageUrl;
             return view('admin.speciality.edit', compact('speciality'));
         } else {
             $speciality->title = $request->title;
