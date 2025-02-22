@@ -1,9 +1,10 @@
 @extends('admin.layout.app')
 @section('title')
-    <span>Aliment</span>
+    <a href="{{ route('admin.aliment.index') }}">Alinment</a> /
+    <span>Section Types</span>
 @endsection
 @section('btn')
-    <a href="{{ route('admin.aliment.add') }}" class="btn btn-primary">Add</a>
+    <a href="{{ route('admin.aliment.type.add', ['aliment_id' => $aliment_id]) }}" class="btn btn-primary">Add</a>
 @endsection
 @section('content')
     <div class="row">
@@ -15,22 +16,18 @@
                             <thead>
                                 <tr>
                                     <th>Title</th>
-                                    <th>Short Description</th>
                                     <th>Manage</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($aliments as $aliment)
+                                @foreach ($alimentTypes as $alimentType)
                                     <tr>
-                                        <td>{{ $aliment->title }}</td>
-                                        <td>{{ $aliment->short_description }}</td>
+                                        <td>{{ $alimentType->title }}</td>
                                         <td>
-                                            <a href="{{ route('admin.aliment.edit', ['aliment_id' => $aliment->id]) }}"
-                                                class="btn btn-primary btn-sm ">Edit</a>
-                                            <a href="{{ route('admin.aliment.del', ['aliment_id' => $aliment->id]) }}"
+                                            <a href="{{ route('admin.aliment.type.edit', ['type_id' => $alimentType->id]) }}"
+                                                class="btn btn-primary btn-sm">Edit</a>
+                                            <a href="{{ route('admin.aliment.type.del', ['type_id' => $alimentType->id]) }}"
                                                 class="btn btn-danger btn-sm">Delete</a>
-                                            <a href="{{ route('admin.aliment.type.index', ['aliment_id' => $aliment->id]) }}"
-                                                class="btn btn-success btn-sm">Manage Section Type</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -38,7 +35,6 @@
                             <tfoot>
                                 <tr>
                                     <th>Title</th>
-                                    <th>Short Description</th>
                                     <th>Manage</th>
                                 </tr>
                             </tfoot>
