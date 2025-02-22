@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlimentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SliderController;
@@ -59,6 +60,12 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function(){
             });
         });
 
+    });
+    Route::prefix('aliment')->name('aliment.')->group(function(){
+        Route::get('',[AlimentController::class,'index'])->name('index');
+        Route::match(["GET","POST"],'add',[AlimentController::class,'add'])->name('add');
+        Route::match(["GET","POST"],'edit/{aliment_id}',[AlimentController::class,'edit'])->name('edit');
+        Route::match(["GET","POST"],'del/{aliment_id}',[AlimentController::class,'del'])->name('del');
     });
 });
 
