@@ -51,7 +51,14 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function(){
             Route::match(["GET","POST"],'add/{treatment_id}',[TreatmentSectionController::class,'add'])->name('add');
             Route::match(["GET","POST"],'edit/{section_id}',[TreatmentSectionController::class,'edit'])->name('edit');
             Route::match(["GET","POST"],'del/{section_id}',[TreatmentSectionController::class,'del'])->name('del');
+            Route::prefix('step')->name('step.')->group(function(){
+                Route::get('index/{section_id}',[TreatmentSectionController::class,'stepIndex'])->name('index');
+                Route::match(["GET","POST"],'add/{section_id}',[TreatmentSectionController::class,'stepAdd'])->name('add');
+                Route::match(["GET","POST"],'edit/{step_id}',[TreatmentSectionController::class,'stepEdit'])->name('edit');
+                Route::match(["GET","POST"],'del/{step_id}',[TreatmentSectionController::class,'stepDel'])->name('del');
+            });
         });
+
     });
 });
 
