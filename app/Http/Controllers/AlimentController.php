@@ -100,7 +100,8 @@ class AlimentController extends Controller
 
     public function sectionIndex($type_id){
         $sections = DB::table('aliment_sections')->where('aliment_section_type_id', $type_id)->get();
-        return view('admin.aliment.type.section.index', compact('sections', 'type_id'));
+        $type = AlimentSectionType::where('id',$type_id)->first();
+        return view('admin.aliment.type.section.index', compact('sections', 'type_id','type'));
     }
 
     public function sectionAdd(Request $request, $type_id){
@@ -113,20 +114,27 @@ class AlimentController extends Controller
             $section->title = $request->title;
             $section->description = $request->description;
             $section->show_on_frontend = $request->show_on_frontend;
-            $section->aliment_id = $alimentType->alinment_id;
+            $section->aliment_id = $alimentType->aliment_id;
             $section->aliment_section_type_id = $type_id;
+            if($request->has('image')){
+                $section->image = $request->file('image')->store('uploads/section','public');
+            }
             $section->save();
             return redirect()->back();
         }
     }
     public function sectionEdit(Request $request, $section_id){
         $section = AlimentSection::where('id', $section_id)->first();
+        $alimentType = AlimentSectionType::where('id', $section->aliment_section_type_id)->first();
         if(Helper::G($request)){
-            return view('admin.aliment.type.section.edit', compact('section'));
+            return view('admin.aliment.type.section.edit', compact('section','alimentType'));
         }else{
             $section->title = $request->title;
             $section->description = $request->description;
             $section->show_on_frontend = $request->show_on_frontend;
+            if($request->has('image')){
+                $section->image = $request->file('image')->store('uploads/section','public');
+            }
             $section->save();
             return redirect()->back();
         }

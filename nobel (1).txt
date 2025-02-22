@@ -25,7 +25,7 @@ aliment_section_types
 aliments
     title,icon,short_description,single_page_image,[specialty_id]
 aliment_sections
-    aliment_id,aliment_section_type_id,title,description,show_on_frontend
+    aliment_id,aliment_section_type_id,title,[image,description],show_on_frontend
 
 
 

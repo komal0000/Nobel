@@ -28,6 +28,7 @@
                                                 class="btn btn-primary btn-sm">Edit</a>
                                             <a href="{{ route('admin.aliment.type.del', ['type_id' => $alimentType->id]) }}"
                                                 class="btn btn-danger btn-sm">Delete</a>
+                                            <a href="{{route('admin.aliment.type.section.index',['type_id' =>$alimentType->id])}}" class="btn btn-success btn-sm">Add section</a>
                                         </td>
                                     </tr>
                                 @endforeach

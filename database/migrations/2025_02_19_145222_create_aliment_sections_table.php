@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug')->nullable();
+            $table->text('image')->nullable();
             $table->text('description')->nullable();
             $table->foreignId('aliment_id')->constrained();
             $table->foreignId('aliment_section_type_id')->constrained();
