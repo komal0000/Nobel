@@ -16,13 +16,14 @@ class TreatmentController extends Controller
         return view('admin.treatment.index',compact('treatments'));
     }
 
-    public function add(Request $request){
+    public function add(Request $request,$speciality_id){
         if(Helper::G($request)){
-            return view('admin.treatment.add');
+            return view('admin.treatment.add',compact('speciality_id'));
         }else{
             $treatment = new Treatment();
             $treatment->title = $request->title;
             $treatment->short_description = $request->short_description;
+            $treatment->specialty_id = $request->speciality_id;
             if($request->has("icon")){
                 $treatment->icon = $request->file('icon')->store('uploads/treatments','public');
             }

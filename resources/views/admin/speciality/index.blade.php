@@ -28,6 +28,10 @@
                             class="btn btn-danger btn-sm">Delete</a>
                         <a href="{{ route('admin.speciality.gallery.index', ['speciality_id' => $speciality->id]) }}"
                             class="btn btn-success btn-sm">Manage Gallery </a>
+                        <a href="{{ route('admin.aliment.add', ['speciality_id' => $speciality->id]) }}"
+                            class="btn btn-sm btn-secondary">Add Aliment</a>
+                        <a href="{{ route('admin.treatment.add', ['speciality_id' => $speciality->id]) }}"
+                            class="btn btn-sm btn-secondary">Add Treatment</a>
                     </td>
                 </tr>
             @endforeach

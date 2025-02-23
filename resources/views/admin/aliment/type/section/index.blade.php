@@ -1,6 +1,6 @@
 @extends('admin.layout.app')
 @section('title')
-    <a href="{{ route('admin.aliment.index') }}">Alignment</a> /
+    <a href="{{ route('admin.aliment.index') }}">Alinments</a> /
     <a href="{{ route('admin.aliment.type.index', ['aliment_id' => $alimentType->aliment_id]) }}">Section Types</a> /
     <a href="{{ route('admin.aliment.type.section.index', ['type_id' => $alimentType->id]) }}">Section Info</a>
 @endsection

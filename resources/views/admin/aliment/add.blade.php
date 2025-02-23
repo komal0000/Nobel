@@ -1,10 +1,11 @@
 @extends('admin.layout.app')
 @section('title')
-    <a href="{{ route('admin.aliment.index') }}">Aliments</a> /
-    <span> Add</span>
+    <a href="{{ route('admin.speciality.index') }}">Specialties</a> /
+    <a href="{{ route('admin.aliment.index') }}">Aliments</a>
 @endsection
 @section('content')
-    <form action="{{ route('admin.aliment.add') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('admin.aliment.add', ['speciality_id' => $speciality_id]) }}" method="POST"
+        enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-md-7 mb-3">

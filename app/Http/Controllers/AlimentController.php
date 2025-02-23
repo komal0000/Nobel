@@ -17,14 +17,15 @@ class AlimentController extends Controller
         return view('admin.aliment.index', compact('aliments'));
     }
 
-    public function add(Request $request)
+    public function add(Request $request,$speciality_id)
     {
         if (Helper::G($request)) {
-            return view('admin.aliment.add');
+            return view('admin.aliment.add',compact('speciality_id'));
         } else {
             $aliment = new Aliment();
             $aliment->title = $request->title;
             $aliment->short_description = $request->short_description;
+            $aliment->specialty_id = $request->speciality_id;
             if ($request->has("icon")) {
                 $aliment->icon = $request->file('icon')->store('uploads/aliments', 'public');
             }
