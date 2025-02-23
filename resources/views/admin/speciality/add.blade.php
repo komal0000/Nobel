@@ -23,9 +23,9 @@
                 <label for="single_page_image">Single Page Image</label>
                 <input type="file" class="form-control dropify" id="single_page_image" name="single_page_image" accept="image/*">
             </div>
-            <div class="col-md-4 d-flex align-items-end">
+            <div class="col-md-4 mb-3 d-flex align-items-end">
                 <button type="submit" class="btn btn-primary">
-                    Submit
+                    Add
                 </button>
             </div>
         </div>

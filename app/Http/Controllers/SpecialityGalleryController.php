@@ -30,7 +30,7 @@ class SpecialityGalleryController extends Controller
                 $specialityGallery->icon = $request->file('icon')->store('uploads/images', 'public');
             }
             $specialityGallery->save();
-            return redirect()->route('admin.speciality.gallery.index', ['speciality_id' => $speciality_id]);
+            return redirect()->back();
         };
     }
     public function edit(Request $request, $gallery_id)
@@ -45,7 +45,7 @@ class SpecialityGalleryController extends Controller
                 $specialityGallery->icon = $request->file('icon')->store('uploads/images', 'public');
             }
             $specialityGallery->save();
-            return redirect()->route('admin.speciality.gallery.index', ['speciality_id' => $specialityGallery->specialty_id])->with('success', 'Gallery updated successfully.');
+            return redirect()->back();
         }
     }
 
@@ -60,8 +60,6 @@ class SpecialityGalleryController extends Controller
         $speciality = DB::table('speciality_galleries')->where('id', $gallery_id)->first(['id']);
         if (Helper::G($request)) {
             $galleryItems = DB::table('speciality_gallery_items')->where('specialty_gallery_id',$gallery_id)->get();
-
-
             return view('admin.speciality.gallery.item.index', compact('gallery_id', 'speciality','galleryItems'));
         } else {
             if ($request->hasFile('icon')) {
@@ -77,10 +75,24 @@ class SpecialityGalleryController extends Controller
                     ]);
                 }
             }
-            return redirect()->back()->with('success', 'Items added successfully!');
+            return redirect()->back();
         }
     }
-    public function itemUpdate(Request $request,$item_id){
+    public function itemEdit(Request $request, $item_id)
+    {
+        $item = SpecialityGalleryItem::findOrFail($item_id);
+        $item->title = $request->input('title');
+        $item->description = $request->input('description');
+        $item->extra_data = $request->input('extra_data');
+        if ($request->hasFile('icon')) {
+            if ($item->icon) {
+                Storage::delete($item->icon);
+            }
+            $path = $request->file('icon')->store('uploads/gallery_items', 'public');
+            $item->icon = $path;
+        }
+        $item->save();
+
     }
     public function itemDelete($item_id){
         SpecialityGalleryItem::where('id',$item_id)->delete();

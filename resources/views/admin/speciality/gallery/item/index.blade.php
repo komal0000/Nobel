@@ -7,12 +7,12 @@
 
 @section('content')
     <div class="container mt-4">
-        <form action="{{ route('admin.speciality.gallery.item.itemIndex', ['gallery_id' => $gallery_id]) }}" method="POST"
+        <form action="{{ route('admin.speciality.gallery.item.index', ['gallery_id' => $gallery_id]) }}" method="POST"
             enctype="multipart/form-data">
             @csrf
             <div class="row justify-content-end">
                 <div class="col-md-4 d-flex justify-content-end">
-                    <button type="button" id="add-item" class="btn btn-primary mt-3">Add Item</button>
+                    <button type="button" id="add-item" class="btn btn-primary">Add Item</button>
                 </div>
             </div>
 
@@ -22,27 +22,26 @@
                         <div class="item-group border p-3 mb-3 rounded">
                             <div class="form-group">
                                 <label for="icon">Icon</label>
-                                <input type="file" name="icon" class="form-control item-icon dropify"
+                                <input type="file" name="icon" class="form-control dropify" id="icon"
                                     data-height="100" data-default-file="{{ Storage::url($item->icon) }}" accept="image/*">
                             </div>
                             <div class="form-group">
                                 <label for="title">Title</label>
-                                <input type="text" name="title" class="form-control item-title"
+                                <input type="text" name="title" class="form-control" id="title"
                                     placeholder="Enter title" value="{{ $item->title }}">
                             </div>
                             <div class="form-group">
                                 <label for="description">Description</label>
-                                <textarea name="description" class="form-control item-title" rows="3" placeholder="Enter description">{!! old('description', $item->description) !!}</textarea>
+                                <textarea name="description" class="form-control" id="description" rows="3" placeholder="Enter description">{!! old('description', $item->description) !!}</textarea>
                             </div>
                             <div class="form-group">
                                 <label for="extra_data">Extra Data</label>
-                                <input type="text" name="extra_data" class="form-control item-extra"
+                                <input type="text" name="extra_data" class="form-control " id="extra_data"
                                     placeholder="Enter extra data" value="{{ $item->extra_data }}">
                             </div>
-                            <a href="{{ route('admin.speciality.gallery.item.itemDelete', ['item_id' => $item->id]) }}"
+                            <a href="{{ route('admin.speciality.gallery.item.delete', ['item_id' => $item->id]) }}"
                                 class="btn btn-sm btn-danger">Delete</a>
-                            <button href="{{ route('admin.speciality.gallery.item.itemEdit', ['item_id' => $item->id]) }}"
-                                class="btn btn-sm btn-primary">Edit</button>
+                            <button onclick="EditData($item->id)" class="btn btn-sm btn-primary">Edit</button>
                         </div>
                     </div>
                 @endforeach
@@ -118,7 +117,34 @@
 
             $('#add-item').click(addItem);
             $(document).on('click', '.remove-item', removeItem);
-            s
         });
+
+        function EditData(id) {
+            var formData = new FormData();
+
+            formData.append('title', $('#title').val());
+            formData.append('description', $('#description').val());
+            formData.append('extra_data', $('#extra_data').val());
+
+            var icon = $('#icon')[0].files[0];
+            if (icon) {
+                formData.append('icon', icon);
+            }
+
+            axios.post("{{ route('admin.speciality.gallery.item.edit', ['item_id' => '__ID__']) }}".replace('__ID__',
+                    id), formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+                .then(function(response) {
+                    alert('Item updated successfully');
+                    location.reload();
+                })
+                .catch(function(error) {
+                    alert('Error updating item');
+                    console.error(error);
+                });
+        }
     </script>
 @endsection

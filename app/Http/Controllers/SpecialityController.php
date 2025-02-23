@@ -35,7 +35,7 @@ class SpecialityController extends Controller
             $speciality->parent_speciality_id = $speciality->id;
             $speciality->save();
 
-            return redirect()->route('admin.speciality.index')->with('success', 'Speciality added successfully.');
+            return redirect()->back();
         }
     }
 
@@ -56,7 +56,7 @@ class SpecialityController extends Controller
                 $speciality->single_page_image = $request->file('single_page_image')->store('uploads/images','public');
             }
             $speciality->save();
-            return redirect()->route('admin.speciality.index')->with('success', 'Speciality updated successfully.');
+            return redirect()->back();
         }
     }
 
