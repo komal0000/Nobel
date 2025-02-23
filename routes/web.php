@@ -72,10 +72,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function(){
             Route::match(['GET','POST'],'edit/{type_id}',[AlimentController::class,'typeEdit'])->name('edit');
             Route::match(['GET','POST'],'del/{type_id}',[AlimentController::class,'typeDel'])->name('del');
             Route::prefix('section')->name('section.')->group(function(){
-                Route::get('index/{type_id}', [AlimentController::class, 'sectionIndex'])->name('index');
-                Route::match(['GET','POST'],'add/{type_id}', [AlimentController::class, 'sectionAdd'])->name('add');
-                Route::match(['GET','POST'],'edit/{section_id}', [AlimentController::class, 'sectionEdit'])->name('edit');
-                Route::match(['GET','POST'],'del/{section_id}', [AlimentController::class, 'sectionDel'])->name('del');
+                Route::match(['GET','POST'],'index/{type_id}', [AlimentController::class, 'sectionIndex'])->name('index');
             });
         });
     });
