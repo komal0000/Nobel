@@ -24,7 +24,7 @@
                 </div>
                 <div class="col-md-4">
                     <button type="submit" class="btn btn-success">
-                        Add
+                        Save
                     </button>
                 </div>
             </div>

@@ -45,38 +45,12 @@
                         </div>
                     </div>
                 @endforeach
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-3">
+                <div class="col-md-4">
+                    <div class="item-group border p-3 mb-3 rounded">
+                        <div class="form-group">
                             <label for="icon">Icon</label>
                             <input type="file" name="icon[]" class="form-control dropify" data-height="100"
                                 accept="image/*">
-                        </div>
-                        <div class="col-md-9">
-                            <div class="row">
-                                <div class="col-md-5 mb-2">
-                                    <label for="title">Title</label>
-                                    <input type="text" name="title[]" class="form-control" placeholder="Enter title">
-                                </div>
-                                <div class="col-md-7 mb-2">
-                                    <label for="extra_data">Extra Data</label>
-                                    <input type="text" name="extra_data[]" class="form-control" placeholder="Enter extra data">
-                                </div>
-                                <div class="col-md-10">
-                                    <label for="description">Description</label>
-                                    <textarea name="description[]" class="form-control" rows="3" placeholder="Enter description"></textarea>
-                                </div>
-                                <div class="col-md-2 d-flex align-items-end">
-                                    <button type="button" class="btn btn-danger btn-sm remove-item">Remove</button>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="item-group border p-3 mb-3 rounded">
-                        <div class="form-group">
-
                         </div>
                         <div class="form-group">
                             <label for="title">Title</label>
@@ -90,13 +64,14 @@
                             <label for="extra_data">Extra Data</label>
                             <input type="text" name="extra_data[]" class="form-control" placeholder="Enter extra data">
                         </div>
+                        <button type="button" class="btn btn-danger btn-sm remove-item">Remove</button>
                     </div>
 
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <button type="submit" class="btn btn-success mt-3">Save All</button>
+                    <button type="submit" class="btn btn-success mt-3">Add</button>
                 </div>
             </div>
         </form>
@@ -163,7 +138,8 @@
                         'Content-Type': 'multipart/form-data'
                     }
                 })
-                .then(function(response) {})
+                .then(function(response) {
+                })
                 .catch(function(error) {
                     alert('Error updating item');
                     console.error(error);
