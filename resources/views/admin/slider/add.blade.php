@@ -22,27 +22,30 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="col-md-12 mb-3">
-                    <label for="link_url">Link URL</label>
-                    <input type="text" class="form-control" id="link_url" name="link_url">
-                </div>
-                <div class="col-md-12 mb-3">
-                    <label for="link_text">Link Text</label>
-                    <input type="text" class="form-control" id="link_text" name="link_text">
-                </div>
-                <div class="row">
-                    <div class="col-md-8">
-                        <label for="extra_data">Extra Data</label>
-                        <textarea class="form-control" id="extra_data" name="extra_data"></textarea>
+                <div class="col-md-4 mb-2">
+                    <div class="form-check d-block">
+                        <input type="hidden" name="has_link" value="0">
+                        <input class="form-check-input" type="checkbox" onclick="toggle()" id="has_link" value="1" name="has_link">
+                        <label class="form-check-label" for="has_link">
+                            Has Link
+                        </label>
                     </div>
-                    <div class="col-md-4 d-flex align-items-end">
-                        <div class="form-check d-block">
-                            <input type="hidden" name="has_link" value="0">
-                            <input class="form-check-input" type="checkbox" id="has_link" value="1" name="has_link">
-                            <label class="form-check-label" for="has_link">
-                                Has Link
-                            </label>
+                </div>
+                <div class="row" id="extra" style="display: none">
+                    <div class="col-md-12 mb-3">
+                        <label for="link_url">Link URL</label>
+                        <input type="text" class="form-control" id="link_url" name="link_url">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="link_text">Link Text</label>
+                        <input type="text" class="form-control" id="link_text" name="link_text">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <label for="extra_data">Extra Data</label>
+                            <textarea class="form-control" id="extra_data" name="extra_data"></textarea>
                         </div>
+
                     </div>
                 </div>
 
@@ -54,4 +57,15 @@
             </div>
         </div>
     </form>
+@endsection
+@section('js')
+    <script>
+        function toggle(){
+            if ($('#has_link').is(':checked')) {
+                $('#extra').show();
+            } else {
+                $('#extra').hide();
+            }
+        }
+    </script>
 @endsection

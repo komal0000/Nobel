@@ -29,9 +29,9 @@
                         <a href="{{ route('admin.speciality.gallery.index', ['speciality_id' => $speciality->id]) }}"
                             class="btn btn-info btn-sm">Manage Gallery </a>
                         <a href="{{ route('admin.aliment.add', ['speciality_id' => $speciality->id]) }}"
-                            class="btn btn-sm btn-secondary">Add Aliment</a>
+                            class="btn btn-sm btn-secondary">Manage Aliment</a>
                         <a href="{{ route('admin.treatment.add', ['speciality_id' => $speciality->id]) }}"
-                            class="btn btn-sm btn-secondary">Add Treatment</a>
+                            class="btn btn-sm btn-secondary">Manage Treatment</a>
                     </td>
                 </tr>
             @endforeach
