@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('slug')->nullable();
             $table->text('description')->nullable();
             $table->string('style_type');
-            $table->foreignId('treatment_id')->constrained();
+            $table->foreignId('treatment_id')->constrained('treatments');
             $table->timestamps();
         });
     }

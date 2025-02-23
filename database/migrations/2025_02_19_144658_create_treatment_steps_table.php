@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug')->nullable();
-            $table->foreignId('treatment_section_id')->constrained();
             $table->text('icon')->nullable();
             $table->text('short_description')->nullable();
             $table->text('long_description')->nullable();
+            $table->foreignId('treatment_section_id')->constrained('treatment_sections');
             $table->timestamps();
         });
     }

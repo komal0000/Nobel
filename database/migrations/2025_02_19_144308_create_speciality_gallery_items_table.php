@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('icon')->nullable();
             $table->text('description')->nullable();
             $table->text('extra_data')->nullable();
-            $table->foreignId('specialty_id')->nullable()->constrained();
-            $table->foreignId('speciality_gallery_id')->constrained();
+            $table->foreignId('specialty_id')->nullable()->constrained('specialties');
+            $table->foreignId('speciality_gallery_id')->constrained('speciality_galleries');
             $table->timestamps();
         });
     }
