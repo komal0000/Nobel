@@ -5,7 +5,7 @@
 @endsection
 @section('btn')
     <a href="{{ route('admin.speciality.gallery.add',['speciality_id'=>$speciality_id]) }}" class="btn btn-primary">
-        Add Gallery
+        Add
     </a>
 @endsection
 @section('content')
@@ -23,9 +23,9 @@
             <td>{{$gallery->title}}</td>
             <td>{{$gallery->description}}</td>
             <td>
-                <a href="{{route('admin.speciality.gallery.edit',['gallery_id'=>$gallery->id])}}" class="btn btn-primary btn-sm">Edit</a>
+                <a href="{{route('admin.speciality.gallery.edit',['gallery_id'=>$gallery->id])}}" class="btn btn-warning btn-sm">Edit</a>
                 <a href="{{route('admin.speciality.gallery.del',['gallery_id'=>$gallery->id])}}" class="btn btn-danger btn-sm">Delete</a>
-                <a href="{{route('admin.speciality.gallery.item.index',['gallery_id'=>$gallery->id])}}" class="btn btn-sm btn-success">Add gallery Items</a>
+                <a href="{{route('admin.speciality.gallery.item.index',['gallery_id'=>$gallery->id])}}" class="btn btn-sm btn-info">Gallery Items</a>
             </td>
         </tr>
         @endforeach

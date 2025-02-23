@@ -96,7 +96,7 @@
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <button type="submit" class="btn btn-success mt-3">Add</button>
+                    <button type="submit" class="btn btn-success mt-3">Save All</button>
                 </div>
             </div>
         </form>

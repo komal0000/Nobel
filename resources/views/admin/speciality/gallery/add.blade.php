@@ -23,7 +23,7 @@
                     <textarea class="form-control" id="description" name="description"></textarea>
                 </div>
                 <div class="col-md-4">
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-success">
                         Add
                     </button>
                 </div>

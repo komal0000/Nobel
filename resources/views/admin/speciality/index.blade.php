@@ -4,7 +4,7 @@
 @endsection
 @section('btn')
     <a href="{{ route('admin.speciality.add') }}" class="btn btn-primary">
-        Add Speciality
+        Add
     </a>
 @endsection
 @section('content')
@@ -23,11 +23,11 @@
                     <td>{{ $speciality->short_description }}</td>
                     <td>
                         <a href="{{ route('admin.speciality.edit', ['speciality_id' => $speciality->id]) }}"
-                            class="btn btn-primary btn-sm ">Edit</a>
+                            class="btn btn-warning btn-sm ">Edit</a>
                         <a href="{{ route('admin.speciality.del', ['speciality_id' => $speciality->id]) }}"
                             class="btn btn-danger btn-sm">Delete</a>
                         <a href="{{ route('admin.speciality.gallery.index', ['speciality_id' => $speciality->id]) }}"
-                            class="btn btn-success btn-sm">Manage Gallery </a>
+                            class="btn btn-info btn-sm">Manage Gallery </a>
                         <a href="{{ route('admin.aliment.add', ['speciality_id' => $speciality->id]) }}"
                             class="btn btn-sm btn-secondary">Add Aliment</a>
                         <a href="{{ route('admin.treatment.add', ['speciality_id' => $speciality->id]) }}"
