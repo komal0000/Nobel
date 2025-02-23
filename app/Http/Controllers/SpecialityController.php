@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Helper;
 use App\Models\Speciality;
+use App\Models\SpecialityGallery;
+use App\Models\SpecialityGalleryItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -62,6 +64,13 @@ class SpecialityController extends Controller
 
     public function del($speciality_id)
     {
+        $SpecialityGalleries = SpecialityGallery::where('specialty_id',$speciality_id)->get();
+        if($SpecialityGalleries->isNotEmpty()){
+            foreach($SpecialityGalleries as $gallery){
+                SpecialityGalleryItem::where('specialty_gallery_id',$gallery->id)->delete();
+                $gallery->delete();
+            }
+        }
         Speciality::where("id", $speciality_id)->delete();
         return redirect()->back();
     }

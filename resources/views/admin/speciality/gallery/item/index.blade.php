@@ -85,27 +85,28 @@
 
             function addItem() {
                 var itemGroup = `
-                    <div class="col-md-4">
-                        <div class="item-group border p-3 mb-3 rounded">
-                            <div class="form-group">
-                                <label for="icon">Icon</label>
-                                <input type="file" name="icon[]" class="form-control dropify" data-height="100" accept="image/*">
-                            </div>
-                            <div class="form-group">
-                                <label for="title">Title</label>
-                                <input type="text" name="title[]" class="form-control" placeholder="Enter title">
-                            </div>
-                            <div class="form-group">
-                                <label for="description">Description</label>
-                                <textarea name="description[]" class="form-control" rows="3" placeholder="Enter description"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="extra_data">Extra Data</label>
-                                <input type="text" name="extra_data[]" class="form-control" placeholder="Enter extra data">
-                            </div>
-                            <button type="button" class="btn btn-danger remove-item mt-2">Remove</button>
+                  <div class="col-md-4">
+                    <div class="item-group border p-3 mb-3 rounded">
+                        <div class="form-group">
+                            <label for="icon">Icon</label>
+                            <input type="file" name="icon[]" class="form-control dropify" data-height="100"
+                                accept="image/*">
                         </div>
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="text" name="title[]" class="form-control" placeholder="Enter title">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea name="description[]" class="form-control" rows="3" placeholder="Enter description"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="extra_data">Extra Data</label>
+                            <input type="text" name="extra_data[]" class="form-control" placeholder="Enter extra data">
+                        </div>
+                        <button type="button" class="btn btn-danger btn-sm remove-item">Remove</button>
                     </div>
+                </div>
                 `;
                 $('#items-container').append(itemGroup);
                 $('.dropify').dropify();

@@ -51,6 +51,7 @@ class SpecialityGalleryController extends Controller
 
     public function del($gallery_id)
     {
+        SpecialityGalleryItem::where('specialty_gallery_id',$gallery_id)->delete();
         SpecialityGallery::where("id", $gallery_id)->delete();
         return redirect()->back();
     }
