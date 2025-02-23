@@ -20,10 +20,10 @@
                 <td>{{ $alimentType->title }}</td>
                 <td>
                     <a href="{{ route('admin.aliment.type.edit', ['type_id' => $alimentType->id]) }}"
-                        class="btn btn-primary btn-sm">Edit</a>
+                        class="btn btn-warning btn-sm">Edit</a>
                     <a href="{{ route('admin.aliment.type.del', ['type_id' => $alimentType->id]) }}"
                         class="btn btn-danger btn-sm">Delete</a>
-                    <a href="{{route('admin.aliment.type.section.index',['type_id' =>$alimentType->id])}}" class="btn btn-success btn-sm">Add Section Info</a>
+                    <a href="{{route('admin.aliment.type.section.index',['type_id' =>$alimentType->id])}}" class="btn btn-info btn-sm">Section Info</a>
                 </td>
             </tr>
         @endforeach

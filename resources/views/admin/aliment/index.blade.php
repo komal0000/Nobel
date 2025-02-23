@@ -18,11 +18,11 @@
                     <td>{{ $aliment->short_description }}</td>
                     <td>
                         <a href="{{ route('admin.aliment.edit', ['aliment_id' => $aliment->id]) }}"
-                            class="btn btn-primary btn-sm ">Edit</a>
+                            class="btn btn-warning btn-sm ">Edit</a>
                         <a href="{{ route('admin.aliment.del', ['aliment_id' => $aliment->id]) }}"
                             class="btn btn-danger btn-sm">Delete</a>
                         <a href="{{ route('admin.aliment.type.index', ['aliment_id' => $aliment->id]) }}"
-                            class="btn btn-success btn-sm">Manage Section Type</a>
+                            class="btn btn-info btn-sm">Manage Section Type</a>
                     </td>
                 </tr>
             @endforeach

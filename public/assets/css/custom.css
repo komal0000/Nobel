@@ -809,3 +809,19 @@ body.uikit .btn-download {
     background-color: transparent !important;
     border-color: #1aa053 !important;
 }
+
+.btn-info:hover, .btn-info:active{
+    color: #079aa2 ! important;
+    background-color: transparent !important;
+    border-color: #079aa2;
+}
+.btn-warning:hover, .btn-warning:active{
+    color: #f16a1b ! important;
+    background-color: transparent !important;
+    border-color: #f16a1b;
+}
+.btn-secondary:hover, .btn-secondary:active{
+    color: #001F4D ! important;
+    background-color: transparent !important;
+    border-color: #001F4D;
+}

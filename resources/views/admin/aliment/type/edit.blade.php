@@ -24,7 +24,7 @@
                             <textarea name="description" id="description" class="form-control">{{ $alimentType->description }}</textarea>
                         </div>
                         <div class="col-md-12" d-flex align-items-end>
-                            <button class="btn btn-primary btn-sm">
+                            <button class="btn btn-success btn-sm">
                                 Edit
                             </button>
                         </div>
