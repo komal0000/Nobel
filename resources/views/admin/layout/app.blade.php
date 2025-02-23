@@ -24,12 +24,6 @@
             text-decoration: none;
             transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
         }
-
-        .card-title a:hover {
-            color: #01070d;
-            text-shadow: 0px 0px 8px rgba(0, 2, 5, 0.5);
-        }
-
         .dropify-wrapper {
             font-size: 16px !important;
             /* Adjust as needed */
@@ -60,10 +54,15 @@
                 <div>
                     <div class="card mb-2">
                         <div class="card-body d-flex justify-content-between align-items-center">
-                            <div class="card-title">
-                                <h4>
-                                    @yield('title')
-                                </h4>
+                            <div class="card-title" style="margin: 0px">
+                                <div class="bd-example">
+                                    <nav aria-label="breadcrumb" >
+                                        <ol class="breadcrumb" style="margin: 0px;font-size: 20px">
+                                            <li class="breadcrumb-item"> @yield('title')</li>
+
+                                        </ol>
+                                    </nav>
+                                </div>
                             </div>
                             <div class="card-action">
                                 @yield('btn')
@@ -80,36 +79,8 @@
         @endif
     </div>
     <script src="{{ asset('assets/js/core/libs.min.js') }}"></script>
-
-    <!-- External Library Bundle Script -->
     <script src="{{ asset('assets/js/core/external.min.js') }}"></script>
-
-    {{-- <!-- Widgetchart Script -->
-    <script src="{{ asset('assets/js/charts/widgetcharts.js') }}"></script>
-
-    <!-- mapchart Script -->
-    <script src="{{ asset('assets/js/charts/vectore-chart.js') }}"></script>
-    <script src="{{ asset('assets/js/charts/dashboard.js') }}"></script>
-
-    <!-- fslightbox Script -->
-    <script src="{{ asset('assets/js/plugins/fslightbox.js') }}"></script>
-
-    <!-- Settings Script -->
-    <script src="{{ asset('assets/js/plugins/setting.js') }}"></script>
-
-    <!-- Slider-tab Script -->
-    <script src="{{ asset('assets/js/plugins/slider-tabs.js') }}"></script>
-
-    <!-- Form Wizard Script -->
-    <script src="{{ asset('assets/js/plugins/form-wizard.js') }}"></script>
-
-    <!-- AOS Animation Plugin-->
-    <script src="{{ asset('assets/vendor/aos/dist/aos.js') }}"></script> --}}
-
-    <!-- App Script -->
     <script src="{{ asset('assets/js/hope-ui.js') }}" defer></script>
-
-    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"
