@@ -9,11 +9,11 @@
         <form action="{{route('admin.aliment.type.edit', ['type_id' => $alimentType->id])}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <label for="icon">Icon</label>
                     <input type="file" name="icon" id="icon" class="form-control dropify" accept="image/*" data-default-file="{{Storage::url($alimentType->icon)}}">
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-6">
                     <div class="row">
                         <div class="col-md-12 mb-2">
                             <label for="title">Title</label>

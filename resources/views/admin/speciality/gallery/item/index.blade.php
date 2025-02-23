@@ -71,7 +71,7 @@
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <button type="submit" class="btn btn-success mt-3">Submit</button>
+                    <button type="submit" class="btn btn-success mt-3">Add</button>
                 </div>
             </div>
         </form>

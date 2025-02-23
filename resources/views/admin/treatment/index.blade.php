@@ -1,6 +1,6 @@
 @extends('admin.layout.app')
 @section('title')
-    <span>Treatment</span>
+    <span>Treatments</span>
 @endsection
 @section('btn')
     <a href="{{ route('admin.treatment.add') }}" class="btn btn-primary">Add</a>
