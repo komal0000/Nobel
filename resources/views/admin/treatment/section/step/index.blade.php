@@ -23,7 +23,7 @@
                     <td>{{ $step->short_description }}</td>
                     <td>
                         <a href="{{ route('admin.treatment.section.step.edit', ['step_id' => $step->id]) }}"
-                            class="btn btn-primary btn-sm ">Edit</a>
+                            class="btn btn-warning btn-sm ">Edit</a>
                         <a href="{{ route('admin.treatment.section.step.del', ['step_id' => $step->id]) }}"
                             class="btn btn-danger btn-sm">Delete</a>
                     </td>

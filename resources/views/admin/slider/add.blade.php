@@ -48,8 +48,8 @@
 
             </div>
             <div class="col-md-12 d-flex ">
-                <button type="submit" class="btn btn-primary">
-                    Add
+                <button type="submit" class="btn btn-success">
+                    Save
                 </button>
             </div>
         </div>

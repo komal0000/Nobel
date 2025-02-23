@@ -24,8 +24,8 @@
                     <textarea class="form-control" id="description" name="description"></textarea>
                 </div>
                 <div class="col-md-2">
-                    <button type="submit" class="btn btn-primary">
-                        Add
+                    <button type="submit" class="btn btn-success">
+                        Save
                     </button>
                 </div>
             </div>

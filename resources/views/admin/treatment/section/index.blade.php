@@ -22,11 +22,11 @@
                     <td>{{ $section->style_type }}</td>
                     <td>
                         <a href="{{ route('admin.treatment.section.edit', ['section_id' => $section->id]) }}"
-                            class="btn btn-primary btn-sm ">Edit</a>
+                            class="btn btn-warning btn-sm ">Edit</a>
                         <a href="{{ route('admin.treatment.section.del', ['section_id' => $section->id]) }}"
                             class="btn btn-danger btn-sm">Delete</a>
                         <a href="{{ route('admin.treatment.section.step.index', ['section_id' => $section->id]) }}"
-                            class="btn btn-sm btn-success">Manage steps</a>
+                            class="btn btn-sm btn-info">Manage steps</a>
                     </td>
                 </tr>
             @endforeach

@@ -19,7 +19,7 @@
                         </div>
                         <br>
                         <div class="option">
-                            <a href="{{route('admin.slider.edit',['slider_id'=>$slider->id])}}" class="btn btn-primary me-2">Edit</a>
+                            <a href="{{route('admin.slider.edit',['slider_id'=>$slider->id])}}" class="btn btn-warning">Edit</a>
                             <a href="{{route('admin.slider.del',['slider_id'=>$slider->id])}}" class="btn btn-danger">Delete</a>
                         </div>
                     </div>

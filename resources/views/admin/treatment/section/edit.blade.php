@@ -24,7 +24,7 @@
                     <textarea class="form-control" id="description" name="description">{{ $treatmentSection->description }}</textarea>
                 </div>
                 <div class="col-md-2">
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-success">
                         Edit
                     </button>
                 </div>

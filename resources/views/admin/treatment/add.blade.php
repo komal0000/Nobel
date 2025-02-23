@@ -31,8 +31,8 @@
                     <textarea class="form-control" id="short_description" name="short_description"></textarea>
                 </div>
                 <div class="col-md-12">
-                    <button type="submit" class="btn btn-primary">
-                        Add
+                    <button type="submit" class="btn btn-success">
+                        Save
                     </button>
                 </div>
             </div>

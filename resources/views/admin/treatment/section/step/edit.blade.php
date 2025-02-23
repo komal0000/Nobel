@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="col-md-12 mt-3 d-flex justify-content-end">
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-success">
                     Edit
                 </button>
             </div>
