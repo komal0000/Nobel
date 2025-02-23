@@ -8,7 +8,6 @@
     </a>
 @endsection
 @section('content')
-<div class="custom-datatable-entries">
     <table id="datatable" class="table table-striped" data-toggle="data-table">
         <thead>
             <tr>
@@ -41,5 +40,4 @@
             </tr>
         </tfoot>
     </table>
-</div>
 @endsection
