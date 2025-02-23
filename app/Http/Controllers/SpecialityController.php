@@ -67,7 +67,7 @@ class SpecialityController extends Controller
         $SpecialityGalleries = SpecialityGallery::where('specialty_id',$speciality_id)->get();
         if($SpecialityGalleries->isNotEmpty()){
             foreach($SpecialityGalleries as $gallery){
-                SpecialityGalleryItem::where('specialty_gallery_id',$gallery->id)->delete();
+                SpecialityGalleryItem::where('speciality_gallery_id',$gallery->id)->delete();
                 $gallery->delete();
             }
         }

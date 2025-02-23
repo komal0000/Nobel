@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->text('extra_data')->nullable();
             $table->foreignId('specialty_id')->nullable()->constrained();
-            $table->foreignId('specialty_gallery_id');
+            $table->foreignId('speciality_gallery_id')->constrained();
             $table->timestamps();
         });
     }

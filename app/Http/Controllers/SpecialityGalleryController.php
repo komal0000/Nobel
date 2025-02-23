@@ -51,29 +51,29 @@ class SpecialityGalleryController extends Controller
 
     public function del($gallery_id)
     {
-        SpecialityGalleryItem::where('specialty_gallery_id',$gallery_id)->delete();
+        SpecialityGalleryItem::where('speciality_gallery_id', $gallery_id)->delete();
         SpecialityGallery::where("id", $gallery_id)->delete();
         return redirect()->back();
     }
 
     public function itemIndex(Request $request, $gallery_id)
     {
-        $speciality = DB::table('speciality_galleries')->where('id', $gallery_id)->first(['id']);
+        $speciality = DB::table('speciality_galleries')->where('id', $gallery_id)->first(['id','specialty_id']);
         if (Helper::G($request)) {
-            $galleryItems = DB::table('speciality_gallery_items')->where('specialty_gallery_id',$gallery_id)->get();
-            return view('admin.speciality.gallery.item.index', compact('gallery_id', 'speciality','galleryItems'));
+            $galleryItems = DB::table('speciality_gallery_items')->where('speciality_gallery_id', $gallery_id)->get();
+            return view('admin.speciality.gallery.item.index', compact('gallery_id', 'speciality', 'galleryItems'));
         } else {
             if ($request->hasFile('icon')) {
                 foreach ($request->file('icon') as $index => $file) {
                     $path = $file->store('uploads/gallery_items', 'public');
-                    SpecialityGalleryItem::create([
-                        'specialty_gallery_id' => $gallery_id,
-                        'specialty_id'=>$speciality->id,
-                        'icon' => $path,
-                        'title' => $request->title[$index],
-                        'description' => $request->description[$index] ?? null,
-                        'extra_data' => $request->extra_data[$index] ?? null,
-                    ]);
+                    $item = new SpecialityGalleryItem();
+                    $item->speciality_gallery_id = $gallery_id;
+                    $item->specialty_id = $speciality->specialty_id;
+                    $item->icon = $path;
+                    $item->title = $request->title[$index];
+                    $item->description = $request->description[$index] ?? null;
+                    $item->extra_data = $request->extra_data[$index] ?? null;
+                    $item->save();
                 }
             }
             return redirect()->back();
@@ -93,10 +93,10 @@ class SpecialityGalleryController extends Controller
             $item->icon = $path;
         }
         $item->save();
-
     }
-    public function itemDelete($item_id){
-        SpecialityGalleryItem::where('id',$item_id)->delete();
+    public function itemDelete($item_id)
+    {
+        SpecialityGalleryItem::where('id', $item_id)->delete();
         return redirect()->back();
     }
 }

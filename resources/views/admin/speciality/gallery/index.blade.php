@@ -9,45 +9,33 @@
     </a>
 @endsection
 @section('content')
-<div class="row">
-    <div class="col-sm-12">
-       <div class="card">
-          <div class="card-header d-flex justify-content-between">
-          </div>
-          <div class="card-body">
-             <div class="custom-datatable-entries">
-                <table id="datatable" class="table table-striped" data-toggle="data-table">
-                    <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Description</th>
-                            <th>Options</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($specialityGallery as $gallery)
-                        <tr>
-                            <td>{{$gallery->title}}</td>
-                            <td>{{$gallery->description}}</td>
-                            <td>
-                                <a href="{{route('admin.speciality.gallery.edit',['gallery_id'=>$gallery->id])}}" class="btn btn-primary btn-sm">Edit</a>
-                                <a href="{{route('admin.speciality.gallery.del',['gallery_id'=>$gallery->id])}}" class="btn btn-danger btn-sm">Delete</a>
-                                <a href="{{route('admin.speciality.gallery.item.index',['gallery_id'=>$gallery->id])}}" class="btn btn-sm btn-success">Add gallery Items</a>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>Title</th>
-                            <th>Description</th>
-                            <th>Options</th>
-                        </tr>
-                    </tfoot>
-                </table>
-             </div>
-          </div>
-       </div>
-    </div>
- </div>
+<table id="datatable" class="table table-striped" data-toggle="data-table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($specialityGallery as $gallery)
+        <tr>
+            <td>{{$gallery->title}}</td>
+            <td>{{$gallery->description}}</td>
+            <td>
+                <a href="{{route('admin.speciality.gallery.edit',['gallery_id'=>$gallery->id])}}" class="btn btn-primary btn-sm">Edit</a>
+                <a href="{{route('admin.speciality.gallery.del',['gallery_id'=>$gallery->id])}}" class="btn btn-danger btn-sm">Delete</a>
+                <a href="{{route('admin.speciality.gallery.item.index',['gallery_id'=>$gallery->id])}}" class="btn btn-sm btn-success">Add gallery Items</a>
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Options</th>
+        </tr>
+    </tfoot>
+</table>
 @endsection

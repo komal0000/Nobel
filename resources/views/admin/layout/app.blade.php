@@ -58,33 +58,21 @@
         @if (!request()->routeIs('admin.index'))
             <div class="conatiner-fluid content-inner mt-n5 py-0">
                 <div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card mb-2">
-                                <div class="card-body d-flex justify-content-between align-items-center">
-                                    <div class="card-title">
-                                        <h4>
-                                            @yield('title')
-                                        </h4>
-                                    </div>
-                                    <div class="card-action">
-                                        @yield('btn')
-                                    </div>
-                                </div>
+                    <div class="card mb-2">
+                        <div class="card-body d-flex justify-content-between align-items-center">
+                            <div class="card-title">
+                                <h4>
+                                    @yield('title')
+                                </h4>
+                            </div>
+                            <div class="card-action">
+                                @yield('btn')
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="card  ">
-                                        <div class="card-body">
-                                            @yield('content')
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="card  ">
+                        <div class="card-body">
+                            @yield('content')
                         </div>
                     </div>
                 </div>
@@ -96,7 +84,7 @@
     <!-- External Library Bundle Script -->
     <script src="{{ asset('assets/js/core/external.min.js') }}"></script>
 
-    <!-- Widgetchart Script -->
+    {{-- <!-- Widgetchart Script -->
     <script src="{{ asset('assets/js/charts/widgetcharts.js') }}"></script>
 
     <!-- mapchart Script -->
@@ -116,12 +104,12 @@
     <script src="{{ asset('assets/js/plugins/form-wizard.js') }}"></script>
 
     <!-- AOS Animation Plugin-->
-    <script src="{{ asset('assets/vendor/aos/dist/aos.js') }}"></script>
+    <script src="{{ asset('assets/vendor/aos/dist/aos.js') }}"></script> --}}
 
     <!-- App Script -->
     <script src="{{ asset('assets/js/hope-ui.js') }}" defer></script>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"
