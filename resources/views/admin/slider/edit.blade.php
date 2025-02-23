@@ -38,7 +38,7 @@
         </div>
         <div class="col-md-4 d-flex align-items-end">
             <button type="submit" class="btn btn-primary">
-                Update
+                Edit
             </button>
         </div>
     </div>

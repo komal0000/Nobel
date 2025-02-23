@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Helper;
 use App\Models\Treatment;
+use App\Models\TreatmentSection;
+use App\Models\TreatmentStep;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -45,11 +47,21 @@ class TreatmentController extends Controller
                 $treatment->single_page_image = $request->file('single_page_image')->store('uploads/treatments','public');
             }
             $treatment->save();
-            return redirect()->route('admin.treatment.index')->with('success', 'Treatment updated successfully.');
+            return redirect()->back();
         }
     }
-    public function del($treatment_id){
-        Treatment::where('id',$treatment_id)->delete();
-        return redirect()->route('admin.treatment.index');
+    public function del($treatment_id) {
+        $treatmentSections = TreatmentSection::where('treatment_id', $treatment_id)->get();
+
+        if ($treatmentSections->isNotEmpty()) {
+            foreach ($treatmentSections as $section) {
+                TreatmentStep::where('treatment_section_id', $section->id)->delete();
+                $section->delete();
+            }
+        }
+        Treatment::where('id', $treatment_id)->delete();
+
+        return redirect()->back();
     }
+
 }

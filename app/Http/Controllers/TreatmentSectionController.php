@@ -46,6 +46,7 @@ class TreatmentSectionController extends Controller
         }
     }
     public function del($section_id){
+        TreatmentStep::where('treatment_section_id',$section_id)->delete();
         TreatmentSection::where('id',$section_id)->delete();
         return redirect()->back();
     }
@@ -96,5 +97,6 @@ class TreatmentSectionController extends Controller
     }
     public function stepDel($step_id){
         TreatmentStep::where("id", $step_id)->delete();
+        return redirect()->back();
     }
 }

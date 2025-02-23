@@ -2,7 +2,7 @@
 @section('title')
     <a href="{{ route('admin.treatment.index') }}">Treatments</a> /
     <a href="{{route('admin.treatment.section.index',['treatment_id'=>$treatment_id])}}">Sections</a> /
-    <span> Add Section</span>
+    <span> Add</span>
 @endsection
 @section('content')
     <form action="{{ route('admin.treatment.section.add',['treatment_id'=>$treatment_id]) }}" method="POST" enctype="multipart/form-data">
