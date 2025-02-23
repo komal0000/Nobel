@@ -41,7 +41,7 @@
                             </div>
                             <a href="{{ route('admin.speciality.gallery.item.delete', ['item_id' => $item->id]) }}"
                                 class="btn btn-sm btn-danger">Delete</a>
-                            <button onclick="EditData($item->id)" class="btn btn-sm btn-primary">Edit</button>
+                            <button onclick="EditData({{ $item->id }})" class="btn btn-sm btn-primary">Update</button>
                         </div>
                     </div>
                 @endforeach
@@ -138,8 +138,6 @@
                     }
                 })
                 .then(function(response) {
-                    alert('Item updated successfully');
-                    location.reload();
                 })
                 .catch(function(error) {
                     alert('Error updating item');
