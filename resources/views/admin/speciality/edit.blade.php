@@ -30,7 +30,7 @@
                 </div>
                 <div class="d-flex">
                     <button type="submit" class="btn btn-success">
-                        Edit
+                        Update
                     </button>
                 </div>
             </div>

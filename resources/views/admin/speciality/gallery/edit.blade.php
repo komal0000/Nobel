@@ -24,7 +24,7 @@
                 </div>
                 <div class="col-md-4">
                     <button type="submit" class="btn btn-success">
-                        Edit
+                        Update
                     </button>
                 </div>
             </div>

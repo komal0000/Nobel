@@ -25,7 +25,7 @@
                         </div>
                         <div class="col-md-12" d-flex align-items-end>
                             <button class="btn btn-success btn-sm">
-                                Edit
+                                Update
                             </button>
                         </div>
                     </div>
