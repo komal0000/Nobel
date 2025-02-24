@@ -3,7 +3,7 @@
     <span>Specialties</span>
 @endsection
 @section('btn')
-    <a href="{{ route('admin.speciality.add') }}" class="btn btn-primary">
+    <a href="{{ route('admin.speciality.add',['parent_speciality_id'=>$parent_speciality_id]) }}" class="btn btn-primary">
         Add
     </a>
 @endsection
@@ -22,7 +22,7 @@
                     <td>{{ $speciality->title }}</td>
                     <td>{{ $speciality->short_description }}</td>
                     <td>
-                        <a href="{{ route('admin.speciality.subspeciality.index', ['speciality_id' => $speciality->id]) }}"
+                        <a href="{{ route('admin.speciality.index', ['parent_speciality_id' => $speciality->id]) }}"
                             class="btn btn-info btn-sm">
                             Sub
                         </a>

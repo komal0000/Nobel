@@ -12,20 +12,28 @@ use Illuminate\Support\Facades\Storage;
 
 class SpecialityController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $specialties = Speciality::whereNull('parent_speciality_id')->get(['id', 'title', 'short_description']);
-        return view('admin.speciality.index', compact('specialties'));
+        $parent_speciality_id = $request->parent_speciality_id;
+        if($parent_speciality_id){
+            $specialties = Speciality::where('parent_speciality_id',$parent_speciality_id)->get(['id', 'title', 'short_description']);
+        }else{
+            $specialties = Speciality::whereNull('parent_speciality_id')->get(['id', 'title', 'short_description']);
+
+        }
+        return view('admin.speciality.index', compact('specialties','parent_speciality_id'));
     }
 
     public function add(Request $request)
     {
+        $parent_speciality_id = $request->parent_speciality_id;
         if (Helper::G($request)) {
-            return view('admin.speciality.add');
+            return view('admin.speciality.add',compact('parent_speciality_id'));
         } else {
             $speciality = new Speciality();
             $speciality->title = $request->title;
             $speciality->short_description = $request->short_description;
+            $speciality->parent_speciality_id = $request->parent_speciality_id;
 
             if ($request->hasFile('icon')) {
                 $speciality->icon = $request->file('icon')->store('uploads/images', 'public');

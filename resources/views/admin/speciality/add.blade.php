@@ -4,7 +4,7 @@
     <span>Add</span>
 @endsection
 @section('content')
-    <form action="{{ route('admin.speciality.add') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('admin.speciality.add',['parent_speciality_id'=>$parent_speciality_id]) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-md-6">
