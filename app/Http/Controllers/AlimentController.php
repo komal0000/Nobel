@@ -70,16 +70,16 @@ class AlimentController extends Controller
     }
 
 
-    public function typeIndex($aliment_id)
+    public function typeIndex()
     {
-        $alimentTypes = AlimentSectionType::where('aliment_id', $aliment_id)->get();
-        return view('admin.aliment.type.index', compact('alimentTypes', 'aliment_id'));
+        $alimentTypes = DB::table('aliment_section_types')->get();
+        return view('admin.aliment.sectionType.index', compact('alimentTypes'));
     }
 
-    public function typeAdd(Request $request, $aliment_id)
+    public function typeAdd(Request $request,)
     {
         if (Helper::g($request)) {
-            return view('admin.aliment.type.add', compact('aliment_id'));
+            return view('admin.aliment.sectionType.add');
         } else {
             $alimentType = new AlimentSectionType();
             $alimentType->title = $request->title;
@@ -87,7 +87,6 @@ class AlimentController extends Controller
                 $alimentType->icon = $request->file('icon')->store('uploads/aliment_types', 'public');
             }
             $alimentType->description = $request->description;
-            $alimentType->aliment_id = $aliment_id;
             $alimentType->save();
             return redirect()->back();
         }
@@ -97,7 +96,7 @@ class AlimentController extends Controller
     {
         $alimentType = AlimentSectionType::where('id', $type_id)->first();
         if (Helper::G($request)) {
-            return view('admin.aliment.type.edit', compact('alimentType'));
+            return view('admin.aliment.sectionType.edit', compact('alimentType'));
         } else {
             $alimentType->title = $request->title;
             if ($request->has("icon")) {
@@ -105,12 +104,11 @@ class AlimentController extends Controller
             }
             $alimentType->description = $request->description;
             $alimentType->save();
-            return redirect()->route('admin.aliment.type.index', ['aliment_id' => $alimentType->aliment_id])->with('success', 'Aliment type updated successfully.');
+            return redirect()->back();
         }
     }
     public function typeDel($type_id)
     {
-        AlimentSection::where('aliment_section_type_id',$type_id)->delete();
         AlimentSectionType::where('id', $type_id)->delete();
         return redirect()->back();
     }
