@@ -52,19 +52,9 @@
                             role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="{{ asset('assets/images/avatars/01.png') }}" alt="User-Profile"
                                 class="theme-color-default-img img-fluid avatar avatar-50 avatar-rounded">
-                            <img src="{{ asset('assets/images/avatars/avtar_1.png') }}" alt="User-Profile"
-                                class="theme-color-purple-img img-fluid avatar avatar-50 avatar-rounded">
-                            <img src="{{ asset('assets/images/avatars/avtar_2.png') }}" alt="User-Profile"
-                                class="theme-color-blue-img img-fluid avatar avatar-50 avatar-rounded">
-                            <img src="{{ asset('assets/images/avatars/avtar_4.png') }}" alt="User-Profile"
-                                class="theme-color-green-img img-fluid avatar avatar-50 avatar-rounded">
-                            <img src="{{ asset('assets/images/avatars/avtar_5.png') }}" alt="User-Profile"
-                                class="theme-color-yellow-img img-fluid avatar avatar-50 avatar-rounded">
-                            <img src="{{ asset('assets/images/avatars/avtar_3.png') }}" alt="User-Profile"
-                                class="theme-color-pink-img img-fluid avatar avatar-50 avatar-rounded">
-                            <div class="caption ms-3 d-none d-md-block ">
+                            <div class="ms-3">
                                 <h6 class="mb-0 caption-title">User</h6>
-                                <p class="mb-0 caption-sub-title">Their role</p>
+                                <p class="mb-0 caption-sub-title">Super Admin</p>
                             </div>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -97,16 +87,7 @@
             <div class="iq-header-img">
                 <img src="{{ asset('assets/images/dashboard/top-header.png') }}" alt="header"
                     class="theme-color-default-img img-fluid w-100 h-100 animated-scaleX">
-                <img src="{{ asset('assets/images/dashboard/top-header1.png') }}" alt="header"
-                    class="theme-color-purple-img img-fluid w-100 h-100 animated-scaleX">
-                <img src="{{ asset('assets/images/dashboard/top-header2.png') }}" alt="header"
-                    class="theme-color-blue-img img-fluid w-100 h-100 animated-scaleX">
-                <img src="{{ asset('assets/images/dashboard/top-header3.png') }}" alt="header"
-                    class="theme-color-green-img img-fluid w-100 h-100 animated-scaleX">
-                <img src="{{ asset('assets/images/dashboard/top-header4.png') }}" alt="header"
-                    class="theme-color-yellow-img img-fluid w-100 h-100 animated-scaleX">
-                <img src="{{ asset('assets/images/dashboard/top-header5.png') }}" alt="header"
-                    class="theme-color-pink-img img-fluid w-100 h-100 animated-scaleX">
+
             </div>
         </div>
 
