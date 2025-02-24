@@ -21,12 +21,12 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::match(["GET", "POST"], 'add', [SpecialityController::class, 'add'])->name('add');
         Route::match(["GET", "POST"], 'edit/{speciality_id}', [SpecialityController::class, 'edit'])->name('edit');
         Route::match(["GET", "POST"], 'del/{speciality_id}', [SpecialityController::class, 'del'])->name('del');
-        Route::prefix('subspeciality')->name("subspeciality.")->group(function () {
-            Route::get('index/{speciality_id}', [SpecialityController::class, 'subspecialityIndex'])->name('index');
-            Route::match(["GET", "POST"], 'add/{speciality_id}', [SpecialityController::class, 'subspecialityAdd'])->name('add');
-            Route::match(["GET", "POST"], 'edit/{subspeciality_id}', [SpecialityController::class, 'subspecialityEdit'])->name('edit');
-            Route::match(["GET", "POST"], 'del/{subspeciality_id}', [SpecialityController::class, 'subspecialityDel'])->name('del');
-        });
+        // Route::prefix('subspeciality')->name("subspeciality.")->group(function () {
+        //     Route::get('index/{speciality_id}', [SpecialityController::class, 'subspecialityIndex'])->name('index');
+        //     Route::match(["GET", "POST"], 'add/{speciality_id}', [SpecialityController::class, 'subspecialityAdd'])->name('add');
+        //     Route::match(["GET", "POST"], 'edit/{subspeciality_id}', [SpecialityController::class, 'subspecialityEdit'])->name('edit');
+        //     Route::match(["GET", "POST"], 'del/{subspeciality_id}', [SpecialityController::class, 'subspecialityDel'])->name('del');
+        // });
         Route::prefix('gallery')->name("gallery.")->group(function () {
             Route::get('index/{speciality_id}', [SpecialityGalleryController::class, 'index'])->name('index');
             Route::match(["GET", "POST"], 'add/{speciality_id}', [SpecialityGalleryController::class, 'add'])->name('add');
@@ -48,7 +48,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     });
     Route::prefix('treatment')->name('treatment.')->group(function () {
         Route::get('', [TreatmentController::class, 'index'])->name('index');
-        Route::match(["GET", "POST"], 'add/{speciality_id}', [TreatmentController::class, 'add'])->name('add');
+        Route::match(["GET", "POST"], 'add', [TreatmentController::class, 'add'])->name('add');
         Route::match(["GET", "POST"], 'edit/{treatment_id}', [TreatmentController::class, 'edit'])->name('edit');
         Route::match(["GET", "POST"], 'del/{treatment_id}', [TreatmentController::class, 'del'])->name('del');
 
@@ -66,8 +66,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         });
     });
     Route::prefix('aliment')->name('aliment.')->group(function () {
-        Route::get('', [AlimentController::class, 'index'])->name('index');
-        Route::match(["GET", "POST"], 'add/{speciality_id}', [AlimentController::class, 'add'])->name('add');
+        Route::get('index', [AlimentController::class, 'index'])->name('index');
+        Route::match(["GET", "POST"], 'add', [AlimentController::class, 'add'])->name('add');
         Route::match(["GET", "POST"], 'edit/{aliment_id}', [AlimentController::class, 'edit'])->name('edit');
         Route::match(["GET", "POST"], 'del/{aliment_id}', [AlimentController::class, 'del'])->name('del');
         Route::prefix('section')->name('section.')->group(function () {

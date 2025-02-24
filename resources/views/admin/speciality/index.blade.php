@@ -1,14 +1,14 @@
 @extends('admin.layout.app')
 @section('title')
-  @if ($parent_speciality_id == null)
-  <span>Specialties</span>
-  @else
-  <a href="{{route('admin.speciality.index')}}">Speciality</a> /
-  <span>Sub Specialties</span>
-  @endif
+    @if ($parent_speciality_id == null)
+        <span>Specialties</span>
+    @else
+        <a href="{{ route('admin.speciality.index') }}">Speciality</a> /
+        <span>Sub Specialties</span>
+    @endif
 @endsection
 @section('btn')
-    <a href="{{ route('admin.speciality.add',['parent_speciality_id'=>$parent_speciality_id]) }}" class="btn btn-primary">
+    <a href="{{ route('admin.speciality.add', ['parent_speciality_id' => $parent_speciality_id]) }}" class="btn btn-primary">
         Add
     </a>
 @endsection
@@ -37,9 +37,9 @@
                             class="btn btn-danger btn-sm">Delete</a>
                         <a href="{{ route('admin.speciality.gallery.index', ['speciality_id' => $speciality->id]) }}"
                             class="btn btn-info btn-sm">Manage Gallery </a>
-                        <a href="{{ route('admin.aliment.add', ['speciality_id' => $speciality->id]) }}"
+                        <a href="{{ route('admin.aliment.index', ['speciality_id' => $speciality->id]) }}"
                             class="btn btn-sm btn-secondary">Manage Aliment</a>
-                        <a href="{{ route('admin.treatment.add', ['speciality_id' => $speciality->id]) }}"
+                        <a href="{{ route('admin.treatment.index', ['speciality_id' => $speciality->id]) }}"
                             class="btn btn-sm btn-secondary">Manage Treatment</a>
                     </td>
                 </tr>

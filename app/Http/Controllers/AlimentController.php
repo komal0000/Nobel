@@ -11,21 +11,27 @@ use Illuminate\Support\Facades\DB;
 
 class AlimentController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $aliments = DB::table('aliments')->get(['id', 'title', 'short_description']);
-        return view('admin.aliment.index', compact('aliments'));
+        $speciality_id = $request->speciality_id;
+        if ($speciality_id) {
+            $aliments = DB::table('aliments')->where('speciality_id',$speciality_id)->get(['id', 'title', 'short_description']);
+        }else{
+            $aliments = DB::table('aliments')->get(['id', 'title', 'short_description']);
+        }
+        return view('admin.aliment.index', compact('aliments', 'speciality_id'));
     }
 
-    public function add(Request $request, $speciality_id)
+    public function add(Request $request)
     {
+        $speciality_id = $request->speciality_id;
         if (Helper::G($request)) {
             return view('admin.aliment.add', compact('speciality_id'));
         } else {
             $aliment = new Aliment();
             $aliment->title = $request->title;
             $aliment->short_description = $request->short_description;
-            $aliment->specialty_id = $request->speciality_id;
+            $aliment->specialty_id = $request->$request->speciality_id;
             if ($request->has("icon")) {
                 $aliment->icon = $request->file('icon')->store('uploads/aliments', 'public');
             }
@@ -117,13 +123,13 @@ class AlimentController extends Controller
     public function sectionIndex($aliment_id, Request $request)
     {
         $sections = AlimentSection::where('aliment_id', $aliment_id)->get();
-        return view('admin.aliment.section.index', compact('sections','aliment_id'));
+        return view('admin.aliment.section.index', compact('sections', 'aliment_id'));
     }
     public function sectionAdd(Request $request, $aliment_id)
     {
         if (Helper::G($request)) {
             $alimentSectionTypes = DB::table('aliment_section_types')->get();
-            return view('admin.aliment.section.add', compact('aliment_id','alimentSectionTypes'));
+            return view('admin.aliment.section.add', compact('aliment_id', 'alimentSectionTypes'));
         } else {
             $section = new AlimentSection();
             $section->title = $request->title;

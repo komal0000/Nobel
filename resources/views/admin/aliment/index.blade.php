@@ -2,6 +2,7 @@
 @section('title')
     <span>Aliments</span>
 @endsection
+@ex
 @section('content')
     <table id="datatable" class="table table-striped" data-toggle="data-table">
         <thead>

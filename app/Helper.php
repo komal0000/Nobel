@@ -9,16 +9,16 @@ class Helper
     /**
      * Check if the request method is GET
      */
-    public static function G(Request $request): bool
+    public static function G(): bool
     {
-        return $request->isMethod('get');
+        return request()->isMethod('get');
     }
 
     /**
      * Check if the request method is POST
      */
-    public static function P(Request $request): bool
+    public static function P(): bool
     {
-        return $request->isMethod('post');
+        return  request()->isMethod('post');
     }
 }
