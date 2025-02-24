@@ -2,7 +2,9 @@
 @section('title')
     <span>Aliments</span>
 @endsection
-@ex
+@section('btn')
+    <a href="{{ route('admin.aliment.index') }}" class="btn btn-primary">Add</a>
+@endsection
 @section('content')
     <table id="datatable" class="table table-striped" data-toggle="data-table">
         <thead>

@@ -15,8 +15,8 @@ class AlimentController extends Controller
     {
         $speciality_id = $request->speciality_id;
         if ($speciality_id) {
-            $aliments = DB::table('aliments')->where('speciality_id',$speciality_id)->get(['id', 'title', 'short_description']);
-        }else{
+            $aliments = DB::table('aliments')->where('specialty_id', $speciality_id)->get(['id', 'title', 'short_description']);
+        } else {
             $aliments = DB::table('aliments')->get(['id', 'title', 'short_description']);
         }
         return view('admin.aliment.index', compact('aliments', 'speciality_id'));
@@ -64,13 +64,7 @@ class AlimentController extends Controller
 
     public function del($aliment_id)
     {
-        $types = AlimentSectionType::where('aliment_id', $aliment_id)->get();
-        if ($types->isNotEmpty()) {
-            foreach ($types as $type) {
-                AlimentSection::where('aliment_section_type_id', $type->id)->delete();
-                $type->delete();
-            }
-        }
+        AlimentSection::where('aliment_id',$aliment_id)->delete();
         Aliment::where('id', $aliment_id)->delete();
         return redirect()->back();
     }

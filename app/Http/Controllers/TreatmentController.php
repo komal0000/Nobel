@@ -13,12 +13,18 @@ class TreatmentController extends Controller
 {
     public function index(Request $request)
     {
-        $treatments = DB::table('treatments')->get(['id', 'title', 'short_description']);
+        $speciality_id = $request->speciality_id;
+        if ($speciality_id) {
+            $treatments = DB::table('treatments')->where('specialty_id', $speciality_id)->get(['id', 'title', 'short_description']);
+        } else {
+            $treatments = DB::table('treatments')->get(['id', 'title', 'short_description']);
+        }
         return view('admin.treatment.index', compact('treatments'));
     }
 
-    public function add(Request $request, $speciality_id)
+    public function add(Request $request)
     {
+        $speciality_id = $request->speciality_id;
         if (Helper::G($request)) {
             return view('admin.treatment.add', compact('speciality_id'));
         } else {

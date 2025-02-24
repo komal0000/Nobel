@@ -1,5 +1,6 @@
 @extends('admin.layout.app')
 @section('title')
+
     <span>Treatments</span>
 @endsection
 @section('content')
