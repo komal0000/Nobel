@@ -76,7 +76,7 @@ class SpecialityController extends Controller
     public function subspecialityIndex($speciality_id)
     {
         $subspecialties = Speciality::where('parent_speciality_id', $speciality_id)->get();
-        return view('admin.speciality.subspeciality.index', compact('subspecialties'));
+        return view('admin.speciality.subspeciality.index', compact('subspecialties','speciality_id'));
     }
 
     public function subspecialityAdd(Request $request, $speciality_id)
@@ -108,18 +108,17 @@ class SpecialityController extends Controller
         if (Helper::G($request)) {
             return view('admin.speciality.subspeciality.edit', compact('subspeciality', 'specility'));
         } else {
-            $speciality = new Speciality();
-            $speciality->title = $request->title;
-            $speciality->short_description = $request->short_description;
+            $subspeciality->title = $request->title;
+            $subspeciality->short_description = $request->short_description;
 
             if ($request->hasFile('icon')) {
-                $speciality->icon = $request->file('icon')->store('uploads/images', 'public');
+                $subspeciality->icon = $request->file('icon')->store('uploads/images', 'public');
             }
 
             if ($request->hasFile('single_page_image')) {
-                $speciality->single_page_image = $request->file('single_page_image')->store('uploads/images', 'public');
+                $subspeciality->single_page_image = $request->file('single_page_image')->store('uploads/images', 'public');
             }
-            $speciality->save();
+            $subspeciality->save();
 
             return redirect()->back();
         }

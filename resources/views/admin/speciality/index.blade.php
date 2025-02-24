@@ -22,18 +22,20 @@
                     <td>{{ $speciality->title }}</td>
                     <td>{{ $speciality->short_description }}</td>
                     <td>
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Manage
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="{{ route('admin.speciality.edit', ['speciality_id' => $speciality->id]) }}">Edit</a>
-                                <a class="dropdown-item" href="{{ route('admin.speciality.del', ['speciality_id' => $speciality->id]) }}">Delete</a>
-                                <a class="dropdown-item" href="{{ route('admin.speciality.gallery.index', ['speciality_id' => $speciality->id]) }}">Manage Gallery</a>
-                                <a class="dropdown-item" href="{{ route('admin.aliment.add', ['speciality_id' => $speciality->id]) }}">Manage Aliment</a>
-                                <a class="dropdown-item" href="{{ route('admin.treatment.add', ['speciality_id' => $speciality->id]) }}">Manage Treatment</a>
-                            </div>
-                        </div>
+                        <a href="{{ route('admin.speciality.subspeciality.index', ['speciality_id' => $speciality->id]) }}"
+                            class="btn btn-info btn-sm">
+                            Sub
+                        </a>
+                        <a href="{{ route('admin.speciality.edit', ['speciality_id' => $speciality->id]) }}"
+                            class="btn btn-warning btn-sm ">Edit</a>
+                        <a href="{{ route('admin.speciality.del', ['speciality_id' => $speciality->id]) }}"
+                            class="btn btn-danger btn-sm">Delete</a>
+                        <a href="{{ route('admin.speciality.gallery.index', ['speciality_id' => $speciality->id]) }}"
+                            class="btn btn-info btn-sm">Manage Gallery </a>
+                        <a href="{{ route('admin.aliment.add', ['speciality_id' => $speciality->id]) }}"
+                            class="btn btn-sm btn-secondary">Manage Aliment</a>
+                        <a href="{{ route('admin.treatment.add', ['speciality_id' => $speciality->id]) }}"
+                            class="btn btn-sm btn-secondary">Manage Treatment</a>
                     </td>
                 </tr>
             @endforeach

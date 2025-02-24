@@ -4,7 +4,7 @@
     <span>Sub Specialties</span>
 @endsection
 @section('btn')
-    <a href="{{ route('admin.speciality.add') }}" class="btn btn-primary">
+    <a href="{{ route('admin.speciality.subspeciality.add',['speciality_id'=>$speciality_id]) }}" class="btn btn-primary">
         Add
     </a>
 @endsection
@@ -25,7 +25,7 @@
                     <td>
                         <a href="{{ route('admin.speciality.subspeciality.edit', ['subspeciality_id' => $subspeciality->id]) }}"
                             class="btn btn-warning btn-sm ">Edit</a>
-                        <a href="{{ route('admin.speciality,.subspeciality.del', ['subspeciality_id' => $subspeciality->id]) }}"
+                        <a href="{{ route('admin.speciality.subspeciality.del', ['subspeciality_id' => $subspeciality->id]) }}"
                             class="btn btn-danger btn-sm">Delete</a>
                     </td>
                 </tr>
