@@ -71,6 +71,7 @@
                     </div>
                     <div class="card  ">
                         <div class="card-body">
+                            @include('admin.layout.flash')
                             @yield('content')
                         </div>
                     </div>

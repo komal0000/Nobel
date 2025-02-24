@@ -31,7 +31,7 @@ class AlimentController extends Controller
             $aliment = new Aliment();
             $aliment->title = $request->title;
             $aliment->short_description = $request->short_description;
-            $aliment->specialty_id = $request->$request->speciality_id;
+            $aliment->specialty_id = $request->speciality_id ? $request->speciality_id : null;
             if ($request->has("icon")) {
                 $aliment->icon = $request->file('icon')->store('uploads/aliments', 'public');
             }
@@ -39,7 +39,7 @@ class AlimentController extends Controller
                 $aliment->single_page_image = $request->file('single_page_image')->store('uploads/aliments', 'public');
             }
             $aliment->save();
-            return redirect()->back();
+            return redirect()->back()->with("success", "Aliment Successfully Added");
         }
     }
 
@@ -58,7 +58,7 @@ class AlimentController extends Controller
                 $aliment->single_page_image = $request->file('single_page_image')->store('uploads/aliments', 'public');
             }
             $aliment->save();
-            return redirect()->back();
+            return redirect()->back()->with("success","Aliment Successfully Updated");
         }
     }
 
