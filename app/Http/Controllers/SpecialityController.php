@@ -77,6 +77,7 @@ class SpecialityController extends Controller
                 $gallery->delete();
             }
         }
+        Speciality::where('parent_speciality_id',$speciality_id)->delete();
         Speciality::where("id", $speciality_id)->delete();
         return redirect()->back();
     }

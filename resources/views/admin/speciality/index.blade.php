@@ -1,6 +1,11 @@
 @extends('admin.layout.app')
 @section('title')
-    <span>Specialties</span>
+  @if ($parent_speciality_id == null)
+  <span>Specialties</span>
+  @else
+  <a href="{{route('admin.speciality.index')}}">Speciality</a> /
+  <span>Sub Specialties</span>
+  @endif
 @endsection
 @section('btn')
     <a href="{{ route('admin.speciality.add',['parent_speciality_id'=>$parent_speciality_id]) }}" class="btn btn-primary">

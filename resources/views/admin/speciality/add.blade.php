@@ -1,10 +1,17 @@
 @extends('admin.layout.app')
 @section('title')
-    <a href="{{ route('admin.speciality.index') }}">Specialties</a> /
-    <span>Add</span>
+    @if ($parent_speciality_id == null)
+        <a href="{{ route('admin.speciality.index') }}">Speciality</a>
+        <span>Specialties</span>
+    @else
+        <a href="{{ route('admin.speciality.index') }}">Speciality</a> /
+        <a href="{{ route('admin.speciality.index', ['parent_speciality_id' => $parent_speciality_id]) }}">Sub Speciality</a> /
+        <span>Add</span>
+    @endif
 @endsection
 @section('content')
-    <form action="{{ route('admin.speciality.add',['parent_speciality_id'=>$parent_speciality_id]) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('admin.speciality.add', ['parent_speciality_id' => $parent_speciality_id]) }}" method="POST"
+        enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-md-6">
