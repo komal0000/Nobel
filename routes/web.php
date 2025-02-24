@@ -21,12 +21,6 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::match(["GET", "POST"], 'add', [SpecialityController::class, 'add'])->name('add');
         Route::match(["GET", "POST"], 'edit/{speciality_id}', [SpecialityController::class, 'edit'])->name('edit');
         Route::match(["GET", "POST"], 'del/{speciality_id}', [SpecialityController::class, 'del'])->name('del');
-        // Route::prefix('subspeciality')->name("subspeciality.")->group(function () {
-        //     Route::get('index/{speciality_id}', [SpecialityController::class, 'subspecialityIndex'])->name('index');
-        //     Route::match(["GET", "POST"], 'add/{speciality_id}', [SpecialityController::class, 'subspecialityAdd'])->name('add');
-        //     Route::match(["GET", "POST"], 'edit/{subspeciality_id}', [SpecialityController::class, 'subspecialityEdit'])->name('edit');
-        //     Route::match(["GET", "POST"], 'del/{subspeciality_id}', [SpecialityController::class, 'subspecialityDel'])->name('del');
-        // });
         Route::prefix('gallery')->name("gallery.")->group(function () {
             Route::get('index/{speciality_id}', [SpecialityGalleryController::class, 'index'])->name('index');
             Route::match(["GET", "POST"], 'add/{speciality_id}', [SpecialityGalleryController::class, 'add'])->name('add');
