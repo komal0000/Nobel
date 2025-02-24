@@ -17,8 +17,6 @@ return new class extends Migration
             $table->string('slug')->nullable();
             $table->string('icon')->nullable();
             $table->text('description')->nullable();
-            $table->foreignId('aliment_id')->constrained('aliments');
-
             $table->timestamps();
         });
     }
