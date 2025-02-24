@@ -32,13 +32,14 @@ class SliderController extends Controller
             $slider->link_text = $request->link_text;
             $slider->extra_data = $request->extra_data;
             $slider->save();
-            return redirect()->back();
+            return redirect()->back()->with("success", "Slider Successfully Added");
         }
     }
+
     public function edit(Request $request, $slider_id)
     {
         $slider = Slider::where("id", $slider_id)->first();
-        if (helper::G($request)) {
+        if (Helper::G($request)) {
             return view('admin.slider.edit', compact('slider'));
         } else {
             if ($request->hasFile('desktop_image')) {
@@ -52,12 +53,13 @@ class SliderController extends Controller
             $slider->link_text = $request->link_text;
             $slider->extra_data = $request->extra_data;
             $slider->save();
-            return redirect()->back();
+            return redirect()->back()->with("success", "Slider Successfully Updated");
         }
     }
+
     public function del($slider_id)
     {
         Slider::where('id', $slider_id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with("delete_success", "Slider Successfully Deleted");
     }
 }

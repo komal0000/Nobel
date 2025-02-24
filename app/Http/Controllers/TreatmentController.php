@@ -3,75 +3,104 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Helper;
-use App\Models\Treatment;
-use App\Models\TreatmentSection;
-use App\Models\TreatmentStep;
+use App\Models\SpecialityGallery;
+use App\Models\SpecialityGalleryItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
-class TreatmentController extends Controller
+class SpecialityGalleryController extends Controller
 {
-    public function index(Request $request)
+    public function index($speciality_id)
     {
-        $speciality_id = $request->speciality_id;
-        if ($speciality_id) {
-            $treatments = DB::table('treatments')->where('specialty_id', $speciality_id)->get(['id', 'title', 'short_description']);
-        } else {
-            $treatments = DB::table('treatments')->get(['id', 'title', 'short_description']);
-        }
-        return view('admin.treatment.index', compact('treatments'));
+        $specialityGallery = DB::table('speciality_galleries')->get(['id', 'title', 'description']);
+        return view('admin.speciality.gallery.index', compact("speciality_id", 'specialityGallery'));
     }
 
-    public function add(Request $request)
+    public function add(Request $request, $speciality_id)
     {
-        $speciality_id = $request->speciality_id;
         if (Helper::G($request)) {
-            return view('admin.treatment.add', compact('speciality_id'));
+            return view('admin.speciality.gallery.add', compact('speciality_id'));
         } else {
-            $treatment = new Treatment();
-            $treatment->title = $request->title;
-            $treatment->short_description = $request->short_description;
-            $treatment->specialty_id = $request->speciality_id;
-            if ($request->has("icon")) {
-                $treatment->icon = $request->file('icon')->store('uploads/treatments', 'public');
+            $specialityGallery = new SpecialityGallery();
+            $specialityGallery->title = $request->title;
+            $specialityGallery->description = $request->description;
+            $specialityGallery->specialty_id = $speciality_id;
+            if (request()->has('file')) {
+                $specialityGallery->icon = $request->file('icon')->store('uploads/images', 'public');
             }
-            if ($request->has("single_page_image")) {
-                $treatment->single_page_image = $request->file('single_page_image')->store('uploads/treatments', 'public');
-            }
-            $treatment->save();
-            return redirect()->back();
+            $specialityGallery->save();
+            return redirect()->route('speciality.gallery.index', ['speciality_id' => $speciality_id])->with("success", "Speciality Gallery Successfully Added");
         }
     }
-    public function edit(Request $request, $treatment_id)
+
+    public function edit(Request $request, $gallery_id)
     {
-        $treatment = Treatment::where('id', $treatment_id)->first();
+        $specialityGallery = SpecialityGallery::where("id", $gallery_id)->first();
         if (Helper::G($request)) {
-            return view('admin.treatment.edit', compact('treatment'));
+            return view('admin.speciality.gallery.edit', compact('specialityGallery'));
         } else {
-            $treatment->title = $request->title;
-            $treatment->short_description = $request->short_description;
-            if ($request->has("icon")) {
-                $treatment->icon = $request->file('icon')->store('uploads/treatments', 'public');
+            $specialityGallery->title = $request->title;
+            $specialityGallery->description = $request->description;
+            if ($request->hasFile('icon')) {
+                $specialityGallery->icon = $request->file('icon')->store('uploads/images', 'public');
             }
-            if ($request->has("single_page_image")) {
-                $treatment->single_page_image = $request->file('single_page_image')->store('uploads/treatments', 'public');
-            }
-            $treatment->save();
-            return redirect()->back();
+            $specialityGallery->save();
+            return redirect()->route('speciality.gallery.index', ['speciality_id' => $specialityGallery->specialty_id])->with("success", "Speciality Gallery Successfully Updated");
         }
     }
-    public function del($treatment_id)
+
+    public function del($gallery_id)
     {
-        $treatmentSections = TreatmentSection::where('treatment_id', $treatment_id)->get();
+        SpecialityGalleryItem::where('speciality_gallery_id', $gallery_id)->delete();
+        SpecialityGallery::where("id", $gallery_id)->delete();
+        return redirect()->route('speciality.gallery.index')->with("delete_success", "Speciality Gallery Successfully Deleted");
+    }
 
-        if ($treatmentSections->isNotEmpty()) {
-            foreach ($treatmentSections as $section) {
-                TreatmentStep::where('treatment_section_id', $section->id)->delete();
-                $section->delete();
+    public function itemIndex(Request $request, $gallery_id)
+    {
+        $speciality = DB::table('speciality_galleries')->where('id', $gallery_id)->first(['id','specialty_id']);
+        if (Helper::G($request)) {
+            $galleryItems = DB::table('speciality_gallery_items')->where('speciality_gallery_id', $gallery_id)->get();
+            return view('admin.speciality.gallery.item.index', compact('gallery_id', 'speciality', 'galleryItems'));
+        } else {
+            if ($request->hasFile('icon')) {
+                foreach ($request->file('icon') as $index => $file) {
+                    $path = $file->store('uploads/gallery_items', 'public');
+                    $item = new SpecialityGalleryItem();
+                    $item->speciality_gallery_id = $gallery_id;
+                    $item->specialty_id = $speciality->specialty_id;
+                    $item->icon = $path;
+                    $item->title = $request->title[$index];
+                    $item->description = $request->description[$index] ?? null;
+                    $item->extra_data = $request->extra_data[$index] ?? null;
+                    $item->save();
+                }
             }
+            return redirect()->route('speciality.gallery.item.index', ['gallery_id' => $gallery_id])->with("success", "Gallery Items Successfully Added");
         }
-        Treatment::where('id', $treatment_id)->delete();
+    }
 
-        return redirect()->back();
+    public function itemEdit(Request $request, $item_id)
+    {
+        $item = SpecialityGalleryItem::findOrFail($item_id);
+        $item->title = $request->input('title');
+        $item->description = $request->input('description');
+        $item->extra_data = $request->input('extra_data');
+        if ($request->hasFile('icon')) {
+            if ($item->icon) {
+                Storage::delete($item->icon);
+            }
+            $path = $request->file('icon')->store('uploads/gallery_items', 'public');
+            $item->icon = $path;
+        }
+        $item->save();
+        return redirect()->route('speciality.gallery.item.index', ['gallery_id' => $item->speciality_gallery_id])->with("success", "Gallery Item Successfully Updated");
+    }
+
+    public function itemDelete($item_id)
+    {
+        SpecialityGalleryItem::where('id', $item_id)->delete();
+        return redirect()->route('speciality.gallery.item.index')->with("delete_success", "Gallery Item Successfully Deleted");
     }
 }

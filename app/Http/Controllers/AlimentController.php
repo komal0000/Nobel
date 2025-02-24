@@ -58,17 +58,16 @@ class AlimentController extends Controller
                 $aliment->single_page_image = $request->file('single_page_image')->store('uploads/aliments', 'public');
             }
             $aliment->save();
-            return redirect()->back()->with("success","Aliment Successfully Updated");
+            return redirect()->back()->with("success", "Aliment Successfully Updated");
         }
     }
 
     public function del($aliment_id)
     {
-        AlimentSection::where('aliment_id',$aliment_id)->delete();
+        AlimentSection::where('aliment_id', $aliment_id)->delete();
         Aliment::where('id', $aliment_id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with("delete_success", "Aliment Successfully Deleted");
     }
-
 
     public function typeIndex()
     {
@@ -76,7 +75,7 @@ class AlimentController extends Controller
         return view('admin.aliment.sectionType.index', compact('alimentTypes'));
     }
 
-    public function typeAdd(Request $request,)
+    public function typeAdd(Request $request)
     {
         if (Helper::g($request)) {
             return view('admin.aliment.sectionType.add');
@@ -88,7 +87,7 @@ class AlimentController extends Controller
             }
             $alimentType->description = $request->description;
             $alimentType->save();
-            return redirect()->back();
+            return redirect()->back()->with("success", "Aliment Type Successfully Added");
         }
     }
 
@@ -104,21 +103,22 @@ class AlimentController extends Controller
             }
             $alimentType->description = $request->description;
             $alimentType->save();
-            return redirect()->back();
+            return redirect()->back()->with("success", "Aliment Type Successfully Updated");
         }
     }
+
     public function typeDel($type_id)
     {
         AlimentSectionType::where('id', $type_id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with("delete_success", "Aliment Type Successfully Deleted");
     }
-
 
     public function sectionIndex($aliment_id, Request $request)
     {
         $sections = AlimentSection::where('aliment_id', $aliment_id)->get();
         return view('admin.aliment.section.index', compact('sections', 'aliment_id'));
     }
+
     public function sectionAdd(Request $request, $aliment_id)
     {
         if (Helper::G($request)) {
@@ -135,7 +135,7 @@ class AlimentController extends Controller
                 $section->image = $request->file('image')->store('uploads/section', 'public');
             }
             $section->save();
-            return redirect()->back();
+            return redirect()->back()->with("success", "Aliment Section Successfully Added");
         }
     }
 
@@ -152,12 +152,13 @@ class AlimentController extends Controller
                 $section->image = $request->file('image')->store('uploads/section', 'public');
             }
             $section->save();
-            return redirect()->back();
+            return redirect()->back()->with("success", "Aliment Section Successfully Updated");
         }
     }
+
     public function sectionDel($section_id)
     {
         DB::table('aliment_sections')->where('id', $section_id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with("delete_success", "Aliment Section Successfully Deleted");
     }
 }

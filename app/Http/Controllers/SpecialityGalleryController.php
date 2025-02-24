@@ -30,9 +30,10 @@ class SpecialityGalleryController extends Controller
                 $specialityGallery->icon = $request->file('icon')->store('uploads/images', 'public');
             }
             $specialityGallery->save();
-            return redirect()->back();
-        };
+            return redirect()->back()->with("success", "Speciality Gallery Successfully Added");
+        }
     }
+
     public function edit(Request $request, $gallery_id)
     {
         $specialityGallery = SpecialityGallery::where("id", $gallery_id)->first();
@@ -45,7 +46,7 @@ class SpecialityGalleryController extends Controller
                 $specialityGallery->icon = $request->file('icon')->store('uploads/images', 'public');
             }
             $specialityGallery->save();
-            return redirect()->back();
+            return redirect()->back()->with("success", "Speciality Gallery Successfully Updated");
         }
     }
 
@@ -53,7 +54,7 @@ class SpecialityGalleryController extends Controller
     {
         SpecialityGalleryItem::where('speciality_gallery_id', $gallery_id)->delete();
         SpecialityGallery::where("id", $gallery_id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with("delete_success", "Speciality Gallery Successfully Deleted");
     }
 
     public function itemIndex(Request $request, $gallery_id)
@@ -76,9 +77,10 @@ class SpecialityGalleryController extends Controller
                     $item->save();
                 }
             }
-            return redirect()->back();
+            return redirect()->back()->with("success", "Gallery Items Successfully Added");
         }
     }
+
     public function itemEdit(Request $request, $item_id)
     {
         $item = SpecialityGalleryItem::findOrFail($item_id);
@@ -93,10 +95,12 @@ class SpecialityGalleryController extends Controller
             $item->icon = $path;
         }
         $item->save();
+        return redirect()->back()->with("success", "Gallery Item Successfully Updated");
     }
+
     public function itemDelete($item_id)
     {
         SpecialityGalleryItem::where('id', $item_id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with("delete_success", "Gallery Item Successfully Deleted");
     }
 }

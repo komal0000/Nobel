@@ -15,20 +15,19 @@ class SpecialityController extends Controller
     public function index(Request $request)
     {
         $parent_speciality_id = $request->parent_speciality_id;
-        if($parent_speciality_id){
-            $specialties = Speciality::where('parent_speciality_id',$parent_speciality_id)->get(['id', 'title', 'short_description']);
-        }else{
+        if ($parent_speciality_id) {
+            $specialties = Speciality::where('parent_speciality_id', $parent_speciality_id)->get(['id', 'title', 'short_description']);
+        } else {
             $specialties = Speciality::whereNull('parent_speciality_id')->get(['id', 'title', 'short_description']);
-
         }
-        return view('admin.speciality.index', compact('specialties','parent_speciality_id'));
+        return view('admin.speciality.index', compact('specialties', 'parent_speciality_id'));
     }
 
     public function add(Request $request)
     {
         $parent_speciality_id = $request->parent_speciality_id;
         if (Helper::G($request)) {
-            return view('admin.speciality.add',compact('parent_speciality_id'));
+            return view('admin.speciality.add', compact('parent_speciality_id'));
         } else {
             $speciality = new Speciality();
             $speciality->title = $request->title;
@@ -44,7 +43,7 @@ class SpecialityController extends Controller
             }
             $speciality->save();
 
-            return redirect()->back();
+            return redirect()->back()->with("success", "Speciality Successfully Added");
         }
     }
 
@@ -64,7 +63,7 @@ class SpecialityController extends Controller
                 $speciality->single_page_image = $request->file('single_page_image')->store('uploads/images', 'public');
             }
             $speciality->save();
-            return redirect()->back();
+            return redirect()->back()->with("success", "Speciality Successfully Updated");
         }
     }
 
@@ -77,15 +76,15 @@ class SpecialityController extends Controller
                 $gallery->delete();
             }
         }
-        Speciality::where('parent_speciality_id',$speciality_id)->delete();
+        Speciality::where('parent_speciality_id', $speciality_id)->delete();
         Speciality::where("id", $speciality_id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with("delete_success", "Speciality Successfully Deleted");
     }
 
     public function subspecialityIndex($speciality_id)
     {
         $subspecialties = Speciality::where('parent_speciality_id', $speciality_id)->get();
-        return view('admin.speciality.subspeciality.index', compact('subspecialties','speciality_id'));
+        return view('admin.speciality.subspeciality.index', compact('subspecialties', 'speciality_id'));
     }
 
     public function subspecialityAdd(Request $request, $speciality_id)
@@ -107,9 +106,10 @@ class SpecialityController extends Controller
             $speciality->parent_speciality_id = $speciality_id;
             $speciality->save();
 
-            return redirect()->back();
+            return redirect()->back()->with("success", "Subspeciality Successfully Added");
         }
     }
+
     public function subspecialityEdit(Request $request, $subspeciality_id)
     {
         $subspeciality = Speciality::where('id', $subspeciality_id)->first();
@@ -129,12 +129,13 @@ class SpecialityController extends Controller
             }
             $subspeciality->save();
 
-            return redirect()->back();
+            return redirect()->back()->with("success", "Subspeciality Successfully Updated");
         }
     }
+
     public function subspecialityDel($subspeciality_id)
     {
         Speciality::where('id', $subspeciality_id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with("delete_success", "Subspeciality Successfully Deleted");
     }
 }
