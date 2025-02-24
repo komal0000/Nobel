@@ -17,10 +17,10 @@ class AlimentController extends Controller
         return view('admin.aliment.index', compact('aliments'));
     }
 
-    public function add(Request $request,$speciality_id)
+    public function add(Request $request, $speciality_id)
     {
         if (Helper::G($request)) {
-            return view('admin.aliment.add',compact('speciality_id'));
+            return view('admin.aliment.add', compact('speciality_id'));
         } else {
             $aliment = new Aliment();
             $aliment->title = $request->title;
@@ -114,43 +114,47 @@ class AlimentController extends Controller
     }
 
 
-    public function sectionIndex($type_id, Request $request)
+    public function sectionIndex($aliment_id, Request $request)
     {
-        $section = AlimentSection::where('aliment_section_type_id', $type_id)->first();
-        $alimentType = AlimentSectionType::find($type_id);
+        $sections = AlimentSection::where('aliment_id', $aliment_id)->get();
+        return view('admin.aliment.section.index', compact('sections','aliment_id'));
+    }
+    public function sectionAdd(Request $request, $aliment_id)
+    {
         if (Helper::G($request)) {
-            $type = AlimentSectionType::find($type_id);
-            return view('admin.aliment.type.section.index', compact('section', 'type_id', 'type', 'alimentType'));
+            $alimentSectionTypes = DB::table('aliment_section_types')->get();
+            return view('admin.aliment.section.add', compact('aliment_id','alimentSectionTypes'));
         } else {
-            if ($section) {
-                $section->title = $request->title;
-                $section->description = $request->description;
-                $section->show_on_frontend = $request->show_on_frontend;
-                if ($request->hasFile('image')) {
-                    $section->image = $request->file('image')->store('uploads/section', 'public');
-                }
-
-                $section->save();
-            } else {
-                $section = new AlimentSection();
-                $section->title = $request->title;
-                $section->description = $request->description;
-                $section->show_on_frontend = $request->show_on_frontend;
-                $section->aliment_id = $alimentType->aliment_id;
-                $section->aliment_section_type_id = $type_id;
-
-                if ($request->hasFile('image')) {
-                    $section->image = $request->file('image')->store('uploads/section', 'public');
-                }
-
-                $section->save();
+            $section = new AlimentSection();
+            $section->title = $request->title;
+            $section->description = $request->description;
+            $section->show_on_frontend = $request->show_on_frontend;
+            $section->aliment_id = $aliment_id;
+            $section->aliment_section_type_id = $request->section_type_id;
+            if ($request->hasFile('image')) {
+                $section->image = $request->file('image')->store('uploads/section', 'public');
             }
+            $section->save();
+            return redirect()->back();
         }
-
-        return redirect()->back()->with('success', 'Section updated successfully.');
     }
 
-
+    public function sectionEdit(Request $request, $section_id)
+    {
+        $section = AlimentSection::where('id', $section_id)->first();
+        if (Helper::G($request)) {
+            return view('admin.aliment.section.edit', compact('section_id'));
+        } else {
+            $section->title = $request->title;
+            $section->description = $request->description;
+            $section->show_on_frontend = $request->show_on_frontend;
+            if ($request->hasFile('image')) {
+                $section->image = $request->file('image')->store('uploads/section', 'public');
+            }
+            $section->save();
+            return redirect()->back();
+        }
+    }
     public function sectionDel($section_id)
     {
         DB::table('aliment_sections')->where('id', $section_id)->delete();
