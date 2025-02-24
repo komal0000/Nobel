@@ -1,7 +1,13 @@
 @extends('admin.layout.app')
 @section('title')
-    <a href="{{ route('admin.speciality.index') }}">Specialties</a> /
-    <a href="{{ route('admin.treatment.index') }}">Treatments</a>
+    @if ($speciality_id)
+        <a href="{{ route('admin.speciality.index') }}">Specialties</a> /
+        <a href="{{ route('admin.treatment.index') }}">Treatments</a> /
+        <span>Add</span>
+    @else
+        <a href="{{ route('admin.treatment.index') }}">Treatments</a> /
+        <span>Add</span>
+    @endif
 @endsection
 @section('content')
     <form action="{{ route('admin.treatment.add', ['speciality_id' => $speciality_id]) }}" method="POST"

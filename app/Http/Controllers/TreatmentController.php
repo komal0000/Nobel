@@ -19,7 +19,7 @@ class TreatmentController extends Controller
         } else {
             $treatments = DB::table('treatments')->get(['id', 'title', 'short_description']);
         }
-        return view('admin.treatment.index', compact('treatments'));
+        return view('admin.treatment.index', compact('treatments','speciality_id'));
     }
 
     public function add(Request $request)
