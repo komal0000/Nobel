@@ -51,7 +51,9 @@ class TreatmentController extends Controller
     {
         $treatment = Treatment::where('id', $treatment_id)->first();
         if (Helper::G($request)) {
-            return view('admin.treatment.edit', compact('treatment'));
+            $speciality_id = $request->speciality_id;
+            $speciality = Speciality::where('id', $speciality_id)->first();
+            return view('admin.treatment.edit', compact('treatment','speciality','speciality_id'));
         } else {
             $treatment->title = $request->title;
             $treatment->short_description = $request->short_description;

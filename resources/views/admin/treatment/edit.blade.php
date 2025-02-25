@@ -1,12 +1,14 @@
 @extends('admin.layout.app')
 @section('title')
-    @if ($treatment->specialty_id)
+    @if ($speciality_id)
         <a href="{{ route('admin.speciality.index') }}">Specialties</a> /
-        <a href="{{ route('admin.treatment.index',['speciality_id' => $speciality_id]) }}">Treatments</a> /
+        <span>{{ $speciality->title }}</span> /
+        <a href="{{ route('admin.treatment.index', ['speciality_id' => $speciality_id]) }}">Treatments</a> /
+        <span>{{ $treatment->title }}</span> /
         <span> Edit</span>
     @else
         <a href="{{ route('admin.treatment.index') }}">Treatments</a> /
-        <span>{{$treatment->title}}</span> /
+        <span>{{ $treatment->title }}</span> /
         <span> Edit</span>
     @endif
 @endsection
