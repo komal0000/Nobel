@@ -1,8 +1,17 @@
 @extends('admin.layout.app')
 @section('title')
-    <a href="{{ route('admin.aliment.index') }}">Aliment</a> /
-    <a href="{{ route('admin.aliment.section.index', ['aliment_id' => $aliment_id]) }}">Section</a> /
-    <span>Add</span>
+    @if ($speciality->id)
+        <a href="{{ route('admin.speciality.index') }}">Specialities</a> /
+        <span> {{ $speciality->title }}</span> /
+        <a href="{{ route('admin.aliment.index', ['speciality_id' => $speciality->id]) }}">Aliment</a> /
+        <span>{{ $aliment->title }}</span> /
+        <a href="{{ route('admin.aliment.section.index', ['aliment_id' => $aliment_id]) }}">Section</a> /
+        <span>Add</span>
+    @else
+        <a href="{{ route('admin.aliment.index') }}">Aliment</a> /
+        <a href="{{ route('admin.aliment.section.index', ['aliment_id' => $aliment_id]) }}">Section</a> /
+        <span>Add</span>
+    @endif
 @endsection
 @section('content')
     <form action="{{ route('admin.aliment.section.add', ['aliment_id' => $aliment_id]) }}" method="POST"

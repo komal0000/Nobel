@@ -3,6 +3,7 @@
 @section('title')
     @if ($speciality_id)
         <a href="{{ route('admin.speciality.index') }}">Specialities</a> /
+        <span>{{$speciality->title}}</span> /
         <span>Aliments</span>
     @else
         <span>Aliments</span>

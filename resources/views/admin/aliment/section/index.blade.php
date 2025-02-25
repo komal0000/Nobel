@@ -1,7 +1,16 @@
 @extends('admin.layout.app')
 @section('title')
+    @if ($aliment->specialty_id)
+        <a href="{{ route('admin.speciality.index') }}">Specialities</a> /
+        <span>{{$speciality->title}}</span> /
+        <a href="{{ route('admin.aliment.index') }}">Alinments</a> /
+        <span>{{ $aliment->title }}</span> /
+        <span>Sections</span>
+    @else
     <a href="{{ route('admin.aliment.index') }}">Alinments</a> /
     <span>Sections</span>
+    @endif
+
 @endsection
 @section('btn')
     <a href="{{ route('admin.aliment.section.add', ['aliment_id' => $aliment_id]) }}" class="btn btn-primary">Add</a>
