@@ -6,6 +6,7 @@
         <span> Edit</span>
     @else
         <a href="{{ route('admin.treatment.index') }}">Treatments</a> /
+        <span>{{$treatment->title}}</span> /
         <span> Edit</span>
     @endif
 @endsection

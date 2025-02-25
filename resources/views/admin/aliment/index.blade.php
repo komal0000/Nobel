@@ -1,9 +1,19 @@
 @extends('admin.layout.app')
+
 @section('title')
-    <span>Aliments</span>
+    @if ($speciality_id)
+        <a href="{{ route('admin.speciality.index') }}">Specialities</a> /
+        <span>Aliments</span>
+    @else
+        <span>Aliments</span>
+    @endif
 @endsection
 @section('btn')
-    <a href="{{ route('admin.aliment.add') }}" class="btn btn-primary">Add</a>
+    @if ($speciality_id)
+        <a href="{{ route('admin.aliment.add', ['speciality_id' => $speciality_id]) }}" class="btn btn-primary">Add</a>
+    @else
+        <a href="{{ route('admin.aliment.add') }}" class="btn btn-primary">Add</a>
+    @endif
 @endsection
 @section('content')
     <table id="datatable" class="table table-striped" data-toggle="data-table">

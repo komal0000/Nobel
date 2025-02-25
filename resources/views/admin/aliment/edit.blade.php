@@ -1,21 +1,30 @@
 @extends('admin.layout.app')
 @section('title')
-    <a href="{{ route('admin.aliment.index') }}">Aliments</a> /
-    <span> Edit</span>
+    @if ($aliment->specialty_id)
+        <a href="{{ route('admin.speciality.index') }}">Specialities</a> /
+        <a href="{{ route('admin.aliment.index', ['speciality_id' =>$aliment->specialty_id]) }}">Aliments</a> /
+        <span>Edit</span>
+    @else
+    <a href="{{route('admin.aliment.index')}}">Aliments</a> /
+    <span>Edit</span>
+    @endif
 @endsection
 @section('content')
-    <form action="{{ route('admin.aliment.edit', ['aliment_id' => $aliment->id]) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('admin.aliment.edit', ['aliment_id' => $aliment->id]) }}" method="POST"
+        enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-md-7 mb-3">
                 <div class="row">
                     <div class="col-md-6">
                         <label for="icon">Icon</label>
-                        <input type="file" class="form-control dropify" id="icon" name="icon" accept="image/*" data-default-file="{{ Storage::url($aliment->icon) }}">
+                        <input type="file" class="form-control dropify" id="icon" name="icon" accept="image/*"
+                            data-default-file="{{ Storage::url($aliment->icon) }}">
                     </div>
                     <div class="col-md-6">
                         <label for="single_page_image">Single Page Image</label>
-                        <input type="file" class="form-control dropify" id="single_page_image" name="single_page_image" accept="image/*" data-default-file="{{ Storage::url($aliment->single_page_image) }}">
+                        <input type="file" class="form-control dropify" id="single_page_image" name="single_page_image"
+                            accept="image/*" data-default-file="{{ Storage::url($aliment->single_page_image) }}">
                     </div>
                 </div>
             </div>
