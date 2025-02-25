@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Helper;
+use App\Models\Speciality;
 use App\Models\Treatment;
 use App\Models\TreatmentSection;
 use App\Models\TreatmentStep;
@@ -15,18 +16,21 @@ class TreatmentController extends Controller
     {
         $speciality_id = $request->speciality_id;
         if ($speciality_id) {
+            $speciality = Speciality::where('id', $speciality_id)->first();
             $treatments = DB::table('treatments')->where('specialty_id', $speciality_id)->get(['id', 'title', 'short_description']);
+            return view('admin.treatment.index', compact('treatments', 'speciality_id', 'speciality'));
         } else {
             $treatments = DB::table('treatments')->get(['id', 'title', 'short_description']);
+            return view('admin.treatment.index', compact('treatments', 'speciality_id'));
         }
-        return view('admin.treatment.index', compact('treatments','speciality_id'));
     }
 
     public function add(Request $request)
     {
         $speciality_id = $request->speciality_id;
         if (Helper::G($request)) {
-            return view('admin.treatment.add', compact('speciality_id'));
+            $speciality = Speciality::where('id', $speciality_id)->first();
+            return view('admin.treatment.add', compact('speciality_id', 'speciality'));
         } else {
             $treatment = new Treatment();
             $treatment->title = $request->title;

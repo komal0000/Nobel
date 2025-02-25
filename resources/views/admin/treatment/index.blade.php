@@ -2,17 +2,14 @@
 @section('title')
     @if ($speciality_id)
         <a href="{{ route('admin.speciality.index') }}">Specialties</a> /
+        <span>{{ $speciality->title }}</span> /
         <span>Treatments</span>
     @else
         <span>Treatments</span>
     @endif
 @endsection
 @section('btn')
-    @if ($speciality_id)
-        <a href="{{ route('admin.treatment.add', ['speciality_id' => $speciality_id]) }}" class="btn btn-primary">Add</a>
-    @else
-        <a href="{{ route('admin.treatment.add') }}" class="btn btn-primary">Add</a>
-    @endif
+    <a href="{{ route('admin.treatment.add', ['speciality_id' => $speciality_id]) }}" class="btn btn-primary">Add</a>
 @endsection
 @section('content')
     <table id="datatable" class="table table-striped" data-toggle="data-table">

@@ -18,10 +18,11 @@ class AlimentController extends Controller
         if ($speciality_id) {
             $speciality = Speciality::where('id', $speciality_id)->first();
             $aliments = DB::table('aliments')->where('specialty_id', $speciality_id)->get(['id', 'title', 'short_description']);
+            return view('admin.aliment.index', compact('aliments', 'speciality_id', 'speciality'));
         } else {
             $aliments = DB::table('aliments')->get(['id', 'title', 'short_description']);
+            return view('admin.aliment.index', compact('aliments', 'speciality_id'));
         }
-        return view('admin.aliment.index', compact('aliments', 'speciality_id', 'speciality'));
     }
 
     public function add(Request $request)
@@ -50,8 +51,8 @@ class AlimentController extends Controller
     {
         $aliment = Aliment::where('id', $aliment_id)->first();
         if (Helper::G($request)) {
-            $speciality = Speciality::where('id',$aliment->specialty_id)->first();
-            return view('admin.aliment.edit', compact('aliment','speciality'));
+            $speciality = Speciality::where('id', $aliment->specialty_id)->first();
+            return view('admin.aliment.edit', compact('aliment', 'speciality'));
         } else {
             $aliment->title = $request->title;
             $aliment->short_description = $request->short_description;
@@ -119,11 +120,12 @@ class AlimentController extends Controller
 
     public function sectionIndex($aliment_id, Request $request)
     {
+        $speciality_id = $request->speciality_id;
         $sections = AlimentSection::where('aliment_id', $aliment_id)->get();
         $aliment = Aliment::where('id', $aliment_id)->first();
-        $speciality = Speciality::where('id', $aliment->specialty_id)->first();
+        $speciality = Speciality::where('id', $speciality_id)->first();
 
-        return view('admin.aliment.section.index', compact('sections', 'speciality', 'aliment_id', 'aliment'));
+        return view('admin.aliment.section.index', compact('sections','speciality_id','speciality', 'aliment_id', 'aliment'));
     }
 
     public function sectionAdd(Request $request, $aliment_id)
@@ -132,7 +134,7 @@ class AlimentController extends Controller
             $alimentSectionTypes = DB::table('aliment_section_types')->get();
             $aliment = Aliment::where('id', $aliment_id)->first();
             $speciality = Speciality::where('id', $aliment->specialty_id)->first();
-            return view('admin.aliment.section.add', compact('aliment_id', 'alimentSectionTypes','speciality','aliment'));
+            return view('admin.aliment.section.add', compact('aliment_id', 'alimentSectionTypes', 'speciality', 'aliment'));
         } else {
             $section = new AlimentSection();
             $section->title = $request->title;
@@ -155,7 +157,7 @@ class AlimentController extends Controller
             $alimentSectionTypes = DB::table('aliment_section_types')->get();
             $aliment = Aliment::where('id', $section->aliment_id)->first();
             $speciality = Speciality::where('id', $aliment->specialty_id)->first();
-            return view('admin.aliment.section.edit', compact('section_id','section','alimentSectionTypes','aliment','speciality'));
+            return view('admin.aliment.section.edit', compact('section_id', 'section', 'alimentSectionTypes', 'aliment', 'speciality'));
         } else {
             $section->title = $request->title;
             $section->description = $request->description;
