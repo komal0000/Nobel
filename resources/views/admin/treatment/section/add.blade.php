@@ -5,12 +5,14 @@
         <span>{{ $speciality->title }}</span> /
         <a href="{{ route('admin.treatment.index', ['speciality_id' => $speciality_id]) }}">Treatments</a> /
         <span>{{ $treatment->title }}</span> /
-        <a href="{{route('admin.treatment.section.index',['treatment_id'->$treatment->id,'speciality_id' => $speciality_id])}}">Sections</a>
+        <a
+            href="{{ route('admin.treatment.section.index', ['treatment_id' => $treatment->id, 'speciality_id' => $speciality_id]) }}">Sections</a>
+        /
         <span>Add</span>
     @else
         <a href="{{ route('admin.treatment.index') }}">Treatments</a> /
         <span>{{ $treatment->title }}</span> /
-        <a href="{{route('admin.treatment.section.index')}}"></a> /
+        <a href="{{ route('admin.treatment.section.index', ['treatment_id' => $treatment->id]) }}">Sections</a> /
         <span>Add</span>
     @endif
 @endsection

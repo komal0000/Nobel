@@ -16,7 +16,7 @@ class TreatmentSectionController extends Controller
     {
         $speciality_id = $request->speciality_id ;
         $speciality  = Speciality::where('id',$speciality_id)->first();
-        $treatment = Treatment::where('id',$treatment_id)->first(['title']);
+        $treatment = Treatment::where('id',$treatment_id)->first();
         $treatmentSections = DB::table('treatment_sections')->where('treatment_id',$treatment_id)->get(['id', 'title', 'style_type']);
         return view('admin.treatment.section.index', compact('treatmentSections','speciality_id','speciality','treatment'));
     }
@@ -26,7 +26,7 @@ class TreatmentSectionController extends Controller
         if (Helper::G($request)) {
             $speciality_id = $request->speciality_id ;
             $speciality = Speciality::where('id',$speciality_id)->first();
-            $treatment = Treatment::where('id',$treatment_id)->first(['title']);
+            $treatment = Treatment::where('id',$treatment_id)->first();
             return view('admin.treatment.section.add', compact('speciality_id','treatment','speciality'));
         } else {
             $treatmentSection = new TreatmentSection();
@@ -44,7 +44,7 @@ class TreatmentSectionController extends Controller
         $treatmentSection = TreatmentSection::where("id", $section_id)->first();
         if (Helper::G($request)) {
             $speciality_id = $request->speciality_id ;
-            $treatment = Treatment::where('id',$treatmentSection->treatment_id)->first(['title']);
+            $treatment = Treatment::where('id',$treatmentSection->treatment_id)->first();
 
             return view('admin.treatment.section.edit', compact('treatmentSection','speciality_id','treatment'));
         } else {

@@ -5,18 +5,18 @@
         <span>{{ $speciality->title }}</span> /
         <a href="{{ route('admin.treatment.index', ['speciality_id' => $speciality_id]) }}">Treatments</a> /
         <span>{{ $treatment->title }}</span> /
-        <a href="{{ route('admin.treatment.section.index', ['treatment_id'=>$treatment->id, 'speciality_id' => $speciality_id]) }}">Sections</a> /
-        <span>Add</span>
+        <a
+            href="{{ route('admin.treatment.section.index', ['treatment_id' => $treatment->id, 'speciality_id' => $speciality_id]) }}">Sections</a>
+        /
+        <span>{{ $treatmentSection->title }}</span> /
+        <span>Edit</span>
     @else
         <a href="{{ route('admin.treatment.index') }}">Treatments</a> /
         <span>{{ $treatment->title }}</span> /
-        <a href="{{ route('admin.treatment.section.index') }}"></a> /
-        <span>Add</span>
+        <a href="{{ route('admin.treatment.section.index',['treatment_id'=>$treatment->id]) }}">Sections</a> /
+        <span>{{ $treatmentSection->title }}</span> /
+        <span>Edit</span>
     @endif
-    <a href="{{ route('admin.treatment.index') }}">Treatments</a> /
-    <span>{{ $treatment->title }}</span> /
-    <a href="{{ route('admin.treatment.section.index', ['treatment_id' => $treatmentSection->treatment_id]) }}">Sections</a> /
-    <span> Edit</span>
 @endsection
 @section('content')
     <form action="{{ route('admin.treatment.section.edit', ['section_id' => $treatmentSection->id]) }}" method="POST"
