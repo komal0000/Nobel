@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Helper;
+use App\Models\Speciality;
 use App\Models\Treatment;
 use App\Models\TreatmentSection;
 use App\Models\TreatmentStep;
@@ -11,19 +12,22 @@ use Illuminate\Support\Facades\DB;
 
 class TreatmentSectionController extends Controller
 {
-    public function index($treatment_id)
+    public function index($treatment_id ,Request $request)
     {
+        $speciality_id = $request->speciality_id ;
+        $speciality  = Speciality::where('id',$speciality_id)->first();
         $treatment = Treatment::where('id',$treatment_id)->first(['title']);
         $treatmentSections = DB::table('treatment_sections')->where('treatment_id',$treatment_id)->get(['id', 'title', 'style_type']);
-        return view('admin.treatment.section.index', compact('treatmentSections','treatment','treatment_id'));
+        return view('admin.treatment.section.index', compact('treatmentSections','speciality_id','speciality','treatment'));
     }
 
     public function add(Request $request, $treatment_id)
     {
-
         if (Helper::G($request)) {
+            $speciality_id = $request->speciality_id ;
+            $speciality = Speciality::where('id',$speciality_id)->first();
             $treatment = Treatment::where('id',$treatment_id)->first(['title']);
-            return view('admin.treatment.section.add', compact('treatment_id','treatment'));
+            return view('admin.treatment.section.add', compact('speciality_id','treatment','speciality'));
         } else {
             $treatmentSection = new TreatmentSection();
             $treatmentSection->title = $request->title;
@@ -39,9 +43,10 @@ class TreatmentSectionController extends Controller
     {
         $treatmentSection = TreatmentSection::where("id", $section_id)->first();
         if (Helper::G($request)) {
+            $speciality_id = $request->speciality_id ;
             $treatment = Treatment::where('id',$treatmentSection->treatment_id)->first(['title']);
 
-            return view('admin.treatment.section.edit', compact('treatmentSection','treatment'));
+            return view('admin.treatment.section.edit', compact('treatmentSection','speciality_id','treatment'));
         } else {
             $treatmentSection->title = $request->title;
             $treatmentSection->description = $request->description;

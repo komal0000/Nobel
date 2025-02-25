@@ -1,11 +1,19 @@
 @extends('admin.layout.app')
 @section('title')
-    <a href="{{ route('admin.treatment.index') }}">Treatment</a> /
-    <span>{{ $treatment->title }}</span> /
-    <span>Sections</span>
+    @if ($speciality_id)
+        <a href="{{ route('admin.speciality.index') }}">Specialities</a> /
+        <span>{{ $speciality->title }}</span> /
+        <a href="{{ route('admin.treatment.index', ['speciality_id' => $speciality_id]) }}">Treatments</a> /
+        <span>{{ $treatment->title }}</span> /
+        <span>Sections</span>
+    @else
+        <a href="{{ route('admin.treatment.index') }}">Treatments</a> /
+        <span>{{ $treatment->title }}</span> /
+        <span>Sections</span>
+    @endif
 @endsection
 @section('btn')
-    <a href="{{ route('admin.treatment.section.add', ['treatment_id' => $treatment_id]) }}" class="btn btn-primary">Add</a>
+    <a href="{{ route('admin.treatment.section.add', ['treatment_id' => $treatment->id]) }}" class="btn btn-primary">Add</a>
 @endsection
 @section('content')
     <table id="datatable" class="table table-striped" data-toggle="data-table">

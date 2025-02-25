@@ -1,12 +1,21 @@
 @extends('admin.layout.app')
 @section('title')
-    <a href="{{ route('admin.treatment.index') }}">Treatments</a> /
-    <span>{{$treatment->title}}</span> /
-    <a href="{{ route('admin.treatment.section.index', ['treatment_id' => $treatment_id]) }}">Sections</a> /
-    <span> Add</span>
+    @if ($speciality_id)
+        <a href="{{ route('admin.speciality.index') }}">Specialities</a> /
+        <span>{{ $speciality->title }}</span> /
+        <a href="{{ route('admin.treatment.index', ['speciality_id' => $speciality_id]) }}">Treatments</a> /
+        <span>{{ $treatment->title }}</span> /
+        <a href="{{route('admin.treatment.section.index',['treatment_id'->$treatment->id,'speciality_id' => $speciality_id])}}">Sections</a>
+        <span>Add</span>
+    @else
+        <a href="{{ route('admin.treatment.index') }}">Treatments</a> /
+        <span>{{ $treatment->title }}</span> /
+        <a href="{{route('admin.treatment.section.index')}}"></a> /
+        <span>Add</span>
+    @endif
 @endsection
 @section('content')
-    <form action="{{ route('admin.treatment.section.add', ['treatment_id' => $treatment_id]) }}" method="POST"
+    <form action="{{ route('admin.treatment.section.add', ['treatment_id' => $treatment->id]) }}" method="POST"
         enctype="multipart/form-data">
         @csrf
         <div class="row">
