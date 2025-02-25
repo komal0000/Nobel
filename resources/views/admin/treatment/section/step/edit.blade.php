@@ -20,7 +20,7 @@
         <a href="{{ route('admin.treatment.section.index', ['treatment_id' => $section->treatment_id]) }}">Sections</a> /
         <span>{{ $section->title }}</span> /
         <a href="{{ route('admin.treatment.section.step.index', ['section_id' => $section->id]) }}">Steps</a> /
-        <span> {{ $step->title }}</span> /
+        <span> {{ $SectionStep->title }}</span> /
         <span>Edit</span>
     @endif
 @endsection
