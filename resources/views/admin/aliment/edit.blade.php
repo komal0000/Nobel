@@ -1,9 +1,9 @@
 @extends('admin.layout.app')
 @section('title')
-    @if ($aliment->specialty_id)
+    @if ($speciality_id)
         <a href="{{ route('admin.speciality.index') }}">Specialities</a> /
         <span>{{ $speciality->title }}</span> /
-        <a href="{{ route('admin.aliment.index', ['speciality_id' => $aliment->specialty_id]) }}">Aliments</a> /
+        <a href="{{ route('admin.aliment.index', ['speciality_id' => $speciality_id]) }}">Aliments</a> /
         {{ $aliment->title }} /
         <span>Edit</span>
     @else

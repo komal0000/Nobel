@@ -1,18 +1,19 @@
 @extends('admin.layout.app')
 @section('title')
-    @if ($specialty_id)
+    @if ($speciality_id)
         <a href="{{ route('admin.speciality.index') }}">Specialities</a> /
         <span>{{ $speciality->title }}</span> /
-        <a href="{{ route('admin.aliment.index', ['speciality_id' => $specialty_id]) }}">Alinments</a> /
+        <a href="{{ route('admin.aliment.index', ['speciality_id' => $speciality_id]) }}">Alinments</a> /
         <span>{{ $aliment->title }}</span> /
         <span>Sections</span>
     @else
         <a href="{{ route('admin.aliment.index') }}">Alinments</a> /
+        <span>{{$aliment->title}}</span> /
         <span>Sections</span>
     @endif
 @endsection
 @section('btn')
-    <a href="{{ route('admin.aliment.section.add', ['aliment_id' => $aliment_id, 'speciality_id' => $specialty_id]) }}"
+    <a href="{{ route('admin.aliment.section.add', ['aliment_id' => $aliment_id, 'speciality_id' => $speciality_id]) }}"
         class="btn btn-primary">Add</a>
 @endsection
 @section('content')
@@ -35,7 +36,7 @@
                     @endphp
                     <td>{{ $type->title }}</td>
                     <td>
-                        <a href="{{ route('admin.aliment.section.edit', ['section_id' => $section->id, 'speciality_id' => $aliment->specialty_id]) }}"
+                        <a href="{{ route('admin.aliment.section.edit', ['section_id' => $section->id, 'speciality_id' => $speciality_id]) }}"
                             class="btn btn-warning btn-sm ">Edit</a>
                         <a href="{{ route('admin.aliment.section.del', ['section_id' => $section->id]) }}"
                             class="btn btn-danger btn-sm">Delete</a>

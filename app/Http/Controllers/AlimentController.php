@@ -51,8 +51,9 @@ class AlimentController extends Controller
     {
         $aliment = Aliment::where('id', $aliment_id)->first();
         if (Helper::G($request)) {
+            $speciality_id = $request->speciality_id;
             $speciality = Speciality::where('id', $aliment->specialty_id)->first();
-            return view('admin.aliment.edit', compact('aliment', 'speciality'));
+            return view('admin.aliment.edit', compact('aliment', 'speciality', 'speciality_id'));
         } else {
             $aliment->title = $request->title;
             $aliment->short_description = $request->short_description;
@@ -125,16 +126,17 @@ class AlimentController extends Controller
         $aliment = Aliment::where('id', $aliment_id)->first();
         $speciality = Speciality::where('id', $speciality_id)->first();
 
-        return view('admin.aliment.section.index', compact('sections','speciality_id','speciality', 'aliment_id', 'aliment'));
+        return view('admin.aliment.section.index', compact('sections', 'speciality_id', 'speciality', 'aliment_id', 'aliment'));
     }
 
     public function sectionAdd(Request $request, $aliment_id)
     {
         if (Helper::G($request)) {
             $alimentSectionTypes = DB::table('aliment_section_types')->get();
+            $speciality_id = $request->speciality_id;
             $aliment = Aliment::where('id', $aliment_id)->first();
             $speciality = Speciality::where('id', $aliment->specialty_id)->first();
-            return view('admin.aliment.section.add', compact('aliment_id', 'alimentSectionTypes', 'speciality', 'aliment'));
+            return view('admin.aliment.section.add', compact('aliment_id', 'speciality_id', 'alimentSectionTypes', 'speciality', 'aliment'));
         } else {
             $section = new AlimentSection();
             $section->title = $request->title;
@@ -155,9 +157,10 @@ class AlimentController extends Controller
         $section = AlimentSection::where('id', $section_id)->first();
         if (Helper::G($request)) {
             $alimentSectionTypes = DB::table('aliment_section_types')->get();
+            $speciality_id = $request->speciality_id;
             $aliment = Aliment::where('id', $section->aliment_id)->first();
             $speciality = Speciality::where('id', $aliment->specialty_id)->first();
-            return view('admin.aliment.section.edit', compact('section_id', 'section', 'alimentSectionTypes', 'aliment', 'speciality'));
+            return view('admin.aliment.section.edit', compact('section_id', 'section','speciality_id', 'alimentSectionTypes', 'aliment', 'speciality'));
         } else {
             $section->title = $request->title;
             $section->description = $request->description;
