@@ -13,7 +13,7 @@
 
 @endsection
 @section('btn')
-    <a href="{{ route('admin.aliment.section.add', ['aliment_id' => $aliment_id]) }}" class="btn btn-primary">Add</a>
+    <a href="{{ route('admin.aliment.section.add', ['aliment_id' => $aliment_id ,'speciality_id'=>$aliment->specialty_id]) }}" class="btn btn-primary">Add</a>
 @endsection
 @section('content')
     <table id="datatable" class="table table-striped" data-toggle="data-table">

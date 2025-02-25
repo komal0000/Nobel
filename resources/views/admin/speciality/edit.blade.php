@@ -13,6 +13,7 @@
         <span>Edit</span>
     @else
         <a href="{{ route('admin.speciality.index') }}">Specialties</a> /
+        {{$speciality->title}} /
         <span>Edit</span>
     @endif
 @endsection
