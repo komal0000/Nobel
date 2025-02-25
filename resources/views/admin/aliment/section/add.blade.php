@@ -5,7 +5,7 @@
         <span> {{ $speciality->title }}</span> /
         <a href="{{ route('admin.aliment.index', ['speciality_id' => $speciality->id]) }}">Aliment</a> /
         <span>{{ $aliment->title }}</span> /
-        <a href="{{ route('admin.aliment.section.index', ['aliment_id' => $aliment_id]) }}">Section</a> /
+        <a href="{{ route('admin.aliment.section.index', ['aliment_id' => $aliment_id,'speciality_id' => $speciality->id]) }}">Sections</a> /
         <span>Add</span>
     @else
         <a href="{{ route('admin.aliment.index') }}">Aliment</a> /

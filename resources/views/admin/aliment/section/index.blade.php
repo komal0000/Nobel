@@ -2,18 +2,18 @@
 @section('title')
     @if ($aliment->specialty_id)
         <a href="{{ route('admin.speciality.index') }}">Specialities</a> /
-        <span>{{$speciality->title}}</span> /
-        <a href="{{ route('admin.aliment.index') }}">Alinments</a> /
+        <span>{{ $speciality->title }}</span> /
+        <a href="{{ route('admin.aliment.index', ['speciality_id' => $aliment->specialty_id]) }}">Alinments</a> /
         <span>{{ $aliment->title }}</span> /
         <span>Sections</span>
     @else
-    <a href="{{ route('admin.aliment.index') }}">Alinments</a> /
-    <span>Sections</span>
+        <a href="{{ route('admin.aliment.index') }}">Alinments</a> /
+        <span>Sections</span>
     @endif
-
 @endsection
 @section('btn')
-    <a href="{{ route('admin.aliment.section.add', ['aliment_id' => $aliment_id ,'speciality_id'=>$aliment->specialty_id]) }}" class="btn btn-primary">Add</a>
+    <a href="{{ route('admin.aliment.section.add', ['aliment_id' => $aliment_id, 'speciality_id' => $aliment->specialty_id]) }}"
+        class="btn btn-primary">Add</a>
 @endsection
 @section('content')
     <table id="datatable" class="table table-striped" data-toggle="data-table">
@@ -35,7 +35,7 @@
                     @endphp
                     <td>{{ $type->title }}</td>
                     <td>
-                        <a href="{{ route('admin.aliment.section.edit', ['section_id' => $section->id]) }}"
+                        <a href="{{ route('admin.aliment.section.edit', ['section_id' => $section->id, 'speciality_id' => $aliment->specialty_id]) }}"
                             class="btn btn-warning btn-sm ">Edit</a>
                         <a href="{{ route('admin.aliment.section.del', ['section_id' => $section->id]) }}"
                             class="btn btn-danger btn-sm">Delete</a>

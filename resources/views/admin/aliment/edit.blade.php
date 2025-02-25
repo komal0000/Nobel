@@ -2,11 +2,13 @@
 @section('title')
     @if ($aliment->specialty_id)
         <a href="{{ route('admin.speciality.index') }}">Specialities</a> /
-        <a href="{{ route('admin.aliment.index', ['speciality_id' =>$aliment->specialty_id]) }}">Aliments</a> /
+        <span>{{ $speciality->title }}</span> /
+        <a href="{{ route('admin.aliment.index', ['speciality_id' => $aliment->specialty_id]) }}">Aliments</a> /
+        {{ $aliment->title }} /
         <span>Edit</span>
     @else
-    <a href="{{route('admin.aliment.index')}}">Aliments</a> /
-    <span>Edit</span>
+        <a href="{{ route('admin.aliment.index') }}">Aliments</a> /
+        <span>Edit</span>
     @endif
 @endsection
 @section('content')

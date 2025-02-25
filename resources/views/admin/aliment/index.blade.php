@@ -31,7 +31,7 @@
                     <td>{{ $aliment->title }}</td>
                     <td>{{ $aliment->short_description }}</td>
                     <td>
-                        <a href="{{ route('admin.aliment.edit', ['aliment_id' => $aliment->id]) }}"
+                        <a href="{{ route('admin.aliment.edit', ['aliment_id' => $aliment->id ,'speciality_id'=>$speciality_id]) }}"
                             class="btn btn-warning btn-sm ">Edit</a>
                         <a href="{{ route('admin.aliment.del', ['aliment_id' => $aliment->id]) }}"
                             class="btn btn-danger btn-sm">Delete</a>

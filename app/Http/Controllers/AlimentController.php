@@ -27,8 +27,8 @@ class AlimentController extends Controller
     public function add(Request $request)
     {
         $speciality_id = $request->speciality_id;
-        $speciality = Speciality::where('id', $speciality_id)->first();
         if (Helper::G($request)) {
+            $speciality = Speciality::where('id', $speciality_id)->first();
             return view('admin.aliment.add', compact('speciality_id', 'speciality'));
         } else {
             $aliment = new Aliment();
@@ -50,7 +50,8 @@ class AlimentController extends Controller
     {
         $aliment = Aliment::where('id', $aliment_id)->first();
         if (Helper::G($request)) {
-            return view('admin.aliment.edit', compact('aliment'));
+            $speciality = Speciality::where('id',$aliment->specialty_id)->first();
+            return view('admin.aliment.edit', compact('aliment','speciality'));
         } else {
             $aliment->title = $request->title;
             $aliment->short_description = $request->short_description;
@@ -151,11 +152,15 @@ class AlimentController extends Controller
     {
         $section = AlimentSection::where('id', $section_id)->first();
         if (Helper::G($request)) {
-            return view('admin.aliment.section.edit', compact('section_id'));
+            $alimentSectionTypes = DB::table('aliment_section_types')->get();
+            $aliment = Aliment::where('id', $section->aliment_id)->first();
+            $speciality = Speciality::where('id', $aliment->specialty_id)->first();
+            return view('admin.aliment.section.edit', compact('section_id','section','alimentSectionTypes','aliment','speciality'));
         } else {
             $section->title = $request->title;
             $section->description = $request->description;
             $section->show_on_frontend = $request->show_on_frontend;
+            $section->aliment_section_type_id = $request->section_type_id;
             if ($request->hasFile('image')) {
                 $section->image = $request->file('image')->store('uploads/section', 'public');
             }
