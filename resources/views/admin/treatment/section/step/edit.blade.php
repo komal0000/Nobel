@@ -1,12 +1,28 @@
 @extends('admin.layout.app')
 @section('title')
-    <a href="{{ route('admin.treatment.index') }}">Treatments</a> /
-    <span>{{ $treatment->title }}</span>
-    <a href="{{ route('admin.treatment.section.index', ['treatment_id' => $section->treatment_id]) }}">Sections</a> /
-    <span>{{ $section->title }}</span> /
-    <a href="{{ route('admin.treatment.section.step.index', ['section_id' => $section->id]) }}">Steps</a> /
-    <span> {{ $step->title }}</span> /
-    <span>Edit</span>
+    @if ($speciality_id)
+        <a href="{{ route('admin.speciality.index') }}">Specialities</a> /
+        <span>{{ $speciality->title }}</span> /
+        <a href="{{ route('admin.treatment.index', ['speciality_id' => $speciality_id]) }}">Treatments</a> /
+        <span>{{ $treatment->title }}</span> /
+        <a
+            href="{{ route('admin.treatment.section.index', ['treatment_id' => $treatment->id, 'speciality_id' => $speciality_id]) }}">Sections</a>
+        /
+        <span>{{ $section->title }}</span> /
+        <a
+            href="{{ route('admin.treatment.section.step.index', ['section_id' => $section->id, 'speciality_id' => $speciality_id]) }}">Steps</a>
+        /
+        <span>{{ $SectionStep->title }}</span> /
+        <span>Edit</span>
+    @else
+        <a href="{{ route('admin.treatment.index') }}">Treatments</a> /
+        <span>{{ $treatment->title }}</span>
+        <a href="{{ route('admin.treatment.section.index', ['treatment_id' => $section->treatment_id]) }}">Sections</a> /
+        <span>{{ $section->title }}</span> /
+        <a href="{{ route('admin.treatment.section.step.index', ['section_id' => $section->id]) }}">Steps</a> /
+        <span> {{ $step->title }}</span> /
+        <span>Edit</span>
+    @endif
 @endsection
 
 @section('content')

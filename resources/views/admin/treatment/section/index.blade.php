@@ -34,7 +34,7 @@
                             class="btn btn-warning btn-sm ">Edit</a>
                         <a href="{{ route('admin.treatment.section.del', ['section_id' => $section->id]) }}"
                             class="btn btn-danger btn-sm">Delete</a>
-                        <a href="{{ route('admin.treatment.section.step.index', ['section_id' => $section->id]) }}"
+                        <a href="{{ route('admin.treatment.section.step.index', ['section_id' => $section->id ,'speciality_id' => $speciality_id]) }}"
                             class="btn btn-sm btn-info">Manage steps</a>
                     </td>
                 </tr>
