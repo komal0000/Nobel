@@ -13,14 +13,17 @@ class TreatmentSectionController extends Controller
 {
     public function index($treatment_id)
     {
-        $treatmentSections = DB::table('treatment_sections')->get(['id', 'title', 'style_type']);
-        return view('admin.treatment.section.index', compact('treatmentSections', 'treatment_id'));
+        $treatment = Treatment::where('id',$treatment_id)->first(['title']);
+        $treatmentSections = DB::table('treatment_sections')->where('treatment_id',$treatment_id)->get(['id', 'title', 'style_type']);
+        return view('admin.treatment.section.index', compact('treatmentSections','treatment','treatment_id'));
     }
 
     public function add(Request $request, $treatment_id)
     {
+
         if (Helper::G($request)) {
-            return view('admin.treatment.section.add', compact('treatment_id'));
+            $treatment = Treatment::where('id',$treatment_id)->first(['title']);
+            return view('admin.treatment.section.add', compact('treatment_id','treatment'));
         } else {
             $treatmentSection = new TreatmentSection();
             $treatmentSection->title = $request->title;
@@ -35,9 +38,10 @@ class TreatmentSectionController extends Controller
     public function edit(Request $request, $section_id)
     {
         $treatmentSection = TreatmentSection::where("id", $section_id)->first();
-
         if (Helper::G($request)) {
-            return view('admin.treatment.section.edit', compact('treatmentSection'));
+            $treatment = Treatment::where('id',$treatmentSection->treatment_id)->first(['title']);
+
+            return view('admin.treatment.section.edit', compact('treatmentSection','treatment'));
         } else {
             $treatmentSection->title = $request->title;
             $treatmentSection->description = $request->description;
@@ -57,15 +61,17 @@ class TreatmentSectionController extends Controller
     public function stepIndex($section_id)
     {
         $section = TreatmentSection::where('id', $section_id)->first();
+        $treatment = Treatment::where('id',$section->treatment_id)->first();
         $SectionSteps = DB::table('treatment_steps')->get(['id', 'title', 'short_description']);
-        return view('admin.treatment.section.step.index', compact('section_id', 'section', 'SectionSteps'));
+        return view('admin.treatment.section.step.index', compact('section_id', 'section', 'treatment','SectionSteps'));
     }
 
     public function stepAdd(Request $request, $section_id)
     {
         $section = TreatmentSection::where('id', $section_id)->first();
+        $treatment = Treatment::where('id',$section->treatment_id)->first();
         if (Helper::G($request)) {
-            return view('admin.treatment.section.step.add', compact('section_id', 'section'));
+            return view('admin.treatment.section.step.add', compact('section_id','treatment' ,'section'));
         } else {
             $SectionStep = new TreatmentStep();
             $SectionStep->title = $request->title;
@@ -87,7 +93,8 @@ class TreatmentSectionController extends Controller
 
         if (Helper::G($request)) {
             $section = TreatmentSection::where('id', $SectionStep->treatment_section_id)->first();
-            return view('admin.treatment.section.step.edit', compact('SectionStep', 'section'));
+            $treatment = Treatment::where('id',$section->treatment_id)->first();
+            return view('admin.treatment.section.step.edit', compact('SectionStep', 'section','treatment'));
         } else {
             $SectionStep->title = $request->title;
             $SectionStep->slug = $request->slug;

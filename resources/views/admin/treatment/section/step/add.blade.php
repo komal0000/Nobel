@@ -1,8 +1,10 @@
 @extends('admin.layout.app')
 @section('title')
     <a href="{{ route('admin.treatment.index') }}">Treatments</a> /
+    <span>{{ $treatment->title }}</span> /
     <a href="{{ route('admin.treatment.section.index', ['treatment_id' => $section->treatment_id]) }}">Sections</a> /
-    <a href="{{ route('admin.treatment.section.step.index', ['section_id' => $section_id]) }}">Steps</a> /
+    <span>{{ $section->title }}</span> /
+    <a href="{{route('admin.treatment.section.step.index',['section_id'=>$section->id])}}">Steps</a> /
     <span>Add</span>
 @endsection
 

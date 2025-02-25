@@ -29,7 +29,7 @@
                     <td>{{ $treatment->title }}</td>
                     <td>{{ $treatment->short_description }}</td>
                     <td>
-                        <a href="{{ route('admin.treatment.edit', ['treatment_id' => $treatment->id , 'speciality_id' => $speciality_id]) }}"
+                        <a href="{{ route('admin.treatment.edit', ['treatment_id' => $treatment->id, 'speciality_id' => $speciality_id]) }}"
                             class="btn btn-warning btn-sm ">Edit</a>
                         <a href="{{ route('admin.treatment.del', ['treatment_id' => $treatment->id]) }}"
                             class="btn btn-danger btn-sm">Delete</a>
