@@ -3,7 +3,13 @@
     @if ($parent_speciality_id == null)
         <span>Specialties</span>
     @else
-        <a href="{{ route('admin.speciality.index') }}">Speciality</a> /
+        <a href="{{ route('admin.speciality.index') }}">Specialties</a> /
+        @php
+            $parents=\App\Helpers\Helper::getSpecialityRoutes($parent_speciality_id);
+        @endphp
+        @foreach ($parents as $parent)
+        <a href="{{ route('admin.speciality.index',['parent_speciality_id'=>$parent->id]) }}">{{$parent->title}}</a> /
+        @endforeach
         <span>Sub Specialties</span>
     @endif
 @endsection
