@@ -72,8 +72,9 @@ class AlimentController extends Controller
         $aliment = Aliment::where('id', $aliment_id)->first();
         if (Helper::G($request)) {
             $speciality_id = $request->speciality_id;
+            $speciality_section_types = AlimentSectionType::get();
             $speciality = Speciality::where('id', $aliment->specialty_id)->first();
-            return view('admin.aliment.edit', compact('aliment', 'speciality', 'speciality_id'));
+            return view('admin.aliment.edit', compact('aliment', 'speciality', 'speciality_id','speciality_section_types'));
         } else {
             $aliment->title = $request->title;
             $aliment->short_description = $request->short_description;
