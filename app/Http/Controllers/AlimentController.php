@@ -69,25 +69,47 @@ class AlimentController extends Controller
 
     public function edit(Request $request, $aliment_id)
     {
-        $aliment = Aliment::where('id', $aliment_id)->first();
+        $aliment = Aliment::findOrFail($aliment_id);
+
         if (Helper::G($request)) {
             $speciality_id = $request->speciality_id;
             $speciality_section_types = AlimentSectionType::get();
             $speciality = Speciality::where('id', $aliment->specialty_id)->first();
-            return view('admin.aliment.edit', compact('aliment', 'speciality', 'speciality_id','speciality_section_types'));
+            return view('admin.aliment.edit', compact('aliment', 'speciality', 'speciality_id', 'speciality_section_types'));
         } else {
-            $aliment->title = $request->title;
-            $aliment->short_description = $request->short_description;
-            if ($request->has("icon")) {
-                $aliment->icon = $request->file('icon')->store('uploads/aliments', 'public');
+            $aliment->title = $request->aliment_title;
+            $aliment->short_description = $request->aliment_short_description;
+
+            if ($request->hasFile("aliment_icon")) {
+                $aliment->icon = $request->file('aliment_icon')->store('uploads/aliments', 'public');
             }
-            if ($request->has("single_page_image")) {
-                $aliment->single_page_image = $request->file('single_page_image')->store('uploads/aliments', 'public');
+            if ($request->hasFile("aliment_single_page_image")) {
+                $aliment->single_page_image = $request->file('aliment_single_page_image')->store('uploads/aliments', 'public');
             }
             $aliment->save();
-            return redirect()->back()->with("success", "Aliment Successfully Updated");
+            if ($request->has('sections') && is_array($request->sections)) {
+                foreach ($request->sections as $typeId => $sectionData) {
+                    $section = AlimentSection::where('aliment_section_type_id', $typeId)->where('aliment_id',$aliment->id)->first();
+                    if (!$section) {
+                        $section = new AlimentSection();
+                        $section->aliment_id = $aliment->id;
+                        $section->aliment_section_type_id = $typeId;
+                    }
+                    $section->title = $sectionData['title'] ;
+                    $section->description = $sectionData['description'] ;
+                    $section->show_on_frontend = isset($sectionData['show_on_frontend']) ? $sectionData['show_on_frontend'] : 0;
+
+                    if ($request->hasFile("sections.$typeId.image")) {
+                        $section->image = $request->file("sections.$typeId.image")->store('uploads/aliment_sections', 'public');
+                    }
+
+                    $section->save();
+                }
+            }
+            return response()->json(['success' => true]);
         }
     }
+
 
     public function del($aliment_id)
     {

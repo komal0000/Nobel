@@ -17,13 +17,13 @@
                 <div class="col-md-6">
                     <label for="aliment_icon">Icon <span style="color: red;">*</span></label>
                     <input type="file" class="form-control dropify" id="aliment_icon" name="icon" accept="image/*"
-                        data-default-file="{{ $aliment->icon ? Storage::url($aliment->icon) : '' }}">
+                        data-default-file="{{ Storage::url($aliment->icon) }}">
                 </div>
                 <div class="col-md-6">
                     <label for="aliment_single_page_image">Single Page Image <span style="color: red;">*</span></label>
                     <input type="file" class="form-control dropify" id="aliment_single_page_image"
                         name="single_page_image" accept="image/*"
-                        data-default-file="{{ $aliment->single_page_image ? Storage::url($aliment->single_page_image) : '' }}">
+                        data-default-file="{{ Storage::url($aliment->single_page_image) }}">
                 </div>
             </div>
         </div>
@@ -95,7 +95,7 @@
             </div>
         @endforeach
         <div class="col-md-12 mt-3 d-flex justify-content-end">
-            <button class="btn btn-primary" onclick="updateAll()">
+            <button class="btn btn-primary" onclick="updateAll({{ $aliment->id }})">
                 Update
             </button>
         </div>
@@ -103,7 +103,7 @@
 @endsection
 @section('js')
     <script>
-        function updateAll() {
+        function updateAll(aliment_id) {
             var formData = new FormData();
             formData.append("aliment_id", "{{ $aliment->id }}");
             formData.append("aliment_title", $("#aliment_title").val());
@@ -124,7 +124,7 @@
                 var typeId = section.find('input[name="type_id"]').val();
                 formData.append("sections[" + typeId + "][title]", section.find("#title_" + typeId).val());
                 formData.append("sections[" + typeId + "][description]", section.find("#description_" + typeId)
-                .val());
+                    .val());
 
                 var sectionImage = section.find("#image_" + typeId)[0].files[0];
                 if (sectionImage) {
@@ -135,13 +135,16 @@
                 formData.append("sections[" + typeId + "][show_on_frontend]", checkbox.is(":checked") ? 1 : 0);
             });
 
-            axios.post('{{ route('admin.aliment.edit') }}', formData, {
+            axios.post("{{ route('admin.aliment.edit', ['aliment_id' => '_id_']) }}".replace('_id_', aliment_id), formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
                 })
                 .then(function(response) {
-                    console.log('Update Success:', response.data);
+                    if (response.data.success) {
+                        sessionStorage.setItem('success', 'Aliment updated successfully');
+                        location.reload();
+                    }
                 })
                 .catch(function(error) {
                     console.error('Update Error:', error);
