@@ -62,9 +62,8 @@ class AlimentController extends Controller
                 }
             }
 
-            return redirect()->back()->with('success','Aliment Successfully Added');
+            return redirect()->back()->with('success', 'Aliment Successfully Added');
         }
-
     }
 
 
@@ -138,66 +137,5 @@ class AlimentController extends Controller
     {
         AlimentSectionType::where('id', $type_id)->delete();
         return redirect()->back()->with("delete_success", "Aliment Type Successfully Deleted");
-    }
-
-    public function sectionIndex($aliment_id, Request $request)
-    {
-        $speciality_id = $request->speciality_id;
-        $sections = AlimentSection::where('aliment_id', $aliment_id)->get();
-        $aliment = Aliment::where('id', $aliment_id)->first();
-        $speciality = Speciality::where('id', $speciality_id)->first();
-
-        return view('admin.aliment.section.index', compact('sections', 'speciality_id', 'speciality', 'aliment_id', 'aliment'));
-    }
-
-    public function sectionAdd(Request $request, $aliment_id)
-    {
-        if (Helper::G($request)) {
-            $alimentSectionTypes = DB::table('aliment_section_types')->get();
-            $speciality_id = $request->speciality_id;
-            $aliment = Aliment::where('id', $aliment_id)->first();
-            $speciality = Speciality::where('id', $aliment->specialty_id)->first();
-            return view('admin.aliment.section.add', compact('aliment_id', 'speciality_id', 'alimentSectionTypes', 'speciality', 'aliment'));
-        } else {
-            $section = new AlimentSection();
-            $section->title = $request->title;
-            $section->description = $request->description;
-            $section->show_on_frontend = $request->show_on_frontend;
-            $section->aliment_id = $aliment_id;
-            $section->aliment_section_type_id = $request->section_type_id;
-            if ($request->hasFile('image')) {
-                $section->image = $request->file('image')->store('uploads/section', 'public');
-            }
-            $section->save();
-            return redirect()->back()->with("success", "Aliment Section Successfully Added");
-        }
-    }
-
-    public function sectionEdit(Request $request, $section_id)
-    {
-        $section = AlimentSection::where('id', $section_id)->first();
-        if (Helper::G($request)) {
-            $alimentSectionTypes = DB::table('aliment_section_types')->get();
-            $speciality_id = $request->speciality_id;
-            $aliment = Aliment::where('id', $section->aliment_id)->first();
-            $speciality = Speciality::where('id', $aliment->specialty_id)->first();
-            return view('admin.aliment.section.edit', compact('section_id', 'section', 'speciality_id', 'alimentSectionTypes', 'aliment', 'speciality'));
-        } else {
-            $section->title = $request->title;
-            $section->description = $request->description;
-            $section->show_on_frontend = $request->show_on_frontend;
-            $section->aliment_section_type_id = $request->section_type_id;
-            if ($request->hasFile('image')) {
-                $section->image = $request->file('image')->store('uploads/section', 'public');
-            }
-            $section->save();
-            return redirect()->back()->with("success", "Aliment Section Successfully Updated");
-        }
-    }
-
-    public function sectionDel($section_id)
-    {
-        DB::table('aliment_sections')->where('id', $section_id)->delete();
-        return redirect()->back()->with("delete_success", "Aliment Section Successfully Deleted");
     }
 }

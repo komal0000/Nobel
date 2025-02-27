@@ -30,22 +30,22 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="col-md-12">
-                    <label for="icon">Icon</label>
+                    <label for="icon">Icon <span style="color: red;">*</span></label>
                     <input type="file" class="form-control dropify" id="icon" name="icon" accept="image/*">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="row">
                     <div class="col-md-12 mb-2">
-                        <label for="title">Title</label>
+                        <label for="title">Title <span style="color: red;">*</span></label>
                         <input type="text" class="form-control" id="title" name="title">
                     </div>
                     <div class="col-md-12 mb-2">
-                        <label for="short_description">Short Description</label>
+                        <label for="short_description">Short Description <span style="color: red;">*</span></label>
                         <input type="text" class="form-control" id="short_description" name="short_description">
                     </div>
                     <div class="col-md-12 mb-2">
-                        <label for="long_description">Long Description</label>
+                        <label for="long_description">Long Description <span style="color: red;">*</span></label>
                         <textarea class="form-control" id="long_description" name="long_description"></textarea>
                     </div>
                 </div>
