@@ -1,36 +1,48 @@
 [means nullable]
 if there is title make  slug
+* {
 
-users
-    role<int>
-sliders
-    desktop_image,mobile_image,[has_link,link_url,link_text,extra_data<text>]
-specialties
-    title,icon,short_description,single_page_image,[parent_specialty_id]
-specialty_galleries
-        icon,specialty_id,description,title
-specialty_gallery_items
-    icon,title,description,[extra_data],specialty_gallery_id,specialty_id
+} -> Remaining
 
-treatments
-    title,icon,short_description,single_page_image,[specialty_id]
-treatment_sections
-    title,description,style_type,treatment_id
-treatment_steps
-    treatment_section_id,title,icon,short_description,long_description,
+{
+    users
+        role<int>
+    sliders
+        desktop_image,mobile_image,[has_link,link_url,link_text,extra_data<text>]
+    specialties
+        title,icon,short_description,single_page_image,[parent_specialty_id]
+    specialty_galleries
+            icon,specialty_id,description,title
+    specialty_gallery_items
+        icon,title,description,[extra_data],specialty_gallery_id,specialty_id
 
-aliment_section_types
-    title,icon,[description]
+    treatments
+        title,icon,short_description,single_page_image,[specialty_id]
+    treatment_sections
+        title,description,style_type,treatment_id
+    treatment_steps
+        treatment_section_id,title,icon,short_description,long_description,
 
-aliments
-    title,icon,short_description,single_page_image,[specialty_id]
-aliment_sections
-    aliment_id,aliment_section_type_id,title,[image,description],show_on_frontend
+    aliment_section_types
+        title,icon,[description]
 
+    aliments
+        title,icon,short_description,single_page_image,[specialty_id]
+    aliment_sections
+        aliment_id,aliment_section_type_id,title,[image,description],show_on_frontend
 
+}
 
-
-
+*{
+    BlogCategory
+        name,parent_id,type<1=blog,2=new>
+    Blog
+        title,image,text,blog_category_id,creator_user_id,is_featured,[datas]
+    DownloadCategory
+        name,parent_id,icon
+    Download
+        title,link,uploaded_date,,download_category_id
+}
 
 
 
