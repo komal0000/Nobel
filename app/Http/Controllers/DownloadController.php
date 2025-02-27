@@ -43,7 +43,6 @@ class DownloadController extends Controller
             if ($request->has('icon')) {
                 $downloadcategory->icon = $request->file('icon')->store('uploads/dowloads', 'public');
             }
-            $downloadcategory->parent_id = $request->parent_id;
             $downloadcategory->save();
             return redirect()->back()->with('success', 'Download Category Successfully updated');
         }

@@ -15,7 +15,7 @@
     @endif
 @endsection
 @section('btn')
-    <a href="{{ route('admin.download.add',['parent_id'=>$parent_id]) }}" class="btn btn-primary">Add</a>
+    <a href="{{ route('admin.download.add', ['parent_id' => $parent_id]) }}" class="btn btn-primary">Add</a>
 @endsection
 @section('content')
     <table id="datatable" class="table table-striped" data-toggle="data-table">
@@ -32,7 +32,7 @@
                     <td>
                         <a href="{{ route('admin.download.index', ['parent_id' => $category->id]) }}"
                             class="btn btn-info btn-sm">Sub Category</a>
-                        <a href="{{ route('admin.download.edit', ['category' => $category->id]) }}"
+                        <a href="{{ route('admin.download.edit', ['category' => $category->id, 'parent_id' => $category->id]) }}"
                             class="btn btn-warning btn-sm ">Edit</a>
                         <a href="{{ route('admin.download.del', ['category' => $category->id, 'parent_id' => $category->id]) }}"
                             class="btn btn-danger btn-sm">Delete</a>
