@@ -62,7 +62,7 @@ class AlimentController extends Controller
                 }
             }
 
-            return redirect()->back()->with('success', 'Aliment Successfully Added');
+            return response()->json(['success'=>true]);
         }
     }
 

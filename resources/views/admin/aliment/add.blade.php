@@ -124,7 +124,10 @@
                     }
                 })
                 .then(function(response) {
-
+                    if(response.data.success){
+                        sessionStorage.setItem('success', 'Aliment updated successfully');
+                        location.reload();
+                    }
                 })
                 .catch(function(error) {
                     console.error('Error:', error);
