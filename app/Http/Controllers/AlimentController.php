@@ -15,14 +15,12 @@ class AlimentController extends Controller
     public function index(Request $request)
     {
         $speciality_id = $request->speciality_id;
-        if ($speciality_id) {
-            $speciality = Speciality::where('id', $speciality_id)->first();
-            $aliments = DB::table('aliments')->where('specialty_id', $speciality_id)->get(['id', 'title', 'short_description']);
-            return view('admin.aliment.index', compact('aliments', 'speciality_id', 'speciality'));
-        } else {
-            $aliments = DB::table('aliments')->get(['id', 'title', 'short_description']);
-            return view('admin.aliment.index', compact('aliments', 'speciality_id'));
-        }
+        $speciality = $speciality_id ? Speciality::find($speciality_id) : null;
+
+        $aliments = $speciality_id
+            ? Aliment::where('specialty_id', $speciality_id)->get(['id', 'title', 'short_description'])
+            : Aliment::get(['id', 'title', 'short_description']);
+        return view('admin.aliment.index', compact('aliments', 'speciality_id', 'speciality'));
     }
 
     public function add(Request $request)
@@ -30,22 +28,45 @@ class AlimentController extends Controller
         $speciality_id = $request->speciality_id;
         if (Helper::G($request)) {
             $speciality = Speciality::where('id', $speciality_id)->first();
-            return view('admin.aliment.add', compact('speciality_id', 'speciality'));
+            $speciality_section_types = AlimentSectionType::get();
+            return view('admin.aliment.add', compact('speciality_id', 'speciality', 'speciality_section_types'));
         } else {
+
             $aliment = new Aliment();
-            $aliment->title = $request->title;
-            $aliment->short_description = $request->short_description;
-            $aliment->specialty_id = $request->speciality_id ? $request->speciality_id : null;
-            if ($request->has("icon")) {
-                $aliment->icon = $request->file('icon')->store('uploads/aliments', 'public');
+            $aliment->title = $request->aliment_title;
+            $aliment->short_description = $request->aliment_short_description;
+            $aliment->specialty_id = $speciality_id ?: null;
+
+            if ($request->hasFile('aliment_icon')) {
+                $aliment->icon = $request->file('aliment_icon')->store('uploads/aliments', 'public');
             }
-            if ($request->has("single_page_image")) {
-                $aliment->single_page_image = $request->file('single_page_image')->store('uploads/aliments', 'public');
+
+            if ($request->hasFile('aliment_single_page_image')) {
+                $aliment->single_page_image = $request->file('aliment_single_page_image')->store('uploads/aliments', 'public');
             }
+
             $aliment->save();
-            return redirect()->back()->with("success", "Aliment Successfully Added");
+            if ($request->has('sections') && is_array($request->sections)) {
+                foreach ($request->sections as $typeId => $sectionData) {
+                    $section = new AlimentSection();
+                    $section->aliment_id = $aliment->id;
+                    $section->aliment_section_type_id = $typeId;
+                    $section->title = isset($sectionData['title']) ? $sectionData['title'] : null;
+                    $section->description = isset($sectionData['description']) ? $sectionData['description'] : null;
+                    $section->show_on_frontend = isset($sectionData['show_on_frontend']) ? $sectionData['show_on_frontend'] : 0;
+                    if ($request->hasFile("sections.$typeId.image")) {
+                        $section->image = $request->file("sections.$typeId.image")->store('uploads/aliment_sections', 'public');
+                    }
+
+                    $section->save();
+                }
+            }
+
+            return redirect()->back()->with('success','Aliment Successfully Added');
         }
+
     }
+
 
     public function edit(Request $request, $aliment_id)
     {
@@ -160,7 +181,7 @@ class AlimentController extends Controller
             $speciality_id = $request->speciality_id;
             $aliment = Aliment::where('id', $section->aliment_id)->first();
             $speciality = Speciality::where('id', $aliment->specialty_id)->first();
-            return view('admin.aliment.section.edit', compact('section_id', 'section','speciality_id', 'alimentSectionTypes', 'aliment', 'speciality'));
+            return view('admin.aliment.section.edit', compact('section_id', 'section', 'speciality_id', 'alimentSectionTypes', 'aliment', 'speciality'));
         } else {
             $section->title = $request->title;
             $section->description = $request->description;

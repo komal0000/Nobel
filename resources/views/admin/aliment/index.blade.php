@@ -35,8 +35,6 @@
                             class="btn btn-warning btn-sm ">Edit</a>
                         <a href="{{ route('admin.aliment.del', ['aliment_id' => $aliment->id]) }}"
                             class="btn btn-danger btn-sm">Delete</a>
-                        <a href="{{ route('admin.aliment.section.index', ['aliment_id' => $aliment->id ,'speciality_id'=>$speciality_id]) }}"
-                            class="btn btn-info btn-sm">Manage Section</a>
                     </td>
                 </tr>
             @endforeach
@@ -49,4 +47,5 @@
             </tr>
         </tfoot>
     </table>
+
 @endsection
