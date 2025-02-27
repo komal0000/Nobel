@@ -21,17 +21,17 @@
                     <div class="col-md-4">
                         <div class="item-group border p-3 mb-3 rounded">
                             <div class="form-group">
-                                <label for="icon">Icon</label>
+                                <label for="icon">Icon </label>
                                 <input type="file" name="icon" class="form-control dropify" id="icon"
                                     data-height="100" data-default-file="{{ Storage::url($item->icon) }}" accept="image/*">
                             </div>
                             <div class="form-group">
-                                <label for="title">Title</label>
+                                <label for="title">Title </label>
                                 <input type="text" name="title" class="form-control" id="title"
                                     placeholder="Enter title" value="{{ $item->title }}">
                             </div>
                             <div class="form-group">
-                                <label for="description">Description</label>
+                                <label for="description">Description </label>
                                 <textarea name="description" class="form-control" id="description" rows="3" placeholder="Enter description">{!! old('description', $item->description) !!}</textarea>
                             </div>
                             <div class="form-group">
@@ -48,16 +48,16 @@
                 <div class="col-md-4">
                     <div class="item-group border p-3 mb-3 rounded">
                         <div class="form-group">
-                            <label for="icon">Icon</label>
+                            <label for="icon">Icon <span style="color: red;">*</span></label>
                             <input type="file" name="icon[]" class="form-control dropify" data-height="100"
                                 accept="image/*">
                         </div>
                         <div class="form-group">
-                            <label for="title">Title</label>
+                            <label for="title">Title <span style="color: red;">*</span></label>
                             <input type="text" name="title[]" class="form-control" placeholder="Enter title">
                         </div>
                         <div class="form-group">
-                            <label for="description">Description</label>
+                            <label for="description">Description <span style="color: red;">*</span></label>
                             <textarea name="description[]" class="form-control" rows="3" placeholder="Enter description"></textarea>
                         </div>
                         <div class="form-group">
@@ -138,8 +138,7 @@
                         'Content-Type': 'multipart/form-data'
                     }
                 })
-                .then(function(response) {
-                })
+                .then(function(response) {})
                 .catch(function(error) {
                     alert('Error updating item');
                     console.error(error);
