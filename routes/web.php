@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AlimentController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\SpecialityController;
@@ -76,5 +77,11 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
             Route::match(['GET', 'POST'], 'edit/{type_id}', [AlimentController::class, 'typeEdit'])->name('edit');
             Route::match(['GET', 'POST'], 'del/{type_id}', [AlimentController::class, 'typeDel'])->name('del');
         });
+    });
+    Route::prefix('download')->name('download.')->group(function(){
+        Route::get('index', [DownloadController::class, 'index'])->name('index');
+        Route::match(['GET', 'POST'], 'add', [DownloadController::class, 'add'])->name('add');
+        Route::match(['GET', 'POST'], 'edit/{category}', [DownloadController::class, 'edit'])->name('edit');
+        Route::match(['GET', 'POST'], 'del/{category}', [DownloadController::class, 'del'])->name('del');
     });
 });

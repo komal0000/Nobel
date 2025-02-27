@@ -19,7 +19,6 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->foreignId('aliment_id')->constrained('aliments');
             $table->foreignId('aliment_section_type_id')->constrained('aliment_section_types');
-            $table->boolean('show_on_frontend')->default(false);
             $table->timestamps();
         });
     }

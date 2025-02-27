@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('download_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('title');
             $table->text('icon');
             $table->foreignId('parent_id')->nullable()->constrained('download_categories');
             $table->timestamps();

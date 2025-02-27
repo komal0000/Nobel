@@ -34,11 +34,29 @@ class Helper
             }
             $parent_speciality_id = $speciality->parent_speciality_id;
             $parents[]=$speciality;
-            // dd($speciality);
         }
         $parents=array_reverse($parents);
         return $parents;
+    }
 
+    public static function getParentRoute($parent_id, $get_routes = true) {
+        $parent = [];
+        while ($parent_id != null) {
+            $category = DB::table('download_categories')
+                ->where('id', $parent_id)
+                ->first(['id', 'title', 'parent_id']);
+
+            if (!$category) {
+                break;
+            }
+            if ($get_routes) {
+                $category->url = route('admin.download.index', ['parent_id' => $parent_id]);
+            }
+            $parent_id = $category->parent_id;
+            $parent[] = $category;
+        }
+
+        return array_reverse($parent);
     }
 
 
