@@ -15,7 +15,7 @@
     @endif
 @endsection
 @section('btn')
-    <a href="{{ route('admin.download.add', ['parent_id' => $parent_id]) }}" class="btn btn-primary">Add</a>
+    <a href="{{ route('admin.downloadCategory.add', ['parent_id' => $parent_id]) }}" class="btn btn-primary">Add</a>
 @endsection
 @section('content')
     <table id="datatable" class="table table-striped" data-toggle="data-table">

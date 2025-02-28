@@ -78,10 +78,16 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
             Route::match(['GET', 'POST'], 'del/{type_id}', [AlimentController::class, 'typeDel'])->name('del');
         });
     });
-    Route::prefix('download')->name('download.')->group(function(){
+    Route::prefix('downloadCategory')->name('downloadCategory.')->group(function () {
         Route::get('index', [DownloadController::class, 'index'])->name('index');
         Route::match(['GET', 'POST'], 'add', [DownloadController::class, 'add'])->name('add');
         Route::match(['GET', 'POST'], 'edit/{category}', [DownloadController::class, 'edit'])->name('edit');
         Route::match(['GET', 'POST'], 'del/{category}', [DownloadController::class, 'del'])->name('del');
+        Route::prefix('download')->name('download.')->group(function () {
+            Route::get('index/{category}', [DownloadController::class, 'downloadIndex'])->name('index');
+            Route::match(['GET', 'POST'], 'add/{category}', [DownloadController::class, 'downloadAdd'])->name('add');
+            Route::match(['GET', 'POST'], 'edit/{download}', [DownloadController::class, 'downloadEdit'])->name('edit');
+            Route::match(['GET', 'POST'], 'del/{download}', [DownloadController::class, 'DownloadDel'])->name('del');
+        });
     });
 });

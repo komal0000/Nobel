@@ -19,7 +19,7 @@
 
 @endsection
 @section('content')
-    <form action="{{ route('admin.download.edit', ['category' => $downloadcategory->id]) }}" method="POST"
+    <form action="{{ route('admin.downloadCategory.edit', ['category' => $downloadcategory->id]) }}" method="POST"
         enctype="multipart/form-data">
         @csrf
         <div class="row">

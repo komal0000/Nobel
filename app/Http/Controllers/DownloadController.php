@@ -17,13 +17,13 @@ class DownloadController extends Controller
         } else {
             $downloadcategories = DownloadCategory::whereNull('parent_id')->get(['id', 'title']);
         }
-        return view('admin.download.index', compact('downloadcategories', 'parent_id'));
+        return view('admin.downloadcategory.index', compact('downloadcategories', 'parent_id'));
     }
     public function add(Request $request)
     {
         $parent_id = $request->parent_id;
         if (Helper::G()) {
-            return view('admin.download.add',compact('parent_id'));
+            return view('admin.downloadcategory.add',compact('parent_id'));
         } else {
             $downloadcategory = new DownloadCategory();
             $downloadcategory->title = $request->title;
@@ -46,12 +46,23 @@ class DownloadController extends Controller
             $downloadcategory->save();
             return redirect()->back()->with('success', 'Download Category Successfully updated');
         }
-        return view('admin.download.edit', compact('downloadcategory'));
+        return view('admin.downloadcategory.edit', compact('downloadcategory'));
     }
 
     public function del($category)
     {
         DownloadCategory::where('id', $category)->delete();
         return redirect()->back()->with('success', 'Download Category Successfully Deleted');
+    }
+
+    public function downloadIndex(Request $request, $category){
+
+    }
+    public function downloadAdd(Request $request,$category){
+        if(Helper::G()){
+            return view('admin.downloadcategory.download.add',compact('category'));
+        }else{
+
+        }
     }
 }

@@ -16,7 +16,7 @@
     @endif
 @endsection
 @section('content')
-    <form action="{{ route('admin.download.add',['parent_id'=>$parent_id]) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('admin.downloadCategory.add',['parent_id'=>$parent_id]) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-md-6">
