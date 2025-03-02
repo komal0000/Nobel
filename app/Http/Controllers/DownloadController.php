@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Helper;
+use App\Models\Download;
 use App\Models\DownloadCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -23,7 +24,7 @@ class DownloadController extends Controller
     {
         $parent_id = $request->parent_id;
         if (Helper::G()) {
-            return view('admin.downloadcategory.add',compact('parent_id'));
+            return view('admin.downloadcategory.add', compact('parent_id'));
         } else {
             $downloadcategory = new DownloadCategory();
             $downloadcategory->title = $request->title;
@@ -55,14 +56,39 @@ class DownloadController extends Controller
         return redirect()->back()->with('success', 'Download Category Successfully Deleted');
     }
 
-    public function downloadIndex(Request $request, $category){
+    public function downloadIndex(Request $request, $category)
+    {
 
-    }
-    public function downloadAdd(Request $request,$category){
-        if(Helper::G()){
-            return view('admin.downloadcategory.download.add',compact('category'));
-        }else{
-
+        $parent_id = $request->parent_id;
+        $downloads = DB::table('downloads')->where('download_category_id', $category)->get(['id', 'title']);
+        if ($parent_id) {
+            $downloadCategory = DB::table('download_categories')->where('parent_id', $parent_id)->first();
+        } else {
+            $downloadCategory = DownloadCategory::whereNull('parent_id')->first(['id', 'title']);
         }
+        return view('admin.downloadcategory.download.index', compact('category', 'parent_id', 'downloads', 'downloadCategory'));
+    }
+    public function downloadAdd(Request $request, $category)
+    {   $parent_id = $request->parent_id;
+        if (Helper::G()) {
+            if($parent_id){
+                $downloadCategory = DB::table('download_categories')->where('parent_id', $parent_id)->first();
+            }else{
+                $downloadCategory = DownloadCategory::whereNull('parent_id')->first(['id', 'title']);
+            }
+            return view('admin.downloadcategory.download.add', compact('category','downloadCategory'));
+        } else {
+            $download = new Download();
+            $download->title = $request->title;
+            $download->link = $request->link;
+            $download->uploaded_date = $request->uploaded_date;
+            $download->download_category_id = $category;
+            $download->save();
+            return redirect()->back()->with('success','download successfully added');
+        }
+    }
+
+    public function downloadEdit(Request $request , $download){
+
     }
 }

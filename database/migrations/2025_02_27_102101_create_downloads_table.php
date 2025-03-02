@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('link');
-            $table->integer('uploaded_date');
+            $table->date('uploaded_date');
             $table->foreignId('download_category_id')->constrained('download_categories');
             $table->timestamps();
         });
