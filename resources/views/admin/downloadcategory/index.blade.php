@@ -2,12 +2,12 @@
 
 @section('title')
     @if ($parent_id)
-        <a href="{{ route('admin.download.index') }}">Download Categories</a> /
+        <a href="{{ route('admin.downloadCategory.index') }}">Download Categories</a> /
         @php
             $parents = \App\Helpers\Helper::getParentRoute($parent_id);
         @endphp
         @foreach ($parents as $parent)
-            <a href="{{ route('admin.download.index', ['parent_id' => $parent->id]) }}">{{ $parent->title }}</a> /
+            <a href="{{ route('admin.downloadCategory.index', ['parent_id' => $parent->id]) }}">{{ $parent->title }}</a> /
         @endforeach
         <span>Sub Category</span>
     @else
@@ -30,12 +30,16 @@
                 <tr>
                     <td>{{ $category->title }}</td>
                     <td>
-                        <a href="{{ route('admin.download.index', ['parent_id' => $category->id]) }}"
+                        <a href="{{ route('admin.downloadCategory.index', ['parent_id' => $category->id]) }}"
                             class="btn btn-info btn-sm">Sub Category</a>
-                        <a href="{{ route('admin.download.edit', ['category' => $category->id, 'parent_id' => $category->id]) }}"
+                        <a href="{{ route('admin.downloadCategory.edit', ['category' => $category->id, 'parent_id' => $category->id]) }}"
                             class="btn btn-warning btn-sm ">Edit</a>
-                        <a href="{{ route('admin.download.del', ['category' => $category->id, 'parent_id' => $category->id]) }}"
+                        <a href="{{ route('admin.downloadCategory.del', ['category' => $category->id, 'parent_id' => $category->id]) }}"
                             class="btn btn-danger btn-sm">Delete</a>
+                        <a href="{{ route('admin.downloadCategory.download.index', ['category' => $category, 'parent_id' => $parent_id]) }}"
+                            class="btn btn-info btn-sm">
+                            Manage Downloads
+                        </a>
                     </td>
                 </tr>
             @endforeach

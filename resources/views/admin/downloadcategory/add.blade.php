@@ -1,17 +1,17 @@
 @extends('admin.layout.app')
 @section('title')
     @if ($parent_id)
-        <a href="{{ route('admin.download.index') }}">Download Categories</a> /
+        <a href="{{ route('admin.downloadCategory.index') }}">Download Categories</a> /
         @php
             $parents = \App\Helpers\Helper::getParentRoute($parent_id);
         @endphp
         @foreach ($parents as $parent)
-            <a href="{{ route('admin.download.index', ['parent_id' => $parent->id]) }}">{{ $parent->title }}</a> /
+            <a href="{{ route('admin.downloadCategory.index', ['parent_id' => $parent->id]) }}">{{ $parent->title }}</a> /
         @endforeach
         <span>Sub Category</span> /
         <span>Add</span>
     @else
-        <a href="{{ route('admin.download.index') }}">Download Categories</a> /
+        <a href="{{ route('admin.downloadCategory.index') }}">Download Categories</a> /
         <span>Add</span>
     @endif
 @endsection

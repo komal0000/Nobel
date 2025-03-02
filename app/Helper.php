@@ -50,7 +50,7 @@ class Helper
                 break;
             }
             if ($get_routes) {
-                $category->url = route('admin.download.index', ['parent_id' => $parent_id]);
+                $category->url = route('admin.downloadCategory.index', ['parent_id' => $parent_id]);
             }
             $parent_id = $category->parent_id;
             $parent[] = $category;
