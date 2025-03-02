@@ -62,33 +62,54 @@ class DownloadController extends Controller
         $parent_id = $request->parent_id;
         $downloads = DB::table('downloads')->where('download_category_id', $category)->get(['id', 'title']);
         if ($parent_id) {
-            $downloadCategory = DB::table('download_categories')->where('parent_id', $parent_id)->first();
+            $downloadCategory = DB::table('download_categories')->where('id', $category)->where('parent_id', $parent_id)->first();
         } else {
-            $downloadCategory = DownloadCategory::whereNull('parent_id')->first(['id', 'title']);
+            $downloadCategory = DownloadCategory::whereNull('parent_id')->where('id', $category)->first(['id', 'title']);
         }
         return view('admin.downloadcategory.download.index', compact('category', 'parent_id', 'downloads', 'downloadCategory'));
     }
+
     public function downloadAdd(Request $request, $category)
-    {   $parent_id = $request->parent_id;
+    {
+        $parent_id = $request->parent_id;
         if (Helper::G()) {
-            if($parent_id){
-                $downloadCategory = DB::table('download_categories')->where('parent_id', $parent_id)->first();
-            }else{
-                $downloadCategory = DownloadCategory::whereNull('parent_id')->first(['id', 'title']);
+            if ($parent_id) {
+                $downloadCategory = DB::table('download_categories')->where('id', $category)->where('parent_id', $parent_id)->first();
+            } else {
+                $downloadCategory = DownloadCategory::whereNull('parent_id')->where('id', $category)->first(['id', 'title']);
             }
-            return view('admin.downloadcategory.download.add', compact('category','downloadCategory'));
+            return view('admin.downloadcategory.download.add', compact('category', 'parent_id', 'downloadCategory'));
         } else {
             $download = new Download();
             $download->title = $request->title;
-            $download->link = $request->link;
+            if ($request->hasFile('link')) {
+                $download->link = $request->file('link')->store('uploads/link', 'public');
+            }
             $download->uploaded_date = $request->uploaded_date;
             $download->download_category_id = $category;
             $download->save();
-            return redirect()->back()->with('success','download successfully added');
+            return redirect()->back()->with('success', 'download successfully added');
         }
     }
 
-    public function downloadEdit(Request $request , $download){
-
+    public function downloadEdit(Request $request, $download) {
+        $parent_id = $request->parent_id;
+        $download = Download::where('id',$download)->first();
+        if (Helper::G()) {
+            if ($parent_id) {
+                $downloadCategory = DB::table('download_categories')->where('parent_id', $parent_id)->first();
+            } else {
+                $downloadCategory = DownloadCategory::whereNull('parent_id')->first(['id', 'title']);
+            }
+            return view('admin.downloadcategory.download.edit', compact('download', 'parent_id', 'downloadCategory'));
+        } else {
+            $download->title = $request->title;
+            if ($request->hasFile('link')) {
+                $download->link = $request->file('link')->store('uploads/link', 'public');
+            }
+            $download->uploaded_date = $request->uploaded_date;
+            $download->save();
+            return redirect()->back()->with('success', 'download successfully added');
+        }
     }
 }

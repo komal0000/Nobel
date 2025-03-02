@@ -20,8 +20,7 @@
     @endif
 @endsection
 @section('content')
-    <form action="{{ route('admin.downloadCategory.add', ['parent_id' => $parent_id]) }}" method="POST"
-        enctype="multipart/form-data">
+    <form action="{{ route('admin.downloadCategory.download.add' ,['category'=>$downloadCategory->id]) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-md-4 mb-3">
@@ -30,7 +29,7 @@
             </div>
             <div class="col-md-4">
                 <label for="link">Pdf <span style="color: red;">*</span></label>
-                <input type="text" name="link" id="link" class="form-control" required>
+                <input type="file" name="link" id="link" class="form-control" accept="pdf" required>
             </div>
             <div class="col-md-4">
                 <label for="uploaded_date">Uploaded Date <span style="color: red;">*</span></label>

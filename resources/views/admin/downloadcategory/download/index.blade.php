@@ -16,7 +16,7 @@
     @endif
 @endsection
 @section('btn')
-    <a href="{{ route('admin.downloadCategory.download.add', ['category' => $downloadCategory->id]) }}"
+    <a href="{{ route('admin.downloadCategory.download.add', ['category' => $downloadCategory->id, 'parent_id' => $parent_id]) }}"
         class="btn btn-primary">Add</a>
 @endsection
 @section('content')
@@ -34,7 +34,7 @@
                     <td>
                         <a href="{{ route('admin.downloadCategory.download.edit', ['download' => $download->id, 'parent_id' => $parent_id]) }}"
                             class="btn btn-warning btn-sm ">Edit</a>
-                        <a href="{{ route('admin.downloadCategory.download.del', ['download' => $category->id, 'parent_id' => $parent_id]) }}"
+                        <a href="{{ route('admin.downloadCategory.download.del', ['download' => $download->id, 'parent_id' => $parent_id]) }}"
                             class="btn btn-danger btn-sm">Delete</a>
                     </td>
                 </tr>
