@@ -30,7 +30,7 @@
             @foreach ($blogCategories as $category)
                 <tr>
                     <td>{{ $category->title }}</td>
-                    <td>{{ $category->type }}</td>
+                    <td>{{ $category->type == 0 ? 'Blog' : 'News' }}</td>
                     <td>
                         <a href="{{ route('admin.blogCategory.index', ['parent_id' => $category->id]) }}"
                             class="btn btn-info btn-sm">Sub Category</a>
@@ -45,6 +45,7 @@
         <tfoot>
             <tr>
                 <th>Title</th>
+                <th>Type</th>
                 <th>Manage</th>
             </tr>
         </tfoot>

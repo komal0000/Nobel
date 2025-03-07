@@ -12,19 +12,19 @@ class BlogController extends Controller
     public function index(Request $request){
         $parent_id = $request->parent_id;
         if($parent_id){
-            $blogCategories = DB::table('blog_categories')->where('parent_id',$parent_id)->get(['id','title']);
+            $blogCategories = DB::table('blog_categories')->where('parent_id',$parent_id)->get(['id','title','type']);
         }
         else{
-            $blogCategories = DB::table('blog_categories')->whereNull('parent_id')->get(['id','title']);
+            $blogCategories = DB::table('blog_categories')->whereNull('parent_id')->get(['id','title','type']);
 
         }
-        return view('admin.blogCategory.index',compact('blogCategoriess'));
+        return view('admin.blogCategory.index',compact('blogCategories','parent_id'));
     }
 
      public function add(Request $request){
         $parent_id = $request->parent_id;
         if(Helper::G()){
-            return view('admin.blogCategory.add',compact($parent_id));
+            return view('admin.blogCategory.add',compact('parent_id'));
         }else{
             $BlogCategory = New BlogCategory();
             $BlogCategory->title = $request->title;
