@@ -32,10 +32,11 @@ class TreatmentController extends Controller
             $speciality = Speciality::where('id', $speciality_id)->first();
             return view('admin.treatment.add', compact('speciality_id', 'speciality'));
         } else {
+            // dd($request->all());
             $treatment = new Treatment();
             $treatment->title = $request->title;
             $treatment->short_description = $request->short_description;
-            $treatment->specialty_id = $request->speciality_id;
+            $treatment->specialty_id = $request->specialty_id;
             if ($request->has("icon")) {
                 $treatment->icon = $request->file('icon')->store('uploads/treatments', 'public');
             }

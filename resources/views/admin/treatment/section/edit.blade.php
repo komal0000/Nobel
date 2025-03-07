@@ -2,7 +2,13 @@
 @section('title')
     @if ($speciality_id)
         <a href="{{ route('admin.speciality.index') }}">Specialities</a> /
-        <span>{{ $speciality->title }}</span> /
+        @php
+            $parents = \App\Helpers\Helper::getSpecialityRoutes($speciality_id);
+        @endphp
+        @foreach ($parents as $parent)
+            <a href="{{ route('admin.speciality.index', ['speciality_id' => $parent->id]) }}">{{ $parent->title }}</a> /
+        @endforeach
+        <span>Sub Specialties</span> /
         <a href="{{ route('admin.treatment.index', ['speciality_id' => $speciality_id]) }}">Treatments</a> /
         <span>{{ $treatment->title }}</span> /
         <a
@@ -13,7 +19,7 @@
     @else
         <a href="{{ route('admin.treatment.index') }}">Treatments</a> /
         <span>{{ $treatment->title }}</span> /
-        <a href="{{ route('admin.treatment.section.index',['treatment_id'=>$treatment->id]) }}">Sections</a> /
+        <a href="{{ route('admin.treatment.section.index', ['treatment_id' => $treatment->id]) }}">Sections</a> /
         <span>{{ $treatmentSection->title }}</span> /
         <span>Edit</span>
     @endif

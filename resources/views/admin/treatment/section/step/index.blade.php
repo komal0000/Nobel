@@ -2,11 +2,17 @@
 @section('title')
     @if ($speciality_id)
         <a href="{{ route('admin.speciality.index') }}">Specialities</a> /
-        <span>{{ $speciality->title }}</span> /
+        @php
+            $parents = \App\Helpers\Helper::getSpecialityRoutes($speciality_id);
+        @endphp
+        @foreach ($parents as $parent)
+            <a href="{{ route('admin.speciality.index', ['speciality_id' => $parent->id]) }}">{{ $parent->title }}</a> /
+        @endforeach
+        <span>Sub Specialties</span> /
         <a href="{{ route('admin.treatment.index', ['speciality_id' => $speciality_id]) }}">Treatments</a> /
         <span>{{ $treatment->title }}</span> /
         <a
-            href="{{ route('admin.treatment.section.index', ['treatment_id'=>$treatment->id, 'speciality_id' => $speciality_id]) }}">Sections</a>
+            href="{{ route('admin.treatment.section.index', ['treatment_id' => $treatment->id, 'speciality_id' => $speciality_id]) }}">Sections</a>
         /
         <span>{{ $section->title }}</span> /
         <span>Steps</span>
@@ -19,7 +25,8 @@
     @endif
 @endsection
 @section('btn')
-    <a href="{{ route('admin.treatment.section.step.add', ['section_id' => $section->id,'speciality_id' => $speciality_id]) }}" class="btn btn-primary">Add</a>
+    <a href="{{ route('admin.treatment.section.step.add', ['section_id' => $section->id, 'speciality_id' => $speciality_id]) }}"
+        class="btn btn-primary">Add</a>
 @endsection
 @section('content')
     <table id="datatable" class="table table-striped" data-toggle="data-table">
@@ -36,7 +43,7 @@
                     <td>{{ $step->title }}</td>
                     <td>{{ $step->short_description }}</td>
                     <td>
-                        <a href="{{ route('admin.treatment.section.step.edit', ['step_id' => $step->id ,'speciality_id' => $speciality_id]) }}"
+                        <a href="{{ route('admin.treatment.section.step.edit', ['step_id' => $step->id, 'speciality_id' => $speciality_id]) }}"
                             class="btn btn-warning btn-sm ">Edit</a>
                         <a href="{{ route('admin.treatment.section.step.del', ['step_id' => $step->id]) }}"
                             class="btn btn-danger btn-sm">Delete</a>

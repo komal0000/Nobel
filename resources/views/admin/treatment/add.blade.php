@@ -2,8 +2,14 @@
 @section('title')
     @if ($speciality_id)
         <a href="{{ route('admin.speciality.index') }}">Specialties</a> /
-        <span>{{$speciality->title}}</span> /
-        <a href="{{ route('admin.treatment.index',['speciality_id' => $speciality_id]) }}">Treatments</a> /
+        @php
+            $parents = \App\Helpers\Helper::getSpecialityRoutes($speciality_id);
+        @endphp
+        @foreach ($parents as $parent)
+            <a href="{{ route('admin.speciality.index', ['speciality_id' => $parent->id]) }}">{{ $parent->title }}</a> /
+        @endforeach
+        <span>Sub Specialties</span> /
+        <a href="{{ route('admin.treatment.index', ['speciality_id' => $speciality_id]) }}">Treatments</a> /
         <span>Add</span>
     @else
         <a href="{{ route('admin.treatment.index') }}">Treatments</a> /
@@ -15,6 +21,7 @@
         enctype="multipart/form-data">
         @csrf
         <div class="row">
+            <input type="hidden" name="specialty_id" id="specialty_id" value="{{$speciality_id}}">
             <div class="col-md-6">
                 <div class="row">
                     <div class="col-md-6 mb-3">
