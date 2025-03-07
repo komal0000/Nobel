@@ -129,8 +129,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#settings" role="button"
-                        aria-expanded="false" aria-controls="settings">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#blogs" role="button"
+                        aria-expanded="false" aria-controls="blogs">
                         <i class="icon">
                             <svg class="icon-20" width="32" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -148,7 +148,7 @@
                             </svg>
                         </i>
                     </a>
-                    <ul class="sub-nav collapse" id="settings" data-bs-parent="#sidebar-menu">
+                    <ul class="sub-nav collapse" id="blogs" data-bs-parent="#sidebar-menu">
                         <li class="nav-item">
                             <a class="nav-link " href="{{ route('admin.blogCategory.index', ['type' => '1']) }}">
                                 <i class="icon">
