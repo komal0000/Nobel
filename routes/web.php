@@ -93,8 +93,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     });
 
     Route::prefix('blogCategory')->name('blogCategory.')->group(function(){
-        Route::get('index', [BlogController::class, 'index'])->name('index');
-        Route::match(['GET', 'POST'], 'add', [BlogController::class, 'add'])->name('add');
+        Route::get('index/{type}', [BlogController::class, 'index'])->name('index');
+        Route::match(['GET', 'POST'], 'add/{type}', [BlogController::class, 'add'])->name('add');
         Route::match(['GET', 'POST'], 'edit/{category}', [BlogController::class, 'edit'])->name('edit');
         Route::match(['GET', 'POST'], 'del/{category}', [BlogController::class, 'del'])->name('del');
     });

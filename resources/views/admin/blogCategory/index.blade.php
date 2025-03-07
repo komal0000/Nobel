@@ -2,27 +2,41 @@
 
 @section('title')
     @if ($parent_id)
-        <a href="{{ route('admin.blogCategory.index') }}">BLog Categories</a> /
+        <a href="{{ route('admin.blogCategory.index', ['type' => $type]) }}">
+            @if ($type == 1)
+                Blogs
+            @else
+                News
+            @endif
+        </a> /
         @php
-            $parents = \App\Helpers\Helper::getParentRoute($parent_id, 'blog_Categories', 'blogCategory');
+            $parents = \App\Helpers\Helper::getParentRoute($parent_id, 'blog_Categories', 'blogCategory', $type);
         @endphp
         @foreach ($parents as $parent)
-            <a href="{{ route('admin.blogCategory.index', ['parent_id' => $parent->id]) }}">{{ $parent->title }}</a> /
+            <a
+                href="{{ route('admin.blogCategory.index', ['type' => $type, 'parent_id' => $parent->id]) }}">{{ $parent->title }}</a>
+            /
         @endforeach
         <span>Sub Category</span>
     @else
-        <span>Blog Categories</span>
+        <span>
+            @if ($type == 1)
+                Blogs
+            @else
+                News
+            @endif
+        </span>
     @endif
 @endsection
 @section('btn')
-    <a href="{{ route('admin.blogCategory.add', ['parent_id' => $parent_id]) }}" class="btn btn-primary">Add</a>
+    <a href="{{ route('admin.blogCategory.add', ['type' => $type, 'parent_id' => $parent_id]) }}"
+        class="btn btn-primary">Add</a>
 @endsection
 @section('content')
     <table id="datatable" class="table table-striped" data-toggle="data-table">
         <thead>
             <tr>
                 <th>Title</th>
-                <th>Type</th>
                 <th>Manage</th>
             </tr>
         </thead>
@@ -30,9 +44,8 @@
             @foreach ($blogCategories as $category)
                 <tr>
                     <td>{{ $category->title }}</td>
-                    <td>{{ $category->type == 0 ? 'Blog' : 'News' }}</td>
                     <td>
-                        <a href="{{ route('admin.blogCategory.index', ['parent_id' => $category->id]) }}"
+                        <a href="{{ route('admin.blogCategory.index', ['type' => $type, 'parent_id' => $category->id]) }}"
                             class="btn btn-info btn-sm">Sub Category</a>
                         <a href="{{ route('admin.blogCategory.edit', ['category' => $category->id, 'parent_id' => $category->id]) }}"
                             class="btn btn-warning btn-sm ">Edit</a>
@@ -45,7 +58,6 @@
         <tfoot>
             <tr>
                 <th>Title</th>
-                <th>Type</th>
                 <th>Manage</th>
             </tr>
         </tfoot>

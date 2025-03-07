@@ -24,33 +24,39 @@ class Helper
         return  request()->isMethod('post');
     }
 
-    public static function getSpecialityRoutes($parent_speciality_id,$get_routes=true){
+    public static function getSpecialityRoutes($parent_speciality_id, $get_routes = true)
+    {
 
-        $parents=[];
-        while ($parent_speciality_id!=null) {
-            $speciality=DB::table(Speciality::tableName)->where('id',$parent_speciality_id)->first(['id','title','parent_speciality_id']);
-            if($get_routes){
-                $speciality->url=route('admin.speciality.index',['parent_speciality_id'=>$parent_speciality_id]);
+        $parents = [];
+        while ($parent_speciality_id != null) {
+            $speciality = DB::table(Speciality::tableName)->where('id', $parent_speciality_id)->first(['id', 'title', 'parent_speciality_id']);
+            if ($get_routes) {
+                $speciality->url = route('admin.speciality.index', ['parent_speciality_id' => $parent_speciality_id]);
             }
             $parent_speciality_id = $speciality->parent_speciality_id;
-            $parents[]=$speciality;
+            $parents[] = $speciality;
         }
-        $parents=array_reverse($parents);
+        $parents = array_reverse($parents);
         return $parents;
     }
 
-    public static function getParentRoute($parent_id, $table_name, $route_name, $get_routes = true)
+    public static function getParentRoute($parent_id, $table_name, $route_name, $type = null, $get_routes = true)
     {
         $allCategories = DB::table($table_name)
             ->select('id', 'title', 'parent_id')
             ->get()
             ->keyBy('id');
+
         $parents = [];
         while ($parent_id !== null && isset($allCategories[$parent_id])) {
             $category = $allCategories[$parent_id];
 
             if ($get_routes) {
-                $category->url = route("admin.{$route_name}.index", ['parent_id' => $parent_id]);
+                $routeParams = ['parent_id' => $parent_id];
+                if (!is_null($type)) {
+                    $routeParams['type'] = $type;
+                }
+                $category->url = route("admin.{$route_name}.index", $routeParams);
             }
 
             $parents[] = $category;
@@ -59,6 +65,7 @@ class Helper
 
         return array_reverse($parents);
     }
+
     // public static function getParentRoute($parent_id,$table_name,$route_name, $get_routes = true) {
     //     $parent = [];
     //     while ($parent_id != null) {
