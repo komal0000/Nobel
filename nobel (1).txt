@@ -33,6 +33,7 @@ if there is title make  slug
 
 }
 
+
 *{
     BlogCategory
         name,parent_id,type<1=blog,2=new>

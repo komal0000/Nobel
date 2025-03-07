@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AlimentController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\LoginController;
@@ -89,5 +90,12 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
             Route::match(['GET', 'POST'], 'edit/{download}', [DownloadController::class, 'downloadEdit'])->name('edit');
             Route::match(['GET', 'POST'], 'del/{download}', [DownloadController::class, 'DownloadDel'])->name('del');
         });
+    });
+
+    Route::prefix('blogCategory')->name('blogCategory.')->group(function(){
+        Route::get('index', [BlogController::class, 'index'])->name('index');
+        Route::match(['GET', 'POST'], 'add', [BlogController::class, 'add'])->name('add');
+        Route::match(['GET', 'POST'], 'edit/{category}', [BlogController::class, 'edit'])->name('edit');
+        Route::match(['GET', 'POST'], 'del/{category}', [BlogController::class, 'del'])->name('del');
     });
 });
