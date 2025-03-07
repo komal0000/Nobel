@@ -2,7 +2,13 @@
 @section('title')
     @if ($speciality_id)
         <a href="{{ route('admin.speciality.index') }}">Specialities</a> /
-        <span>{{ $speciality->title }}</span> /
+        @php
+            $parents = \App\Helpers\Helper::getSpecialityRoutes($speciality_id);
+        @endphp
+        @foreach ($parents as $parent)
+            <a href="{{ route('admin.speciality.index', ['speciality_id' => $parent->id]) }}">{{ $parent->title }}</a> /
+        @endforeach
+        <span>Sub Specialties</span> /
         <a href="{{ route('admin.aliment.index', ['speciality_id' => $speciality_id]) }}">Aliments</a> /
         <span>Edit</span>
     @else
@@ -135,7 +141,8 @@
                 formData.append("sections[" + typeId + "][show_on_frontend]", checkbox.is(":checked") ? 1 : 0);
             });
 
-            axios.post("{{ route('admin.aliment.edit', ['aliment_id' => '_id_']) }}".replace('_id_', aliment_id), formData, {
+            axios.post("{{ route('admin.aliment.edit', ['aliment_id' => '_id_']) }}".replace('_id_', aliment_id),
+                formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }

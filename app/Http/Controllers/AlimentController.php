@@ -31,12 +31,10 @@ class AlimentController extends Controller
             $speciality_section_types = AlimentSectionType::get();
             return view('admin.aliment.add', compact('speciality_id', 'speciality', 'speciality_section_types'));
         } else {
-
             $aliment = new Aliment();
             $aliment->title = $request->aliment_title;
             $aliment->short_description = $request->aliment_short_description;
-            $aliment->specialty_id = $speciality_id ?: null;
-
+            $aliment->specialty_id = $request->specialty_id;
             if ($request->hasFile('aliment_icon')) {
                 $aliment->icon = $request->file('aliment_icon')->store('uploads/aliments', 'public');
             }
@@ -62,7 +60,7 @@ class AlimentController extends Controller
                 }
             }
 
-            return response()->json(['success'=>true]);
+            return response()->json(['success' => true]);
         }
     }
 
@@ -89,14 +87,14 @@ class AlimentController extends Controller
             $aliment->save();
             if ($request->has('sections') && is_array($request->sections)) {
                 foreach ($request->sections as $typeId => $sectionData) {
-                    $section = AlimentSection::where('aliment_section_type_id', $typeId)->where('aliment_id',$aliment->id)->first();
+                    $section = AlimentSection::where('aliment_section_type_id', $typeId)->where('aliment_id', $aliment->id)->first();
                     if (!$section) {
                         $section = new AlimentSection();
                         $section->aliment_id = $aliment->id;
                         $section->aliment_section_type_id = $typeId;
                     }
-                    $section->title = $sectionData['title'] ;
-                    $section->description = $sectionData['description'] ;
+                    $section->title = $sectionData['title'];
+                    $section->description = $sectionData['description'];
                     $section->show_on_frontend = isset($sectionData['show_on_frontend']) ? $sectionData['show_on_frontend'] : 0;
 
                     if ($request->hasFile("sections.$typeId.image")) {

@@ -3,18 +3,20 @@
 @section('title')
     @if ($speciality_id)
         <a href="{{ route('admin.speciality.index') }}">Specialities</a> /
-        <span>{{$speciality->title}}</span> /
+        @php
+            $parents = \App\Helpers\Helper::getSpecialityRoutes($speciality_id);
+        @endphp
+        @foreach ($parents as $parent)
+            <a href="{{ route('admin.speciality.index', ['speciality_id' => $parent->id]) }}">{{ $parent->title }}</a> /
+        @endforeach
+        <span>Sub Specialties</span> /
         <span>Aliments</span>
     @else
         <span>Aliments</span>
     @endif
 @endsection
 @section('btn')
-    @if ($speciality_id)
-        <a href="{{ route('admin.aliment.add', ['speciality_id' => $speciality_id]) }}" class="btn btn-primary">Add</a>
-    @else
-        <a href="{{ route('admin.aliment.add') }}" class="btn btn-primary">Add</a>
-    @endif
+    <a href="{{ route('admin.aliment.add', ['speciality_id' => $speciality_id]) }}" class="btn btn-primary">Add</a>
 @endsection
 @section('content')
     <table id="datatable" class="table table-striped" data-toggle="data-table">
@@ -31,7 +33,7 @@
                     <td>{{ $aliment->title }}</td>
                     <td>{{ $aliment->short_description }}</td>
                     <td>
-                        <a href="{{ route('admin.aliment.edit', ['aliment_id' => $aliment->id ,'speciality_id'=>$speciality_id]) }}"
+                        <a href="{{ route('admin.aliment.edit', ['aliment_id' => $aliment->id, 'speciality_id' => $speciality_id]) }}"
                             class="btn btn-warning btn-sm ">Edit</a>
                         <a href="{{ route('admin.aliment.del', ['aliment_id' => $aliment->id]) }}"
                             class="btn btn-danger btn-sm">Delete</a>
@@ -47,5 +49,4 @@
             </tr>
         </tfoot>
     </table>
-
 @endsection

@@ -2,7 +2,13 @@
 @section('title')
     @if ($speciality_id)
         <a href="{{ route('admin.speciality.index') }}">Specialities</a> /
-        <span>{{ $speciality->title }}</span> /
+        @php
+            $parents = \App\Helpers\Helper::getSpecialityRoutes($speciality_id);
+        @endphp
+        @foreach ($parents as $parent)
+            <a href="{{ route('admin.speciality.index', ['speciality_id' => $parent->id]) }}">{{ $parent->title }}</a> /
+        @endforeach
+        <span>Sub Specialties</span> /
         <a href="{{ route('admin.aliment.index', ['speciality_id' => $speciality_id]) }}">Aliments</a> /
         <span>Add</span>
     @else
@@ -12,6 +18,7 @@
 @endsection
 @section('content')
     <div class="row">
+        <input type="hidden" name="specialty_id" id="specialty_id" value="{{$speciality_id}}">
         <div class="col-md-7 mb-3">
             <div class="row">
                 <div class="col-md-6">
@@ -94,6 +101,7 @@
     <script>
         function saveAll() {
             var formData = new FormData();
+            formData.append("specialty_id", $("#specialty_id").val());
             formData.append("aliment_title", $("#aliment_title").val());
             formData.append("aliment_short_description", $("#aliment_short_description").val());
             var alimentIcon = $("#aliment_icon")[0].files[0];
