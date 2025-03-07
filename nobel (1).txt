@@ -36,11 +36,11 @@ if there is title make  slug
 
 *{
     BlogCategory
-        name,parent_id,type<1=blog,2=new>
+        title,parent_id,type<1=blog,2=news>
     Blog
         title,image,text,blog_category_id,creator_user_id,is_featured,[datas]
     DownloadCategory
-        name,parent_id,icon
+        title,parent_id,icon
     Download
         title,link,uploaded_date,,download_category_id
 }

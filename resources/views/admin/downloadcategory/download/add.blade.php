@@ -3,7 +3,8 @@
     @if ($parent_id)
         <a href="{{ route('admin.downloadCategory.index') }}">Download Categories</a> /
         @php
-            $parents = \App\Helpers\Helper::getParentRoute($parent_id);
+            $parents = \App\Helpers\Helper::getParentRoute($parent_id, 'download_Categories', 'downloadCategory');
+
         @endphp
         @foreach ($parents as $parent)
             <a href="{{ route('admin.downloadCategory.index', ['parent_id' => $parent->id]) }}">{{ $parent->title }}</a> /
@@ -27,7 +28,8 @@
             <div class="col-md-6">
                 <div class="col-md-12">
                     <label for="link">Pdf <span style="color: red;">*</span></label>
-                    <input type="file" name="link" id="link" class="form-control dropify" accept=".pdf,application/pdf" required>
+                    <input type="file" name="link" id="link" class="form-control dropify"
+                        accept=".pdf,application/pdf" required>
 
                 </div>
             </div>

@@ -3,7 +3,7 @@
     @if ($downloadcategory->parent_id)
         <a href="{{ route('admin.download.index') }}">Download Categories</a> /
         @php
-            $parents = \App\Helpers\Helper::getParentRoute($downloadcategory->parent_id);
+            $parents = \App\Helpers\Helper::getParentRoute($parent_id, 'download_Categories', 'downloadCategory');
         @endphp
         @foreach ($parents as $parent)
             <a href="{{ route('admin.downloadCategory.index', ['parent_id' => $parent->id]) }}">{{ $parent->title }}</a> /
@@ -35,8 +35,8 @@
             <div class="col-md-6">
                 <div class="mb-3">
                     <label for="title">Title <span style="color: red;">*</span></label>
-                    <input type="text" class="form-control" id="title" name="title" value="{{ $downloadcategory->title }}"
-                        required>
+                    <input type="text" class="form-control" id="title" name="title"
+                        value="{{ $downloadcategory->title }}" required>
                 </div>
                 <div class="d-flex">
                     <button type="submit" class="btn btn-success">

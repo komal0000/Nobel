@@ -39,25 +39,45 @@ class Helper
         return $parents;
     }
 
-    public static function getParentRoute($parent_id, $get_routes = true) {
-        $parent = [];
-        while ($parent_id != null) {
-            $category = DB::table('download_categories')
-                ->where('id', $parent_id)
-                ->first(['id', 'title', 'parent_id']);
+    public static function getParentRoute($parent_id, $table_name, $route_name, $get_routes = true)
+    {
+        $allCategories = DB::table($table_name)
+            ->select('id', 'title', 'parent_id')
+            ->get()
+            ->keyBy('id');
+        $parents = [];
+        while ($parent_id !== null && isset($allCategories[$parent_id])) {
+            $category = $allCategories[$parent_id];
 
-            if (!$category) {
-                break;
-            }
             if ($get_routes) {
-                $category->url = route('admin.downloadCategory.index', ['parent_id' => $parent_id]);
+                $category->url = route("admin.{$route_name}.index", ['parent_id' => $parent_id]);
             }
+
+            $parents[] = $category;
             $parent_id = $category->parent_id;
-            $parent[] = $category;
         }
 
-        return array_reverse($parent);
+        return array_reverse($parents);
     }
+    // public static function getParentRoute($parent_id,$table_name,$route_name, $get_routes = true) {
+    //     $parent = [];
+    //     while ($parent_id != null) {
+    //         $category = DB::table($table_name)
+    //             ->where('id', $parent_id)
+    //             ->first(['id', 'title', 'parent_id']);
+
+    //         if (!$category) {
+    //             break;
+    //         }
+    //         if ($get_routes) {
+    //             $category->url = route('admin.{{$route_name}}.index', ['parent_id' => $parent_id]);
+    //         }
+    //         $parent_id = $category->parent_id;
+    //         $parent[] = $category;
+    //     }
+
+    //     return array_reverse($parent);
+    // }
 
 
 }
