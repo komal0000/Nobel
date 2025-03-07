@@ -45,9 +45,10 @@ class SpecialityGalleryController extends Controller
 
     public function edit(Request $request, $gallery_id)
     {
+        $parent_speciality_id = $request->parent_speciality_id;
         $specialityGallery = SpecialityGallery::where("id", $gallery_id)->first();
         if (Helper::G($request)) {
-            return view('admin.speciality.gallery.edit', compact('specialityGallery'));
+            return view('admin.speciality.gallery.edit', compact('specialityGallery','parent_speciality_id'));
         } else {
             $specialityGallery->title = $request->title;
             $specialityGallery->description = $request->description;

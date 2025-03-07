@@ -13,12 +13,13 @@
         <span>Galleries</span>
     @else
         <a href="{{ route('admin.speciality.index') }}">Specialties</a> /
-        <span>{{$speciality->title}}</span> /
+        <span>{{ $speciality->title }}</span> /
         <span>Galleries</span>
     @endif
 @endsection
 @section('btn')
-    <a href="{{ route('admin.speciality.gallery.add', ['speciality_id' => $speciality->id ,'parent_speciality_id'=>$parent_speciality_id]) }}" class="btn btn-primary">
+    <a href="{{ route('admin.speciality.gallery.add', ['speciality_id' => $speciality->id, 'parent_speciality_id' => $parent_speciality_id]) }}"
+        class="btn btn-primary">
         Add
     </a>
 @endsection
@@ -37,11 +38,11 @@
                     <td>{{ $gallery->title }}</td>
                     <td>{{ $gallery->description }}</td>
                     <td>
-                        <a href="{{ route('admin.speciality.gallery.edit', ['gallery_id' => $gallery->id]) }}"
+                        <a href="{{ route('admin.speciality.gallery.edit', ['gallery_id' => $gallery->id, 'parent_speciality_id' => $parent_speciality_id]) }}"
                             class="btn btn-warning btn-sm">Edit</a>
                         <a href="{{ route('admin.speciality.gallery.del', ['gallery_id' => $gallery->id]) }}"
                             class="btn btn-danger btn-sm">Delete</a>
-                        <a href="{{ route('admin.speciality.gallery.item.index', ['gallery_id' => $gallery->id]) }}"
+                        <a href="{{ route('admin.speciality.gallery.item.index', ['gallery_id' => $gallery->id, 'parent_speciality_id' => $parent_speciality_id]) }}"
                             class="btn btn-sm btn-info">Gallery Items</a>
                     </td>
                 </tr>

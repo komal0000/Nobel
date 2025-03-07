@@ -1,8 +1,26 @@
 @extends('admin.layout.app')
 @section('title')
-    <a href="{{ route('admin.speciality.index') }}">Specialties</a> /
-    <a href="{{ route('admin.speciality.gallery.index', ['speciality_id' => $specialityGallery->specialty_id]) }}">Gallery</a> /
-    <span>Edit</span>
+    @if ($parent_speciality_id)
+        <a href="{{ route('admin.speciality.index') }}">Specialties</a> /
+        @php
+            $parents = \App\Helpers\Helper::getSpecialityRoutes($parent_speciality_id);
+        @endphp
+        @foreach ($parents as $parent)
+            <a href="{{ route('admin.speciality.index', ['parent_speciality_id' => $parent->id]) }}">{{ $parent->title }}</a>
+            /
+        @endforeach
+        <span>Sub Specialties</span>/
+        <a
+            href="{{ route('admin.speciality.gallery.index', ['speciality_id' => $specialityGallery->specialty_id, 'parent_speciality_id' => $parent_speciality_id]) }}">Galleries</a>
+        /
+        <span>Edit</span>
+    @else
+        <a href="{{ route('admin.speciality.index') }}">Specialties</a> /
+        <a
+            href="{{ route('admin.speciality.gallery.index', ['speciality_id' => $specialityGallery->specialty_id]) }}">Galleries</a>
+        /
+        <span>Edit</span>
+    @endif
 @endsection
 @section('content')
     <form action="{{ route('admin.speciality.gallery.edit', ['gallery_id' => $specialityGallery->id]) }}" method="POST"
@@ -11,12 +29,14 @@
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="icon">Icon</label>
-                <input type="file" class="form-control dropify" id="icon" name="icon" accept="image/*" data-default-file="{{ Storage::url($specialityGallery->icon) }}">
+                <input type="file" class="form-control dropify" id="icon" name="icon" accept="image/*"
+                    data-default-file="{{ Storage::url($specialityGallery->icon) }}">
             </div>
             <div class="col-md-6">
                 <div class="col-md-12 mb-2">
                     <label for="title">Title</label>
-                    <input type="text" class="form-control" id="title" name="title" value="{{ $specialityGallery->title }}" required>
+                    <input type="text" class="form-control" id="title" name="title"
+                        value="{{ $specialityGallery->title }}" required>
                 </div>
                 <div class="col-md-12 mb-3">
                     <label for="description">Description</label>
