@@ -18,7 +18,7 @@ class SpecialityController extends Controller
         if ($parent_speciality_id) {
             $specialties = Speciality::where('parent_speciality_id', $parent_speciality_id)->get(['id', 'title', 'short_description']);
         } else {
-            $specialties = Speciality::whereNull('parent_speciality_id')->get(['id', 'title', 'short_description']);
+            $specialties = Speciality::wherenull('parent_speciality_id')->get(['id', 'title', 'short_description']);
         }
         return view('admin.speciality.index', compact('specialties', 'parent_speciality_id'));
     }

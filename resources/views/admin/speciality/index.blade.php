@@ -5,10 +5,10 @@
     @else
         <a href="{{ route('admin.speciality.index') }}">Specialties</a> /
         @php
-            $parents=\App\Helpers\Helper::getSpecialityRoutes($parent_speciality_id);
+            $parents = \App\Helpers\Helper::getSpecialityRoutes($parent_speciality_id);
         @endphp
         @foreach ($parents as $parent)
-        <a href="{{ route('admin.speciality.index',['parent_speciality_id'=>$parent->id]) }}">{{$parent->title}}</a> /
+            <a href="{{ route('admin.speciality.index', ['parent_speciality_id' => $parent->id]) }}">{{ $parent->title }}</a> /
         @endforeach
         <span>Sub Specialties</span>
     @endif
@@ -41,7 +41,7 @@
                             class="btn btn-warning btn-sm ">Edit</a>
                         <a href="{{ route('admin.speciality.del', ['speciality_id' => $speciality->id]) }}"
                             class="btn btn-danger btn-sm">Delete</a>
-                        <a href="{{ route('admin.speciality.gallery.index', ['speciality_id' => $speciality->id]) }}"
+                        <a href="{{ route('admin.speciality.gallery.index', ['speciality_id' => $speciality->id, 'parent_speciality_id' => $parent_speciality_id]) }}"
                             class="btn btn-info btn-sm">Manage Gallery </a>
                         <a href="{{ route('admin.aliment.index', ['speciality_id' => $speciality->id]) }}"
                             class="btn btn-sm btn-secondary">Manage Aliment</a>

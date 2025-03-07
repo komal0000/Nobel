@@ -11,16 +11,25 @@ use Illuminate\Support\Facades\Storage;
 
 class SpecialityGalleryController extends Controller
 {
-    public function index($speciality_id)
+    public function index( Request $request ,$speciality_id)
     {
-        $specialityGallery = DB::table('speciality_galleries')->get(['id', 'title', 'description']);
-        return view('admin.speciality.gallery.index', compact("speciality_id", 'specialityGallery'));
+        $parent_speciality_id = $request->parent_speciality_id;
+        $speciality = DB::table('specialties')->where('id',$speciality_id)->first(['id','title']);
+        if($parent_speciality_id){
+            $specialityGallery = DB::table('speciality_galleries')->where('specialty_id',$parent_speciality_id)->get(['id', 'title', 'description']);
+        }else{
+            $specialityGallery = DB::table('speciality_galleries')->where("specialty_id",$speciality_id)->get(['id', 'title', 'description']);
+
+        }
+        return view('admin.speciality.gallery.index', compact("parent_speciality_id",'speciality','specialityGallery'));
     }
 
     public function add(Request $request, $speciality_id)
     {
+        $parent_speciality_id = $request->parent_speciality_id;
+        $speciality = DB::table('specialties')->where('id',$speciality_id)->first(['id','title']);
         if (Helper::G($request)) {
-            return view('admin.speciality.gallery.add', compact('speciality_id'));
+            return view('admin.speciality.gallery.add', compact('speciality','parent_speciality_id'));
         } else {
             $specialityGallery = new SpecialityGallery();
             $specialityGallery->title = $request->title;
