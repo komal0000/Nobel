@@ -88,7 +88,7 @@ class DownloadController extends Controller
             $download->uploaded_date = $request->uploaded_date;
             $download->download_category_id = $category;
             $download->save();
-            return redirect()->back()->with('success', 'download successfully added');
+            return redirect()->back()->with('success', 'Download successfully added');
         }
     }
 
@@ -109,7 +109,7 @@ class DownloadController extends Controller
             }
             $download->uploaded_date = $request->uploaded_date;
             $download->save();
-            return redirect()->back()->with('success', 'download successfully added');
+            return redirect()->back()->with('success', 'Download successfully updated ');
         }
     }
 }

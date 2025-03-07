@@ -6,13 +6,13 @@
             $parents = \App\Helpers\Helper::getParentRoute($downloadcategory->parent_id);
         @endphp
         @foreach ($parents as $parent)
-            <a href="{{ route('admin.download.index', ['parent_id' => $parent->id]) }}">{{ $parent->title }}</a> /
+            <a href="{{ route('admin.downloadCategory.index', ['parent_id' => $parent->id]) }}">{{ $parent->title }}</a> /
         @endforeach
         <span>Sub Category</span> /
         <span>{{ $downloadcategory->title }}</span>/
         <span>Edit</span>
     @else
-        <a href="{{ route('admin.download.index') }}">Download Category</a> /
+        <a href="{{ route('admin.downloadCategory.index') }}">Download Category</a> /
         <span>{{ $downloadcategory->title }}</span> /
         <span>Edit</span>
     @endif
