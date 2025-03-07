@@ -70,10 +70,12 @@ class SpecialityGalleryController extends Controller
 
     public function itemIndex(Request $request, $gallery_id)
     {
-        $speciality = DB::table('speciality_galleries')->where('id', $gallery_id)->first(['id','specialty_id']);
+        $parent_speciality_id = $request->parent_speciality_id;
+        $specialityGallery = DB::table('speciality_galleries')->where('id', $gallery_id)->first(['id','title','specialty_id']);
+        $speciality = DB::table('specialties')->where('id',$specialityGallery->specialty_id)->first();
         if (Helper::G($request)) {
             $galleryItems = DB::table('speciality_gallery_items')->where('speciality_gallery_id', $gallery_id)->get();
-            return view('admin.speciality.gallery.item.index', compact('gallery_id', 'speciality', 'galleryItems'));
+            return view('admin.speciality.gallery.item.index', compact('gallery_id','specialityGallery','speciality', 'galleryItems','parent_speciality_id'));
         } else {
             if ($request->hasFile('icon')) {
                 foreach ($request->file('icon') as $index => $file) {

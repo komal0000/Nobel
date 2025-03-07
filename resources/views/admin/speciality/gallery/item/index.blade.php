@@ -1,8 +1,27 @@
 @extends('admin.layout.app')
 @section('title')
-    <a href="{{ route('admin.speciality.index') }}">Specialties</a> /
-    <a href="{{ route('admin.speciality.gallery.index', ['speciality_id' => $speciality->id]) }}">Galleries</a> /
-    <span>Items</span>
+    @if ($parent_speciality_id)
+        <a href="{{ route('admin.speciality.index') }}">Specialties</a> /
+        @php
+            $parents = \App\Helpers\Helper::getSpecialityRoutes($parent_speciality_id);
+        @endphp
+        @foreach ($parents as $parent)
+            <a href="{{ route('admin.speciality.index', ['parent_speciality_id' => $parent->id]) }}">{{ $parent->title }}</a>
+            /
+        @endforeach
+        <span>Sub Specialties</span>/
+        <a
+            href="{{ route('admin.speciality.gallery.index', ['speciality_id' => $speciality->id, 'parent_speciality_id' => $parent_speciality_id]) }}">Galleries</a>
+        /
+        <span> {{ $specialityGallery->title }} </span> /
+        <span>Items</span>
+    @else
+        <a href="{{ route('admin.speciality.index') }}">Specialties</a> /
+        <span>{{ $speciality->title }}</span> /
+        <a href="{{ route('admin.speciality.gallery.index', ['speciality_id' => $speciality->id]) }}">Galleries</a> /
+        <span> {{ $specialityGallery->title }} </span> /
+        <span>Items</span>
+    @endif
 @endsection
 
 @section('content')
@@ -71,7 +90,7 @@
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <button type="submit" class="btn btn-success mt-3">Add</button>
+                    <button type="submit" class="btn btn-success mt-3">Save All</button>
                 </div>
             </div>
         </form>
