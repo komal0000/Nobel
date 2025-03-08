@@ -97,5 +97,11 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::match(['GET', 'POST'], 'add/{type}', [BlogController::class, 'add'])->name('add');
         Route::match(['GET', 'POST'], 'edit/{category}', [BlogController::class, 'edit'])->name('edit');
         Route::match(['GET', 'POST'], 'del/{category}', [BlogController::class, 'del'])->name('del');
+        Route::prefix('blog')->name('blog.')->group(function () {
+            Route::get('index/{blogCategory_id}/{type}', [BlogController::class, 'blogindex'])->name('index');
+            Route::match(['GET', 'POST'], 'add/{blogCategory_id}/{type}', [BlogController::class, 'blogAdd'])->name('add');
+            Route::match(['GET', 'POST'], 'edit/{blog_id}', [BlogController::class, 'blogEdit'])->name('edit');
+            Route::match(['GET', 'POST'], 'del/{blog_id}', [BlogController::class, 'blogDel'])->name('del');
+        });
     });
 });

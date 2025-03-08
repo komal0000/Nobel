@@ -51,6 +51,8 @@
                             class="btn btn-warning btn-sm ">Edit</a>
                         <a href="{{ route('admin.blogCategory.del', ['category' => $category->id, 'parent_id' => $category->id]) }}"
                             class="btn btn-danger btn-sm">Delete</a>
+                        <a
+                            href="{{ route('admin.blogCategory.blog.index', ['category' => $category->id, 'type' => $type, 'parent_id' => $category->id]) }}">Manage Blogs</a>
                     </td>
                 </tr>
             @endforeach
