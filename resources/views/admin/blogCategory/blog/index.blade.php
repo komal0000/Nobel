@@ -20,19 +20,19 @@
         <span>Sub Category</span> /
         <span>Galleries</span>
     @else
-    <a href="{{ route('admin.blogCategory.index', ['type' => $type]) }}">
-        @if ($type == 1)
-            Blogs Categories
-        @else
-            News Categories
-        @endif
-    </a> /
-    <span>{{}}</span>
-
+        <a href="{{ route('admin.blogCategory.index', ['type' => $type]) }}">
+            @if ($type == 1)
+                Blogs Categories
+            @else
+                News Categories
+            @endif
+        </a> /
+        <span>{{ $blogCategory->title }}</span> /
+        <span>Galleries</span>
     @endif
 @endsection
 @section('btn')
-    <a href="{{ route('admin.blogCategory.blog.add', ['blogCategory_id' => blogCategory_id, 'type' => $type, 'parent_id' => $parent_id]) }}"
+    <a href="{{ route('admin.blogCategory.blog.add', ['blogCategory_id' => $blogCategory_id, 'type' => $type, 'parent_id' => $parent_id]) }}"
         class="btn btn-primary">Add</a>
 @endsection
 @section('content')

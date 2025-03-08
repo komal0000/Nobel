@@ -15,9 +15,9 @@ class BlogController extends Controller
     {
         $parent_id = $request->parent_id;
         if ($parent_id) {
-            $blogCategories = DB::table('blog_categories')->where('parent_id', $parent_id)->get(['id', 'title', 'type']);
+            $blogCategories = DB::table('blog_categories')->where('parent_id', $parent_id)->where('type', $type)->get(['id', 'title', 'type']);
         } else {
-            $blogCategories = DB::table('blog_categories')->whereNull('parent_id')->get(['id', 'title', 'type']);
+            $blogCategories = DB::table('blog_categories')->whereNull('parent_id')->where('type', $type)->get(['id', 'title', 'type']);
         }
         return view('admin.blogCategory.index', compact('blogCategories', 'parent_id', 'type'));
     }
@@ -58,13 +58,13 @@ class BlogController extends Controller
     public function blogindex(Request $request, $blogCategory_id, $type)
     {
         $parent_id  = $request->parent_id;
-
+        $blogCategory = DB::table('blog_categories')->where('id', $blogCategory_id)->where('type', $type)->first();
         if ($parent_id) {
             $blogs = DB::table('blogs')->where('blog_category_id', $parent_id)->get();
         } else {
             $blogs = DB::table('blogs')->where('blog_category_id', $blogCategory_id)->get();
         }
-        return view('admin.blogCategory.blog.index', compact('parent_id', 'blogs', 'type','blogCategory_id'));
+        return view('admin.blogCategory.blog.index', compact('parent_id', 'blogs', 'type', 'blogCategory_id', 'blogCategory'));
     }
 
     public function blogadd(Request $request, $blogCategory_id, $type)
@@ -73,7 +73,7 @@ class BlogController extends Controller
         $blogCategory = DB::table('blog_categories')->where('id', $blogCategory_id)->first();
 
         if (Helper::G()) {
-            return view('admin.blogCategory.blog.add', compact('blogCategory', 'parent_id'));
+            return view('admin.blogCategory.blog.add', compact('blogCategory', 'parent_id','type'));
         } else {
             $blog = new Blog();
             $blog->title = $request->title;
