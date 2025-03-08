@@ -3,9 +3,9 @@
     @if ($parent_id)
         <a href="{{ route('admin.blogCategory.index', ['type' => $type]) }}">
             @if ($type == 1)
-                Blogs
+                Blogs Categories
             @else
-                News
+                News Categories
             @endif
         </a> /
         @php
@@ -21,9 +21,9 @@
     @else
         <a href="{{ route('admin.blogCategory.index', ['type' => $type]) }}">
             @if ($type == 1)
-                Blogs
+                Blogs Categories
             @else
-                News
+                News Categories
             @endif
         </a> /
         <span>Edit</span>

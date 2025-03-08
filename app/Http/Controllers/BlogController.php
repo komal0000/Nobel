@@ -60,11 +60,11 @@ class BlogController extends Controller
         $parent_id  = $request->parent_id;
 
         if ($parent_id) {
-            $blogs = DB::table('blogs')->where('blob_category_id', $parent_id)->get();
+            $blogs = DB::table('blogs')->where('blog_category_id', $parent_id)->get();
         } else {
-            $blogs = DB::table('blogs')->where('blob_category_id', $blogCategory_id)->get();
+            $blogs = DB::table('blogs')->where('blog_category_id', $blogCategory_id)->get();
         }
-        return view('admin.blogCategory.blog.index', compact('parent_id', 'blogs', 'type'));
+        return view('admin.blogCategory.blog.index', compact('parent_id', 'blogs', 'type','blogCategory_id'));
     }
 
     public function blogadd(Request $request, $blogCategory_id, $type)
@@ -81,14 +81,12 @@ class BlogController extends Controller
             if ($request->hasFile('image')) {
                 $blog->image = $request->file('image')->store("upload/blogcategory/{$blogCategory->type}", 'public');
             }
-
             $blog->text = $request->text;
             $blog->blog_category_id = $blogCategory->id;
             $blog->creator_user_id = Auth::id();
             $blog->is_featured = $request->is_featured;
             $blog->datas = $request->datas;
             $blog->save();
-
             return redirect()->back()->with('success', 'Blog Successfully Added');
         }
     }

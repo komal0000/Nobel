@@ -4,9 +4,9 @@
     @if ($parent_id)
         <a href="{{ route('admin.blogCategory.index', ['type' => $type]) }}">
             @if ($type == 1)
-                Blogs
+                Blogs Categories
             @else
-                News
+                News Categories
             @endif
         </a> /
         @php
@@ -21,9 +21,9 @@
     @else
         <span>
             @if ($type == 1)
-                Blogs
+                Blogs Categories
             @else
-                News
+                News Categories
             @endif
         </span>
     @endif
@@ -51,8 +51,8 @@
                             class="btn btn-warning btn-sm ">Edit</a>
                         <a href="{{ route('admin.blogCategory.del', ['category' => $category->id, 'parent_id' => $category->id]) }}"
                             class="btn btn-danger btn-sm">Delete</a>
-                        <a
-                            href="{{ route('admin.blogCategory.blog.index', ['category' => $category->id, 'type' => $type, 'parent_id' => $category->id]) }}">Manage Blogs</a>
+                        <a href="{{ route('admin.blogCategory.blog.index', ['blogCategory_id' => $category->id, 'type' => $type, 'parent_id' => $category->id]) }}"
+                            class="btn btn-sm btn-info">Manage Blogs</a>
                     </td>
                 </tr>
             @endforeach
