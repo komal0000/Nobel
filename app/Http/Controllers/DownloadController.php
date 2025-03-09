@@ -52,13 +52,22 @@ class DownloadController extends Controller
 
     public function del($category)
     {
-        DownloadCategory::where('id', $category)->delete();
-        return redirect()->back()->with('success', 'Download Category Successfully Deleted');
+        $this->deleteCategoryRecursively($category);
+        return redirect()->back()->with('delete_success', 'Download Category Successfully Deleted');
+    }
+
+    private function deleteCategoryRecursively($categoryId)
+    {
+        $childCategories = DownloadCategory::where('parent_id', $categoryId)->get();
+        foreach ($childCategories as $child) {
+            $this->deleteCategoryRecursively($child->id);
+        }
+        Download::where('download_category_id', $categoryId)->delete();
+        DownloadCategory::where('id', $categoryId)->delete();
     }
 
     public function downloadIndex(Request $request, $category)
     {
-
         $parent_id = $request->parent_id;
         $downloads = DB::table('downloads')->where('download_category_id', $category)->get(['id', 'title']);
         if ($parent_id) {
@@ -92,9 +101,10 @@ class DownloadController extends Controller
         }
     }
 
-    public function downloadEdit(Request $request, $download) {
+    public function downloadEdit(Request $request, $download)
+    {
         $parent_id = $request->parent_id;
-        $download = Download::where('id',$download)->first();
+        $download = Download::where('id', $download)->first();
         if (Helper::G()) {
             if ($parent_id) {
                 $downloadCategory = DB::table('download_categories')->where('parent_id', $parent_id)->first();
@@ -111,5 +121,11 @@ class DownloadController extends Controller
             $download->save();
             return redirect()->back()->with('success', 'Download successfully updated ');
         }
+    }
+
+    public function downloadDel($download)
+    {
+        Download::where('id', $download)->delete();
+        return redirect()->back()->with('delete_success', 'Download Successfully Deleted');
     }
 }
