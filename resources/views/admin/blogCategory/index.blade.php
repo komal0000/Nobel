@@ -51,7 +51,7 @@
                             class="btn btn-warning btn-sm ">Edit</a>
                         <a href="{{ route('admin.blogCategory.del', ['category' => $category->id, 'parent_id' => $category->id]) }}"
                             class="btn btn-danger btn-sm">Delete</a>
-                        <a href="{{ route('admin.blogCategory.blog.index', ['blogCategory_id' => $category->id, 'type' => $type, 'parent_id' => $category->id]) }}"
+                        <a href="{{ route('admin.blogCategory.blog.index', ['blogCategory_id' => $category->id, 'type' => $type, 'parent_id' => $parent_id]) }}"
                             class="btn btn-sm btn-info">
                             @if ($type == 1)
                                 Manage Blogs

@@ -13,9 +13,7 @@
             $parents = \App\Helpers\Helper::getParentRoute($parent_id, 'blog_Categories', 'blogCategory', $type);
         @endphp
         @foreach ($parents as $parent)
-            <a
-                href="{{ route('admin.blogCategory.index', ['type' => $type, 'parent_id' => $parent->id]) }}">{{ $parent->title }}</a>
-            /
+            <a href="{{ route('admin.blogCategory.index', ['type' => $type, 'parent_id' => $parent->id]) }}">{{ $parent->title }}</a> /
         @endforeach
         <span>Sub Category</span> /
         @if ($type == 1)
