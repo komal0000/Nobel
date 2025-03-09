@@ -4,6 +4,7 @@ use App\Http\Controllers\AlimentController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DownloadController;
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\SpecialityController;
@@ -102,6 +103,19 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
             Route::match(['GET', 'POST'], 'add/{blogCategory_id}/{type}', [BlogController::class, 'blogAdd'])->name('add');
             Route::match(['GET', 'POST'], 'edit/{blog_id}', [BlogController::class, 'blogEdit'])->name('edit');
             Route::match(['GET', 'POST'], 'del/{blog_id}', [BlogController::class, 'blogDel'])->name('del');
+        });
+    });
+
+    Route::prefix('jobCategory')->name('jobCategory.')->group(function () {
+        Route::get('', [JobController::class, 'index'])->name('index');
+        Route::match(['GET', 'POST'], 'add', [JobController::class, 'add'])->name('add');
+        Route::match(['GET', 'POST'], 'edit/{jobCategory_id}', [JobController::class, 'edit'])->name('edit');
+        Route::match(['GET', 'POST'], 'del/{jobCategory_id}', [JobController::class, 'del'])->name('del');
+        Route::prefix('job')->name('job.')->group(function () {
+            Route::get('index/{jobCategory_id}', [JobController::class, 'jobIndex'])->name('index');
+            Route::match(['GET', 'POST'], 'add/{jobCategory_id}', [JobController::class, 'jobAdd'])->name('add');
+            Route::match(['GET', 'POST'], 'edit/{job_id}', [JobController::class, 'jobEdit'])->name('edit');
+            Route::match(['GET', 'POST'], 'del/{job_id}', [JobController::class, 'jobDel'])->name('del');
         });
     });
 });

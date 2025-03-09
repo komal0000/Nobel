@@ -34,7 +34,7 @@ if there is title make  slug
 }
 
 
-*{
+{
     BlogCategory
         title,parent_id,type<1=blog,2=news>
     Blog
@@ -45,6 +45,13 @@ if there is title make  slug
         title,link,uploaded_date,,download_category_id
 }
 
+{
+    Career
+      Jobs Category
+       Title,Icon,short_description
+      Jobs
+       title,type,location,date,decription,qualification,experiencej
+}
 
 
 
