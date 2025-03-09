@@ -50,7 +50,7 @@ if there is title make  slug
       Jobs Category
        Title,Icon,short_description
       Jobs
-       title,type,location,date,decription,qualification,experiencej
+       title,type,location,date,decription,qualification,experience
 }
 
 

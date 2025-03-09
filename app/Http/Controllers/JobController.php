@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Helper;
+use App\Models\Job;
 use App\Models\JobCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -48,7 +49,58 @@ class JobController extends Controller
     }
     public function delete($jobcategory_id)
     {
+        Job::where('job_category_id',$jobcategory_id)->delete();
         JobCategory::where('id', $jobcategory_id)->delete();
         return redirect()->back()->with('success', 'Successfully Deleted Job Category');
+    }
+
+    public function jobIndex($jobCategory_id)
+    {
+        $jobs = DB::table('jobs')->where('job_category_id', $jobCategory_id)->get();
+        $jobCategory = DB::table('job_categories')->where('id', $jobCategory_id)->first();
+        return view('admin.jobCategory.job.index', compact('jobs','jobCategory'));
+    }
+    public function jobAdd(Request $request, $jobCategory_id)
+    {
+        $jobCategory = DB::table('job_categories')->where('id', $jobCategory_id)->first();
+        if (Helper::G()) {
+            return view('admin.jobCategory.job.add', compact('jobCategory'));
+        } else {
+            $job = new Job();
+            $job->title = $request->title;
+            $job->type = $request->type;
+            $job->location = $request->location;
+            $job->date = $request->date;
+            $job->description = $request->description;
+            $job->qualification = $request->qualification;
+            $job->experience = $request->experience;
+            $job->job_category_id = $jobCategory->id;
+            $job->save();
+            return redirect()->back()->with('success', 'Successfully Added Job');
+        }
+    }
+    public function jobEdit(Request $request, $job_id)
+    {
+        $job = Job::where('id', $job_id)->first();
+        $jobCategory = DB::table('job_categories')->where('id', $job->job_category_id)->first();
+        if (Helper::G($request)) {
+            return view('admin.jobCategory.job.edit', compact('job','jobCategory'));
+        } else {
+            $job->title = $request->title;
+            $job->type = $request->type;
+            $job->location = $request->location;
+            $job->date = $request->date;
+            $job->description = $request->description;
+            $job->qualification = $request->qualification;
+            $job->experience = $request->experience;
+            $job->save();
+            return redirect()->back()->with('success', 'Successfully Updated Job');
+        }
+    }
+
+    public function jobDelete($job_id)
+    {
+        Job::where('id', $job_id)->delete();
+        return redirect()->back()->with('success', 'Successfully Deleted Job');
     }
 }
