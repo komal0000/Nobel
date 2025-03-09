@@ -24,6 +24,7 @@
             text-decoration: none;
             transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
         }
+
         .dropify-wrapper {
             font-size: 16px !important;
             /* Adjust as needed */
@@ -37,6 +38,10 @@
         .dropify-clear {
             font-size: 16px !important;
             /* Remove button text */
+        }
+
+        label {
+            margin-bottom: 3px;
         }
     </style>
     @yield('css')
@@ -56,7 +61,7 @@
                         <div class="card-body d-flex justify-content-between align-items-center">
                             <div class="card-title" style="margin: 0px">
                                 <div class="bd-example">
-                                    <nav aria-label="breadcrumb" >
+                                    <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb" style="margin: 0px;font-size: 20px">
                                             <li class="breadcrumb-item"> @yield('title')</li>
 

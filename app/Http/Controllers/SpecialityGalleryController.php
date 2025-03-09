@@ -82,7 +82,7 @@ class SpecialityGalleryController extends Controller
                     $path = $file->store('uploads/gallery_items', 'public');
                     $item = new SpecialityGalleryItem();
                     $item->speciality_gallery_id = $gallery_id;
-                    $item->specialty_id = $speciality->specialty_id;
+                    $item->specialty_id = $speciality->id;
                     $item->icon = $path;
                     $item->title = $request->title[$index];
                     $item->description = $request->description[$index] ?? null;

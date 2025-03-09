@@ -38,15 +38,16 @@
                     <label for="title">Title <span style="color: red;">*</span></label>
                     <input type="text" class="form-control" id="title" name="title" required>
                 </div>
-
-                <div class="col-md-12 mb-3">
-                    <label for="uploaded_date">Uploaded Date <span style="color: red;">*</span></label>
-                    <input type="date" name="uploaded_date" id="uploaded_date" class="form-control" required>
-                </div>
-                <div class="col-md-12 d-flex">
-                    <button type="submit" class="btn btn-success">
-                        Save
-                    </button>
+                <div class="row d-flex align-items-end">
+                    <div class="col-md-8">
+                        <label for="uploaded_date">Uploaded Date <span style="color: red;">*</span></label>
+                        <input type="date" name="uploaded_date" id="uploaded_date" class="form-control" required>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-success">
+                            Save
+                        </button>
+                    </div>
                 </div>
             </div>
 

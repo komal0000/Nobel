@@ -46,10 +46,12 @@
                     <label for="short_description">Short Description</label>
                     <textarea class="form-control" id="short_description" name="short_description">{{ $speciality->short_description }}</textarea>
                 </div>
-                <div class="d-flex">
-                    <button type="submit" class="btn btn-success">
-                        Update
-                    </button>
+                <div class="row">
+                    <div class="d-flex justify-content-end ">
+                        <button type="submit" class="btn btn-success">
+                            Update
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

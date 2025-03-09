@@ -41,7 +41,7 @@
                     <label for="description">Description <span style="color: red;">*</span></label>
                     <textarea class="form-control" id="description" name="description"></textarea>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-12 d-flex justify-content-end">
                     <button type="submit" class="btn btn-success">
                         Save
                     </button>

@@ -21,7 +21,7 @@
                         <label for="description">Description </label>
                         <textarea name="description" id="description" class="form-control"></textarea>
                     </div>
-                    <div class="col-md-12" d-flex align-items-end>
+                    <div class="col-md-12 d-flex justify-content-end">
                         <button class="btn btn-success">
                             Save
                         </button>

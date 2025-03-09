@@ -44,12 +44,12 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="row">
+                <div class="row d-flex align-items-end">
                     <div class="col-md-8 mb-2">
                         <label for="title">Title</label>
                         <input type="text" name="title" id="title" class="form-control">
                     </div>
-                    <div class="col-md-4 mb-2 d-flex align-items-end">
+                    <div class="col-md-4 mb-2 d-flex align-items-center">
                         <input type="checkbox" name="is_featured" id="is_featured" class="form-check-input me-2">
                         <label for="is_featured">Is Featured</label>
                     </div>
@@ -58,13 +58,16 @@
                     <label for="text">Text</label>
                     <input type="text" name="text" id="text" class="form-control">
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-12 mb-2">
                     <label for="datas">Datas</label>
                     <textarea name="datas" id="datas" class="form-control"></textarea>
                 </div>
+                <div class="col-md-12 mb-2 d-flex justify-content-end">
+                    <button class="btn btn-success">
+                        Save
+                    </button>
+                </div>
             </div>
-
-
         </div>
     </form>
 @endsection

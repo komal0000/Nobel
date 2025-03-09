@@ -10,12 +10,16 @@
             /
         @endforeach
         <span>Sub Specialties</span>/
-        <a href="{{ route('admin.speciality.gallery.index', ['speciality_id' => $specialityGallery->specialty_id,'parent_speciality_id' =>$parent_speciality_id ]) }}">Galleries</a> /
+        <a
+            href="{{ route('admin.speciality.gallery.index', ['speciality_id' => $specialityGallery->specialty_id, 'parent_speciality_id' => $parent_speciality_id]) }}">Galleries</a>
+        /
         <span>Edit</span>
     @else
         <a href="{{ route('admin.speciality.index') }}">Specialties</a> /
-        <span>{{$speciality->title}}</span> /
-        <a href="{{ route('admin.speciality.gallery.index', ['speciality_id' => $specialityGallery->specialty_id]) }}">Galleries</a> /
+        <span>{{ $speciality->title }}</span> /
+        <a
+            href="{{ route('admin.speciality.gallery.index', ['speciality_id' => $specialityGallery->specialty_id]) }}">Galleries</a>
+        /
         <span>Edit</span>
     @endif
 @endsection
@@ -39,7 +43,7 @@
                     <label for="description">Description</label>
                     <textarea class="form-control" id="description" name="description">{{ $specialityGallery->description }}</textarea>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-12 d-flex justify-content-end">
                     <button type="submit" class="btn btn-success">
                         Update
                     </button>

@@ -44,7 +44,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12 d-flex">
+            <div class="col-md-12 d-flex justify-content-end">
                 <button type="submit" class="btn btn-success">
                     Update
                 </button>

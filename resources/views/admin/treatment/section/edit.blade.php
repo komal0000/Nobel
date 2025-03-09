@@ -46,7 +46,7 @@
                     <label for="description">Description</label>
                     <textarea class="form-control" id="description" name="description">{{ $treatmentSection->description }}</textarea>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-12 d-flex justify-content-end">
                     <button type="submit" class="btn btn-success">
                         Update
                     </button>
