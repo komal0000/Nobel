@@ -51,9 +51,10 @@ class BlogController extends Controller
     }
     public function del($category)
     {
-        BlogCategory::where('id', $category)->delete();
+        Helper::deleteCategoryRecursively($category);
         return redirect()->back()->with('delete_success', 'BlogCategory Successfully Deleted');
     }
+
 
     public function blogindex(Request $request, $blogCategory_id, $type)
     {

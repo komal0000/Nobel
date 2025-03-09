@@ -2,6 +2,8 @@
 
 namespace App\Helpers;
 
+use App\Models\Blog;
+use App\Models\BlogCategory;
 use App\Models\Speciality;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -64,6 +66,16 @@ class Helper
         }
 
         return array_reverse($parents);
+    }
+
+    public static function  deleteCategoryRecursively($categoryId)
+    {
+        $childCategories = BlogCategory::where('parent_id', $categoryId)->get();
+        foreach ($childCategories as $child) {
+            self::deleteCategoryRecursively($child->id);
+        }
+        Blog::where('blog_category_id', $categoryId)->delete();
+        BlogCategory::where('id', $categoryId)->delete();
     }
 
     // public static function getParentRoute($parent_id,$table_name,$route_name, $get_routes = true) {
