@@ -73,7 +73,7 @@ class BlogController extends Controller
         $blogCategory = DB::table('blog_categories')->where('id', $blogCategory_id)->first();
 
         if (Helper::G()) {
-            return view('admin.blogCategory.blog.add', compact('blogCategory', 'parent_id','type'));
+            return view('admin.blogCategory.blog.add', compact('blogCategory', 'parent_id', 'type'));
         } else {
             $blog = new Blog();
             $blog->title = $request->title;
@@ -91,8 +91,29 @@ class BlogController extends Controller
         }
     }
 
-    public function blogdel($blog){
-        Blog::where('id',$blog)->delete();
-        return redirect()->back()->with('delete_success','Successfully Blog Deleted');
+    public function blogedit(Request $request, $blog_id)
+    {
+        $blog = Blog::where('id', $blog_id)->first();
+        $blogCategory = DB::table('blog_categories')->where('id', $blog->blog_category_id)->first();
+        $parent_id = $request->parent_id;
+        if (Helper::G()) {
+            return view('admin.blogCategory.blog.edit', compact('parent_id', 'blog', 'blogCategory'));
+        } else {
+            $blog->title = $request->title;
+
+            if ($request->hasFile('image')) {
+                $blog->image = $request->file('image')->store("upload/blogcategory/{$blogCategory->type}", 'public');
+            }
+            $blog->text = $request->text;
+            $blog->is_featured = $request->is_featured;
+            $blog->datas = $request->datas;
+            $blog->save();
+            return redirect()->back()->with('success', 'Blog Successfully Added');
+        }
+    }
+    public function blogdel($blog_id)
+    {
+        Blog::where('id', $blog_id)->delete();
+        return redirect()->back()->with('delete_success', 'Successfully Blog Deleted');
     }
 }
