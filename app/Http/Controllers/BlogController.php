@@ -52,7 +52,7 @@ class BlogController extends Controller
     public function del($category)
     {
         BlogCategory::where('id', $category)->delete();
-        return redirect()->back()->with('success', 'BlogCategory Successfully Deleted');
+        return redirect()->back()->with('delete_success', 'BlogCategory Successfully Deleted');
     }
 
     public function blogindex(Request $request, $blogCategory_id, $type)
@@ -89,5 +89,10 @@ class BlogController extends Controller
             $blog->save();
             return redirect()->back()->with('success', 'Blog Successfully Added');
         }
+    }
+
+    public function blogdel($blog){
+        Blog::where('id',$blog)->delete();
+        return redirect()->back()->with('delete_success','Successfully Blog Deleted');
     }
 }

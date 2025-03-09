@@ -18,7 +18,11 @@
             /
         @endforeach
         <span>Sub Category</span> /
-        <span>Galleries</span>
+        @if ($type == 1)
+            Blogs
+        @else
+            News
+        @endif
     @else
         <a href="{{ route('admin.blogCategory.index', ['type' => $type]) }}">
             @if ($type == 1)
@@ -28,7 +32,11 @@
             @endif
         </a> /
         <span>{{ $blogCategory->title }}</span> /
-        <span>Galleries</span>
+        @if ($type == 1)
+            Blogs
+        @else
+            News
+        @endif
     @endif
 @endsection
 @section('btn')

@@ -18,7 +18,16 @@
             /
         @endforeach
         <span>Sub Category</span> /
-        <span>Galleries</span>
+        <span>{{ $blogCategory->title }}</span> /
+        <a
+            href="{{ route('admin.blogCategory.blog.add', ['blogCategory_id' => $blogCategory->id, 'type' => $type, 'parent_id' => $parent_id]) }}">
+            @if ($type == 1)
+                Blogs
+            @else
+                News
+            @endif
+        </a> /
+        <span>Add</span>
     @else
         <a href="{{ route('admin.blogCategory.index', ['type' => $type]) }}">
             @if ($type == 1)
@@ -28,7 +37,15 @@
             @endif
         </a> /
         <span>{{ $blogCategory->title }}</span> /
-        <span>Galleries</span>
+        <a
+            href="{{ route('admin.blogCategory.blog.index', ['blogCategory_id' => $blogCategory->id, 'type' => $type, 'parent_id' => $parent_id]) }}">
+            @if ($type == 1)
+                Blogs
+            @else
+                News
+            @endif
+        </a> /
+        <span>Add</span>
     @endif
 @endsection
 @section('content')
@@ -50,7 +67,8 @@
                         <input type="text" name="title" id="title" class="form-control">
                     </div>
                     <div class="col-md-4 mb-2 d-flex align-items-center">
-                        <input type="checkbox" name="is_featured" id="is_featured" class="form-check-input me-2">
+                        <input type="hidden" name="is_featured" value="0">
+                        <input type="checkbox" name="is_featured" value="1" class="form-check-input me-2">
                         <label for="is_featured">Is Featured</label>
                     </div>
                 </div>
