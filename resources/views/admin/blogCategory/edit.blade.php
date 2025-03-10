@@ -2,14 +2,10 @@
 @section('title')
     @if ($parent_id)
         <a href="{{ route('admin.blogCategory.index', ['type' => $type]) }}">
-            @if ($type == 1)
-                Blogs Categories
-            @else
-                News Categories
-            @endif
+            @if ($type == 1) Blogs Categories @elseif($type == 2) News Categories @else Event Categories @endif
         </a> /
         @php
-            $parents = \App\Helpers\Helper::getParentRoute($parent_id, 'blog_categories', 'BlogCategory');
+            $parents = \App\Helpers\Helper::getParentRoute($parent_id, 'blog_categories', 'BlogCategory', $type);
         @endphp
         @foreach ($parents as $parent)
             <a
@@ -20,11 +16,7 @@
         <span>Edit</span>
     @else
         <a href="{{ route('admin.blogCategory.index', ['type' => $type]) }}">
-            @if ($type == 1)
-                Blogs Categories
-            @else
-                News Categories
-            @endif
+            @if ($type == 1) Blogs Categories @elseif($type == 2) News Categories @else Event Categories @endif
         </a> /
         <span>Edit</span>
     @endif
@@ -38,9 +30,9 @@
                 <input type="text" name="title" id="title" class="form-control" value="{{ $blogCategory->title }}">
             </div>
             <div class="col-md-4">
-                <bnt class="btn btn-success">
+                <button type="submit" class="btn btn-success">
                     Update
-                </bnt>
+                </button>
             </div>
         </div>
     </form>
