@@ -46,6 +46,19 @@
         label {
             margin-bottom: 3px;
         }
+        .panel-heading{
+            background: white;
+        }
+        .note-btn-group button {
+            border: none;
+
+        }
+        .note-btn-group button span {
+            color: black;
+        }
+        .note-btn-group button i {
+            color: black;
+        }
     </style>
     @yield('css')
 </head>
