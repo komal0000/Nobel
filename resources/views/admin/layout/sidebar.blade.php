@@ -1,8 +1,6 @@
 <aside class="sidebar sidebar-default sidebar-white sidebar-base navs-rounded-all ">
     <div class="sidebar-header d-flex align-items-center justify-content-start">
         <a href="{{ route('admin.index') }}" class="navbar-brand">
-
-            <!--Logo start-->
             <div class="logo-main">
                 <div class="logo-normal">
                     <svg class=" icon-30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -29,11 +27,6 @@
                     </svg>
                 </div>
             </div>
-            <!--logo End-->
-
-
-
-
             <h4 class="logo-title">Nobel</h4>
         </a>
         <div class="sidebar-toggle" data-toggle="sidebar" data-active="true">
@@ -161,6 +154,22 @@
                                 </i>
                                 <i class="sidenav-mini-icon"> A </i>
                                 <span class="item-name">Job Category</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="sub-nav collapse" id="Careers" data-bs-parent="#sidebar-menu">
+                        <li class="nav-item">
+                            <a class="nav-link " href="{{ route('admin.employeeTestimonial.index') }}">
+                                <i class="icon">
+                                    <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
+                                        viewBox="0 0 24 24" fill="currentColor">
+                                        <g>
+                                            <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                        </g>
+                                    </svg>
+                                </i>
+                                <i class="sidenav-mini-icon"> B </i>
+                                <span class="item-name">Employee Testimonials</span>
                             </a>
                         </li>
                     </ul>

@@ -53,5 +53,12 @@ if there is title make  slug
        title,type,location,date,decription,qualification,experience
 }
 
+{
+    employeeTestimonial
+     title,image,short_description
+    award
+     year,short_description
+}
+
 
 

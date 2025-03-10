@@ -4,6 +4,7 @@ use App\Http\Controllers\AlimentController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DownloadController;
+use App\Http\Controllers\EmployeeTestimonialController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SliderController;
@@ -117,5 +118,12 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
             Route::match(['GET', 'POST'], 'edit/{job_id}', [JobController::class, 'jobEdit'])->name('edit');
             Route::match(['GET', 'POST'], 'del/{job_id}', [JobController::class, 'jobDel'])->name('del');
         });
+    });
+
+    Route::prefix('employeeTestimonial')->name('employeeTestimonial.')->group(function () {
+        Route::get('', [EmployeeTestimonialController::class, 'index'])->name('index');
+        Route::match(['GET', 'POST'], 'add', [EmployeeTestimonialController::class, 'add'])->name('add');
+        Route::match(['GET', 'POST'], 'edit/{testimonial_id}', [EmployeeTestimonialController::class, 'edit'])->name('edit');
+        Route::match(['GET', 'POST'], 'del/{testimonial_id}', [EmployeeTestimonialController::class, 'del'])->name('del');
     });
 });
