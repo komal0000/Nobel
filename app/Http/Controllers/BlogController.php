@@ -80,7 +80,7 @@ class BlogController extends Controller
             $blog->title = $request->title;
 
             if ($request->hasFile('image')) {
-                $blog->image = $request->file('image')->store("upload/blogcategory/{$blogCategory->type}", 'public');
+                $blog->image = $request->file('image')->store("uploads/blogcategory/{$blogCategory->type}", 'public');
             }
             $blog->text = $request->text;
             $blog->blog_category_id = $blogCategory->id;
@@ -103,7 +103,7 @@ class BlogController extends Controller
             $blog->title = $request->title;
 
             if ($request->hasFile('image')) {
-                $blog->image = $request->file('image')->store("upload/blogcategory/{$blogCategory->type}", 'public');
+                $blog->image = $request->file('image')->store("uploads/blogcategory/{$blogCategory->type}", 'public');
             }
             $blog->text = $request->text;
             $blog->is_featured = $request->is_featured;
