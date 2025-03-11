@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AlimentController;
+use App\Http\Controllers\AwardController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DownloadController;
@@ -94,7 +95,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         });
     });
 
-    Route::prefix('blogCategory')->name('blogCategory.')->group(function(){
+    Route::prefix('blogCategory')->name('blogCategory.')->group(function () {
         Route::get('index/{type}', [BlogController::class, 'index'])->name('index');
         Route::match(['GET', 'POST'], 'add/{type}', [BlogController::class, 'add'])->name('add');
         Route::match(['GET', 'POST'], 'edit/{category}', [BlogController::class, 'edit'])->name('edit');
@@ -125,5 +126,10 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::match(['GET', 'POST'], 'add', [EmployeeTestimonialController::class, 'add'])->name('add');
         Route::match(['GET', 'POST'], 'edit/{testimonial_id}', [EmployeeTestimonialController::class, 'edit'])->name('edit');
         Route::match(['GET', 'POST'], 'del/{testimonial_id}', [EmployeeTestimonialController::class, 'del'])->name('del');
+    });
+    Route::prefix('award')->name('award.')->group(function () {
+        Route::match(['get', 'post'], '', [AwardController::class, 'index'])->name('index');
+        Route::post('edit/{award_id}',[AwardController::class,'edit'])->name('edit');
+        Route::get('del/{award_id}',[AwardController::class,'del'])->name('del');
     });
 });
