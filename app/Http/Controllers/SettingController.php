@@ -18,9 +18,10 @@ class SettingController extends Controller
                 'others' => [],
                 'links' => [
                     'facebook'=>'',
-
+                    'youtube' => '',
+                    'instagram' => '',
+                    'twitter' => '',
                 ]
-
             ]));
             // dd($data);
             return view('admin.setting.contact', compact('data'));
@@ -41,7 +42,13 @@ class SettingController extends Controller
                 'email' => $request->email ?? '',
                 'phone' => $request->phone ?? '',
                 'addr' => $request->addr ?? '',
-                'others' => $others
+                'others' => $others,
+                'links'=>[
+                    'facebook' => $request->facebook ?? '',
+                    'youtube' => $request->youtube ?? '',
+                    'instagram' => $request->instagram ?? '',
+                    'twitter' => $request->twitter ?? '',
+                ]
             ];
             Helper::setSetting('contact', $data);
             return redirect()->back()->with('success', "Contact Saved Sucessfully");
