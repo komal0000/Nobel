@@ -8,6 +8,7 @@ use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\EmployeeTestimonialController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\SpecialityController;
 use App\Http\Controllers\SpecialityGalleryController;
@@ -129,7 +130,10 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     });
     Route::prefix('award')->name('award.')->group(function () {
         Route::match(['get', 'post'], '', [AwardController::class, 'index'])->name('index');
-        Route::post('edit/{award_id}',[AwardController::class,'edit'])->name('edit');
-        Route::get('del/{award_id}',[AwardController::class,'del'])->name('del');
+        Route::post('edit/{award_id}', [AwardController::class, 'edit'])->name('edit');
+        Route::get('del/{award_id}', [AwardController::class, 'del'])->name('del');
+    });
+    Route::prefix('settings')->name('setting.')->group(function () {
+        Route::match(['GET', 'POST'], '/contact', [SettingController::class, 'contact'])->name('contact');
     });
 });

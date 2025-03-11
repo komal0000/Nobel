@@ -15,11 +15,11 @@
         @csrf
         <div class="row">
             <div class="col-md-4 mb-3">
-                <label for="year">Year</label>
+                <label for="year">Year  <span style="color: red;">*</span></label>
                 <input type="number" name="year" id="year" class="form-control" required>
             </div>
             <div class="col-md-8 mb-3">
-                <label for="short_description">Short Description</label>
+                <label for="short_description">Short Description  <span style="color: red;">*</span></label>
                 <input type="text" name="short_description" id="short_description" class="form-control">
             </div>
             <div class="col-md-4">

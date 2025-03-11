@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use App\Models\Blog;
 use App\Models\BlogCategory;
+use App\Models\Setting;
 use App\Models\Speciality;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -78,25 +79,25 @@ class Helper
         BlogCategory::where('id', $categoryId)->delete();
     }
 
-    // public static function getParentRoute($parent_id,$table_name,$route_name, $get_routes = true) {
-    //     $parent = [];
-    //     while ($parent_id != null) {
-    //         $category = DB::table($table_name)
-    //             ->where('id', $parent_id)
-    //             ->first(['id', 'title', 'parent_id']);
+    public static function getSetting($key,$direct=false){
+        $s=DB::table('settings')->where('key',$key)->select('value')->first();
+        return $direct?($s!=null?$s->value:null):($s!=null?json_decode($s->value):null);
+    }
 
-    //         if (!$category) {
-    //             break;
-    //         }
-    //         if ($get_routes) {
-    //             $category->url = route('admin.{{$route_name}}.index', ['parent_id' => $parent_id]);
-    //         }
-    //         $parent_id = $category->parent_id;
-    //         $parent[] = $category;
-    //     }
+   public static function setSetting($key,$value,$direct=false){
+        $s=Setting::where('key',$key)->first();
+        if($s==null){
+            $s=new Setting();
+            $s->key=$key;
+        }
+        if($direct){
+            $s->value=$value;
+        }else{
 
-    //     return array_reverse($parent);
-    // }
-
+            $s->value=json_encode($value);
+        }
+        $s->save();
+        return $s;
+    }
 
 }
