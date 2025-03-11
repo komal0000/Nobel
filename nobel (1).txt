@@ -60,5 +60,15 @@ if there is title make  slug
      year,short_description
 }
 
+{
+    technology_section_type
+     title , short_description
+    technology
+      title,short_Desc,desc,[speciality_id]
+    technology_section
+     technology_section_type_id,technology_id,image,short_desc,title,design_type
+    technology_section_data
+     technology_section_id,technology_section_type_id,technology_id,image,short_desc,long_desc,title
+}
 
 

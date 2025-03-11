@@ -16,6 +16,10 @@ class SettingController extends Controller
                 'phone' => '',
                 'addr' => '',
                 'others' => [],
+                'links' => [
+                    'facebook'=>'',
+
+                ]
 
             ]));
             // dd($data);
