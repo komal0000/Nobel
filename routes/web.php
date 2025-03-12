@@ -12,6 +12,8 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\SpecialityController;
 use App\Http\Controllers\SpecialityGalleryController;
+use App\Http\Controllers\TechnologyController;
+use App\Http\Controllers\TechnologySectionController;
 use App\Http\Controllers\TreatmentController;
 use App\Http\Controllers\TreatmentSectionController;
 use Illuminate\Support\Facades\Route;
@@ -135,5 +137,20 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     });
     Route::prefix('settings')->name('setting.')->group(function () {
         Route::match(['GET', 'POST'], '/contact', [SettingController::class, 'contact'])->name('contact');
+    });
+    Route::prefix('technology')->name('technology.')->group(function () {
+        Route::match(['GET', 'POST'], '', [TechnologyController::class, 'index'])->name('index');
+        Route::post('edit/{technology_id}', [TechnologyController::class, 'edit'])->name('edit');
+        Route::get('del/{technology_id}', [TechnologyController::class, 'del'])->name('del');
+        Route::prefix('section')->name('section.')->group(function () {
+            Route::match(['GET', 'POST'], 'add/{technology_id}', [TechnologySectionController::class, 'add'])->name('add');
+            Route::match(['GET', 'POST'], 'edit/{section_id}', [TechnologySectionController::class, 'edit'])->name('edit');
+            Route::match(['GET', 'POST'], 'del/{section_id}', [TechnologySectionController::class, 'del'])->name('del');
+        });
+        Route::prefix('sectiontype')->name('sectiontype.')->group(function(){
+            Route::match(['GET','POST'],'/index',[TechnologySectionController::class,'typeIndex'])->name('index');
+            Route::post('edit/{type_id}',[TechnologySectionController::class,'typeEdit'])->name('edit');
+            Route::get('de//{type_id}',[TechnologySectionController::class,'typeDel'])->name('del');
+        });
     });
 });
