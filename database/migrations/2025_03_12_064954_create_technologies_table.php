@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('technologies', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('shory_description');
+            $table->text('short_description');
             $table->foreignId('specialty_id')->nullable()->constrained('specialties');
             $table->timestamps();
         });

@@ -31,7 +31,7 @@
     </form>
 
     @if ($techSectionTypes !== null)
-        <table class="table table-bordered">
+        <table id="datatable" class="table table-striped" data-toggle="data-table">
             <thead>
                 <tr>
                     <th>Year</th>
@@ -57,6 +57,13 @@
                     </tr>
                 @endforeach
             </tbody>
+            <tfoot>
+                <tr>
+                    <th>Year</th>
+                    <th>Short Description</th>
+                    <th>Manage</th>
+                </tr>
+            </tfoot>
         </table>
     @endif
 @endsection
