@@ -62,7 +62,7 @@
 @endsection
 @section('js')
     <script>
-        function editAward(id) {
+        function editType(id) {
             const title = $(`#title_${id}`).val();
             const short_description = $(`#short_description_${id}`).val();
 
@@ -72,7 +72,7 @@
                 })
                 .then(res => {
                     if (res.data.success) {
-                        alert('Award updated successfully');
+                        location.reload();
                     }
                 })
                 .catch(err => {
@@ -80,7 +80,7 @@
                 })
         }
 
-        function deleteAward(id) {
+        function deleteType(id) {
             axios.get("{{ route('admin.technology.sectiontype.del', ['type_id' => 'ID']) }}".replace('ID', id))
                 .then(res => {
                     if (res.status === 200) {

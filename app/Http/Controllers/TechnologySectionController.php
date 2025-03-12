@@ -29,6 +29,7 @@ class TechnologySectionController extends Controller
         $techSectionType->title = $request->title;
         $techSectionType->short_description = $request->short_description;
         $techSectionType->save();
+        session()->flash('success', 'Technology Section Type Successfully updated');
         return response()->json(['success' => true]);
     }
 

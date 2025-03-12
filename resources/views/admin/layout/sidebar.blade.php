@@ -328,7 +328,7 @@
                     </ul>
                     <ul class="sub-nav collapse" id="settings" data-bs-parent="#sidebar-menu">
                         <li class="nav-item">
-                            <a class="nav-link " href="{{ route('admin.setting.contact') }}">
+                            <a class="nav-link " href="{{ route('admin.technology.sectiontype.index') }}">
                                 <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
                                         viewBox="0 0 24 24" fill="currentColor">
@@ -338,6 +338,22 @@
                                     </svg>
                                 </i>
                                 <i class="sidenav-mini-icon"> A </i>
+                                <span class="item-name">Technology Section Type</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="sub-nav collapse" id="settings" data-bs-parent="#sidebar-menu">
+                        <li class="nav-item">
+                            <a class="nav-link " href="{{ route('admin.setting.contact') }}">
+                                <i class="icon">
+                                    <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
+                                        viewBox="0 0 24 24" fill="currentColor">
+                                        <g>
+                                            <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                        </g>
+                                    </svg>
+                                </i>
+                                <i class="sidenav-mini-icon"> B </i>
                                 <span class="item-name">Contact</span>
                             </a>
                         </li>
