@@ -45,22 +45,43 @@ class TechnologyController extends Controller
                     $section->save();
                 }
             }
-            session()->flash('success', 'Technology Successfully updated');
+            session()->flash('success', 'Technology Successfully Added');
             return response()->json(['success' => true]);
         }
     }
 
+
     public function edit(Request $request, $technology_id)
     {
         $technology = Technology::where('id', $technology_id)->first();
-        if (Helper::g()) {
+        if (Helper::G()) {
             $specialities = DB::table('specialties')->get();
-            return view('admin.technology.edit', compact('technology','specialities'));
+            $technologySectionTypes = DB::table('technology_section_types')->get();
+            return view('admin.technology.edit', compact('technology', 'specialities', 'technologySectionTypes'));
         } else {
             $technology->title = $request->title;
             $technology->short_description = $request->short_description;
+            $technology->specialty_id = $request->specialty_id;
             $technology->save();
-            return redirect()->back()->with('success', 'Technology successf Updated');
+            if ($request->has('sections') && is_array($request->sections)) {
+                foreach ($request->sections as $typeId => $sectionData) {
+                    $section = TechnologySection::where('technology_section_type_id', $typeId)->where('technology_id', $technology->id)->first();
+                    if (!$section) {
+                        $section = new TechnologySection();
+                        $section->technology_id = $technology->id;
+                        $section->technology_section_type_id = $typeId;
+                    }
+                    $section->title = $sectionData['title'];
+                    $section->short_description = $sectionData['short_description'];
+                    $section->design_type = $sectionData['designType'];
+                    if ($request->hasFile("sections.$typeId.image")) {
+                        $section->image = $request->file("sections.$typeId.image")->store('uploads/technology_sections', 'public');
+                    }
+                    $section->save();
+                }
+            }
+            session()->flash('success', 'Technology Successfully Added');
+            return response()->json(['success' => true]);
         }
     }
 
