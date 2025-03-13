@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Helper;
 use App\Models\Technology;
+use App\Models\TechnologySection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -23,11 +24,29 @@ class TechnologyController extends Controller
             return view('admin.technology.add',compact('specialities','technologySectionTypes'));
         } else {
             $technology = new Technology();
-            $technology->title = $request->title;
-            $technology->short_description = $request->short_description;
+            $technology->title = $request->technology_title;
+            $technology->short_description = $request->technology_short_description;
             $technology->specialty_id = $request->specialty_id;
             $technology->save();
-            return redirect()->back()->with('success', 'Successfully Technology Added');
+            if ($request->has('sections') && is_array($request->sections)) {
+                foreach ($request->sections as $typeId => $sectionData) {
+                    $section = TechnologySection::where('technology_section_type_id', $typeId)->where('technology_id', $technology->id)->first();
+                    if (!$section) {
+                        $section = new TechnologySection();
+                        $section->technology_id = $technology->id;
+                        $section->technology_section_type_id = $typeId;
+                    }
+                    $section->title = $sectionData['title'];
+                    $section->short_description = $sectionData['short_description'];
+                    $section->design_type = $sectionData['designType'];
+                    if ($request->hasFile("sections.$typeId.image")) {
+                        $section->image = $request->file("sections.$typeId.image")->store('uploads/technology_sections', 'public');
+                    }
+                    $section->save();
+                }
+            }
+            session()->flash('success', 'Technology Successfully updated');
+            return response()->json(['success' => true]);
         }
     }
 
@@ -41,12 +60,13 @@ class TechnologyController extends Controller
             $technology->title = $request->title;
             $technology->short_description = $request->short_description;
             $technology->save();
-            return redirect()->back()->with('success', 'Successfully Technology Updated');
+            return redirect()->back()->with('success', 'Technology successf Updated');
         }
     }
 
     public function del($technology_id)
     {
+        TechnologySection::where('technology_id',$technology_id)->delete();
         Technology::where('id', $technology_id)->delete();
         return redirect()->back()->with('delete_success', 'Successfully Technology Deleted');
     }

@@ -36,8 +36,6 @@
                             class="btn btn-sm btn-warning">Update</a>
                         <a href="{{ route('admin.technology.del', ['technology_id' => $technology->id]) }}"
                             class="btn btn-sm btn-danger">Delete</a>
-                        <a href="{{ route('admin.technology.section.index', ['technology_id' => $technology->id]) }}"
-                            class="btn btn-info"> Manage Section </a>
                     </td>
                 </tr>
             @endforeach
