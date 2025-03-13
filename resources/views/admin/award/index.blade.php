@@ -3,10 +3,16 @@
     <span>Awards</span>
 @endsection
 @section('css')
+@section('css')
     <style>
         .update_input {
             border: none;
             padding: 0px;
+            background-color: #F2F2F2;
+        }
+
+        .update_input:focus {
+            background-color: #F2F2F2;
         }
     </style>
 @endsection
@@ -15,11 +21,11 @@
         @csrf
         <div class="row">
             <div class="col-md-4 mb-3">
-                <label for="year">Year  <span style="color: red;">*</span></label>
+                <label for="year">Year <span style="color: red;">*</span></label>
                 <input type="number" name="year" id="year" class="form-control" required>
             </div>
             <div class="col-md-8 mb-3">
-                <label for="short_description">Short Description  <span style="color: red;">*</span></label>
+                <label for="short_description">Short Description <span style="color: red;">*</span></label>
                 <input type="text" name="short_description" id="short_description" class="form-control">
             </div>
             <div class="col-md-4">
@@ -31,7 +37,8 @@
     </form>
 
     @if ($awards !== null)
-        <table class="table table-bordered">
+
+        <table id="datatable" class="table table-striped" data-toggle="data-table">
             <thead>
                 <tr>
                     <th>Year</th>
@@ -57,6 +64,13 @@
                     </tr>
                 @endforeach
             </tbody>
+            <tfoot>
+                <tr>
+                    <th>Year</th>
+                    <th>Short Description</th>
+                    <th>Manage</th>
+                </tr>
+            </tfoot>
         </table>
     @endif
 @endsection
@@ -72,7 +86,7 @@
                 })
                 .then(res => {
                     if (res.data.success) {
-                    alert('Award updated successfully');
+                      location.reload();
                     }
                 })
                 .catch(err => {

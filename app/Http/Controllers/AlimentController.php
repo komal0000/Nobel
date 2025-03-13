@@ -60,6 +60,7 @@ class AlimentController extends Controller
                 }
             }
 
+            session()->flash('success', 'Award Successfully Added');
             return response()->json(['success' => true]);
         }
     }
@@ -104,6 +105,7 @@ class AlimentController extends Controller
                     $section->save();
                 }
             }
+            session()->flash('success', 'Award Successfully updated');
             return response()->json(['success' => true]);
         }
     }

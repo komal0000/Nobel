@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Helper;
+use App\Models\TechnologySection;
 use App\Models\TechnologySectionType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;

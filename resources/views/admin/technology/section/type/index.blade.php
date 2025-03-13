@@ -1,12 +1,17 @@
 @extends('admin.layout.app')
 @section('title')
-    <span>Awards</span>
+    <span>Technology Section Types</span>
 @endsection
 @section('css')
     <style>
         .update_input {
             border: none;
             padding: 0px;
+            background-color: #F2F2F2;
+        }
+
+        .update_input:focus {
+            background-color: #F2F2F2;
         }
     </style>
 @endsection

@@ -18,8 +18,9 @@ class TechnologyController extends Controller
     public function add(Request $request)
     {
         if (Helper::G()) {
+            $technologySectionTypes = DB::table('technology_section_types')->get();
             $specialities = DB::table('specialties')->get();
-            return view('admin.technology.add',compact('specialities'));
+            return view('admin.technology.add',compact('specialities','technologySectionTypes'));
         } else {
             $technology = new Technology();
             $technology->title = $request->title;

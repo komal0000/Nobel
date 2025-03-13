@@ -144,7 +144,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::match(['GET','POST'],'edit/{technology_id}', [TechnologyController::class, 'edit'])->name('edit');
         Route::get('del/{technology_id}', [TechnologyController::class, 'del'])->name('del');
         Route::prefix('section')->name('section.')->group(function () {
-            Route::get('index',[TechnologySectionController::class,'index'])->name('index');
+            Route::get('index/{technology_id}',[TechnologySectionController::class,'index'])->name('index');
             Route::match(['GET', 'POST'], 'add/{technology_id}', [TechnologySectionController::class, 'add'])->name('add');
             Route::match(['GET', 'POST'], 'edit/{section_id}', [TechnologySectionController::class, 'edit'])->name('edit');
             Route::match(['GET', 'POST'], 'del/{section_id}', [TechnologySectionController::class, 'del'])->name('del');

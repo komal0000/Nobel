@@ -18,7 +18,7 @@
 @endsection
 @section('content')
     <div class="row">
-        <input type="hidden" name="specialty_id" id="specialty_id" value="{{$speciality_id}}">
+        <input type="hidden" name="specialty_id" id="specialty_id" value="{{ $speciality_id }}">
         <div class="col-md-7 mb-3">
             <div class="row">
                 <div class="col-md-6">
@@ -43,44 +43,47 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        @foreach ($speciality_section_types as $type)
-            <div class="accordion" id="accordionPanelsStayOpenExample">
-                <div class="accordion-type" style="border-radius: 0px;">
-                    <h2 class="accordion-header" id="panelsStayOpen-heading-{{ $type->id }}">
-                        <button class="accordion-button collapsed d-flex align-types-center justify-content-between"
-                            type="button" data-bs-toggle="collapse"
-                            data-bs-target="#panelsStayOpen-collapse-{{ $type->id }}" aria-expanded="false"
-                            aria-controls="panelsStayOpen-collapse-{{ $type->id }}">
-                            <div class="d-flex align-items-center gap-2">
-                                <input type="checkbox" name="show_on_frontend" id="show_on_frontend"
-                                    class="form-check-input" onclick="event.stopPropagation();">
-                                <span>{{ $type->title }}</span>
-                            </div>
-                        </button>
-                    </h2>
-                    <div id="panelsStayOpen-collapse-{{ $type->id }}" class="accordion-collapse collapse"
-                        aria-labelledby="panelsStayOpen-heading-{{ $type->id }}">
-                        <div class="accordion-body" style="background: white">
-                            <div class="row">
-                                <input type="hidden" name="type_id" id="type_id" value="{{ $type->id }}">
-                                <div class="col-md-4 mb-3">
-                                    <label for="image">Image</label>
-                                    <input type="file" name="image" id="image_{{ $type->id }}"
-                                        class="form-control dropify" accept="image/*">
+    <div class="shadow p-3">
+        <div class="row">
+            @foreach ($speciality_section_types as $type)
+                <div class="accordion" id="accordionPanelsStayOpenExample">
+                    <div class="accordion-type" style="border-radius: 0px;">
+                        <h2 class="accordion-header" id="panelsStayOpen-heading-{{ $type->id }}">
+                            <button class="accordion-button collapsed d-flex align-types-center justify-content-between"
+                                type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapse-{{ $type->id }}" aria-expanded="false"
+                                aria-controls="panelsStayOpen-collapse-{{ $type->id }}">
+                                <div class="d-flex align-items-center gap-2">
+                                    <input type="checkbox" name="show_on_frontend" id="show_on_frontend"
+                                        class="form-check-input" onclick="event.stopPropagation();">
+                                    <span>{{ $type->title }}</span>
                                 </div>
-                                <div class="col-md-8">
-                                    <div class="row">
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapse-{{ $type->id }}" class="accordion-collapse collapse"
+                            aria-labelledby="panelsStayOpen-heading-{{ $type->id }}">
+                            <div class="accordion-body" style="background: white">
+                                <div class="row">
+                                    <input type="hidden" name="type_id" id="type_id" value="{{ $type->id }}">
+                                    <div class="col-md-4 mb-3">
+                                        <label for="image">Image</label>
+                                        <input type="file" name="image" id="image_{{ $type->id }}"
+                                            class="form-control dropify" accept="image/*">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="row">
 
-                                        <div class="col-md-6 mb-3">
-                                            <label for="title">Title <span style="color: red;">*</span> </label>
-                                            <input type="text" name="title" id="title_{{ $type->id }}"
-                                                class="form-control">
-                                        </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="title">Title <span style="color: red;">*</span> </label>
+                                                <input type="text" name="title" id="title_{{ $type->id }}"
+                                                    class="form-control">
+                                            </div>
 
-                                        <div class="col-md-12 mb-3">
-                                            <label for="description">Description <span style="color: red;">*</span></label>
-                                            <textarea name="description" id="description_{{ $type->id }}" class="form-control"></textarea>
+                                            <div class="col-md-12 mb-3">
+                                                <label for="description">Description <span
+                                                        style="color: red;">*</span></label>
+                                                <textarea name="description" id="description_{{ $type->id }}" class="form-control"></textarea>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -88,13 +91,13 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        @endforeach
-        <div class="col-md-12 mt-3 d-flex justify-content-end">
-            <button class="btn btn-primary" onclick="saveAll()">
-                Save All
-            </button>
+            @endforeach
         </div>
+    </div>
+    <div class="col-md-12 mt-3 d-flex justify-content-end">
+        <button class="btn btn-primary" onclick="saveAll()">
+            Save All
+        </button>
     </div>
 @endsection
 @section('js')
@@ -118,7 +121,7 @@
                 var typeId = section.find('input[name="type_id"]').val();
                 formData.append("sections[" + typeId + "][title]", section.find("#title_" + typeId).val());
                 formData.append("sections[" + typeId + "][description]", section.find("#description_" + typeId)
-                .val());
+                    .val());
                 var sectionImage = section.find("#image_" + typeId)[0].files[0];
                 if (sectionImage) {
                     formData.append("sections[" + typeId + "][image]", sectionImage);
@@ -132,7 +135,7 @@
                     }
                 })
                 .then(function(response) {
-                    if(response.data.success){
+                    if (response.data.success) {
                         sessionStorage.setItem('success', 'Aliment updated successfully');
                         location.reload();
                     }
