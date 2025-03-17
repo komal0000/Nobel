@@ -33,7 +33,7 @@ class LeadershipController extends Controller
     public function edit(Request $request , $leadership_id){
         $leadership = Leadership::where('id',$leadership_id)->first();
         if(Helper::G()){
-            return view('admin.leadership.edit');
+            return view('admin.leadership.edit',compact('leadership'));
         }else{
             $leadership->title = $request->title;
             $leadership->position = $request->position;

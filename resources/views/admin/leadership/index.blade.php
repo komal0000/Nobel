@@ -10,6 +10,7 @@
         <thead>
             <tr>
                 <th>Title</th>
+                <th>Position</th>
                 <th>Manage</th>
             </tr>
         </thead>
@@ -17,10 +18,11 @@
             @foreach ($leaderships as $leadership)
                 <tr>
                     <td>{{ $leadership->title }}</td>
+                    <td>{{ $leadership->position }}</td>
                     <td>
-                        <a href="{{ route('admin.leadership.edit', ['leaderships_id' => $leadership->id]) }}"
+                        <a href="{{ route('admin.leadership.edit', ['leadership_id' => $leadership->id]) }}"
                             class="btn btn-warning btn-sm ">Edit</a>
-                        <a href="{{ route('admin.leadership.del', ['leaderships_id' => $leadership->id]) }}"
+                        <a href="{{ route('admin.leadership.del', ['leadership_id' => $leadership->id]) }}"
                             class="btn btn-danger btn-sm">Delete</a>
                     </td>
                 </tr>
@@ -29,6 +31,7 @@
         <tfoot>
             <tr>
                 <th>Title</th>
+                <th>Position</th>
                 <th>Manage</th>
             </tr>
         </tfoot>
