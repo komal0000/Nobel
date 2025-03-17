@@ -58,8 +58,9 @@
                                             <div class="col-md-6 mb-3">
                                                 <label for="designType">Design Type <span style="color: red;">*</span></label>
                                                 <select name="designType" id="designType_{{ $type->id }}" class="form-control">
-                                                    <option value="1">Two Rows</option>
-                                                    <option value="2">Three Rows</option>
+                                                    <option value="1">Type 1</option>
+                                                    <option value="2">Type 2</option>
+                                                     <option value="3">Type 3</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-12 mb-3">
