@@ -50,7 +50,7 @@
                     <li class="nav-item dropdown custom-drop">
                         <a class="py-0 nav-link d-flex align-items-center" href="#" id="navbarDropdown"
                             role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="{{ asset('assets/images/avatars/01.png') }}" alt="User-Profile"
+                            <img src="{{ asset('admin/assets/images/avatars/01.png') }}" alt="User-Profile"
                                 class="theme-color-default-img img-fluid avatar avatar-50 avatar-rounded">
                             <div class="ms-3">
                                 <h6 class="mb-0 caption-title">User</h6>
@@ -85,7 +85,7 @@
                 </div>
             </div>
             <div class="iq-header-img">
-                <img src="{{ asset('assets/images/dashboard/top-header.png') }}" alt="header"
+                <img src="{{ asset('admin/assets/images/dashboard/top-header.png') }}" alt="header"
                     class="theme-color-default-img img-fluid w-100 h-100 animated-scaleX">
 
             </div>

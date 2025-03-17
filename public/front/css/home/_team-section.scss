@@ -1,0 +1,75 @@
+.team-section {
+    .main-container {
+        .meet-doc-content {
+            .meet-doc-title {
+                color: var(--color-dark-grey)
+            }
+
+            .find-doc {
+                .find-doc-form {
+                    .select-wrap {
+                        width: 540px;
+                        max-width: 100%;
+                        margin: auto;
+                        position: relative;
+
+                        .find-doc-speciality-wrap {
+                            width: 50%;
+                            position: relative;
+
+                            .default-speciality-wrap {
+                                border-radius: 50px;
+                                padding: 10px 30px 10px 15px;
+                                border: 1px solid #000;
+                                cursor: pointer;
+                                position: relative;
+                                z-index: 100;
+                            }
+
+                            .list-wrap {
+                                padding: 10px 0 20px;
+                                padding-top: 50px;
+                                border-radius: 25px;
+                                background-color: #fff;
+                                display: none;
+                                overflow: hidden;
+                                overflow-y: auto;
+                                max-height: 240px;
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                width: 100%;
+                                box-shadow: 0 3px 40px rgba(0, 0, 0, .14);
+                                z-index: 99;
+
+                                .find-doc-list-speciality {
+                                    list-style: none;
+                                    margin: 0;
+                                    padding: 0;
+
+                                    li {
+                                        font-weight: 600;
+                                        padding: 10px 20px;
+                                        border-bottom: 1px solid var(--border-color-light);
+                                        font-size: 14px;
+                                        cursor: pointer;
+                                    }
+                                }
+                            }
+
+                        }
+
+                        .find-doc-btn {
+                            border-radius: 50%;
+                            height: 46px;
+                            width: 46px;
+                            border: none;
+                            background-color: var(--color-main);
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

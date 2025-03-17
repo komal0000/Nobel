@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/core/libs.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/vendor/aos/dist/aos.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/hope-ui.min.css?v=5.0.0') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/custom.min.css?v=5.0.0') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/customizer.min.css?v=5.0.0') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/rtl.min.css?v=5.0.0') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/custom.css?v=5.0.0') }}">
+    <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.ico') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/css/core/libs.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/vendor/aos/dist/aos.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/css/hope-ui.min.css?v=5.0.0') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/css/custom.min.css?v=5.0.0') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/css/customizer.min.css?v=5.0.0') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/css/rtl.min.css?v=5.0.0') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/css/custom.css?v=5.0.0') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css"
         integrity="sha512-In/+MILhf6UMDJU4ZhDL0R0fEpsp4D3Le23m6+ujDWXwl3whwpucJG1PEmI3B07nyJx+875ccs+yX2CqQJUxUw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -116,9 +116,9 @@
             </div>
         @endif
     </div>
-    <script src="{{ asset('assets/js/core/libs.min.js') }}"></script>
-    <script src="{{ asset('assets/js/core/external.min.js') }}"></script>
-    <script src="{{ asset('assets/js/hope-ui.js') }}" defer></script>
+    <script src="{{ asset('admin/assets/js/core/libs.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/core/external.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/hope-ui.js') }}" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.9.1/summernote.min.js"
         integrity="sha512-07bR+AJ2enmNU5RDrZkqMfVq06mQHgFxcmWN/hNSNY4E5SgYNOmTVqo/HCzrSxBhWU8mx3WB3ZJOixA9cRnCdA=="

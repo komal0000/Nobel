@@ -1,0 +1,91 @@
+.intern {
+    padding: 50px 0;
+    background-color: var(--secondary-white);
+
+    .main-container {
+        .heading {
+            padding-bottom: 30px;
+            margin: 0;
+        }
+        .content {
+            .slide-wrapper {
+                width: 50%;
+
+                @media (min-width:501px) and (max-width:991px) {
+                    width: 60%;
+                    margin: 0 auto;
+                }
+                @media (max-width: 500px) {
+                    width: 100%;
+                }
+
+                .slick-prev {
+
+                    border: none;
+                    height: 38px;
+                    width: 38px;
+                    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                    border-radius: 50%;
+                    background-color: #fff;
+                    position: absolute;
+                    top: 50%;
+                    left: 0;
+                    transform: translateY(-50%);
+                    z-index: 99;
+                }
+
+                .slick-next {
+                    border: none;
+                    height: 38px;
+                    width: 38px;
+                    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                    border-radius: 50%;
+                    background-color: #fff;
+                    position: absolute;
+                    position: absolute;
+                    top: 50%;
+                    right: 0;
+                    transform: translateY(-50%);
+                    z-index: 99;
+                }
+
+                .image-card {
+                    height: auto;
+                    border-radius: 20px;
+                    margin: 0 20px;
+                    overflow: hidden;
+                    position: relative;
+
+                    img {
+                        border-radius: 20px;
+                        width: 100%;
+                        // max-height: 500px;
+                        aspect-ratio: 1/1;
+                        // position: absolute;
+                        // left: 50%;
+                        // top: 0;
+                        // transform: translateX(-50%);
+                    }
+                }
+            }
+
+            .para {
+                width: 40%;
+                margin: auto 0;
+
+                @media (max-width:991px) {
+                    padding: 30px 15px 15px;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+#submit-resume {
+    background-color: var(--color-main);
+    color: var(--color-white);
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    font-weight: 600;
+}

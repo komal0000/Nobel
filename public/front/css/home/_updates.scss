@@ -1,0 +1,92 @@
+.update {
+    background: url('/front/img/updates-bg.jpg') center center / cover no-repeat;
+    padding-top: 60px;
+    margin-bottom: 50px;
+
+    .main-container {
+        padding: 0 20px;
+
+        .heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .update-slider {
+            position: relative;
+            border-radius: 20px;
+            background-color: #fff;
+            border: 1px solid #d9d9d9;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, .1);
+            bottom: -100px;
+            position: relative;
+            margin-top: -100px;
+
+            .slick-prev {
+                border: none;
+                height: 38px;
+                width: 38px;
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                border-radius: 50%;
+                background-color: #fff;
+                position: absolute;
+                top: 50%;
+                left: -3%;
+                transform: translateY(-50%);
+                z-index: 99;
+            }
+
+            .slick-next {
+                border: none;
+                height: 38px;
+                width: 38px;
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                border-radius: 50%;
+                background-color: #fff;
+                position: absolute;
+                position: absolute;
+                top: 50%;
+                right: -3%;
+                transform: translateY(-50%);
+                z-index: 99;
+            }
+
+            ;
+
+            .update-card {
+                text-align: center;
+                border-right: 1px solid var(--border-color);
+
+                img {
+                    margin-bottom: 20px;
+                }
+
+                padding: 30px;
+                // border: 1px solid transparent;
+
+                .head {
+                    font-weight: 600;
+                    color: var(--color-dark-grey);
+                    margin-bottom: 10px;
+                }
+
+                .content {
+                    width: 300px;
+                    max-width: 100%;
+                    margin: auto;
+                    overflow: hidden;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 3;
+                    -webkit-box-orient: vertical;
+                    height: 66px;
+                    font-weight: 500;
+                }
+
+                .button {
+                    margin-top: 1rem;
+                    font-size: 12px;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+}

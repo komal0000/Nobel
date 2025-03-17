@@ -1,0 +1,101 @@
+.awards {
+    margin-top: 150px;
+    background: url('/front/img/why-bg.png') top left;
+    padding: 40px 0;
+    .main-container {
+
+        .award-slide {
+            .slick-prev {
+                border: none;
+                height: 38px;
+                width: 38px;
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                border-radius: 50%;
+                background-color: #fff;
+                position: absolute;
+                top: 50%;
+                left: 0;
+                transform: translateY(-50%);
+                z-index: 99;
+            }
+
+            .slick-next {
+                border: none;
+                height: 38px;
+                width: 38px;
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                border-radius: 50%;
+                background-color: #fff;
+                position: absolute;
+                position: absolute;
+                top: 50%;
+                right: 0;
+                transform: translateY(-50%);
+                z-index: 99;
+            }
+
+            .slide-card {
+                border-radius: 20px;
+                background-color: #fff;
+                padding: 30px 90px;
+                text-align: center;
+                position: relative;
+                height: 100%;
+                box-shadow: 0 3px 17px rgba(0, 0, 0, .14);
+                margin: 20px;
+
+                .leaf-left {
+                    width: 50px;
+                    position: absolute;
+                    left: 35px;
+                    top: 50%;
+                    z-index: 1;
+                    transform: translateY(-50%);
+                    text-align: left;
+
+                    img {
+                        display: inline-block;
+                        height: 100px;
+                    }
+                }
+
+                .year {
+                    color: var(--color-main);
+
+                    &::before {
+                        display: inline-block;
+                        background: url('/front/img/award-heading-vector-left.png') center center / 100% no-repeat;
+                        width: 40px;
+                        vertical-align: middle;
+                        height: 25px;
+                        content: "";
+                    }
+
+                    &::after {
+                        display: inline-block;
+                        background: url('/front/img/award-heading-vector-right.png') center center / 100% no-repeat;
+                        width: 40px;
+                        vertical-align: middle;
+                        height: 25px;
+                        content: "";
+                    }
+                }
+
+                .leaf-right {
+                    width: 50px;
+                    position: absolute;
+                    right: 35px;
+                    top: 50%;
+                    z-index: 1;
+                    transform: translateY(-50%);
+                    text-align: left;
+                    img {
+                        display: inline-block;
+                        height: 100px;
+                    }
+                }
+            }
+        }
+
+    }
+}

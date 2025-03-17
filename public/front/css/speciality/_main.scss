@@ -1,0 +1,16 @@
+section {
+    padding: 50px 0;
+    &:nth-child(odd) {
+        background-color: var(--secondary-white);
+    }
+}
+
+@import './overview';
+@import './message';
+@import './team';
+@import './treatment';
+@import './ailment';
+@import './technology';
+@import './sub-specialitation';
+@import 'story';
+@import './know-more';

@@ -1,0 +1,80 @@
+.message {
+    .main-container {
+        .content {
+            &>* {
+                padding: 0 15px;
+                width: 33.333%;
+                @media (max-width: 1199px) {
+                    width: 100%;
+                }
+            }
+        }
+
+        .para {
+            text-align: center;
+            color: var(--color-grey);
+            font-weight: 500;
+        }
+
+        .img-block {
+            position: relative;
+
+            @media (max-width: 1199px) {
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            &::before {
+                left: 0;
+                right: 0;
+                top: 45%;
+                transform: translateY(-50%);
+                width: 70%;
+                margin: auto;
+                padding-bottom: 70%;
+                background-color: var(--color-main);
+                border-radius: 50%;
+                content: '';
+                position: absolute;
+            }
+
+            &::after {
+                left: 0;
+                right: 0;
+                top: 45%;
+                transform: translateY(-50%);
+                width: calc(70% + 30px);
+                margin: auto;
+                padding-bottom: calc(70% + 30px);
+                border-radius: 50%;
+                content: '';
+                position: absolute;
+                border: 1px dashed var(--color-dark-grey);
+            }
+
+            img {
+                width: 75%;
+                position: relative;
+                z-index: 1;
+                display: inline-block;
+
+            }
+        }
+
+        .detail {
+            padding-top: 20px;
+            .name {
+                font-weight: 700;
+                @media (max-width:768px) {
+                    font-size: 24px;
+                    margin-bottom: 10px;
+                }
+            }
+
+            .role {
+                color: var(--color-main);
+                font-weight: 700;
+                margin-bottom: 15px;
+            }
+        }
+    }
+}
