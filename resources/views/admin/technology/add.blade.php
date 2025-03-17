@@ -42,6 +42,9 @@
                             aria-labelledby="panelsStayOpen-heading-{{ $type->id }}">
                             <div class="accordion-body" style="background: white">
                                 <div class="row">
+                                    <h5 class="my-2">
+                                        Section
+                                    </h5>
                                     <input type="hidden" name="type_id" id="type_id" value="{{ $type->id }}">
                                     <div class="col-md-4 mb-3">
                                         <label for="image">Image <span style="color: red;">*</span></label>
@@ -69,7 +72,40 @@
                                                 <textarea name="short_description" id="short_description_{{ $type->id }}" class="form-control"></textarea>
                                             </div>
                                         </div>
+                                        <div class="col-md-12 mt-3 d-flex justify-content-end">
+                                            <button class="btn btn-sm btn-primary" onclick="toggleSectionData()">
+                                                Manage Section Data
+                                            </button>
+                                        </div>
                                     </div>
+                                </div>
+                                <div class="row mt-3" id="sectionData" style="display: none">
+                                    <h5 class="my-2">
+                                        Section Data
+                                    </h5>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="image">Image <span style="color: red;">*</span></label>
+                                        <input type="file" name="image" id="image"
+                                            class="form-control dropify" accept="image/*">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="title">Title <span style="color: red;">*</span> </label>
+                                                <input type="text" name="title" id="title"
+                                                    class="form-control">
+                                            </div>
+                                            <div class="col-md-12 mb-3">
+                                                <label for="short_description">Short Description <span
+                                                        style="color: red;">*</span></label>
+                                                <textarea name="short_description" id="short_description" class="form-control"></textarea>
+                                            </div>
+                                            <div class="col-md-12 mb-3">
+                                                <label for="long_description">Long Description <span
+                                                        style="color: red;">*</span></label>
+                                                <textarea name="long_description" id="long_description" class="form-control"></textarea>
+                                            </div>
+                                        </div>
                                 </div>
                             </div>
                         </div>
@@ -86,6 +122,9 @@
 @endsection
 @section('js')
     <script>
+        function toggleSectionData(){
+            $('#sectionData').toggle();
+        }
         function saveAll() {
             var formData = new FormData();
             formData.append("specialty_id", $("#specialty_id").val());
