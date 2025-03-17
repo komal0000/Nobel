@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers;
+namespace App;
 
 use App\Models\Blog;
 use App\Models\BlogCategory;
