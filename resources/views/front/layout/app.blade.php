@@ -9,7 +9,7 @@
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
-    <link rel="stylesheet" href="{{ asset('front/assets/ass/css/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/assets/css/index.css') }}">
     <title>@yield('title')</title>
     @yield('css')
 </head>

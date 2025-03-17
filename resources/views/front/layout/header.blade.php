@@ -6,7 +6,10 @@
                 <ul class="nav-ul">
                     <li class="navbar-item" onclick="extendSubMenu(this)">
                         <a href="#" class="navbar-link" >
-                            Locations <x-down class="down-icon"></x-down>
+                            location <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-chevron-down" stroke-width="2" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
+                              </svg>
+
                         </a>
                         <ul class="drop-menu">
                             <li>
@@ -22,7 +25,9 @@
                     </li>
                     <li class="navbar-item" onclick="extendSubMenu(this)">
                         <a href="#" class="navbar-link" >
-                            Speciality <i class="bi bi-chevron-down"></i>
+                            Speciality <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-chevron-down" stroke-width="2" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
+                              </svg>
                         </a>
                         <ul class="drop-menu">
                             <li>
@@ -38,7 +43,9 @@
                     </li>
                     <li class="navbar-item" onclick="extendSubMenu(this)">
                         <a href="#" class="navbar-link" >
-                            Health Library <i class="bi bi-chevron-down"></i>
+                            Health Library <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-chevron-down" stroke-width="2" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
+                              </svg>
                         </a>
                         <ul class="drop-menu">
                             <li>
@@ -54,7 +61,9 @@
                     </li>
                     <li class="navbar-item" onclick="extendSubMenu(this)">
                         <a href="#" class="navbar-link" >
-                            Services <i class="bi bi-chevron-down"></i>
+                            Services <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-chevron-down" stroke-width="2" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
+                              </svg>
                         </a>
                         <ul class="drop-menu">
                             <li>
@@ -73,7 +82,9 @@
                     </li>
                     <li class="navbar-item" onclick="extendSubMenu(this)">
                         <a href="#" class="navbar-link" >
-                            Contact Us <i class="bi bi-chevron-down"></i>
+                            Contact Us <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-chevron-down" stroke-width="2" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
+                              </svg>
                         </a>
                         <ul class="drop-menu">
                             <li>
@@ -89,26 +100,26 @@
         </nav>
         <div class="feedback-contact d-flex">
             <a href="#" class="feedback-btn navbar-link">
-                <img src="{{ asset('front/img/write-message.png') }}" class="feedback-image" alt="Feedback">
+                <img src="{{ asset('front/assets/img/write-message.png') }}" class="feedback-image" alt="Feedback">
             </a>
             <a href="#" class="whatsapp-link">
-                <img src="{{ asset('front/img/whatsapp.png') }}" alt="WhatsApp" class="whatsapp-image">
+                <img src="{{ asset('front/assets/img/whatsapp.png') }}" alt="WhatsApp" class="whatsapp-image">
                 <span>WhatsApp</span>
             </a>
             <a class="emergency-btn" href="tel:1068">
-                <img src="{{ asset('front/img/emergency.png') }}" alt="Emergency" width="50" height="50">
+                <img src="{{ asset('front/assets/img/emergency.png') }}" alt="Emergency" width="50" height="50">
             </a>
             <a class="md-emergency-btn" href="tel:1068">
-                <img src="{{ asset('front/img/emergency.png') }}" alt="Emergency" width="50" height="50">
+                <img src="{{ asset('front/assets/img/emergency.png') }}" alt="Emergency" width="50" height="50">
                 <span>Emergency</span>
             </a>
 
             <button href="#" class="call-back navbar-link" data-bs-toggle="modal" data-bs-target="#resume-modal">
-                <img src="{{ asset('front/img/phone-icon.png') }}" alt="Call Back" class="call-back-image me-1">
+                <img src="{{ asset('front/assets/img/phone-icon.png') }}" alt="Call Back" class="call-back-image me-1">
                 <small>Request Call Back</small>
             </button>
             <a href="#" class="md-contact-us">
-                <img src="{{ asset('front/img/phone-grey-icon.png') }}" alt="Call Back" class="call-back-image me-1">
+                <img src="{{ asset('front/assets/img/phone-grey-icon.png') }}" alt="Call Back" class="call-back-image me-1">
                 <span>Contact</span>
             </a>
         </div>

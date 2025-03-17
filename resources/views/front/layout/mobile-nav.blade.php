@@ -4,10 +4,10 @@
         <li>
             <button class="toggle-menu" href="#" id="toggle-navbar">
                 <div class="icon open-icon">
-                    <img src="{{ asset('front/img/hamburger-menu.svg') }}" alt="Menu">
+                    <img src="{{ asset('front/assets/img/hamburger-menu.svg') }}" alt="Menu">
                 </div>
                 <div class="icon close-icon d-none">
-                    <img src="{{ asset('front/img/close.svg') }}" alt="Close">
+                    <img src="{{ asset('front/assets/img/close.svg') }}" alt="Close">
                 </div>
                 Menu
             </button>
@@ -15,7 +15,7 @@
         <li>
             <a href="#">
                 <div class="icon">
-                    <img src="{{ asset('front/img/doctor.svg') }}" alt="Doctor">
+                    <img src="{{ asset('front/assets/img/doctor.svg') }}" alt="Doctor">
                 </div>
                 Doctor
             </a>
@@ -23,7 +23,7 @@
         <li>
             <a href="#">
                 <div class="icon">
-                    <img src="{{ asset('front/img/calendar-tick.svg') }}" alt="Appointment">
+                    <img src="{{ asset('front/assets/img/calendar-tick.svg') }}" alt="Appointment">
                 </div>
                 Book Apt.
             </a>
@@ -31,7 +31,7 @@
         <li>
             <a href="#">
                 <div class="icon">
-                    <img src="{{ asset('front/img/chat.svg') }}" alt="Chat">
+                    <img src="{{ asset('front/assets/img/chat.svg') }}" alt="Chat">
                 </div>
                 Chat
             </a>
@@ -39,7 +39,7 @@
         <li>
             <a href="#">
                 <div class="icon">
-                    <img src="{{ asset('front/img/call.svg') }}" alt="Call">
+                    <img src="{{ asset('front/assets/img/call.svg') }}" alt="Call">
                 </div>
                 Call Back
             </a>
