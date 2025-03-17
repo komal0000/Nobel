@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\Helper;
+use App\Helper;
 use App\Models\Technology;
 use App\Models\TechnologySection;
 use Illuminate\Http\Request;
