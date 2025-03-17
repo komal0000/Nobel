@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\EmployeeTestimonialController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\LeadershipController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SliderController;
@@ -154,5 +155,11 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
             Route::post('edit/{type_id}',[TechnologySectionController::class,'typeEdit'])->name('edit');
             Route::get('de//{type_id}',[TechnologySectionController::class,'typeDel'])->name('del');
         });
+    });
+    Route::prefix('leadership')->name('leadership.')->group(function(){
+        Route::match(['GET'], '', [LeadershipController::class, 'index'])->name('index');
+        Route::match(['GET', 'POST'], 'add', [LeadershipController::class, 'add'])->name('add');
+        Route::match(['GET', 'POST'], 'edit/{leadership_id}', [LeadershipController::class, 'edit'])->name('edit');
+        Route::get('del/{leadership_id}', [LeadershipController::class, 'del'])->name('del');
     });
 });
