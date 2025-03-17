@@ -6,6 +6,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\EmployeeTestimonialController;
+use App\Http\Controllers\FrontController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\LeadershipController;
 use App\Http\Controllers\LoginController;
@@ -18,6 +19,10 @@ use App\Http\Controllers\TechnologySectionController;
 use App\Http\Controllers\TreatmentController;
 use App\Http\Controllers\TreatmentSectionController;
 use Illuminate\Support\Facades\Route;
+
+
+Route::get('/',[FrontController::class,'index'])->name('index');
+
 
 Route::match(["GET", "POST"], 'login', [LoginController::class, 'login'])->name('login');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
