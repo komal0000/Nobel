@@ -11,7 +11,7 @@
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     <link rel="stylesheet" href="{{ asset('front/assets/ass/css/index.css') }}">
     <title>@yield('title')</title>
-    @stack('css')
+    @yield('css')
 </head>
 
 <body>
@@ -30,7 +30,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
 
-    @stack('js')
+    @yield('js')
 </body>
 
 </html>
