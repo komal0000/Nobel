@@ -1,6 +1,6 @@
 <aside class="sidebar sidebar-default sidebar-white sidebar-base navs-rounded-all ">
     <div class="sidebar-header d-flex align-items-center justify-content-start">
-        <a href="{{ route('admin.index') }}" class="navbar-brand">
+        <a href="{{ route('admin.dashboard') }}" class="navbar-brand">
             <div class="logo-main">
                 <div class="logo-normal">
                     <svg class=" icon-30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -52,7 +52,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " aria-current="page" href="{{ route('admin.index') }}">
+                    <a class="nav-link " aria-current="page" href="{{ route('admin.dashboard') }}">
                         <i class="icon">
                             <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
                                 class="icon-20">
