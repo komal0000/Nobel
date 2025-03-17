@@ -7,23 +7,23 @@
     <title>Nobel</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="../../assets/images/favicon.ico">
+    <link rel="shortcut icon" href="admin/assets/images/favicon.ico">
 
     <!-- Library / Plugin Css Build -->
-    <link rel="stylesheet" href="../../assets/css/core/libs.min.css">
+    <link rel="stylesheet" href="admin/assets/css/core/libs.min.css">
 
 
     <!-- Hope Ui Design System Css -->
-    <link rel="stylesheet" href="../../assets/css/hope-ui.min.css?v=5.0.0">
+    <link rel="stylesheet" href="admin/assets/css/hope-ui.min.css?v=5.0.0">
 
     <!-- Custom Css -->
-    <link rel="stylesheet" href="../../assets/css/custom.min.css?v=5.0.0">
+    <link rel="stylesheet" href="admin/assets/css/custom.min.css?v=5.0.0">
 
     <!-- Customizer Css -->
-    <link rel="stylesheet" href="../../assets/css/customizer.min.css?v=5.0.0">
+    <link rel="stylesheet" href="admin/assets/css/customizer.min.css?v=5.0.0">
 
     <!-- RTL Css -->
-    <link rel="stylesheet" href="../../assets/css/rtl.min.css?v=5.0.0">
+    <link rel="stylesheet" href="admin/assets/css/rtl.min.css?v=5.0.0">
 
 
 </head>
@@ -109,7 +109,6 @@
                                                     <label class="form-check-label" for="customCheck1">Remember
                                                         Me</label>
                                                 </div>
-                                                <a href="recoverpw.html">Forgot Password?</a>
                                             </div>
                                         </div>
                                         <div class="d-flex">
@@ -137,41 +136,41 @@
                     </div>
                 </div>
                 <div class="col-md-6 d-md-block d-none bg-primary p-0 mt-n1 vh-100 overflow-hidden">
-                    <img src="../../assets/images/auth/01.png" class="img-fluid gradient-main animated-scaleX"
+                    <img src="admin/assets/images/auth/01.png" class="img-fluid gradient-main animated-scaleX"
                         alt="images">
                 </div>
             </div>
         </section>
     </div>
     <!-- Library Bundle Script -->
-    <script src="../../assets/js/core/libs.min.js"></script>
+    <script src="admin/assets/js/core/libs.min.js"></script>
 
     <!-- External Library Bundle Script -->
-    <script src="../../assets/js/core/external.min.js"></script>
+    <script src="admin/assets/js/core/external.min.js"></script>
 
     <!-- Widgetchart Script -->
-    <script src="../../assets/js/charts/widgetcharts.js"></script>
+    <script src="admin/assets/js/charts/widgetcharts.js"></script>
 
     <!-- mapchart Script -->
-    <script src="../../assets/js/charts/vectore-chart.js"></script>
-    <script src="../../assets/js/charts/dashboard.js"></script>
+    <script src="admin/assets/js/charts/vectore-chart.js"></script>
+    <script src="admin/assets/js/charts/dashboard.js"></script>
 
     <!-- fslightbox Script -->
-    <script src="../../assets/js/plugins/fslightbox.js"></script>
+    <script src="admin/assets/js/plugins/fslightbox.js"></script>
 
     <!-- Settings Script -->
-    <script src="../../assets/js/plugins/setting.js"></script>
+    <script src="admin/assets/js/plugins/setting.js"></script>
 
     <!-- Slider-tab Script -->
-    <script src="../../assets/js/plugins/slider-tabs.js"></script>
+    <script src="admin/assets/js/plugins/slider-tabs.js"></script>
 
     <!-- Form Wizard Script -->
-    <script src="../../assets/js/plugins/form-wizard.js"></script>
+    <script src="admin/assets/js/plugins/form-wizard.js"></script>
 
     <!-- AOS Animation Plugin-->
 
     <!-- App Script -->
-    <script src="../../assets/js/hope-ui.js" defer></script>
+    <script src="admin/assets/js/hope-ui.js" defer></script>
 
 
 </body>
