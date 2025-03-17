@@ -14,7 +14,7 @@ class LoginController extends Controller
             return view('admin.login');
         } else {
             if(Auth::attempt(['email'=>$request->email,'password'=>$request->password])){
-                return redirect()->route('admin.index')->with('success', 'Login successful!');
+                return redirect()->route('admin.dashboard')->with('success', 'Login successful!');
             }else{
                 return redirect()->back()->with('error','Credential Mismatch');
             }

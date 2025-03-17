@@ -28,8 +28,7 @@ Route::match(["GET", "POST"], 'login', [LoginController::class, 'login'])->name(
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
-    Route::get('', [DashboardController::class, 'index'])->name('index');
-
+    Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
     Route::prefix('speciality')->name('speciality.')->group(function () {
         Route::get('', [SpecialityController::class, 'index'])->name('index');
         Route::match(["GET", "POST"], 'add', [SpecialityController::class, 'add'])->name('add');

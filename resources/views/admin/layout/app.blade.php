@@ -86,7 +86,7 @@
     @include('admin.layout.sidebar')
     <div class="main-content">
         @include('admin.layout.navbar')
-        @if (!request()->routeIs('admin.index'))
+        @if (!request()->routeIs('admin.dashboard'))
             <div class="conatiner-fluid content-inner mt-n5 py-0">
                 <div>
                     <div class="card mb-2">

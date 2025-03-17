@@ -2,7 +2,7 @@
     <!--Nav Start-->
     <nav class="nav navbar navbar-expand-xl navbar-light iq-navbar">
         <div class="container-fluid navbar-inner">
-            <a href="{{ route('admin.index') }}" class="navbar-brand">
+            <a href="{{ route('admin.dashboard') }}" class="navbar-brand">
 
                 <!--Logo start-->
                 <div class="logo-main">
