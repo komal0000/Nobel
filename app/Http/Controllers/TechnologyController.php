@@ -89,9 +89,7 @@ class TechnologyController extends Controller
             $technology->save();
             if ($request->has('sections') && is_array($request->sections)) {
                 foreach ($request->sections as $typeId => $sectionData) {
-                    $section = TechnologySection::where('technology_section_type_id', $typeId)
-                                ->where('technology_id', $technology->id)
-                                ->first();
+                    $section = TechnologySection::where('technology_section_type_id', $typeId)->where('technology_id', $technology->id)->first();
                     $section->title = $sectionData['title'];
                     $section->short_description = $sectionData['short_description'];
                     $section->design_type = $sectionData['designType'];

@@ -18,6 +18,7 @@ use App\Http\Controllers\TechnologyController;
 use App\Http\Controllers\TechnologySectionController;
 use App\Http\Controllers\TreatmentController;
 use App\Http\Controllers\TreatmentSectionController;
+use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -166,5 +167,14 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::match(['GET', 'POST'], 'add', [LeadershipController::class, 'add'])->name('add');
         Route::match(['GET', 'POST'], 'edit/{leadership_id}', [LeadershipController::class, 'edit'])->name('edit');
         Route::get('del/{leadership_id}', [LeadershipController::class, 'del'])->name('del');
+    });
+    Route::prefix('video')->name('video.')->group(function(){
+        Route::get('',[VideoController::class,'index'])->name('index');
+        Route::match(['GET','POST'],'add',[VideoController::class,'add'])->name('add');
+        Route::match(['GET','POST'],'edit/{video_id}',[VideoController::class,'edit'])->name('edit');
+        Route::match(['GET'],'del/{video_id}',[VideoController::class,'del'])->name('del');
+        Route::prefix('type')->name('type.')->group(function(){
+            Route::match(['GET','POST'],'index',[VideoController::class,'indexType'])->name('index');
+        });
     });
 });
