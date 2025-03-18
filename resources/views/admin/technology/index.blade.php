@@ -26,14 +26,14 @@
             @foreach ($technologies as $technology)
                 <tr>
                     <td>
-                        {{ $technology->title }}"
+                        {{ $technology->title }}
                     </td>
                     <td>
                         {{ $technology->short_description }}
                     </td>
                     <td>
                         <a href="{{ route('admin.technology.edit', ['technology_id' => $technology->id]) }}"
-                            class="btn btn-sm btn-warning">Update</a>
+                            class="btn btn-sm btn-warning">Edit</a>
                         <a href="{{ route('admin.technology.del', ['technology_id' => $technology->id]) }}"
                             class="btn btn-sm btn-danger">Delete</a>
                     </td>

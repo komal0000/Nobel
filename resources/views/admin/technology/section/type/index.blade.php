@@ -39,7 +39,7 @@
         <table id="datatable" class="table table-striped" data-toggle="data-table">
             <thead>
                 <tr>
-                    <th>Year</th>
+                    <th>Title</th>
                     <th>Short Description</th>
                     <th>Manage</th>
                 </tr>
@@ -64,7 +64,7 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <th>Year</th>
+                    <th>Title</th>
                     <th>Short Description</th>
                     <th>Manage</th>
                 </tr>

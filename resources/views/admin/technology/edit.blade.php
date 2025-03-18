@@ -7,21 +7,22 @@
     <div class="row">
         <div class="col-md-6 mb-3">
             <label for="title">Title <span style="color: red;">*</span></label>
-            <input type="text" name="title" id="title" class="form-control" value="{{ $technology->title }}" required>
+            <input type="text" name="title" id="technology_title" class="form-control" value="{{ $technology->title }}"
+                required>
         </div>
         <div class="col-md-6 mb-3">
-            <label for="speciality_id">Speciality</label>
-            <select name="speciality_id" id="speciality_id" class="form-control">
+            <label for="specialty_id">Speciality</label>
+            <select name="specialty_id" id="specialty_id" class="form-control">
                 @foreach ($specialities as $speciality)
                     <option value="{{ $speciality->id }}"
-                        {{ $speciality->id == $technology->speciality_id ? 'selected' : '' }}>{{ $speciality->title }}
+                        {{ $speciality->id == $technology->specialty_id ? 'selected' : '' }}>{{ $speciality->title }}
                     </option>
                 @endforeach
             </select>
         </div>
         <div class="col-md-12 mb-3">
             <label for="short_description">Short Description <span style="color: red;">*</span></label>
-            <input type="text" name="short_description" id="short_description" class="form-control"
+            <input type="text" name="short_description" id="technology_short_description" class="form-control"
                 value="{{ $technology->short_description }}">
         </div>
     </div>
@@ -33,8 +34,13 @@
                         ->where('technology_id', $technology->id)
                         ->where('technology_section_type_id', $type->id)
                         ->first();
+                    $sectionData = DB::table('technology_section_data')
+                        ->where('technology_id', $technology->id)
+                        ->where('technology_section_type_id', $type->id)
+                        ->where('technology_section_id', $section->id)
+                        ->first();
                 @endphp
-                <div class="accordion" id="accordionPanelsStayOpenExample">
+                <div class="accordion mb-3" id="accordionPanelsStayOpenExample">
                     <div class="accordion-type" style="border-radius: 0px;">
                         <h2 class="accordion-header" id="panelsStayOpen-heading-{{ $type->id }}">
                             <button class="accordion-button collapsed d-flex align-types-center justify-content-between"
@@ -50,6 +56,7 @@
                             aria-labelledby="panelsStayOpen-heading-{{ $type->id }}">
                             <div class="accordion-body" style="background: white">
                                 <div class="row">
+                                    <h5 class="my-2">Section</h5>
                                     <input type="hidden" name="type_id" id="type_id" value="{{ $type->id }}">
                                     <div class="col-md-4 mb-3">
                                         <label for="image">Image <span style="color: red;">*</span></label>
@@ -69,16 +76,45 @@
                                                         style="color: red;">*</span></label>
                                                 <select name="designType" id="designType_{{ $type->id }}"
                                                     class="form-control">
-                                                    <option value="1" {{ $section->design_type == 1 ? 'selected' : '' }}>
-                                                        Two Rows</option>
-                                                    <option value="2" {{ $section->design_type == 2 ? 'selected' : '' }}>
-                                                        Three Rows</option>
+                                                    <option value="1"
+                                                        {{ $section->design_type == 1 ? 'selected' : '' }}>
+                                                        Type 1</option>
+                                                    <option value="2"
+                                                        {{ $section->design_type == 2 ? 'selected' : '' }}>
+                                                        Type 2</option>
+                                                    <option value="3"
+                                                        {{ $section->design_type == 3 ? 'selected' : '' }}>
+                                                        Type 3</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-12 mb-3">
                                                 <label for="short_description">Short Description <span
                                                         style="color: red;">*</span></label>
-                                                <textarea name="short_description" id="short_description_{{ $type->id }}" class="form-control"></textarea>
+                                                <textarea name="short_description" id="short_description_{{ $type->id }}" class="form-control">{{ $section->short_description }}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-3" id="sectionData_{{ $type->id }}" >
+                                    <h5 class="my-2">Section Data</h5>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="section_image_{{ $type->id }}">Image <span style="color: red;">*</span></label>
+                                        <input type="file" name="image" id="section_image_{{ $type->id }}" data-default-file="{{ Storage::url($sectionData->image) }}" class="form-control dropify"
+                                            accept="image/*" required>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="section_title_{{ $type->id }}">Title <span style="color: red;">*</span></label>
+                                                <input type="text" name="title" id="section_title_{{ $type->id }}" class="form-control" value="{{ $sectionData->title }}" required>
+                                            </div>
+                                            <div class="col-md-12 mb-3">
+                                                <label for="section_short_description_{{ $type->id }}">Short Description <span style="color: red;">*</span></label>
+                                                <textarea name="short_description" id="section_short_description_{{ $type->id }}" class="form-control" required>{{$sectionData->short_description}}</textarea>
+                                            </div>
+                                            <div class="col-md-12 mb-3">
+                                                <label for="section_long_description_{{ $type->id }}">Long Description</label>
+                                                <textarea name="long_description" id="section_long_description_{{ $type->id }}" class="form-control">{{$sectionData->long_description}}</textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -91,7 +127,7 @@
         </div>
     </div>
     <div class="col-md-12 mt-3 d-flex justify-content-end">
-        <button class="btn btn-primary" onclick="UpdateAll($technology_id)">
+        <button class="btn btn-primary" onclick="UpdateAll({{ $technology_id }})">
             Update All
         </button>
     </div>
@@ -110,11 +146,21 @@
                 formData.append("sections[" + typeId + "][short_description]", section.find("#short_description_" +
                     typeId).val());
                 formData.append("sections[" + typeId + "][designType]", section.find("#designType_" + typeId)
-            .val());
+                    .val());
                 var sectionImage = section.find("#image_" + typeId)[0].files[0];
                 if (sectionImage) {
                     formData.append("sections[" + typeId + "][image]", sectionImage);
                 };
+                var sectionData = $("#sectionData_" + typeId);
+                if (sectionData.length) {
+                    var sectionDataImageInput = sectionData.find("#section_image_" + typeId);
+                    if (sectionDataImageInput.length && sectionDataImageInput[0].files[0]) {
+                        formData.append("sections[" + typeId + "][section_image]", sectionDataImageInput[0].files[0]);
+                    }
+                    formData.append("sections[" + typeId + "][section_title]", sectionData.find("#section_title_" + typeId).val());
+                    formData.append("sections[" + typeId + "][section_short_description]", sectionData.find("#section_short_description_" + typeId).val());
+                    formData.append("sections[" + typeId + "][section_long_description]", sectionData.find("#section_long_description_" + typeId).val());
+                }
             });
             axios.post("{{ route('admin.technology.edit', ['technology_id' => '_ID_']) }}".replace('_ID_', technology_id),
                     formData, {
