@@ -1,4 +1,4 @@
-[data-bs-theme-color=theme-color-default] {
+/* [data-bs-theme-color=theme-color-default] {
   --bs-primary: #3a57e8;
   --bs-primary-rgb: 58, 87, 232;
   --bs-primary-bg-subtle: #d8ddfa;
@@ -716,4 +716,4 @@
 [data-bs-theme-color=theme-color-pink][data-bs-theme=dark] {
   --bs-gray-text-emphasis: #a7acb1;
   --bs-gray-bg-subtle: #161719;
-}
+} */

@@ -3609,11 +3609,11 @@ textarea.form-control-lg {
   -webkit-box-shadow: var(--bs-btn-focus-box-shadow);
           box-shadow: var(--bs-btn-focus-box-shadow);
 }
-.btn-check:checked + .btn, :not(.btn-check) + .btn:active, .btn:first-child:active, .btn.active, .btn.show {
+/* .btn-check:checked + .btn, :not(.btn-check) + .btn:active, .btn:first-child:active, .btn.active, .btn.show {
   color: var(--bs-btn-active-color);
   background-color: var(--bs-btn-active-bg);
   border-color: var(--bs-btn-active-border-color);
-}
+} */
 .btn-check:checked + .btn:focus-visible, :not(.btn-check) + .btn:active:focus-visible, .btn:first-child:active:focus-visible, .btn.active:focus-visible, .btn.show:focus-visible {
   -webkit-box-shadow: var(--bs-btn-focus-box-shadow);
           box-shadow: var(--bs-btn-focus-box-shadow);
@@ -3634,10 +3634,10 @@ textarea.form-control-lg {
   --bs-btn-hover-bg: #314ac5;
   --bs-btn-hover-border-color: #2e46ba;
   --bs-btn-focus-shadow-rgb: 88, 112, 235;
-  --bs-btn-active-color: #ffffff;
+  /* --bs-btn-active-color: #ffffff;
   --bs-btn-active-bg: #2e46ba;
   --bs-btn-active-border-color: #2c41ae;
-  --bs-btn-active-shadow: 0 0px 0px rgba(0, 0, 0, 0);
+  --bs-btn-active-shadow: 0 0px 0px rgba(0, 0, 0, 0); */
   --bs-btn-disabled-color: #ffffff;
   --bs-btn-disabled-bg: #3a57e8;
   --bs-btn-disabled-border-color: #3a57e8;
@@ -26701,13 +26701,7 @@ body {
   background: rgba(58, 87, 232, 0.04) !important;
 }
 
-/* PrismJS 1.23.0
-https://prismjs.com/download.html#themes=prism-okaidia&languages=markup+css+clike+javascript */
-/**
- * okaidia theme for JavaScript, CSS and HTML
- * Loosely based on Monokai textmate theme by http://www.monokai.nl/
- * @author ocodia
- */
+
 code[class*=language-],
 pre[class*=language-] {
   color: #f8f8f2;
