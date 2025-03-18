@@ -40,12 +40,12 @@
                     <div class="col-md-4">
                         <div class="item-group border p-3 mb-3 rounded">
                             <div class="form-group">
-                                <label for="icon">Icon </label>
+                                <label for="icon">Icon <span style="color: red;">*</span> </label>
                                 <input type="file" name="icon" class="form-control dropify" id="icon"
                                     data-height="100" data-default-file="{{ Storage::url($item->icon) }}" accept="image/*">
                             </div>
                             <div class="form-group">
-                                <label for="title">Title </label>
+                                <label for="title">Title <span style="color: red;">*</span></label>
                                 <input type="text" name="title" class="form-control" id="title"
                                     placeholder="Enter title" value="{{ $item->title }}">
                             </div>

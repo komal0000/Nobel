@@ -31,7 +31,7 @@
                     <div class="col-md-6">
                         <label for="single_page_image">Single Page Image <span style="color: red;">*</span> </label>
                         <input type="file" class="form-control dropify" id="single_page_image" name="single_page_image"
-                            accept="image/*">
+                            accept="image/*" required>
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="short_description">Short Description <span style="color: red;">*</span></label>
-                    <textarea class="form-control" id="short_description" name="short_description"></textarea>
+                    <textarea class="form-control" id="short_description" name="short_description" required></textarea>
                 </div>
                 <div class="row">
                     <div class="col-md-12 d-flex justify-content-end">
