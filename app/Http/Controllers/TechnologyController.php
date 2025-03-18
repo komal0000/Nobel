@@ -89,7 +89,6 @@ class TechnologyController extends Controller
             $technology->save();
             if ($request->has('sections') && is_array($request->sections)) {
                 foreach ($request->sections as $typeId => $sectionData) {
-                    // Find the existing section or create a new one if it doesn't exist
                     $section = TechnologySection::where('technology_section_type_id', $typeId)
                                 ->where('technology_id', $technology->id)
                                 ->first();
@@ -102,8 +101,6 @@ class TechnologyController extends Controller
                             ->store('uploads/technology_sections', 'public');
                     }
                     $section->save();
-
-                    // Update or create additional section data in technology_section_datas table
                     if (
                         isset($sectionData['section_title']) ||
                         isset($sectionData['section_short_description']) ||
