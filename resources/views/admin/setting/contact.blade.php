@@ -40,8 +40,7 @@
                             <span>
                                 Map
                             </span>
-                            <input type="text" id="map" name="map" class="form-control w-25"
-                                placeholder="Search Place" value="{{ $data->map }}">
+                            <input type="text" id="map" name="map" class="form-control w-25" placeholder="Search Place" value="{{ $data->map }}">
                         </h4>
                         <hr class="m-0">
                         <div class="card-body d-flex justify-content-center" id="footer-4">

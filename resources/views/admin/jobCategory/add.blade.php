@@ -10,17 +10,17 @@
             <div class="col-md-6">
                 <div class="col-md-12 mb-3">
                     <label for="icon">Icon <span style="color: red;">*</span></label>
-                    <input type="file" class="form-control dropify" id="icon" name="icon" accept="image/*">
+                    <input type="file" class="form-control dropify" id="icon" name="icon" accept="image/*" required>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="col-md-12 mb-2">
                     <label for="title">Title <span style="color: red;">*</span></label>
-                    <input type="text" class="form-control" id="title" name="title">
+                    <input type="text" class="form-control" id="title" name="title" required>
                 </div>
                 <div class="col-md-12 mb-3">
                     <label for="short_description">Short Description <span style="color: red;">*</span></label>
-                    <textarea class="form-control" id="short_description" name="short_description"></textarea>
+                    <textarea class="form-control" id="short_description" name="short_description" required></textarea>
                 </div>
                 <div class="col-md-12 d-flex justify-content-end">
                     <button type="submit" class="btn btn-success">
