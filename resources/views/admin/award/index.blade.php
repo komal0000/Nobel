@@ -26,7 +26,7 @@
             </div>
             <div class="col-md-8 mb-3">
                 <label for="short_description">Short Description <span style="color: red;">*</span></label>
-                <input type="text" name="short_description" id="short_description" class="form-control">
+                <input type="text" name="short_description" id="short_description" class="form-control" required>
             </div>
             <div class="col-md-4">
                 <button class="btn btn-primary">
@@ -97,8 +97,9 @@
         function deleteAward(id) {
             axios.get("{{ route('admin.award.del', ['award_id' => 'ID']) }}".replace('ID', id))
                 .then(res => {
-                    if (res.status === 200) {
+                    if (res.data.success) {
                         $(`#tr_${id}`).remove();
+                        location.reload();
                     }
                 })
                 .catch(err => {

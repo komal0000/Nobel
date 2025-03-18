@@ -73,7 +73,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-12 mt-3 d-flex justify-content-end">
-                                            <button class="btn btn-sm btn-primary" onclick="toggleSectionData()">
+                                            <button class="btn btn-sm btn-primary btn-active" onclick="toggleSectionData()">
                                                 Manage Section Data
                                             </button>
                                         </div>

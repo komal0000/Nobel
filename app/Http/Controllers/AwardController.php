@@ -15,11 +15,16 @@ class AwardController extends Controller
             $awards = DB::table('awards')->get();
             return view('admin.award.index', compact('awards'));
         } else {
+            $request->validate([
+            'year' => 'required|integer',
+            'short_description' => 'required|string',
+            ]);
+
             $award = new Award();
             $award->year = $request->year;
             $award->short_description = $request->short_description;
             $award->save();
-            return redirect()->back()->with('success', 'Successfully Addded Award');
+            return redirect()->back()->with('success', 'Successfully Added Award');
         }
     }
 
@@ -30,12 +35,13 @@ class AwardController extends Controller
         $award->short_description = $request->input('short_description');
         $award->save();
         session()->flash('success', 'Award Successfully updated');
-        return response()->json(['success' => true]);
+        return response()->json(['success' => true ]);
     }
 
     public function del($award_id)
     {
         Award::where('id', $award_id)->delete();
+        session()->flash('delete_success', 'Award Successfully deleted');
         return response()->json(['success' => true]);
     }
 }
