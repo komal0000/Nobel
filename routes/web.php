@@ -169,12 +169,14 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::get('del/{leadership_id}', [LeadershipController::class, 'del'])->name('del');
     });
     Route::prefix('video')->name('video.')->group(function(){
-        Route::get('',[VideoController::class,'index'])->name('index');
-        Route::match(['GET','POST'],'add',[VideoController::class,'add'])->name('add');
-        Route::match(['GET','POST'],'edit/{video_id}',[VideoController::class,'edit'])->name('edit');
-        Route::match(['GET'],'del/{video_id}',[VideoController::class,'del'])->name('del');
         Route::prefix('type')->name('type.')->group(function(){
             Route::match(['GET','POST'],'index',[VideoController::class,'indexType'])->name('index');
+            Route::post('edit/{type_id}',[VideoController::class,'editType'])->name('edit');
+            Route::get('del/{type_id}',[VideoController::class,'delType'])->name('del');
         });
+        Route::get('index/{type_id}',[VideoController::class,'index'])->name('index');
+        Route::match(['GET','POST'],'add/{type_id}',[VideoController::class,'add'])->name('add');
+        Route::match(['GET','POST'],'edit/{video_id}',[VideoController::class,'edit'])->name('edit');
+        Route::match(['GET'],'del/{video_id}',[VideoController::class,'del'])->name('del');
     });
 });
