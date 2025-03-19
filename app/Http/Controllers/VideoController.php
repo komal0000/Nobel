@@ -29,6 +29,7 @@ class VideoController extends Controller
         return response()->json(['success' => true ]);
     }
     public function delType($type_id){
+        Video::where('video_type_id',$type_id)->delete();
         VideoType::where('id',$type_id)->delete();
         session()->flash('delete_success', 'Video Type Successfully Deleted');
         return response()->json(['success' => true ]);
@@ -36,7 +37,8 @@ class VideoController extends Controller
 
     public function index($type_id){
         $videoType = DB::table('video_types')->where('id',$type_id)->first(['id','title']);
-        return view('admin.video.index',compact('videoType'));
+        $videos = DB::table('videos')->get('id','title');
+        return view('admin.video.index',compact('videoType','videos'));
     }
     public function add(Request $request,$type_id){
         $videoType = DB::table('video_types')->where('id',$type_id)->first(['id','title']);
@@ -54,8 +56,9 @@ class VideoController extends Controller
     }
     public function edit(Request $request, $video_id){
         $video = Video::where('id', $video_id)->first();
+        $videoType = DB::table('video_types')->where('id',$video->video_type_id)->first(['title']);
         if(Helper::G()){
-            return view('admin.video.edit',compact('video'));
+            return view('admin.video.edit',compact('video','videoType'));
         }else{
             $video->video_link = $request->video_link;
             $video->title = $request->title;
@@ -63,5 +66,11 @@ class VideoController extends Controller
             $video->save();
             return redirect()->back()->with('success', 'Video Successfully Updated');
         }
+    }
+
+    public function del($video_id){
+        Video::where('id', $video_id)->delete();
+        return redirect()->back()->with('delete_success', 'Video Successfully deleted');
+
     }
 }
