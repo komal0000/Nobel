@@ -57,6 +57,7 @@ class SettingController extends Controller
                 } else {
 
                     file_put_contents(resource_path($data[2]), view('admin.setting.template.' . $type, compact('curdata'))->render());
+                    Helper::putCache('home.slider', '');
                 }
             } else {
                 file_put_contents(resource_path('views/front/includes/' . $type . '.blade.php'), view('admin.setting.template.' . $type, compact('curdata'))->render());
