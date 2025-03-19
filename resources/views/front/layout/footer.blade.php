@@ -18,17 +18,12 @@
                 <div class="footer-block wow fadeInUp" onclick="expand(this)">
                     <h4 class="block-title"  >Specialities</h4>
                     <ul class="footer-links" >
-                        <li> <a href="#">Cardiac Care</a> </li>
-                        <li> <a href="#">Cancer Care</a> </li>
-                        <li> <a href="#">Neurosciences</a> </li>
-                        <li> <a href="#">Gastrosciences</a> </li>
-                        <li> <a href="#">Orthopaedics</a> </li>
-                        <li> <a href="#">Renal Care</a> </li>
-                        <li> <a href="#">Liver Transplant</a> </li>
-                        <li> <a href="#">Bone Marrow Transplant</a> </li>
-                        <li> <a href="#">Lung Transplant</a> </li>
-                        <li> <a href="#">Chest Surgery</a> </li>
-                        <li><a href="#">More</a></li>
+                        @foreach ($specilities as $specility)
+                        <li> <a href="#">{{$specility->title}}</a> </li>
+                        @endforeach
+                        @if ($specilities->count() > 6)
+                            <li><a href="#">More</a></li>
+                        @endif
                     </ul>
                 </div>
                 <div class="footer-block wow fadeInUp" onclick="expand(this)">
@@ -95,12 +90,9 @@
                     </svg>
                 </a>
             </div>
-            <div class="copyright text-center">
-                <p class="m-0">Copyright © 2025 XYZ The Medicity. All Rights Reserved.</p>
-            </div>
+            @includeIf('front.includes.copy')
         </div>
     </div>
-
 </footer>
 
 @push('js')

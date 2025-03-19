@@ -32,6 +32,7 @@ class SliderController extends Controller
             $slider->link_text = $request->link_text;
             $slider->extra_data = $request->extra_data;
             $slider->save();
+            $this->render();
             return redirect()->back()->with("success", "Slider Successfully Added");
         }
     }
@@ -53,6 +54,7 @@ class SliderController extends Controller
             $slider->link_text = $request->link_text;
             $slider->extra_data = $request->extra_data;
             $slider->save();
+            $this->render();
             return redirect()->back()->with("success", "Slider Successfully Updated");
         }
     }
@@ -60,6 +62,12 @@ class SliderController extends Controller
     public function del($slider_id)
     {
         Slider::where('id', $slider_id)->delete();
+        $this->render();
         return redirect()->back()->with("delete_success", "Slider Successfully Deleted");
+    }
+
+    public function render(){
+        $slider = DB::table('sliders')->first(['id','desktop_image','mobile_image']);
+        Helper::putCache('home.slider',view('admin.template.slider',compact('slider'))->render());
     }
 }

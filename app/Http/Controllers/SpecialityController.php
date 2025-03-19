@@ -81,61 +81,7 @@ class SpecialityController extends Controller
         return redirect()->back()->with("delete_success", "Speciality Successfully Deleted");
     }
 
-    // public function subspecialityIndex($speciality_id)
-    // {
-    //     $subspecialties = Speciality::where('parent_speciality_id', $speciality_id)->get();
-    //     return view('admin.speciality.subspeciality.index', compact('subspecialties', 'speciality_id'));
-    // }
-
-    // public function subspecialityAdd(Request $request, $speciality_id)
-    // {
-    //     if (Helper::G($request)) {
-    //         return view('admin.speciality.subspeciality.add', compact('speciality_id'));
-    //     } else {
-    //         $speciality = new Speciality();
-    //         $speciality->title = $request->title;
-    //         $speciality->short_description = $request->short_description;
-
-    //         if ($request->hasFile('icon')) {
-    //             $speciality->icon = $request->file('icon')->store('uploads/images', 'public');
-    //         }
-
-    //         if ($request->hasFile('single_page_image')) {
-    //             $speciality->single_page_image = $request->file('single_page_image')->store('uploads/images', 'public');
-    //         }
-    //         $speciality->parent_speciality_id = $speciality_id;
-    //         $speciality->save();
-
-    //         return redirect()->back()->with("success", "Subspeciality Successfully Added");
-    //     }
-    // }
-
-    // public function subspecialityEdit(Request $request, $subspeciality_id)
-    // {
-    //     $subspeciality = Speciality::where('id', $subspeciality_id)->first();
-    //     $specility = Speciality::where('id', $subspeciality->parent_speciality_id)->first(['id']);
-    //     if (Helper::G($request)) {
-    //         return view('admin.speciality.subspeciality.edit', compact('subspeciality', 'specility'));
-    //     } else {
-    //         $subspeciality->title = $request->title;
-    //         $subspeciality->short_description = $request->short_description;
-
-    //         if ($request->hasFile('icon')) {
-    //             $subspeciality->icon = $request->file('icon')->store('uploads/images', 'public');
-    //         }
-
-    //         if ($request->hasFile('single_page_image')) {
-    //             $subspeciality->single_page_image = $request->file('single_page_image')->store('uploads/images', 'public');
-    //         }
-    //         $subspeciality->save();
-
-    //         return redirect()->back()->with("success", "Subspeciality Successfully Updated");
-    //     }
-    // }
-
-    // public function subspecialityDel($subspeciality_id)
-    // {
-    //     Speciality::where('id', $subspeciality_id)->delete();
-    //     return redirect()->back()->with("delete_success", "Subspeciality Successfully Deleted");
-    // }
+    public function render(){
+        // file_put_contents( resource_path('views/front/includes/footerser.blade.php'),view('admin.speciality.templatefooter',compact('serviceTypes','services'))->render());
+    }
 }
