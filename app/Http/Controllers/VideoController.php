@@ -37,7 +37,7 @@ class VideoController extends Controller
 
     public function index($type_id){
         $videoType = DB::table('video_types')->where('id',$type_id)->first(['id','title']);
-        $videos = DB::table('videos')->get('id','title');
+        $videos = DB::table('videos')->get(['id','title']);
         return view('admin.video.index',compact('videoType','videos'));
     }
     public function add(Request $request,$type_id){
@@ -56,7 +56,7 @@ class VideoController extends Controller
     }
     public function edit(Request $request, $video_id){
         $video = Video::where('id', $video_id)->first();
-        $videoType = DB::table('video_types')->where('id',$video->video_type_id)->first(['title']);
+        $videoType = DB::table('video_types')->where('id',$video->video_type_id)->first(['id','title']);
         if(Helper::G()){
             return view('admin.video.edit',compact('video','videoType'));
         }else{

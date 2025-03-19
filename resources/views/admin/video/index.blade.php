@@ -1,11 +1,12 @@
 @extends('admin.layout.app')
 @section('title')
   <a href="{{ route('admin.video.type.index') }}">Video Types</a> /
+
   <span>{{$videoType->title}}</span> /
   <span>Videos</span>
 @endsection
 @section('btn')
-    <a href="{{ route('admin.video.add') }}" class="btn btn-primary">Add</a>
+    <a href="{{ route('admin.video.add',['type_id'=>$videoType->id]) }}" class="btn btn-primary">Add</a>
 @endsection
 @section('css')
     <style>
@@ -24,15 +25,15 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($Videos as $video)
+            @foreach ($videos as $video)
                 <tr>
                     <td>
                         {{ $video->title }}
                     </td>
                     <td>
-                        <a href="{{ route('admin.technology.edit', ['technology_id' => $technology->id]) }}"
+                        <a href="{{ route('admin.video.edit', ['video_id' => $video->id]) }}"
                             class="btn btn-sm btn-warning">Edit</a>
-                        <a href="{{ route('admin.technology.del', ['technology_id' => $technology->id]) }}"
+                        <a href="{{ route('admin.video.del', ['video_id' => $video->id]) }}"
                             class="btn btn-sm btn-danger">Delete</a>
                     </td>
                 </tr>
