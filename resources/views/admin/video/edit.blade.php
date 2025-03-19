@@ -21,8 +21,8 @@
                 <label for="extra_data"></label>
                 <textarea name="extra_data" id="extra_data" class="form-control">{{ $video->extra_data }}</textarea>
             </div>
-            <div class="col-md-12">
-                <button class="btn btn-sm btn-warning">
+            <div class="col-md-12 d-flex justify-content-end">
+                <button class="btn btn-warning">
                     Update
                 </button>
             </div>

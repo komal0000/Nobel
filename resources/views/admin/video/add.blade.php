@@ -21,8 +21,8 @@
                 <label for="extra_data">Extra Data</label>
                 <textarea name="extra_data" id="extra_data" class="form-control"></textarea>
             </div>
-            <div class="col-md-12">
-                <button class="btn btn-sm btn-primary">
+            <div class="col-md-12 d-flex justify-content-end">
+                <button class="btn btn-primary">
                     Save
                 </button>
             </div>
