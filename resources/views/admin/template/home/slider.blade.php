@@ -62,7 +62,6 @@
                             slidesToShow: 2,
                             slidesToScroll: 1,
                             infinite: true,
-                            // centerMode: true,
                             prevArrow: '<button class="slick-prev left-arrow"><img src="{{ asset('front/assets/img/vector-left.png') }}" alt="Left Arrow"></button>',
                             nextArrow: '<button class="slick-next right-arrow"><img src="{{ asset('front/assets/img/vector-right.png') }}" alt="Right Arrow"></button>',
                             responsive: [{
