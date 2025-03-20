@@ -6,6 +6,9 @@ use App\Helper;
 use App\Models\Speciality;
 use App\Models\SpecialityGallery;
 use App\Models\SpecialityGalleryItem;
+use App\Models\Technology;
+use App\Models\TechnologySection;
+use App\Models\TechnologySectionData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -71,6 +74,7 @@ class SpecialityController extends Controller
     public function del($speciality_id)
     {
         $SpecialityGalleries = SpecialityGallery::where('specialty_id', $speciality_id)->get();
+        $technology = Technology::where('specialty_id', $speciality_id)->first();
         if ($SpecialityGalleries->isNotEmpty()) {
             foreach ($SpecialityGalleries as $gallery) {
                 SpecialityGalleryItem::where('speciality_gallery_id', $gallery->id)->delete();
@@ -78,15 +82,22 @@ class SpecialityController extends Controller
             }
         }
         Speciality::where('parent_speciality_id', $speciality_id)->delete();
+        if ($technology) {
+            $technology_id = $technology->id;
+            TechnologySectionData::where('technology_id', $technology_id)->delete();
+            TechnologySection::where('technology_id', $technology_id)->delete();
+            Technology::where('id', $technology_id)->delete();
+        }
         Speciality::where("id", $speciality_id)->delete();
         $this->render();
         return redirect()->back()->with("delete_success", "Speciality Successfully Deleted");
     }
 
-    public function render(){
-        $specialities = DB::table('specialties')->get(['id','title','icon']);
-        if($specialities){
-            Helper::putCache('home.speciality',view('admin.template.home.speciality',compact('specialities'))->render());
+    public function render()
+    {
+        $specialities = DB::table('specialties')->get(['id', 'title', 'icon']);
+        if ($specialities) {
+            Helper::putCache('home.speciality', view('admin.template.home.speciality', compact('specialities'))->render());
         }
     }
 }
