@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\EmployeeTestimonialController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\HomeCareController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\LeadershipController;
 use App\Http\Controllers\LoginController;
@@ -181,5 +182,11 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::match(['GET','POST'],'add/{type_id}',[VideoController::class,'add'])->name('add');
         Route::match(['GET','POST'],'edit/{video_id}',[VideoController::class,'edit'])->name('edit');
         Route::match(['GET'],'del/{video_id}',[VideoController::class,'del'])->name('del');
+    });
+    Route::prefix('homeCare')->name('homeCare.')->group(function(){
+        Route::get('',[HomeCareController::class,'index'])->name('index');
+        Route::match(['GET','POST'],'add',[HomeCareController::class,'add'])->name('add');
+        Route::match(['GET','POST'],'edit/{homeCare_id}',[HomeCareController::class,'edit'])->name('edit');
+        Route::get('del/{homeCare_id}',[HomeCareController::class,'del'])->name('del');
     });
 });
