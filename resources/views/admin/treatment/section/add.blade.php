@@ -3,7 +3,7 @@
     @if ($speciality_id)
         <a href="{{ route('admin.speciality.index') }}">Specialities</a> /
         @php
-            $parents = \App\Helpers\Helper::getSpecialityRoutes($speciality_id);
+            $parents = \App\Helper::getSpecialityRoutes($speciality_id);
         @endphp
         @foreach ($parents as $parent)
             <a href="{{ route('admin.speciality.index', ['speciality_id' => $parent->id]) }}">{{ $parent->title }}</a> /
