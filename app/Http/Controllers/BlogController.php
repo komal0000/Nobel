@@ -117,4 +117,12 @@ class BlogController extends Controller
         Blog::where('id', $blog_id)->delete();
         return redirect()->back()->with('delete_success', 'Successfully Blog Deleted');
     }
+
+    public function render(){
+        $newsData = DB::table('blogs')->where('type', 2)->get()->take(3);
+        $eventTypes = DB::table('blog_categories')->where('type', 3)->get();
+        $eventDatas = DB::table('blogs')->where('type', 3)->get();
+        $latestNews = DB::table('blogs')->where('type', 'news')->where('is_featured', 1)->first();
+        Helper::putCache('home.news',view('admin.template.home.news', compact('newsData', 'eventDatas','latestNews','eventTypes'))->render());
+    }
 }
