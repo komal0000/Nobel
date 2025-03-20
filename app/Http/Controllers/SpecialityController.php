@@ -42,7 +42,7 @@ class SpecialityController extends Controller
                 $speciality->single_page_image = $request->file('single_page_image')->store('uploads/images', 'public');
             }
             $speciality->save();
-
+            $this->render();
             return redirect()->back()->with("success", "Speciality Successfully Added");
         }
     }
@@ -63,6 +63,7 @@ class SpecialityController extends Controller
                 $speciality->single_page_image = $request->file('single_page_image')->store('uploads/images', 'public');
             }
             $speciality->save();
+            $this->render();
             return redirect()->back()->with("success", "Speciality Successfully Updated");
         }
     }
@@ -78,10 +79,14 @@ class SpecialityController extends Controller
         }
         Speciality::where('parent_speciality_id', $speciality_id)->delete();
         Speciality::where("id", $speciality_id)->delete();
+        $this->render();
         return redirect()->back()->with("delete_success", "Speciality Successfully Deleted");
     }
 
     public function render(){
-        // file_put_contents( resource_path('views/front/includes/footerser.blade.php'),view('admin.speciality.templatefooter',compact('serviceTypes','services'))->render());
+        $specialities = DB::table('specialties')->get(['id','title','icon']);
+        if($specialities){
+            Helper::putCache('home.speciality',view('admin.template.home.speciality',compact('specialities'))->render());
+        }
     }
 }

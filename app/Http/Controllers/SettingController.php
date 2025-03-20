@@ -9,21 +9,10 @@ class SettingController extends Controller
 {
 
     const Setting = [
-        // 'top' => [
-        //     "Header Setting", [
-        //         ['address', 1],
-        //         ['phone', 1],
-        //         ['email', 1],
-        //         ['logo', 0],
-        //         ['fabicon', 0],
-        //     ],
-        //     [
-        //         ["top", "views/front/includes/top.blade.php"],
-        //         ["icon", "views/front/includes/icon.blade.php"],
-        //     ]
-        // ],
+
         'copy' => [
-            "CopyRight", [
+            "CopyRight",
+            [
                 ['copyright', 1],
 
 
@@ -57,10 +46,9 @@ class SettingController extends Controller
                 } else {
 
                     file_put_contents(resource_path($data[2]), view('admin.setting.template.' . $type, compact('curdata'))->render());
-                    Helper::putCache('home.slider', '');
                 }
             } else {
-                file_put_contents(resource_path('views/front/includes/' . $type . '.blade.php'), view('admin.setting.template.' . $type, compact('curdata'))->render());
+                Helper::putCache($type, view('admin.setting.template.' . $type, compact('curdata'))->render());
             }
             return redirect()->back();
         } else {
@@ -78,7 +66,7 @@ class SettingController extends Controller
                 'addr' => '',
                 'others' => [],
                 'links' => [
-                    'facebook'=>'',
+                    'facebook' => '',
                     'youtube' => '',
                     'instagram' => '',
                     'twitter' => '',
@@ -103,7 +91,7 @@ class SettingController extends Controller
                 'phone' => $request->phone ?? '',
                 'addr' => $request->addr ?? '',
                 'others' => $others,
-                'links'=>[
+                'links' => [
                     'facebook' => $request->facebook ?? '',
                     'youtube' => $request->youtube ?? '',
                     'instagram' => $request->instagram ?? '',
