@@ -99,11 +99,3 @@
 
 </section>
 
-@push('js')
-    <script>
-        function setActive(el) {
-            $('.sp-btn').removeClass('active-btn');
-            $(el).addClass('active-btn');
-        }
-    </script>
-@endpush

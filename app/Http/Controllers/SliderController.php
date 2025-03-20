@@ -69,5 +69,12 @@ class SliderController extends Controller
     public function render(){
         $sliders = DB::table('sliders')->get(['id','desktop_image','mobile_image']);
         Helper::putCache('home.slider',view('admin.template.home.slider',compact('sliders'))->render());
+
+
     }
+    // public function render(){
+    //     $sliders = DB::table('sliders')->get(['id','desktop_image','mobile_image']);
+    //     $fullView = view('home', compact('sliders'))->render();
+    //     Helper::putCache('home.slider', $fullView);
+    // }
 }

@@ -1,6 +1,4 @@
-@push('css')
-    <link rel="stylesheet" type="text/css" />
-@endpush
+
 <div class="top-banner">
     @foreach ($sliders as $slider)
     <picture class="img-wrap img-fluid">
@@ -49,49 +47,4 @@
         </div>
     </div>
 </div>
-@push('js')
-    <script>
-        $(document).ready(function() {
-            let $slider = $('#slick-slider');
 
-            function initSlider() {
-                if ($(window).width() <= 1299) {
-
-                    if (!$slider.hasClass('slick-initialized')) {
-                        $slider.slick({
-                            slidesToShow: 2,
-                            slidesToScroll: 1,
-                            infinite: true,
-                            prevArrow: '<button class="slick-prev left-arrow"><img src="{{ asset('front/assets/img/vector-left.png') }}" alt="Left Arrow"></button>',
-                            nextArrow: '<button class="slick-next right-arrow"><img src="{{ asset('front/assets/img/vector-right.png') }}" alt="Right Arrow"></button>',
-                            responsive: [{
-                                    breakpoint: 768,
-                                    settings: {
-                                        arrows: false,
-                                        slidesToShow: 2,
-
-                                    }
-                                },
-                                {
-                                    breakpoint: 480,
-                                    settings: {
-                                        slidesToShow: 1,
-                                        arrows: false
-                                    }
-                                }
-                            ]
-                        })
-                    }
-                } else {
-                    if ($slider.hasClass("slick-initialized")) {
-                        $slider.slick("unslick");
-                    }
-                }
-            }
-            initSlider();
-            $(window).on("resize", function() {
-                initSlider();
-            });
-        })
-    </script>
-@endpush

@@ -46,11 +46,3 @@
         <img class="img-fluid" src="{{ asset('front/assets/img/doctors-desktop.webp') }}" alt="meet-our-doctors">
     </picture>
 </section>
-@push('js')
-    <script>
-        function showList(){
-            console.log('clicked');
-            $('#list-wrap').show();
-        }
-    </script>
-@endpush
