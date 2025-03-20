@@ -56,8 +56,7 @@
             $(el).addClass('active-btn');
         }
         function showList(){
-            console.log('clicked');
-            $('#list-wrap').show();
+            $('#list-wrap').toggle();
         }
     </script>
 @endsection
