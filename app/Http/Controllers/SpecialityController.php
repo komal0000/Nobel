@@ -96,8 +96,8 @@ class SpecialityController extends Controller
     public function render()
     {
         $specialities = DB::table('specialties')->get(['id', 'title', 'icon']);
-        if ($specialities) {
-            Helper::putCache('home.speciality', view('admin.template.home.speciality', compact('specialities'))->render());
-        }
+        Helper::putCache('home.speciality', view('admin.template.home.speciality', compact('specialities'))->render());
+        Helper::putCache('home.teams', view('admin.template.home.teams', compact('specialities'))->render());
+
     }
 }

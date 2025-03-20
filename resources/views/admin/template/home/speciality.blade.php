@@ -1,5 +1,4 @@
 <section class="specialities">
-
     <div class="main-container">
         <div class="specialities-inner d-flex flex-column flex-xl-row gap-2">
             <div class="sp-inner-heading">

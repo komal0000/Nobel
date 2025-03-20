@@ -9,9 +9,9 @@
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
-    <link rel="stylesheet" href="https://raw.githubusercontent.com/Amrit-Rijal-01/hospital-ui/refs/heads/main/public/front/css/index.css">
+    <link rel="stylesheet" href="{{ asset('front/assets/css/index.css') }}">
     <title>@yield('title')</title>
-    @yield('css')
+    @stack('css')
 </head>
 
 <body>
@@ -30,7 +30,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
 
-    @yield('js')
+    @stack('js')
 </body>
 
 </html>

@@ -2,11 +2,13 @@
     <link rel="stylesheet" type="text/css" />
 @endpush
 <div class="top-banner">
+    @foreach ($sliders as $slider)
     <picture class="img-wrap img-fluid">
         <source media="(min-width: 768px)" srcset="{{ Storage::url($slider->desktop_image) }}">
         <source media="(min-width: 320px)" srcset="{{ Storage::url($slider->mobile_image) }}">
         <img class="img-fluid" src="{{ Storage::url($slider->desktop_image) }}" alt="Banner Image">
     </picture>
+    @endforeach
     <div class="search-wrapper mx-auto">
         <div class="search-field">
             <input type="text" name="" id="search-box" class="search-box" placeholder="Search for Doctors">
