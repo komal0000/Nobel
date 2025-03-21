@@ -99,6 +99,7 @@ class SettingController extends Controller
                 ]
             ];
             Helper::setSetting('contact', $data);
+            Helper::putCache('home.footer',view('admin.setting.template.footer',compact('data'))->render());
             return redirect()->back()->with('success', "Contact Saved Sucessfully");
         }
     }
