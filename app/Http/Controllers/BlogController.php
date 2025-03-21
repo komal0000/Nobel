@@ -54,7 +54,6 @@ class BlogController extends Controller
     public function del($category)
     {
         Helper::deleteCategoryRecursively($category);
-        $this->render();
         return redirect()->back()->with('delete_success', 'BlogCategory Successfully Deleted');
     }
 
@@ -64,9 +63,9 @@ class BlogController extends Controller
         $blogs = DB::table('blogs')->where('blog_category_id', $blogCategory_id)->get();
         $parent_id  = $request->parent_id;
         if ($parent_id) {
-            $blogCategory = DB::table('blog_categories')->where('id', $parent_id)->where('type', $type)->first();
+            $blogCategory = DB::table('blog_categories')->where('id', $parent_id)->where('id',$blogCategory_id)->where('type', $type)->first();
         } else {
-            $blogCategory = DB::table('blog_categories')->whereNull('parent_id')->where('type', $type)->first();
+            $blogCategory = DB::table('blog_categories')->whereNull('parent_id')->where('id',$blogCategory_id)->where('type', $type)->first();
         }
         return view('admin.blogCategory.blog.index', compact('parent_id', 'blogs', 'type', 'blogCategory_id', 'blogCategory'));
     }
@@ -120,15 +119,16 @@ class BlogController extends Controller
     public function blogdel($blog_id)
     {
         Blog::where('id', $blog_id)->delete();
-        $this->render();
+        // $this->render();
         return redirect()->back()->with('delete_success', 'Successfully Blog Deleted');
     }
 
     public function render(){
-        $eventDatas = DB::table('blogs')->where('type', 3)->get();
-        $newsData = DB::table('blogs')->where('blog_type', 2)->take(3)->get();
-        $latestNews = DB::table('blogs')->where('type', 2)->where('is_featured', 1)->first();
+        $eventData = DB::table('blogs')->where('type', Helper::blog_type_event)->get();
+        $newsData = DB::table('blogs')->where('type', Helper::blog_type_news)->take(3)->get();
         $eventTypes = DB::table('blog_categories')->where('type', helper::blog_type_event)->get();
-        Helper::putCache('home.newsEvent', view('admin.template.home.news', compact('newsData', 'eventDatas', 'latestNews', 'eventTypes'))->render());
+        $latestNews = DB::table('blogs')->where('type', Helper::blog_type_news)->where('is_featured', 1)->first();
+
+        Helper::putCache('home.newsEvent', view('admin.template.home.news', compact('newsData', 'eventData', 'latestNews', 'eventTypes'))->render());
     }
 }

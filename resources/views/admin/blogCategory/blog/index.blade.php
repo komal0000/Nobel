@@ -18,7 +18,7 @@
             @if ($type == 1) Blogs Categories @elseif ($type == 2) News Categories @else Event Categories @endif
         </a> /
         <span>{{ $blogCategory->title }}</span> /
-        @if ($type == 1) Blogs Categories @elseif ($type == 2) News Categories @else Event Categories @endif
+        @if ($type == 1) Blogs  @elseif ($type == 2) News  @else Events @endif
     @endif
 @endsection
 @section('btn')

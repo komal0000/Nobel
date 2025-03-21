@@ -21,7 +21,7 @@
                 @endforeach
             @else
                 @foreach ($awards as $award)
-                    <div class="slide-card">
+                    <div class="slide-card " >
                         <div class="leaf-left">
                             <img src="{{ asset('front/assets/img/leaf-left.png') }}" alt="leaf">
                         </div>

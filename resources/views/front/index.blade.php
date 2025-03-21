@@ -134,5 +134,14 @@
             $(this).closest('.why-block').addClass('active-why');
         });
         $('.center-image').addClass('normal');
+
+        function changeTab(el,id) {
+            let tabId = $(el).data('target');
+            $('.tab').removeClass('active-tab');
+            $(el).addClass('active-tab');
+
+            $('.event-list').removeClass('active').hide();
+            $('#' + tabId).addClass('active').fadeIn();
+        }
     </script>
 @endsection

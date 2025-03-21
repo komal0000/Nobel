@@ -23,7 +23,7 @@
         </a> /
         <span>{{ $blogCategory->title }}</span> /
         <a href="{{ route('admin.blogCategory.blog.index', ['blogCategory_id' => $blogCategory->id, 'type' => $blogCategory->type, 'parent_id' => $parent_id]) }}">
-            @if ($blogCategory->type == 1) Blogs @else News @endif
+            @if ($blogCategory->type == 1) Blogs @elseif($blogCategory->type == 2) News @else Events @endif
         </a> /
         <span>Edit</span>
     @endif
