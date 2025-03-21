@@ -3,7 +3,7 @@
 @section('title')
     @if ($parent_id)
         <a href="{{ route('admin.blogCategory.index', ['type' => $blogCategory->type]) }}">
-            @if ($type == 1) Blogs Categories @else News Categories @endif
+            @if ($blogCategory->type == 1) Blogs Categories @elseif($blogCategory->type == 2) News Categories @else Event Categories @endif
         </a> /
         @php
             $parents = \App\Helpers\Helper::getParentRoute($parent_id, 'blog_Categories', 'blogCategory', $blogCategory->type);
@@ -19,7 +19,7 @@
         <span>Edit</span>
     @else
         <a href="{{ route('admin.blogCategory.index', ['type' => $blogCategory->type]) }}">
-            @if ($blogCategory->type == 1) Blogs Categories @else News Categories @endif
+            @if ($blogCategory->type == 1) Blogs Categories @elseif($blogCategory->type == 2) News Categories @else Event Categories @endif
         </a> /
         <span>{{ $blogCategory->title }}</span> /
         <a href="{{ route('admin.blogCategory.blog.index', ['blogCategory_id' => $blogCategory->id, 'type' => $blogCategory->type, 'parent_id' => $parent_id]) }}">

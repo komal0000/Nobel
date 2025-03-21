@@ -54,6 +54,7 @@ class BlogController extends Controller
     public function del($category)
     {
         Helper::deleteCategoryRecursively($category);
+        $this->render();
         return redirect()->back()->with('delete_success', 'BlogCategory Successfully Deleted');
     }
 
@@ -119,7 +120,7 @@ class BlogController extends Controller
     public function blogdel($blog_id)
     {
         Blog::where('id', $blog_id)->delete();
-        // $this->render();
+        $this->render();
         return redirect()->back()->with('delete_success', 'Successfully Blog Deleted');
     }
 

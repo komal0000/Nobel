@@ -135,7 +135,7 @@
         });
         $('.center-image').addClass('normal');
 
-        function changeTab(el,id) {
+        function changeTab(el) {
             let tabId = $(el).data('target');
             $('.tab').removeClass('active-tab');
             $(el).addClass('active-tab');
