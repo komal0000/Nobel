@@ -141,6 +141,43 @@
                 minHeight: 200, // set minimum height of editor
             });
         });
+        function getYoutubeData(_url) {
+            return new Promise(async (resolve, reject) => {
+                if (_url == '') {
+                    reject('url not found');
+                }
+                let url, video_id;
+                if (_url.includes('youtube.com')) {
+                    console.log('this path');
+
+                    url = new URL(_url);
+                    video_id = url.searchParams.get('v');
+
+                } else {
+                    video_id = _url;
+                }
+
+                let youtubeData = {
+                    image: "https://i.ytimg.com/vi/" + video_id + "/0.jpg",
+                    embed: "https://www.youtube.com/embed/" + video_id,
+                    video_id,
+                    title: '',
+                }
+
+                try {
+                    const res = await axios.get(
+                        `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${video_id}&format=json`
+                        )
+                    youtubeData.title = res.data.title || '';
+                } catch (error) {
+                    console.log(error);
+
+                }
+
+
+                resolve(youtubeData);
+            })
+        }
     </script>
 
     @yield('js')

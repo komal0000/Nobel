@@ -178,7 +178,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
             Route::post('edit/{type_id}',[VideoController::class,'editType'])->name('edit');
             Route::get('del/{type_id}',[VideoController::class,'delType'])->name('del');
         });
-        Route::get('index/{type_id}',[VideoController::class,'index'])->name('index');
+        Route::match(['GET','POST'],'index/{type_id}',[VideoController::class,'index'])->name('index');
         Route::match(['GET','POST'],'add/{type_id}',[VideoController::class,'add'])->name('add');
         Route::match(['GET','POST'],'edit/{video_id}',[VideoController::class,'edit'])->name('edit');
         Route::match(['GET'],'del/{video_id}',[VideoController::class,'del'])->name('del');
