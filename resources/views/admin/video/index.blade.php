@@ -8,6 +8,7 @@
 @section('content')
     <div class="p-3 shadow">
         <div class="row">
+            <input type="hidden" name="video_link" id="video_link" >
             <div class="col-md-12 mb-3">
                 <div class="tab-pane pt-3 mb-2" id="video" role="tabpanel" aria-labelledby="video-tab">
                     <label for="youtube_link">Youtube link</label>
@@ -31,7 +32,7 @@
                 <input type="text" name="title" id="title" class="form-control">
             </div>
             <div class="col-md-12 mt-2 d-flex justify-content-end">
-                <button class="btn btn-primary btn-sm">
+                <button class="btn btn-primary btn-sm" onclick="saveVideo()">
                     Save Video
                 </button>
             </div>
@@ -48,16 +49,23 @@
                     $('#video-video-preview').attr('src', data.embed);
                     $('#video-preview-panel').show();
                     $('#title').val(data.title);
-                    axios.post('{{ route('admin.video.index', ['type_id' => $videoType->id]) }}', {
-                            video_link: data.video_id,
-                            title: data.title,
-                        })
-                        .then(res => {
-                            console.log(res)
-                        })
-                        .catch(err => {
-                            console.error(err);
-                        })
+                    $('#video_link').val(data.video_id);
+                })
+                .catch(err => {
+                    console.error(err);
+                })
+        }
+
+        function saveVideo() {
+            const title = $('#title').val();
+            const video_link = $('#video_link').val();
+            axios.post('{{ route('admin.video.index', ['type_id' => $videoType->id]) }}', {
+                    video_link: video_link,
+                    title: title,
+                })
+                .then(res => {
+                    console.log(res)
+                    location.reload();
                 })
                 .catch(err => {
                     console.error(err);
