@@ -35,23 +35,34 @@
                 <div class="events">
                     <div class="heading-sm">Upcoming Events</div>
                     <ul class="tabs d-flex justify-content-evenly p-0">
-                        @foreach ($eventTypes as $type )
-                        <li><button onclick="changeTab(this)" class="tab active-tab">{{$type->title}}</button></li>
+                        @foreach ($eventTypes as $type)
+                            <li><button onclick="changeTab(this)" class="tab {{ $loop->first ? 'active-tab' : '' }}" data-target="tab-{{ $loop->index + 1 }}">{{ $type->title }}</button></li>
                         @endforeach
                     </ul>
-                    <div class="each-event d-flex align-items-center gap-2">
-                        <div class="date d-flex flex-column justify-content-center align-items-center">
-                            <div class="number">1</div>
-                            <div class="month">Chaitra</div>
+                    @foreach ($eventTypes as $type)
+                        <div class="event-list {{ $loop->first ? 'active' : '' }}" id="tab-{{ $loop->index + 1 }}">
+                            @php
+                                $Events = $eventDatas->where('type_id', $type->id);
+                            @endphp
+                            @foreach ($type->events as $event)
+                                <div class="each-event {{ $event->type }} d-flex align-items-center gap-4">
+                                    <div class="date d-flex flex-column justify-content-center align-items-center">
+                                        <div class="number">{{ $event->day }}</div>
+                                        <div class="month">{{ $event->month }}</div>
+                                    </div>
+                                    <div class="content d-flex flex-column gap-2">
+                                        <p>{{ $event->description }}</p>
+                                        <div class="location">
+                                            <i class="bi bi-geo-alt"></i> {{ $event->location }}
+                                        </div>
+                                        @if($event->type == 'webinar')
+                                            <div class="button"><x-hoverBtn>View Details</x-hoverBtn></div>
+                                        @endif
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
-                        <div class="content d-flex flex-column gap-2">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim error at ipsa velit saepe
-                                consequatur quos expedita ea, vitae corporis.</p>
-                            <div class="location">
-                                <i class="bi bi-geo-alt"></i> Biratnagar
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
 
             </div>
@@ -59,9 +70,8 @@
 </section>
 @push('js')
     <script>
-        function changeTab(el) {
-
-            $('.tab').removeClass('active-tab');
+        function changeTab(el,id) {
+            $('.tabs button').removeClass('active-tab');
             $(el).addClass('active-tab');
         }
     </script>

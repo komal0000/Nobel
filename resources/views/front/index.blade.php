@@ -8,6 +8,7 @@
     @includeIf('front.cache.home.teams')
     @includeIf('front.cache.home.care')
     @includeIf('front.cache.home.awards')
+    @includeIf('front.cache.home.newsEvent')
 @endsection
 @section('js')
     <script>

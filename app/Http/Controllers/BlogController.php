@@ -33,6 +33,7 @@ class BlogController extends Controller
             $BlogCategory->type = $type;
             $BlogCategory->parent_id = $parent_id;
             $BlogCategory->save();
+            $this->render();
             return redirect()->back()->with('success', 'BlogCategory Successfully Added');
         }
     }
@@ -46,12 +47,14 @@ class BlogController extends Controller
             $BlogCategory->title = $request->title;
             $BlogCategory->type = $type;
             $BlogCategory->save();
+            $this->render();
             return redirect()->back()->with('success', 'BlogCategory Successfully Updated');
         }
     }
     public function del($category)
     {
         Helper::deleteCategoryRecursively($category);
+        $this->render();
         return redirect()->back()->with('delete_success', 'BlogCategory Successfully Deleted');
     }
 
@@ -83,11 +86,13 @@ class BlogController extends Controller
                 $blog->image = $request->file('image')->store("uploads/blogcategory/{$blogCategory->type}", 'public');
             }
             $blog->text = $request->text;
-            $blog->blog_category_id = $blogCategory->id;
             $blog->creator_user_id = Auth::id();
             $blog->is_featured = $request->is_featured;
+            $blog->type = $type;
+            $blog->blog_category_id = $blogCategory->id;
             $blog->datas = $request->datas;
             $blog->save();
+            $this->render();
             return redirect()->back()->with('success', 'Blog Successfully Added');
         }
     }
@@ -100,29 +105,30 @@ class BlogController extends Controller
         if (Helper::G()) {
             return view('admin.blogCategory.blog.edit', compact('parent_id', 'blog', 'blogCategory'));
         } else {
+            $blog->text = $request->text;
+            $blog->datas = $request->datas;
             $blog->title = $request->title;
-
+            $blog->is_featured = $request->is_featured;
             if ($request->hasFile('image')) {
                 $blog->image = $request->file('image')->store("uploads/blogcategory/{$blogCategory->type}", 'public');
             }
-            $blog->text = $request->text;
-            $blog->is_featured = $request->is_featured;
-            $blog->datas = $request->datas;
             $blog->save();
+            $this->render();
             return redirect()->back()->with('success', 'Blog Successfully Added');
         }
     }
     public function blogdel($blog_id)
     {
         Blog::where('id', $blog_id)->delete();
+        $this->render();
         return redirect()->back()->with('delete_success', 'Successfully Blog Deleted');
     }
 
     public function render(){
-        $newsData = DB::table('blogs')->where('type', 2)->get()->take(3);
-        $eventTypes = DB::table('blog_categories')->where('type', 3)->get();
         $eventDatas = DB::table('blogs')->where('type', 3)->get();
-        $latestNews = DB::table('blogs')->where('type', 'news')->where('is_featured', 1)->first();
-        Helper::putCache('home.news',view('admin.template.home.news', compact('newsData', 'eventDatas','latestNews','eventTypes'))->render());
+        $newsData = DB::table('blogs')->where('blog_type', 2)->take(3)->get();
+        $latestNews = DB::table('blogs')->where('type', 2)->where('is_featured', 1)->first();
+        $eventTypes = DB::table('blog_categories')->where('type', helper::blog_type_event)->get();
+        Helper::putCache('home.newsEvent', view('admin.template.home.news', compact('newsData', 'eventDatas', 'latestNews', 'eventTypes'))->render());
     }
 }

@@ -11,9 +11,17 @@ use Illuminate\Support\Facades\DB;
 
 class Helper
 {
-    /**
-     * Check if the request method is GET
-     */
+
+    const blog_types = [
+        1 => 'blog',
+        2 => 'news',
+        3 => 'event',
+    ];
+
+    const blog_type_blog=1;
+    const blog_type_news=2;
+    const blog_type_event=3;
+
     public static function G(): bool
     {
         return request()->isMethod('get');
