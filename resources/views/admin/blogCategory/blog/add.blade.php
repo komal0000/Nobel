@@ -49,7 +49,16 @@
                         <input type="checkbox" name="is_featured" value="1" class="form-check-input me-2">
                         <label for="is_featured">Is Featured</label>
                     </div>
+                    <div class="col-md-6 mb-2">
+                        <label for="location">Location</label>
+                        <input type="text" name="location" id="location" class="form-control">
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <label for="date">Date</label>
+                        <input type="date" name="date" id="date" class="form-control">
+                    </div>
                 </div>
+
                 <div class="col-md-12 mb-2">
                     <label for="text">Text <span style="color: red;">*</span></label>
                     <input type="text" name="text" id="text" class="form-control" required>

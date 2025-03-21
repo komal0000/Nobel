@@ -6,7 +6,7 @@ use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\Setting;
 use App\Models\Speciality;
-use Illuminate\Http\Request;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class Helper
@@ -18,9 +18,9 @@ class Helper
         3 => 'event',
     ];
 
-    const blog_type_blog=1;
-    const blog_type_news=2;
-    const blog_type_event=3;
+    const blog_type_blog = 1;
+    const blog_type_news = 2;
+    const blog_type_event = 3;
 
     public static function G(): bool
     {
@@ -34,7 +34,20 @@ class Helper
     {
         return  request()->isMethod('post');
     }
-
+    public static function convertDateToInteger($date)
+    {
+        // Parse the date string and return the Unix timestamp
+        return Carbon::parse($date)->timestamp;
+    }
+    public static function convertIntegerToDate($timestamp)
+    {
+        return Carbon::createFromTimestamp($timestamp)->toDateString();
+    }
+    public static function formatTimestampToDateString(int $timestamp): string
+    {
+        $date = Carbon::createFromTimestamp($timestamp);
+        return $date->format('d F ,Y');
+    }
     public static function getSpecialityRoutes($parent_speciality_id, $get_routes = true)
     {
 
@@ -87,22 +100,24 @@ class Helper
         BlogCategory::where('id', $categoryId)->delete();
     }
 
-    public static function getSetting($key,$direct=false){
-        $s=DB::table('settings')->where('key',$key)->select('value')->first();
-        return $direct?($s!=null?$s->value:null):($s!=null?json_decode($s->value):null);
+    public static function getSetting($key, $direct = false)
+    {
+        $s = DB::table('settings')->where('key', $key)->select('value')->first();
+        return $direct ? ($s != null ? $s->value : null) : ($s != null ? json_decode($s->value) : null);
     }
 
-   public static function setSetting($key,$value,$direct=false){
-        $s=Setting::where('key',$key)->first();
-        if($s==null){
-            $s=new Setting();
-            $s->key=$key;
+    public static function setSetting($key, $value, $direct = false)
+    {
+        $s = Setting::where('key', $key)->first();
+        if ($s == null) {
+            $s = new Setting();
+            $s->key = $key;
         }
-        if($direct){
-            $s->value=$value;
-        }else{
+        if ($direct) {
+            $s->value = $value;
+        } else {
 
-            $s->value=json_encode($value);
+            $s->value = json_encode($value);
         }
         $s->save();
         return $s;
@@ -110,18 +125,17 @@ class Helper
 
     public static function putCache($_filePath, $content)
     {
-        $pathDatas=explode('.',$_filePath);
+        $pathDatas = explode('.', $_filePath);
         //append .balde.php to last element if not exists
-        if(count($pathDatas)>0){
-            $lastElement=$pathDatas[count($pathDatas)-1];
-            $pathDatas[count($pathDatas)-1].='.blade.php';
-
+        if (count($pathDatas) > 0) {
+            $lastElement = $pathDatas[count($pathDatas) - 1];
+            $pathDatas[count($pathDatas) - 1] .= '.blade.php';
         }
 
-        $filePath=implode('/',$pathDatas);
+        $filePath = implode('/', $pathDatas);
 
 
-        $filePath = resource_path("views/front/cache/".$filePath);
+        $filePath = resource_path("views/front/cache/" . $filePath);
         // Extract the directory path from the file path
         $directoryPath = dirname($filePath);
 
@@ -133,5 +147,4 @@ class Helper
         // Put the content to the file path
         file_put_contents($filePath, $content);
     }
-
 }

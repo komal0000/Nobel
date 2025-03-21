@@ -9,7 +9,7 @@
                 <div class="post-card">
                     <img src="{{ Storage::url($latestNews->image) }}" alt="Post Image" class="img-fluid">
                     <div class="body">
-                        <div class="date">Chaitra 1, 2081</div>
+                        <div class="date">{{ \App\Helper::formatTimestampToDateString($latestNews->date) }}</div>
                         <p class="content">{{ $latestNews->text }}</p>
                         <div class="d-flex justify-content-between know-btn">
                             <x-hoverBtn>Read Post</x-hoverBtn>
@@ -24,7 +24,7 @@
                         <div class="list">
                             <img class="img-fluid" src="{{ Storage::url($data->image) }}" alt="Post Image">
                             <div class="body d-flex flex-column gap-2">
-                                <div class="date">Chaitra 1, 2081</div>
+                                <div class="date">{{ \App\Helper::formatTimestampToDateString($data->date) }}</div>
                                 <div class="content">
                                     {{ $data->text }}
                                 </div>
@@ -61,7 +61,7 @@
                                 <div class="content d-flex flex-column gap-2">
                                     <p>{{ $event->datas }}</p>
                                     <div class="location">
-                                        <i class="bi bi-geo-alt"></i> location
+                                        <i class="bi bi-geo-alt"></i> {{ $type->location }}
                                     </div>
                                     <div class="button">
                                         <x-hoverBtn>View Details</x-hoverBtn>

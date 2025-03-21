@@ -85,10 +85,12 @@ class BlogController extends Controller
             if ($request->hasFile('image')) {
                 $blog->image = $request->file('image')->store("uploads/blogcategory/{$blogCategory->type}", 'public');
             }
+            $blog->type = $type;
             $blog->text = $request->text;
             $blog->creator_user_id = Auth::id();
+            $blog->location =$request->location;
+            $blog->date = Helper::convertDateToInteger($request->date);
             $blog->is_featured = $request->is_featured;
-            $blog->type = $type;
             $blog->blog_category_id = $blogCategory->id;
             $blog->datas = $request->datas;
             $blog->save();
@@ -108,6 +110,8 @@ class BlogController extends Controller
             $blog->text = $request->text;
             $blog->datas = $request->datas;
             $blog->title = $request->title;
+            $blog->location =$request->location;
+            $blog->date = Helper::convertDateToInteger($request->date);
             $blog->is_featured = $request->is_featured;
             if ($request->hasFile('image')) {
                 $blog->image = $request->file('image')->store("uploads/blogcategory/{$blogCategory->type}", 'public');
@@ -126,10 +130,11 @@ class BlogController extends Controller
 
     public function render(){
         $eventData = DB::table('blogs')->where('type', Helper::blog_type_event)->get();
-        $newsData = DB::table('blogs')->where('type', Helper::blog_type_news)->take(3)->get();
+        $newsData = DB::table('blogs')->where('type', Helper::blog_type_news)->whereNull('is_featured')->take(3)->get();
         $eventTypes = DB::table('blog_categories')->where('type', helper::blog_type_event)->get();
         $latestNews = DB::table('blogs')->where('type', Helper::blog_type_news)->where('is_featured', 1)->first();
 
         Helper::putCache('home.newsEvent', view('admin.template.home.news', compact('newsData', 'eventData', 'latestNews', 'eventTypes'))->render());
     }
 }
+

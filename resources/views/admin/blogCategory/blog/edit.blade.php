@@ -50,6 +50,14 @@
                         <input type="checkbox" name="is_featured" value="1" class="form-check-input me-2" @if($blog->is_featured) checked @endif>
                         <label for="is_featured">Is Featured <span style="color: red;">*</span></label>
                     </div>
+                    <div class="col-md-6 mb-2">
+                        <label for="date">Date</label>
+                        <input type="date" name="date" id="date" class="form-control" value="{{ \App\Helper::convertIntegerToDate($blog->date) }}">
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <label for="loaction">Location</label>
+                        <input type="text" name="location" id="location" class="form-control" value="{{ $blog->location }}" >
+                    </div>
                 </div>
                 <div class="col-md-12 mb-2">
                     <label for="text">Text <span style="color: red;">*</span></label>
