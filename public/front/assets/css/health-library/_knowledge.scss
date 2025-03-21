@@ -1,0 +1,90 @@
+#knowledge {
+    .main-container {
+        .knowledge-tabs {
+            .tab {
+                button {
+                    padding: 10px 15px;
+                    border-radius: 25px;
+                    background-color: #fff;
+                    color: var(--color-dark-grey);
+                    border: 1px solid var(--color-dark-grey);
+                }
+            }
+
+            .active {
+                button {
+                    background-color: var(--color-main);
+                    color: #fff;
+                    border: 1px solid var(--color-main);
+                }
+
+            }
+        }
+
+        .tab-content {
+            .tab-panel {
+                display: none;
+
+                .tab-slider {
+                    .each-card {
+                        background-color: var(--secondary-white);
+                        display: flex;
+                        flex-direction: column;
+                        margin: 15px;
+                        box-shadow: 0 4px 19px rgba(0, 0, 0, 0.1);
+                        border-radius: 20px;
+                        overflow: hidden;
+
+                        img {
+                            width: 100%;
+                            height: 100%;
+                        }
+
+                        .body {
+                            display: flex;
+                            flex-direction: column;
+                            padding: 30px;
+
+                            .type {
+                                color: var(--color-main);
+                            }
+
+                        }
+                    }
+                    .video-card {
+                        position: relative;
+                        margin: 15px;
+                        box-shadow: 0 4px 19px rgba(0, 0, 0, 0.1);
+                        border-radius: 20px;
+                        overflow: hidden;
+                        aspect-ratio: 1/1;
+                        div {
+                            transition: 0.3s ease;
+                            &:hover {
+                                transform: scale(1.1);
+                            }
+                        }
+
+                        img {
+                            width: 100%;
+                            aspect-ratio: 1/1;
+                        }
+                        .play-icon {
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            width: auto;
+                            height: auto;
+                        }
+                    }
+                }
+
+            }
+
+            .active {
+                display: block;
+            }
+        }
+    }
+}

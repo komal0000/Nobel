@@ -3,6 +3,7 @@
     font-size: 14px;
     font-weight: 600;
     padding: 50px 0;
+
     @media (max-width:768px) {
         padding-bottom: 100px;
     }
@@ -26,6 +27,7 @@
                 left: 50%;
                 transform: translate(-50%, 0);
             }
+
             @media (max-width:480px) {
                 width: 100%;
             }
@@ -34,21 +36,25 @@
         .post-card {
             background-color: var(--color-white);
             border-radius: 20px;
+
             @media (max-width: 1199px) {
                 display: none;
             }
 
             flex: 1;
+
             img {
                 border-radius: 20px;
                 width: 100%;
                 object-fit: cover;
             }
+
             .post {}
 
             .body {
                 padding: 30px;
                 cursor: pointer;
+
                 .date {
                     color: var(--color-grey);
                     font-weight: 500;
@@ -71,6 +77,7 @@
                 img {
                     width: 100%;
                     height: auto;
+                    aspect-ratio: 5/4;
                     border-radius: 10px;
                 }
 
@@ -120,12 +127,15 @@
                     .active-tab {
                         background-color: var(--color-main);
                         color: var(--color-white);
+                        border: 1px solid var(--color-main);
+
                     }
 
                     button {
+
                         padding: 10px 30px;
-                        font-size: 11px;
-                        font-weight: 600;
+                        font-size: 15px;
+                        font-weight: 700;
                         border-radius: 50px;
                         border: 1px solid var(--color-black);
                         color: var(--color-dark-grey);
@@ -145,21 +155,44 @@
                 }
             }
 
+            .event-list {
+                display: none;
+            }
+
+            .active {
+                display: block;
+            }
+
             .each-event {
                 margin-top: 20px;
                 padding: 15px 0;
+                border-bottom: 1px solid var(--border-color);
+
+                &:last-child {
+                    border-bottom: none;
+                }
+                p {
+                    margin-bottom: 0;
+                }
 
                 .date {
-                    padding: 35px 10px;
+                    width: 120px;
+                    height: 116px;
+                    text-align: center;
+                    line-height: 1;
+                    padding: 28px 5px;
                     border-radius: 10px;
                     background-color: var(--secondary-white);
-                    flex: 1;
+                    flex: 2;
+                    font-weight: 800;
+                    font-size: 24px;
                 }
 
                 .content {
                     flex: 5;
                 }
             }
+
         }
     }
 }

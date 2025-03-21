@@ -1,16 +1,26 @@
 .services {
-    padding: 50px 0;
     font-size: 24px;
     font-weight: 700;
     margin-bottom: 10px;
     text-align: center;
     color: var(--color-dark-grey);
-    background-color: var(--secondary-white);
 
     .main-container {
 
         .service-slider {
             padding: 18px 0;
+
+            .each-card {
+                .content {
+                    font-size: 14px;
+                    overflow: hidden;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    min-height: 60px;
+                    margin-bottom: 10px;
+                }
+            }
+
             .slick-prev {
 
                 border: none;

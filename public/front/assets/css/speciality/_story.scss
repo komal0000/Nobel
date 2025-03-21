@@ -1,0 +1,162 @@
+.patient-story {
+    .main-container {
+
+        .img-1,
+        .img-2 {
+            position: relative;
+
+            .play-icon {
+                position: absolute;
+                height: 32px;
+                width: 32px;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        .desktop {
+            @media (max-width: 991px) {
+                display: none !important;
+            }
+
+            a {
+                display: block;
+                transition: 0.3s ease;
+
+                &:hover {
+                    transform: scale(1.1);
+                    cursor: pointer;
+                }
+            }
+
+            img {
+                width: 100%;
+                height: auto;
+                border-radius: 20px;
+            }
+
+            &>* {
+                width: 20%;
+                overflow: hidden;
+                border-radius: 20px;
+
+                div {
+                    overflow: hidden;
+                    border-radius: 20px;
+                }
+            }
+
+            &>*:first-child,
+            &>*:last-child {
+                display: flex;
+                align-items: center;
+
+                .img-1 {
+                    overflow: hidden;
+                    border-radius: 20px;
+                }
+            }
+
+            &>*:nth-child(3) {
+                flex-grow: 1;
+
+                .img-1 {
+                    height: 100%;
+
+                    .center-img {
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+            }
+
+            &>*:nth-child(2),
+            &>*:nth-child(4) {
+                div {
+                    overflow: hidden;
+                    margin-bottom: 16px;
+                    border-radius: 20px;
+                }
+
+                .img-2 {
+                    overflow: hidden;
+                    border-radius: 20px;
+                }
+            }
+
+        }
+
+        .mobile {
+            @media (min-width: 992px) {
+                display: none !important;
+            }
+
+            .image-card {
+                position: relative;
+
+                .play-icon {
+                    position: absolute;
+                    height: 32px;
+                    width: 32px;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                }
+            }
+
+
+            .slick-prev {
+
+                border: none;
+                height: 38px;
+                width: 38px;
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                border-radius: 50%;
+                background-color: #fff;
+                position: absolute;
+                top: 50%;
+                left: 0;
+                transform: translateY(-50%);
+                z-index: 99;
+            }
+
+            .slick-next {
+                border: none;
+                height: 38px;
+                width: 38px;
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                border-radius: 50%;
+                background-color: #fff;
+                position: absolute;
+                position: absolute;
+                top: 50%;
+                right: 0;
+                transform: translateY(-50%);
+                z-index: 99;
+            }
+
+            .image-card {
+                height: auto;
+                border-radius: 20px;
+                margin: 0 20px;
+                overflow: hidden;
+
+                a {
+                    display: block;
+                    position: relative;
+                    transition: 0.2s ease;
+
+                    &:hover {
+                        transform: scale(1.1);
+                    }
+                }
+
+                img {
+                    border-radius: 20px;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

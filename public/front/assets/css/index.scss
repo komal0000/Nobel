@@ -36,10 +36,24 @@ a {
         color: var(--color-light-1);
     }
 }
+section {
+    padding: 50px 0;
+
+    @media (max-width: 768px) {
+        padding: 35px 0;
+    }
+
+    &:nth-of-type(odd) {
+        background-color: var(--secondary-white);
+    }
+}
+
+@import './components/main';
 
 .main-container {
     width: 90%;
     margin: auto;
+    padding: 0 20px;
 
     @media (min-width: 1200px) and (max-width: 1499px) {
         width: 95%;
@@ -164,6 +178,7 @@ a {
 .heading {
     font-size: 32px;
     font-weight: 700;
+    color: var(--color-dark-grey);
 
     @media (min-width: 769px) and (max-width: 1599px) {
         font-size: 24px;
@@ -171,7 +186,6 @@ a {
 
     @media (max-width: 768px) {
         font-size: 18px;
-        margin-bottom: 30px;
     }
 }
 
@@ -186,6 +200,30 @@ a {
 
     @media (max-width: 768px) {
         font-size: 13px;
+    }
+}
+
+.para-wrap {
+    font-size: 15px;
+    line-height: 1.6;
+    font-weight: 500;
+
+    @media screen and (max-width: 1599px) {
+        font-size: 14px;
+    }
+
+    @media screen and (max-width: 991px) {
+        font-size: 13px;
+    }
+
+    @media screen and (max-width: 767px) {
+        font-size: 12px;
+    }
+}
+
+body {
+    @media screen and (max-width: 767px) {
+        font-size: 12px;
     }
 }
 
@@ -225,15 +263,11 @@ a {
 
 
 @import './header/main';
-
 @import './home/main';
-
 @import './speciality/main';
-
+@import './all-specialities';
+@import './health-library/main';
 @import './career/main';
-
-@import './components/main';
-
+@import './contact-us/main';
 @import './footer/main';
-
 @import './mobile-nav/main';

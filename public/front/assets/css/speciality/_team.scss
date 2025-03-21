@@ -1,0 +1,97 @@
+.team {
+    .main-container {
+        .title {
+            color: var(--color-main);
+            font-size: 60px;
+
+            @media (max-width: 768px) {
+                font-size: 30px;
+                padding: 0 15px;
+            }
+        }
+
+        .para {
+            max-width: 500px;
+            margin: 0 0 30px;
+
+            @media (max-width: 768px) {
+                padding: 0 15px;
+            }
+        }
+
+        .team-slider {
+            position: relative;
+            padding: 24px 0;
+
+            .main-card {
+                margin: 15px;
+                background-color: var(--color-white);
+                border-radius: 20px;
+                display: flex;
+                flex-direction: column;
+                text-align: left;
+                box-shadow: 0 3px 17px rgba(0, 0, 0, .14);
+
+                .img-wrapper {
+                    height: 60%;
+
+                    img {
+                        width: 100%;
+                        border-radius: 20px;
+                        aspect-ratio: 3/2;
+                    }
+                }
+
+                .body {
+                    height: 40%;
+                    padding: 30px;
+                }
+            }
+
+            .slick-prev {
+
+                border: none;
+                height: 38px;
+                width: 38px;
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                border-radius: 50%;
+                background-color: #fff;
+                position: absolute;
+                top: 50%;
+                left: 0;
+                transform: translateY(-50%);
+                z-index: 99;
+            }
+
+            .slick-next {
+                border: none;
+                height: 38px;
+                width: 38px;
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                border-radius: 50%;
+                background-color: #fff;
+                position: absolute;
+                position: absolute;
+                top: 50%;
+                right: 0;
+                transform: translateY(-50%);
+                z-index: 99;
+            }
+        }
+
+        .team-line {
+            font-size: 16px;
+            text-align: center;
+            margin-top: 20px;
+
+            @media (max-width: 768px) {
+                padding: 0 15px;
+            }
+
+            span {
+                color: var(--color-dark-grey);
+                font-weight: 700;
+            }
+        }
+    }
+}

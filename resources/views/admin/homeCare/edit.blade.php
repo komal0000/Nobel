@@ -10,8 +10,7 @@
             <div class="col-md-6">
                 <div class="col-md-12 mb-3">
                     <label for="image">Image <span style="color: red;">*</span></label>
-                    <input type="file" class="form-control dropify" id="image" name="image" accept="image/*">
-                    <img src="{{ Storage::url($HomeCare->image) }}" alt="Current Image" width="100">
+                    <input type="file" class="form-control dropify" id="image" name="image" data-default-file="{{ Storage::url($HomeCare->image) }}" accept="image/*">
                 </div>
             </div>
             <div class="col-md-6">

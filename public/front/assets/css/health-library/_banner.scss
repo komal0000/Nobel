@@ -1,0 +1,20 @@
+.banner {
+    padding: 0;
+    position: relative;
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+
+    .title {
+        width: 100%;
+        text-align: center;
+        color: var(--color-white);
+        font-weight: 600;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}

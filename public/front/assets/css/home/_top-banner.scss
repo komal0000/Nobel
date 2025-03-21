@@ -1,6 +1,7 @@
 .top-banner {
     position: relative;
-
+    padding-top: 0;
+    background-color: var(--color-white) !important;
 
     .search-wrapper {
         position: absolute;

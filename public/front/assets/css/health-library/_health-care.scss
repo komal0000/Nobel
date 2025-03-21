@@ -1,0 +1,53 @@
+#health-care {
+    .main-container {
+        .desktop-card {
+            @media (max-width: 1199px) {
+                display: none;
+            }
+
+            border-radius: 25px;
+            overflow: hidden;
+
+            .col-3 {
+                background-color: var(--secondary-white);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 0;
+
+                img {
+                    width: 100%;
+                }
+            }
+        }
+
+        .mobile-slider {
+            @media (min-width: 1200px) {
+                display: none;
+            }
+
+            .mobile-card {
+                background-color: var(--secondary-white);
+                display: flex;
+                flex-direction: column;
+                margin: 15px;
+                box-shadow: 0 4px 19px rgba(0, 0, 0, 0.1);
+                border-radius: 20px;
+                overflow: hidden;
+
+                img {
+                    width: 100%;
+                }
+
+                .body {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 30px;
+                }
+            }
+        }
+    }
+}

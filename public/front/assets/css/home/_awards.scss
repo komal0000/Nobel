@@ -1,5 +1,6 @@
 .awards {
     margin-top: 150px;
+    background-color: var(--color-white) !important;
     background: url('/front/img/why-bg.png') top left;
     padding: 40px 0;
     .main-container {
@@ -40,9 +41,13 @@
                 padding: 30px 90px;
                 text-align: center;
                 position: relative;
-                height: 100%;
+                aspect-ratio: 2/1;
                 box-shadow: 0 3px 17px rgba(0, 0, 0, .14);
                 margin: 20px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
 
                 .leaf-left {
                     width: 50px;

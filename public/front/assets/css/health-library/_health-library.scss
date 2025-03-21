@@ -1,0 +1,53 @@
+#health-library {
+    .main-container {
+        .health-library-slide {
+            .health-library-card {
+                margin: 15px;
+                box-shadow: 0 4px 19px rgba(0, 0, 0, 0.1);
+                border-radius: 12px;
+                padding: 30px;
+                background: url('/front/img/health-library/pattern-bg.png') top left #fff;
+                display: flex;
+                flex-direction: column;
+                transition: 0.3s ease;
+                padding: 30px;
+                height: 100%;
+
+                &:hover {
+                    background-color: var(--color-light-1);
+                    color: var(--color-white);
+
+                    .btn {
+                        color: var(--color-white) !important;
+                        .orange-right {
+                            background-color: var(--color-white);
+                            color: var(--color-light-1);
+                        }
+                    }
+                }
+
+                .img-wrapper {
+                    width: 82px;
+                    margin: 0 auto 20px;
+                    flex-shrink: 0;
+                    height: 82px;
+
+                    img {
+                        width: 82px;
+                        height: 82px;
+                        object-fit: contain;
+                    }
+                }
+
+                .heading-sm {
+                text-align: center;
+                margin-bottom: 10px;
+                }
+                .btn {
+                    align-self: center;
+                }
+
+            }
+        }
+    }
+}

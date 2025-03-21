@@ -10,14 +10,14 @@
     // border-radius: 12px 12px 0 0;
 
     @media (min-width: 481px) and (max-width: 1199px) {
-        padding: 10px 0 7px;
+        padding: 10px 10px 7px;
         border-bottom: 1px solid #d9d9d9;
         border-radius: 0;
 
     }
 
     @media (max-width:480px) {
-        padding: 10px 0;
+        padding: 10px;
         border-radius: 0;
     }
 
@@ -132,12 +132,14 @@
                         z-index: 999;
                         width: 280px;
                         list-style: none;
-                        margin-top: 20px;
+                        margin-top: 15px;
 
                         @media screen and (max-width: 1199px) {
                             position: static;
                             width: auto;
                             box-shadow: none;
+                            padding: 0;
+                            margin-top: 0;
                             margin-bottom: 15px;
                         }
 
@@ -155,6 +157,10 @@
                             align-items: center;
                             gap: 10px;
                             min-height: 50px;
+
+                            @media screen and (max-width: 1199px) {
+                                padding-left: 25px;
+                            }
 
                         }
                     }

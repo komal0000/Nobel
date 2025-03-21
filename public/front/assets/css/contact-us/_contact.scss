@@ -1,0 +1,75 @@
+.contact {
+    background: url('/front/img/contact-us/contact-banner-lg.jpg') no-repeat !important;
+    background-size: cover;
+
+    .main-container {
+        .heading-group {
+            width: 500px;
+            max-width: 100%;
+            margin: 0 auto;
+            color: var(--color-white);
+        }
+
+        .form-container {
+
+            .detail {
+                background-color: var(--secondary-white);
+                border-radius: 25px;
+                padding: 25px;
+
+                @media (max-width: 991px) {
+                    // margin-bottom: 24px;
+                }
+
+                .first {
+                    .logo {
+                        background-color: var(--color-main);
+                        color: var(--color-white);
+                        width: 48px;
+                        height: 48px;
+                        border-radius: 50%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                    .info {
+                        .head {
+                            font-weight: 600;
+                        }
+                        .socials {
+                            .bi {
+                                font-size: 20px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .form {
+                background-color: var(--secondary-white);
+                border-radius: 25px;
+                padding: 25px;
+
+                .form-floating {
+                    label {
+                        margin-left: 12px;
+                    }
+                }
+                .submit-btn {
+                    border: none;
+                    background-color: var(--color-main);
+                    color: var(--color-white);
+                    padding: 10px 20px;
+                    border-radius: 20px;
+                    font-weight: 600;
+                    border-radius: 25px;
+                    transition: 0.2s ease;
+
+                    &:hover {
+                        background-color: var(--color-dark-1);
+                    }
+                }
+            }
+        }
+    }
+}

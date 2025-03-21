@@ -20,9 +20,12 @@ class HomeCareController extends Controller
         }else{
             $HomeCare = new HomeCare();
             $HomeCare->title = $request->title;
-            $HomeCare->image = $request->image;
+            if($request->hasFile('image')){
+                $HomeCare->image = $request->file('image')->store('uploads/homeCare','public');
+            }
             $HomeCare->link = $request->link;
             $HomeCare->save();
+            $this->render();
             return redirect()->back()->with('success', 'HomeCare Successfully Added');
         }
     }
@@ -33,16 +36,26 @@ class HomeCareController extends Controller
             return view('admin.homeCare.edit', compact('HomeCare'));
         }else{
             $HomeCare->title = $request->title;
-            $HomeCare->image = $request->image;
+            if($request->hasFile('image')){
+                $HomeCare->image = $request->file('image')->store('uploads/homeCare','public');
+            }
             $HomeCare->link = $request->link;
             $HomeCare->save();
+            $this->render();
             return redirect()->back()->with('success', 'HomeCare Successfully Updated');
         }
     }
 
     public function del($id){
         HomeCare::where('id', $id)->delete();
+        $this->render();
         return redirect()->back()->with('delete_success', 'HomeCare Successfully Deleted');
+    }
+
+    public function render()
+    {
+        $HomeCareData = DB::table('home_cares')->get(['id', 'title', 'image', 'link'])->take(5);
+        Helper::putCache('home.care',view('admin.template.home.care',compact('HomeCareData'))->render());
     }
 
 }

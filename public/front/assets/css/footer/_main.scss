@@ -87,7 +87,6 @@ footer {
 
                         li {
                             list-style: none;
-                            padding: 5px 0;
                             color: var(--color-grey);
                             margin: 0 0 10px;
                             font-size: 14px;
@@ -99,6 +98,11 @@ footer {
                             a {
                                 display: block;
                                 color: inherit;
+                                font-weight: 500;
+                                transition: 0.2s ease;
+                                &:hover {
+                                    color: var(--color-black);
+                                }
                             }
                         }
                     }

@@ -1,0 +1,31 @@
+#technology {
+    .main-container{
+        .heading-group {
+            position: relative;
+            .button {
+                @media (max-width:768px) {
+                    display: none !important;
+                }
+                position: absolute;
+                top: 0;
+                right: 2%;
+            }
+        }
+        .technology-slider {
+            .tech-card {
+                background-color: var(--color-white);
+                img {
+                    height: 100%;
+                    border-radius: 25px;
+                }
+            }
+        }
+        .mobile-btn {
+            display: flex;
+            justify-content: center;
+            @media (min-width:769px) {
+                display: none;
+            }
+        }
+    }
+}
