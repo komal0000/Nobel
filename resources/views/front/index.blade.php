@@ -85,6 +85,21 @@
         function showList() {
             $('#list-wrap').toggle();
         }
+        $("#speciality-search").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#find-doc-speciality li").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+            });
+        });
+
+        $("#find-doc-speciality").on("click", "li", function() {
+            var selectedText = $(this).text();
+            var selectedValue = $(this).data("value");
+            $(".default-speciality-item").text(selectedText);
+            $("#find-doc-speciality-input").val(selectedValue);
+            $('#list-wrap').hide();
+        });
+
         $('.click-circle').on('click', function(e) {
             console.log('logged');
 

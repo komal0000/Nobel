@@ -24,10 +24,11 @@
                                         <span class="anchor-down-btn d-inline-block" style="border-color: #000"></span>
                                     </div>
                                 </div>
-                                <div class="list-wrap" id="list-wrap">
+                                <div class="list-wrap" id="list-wrap" style="display: none;">
+                                    <input type="text" id="speciality-search" placeholder="Search Specialities..." class="form-control mb-2">
                                     <ul class="find-doc-list-speciality" id="find-doc-speciality">
                                         @foreach ($specialities as $specialty)
-                                        <li data-value="{{ $specialty->id }}">{{$specialty->title}}</li>
+                                            <li data-value="{{ $specialty->id }}">{{ $specialty->title }}</li>
                                         @endforeach
                                     </ul>
                                     <input type="hidden" name="find-doc-speciality" id="find-doc-speciality-input">
@@ -38,6 +39,7 @@
                     </div>
                 </form>
             </div>
+
         </div>
     </div>
     <picture class="image-block">
