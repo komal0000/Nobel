@@ -37,6 +37,26 @@
                 </button>
             </div>
         </div>
+        <div class="p-4">
+            <div class="row">
+                @foreach ($videos as $video)
+                    <div class="col-md-4 mb-4">
+                        <div class="border rounded p-2 mb-2">
+                            <div class="image">
+                                <iframe id="video-video-preview" class="w-100 h-100" frameborder="0" src="https://www.youtube.com/embed/{{ $video->video_link }}"></iframe>
+                            </div>
+                            <br>
+                            <div class="option">
+                                <a href="{{route('admin.video.edit',['video_id'=>$video->id])}}" class="btn btn-warning">Edit</a>
+                                <a href="{{route('admin.video.del',['video_id'=>$video->id])}}" class="btn btn-danger">Delete</a>
+                            </div>
+                        </div>
+
+                    </div>
+                @endforeach
+            </div>
+
+        </div>
     </div>
 @endsection
 @section('js')

@@ -42,7 +42,8 @@ class VideoController extends Controller
     {
         if (Helper::G()) {
             $videoType = DB::table('video_types')->where('id', $type_id)->first(['id', 'title']);
-            $videos = DB::table('videos')->get(['id', 'title']);
+            $videos = DB::table('videos')->get();
+            // dd($videos);
             return view('admin.video.index', compact('videoType', 'videos'));
         } else {
             $video = new Video();

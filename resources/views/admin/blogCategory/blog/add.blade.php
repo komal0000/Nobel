@@ -32,22 +32,22 @@
     <form action="{{ route('admin.blogCategory.blog.add', ['blogCategory_id' => $blogCategory->id, 'type' => $type, 'parent_id' => $parent_id]) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="col-md-12">
                     <label for="image">Image <span style="color: red;">*</span></label>
                     <input type="file" name="image" id="image" class="form-control dropify" accept="image/*" required>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <div class="row d-flex align-items-end">
-                    <div class="col-md-8 mb-2">
-                        <label for="title">Title <span style="color: red;">*</span></label>
-                        <input type="text" name="title" id="title" class="form-control" required>
-                    </div>
                     <div class="col-md-4 mb-2 d-flex align-items-center">
                         <input type="hidden" name="is_featured" value="0">
                         <input type="checkbox" name="is_featured" value="1" class="form-check-input me-2">
                         <label for="is_featured">Is Featured</label>
+                    </div>
+                    <div class="col-md-12 mb-2">
+                        <label for="title">Title <span style="color: red;">*</span></label>
+                        <input type="text" name="title" id="title" class="form-control" required>
                     </div>
                     <div class="col-md-6 mb-2">
                         <label for="location">Location</label>
@@ -59,19 +59,15 @@
                     </div>
                 </div>
 
-                <div class="col-md-12 mb-2">
-                    <label for="text">Text <span style="color: red;">*</span></label>
-                    <input type="text" name="text" id="text" class="form-control" required>
-                </div>
-                <div class="col-md-12 mb-2">
-                    <label for="datas">Datas</label>
-                    <textarea name="datas" id="datas" class="form-control"></textarea>
-                </div>
-                <div class="col-md-12 mb-2 d-flex justify-content-end">
-                    <button class="btn btn-success">
-                        Save
-                    </button>
-                </div>
+            </div>
+            <div class="col-md-12 my-2">
+                <label for="text">Text <span style="color: red;">*</span></label>
+                <input type="text" name="text" id="text" class="form-control summernote" required>
+            </div>
+            <div class="col-md-12 my-2 d-flex justify-content-end">
+                <button class="btn btn-success">
+                    Save
+                </button>
             </div>
         </div>
     </form>
