@@ -59,19 +59,15 @@
                         <input type="text" name="location" id="location" class="form-control" value="{{ $blog->location }}" >
                     </div>
                 </div>
-                <div class="col-md-12 mb-2">
-                    <label for="text">Text <span style="color: red;">*</span></label>
-                    <input type="text" name="text" id="text" class="form-control" value="{{ $blog->text }}">
-                </div>
-                <div class="col-md-12 mb-2">
-                    <label for="datas">Datas</label>
-                    <textarea name="datas" id="datas" class="form-control">{{ $blog->datas }}</textarea>
-                </div>
-                <div class="col-md-12 mb-2 d-flex justify-content-end">
-                    <button class="btn btn-success">
-                        Update
-                    </button>
-                </div>
+            </div>
+            <div class="col-md-12 mb-2">
+                <label for="text_data">Text <span style="color: red;">*</span></label>
+                <input type="text" name="text_data" id="text_data" class="form-control" value="{{ $blog->text }}">
+            </div>
+            <div class="col-md-12 mb-2 d-flex justify-content-end">
+                <button class="btn btn-success">
+                    Update
+                </button>
             </div>
         </div>
     </form>
