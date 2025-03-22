@@ -40,7 +40,7 @@
             </div>
             <div class="col-md-12 mb-3">
                 <label for="aliment_short_description">Short Description <span style="color: red;">*</span></label>
-                <textarea class="form-control" id="aliment_short_description" name="short_description">{{ $aliment->short_description }}</textarea>
+                <textarea class="form-control summernote" id="aliment_short_description" name="short_description">{{ $aliment->short_description }}</textarea>
             </div>
         </div>
     </div>
@@ -90,7 +90,7 @@
                                         <div class="col-md-12 mb-3">
                                             <label for="description_{{ $type->id }}">Description <span
                                                     style="color: red;">*</span></label>
-                                            <textarea name="description" id="description_{{ $type->id }}" class="form-control">{{ $section ? $section->description : '' }}</textarea>
+                                            <textarea name="description" id="description_{{ $type->id }}" class="form-control summernote">{{ $section ? $section->description : '' }}</textarea>
                                         </div>
                                     </div>
                                 </div>
