@@ -64,8 +64,9 @@
                     title: title,
                 })
                 .then(res => {
-                    console.log(res)
-                    location.reload();
+                    if (res.data.success){
+                        location.reload();
+                    }
                 })
                 .catch(err => {
                     console.error(err);

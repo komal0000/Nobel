@@ -51,7 +51,9 @@ class VideoController extends Controller
             $video->extra_data = $request->extra_data;
             $video->video_type_id = $type_id;
             $video->save();
-            return redirect()->back()->with('success', 'Video Successfully Added');
+            session()->flash('success', 'Award Successfully updated');
+            return response()->json(['success' => true]);
+
         }
     }
     public function edit(Request $request, $video_id)

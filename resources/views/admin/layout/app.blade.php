@@ -138,7 +138,7 @@
                 }
             });
             $('.summernote').summernote({
-                minHeight: 200, // set minimum height of editor
+                minHeight: 200,
             });
         });
         function getYoutubeData(_url) {
