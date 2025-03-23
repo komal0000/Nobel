@@ -103,4 +103,11 @@ class JobController extends Controller
         Job::where('id', $job_id)->delete();
         return redirect()->back()->with('success', 'Successfully Deleted Job');
     }
+
+
+    public function render()
+    {
+        $jobcategories = DB::table('job_categories')->get(['id', 'title']);
+        Helper::putCache('career.job',view('admin.template.career.jobs',compact('jobcategories'))->render());
+    }
 }

@@ -7,3 +7,6 @@
     @includeIf('front.cache.contact.index')
     @includeIf('front.cache.contact.map')
 @endsection
+@section('js')
+
+@endsection

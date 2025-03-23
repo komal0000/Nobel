@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[FrontController::class,'index'])->name('index');
 Route::get('contact',[FrontController::class,'contact'])->name('contact');
-// Route::
+Route::get('careers',[FrontController::class,'careers'])->name('careers');
 
 Route::match(["GET", "POST"], 'login', [LoginController::class, 'login'])->name('login');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
@@ -128,7 +128,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
             Route::get('index/{jobCategory_id}', [JobController::class, 'jobIndex'])->name('index');
             Route::match(['GET', 'POST'], 'add/{jobCategory_id}', [JobController::class, 'jobAdd'])->name('add');
             Route::match(['GET', 'POST'], 'edit/{job_id}', [JobController::class, 'jobEdit'])->name('edit');
-            Route::match(['GET', 'POST'], 'del/{job_id}', [JobController::class, 'jobDel'])->name('del');
+            Route::match(['GET', 'POST'], 'del/{job_id}', [JobController::class, 'jobDelete'])->name('del');
         });
     });
 
