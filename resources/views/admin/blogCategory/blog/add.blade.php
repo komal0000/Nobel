@@ -71,44 +71,38 @@
         @csrf
         <div class="row">
             <div class="col-md-5">
-                @if ($blogCategory->type == 4)
-                    <div class="col-md-12 mb-3">
-                        <div class="tab-pane mb-2" id="video" role="tabpanel" aria-labelledby="video-tab">
-                            <input type="hidden" name="video_link" id="">
-                            <label for="video_link">Youtube link</label>
-                            <input type="url" class="form-control " placeholder="Enter Youtube Url"
-                                onchange="GetMedia(this)">
-                            <div id="video-preview-panel" style="display: none;">
-                                <hr>
-                                <div class="row">
-                                    <div class="col-5">
-                                        <img class="w-100" id="video-image-preview" alt="" style="height: 150px">
-                                    </div>
-                                    <div class="col-5">
-                                        <iframe id="video-video-preview" class="w-100" frameborder="0"></iframe>
-                                    </div>
+                <div class="col-md-12 mb-3">
+                    <div class="tab-pane mb-2" id="video" role="tabpanel" aria-labelledby="video-tab">
+                        <input type="hidden" name="video_link" id="">
+                        <label for="video_link">Youtube link</label>
+                        <input type="url" class="form-control " placeholder="Enter Youtube Url"
+                            onchange="GetMedia(this)">
+                        <div id="video-preview-panel" style="display: none;">
+                            <hr>
+                            <div class="row">
+                                <div class="col-5">
+                                    <iframe id="video-video-preview" class="w-100" frameborder="0"></iframe>
                                 </div>
                             </div>
                         </div>
                     </div>
-                @else
-                    <div class="col-md-12">
-                        <label for="image">Image <span style="color: red;">*</span></label>
-                        <input type="file" name="image" id="image" class="form-control dropify" accept="image/*"
-                            required>
-                    </div>
-                @endif
+                </div>
+                <div class="col-md-12">
+                    <label for="image">Image </label>
+                    <input type="file" name="image" id="image" class="form-control dropify" accept="image/*"
+                        required>
+                </div>
             </div>
             <div class="col-md-7">
                 <div class="row d-flex align-items-end">
                     @if ($blogCategory->type == 4)
-                    <div class="" style="display: none">
-                        <div class="col-md-4 mb-2 d-flex align-items-center" style="display: none">
-                            <input type="hidden" name="is_featured" value="0">
-                            <input type="checkbox" name="is_featured" value="1" class="form-check-input me-2">
-                            <label for="is_featured">Is Featured</label>
+                        <div class="" style="display: none">
+                            <div class="col-md-4 mb-2 d-flex align-items-center" style="display: none">
+                                <input type="hidden" name="is_featured" value="0">
+                                <input type="checkbox" name="is_featured" value="1" class="form-check-input me-2">
+                                <label for="is_featured">Is Featured</label>
+                            </div>
                         </div>
-                    </div>
                     @else
                         <div class="col-md-4 mb-2 d-flex align-items-center">
                             <input type="hidden" name="is_featured" value="0">
@@ -120,12 +114,16 @@
                         <label for="title">Title <span style="color: red;">*</span></label>
                         <input type="text" name="title" id="title" class="form-control" required>
                     </div>
+                    @if ($blogCategory->type == 4)
+
+                    @else
                     <div class="col-md-6 mb-2">
                         <label for="location">Location</label>
                         <input type="text" name="location" id="location" class="form-control">
                     </div>
+                    @endif
                     <div class="col-md-6 mb-2">
-                        <label for="date">Date</label>
+                        <label for="date">Date <span style="color: red;">*</span></label>
                         <input type="date" name="date" id="date" class="form-control">
                     </div>
                 </div>
