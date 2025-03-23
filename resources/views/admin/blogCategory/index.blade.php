@@ -3,10 +3,10 @@
 @section('title')
     @if ($parent_id)
         <a href="{{ route('admin.blogCategory.index', ['type' => $type]) }}">
-            @if ($type == 1) Blogs Categories @elseif($type == 2) News Categories @else Event Categories @endif
+            @if ($type == 1) Blogs Categories @elseif($type == 2) News Categories @elseif($type == 3) Event Categories @else Update Categories @endif
         </a> /
         @php
-            $parents = \App\Helpers\Helper::getParentRoute($parent_id, 'blog_Categories', 'blogCategory', $type);
+            $parents = \App\Helper::getParentRoute($parent_id, 'blog_Categories', 'blogCategory', $type);
         @endphp
         @foreach ($parents as $parent)
             <a
@@ -16,7 +16,7 @@
         <span>Sub Category</span>
     @else
         <span>
-            @if ($type == 1) Blogs Categories @elseif($type == 2) News Categories @else Event Categories @endif
+            @if ($type == 1) Blogs Categories @elseif($type == 2) News Categories @elseif($type == 3) Event Categories @else Update Categories @endif
         </span>
     @endif
 @endsection
@@ -39,13 +39,13 @@
                     <td>
                         <a href="{{ route('admin.blogCategory.index', ['type' => $type, 'parent_id' => $category->id]) }}"
                             class="btn btn-info btn-sm">Sub Category</a>
-                        <a href="{{ route('admin.blogCategory.edit', ['category' => $category->id, 'parent_id' => $category->id]) }}"
+                        <a href="{{ route('admin.blogCategory.edit', ['category' => $category->id]) }}"
                             class="btn btn-warning btn-sm ">Edit</a>
-                        <a href="{{ route('admin.blogCategory.del', ['category' => $category->id, 'parent_id' => $category->id]) }}"
+                        <a href="{{ route('admin.blogCategory.del', ['category' => $category->id]) }}"
                             class="btn btn-danger btn-sm">Delete</a>
                         <a href="{{ route('admin.blogCategory.blog.index', ['blogCategory_id' => $category->id, 'type' => $type, 'parent_id' => $parent_id]) }}"
                             class="btn btn-sm btn-info">
-                            @if ($type == 1) Manage Blogs @elseif($type == 2) Manage News @else Manage Events @endif
+                            @if ($type == 1) Manage Blogs @elseif($type == 2) Manage News @elseif($type == 3) Manage Events @else Manage Updates @endif
                         </a>
                     </td>
                 </tr>

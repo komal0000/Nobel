@@ -260,7 +260,7 @@
                                         </g>
                                     </svg>
                                 </i>
-                                <i class="sidenav-mini-icon"> A </i>
+                                <i class="sidenav-mini-icon"> B </i>
                                 <span class="item-name">News</span>
                             </a>
                         </li>
@@ -278,6 +278,21 @@
                                 <span class="item-name">Events</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="{{ route('admin.blogCategory.index', ['type' => '4']) }}">
+                                <i class="icon">
+                                    <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
+                                        viewBox="0 0 24 24" fill="currentColor">
+                                        <g>
+                                            <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                        </g>
+                                    </svg>
+                                </i>
+                                <i class="sidenav-mini-icon"> D </i>
+                                <span class="item-name">Updates</span>
+                            </a>
+                        </li>
+
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -327,7 +342,7 @@
                                         </g>
                                     </svg>
                                 </i>
-                                <i class="sidenav-mini-icon"> A </i>
+                                <i class="sidenav-mini-icon">B </i>
                                 <span class="item-name">Technology Section Type</span>
                             </a>
                         </li>
@@ -343,7 +358,7 @@
                                         </g>
                                     </svg>
                                 </i>
-                                <i class="sidenav-mini-icon"> B </i>
+                                <i class="sidenav-mini-icon"> C </i>
                                 <span class="item-name">Contact</span>
                             </a>
                         </li>

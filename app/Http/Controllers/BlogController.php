@@ -37,15 +37,16 @@ class BlogController extends Controller
             return redirect()->back()->with('success', 'BlogCategory Successfully Added');
         }
     }
-    public function edit(Request $request, $category, $type)
+    public function edit(Request $request, $category)
     {
         $BlogCategory = BlogCategory::where('id', $category)->first();
+        $parent_id = $request->parent_id;
         if (Helper::G()) {
-            return view('admin.blogCategory.edit', compact('BlogCategory'));
+            return view('admin.blogCategory.edit', compact('BlogCategory','parent_id'));
         } else {
             $BlogCategory = new BlogCategory();
             $BlogCategory->title = $request->title;
-            $BlogCategory->type = $type;
+            $BlogCategory->type = $BlogCategory->type;
             $BlogCategory->save();
             $this->render();
             return redirect()->back()->with('success', 'BlogCategory Successfully Updated');

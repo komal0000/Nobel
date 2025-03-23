@@ -2,10 +2,10 @@
 @section('title')
     @if ($parent_id)
         <a href="{{ route('admin.blogCategory.index', ['type' => $type]) }}">
-            @if ($type == 1) Blogs Categories @elseif($type == 2) News Categories @else Event Categories @endif
+            @if ($type == 1) Blogs Categories @elseif($type == 2) News Categories @elseif($type == 3) Event Categories @else Update Categories @endif
         </a> /
         @php
-            $parents = \App\Helpers\Helper::getParentRoute($parent_id, 'blog_categories', 'blogCategory' , $type);
+            $parents = \App\Helper::getParentRoute($parent_id, 'blog_categories', 'blogCategory' , $type);
         @endphp
         @foreach ($parents as $parent)
             <a
@@ -16,7 +16,7 @@
         <span>Add</span>
     @else
         <a href="{{ route('admin.blogCategory.index', ['type' => $type]) }}">
-            @if ($type == 1) Blogs Categories @elseif($type == 2) News Categories @else Event Categories @endif
+            @if ($type == 1) Blogs Categories @elseif($type == 2) News Categories  @elseif($type == 3) Event Categories @else Update Categories @endif
         </a> /
         <span>Add</span>
     @endif
