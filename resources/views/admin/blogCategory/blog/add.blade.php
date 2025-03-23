@@ -62,7 +62,7 @@
             </div>
             <div class="col-md-12 my-2">
                 <label for="text_data">Text <span style="color: red;">*</span></label>
-                <input type="text" name="text_data" id="text_data" class="form-control summernote" required>
+                <textarea type="text" name="text" id="text" class="form-control summernote" required></textarea>
             </div>
             <div class="col-md-12 my-2 d-flex justify-content-end">
                 <button class="btn btn-success">

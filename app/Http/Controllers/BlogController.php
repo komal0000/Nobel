@@ -86,7 +86,7 @@ class BlogController extends Controller
                 $blog->image = $request->file('image')->store("uploads/blogcategory/{$blogCategory->type}", 'public');
             }
             $blog->type = $type;
-            $blog->text_data = $request->text_data;
+            $blog->text = $request->text;
             $blog->creator_user_id = Auth::id();
             $blog->location =$request->location;
             $blog->date = Helper::convertDateToInteger($request->date);
@@ -107,7 +107,7 @@ class BlogController extends Controller
         if (Helper::G()) {
             return view('admin.blogCategory.blog.edit', compact('parent_id', 'blog', 'blogCategory'));
         } else {
-            $blog->text = $request->text_data;
+            $blog->text = $request->text;
             $blog->datas = $request->datas;
             $blog->title = $request->title;
             $blog->location =$request->location;
