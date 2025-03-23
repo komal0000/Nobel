@@ -28,6 +28,8 @@ class JobController extends Controller
                 $jobcategory->icon = $request->file('icon')->store('uploads/jobs', 'public');
             }
             $jobcategory->save();
+            $this->render();
+
             return redirect()->back()->with('success', 'Successfully Added Job Category');
         }
     }
@@ -44,13 +46,15 @@ class JobController extends Controller
                 $jobCategory->icon = $request->file('icon')->store('uploads/jobs', 'public');
             }
             $jobCategory->save();
+            $this->render();
             return redirect()->back()->with('success', 'Successfully Updated Job Category');
         }
     }
     public function delete($jobcategory_id)
     {
-        Job::where('job_category_id',$jobcategory_id)->delete();
+        Job::where('job_category_id', $jobcategory_id)->delete();
         JobCategory::where('id', $jobcategory_id)->delete();
+        $this->render();
         return redirect()->back()->with('success', 'Successfully Deleted Job Category');
     }
 
@@ -58,7 +62,7 @@ class JobController extends Controller
     {
         $jobs = DB::table('jobs')->where('job_category_id', $jobCategory_id)->get();
         $jobCategory = DB::table('job_categories')->where('id', $jobCategory_id)->first();
-        return view('admin.jobCategory.job.index', compact('jobs','jobCategory'));
+        return view('admin.jobCategory.job.index', compact('jobs', 'jobCategory'));
     }
     public function jobAdd(Request $request, $jobCategory_id)
     {
@@ -76,6 +80,8 @@ class JobController extends Controller
             $job->experience = $request->experience;
             $job->job_category_id = $jobCategory->id;
             $job->save();
+            $this->render();
+
             return redirect()->back()->with('success', 'Successfully Added Job');
         }
     }
@@ -84,7 +90,7 @@ class JobController extends Controller
         $job = Job::where('id', $job_id)->first();
         $jobCategory = DB::table('job_categories')->where('id', $job->job_category_id)->first();
         if (Helper::G($request)) {
-            return view('admin.jobCategory.job.edit', compact('job','jobCategory'));
+            return view('admin.jobCategory.job.edit', compact('job', 'jobCategory'));
         } else {
             $job->title = $request->title;
             $job->type = $request->type;
@@ -94,6 +100,7 @@ class JobController extends Controller
             $job->qualification = $request->qualification;
             $job->experience = $request->experience;
             $job->save();
+            $this->render();
             return redirect()->back()->with('success', 'Successfully Updated Job');
         }
     }
@@ -101,13 +108,14 @@ class JobController extends Controller
     public function jobDelete($job_id)
     {
         Job::where('id', $job_id)->delete();
+        $this->render();
         return redirect()->back()->with('success', 'Successfully Deleted Job');
     }
 
 
     public function render()
     {
-        $jobcategories = DB::table('job_categories')->get(['id', 'title']);
-        Helper::putCache('career.job',view('admin.template.career.jobs',compact('jobcategories'))->render());
+        $jobcategories = DB::table('job_categories')->get(['id', 'title', 'icon','short_description']);
+        Helper::putCache('career.job', view('admin.template.career.jobs', compact('jobcategories'))->render());
     }
 }

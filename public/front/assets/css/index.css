@@ -4718,7 +4718,7 @@ section:nth-of-type(odd) {
 }
 
 .contact {
-  background: url("/front/assets/img/contact-us/contact-banner-lg.jpg") no-repeat !important;
+  background: url("/front/img/contact-us/contact-banner-lg.jpg") no-repeat !important;
   background-size: cover;
 }
 .contact .main-container .heading-group {
@@ -4728,9 +4728,14 @@ section:nth-of-type(odd) {
   color: var(--color-white);
 }
 .contact .main-container .form-container .detail {
-  background-color: var(--secondary-white);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 25px;
   padding: 25px;
+}
+.contact .main-container .form-container .detail .first.for-border {
+  border-bottom: 1px solid var(--border-color);
 }
 .contact .main-container .form-container .detail .first .logo {
   background-color: var(--color-main);
@@ -4749,12 +4754,30 @@ section:nth-of-type(odd) {
   font-size: 20px;
 }
 .contact .main-container .form-container .form {
-  background-color: var(--secondary-white);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 25px;
   padding: 25px;
+  color: var(--color-grey);
+  font-weight: 600;
 }
-.contact .main-container .form-container .form .form-floating label {
-  margin-left: 12px;
+.contact .main-container .form-container .form input {
+  border: none;
+  border-bottom: 1px solid var(--color-black);
+  border-radius: 0;
+  background-color: transparent;
+  padding-left: 0;
+  font-weight: 500;
+  color: var(--color-grey);
+  font-size: 12px;
+}
+.contact .main-container .form-container .form input:focus {
+  box-shadow: none !important;
+}
+.contact .main-container .form-container .form textarea {
+  border: 1px solid black;
+  font-size: 12px;
 }
 .contact .main-container .form-container .form .submit-btn {
   border: none;

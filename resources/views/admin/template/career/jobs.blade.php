@@ -5,14 +5,14 @@
         </div>
         <div class="card-wrapper">
             <div class="slide" id="slide">
-                @foreach ($jobs as $job)
+                @foreach ($jobcategories as $jobcategory)
                     <div class="each-card">
                         <div class="image-container">
-                            <img src="{{ Storage::url($job->image) }}" alt="Card Image" class="img-fluid">
+                            <img src="{{ Storage::url($jobcategory->icon) }}" alt="Card Image" class="img-fluid">
                         </div>
                         <div class="body">
-                            <h3 class="heading">{{ $job->title }}</h3>
-                            <p class="content">{{ $job->description }}</p>
+                            <h3 class="heading">{{ $jobcategory->title }}</h3>
+                            <p class="content">{{ $jobcategory->short_description }}</p>
                             <div class="d-flex justify-content-center know-btn">
                                 <x-hoverBtn>View Jobs</x-hoverBtn>
                             </div>

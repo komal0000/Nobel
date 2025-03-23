@@ -36,6 +36,7 @@ a {
         color: var(--color-light-1);
     }
 }
+
 section {
     padding: 50px 0;
 
@@ -62,6 +63,7 @@ section {
     @media (min-width: 769px) and (max-width: 1199px) {
         width: 98%;
     }
+
     @media (max-width: 768px) {
         width: 100%;
     }
@@ -203,6 +205,25 @@ section {
     }
 }
 
+.banner-title {
+    font-size: 48px;
+    font-weight: 600;
+
+    @media screen and (max-width: 1599px) {
+        font-size: 48px;
+    }
+
+    @media screen and (max-width: 1199px) {
+        font-size: 42px;
+
+    }
+
+    @media screen and (max-width: 767px) {
+        font-size: 28px;
+
+    }
+}
+
 .para-wrap {
     font-size: 15px;
     line-height: 1.6;
@@ -267,7 +288,9 @@ body {
 @import './speciality/main';
 @import './all-specialities';
 @import './health-library/main';
+@import './events/main';
 @import './career/main';
+@import './downloads/main';
 @import './contact-us/main';
 @import './footer/main';
 @import './mobile-nav/main';

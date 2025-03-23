@@ -1,28 +1,45 @@
-#technology {
-    .main-container{
+#opd {
+    .main-container {
         .heading-group {
             position: relative;
+
             .button {
                 @media (max-width:768px) {
                     display: none !important;
                 }
+
                 position: absolute;
                 top: 4px;
                 right: 2%;
             }
         }
-        .technology-slider {
-            .tech-card {
-                background-color: var(--color-white);
-                img {
-                    height: 100%;
+
+        .opd-slider {
+            .slide {
+                min-height: 60px;
+                border-radius: 25px;
+                box-shadow: 0 3px 17px rgba(0, 0, 0, .14);
+
+                .img-wrapper {
+                    position: relative;
                     border-radius: 25px;
+                    overflow: hidden;
+                }
+
+                .body {
+                    padding: 30px;
+
+                    .location {
+                        color: var(--color-main);
+                    }
                 }
             }
         }
+
         .mobile-btn {
             display: flex;
             justify-content: center;
+
             @media (min-width:769px) {
                 display: none;
             }

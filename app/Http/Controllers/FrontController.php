@@ -17,7 +17,7 @@ class FrontController extends Controller
         return view('front.pages.contact.index',compact('specilities'));
     }
 
-    public function career(){
+    public function careers(){
         $specilities = DB::table('specialties')->whereNull('parent_speciality_id')->get(['id','title']);
         return view('front.pages.career.index',compact('specilities'));
     }
