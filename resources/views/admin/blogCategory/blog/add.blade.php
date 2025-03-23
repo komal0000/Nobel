@@ -73,7 +73,7 @@
             <div class="col-md-5">
                 <div class="col-md-12 mb-3">
                     <div class="tab-pane mb-2" id="video" role="tabpanel" aria-labelledby="video-tab">
-                        <input type="hidden" name="video_link" id="">
+                        <label for="video_link">Youtube link</label>
                         <input type="url" name="video_link" class="form-control " placeholder="Enter Youtube Url"
                             onchange="GetMedia(this)">
                         <div id="video-preview-panel" style="display: none;">
@@ -88,7 +88,7 @@
                 </div>
                 <div class="col-md-12">
                     <label for="image">Image </label>
-                    <input type="file" name="image" id="image" class="form-control dropify" accept="image/*" >
+                    <input type="file" name="image" id="image" class="form-control dropify" accept="image/*">
                 </div>
             </div>
             <div class="col-md-7">
@@ -108,22 +108,27 @@
                             <label for="is_featured">Is Featured</label>
                         </div>
                     @endif
-                    <div class="col-md-12 mb-2">
+                    <div class="col-md-8 mb-2">
                         <label for="title">Title <span style="color: red;">*</span></label>
                         <input type="text" name="title" id="title" class="form-control" required>
                     </div>
-                    @if ($blogCategory->type == 4)
-
-                    @else
-                    <div class="col-md-6 mb-2">
-                        <label for="location">Location</label>
-                        <input type="text" name="location" id="location" class="form-control">
-                    </div>
-                    @endif
-                    <div class="col-md-6 mb-2">
+                    <div class="col-md-4 mb-2">
                         <label for="date">Date <span style="color: red;">*</span></label>
                         <input type="date" name="date" id="date" class="form-control">
                     </div>
+                    @if ($blogCategory->type == 4)
+                    @else
+                        <div class="col-md-6 mb-2">
+                            <label for="location">Location</label>
+                            <input type="text" name="location" id="location" class="form-control">
+                        </div>
+                    @endif
+                    <div class="col-md-12">
+                        <label for="short_description">Short Description</label>
+                        <input type="text" name="short_description" id="short_description" class="form-control">
+                    </div>
+
+
                 </div>
 
             </div>

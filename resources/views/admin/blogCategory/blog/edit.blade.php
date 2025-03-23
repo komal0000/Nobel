@@ -98,11 +98,7 @@
             </div>
             <div class="col-md-6">
                 <div class="row d-flex align-items-end">
-                    <div class="col-md-12 mb-2">
-                        <label for="title">Title <span style="color: red;">*</span></label>
-                        <input type="text" name="title" id="title" class="form-control"
-                            value="{{ $blog->title }}">
-                    </div>
+
                     @if ($blogCategory->type == 4)
                         <div class="" style="display: none">
                             <div class="col-md-4 mb-2 d-flex align-items-center">
@@ -120,10 +116,19 @@
                             <label for="is_featured">Is Featured </label>
                         </div>
                     @endif
-                    <div class="col-md-6 mb-2">
+                    <div class="col-md-8 mb-2">
+                        <label for="title">Title <span style="color: red;">*</span></label>
+                        <input type="text" name="title" id="title" class="form-control"
+                            value="{{ $blog->title }}">
+                    </div>
+                    <div class="col-md-4 mb-2">
                         <label for="date">Date <span style="color: red;">*</span></label>
                         <input type="date" name="date" id="date" class="form-control"
                             value="{{ \App\Helper::convertIntegerToDate($blog->date) }}">
+                    </div>
+                    <div class="dol-md-12">
+                        <label for="short_description">Short Description</label>
+                        <input type="text" name="short_description" id="short_description" class="form-control" value="{{ $blog->short_description }}">
                     </div>
                     @if ($blogCategory->type == 4)
                     @else

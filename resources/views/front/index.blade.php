@@ -7,6 +7,7 @@
     @include('front.pages.home.speciality')
     @include('front.pages.home.team')
     @includeIf('front.cache.home.care')
+    @includeIf('front.cache.home.updates')
     @includeIf('front.cache.home.awards')
     @includeIf('front.cache.home.newsEvent')
 @endsection
@@ -72,6 +73,26 @@
                         breakpoint: 768,
                         settings: {
                             slidesToShow: 1,
+                        }
+                    }
+                ]
+            });
+            $('.update-slider').slick({
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                arrows: true,
+                prevArrow: '<button class="slick-prev left-arrow"><img src="{{ asset('front/img/vector-left.png') }}" alt="Left Arrow"></button>',
+                nextArrow: '<button class="slick-next right-arrow"><img src="{{ asset('front/img/vector-right.png') }}" alt="Right Arrow"></button>',
+                responsive: [{
+                        breakpoint: 1199,
+                        settings: {
+                            slidesToShow: 2,
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 1
                         }
                     }
                 ]
