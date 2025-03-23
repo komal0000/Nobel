@@ -3,10 +3,10 @@
 @section('title')
     @if ($parent_id)
         <a href="{{ route('admin.blogCategory.index', ['type' => $type]) }}">
-            @if ($type == 1) Blogs Categories @elseif ($type == 2) News Categories @else Event Categories @endif
+            @if ($type == 1) Blogs Categories @elseif ($type == 2) News Categories @elseif($type == 3) Event Categories @else Update Categories @endif
         </a> /
         @php
-            $parents = \App\Helpers\Helper::getParentRoute($parent_id, 'blog_Categories', 'blogCategory', $type);
+            $parents = \App\Helper::getParentRoute($parent_id, 'blog_Categories', 'blogCategory', $type);
         @endphp
         @foreach ($parents as $parent)
             <a href="{{ route('admin.blogCategory.index', ['type' => $type, 'parent_id' => $parent->id]) }}">{{ $parent->title }}</a> /
@@ -19,7 +19,7 @@
         <span>Add</span>
     @else
         <a href="{{ route('admin.blogCategory.index', ['type' => $type]) }}">
-            @if ($type == 1) Blogs Categories @elseif ($type == 2) News Categories @else Event Categories @endif
+            @if ($type == 1) Blogs Categories @elseif ($type == 2) News Categories @elseif($type == 3) Event Categories @else Update Categories @endif
         </a> /
         <span>{{ $blogCategory->title }}</span> /
         <a href="{{ route('admin.blogCategory.blog.index', ['blogCategory_id' => $blogCategory->id, 'type' => $type, 'parent_id' => $parent_id]) }}">
@@ -33,18 +33,30 @@
         @csrf
         <div class="row">
             <div class="col-md-4">
+                @if ($blogCategory->type == 4)
+
+                @else
                 <div class="col-md-12">
                     <label for="image">Image <span style="color: red;">*</span></label>
                     <input type="file" name="image" id="image" class="form-control dropify" accept="image/*" required>
                 </div>
+                @endif
             </div>
             <div class="col-md-8">
                 <div class="row d-flex align-items-end">
+                    @if ($blogCategory->type == 4)
+                    <div class="col-md-4 mb-2 d-flex align-items-center" style="display: none">
+                        <input type="hidden" name="is_featured" value="0">
+                        <input type="checkbox" name="is_featured" value="1" class="form-check-input me-2">
+                        <label for="is_featured">Is Featured</label>
+                    </div>
+                    @else
                     <div class="col-md-4 mb-2 d-flex align-items-center">
                         <input type="hidden" name="is_featured" value="0">
                         <input type="checkbox" name="is_featured" value="1" class="form-check-input me-2">
                         <label for="is_featured">Is Featured</label>
                     </div>
+                    @endif
                     <div class="col-md-12 mb-2">
                         <label for="title">Title <span style="color: red;">*</span></label>
                         <input type="text" name="title" id="title" class="form-control" required>

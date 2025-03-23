@@ -3,10 +3,10 @@
 @section('title')
     @if ($parent_id)
         <a href="{{ route('admin.blogCategory.index', ['type' => $blogCategory->type]) }}">
-            @if ($blogCategory->type == 1) Blogs Categories @elseif($blogCategory->type == 2) News Categories @else Event Categories @endif
+            @if ($blogCategory->type == 1) Blogs Categories @elseif($blogCategory->type == 2) News Categories @elseif($blogCategory->type == 3) Event Categories @else Update Categories @endif
         </a> /
         @php
-            $parents = \App\Helpers\Helper::getParentRoute($parent_id, 'blog_Categories', 'blogCategory', $blogCategory->type);
+            $parents = \App\Helper::getParentRoute($parent_id, 'blog_Categories', 'blogCategory', $blogCategory->type);
         @endphp
         @foreach ($parents as $parent)
             <a href="{{ route('admin.blogCategory.index', ['type' => $blogCategory->type, 'parent_id' => $parent->id]) }}">{{ $parent->title }}</a> /
@@ -14,16 +14,16 @@
         <span>Sub Category</span> /
         <span>{{ $blogCategory->title }}</span> /
         <a href="{{ route('admin.blogCategory.blog.add', ['blogCategory_id' => $blogCategory->id, 'type' => $blogCategory->type, 'parent_id' => $parent_id]) }}">
-            @if ($blogCategory->type == 1) Blogs @elseif ($blogCategory->type == 2) News @else Events @endif
+            @if ($blogCategory->type == 1) Blogs @elseif ($blogCategory->type == 2) News @elseif($blogCategory->type == 3) Events @else Updates @endif
         </a> /
         <span>Edit</span>
     @else
         <a href="{{ route('admin.blogCategory.index', ['type' => $blogCategory->type]) }}">
-            @if ($blogCategory->type == 1) Blogs Categories @elseif($blogCategory->type == 2) News Categories @else Event Categories @endif
+            @if ($blogCategory->type == 1) Blogs Categories @elseif($blogCategory->type == 2) News Categories @elseif($blogCategory->type == 3) Event Categories @else Update Categories @endif
         </a> /
         <span>{{ $blogCategory->title }}</span> /
         <a href="{{ route('admin.blogCategory.blog.index', ['blogCategory_id' => $blogCategory->id, 'type' => $blogCategory->type, 'parent_id' => $parent_id]) }}">
-            @if ($blogCategory->type == 1) Blogs @elseif($blogCategory->type == 2) News @else Events @endif
+            @if ($blogCategory->type == 1) Blogs @elseif ($blogCategory->type == 2) News @elseif($blogCategory->type == 3) Events @else Updates @endif
         </a> /
         <span>Edit</span>
     @endif
