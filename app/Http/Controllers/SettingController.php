@@ -15,10 +15,20 @@ class SettingController extends Controller
             [
                 ['copyright', 1],
 
-
             ]
         ],
-
+        'home_description' => [
+            "Home Description",
+            [
+                ['SpecialityTitle', 1],
+                ['TeamTitle',1],
+                ['TeamDescription',2],
+                ['TeamImage',0],
+            ],
+            [
+                ["homeSpecialityTitle", "views/front/cache/home/specialityTitle.blade.php"],
+            ],
+        ],
     ];
     public function index($type, Request $request)
     {
@@ -29,7 +39,7 @@ class SettingController extends Controller
                 $k = $type . '_' . $attr[0];
                 try {
                     if (($attr[1] == 0)) {
-                        $s = Helper::setSetting($k, $request->file($k)->store('uploads/settings'), true);
+                        $s = Helper::setSetting($k, $request->file($k)->store('uploads/settings','public'), true);
                     } else {
                         $s = Helper::setSetting($k, $request->input($k), true);
                     }

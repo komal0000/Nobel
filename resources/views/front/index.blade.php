@@ -4,8 +4,8 @@
 @endsection
 @section('content')
     @includeif('front.cache.home.slider')
-    @includeIf('front.cache.home.speciality')
-    @includeIf('front.cache.home.teams')
+    @include('front.pages.home.speciality')
+    @include('front.pages.home.team')
     @includeIf('front.cache.home.care')
     @includeIf('front.cache.home.awards')
     @includeIf('front.cache.home.newsEvent')
