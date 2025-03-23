@@ -70,36 +70,69 @@
         method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
-            <div class="col-md-6">
-                <div class="col-md-12">
-                    <label for="image">Image <span style="color: red;">*</span></label>
-                    <input type="file" name="image" id="image" class="form-control dropify" accept="image/*"
-                        data-default-file="{{ Storage::url($blog->image) }}">
-                </div>
+            <div class="col-md-5">
+                @if ($blog->video_link)
+                    <div class="col-md-12 mb-3">
+                        <div class="tab-pane mb-2" id="video" role="tabpanel" aria-labelledby="video-tab">
+                            <label for="video_link">Youtube Link</label>
+                            <input type="url" name="video_link" class="form-control" value="{{ $blog->video_link }}"
+                                placeholder="Enter Youtube Url" onchange="GetMedia(this)">
+                            <div id="video-preview-panel" style="display: none;">
+                                <hr>
+                                <div class="row">
+                                    <div class="col-5">
+                                        <iframe id="video-video-preview" class="w-100" frameborder="0"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+                @if ($blog->image)
+                    <div class="col-md-12">
+                        <label for="image">Image <span style="color: red;">*</span></label>
+                        <input type="file" name="image" id="image" class="form-control dropify" accept="image/*"
+                            data-default-file="{{ Storage::url($blog->image) }}">
+                    </div>
+                @endif
             </div>
             <div class="col-md-6">
                 <div class="row d-flex align-items-end">
-                    <div class="col-md-8 mb-2">
+                    <div class="col-md-12 mb-2">
                         <label for="title">Title <span style="color: red;">*</span></label>
                         <input type="text" name="title" id="title" class="form-control"
                             value="{{ $blog->title }}">
                     </div>
-                    <div class="col-md-4 mb-2 d-flex align-items-center">
-                        <input type="hidden" name="is_featured" value="0">
-                        <input type="checkbox" name="is_featured" value="1" class="form-check-input me-2"
-                            @if ($blog->is_featured) checked @endif>
-                        <label for="is_featured">Is Featured <span style="color: red;">*</span></label>
-                    </div>
+                    @if ($blogCategory->type == 4)
+                        <div class="" style="display: none">
+                            <div class="col-md-4 mb-2 d-flex align-items-center">
+                                <input type="hidden" name="is_featured" value="0">
+                                <input type="checkbox" name="is_featured" value="1" class="form-check-input me-2"
+                                    @if ($blog->is_featured) checked @endif>
+                                <label for="is_featured">Is Featured <span style="color: red;">*</span></label>
+                            </div>
+                        </div>
+                    @else
+                        <div class="col-md-4 mb-2 d-flex align-items-center">
+                            <input type="hidden" name="is_featured" value="0">
+                            <input type="checkbox" name="is_featured" value="1" class="form-check-input me-2"
+                                @if ($blog->is_featured) checked @endif>
+                            <label for="is_featured">Is Featured </label>
+                        </div>
+                    @endif
                     <div class="col-md-6 mb-2">
-                        <label for="date">Date</label>
+                        <label for="date">Date <span style="color: red;">*</span></label>
                         <input type="date" name="date" id="date" class="form-control"
                             value="{{ \App\Helper::convertIntegerToDate($blog->date) }}">
                     </div>
-                    <div class="col-md-6 mb-2">
-                        <label for="loaction">Location</label>
-                        <input type="text" name="location" id="location" class="form-control"
-                            value="{{ $blog->location }}">
-                    </div>
+                    @if ($blogCategory->type == 4)
+                    @else
+                        <div class="col-md-6 mb-2">
+                            <label for="loaction">Location</label>
+                            <input type="text" name="location" id="location" class="form-control"
+                                value="{{ $blog->location }}">
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="col-md-12 mb-2">
@@ -113,4 +146,21 @@
             </div>
         </div>
     </form>
+@endsection
+@section('js')
+    <script>
+        const GetMedia = (ele) => {
+            getYoutubeData(ele.value)
+                .then((data) => {
+                    console.log(data);
+                    $('#video-image-preview').attr('src', data.image);
+                    $('#video-video-preview').attr('src', data.embed);
+                    $('#video-preview-panel').show();
+                    $('#title').val(data.title);
+                })
+                .catch(err => {
+                    console.error(err);
+                })
+        }
+    </script>
 @endsection

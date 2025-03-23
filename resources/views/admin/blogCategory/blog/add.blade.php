@@ -74,8 +74,7 @@
                 <div class="col-md-12 mb-3">
                     <div class="tab-pane mb-2" id="video" role="tabpanel" aria-labelledby="video-tab">
                         <input type="hidden" name="video_link" id="">
-                        <label for="video_link">Youtube link</label>
-                        <input type="url" class="form-control " placeholder="Enter Youtube Url"
+                        <input type="url" name="video_link" class="form-control " placeholder="Enter Youtube Url"
                             onchange="GetMedia(this)">
                         <div id="video-preview-panel" style="display: none;">
                             <hr>
@@ -89,8 +88,7 @@
                 </div>
                 <div class="col-md-12">
                     <label for="image">Image </label>
-                    <input type="file" name="image" id="image" class="form-control dropify" accept="image/*"
-                        required>
+                    <input type="file" name="image" id="image" class="form-control dropify" accept="image/*" >
                 </div>
             </div>
             <div class="col-md-7">
@@ -150,7 +148,7 @@
                     $('#video-image-preview').attr('src', data.image);
                     $('#video-video-preview').attr('src', data.embed);
                     $('#video-preview-panel').show();
-                    $('#video_link').val(data.video_id);
+                    $('#title').val(data.title);
                 })
                 .catch(err => {
                     console.error(err);

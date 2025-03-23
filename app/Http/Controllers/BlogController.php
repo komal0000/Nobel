@@ -80,6 +80,7 @@ class BlogController extends Controller
         if (Helper::G()) {
             return view('admin.blogCategory.blog.add', compact('blogCategory', 'parent_id', 'type'));
         } else {
+            // dd($request->all());
             $blog = new Blog();
             $blog->title = $request->title;
 
@@ -104,6 +105,7 @@ class BlogController extends Controller
     public function blogedit(Request $request, $blog_id)
     {
         $blog = Blog::where('id', $blog_id)->first();
+        // dd($blog);
         $blogCategory = DB::table('blog_categories')->where('id', $blog->blog_category_id)->first();
         $parent_id = $request->parent_id;
         if (Helper::G()) {
