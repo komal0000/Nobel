@@ -21,9 +21,9 @@ class SettingController extends Controller
             "Home Description",
             [
                 ['SpecialityTitle', 1],
-                ['TeamTitle',1],
-                ['TeamDescription',2],
-                ['TeamImage',0],
+                ['TeamTitle', 1],
+                ['TeamDescription', 2],
+                ['TeamImage', 0],
             ],
             [
                 ["homeSpecialityTitle", "views/front/cache/home/specialityTitle.blade.php"],
@@ -39,7 +39,7 @@ class SettingController extends Controller
                 $k = $type . '_' . $attr[0];
                 try {
                     if (($attr[1] == 0)) {
-                        $s = Helper::setSetting($k, $request->file($k)->store('uploads/settings','public'), true);
+                        $s = Helper::setSetting($k, $request->file($k)->store('uploads/settings', 'public'), true);
                     } else {
                         $s = Helper::setSetting($k, $request->input($k), true);
                     }
@@ -74,6 +74,8 @@ class SettingController extends Controller
                 'email' => '',
                 'phone' => '',
                 'addr' => '',
+                'title' => '',
+                'short_desc' => '',
                 'others' => [],
                 'links' => [
                     'facebook' => '',
@@ -100,6 +102,7 @@ class SettingController extends Controller
                 'email' => $request->email ?? '',
                 'phone' => $request->phone ?? '',
                 'addr' => $request->addr ?? '',
+                'short_desc' => $request->short_desc ?? '',
                 'others' => $others,
                 'links' => [
                     'facebook' => $request->facebook ?? '',
@@ -109,7 +112,9 @@ class SettingController extends Controller
                 ]
             ];
             Helper::setSetting('contact', $data);
-            Helper::putCache('home.footer',view('admin.setting.template.footer',compact('data'))->render());
+            Helper::putCache('home.footer', view('admin.setting.template.footer', compact('data'))->render());
+            Helper::putCache('contact.index', view('admin.setting.template.contact', compact('data'))->render());
+            Helper::putCache('contact.map', view('admin.setting.template.map', compact('data'))->render());
             return redirect()->back()->with('success', "Contact Saved Sucessfully");
         }
     }

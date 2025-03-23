@@ -11,4 +11,8 @@ class FrontController extends Controller
         $specilities = DB::table('specialties')->whereNull('parent_speciality_id')->get(['id','title']);
         return view('front.index',compact('specilities'));
     }
+
+    public function contact(){
+        return view('front.pages.contact.index');
+    }
 }

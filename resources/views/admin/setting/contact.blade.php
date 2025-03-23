@@ -40,7 +40,8 @@
                             <span>
                                 Map
                             </span>
-                            <input type="text" id="map" name="map" class="form-control w-25" placeholder="Search Place" value="{{ $data->map }}">
+                            <input type="text" id="map" name="map" class="form-control w-25"
+                                placeholder="Search Place" value="{{ $data->map }}">
                         </h4>
                         <hr class="m-0">
                         <div class="card-body d-flex justify-content-center" id="footer-4">
@@ -56,20 +57,28 @@
                     <div class="col-md-6">
                         <label for="phone">Phone</label>
                         <input type="tel" name="phone" id="phone" class="form-control"
-                            value="{{ $data->phone }}">
+                        value="{{ $data->phone }}">
                     </div>
                     <div class="col-md-6">
                         <label for="email">Email</label>
                         <input type="email" name="email" id="email" class="form-control"
-                            value="{{ $data->email }}">
+                        value="{{ $data->email }}">
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <label for="addr">Address</label>
-                        <textarea name="addr" id="addr" class="form-control desc" required>{!! $data->addr !!}</textarea>
+                        <input name="addr" id="addr" class="form-control desc" value="{{ $data->addr }}" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="short_desc">Short Description</label>
+                        <textarea name="short_desc" id="short_desc" class="form-control">{{ $data->short_desc }}</textarea>
                     </div>
 
-                    <div class="col-12 py-2">
+                    <div class="col-12 py-3">
                         <div class="shadow p-3">
+                            <h5 class="p-2">
+                                Social Links
+                            </h5>
+                            <hr class="m-0">
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="facebook">Facebook</label>

@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[FrontController::class,'index'])->name('index');
 
 Route::get('specialties',[FrontController::class,'specialties'])->name('specialties');
-
+Route::get('contact',[FrontController::class,'contact'])->name('contact');
 // Route::
 
 Route::match(["GET", "POST"], 'login', [LoginController::class, 'login'])->name('login');
