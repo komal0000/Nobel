@@ -11,7 +11,7 @@
         </div>
         <div class="map px-3">
             <iframe
-                src="{{ $data->map }}"
+                src="https://maps.google.com/maps?q={{$data->map}}&t=&z=13&ie=UTF8&iwloc=&output=embed"
                  allowfullscreen="true" loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>

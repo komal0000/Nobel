@@ -13,6 +13,7 @@ class FrontController extends Controller
     }
 
     public function contact(){
-        return view('front.pages.contact.index');
+        $specilities = DB::table('specialties')->whereNull('parent_speciality_id')->get(['id','title']);
+        return view('front.pages.contact.index',compact('specilities'));
     }
 }

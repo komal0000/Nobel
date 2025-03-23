@@ -5,5 +5,5 @@
 
 @section('content')
     @includeIf('front.cache.contact.index')
-    @includeIf('front.includes.contact.map')
+    @includeIf('front.cache.contact.map')
 @endsection

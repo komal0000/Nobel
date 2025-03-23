@@ -4718,7 +4718,7 @@ section:nth-of-type(odd) {
 }
 
 .contact {
-  background: url("/front/img/contact-us/contact-banner-lg.jpg") no-repeat !important;
+  background: url("/front/assets/img/contact-us/contact-banner-lg.jpg") no-repeat !important;
   background-size: cover;
 }
 .contact .main-container .heading-group {

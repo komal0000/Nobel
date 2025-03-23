@@ -37,15 +37,6 @@
                             @foreach ($specilities as $specility)
                                 <li> <a href="#">{{ $specility->title }}</a> </li>
                             @endforeach
-                            <li>
-                                <a href="/speciality" class="drop-item">Speciality 1</a>
-                            </li>
-                            <li>
-                                <a href="/speciality" class="drop-item">Speciality 2</a>
-                            </li>
-                            <li>
-                                <a href="/speciality" class="drop-item">Speciality 3</a>
-                            </li>
                         </ul>
                     </li>
                     <li class="navbar-item" onclick="extendSubMenu(this)">
@@ -92,7 +83,7 @@
                         <a href="/career" class="navbar-link ">Career</a>
                     </li>
                     <li class="navbar-item" onclick="extendSubMenu(this)">
-                        <a href="#" class="navbar-link">
+                        <a href="{{ route('contact') }}" class="navbar-link">
                             Contact Us <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
                                 fill="currentColor" class="bi bi-chevron-down" stroke-width="2" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd"
