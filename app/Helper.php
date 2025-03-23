@@ -16,11 +16,13 @@ class Helper
         1 => 'blog',
         2 => 'news',
         3 => 'event',
+        4 => 'update',
     ];
 
     const blog_type_blog = 1;
     const blog_type_news = 2;
     const blog_type_event = 3;
+    const blog_type_update = 4;
 
     public static function G(): bool
     {

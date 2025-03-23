@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::table('blogs', function (Blueprint $table) {
             $table->text('video_link')->nullable();
+            $table->string('short_description')->nullable();
             $table->text('image')->nullable()->change();
         });
     }
@@ -24,7 +25,8 @@ return new class extends Migration
     {
         Schema::table('blogs', function (Blueprint $table) {
             $table->dropColumn('video_link');
-            $table->string('image')->change();
+            $table->dropColumn('short_description');
+            $table->text('image')->change();
         });
     }
 };
