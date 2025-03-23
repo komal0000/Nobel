@@ -88,12 +88,13 @@ class BlogController extends Controller
             }
             $blog->type = $type;
             $blog->text = $request->text;
+            $blog->datas = $request->datas;
+            $blog->video_link = $request->video_link;
             $blog->creator_user_id = Auth::id();
             $blog->location =$request->location;
-            $blog->date = Helper::convertDateToInteger($request->date);
             $blog->is_featured = $request->is_featured;
             $blog->blog_category_id = $blogCategory->id;
-            $blog->datas = $request->datas;
+            $blog->date = Helper::convertDateToInteger($request->date);
             $blog->save();
             $this->render();
             return redirect()->back()->with('success', 'Blog Successfully Added');
@@ -112,6 +113,7 @@ class BlogController extends Controller
             $blog->datas = $request->datas;
             $blog->title = $request->title;
             $blog->location =$request->location;
+            $blog->video_link = $request->video_link;
             $blog->date = Helper::convertDateToInteger($request->date);
             $blog->is_featured = $request->is_featured;
             if ($request->hasFile('image')) {
@@ -119,7 +121,7 @@ class BlogController extends Controller
             }
             $blog->save();
             $this->render();
-            return redirect()->back()->with('success', 'Blog Successfully Added');
+            return redirect()->back()->with('success', 'Blog Successfully updated');
         }
     }
     public function blogdel($blog_id)
