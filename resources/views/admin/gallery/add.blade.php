@@ -11,8 +11,7 @@
             <div class="col-md-4">
                 <div class="col-md-12 mb-2">
                     <label for="image">Image <span style="color: red;">*</span></label>
-                    <input type="file" name="image" id="image" class="form-control dropify" accept="image/*"
-                        required>
+                    <input type="file" name="image" id="image" class="form-control dropify" accept="image/*" required>
                 </div>
             </div>
             <div class="col-md-8">

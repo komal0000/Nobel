@@ -53,12 +53,12 @@ class GalleryController extends Controller
             return view('admin.gallery.add', compact('type'));
         } else {
             $gallery = new Gallery();
-            $gallery->title = $request->title;
-            $gallery->description = $request->description;
-            $gallery->gallery_type_id = $type_id;
             if($request->hasFile('image')){
                 $gallery->image = $request->file('image')->store('uploads/gallery', 'public');
             }
+            $gallery->title = $request->title;
+            $gallery->description = $request->description;
+            $gallery->gallery_type_id = $type_id;
             $gallery->save();
             return redirect()->back()->with('success', 'Gallery Successfully Added');
         }
@@ -73,7 +73,7 @@ class GalleryController extends Controller
         } else {;
             $gallery->title = $request->title;
             $gallery->description = $request->description;
-            if ($request->hasFile('image')) {
+            if ($request->has('image')) {
                 $gallery->image = $request->file('image')->store('uploads/gallery', 'public');
             }
             $gallery->save();
