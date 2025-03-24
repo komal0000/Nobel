@@ -28,7 +28,7 @@
                 box-shadow: 0 3px 17px rgba(0, 0, 0, .14);
 
                 .img-wrapper {
-                    height: 60%;
+                    width: 100%;
 
                     img {
                         width: 100%;
@@ -38,7 +38,7 @@
                 }
 
                 .body {
-                    height: 40%;
+                    width: 100%;
                     padding: 30px;
 
                     .body-head {
@@ -70,7 +70,6 @@
                 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
                 border-radius: 50%;
                 background-color: #fff;
-                position: absolute;
                 position: absolute;
                 top: 50%;
                 right: 0;

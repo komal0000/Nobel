@@ -1,17 +1,57 @@
+.mob-back-img {
+    position: relative;
+
+    @media (min-width: 991px) {
+        display: none;
+    }
+
+    .banner-title {
+        color: var(--color-white);
+        text-align: center;
+
+        @media (max-width: 991px) {
+            padding: 0 20px;
+            position: absolute;
+            z-index: 25;
+            left: 0;
+            right: 0;
+            width: 820px;
+            max-width: 100%;
+            margin: auto;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+}
+
 .contact {
-    background: url('/front/img/contact-us/contact-banner-lg.jpg') no-repeat !important;
+    background: url('/front/img/contact-us/contact-banner-lg.jpg') no-repeat;
     background-size: cover;
+
+    @media (max-width: 991px) {
+        background: none;
+    }
 
     .main-container {
         .heading-group {
-            width: 500px;
+            width: 640px;
             max-width: 100%;
             margin: 0 auto;
             color: var(--color-white);
+            @media (max-width: 991px) {
+                color: var(--color-dark-grey);
+            }
+
+            .heading {
+                color: var(--color-white);
+
+                @media (max-width: 991px) {
+                    display: none;
+                }
+            }
         }
 
         .form-container {
-
             .detail {
                 backdrop-filter: blur(10px);
                 background-color: rgba(255, 255, 255, 0.8);
@@ -26,6 +66,7 @@
                     &.for-border {
                         border-bottom: 1px solid var(--border-color);
                     }
+
                     .logo {
                         background-color: var(--color-main);
                         color: var(--color-white);
@@ -52,12 +93,16 @@
             }
 
             .form {
+                padding: 50px;
                 backdrop-filter: blur(10px);
                 background-color: rgba(255, 255, 255, 0.8);
                 border-radius: 25px;
-                padding: 25px;
                 color: var(--color-grey);
                 font-weight: 600;
+
+                @media (max-width: 768px) {
+                    padding: 30px;
+                }
 
                 input {
                     border: none;
@@ -71,11 +116,16 @@
                     &:focus {
                         box-shadow: none !important;
                     }
+
                     font-size: 12px;
                 }
+
                 textarea {
                     border: 1px solid black;
                     font-size: 12px;
+                    resize: none;
+                    min-height: 100px;
+                    border-radius: 15px;
                 }
 
                 .submit-btn {

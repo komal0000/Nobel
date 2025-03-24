@@ -33,7 +33,8 @@
                 box-shadow: 0 3px 17px rgba(0, 0, 0, .14);
 
                 .img-wrapper {
-                    height: 60%;
+                    width: 100%;
+                    // padding-top: 40%;
 
                     img {
                         width: 100%;
@@ -43,7 +44,7 @@
                 }
 
                 .body {
-                    height: 40%;
+                    width: 100%;
                     padding: 30px;
                 }
             }

@@ -1,0 +1,90 @@
+#videos-top-banner {
+    padding: 0;
+    position: relative;
+
+    .banner-title {
+        color: #fff;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.heading-group {
+    position: relative;
+
+    .button {
+        position: absolute;
+        top: 4px;
+        right: 2%;
+
+        @media (max-width: 768px) {
+            display: none !important;
+        }
+    }
+}
+
+.video-card {
+    position: relative;
+    margin: 15px;
+    box-shadow: 0 4px 19px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+
+    .img-wrapper {
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            aspect-ratio: 3/2;
+            object-fit: cover;
+        }
+
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: auto;
+            height: auto;
+        }
+    }
+
+    .body {
+        padding: 30px;
+
+        .heading-sm {
+            position: relative;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+
+            &::after {
+                left: 0;
+                bottom: 0;
+                background-color: var(--color-main);
+                width: 50px;
+                height: 2px;
+                content: '';
+                position: absolute;
+            }
+        }
+
+        span {
+            color: var(--color-main);
+        }
+    }
+
+}
+
+.mobile-btn {
+    display: flex;
+    justify-content: center;
+
+    @media (min-width:769px) {
+        display: none;
+    }
+}
