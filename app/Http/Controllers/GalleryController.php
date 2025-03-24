@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helper;
+use App\Models\Gallery;
 use App\Models\GalleryType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -51,20 +52,38 @@ class GalleryController extends Controller
             $type = DB::table('gallery_types')->where('id', $type_id)->first();
             return view('admin.gallery.add', compact('type'));
         } else {
-            // Add gallery logic would go here
-            // Would need to know gallery table structure
+            $gallery = new Gallery();
+            $gallery->title = $request->title;
+            $gallery->description = $request->description;
+            $gallery->gallery_type_id = $type_id;
+            if ($request->hasFile('image')) {
+                $gallery->image = $request->file('image')->store('uploads/gallery', 'public');
+            }
+            $gallery->save();
+            return redirect()->back()->with('success', 'Gallery Successfully Added');
         }
     }
 
     public function edit(Request $request, $gallery_id)
     {
-        // Edit gallery logic would go here
-        // Would need to know gallery table structure
+        $gallery = DB::table('galleries')->where('id', $gallery_id)->first();
+        if (Helper::G()) {
+            $type = DB::table('gallery_types')->where('id', $gallery->gallery_type_id)->first();
+            return view('admin.gallery.edit', compact('gallery', 'type'));
+        } else {;
+            $gallery->title = $request->title;
+            $gallery->description = $request->description;
+            if ($request->hasFile('image')) {
+                $gallery->image = $request->file('image')->store('uploads/gallery', 'public');
+            }
+            $gallery->save();
+            return redirect()->back()->with('success', 'Gallery Successfully Updated');
+        }
     }
 
     public function del($gallery_id)
     {
-        // Delete gallery logic would go here
-        // Would need to know gallery table structure
+        Gallery::find($gallery_id)->delete();
+        return redirect()->back()->with('success', 'Gallery Successfully Deleted');
     }
 }
