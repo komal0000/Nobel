@@ -68,7 +68,7 @@ class SpecialityController extends Controller
             }
             $speciality->save();
             $this->render();
-            $this->renderSingle($speciality_id);
+            $this->renderSingle($speciality->id);
             return redirect()->back()->with("success", "Speciality Successfully Updated");
         }
     }
@@ -96,12 +96,12 @@ class SpecialityController extends Controller
         return redirect()->back()->with("delete_success", "Speciality Successfully Deleted");
     }
 
-    public  function renderSingle($speciality_id){
+    public function renderSingle($speciality_id){
         $speciality = DB::table('specialties')->where('id', $speciality_id)->first();
         if($speciality->parent_speciality_id){
             $this->renderSingle($speciality->parent_speciality_id);
         }
-        Helper::putCache('speciality.single.overview', view('admin.template.speciality.overview', compact('speciality'))->render());
+        Helper::putCache('speciality.single.'.$speciality_id.'.overview', view('admin.template.speciality.overview', compact('speciality'))->render());
     }
 
     public function render()
@@ -111,7 +111,5 @@ class SpecialityController extends Controller
         Helper::putCache('home.teams', view('admin.template.home.teams', compact('specialities'))->render());
         Helper::putCache('home.header', view('admin.template.home.header', compact('specialities'))->render());
         Helper::putCache('home.footer', view('admin.template.home.footer', compact('specialities'))->render());
-
-
     }
 }

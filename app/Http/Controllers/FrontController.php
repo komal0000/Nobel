@@ -24,6 +24,7 @@ class FrontController extends Controller
         return view('front.pages.speciality.index',compact('specilities'));
     }
     public function specialitySingle($id){
-        return view('front.pages.speciality.single',compact('id'));
+        $speciality = DB::table('specialties')->where('id',$id)->first();
+        return view('front.pages.speciality.single',compact('speciality','id'));
     }
 }
