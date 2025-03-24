@@ -4447,6 +4447,13 @@ section:nth-of-type(odd) {
 .employee-section .main-container .content-main .employee-flex .employee .employee-slider .each-card .body {
   padding: 15px;
 }
+.employee-section .main-container .content-main .employee-flex .employee .employee-slider .each-card .card-content {
+  font-size: 15px;
+  line-height: 24px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 100px;
+}
 .employee-section .main-container .content-main .employee-flex .award {
   width: 30%;
 }
