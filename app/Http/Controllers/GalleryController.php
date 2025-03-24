@@ -56,7 +56,7 @@ class GalleryController extends Controller
             $gallery->title = $request->title;
             $gallery->description = $request->description;
             $gallery->gallery_type_id = $type_id;
-            if ($request->hasFile('image')) {
+            if($request->hasFile('image')){
                 $gallery->image = $request->file('image')->store('uploads/gallery', 'public');
             }
             $gallery->save();
