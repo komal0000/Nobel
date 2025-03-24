@@ -26,6 +26,7 @@ class LeadershipController extends Controller
                 $leadership->image = $request->file('image')->store('uploads/leadership','public');
             }
             $leadership->save();
+            $this->render();
             return redirect()->back()->with('success', 'Leadership added successfully.');
         }
     }
@@ -42,11 +43,18 @@ class LeadershipController extends Controller
                 $leadership->image = $request->file('image')->store('uploads/leadership','public');
             }
             $leadership->save();
+            $this->render();
             return redirect()->back()->with('success', 'Leadership Updated successfully.');
         }
     }
     public function del($leadership_id){
         Leadership::where('id',$leadership_id)->delete();
+        $this->render();
         return redirect()->back()->with('delete_success', 'Leadership Deleted successfully');
+    }
+
+    public function render(){
+        $leaderships = DB::table('leaderships')->get(['id','position','title','image','description']);
+        Helper::putCache('career.leaderships',view('admin.template.career.leadership',compact('leaderships'))->render());
     }
 }

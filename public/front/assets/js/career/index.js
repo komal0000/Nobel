@@ -82,4 +82,20 @@ $(document).ready(function() {
         $('.tab').removeClass('active-tab');
         $(el).addClass('active-tab');
     }
+    $('.slider-for').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        fade: true,
+        asNavFor: '.slider-nav' // Link to thumbnail slider
+    });
+
+    $('.slider-nav').slick({
+        slidesToShow: 3, // Adjust based on your design
+        slidesToScroll: 1,
+        asNavFor: '.slider-for', // Link to main slider
+        dots: false,
+        centerMode: true,
+        focusOnSelect: true
+    });
 });
