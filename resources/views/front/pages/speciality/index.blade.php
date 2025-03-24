@@ -1,0 +1,15 @@
+@extends('front.layout.app')
+@section('title', 'Speciality')
+@section('meta', 'Speciality page')
+
+@section('content')
+    @includeIf('front.cache.speciality.overview')
+    @includeIf('front.cache.speciality.message')
+    @includeIf('front.cache.speciality.team')
+    @includeIf('front.cache.speciality.treatment')
+    @includeIf('front.cache.speciality.ailment')
+    @includeIf('front.cache.speciality.technology')
+    @includeIf('front.cache.speciality.sub-specialization')
+    @includeIf('front.cache.speciality.story')
+    @includeIf('front.cache.speciality.know-more')
+@endsection

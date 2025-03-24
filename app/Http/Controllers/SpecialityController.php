@@ -98,6 +98,7 @@ class SpecialityController extends Controller
         $specialities = DB::table('specialties')->whereNull('parent_speciality_id')->get(['id', 'title', 'icon']);
         Helper::putCache('home.speciality', view('admin.template.home.speciality', compact('specialities'))->render());
         Helper::putCache('home.teams', view('admin.template.home.teams', compact('specialities'))->render());
-
+        Helper::putCache('home.header', view('admin.template.home.header', compact('specialities'))->render());
+        Helper::putCache('home.footer', view('admin.template.home.footer', compact('specialities'))->render());
     }
 }

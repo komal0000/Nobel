@@ -149,3 +149,23 @@ function changeTab(el) {
     $('.event-list').removeClass('active').hide();
     $('#' + tabId).addClass('active').fadeIn();
 }
+function extendSubMenu(el) {
+    if ($(el).hasClass('active-list')) {
+        $(el).removeClass('active-list');
+        return;
+    }
+    $('.navbar-item').removeClass('active-list');
+
+    $(el).addClass('active-list');
+}
+
+function extendKnowledgeSubMenu(el, event) {
+    event.stopPropagation();
+    console.log('clicked');
+
+    if ($(el).hasClass('active-knowledge')) {
+        $(el).removeClass('active-knowledge');
+        return;
+    }
+    $(el).addClass('active-knowledge');
+}

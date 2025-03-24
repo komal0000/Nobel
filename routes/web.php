@@ -27,6 +27,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [FrontController::class, 'index'])->name('index');
 Route::get('contact', [FrontController::class, 'contact'])->name('contact');
 Route::get('careers', [FrontController::class, 'careers'])->name('careers');
+Route::prefix('speciality')->name('speciality.')->group(function () {
+    Route::get('', [FrontController::class, 'specialityIndex'])->name('index');
+    Route::get('single/{speciality_id}', [FrontController::class, 'specialitySingle'])->name('single');
+});
 
 Route::match(["GET", "POST"], 'login', [LoginController::class, 'login'])->name('login');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');

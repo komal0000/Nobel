@@ -1,71 +1,62 @@
 <header class="site-header" id="site-header">
     <div class="main-container">
-        <a href="/"><img src="{{ asset('front/assets/img/logo.png') }}" class="logo" alt=""></a>
+        <a href="/"><img src="{{ asset('front/img/logo.png') }}" class="logo" alt=""></a>
         <nav class="navbar navbar-expand p-0" id="navbar">
             <div class="">
                 <ul class="nav-ul">
                     <li class="navbar-item" onclick="extendSubMenu(this)">
                         <a href="#" class="navbar-link">
-                            location <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-                                fill="currentColor" class="bi bi-chevron-down" stroke-width="2" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
-                            </svg>
-
+                            Speciality <i class="bi bi-chevron-down"></i>
+                        </a>
+                        @includeIf('front.cache.home.header')
+                    </li>
+                    <li class="navbar-item" onclick="extendSubMenu(this)">
+                        <a href="#" class="navbar-link">
+                            Health Library <i class="bi bi-chevron-down"></i>
                         </a>
                         <ul class="drop-menu">
                             <li>
-                                <a href="#" class="drop-item">Location 1</a>
+                                <a href="/health-library" class="drop-item">Health Library</a>
                             </li>
                             <li>
-                                <a href="#" class="drop-item">Location 2</a>
+                                <a href="/treatments" class="drop-item">Treatments</a>
                             </li>
                             <li>
-                                <a href="#" class="drop-item">Location 3</a>
+                                <a href="/technologies" class="drop-item">Technologies</a>
+                            </li>
+                            <li>
+                                <a href="/ailments" class="drop-item">Ailments</a>
+                            </li>
+                            <li class="navbar-item knowledge-drop" onclick="extendKnowledgeSubMenu(this, event)">
+                                <a href="#" class="drop-item navbar-link knowledge-link d-flex justify-content-between">
+                                    <span>Knowledge</span> <i class="bi bi-chevron-right"></i>
+                                </a>
+                                <ul class="knowledge-drop-menu">
+                                    <li>
+                                        <a href="/blogs" class="drop-item">Blogs</a>
+                                    </li>
+                                    <li>
+                                        <a href="/videos" class="drop-item">Videos</a>
+                                    </li>
+                                    <li>
+                                        <a href="/case-studies" class="drop-item">Case Studies</a>
+                                    </li>
+                                    <li>
+                                        <a href="/news-letter" class="drop-item">News Letter</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="/events" class="drop-item">Events</a>
+                            </li>
+                            <li>
+                                <a href="/downloads" class="drop-item">Downloads</a>
                             </li>
                         </ul>
                     </li>
                     <li class="navbar-item" onclick="extendSubMenu(this)">
                         <a href="#" class="navbar-link">
-                            Speciality <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-                                fill="currentColor" class="bi bi-chevron-down" stroke-width="2" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
-                            </svg>
-                        </a>
-                        <ul class="drop-menu">
-                            @foreach ($specilities as $specility)
-                                <li> <a href="#">{{ $specility->title }}</a> </li>
-                            @endforeach
-                        </ul>
-                    </li>
-                    <li class="navbar-item" onclick="extendSubMenu(this)">
-                        <a href="#" class="navbar-link">
-                            Health Library <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-                                fill="currentColor" class="bi bi-chevron-down" stroke-width="2" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
-                            </svg>
-                        </a>
-                        <ul class="drop-menu">
-                            <li>
-                                <a href="#" class="drop-item">Health Library 1</a>
-                            </li>
-                            <li>
-                                <a href="#" class="drop-item">Health Library 2</a>
-                            </li>
-                            <li>
-                                <a href="#" class="drop-item">Health Library 3</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="navbar-item" onclick="extendSubMenu(this)">
-                        <a href="#" class="navbar-link">
-                            Services <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-                                fill="currentColor" class="bi bi-chevron-down" stroke-width="2" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
-                            </svg>
+                            Services <i class="bi bi-chevron-down"></i>
                         </a>
                         <ul class="drop-menu">
                             <li>
@@ -80,17 +71,16 @@
                         </ul>
                     </li>
                     <li class="navbar-item">
-                        <a href="{{ route('careers') }}" class="navbar-link ">Career</a>
+                        <a href="/career" class="navbar-link ">Career</a>
                     </li>
                     <li class="navbar-item" onclick="extendSubMenu(this)">
-                        <a href="{{ route('contact') }}" class="navbar-link">
-                            Contact Us <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-                                fill="currentColor" class="bi bi-chevron-down" stroke-width="2" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
-                            </svg>
+                        <a href="#" class="navbar-link">
+                            Contact Us <i class="bi bi-chevron-down"></i>
                         </a>
                         <ul class="drop-menu">
+                            <li>
+                                <a href="/contact-us" class="drop-item">Contact Us</a>
+                            </li>
                             <li>
                                 <a href="mailto:hello@example.com" class="drop-item">Mail</a>
                             </li>
@@ -111,24 +101,20 @@
                 <span>WhatsApp</span>
             </a>
             <a class="emergency-btn" href="tel:1068">
-                <img src="{{ asset('front/assets/img/emergency.png') }}" alt="Emergency" width="50"
-                    height="50">
+                <img src="{{ asset('front/assets/img/emergency.png') }}" alt="Emergency" width="50" height="50">
             </a>
             <a class="md-emergency-btn" href="tel:1068">
-                <img src="{{ asset('front/assets/img/emergency.png') }}" alt="Emergency" width="50"
-                    height="50">
+                <img src="{{ asset('front/assets/img/emergency.png') }}" alt="Emergency" width="50" height="50">
                 <span>Emergency</span>
             </a>
 
             <button href="#" class="call-back navbar-link" data-bs-toggle="modal"
                 data-bs-target="#resume-modal">
-                <img src="{{ asset('front/assets/img/phone-icon.png') }}" alt="Call Back"
-                    class="call-back-image me-1">
+                <img src="{{ asset('front/assets/img/phone-icon.png') }}" alt="Call Back" class="call-back-image me-1">
                 <small>Request Call Back</small>
             </button>
             <a href="#" class="md-contact-us">
-                <img src="{{ asset('front/assets/img/phone-grey-icon.png') }}" alt="Call Back"
-                    class="call-back-image me-1">
+                <img src="{{ asset('front/assets/img/phone-grey-icon.png') }}" alt="Call Back" class="call-back-image me-1">
                 <span>Contact</span>
             </a>
         </div>
@@ -174,17 +160,4 @@
         </div>
     </div>
 </div>
-@push('js')
-    <script>
-        function extendSubMenu(el) {
-            if ($(el).hasClass('active-list')) {
-                $(el).removeClass('active-list');
-                return;
-            }
-            $('.navbar-item').removeClass('active-list');
 
-            $(el).toggleClass('active-list');
-            event.preventDefault();
-        }
-    </script>
-@endpush

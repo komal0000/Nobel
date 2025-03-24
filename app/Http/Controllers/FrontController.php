@@ -8,17 +8,19 @@ use Illuminate\Support\Facades\DB;
 class FrontController extends Controller
 {
     public function index(){
-        $specilities = DB::table('specialties')->whereNull('parent_speciality_id')->get(['id','title']);
-        return view('front.index',compact('specilities'));
+        return view('front.index');
     }
 
     public function contact(){
-        $specilities = DB::table('specialties')->whereNull('parent_speciality_id')->get(['id','title']);
-        return view('front.pages.contact.index',compact('specilities'));
+        return view('front.pages.contact.index');
     }
 
     public function careers(){
+        return view('front.pages.career.index');
+    }
+
+    public function speciality(){
         $specilities = DB::table('specialties')->whereNull('parent_speciality_id')->get(['id','title']);
-        return view('front.pages.career.index',compact('specilities'));
+        return view('front.pages.speciality.index',compact('specilities'));
     }
 }

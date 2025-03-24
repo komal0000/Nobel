@@ -16,14 +16,7 @@
                 </div>
                 <div class="footer-block wow fadeInUp" onclick="expand(this)">
                     <h4 class="block-title"  >Specialities</h4>
-                    <ul class="footer-links" >
-                        @foreach ($specilities as $specility)
-                        <li> <a href="#">{{$specility->title}}</a> </li>
-                        @endforeach
-                        @if ($specilities->count() > 6)
-                            <li><a href="#">More</a></li>
-                        @endif
-                    </ul>
+                    @includeif('front.cache.home.footer')
                 </div>
                 <div class="footer-block" onclick="expand(this)">
                     <h4 class="block-title" >Corporate</h4>
