@@ -27,6 +27,7 @@ class EmployeeTestimonialController extends Controller
                 $EmployeeTestimonial->image = $request->file('image')->store('uploads/employeetestimonial', 'public');
             }
             $EmployeeTestimonial->save();
+            $this->render();
 
             return redirect()->back()->with('success', 'Successfully Testimonial Added');
         }
@@ -43,6 +44,7 @@ class EmployeeTestimonialController extends Controller
                 $EmployeeTestimonial->image = $request->file('image')->store('uploads/employeetestimonial', 'public');
             }
             $EmployeeTestimonial->save();
+            $this->render();
             return redirect()->back()->with('success', 'Successfully Testimonial updated');
         }
     }
@@ -50,6 +52,13 @@ class EmployeeTestimonialController extends Controller
     public function del($testimonial_id)
     {
         EmployeeTestimonial::where('id', $testimonial_id)->delete();
+        $this->render();
         return redirect()->back()->with('delete_success', 'Successfully Testimonial Deleted');
+    }
+
+    public function render()
+    {
+        $testimonials = DB::table('employee_testimonials')->get(['id', 'title', 'short_description', 'image']);
+        Helper::putCache('career.testimonials', view('admin.template.career.EmployeeTestimonials', compact('testimonials'))->render());
     }
 }

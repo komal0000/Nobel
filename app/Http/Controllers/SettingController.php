@@ -29,6 +29,17 @@ class SettingController extends Controller
                 ["homeSpecialityTitle", "views/front/cache/home/specialityTitle.blade.php"],
             ],
         ],
+        'philosophy' => [
+            "Philosophy",
+            [
+                ['title', 1],
+                ['description', 2],
+                ['image', 0],
+            ],
+            [
+                ["philosophy", "views/front/cache/career/philosophy.blade.php"],
+            ],
+        ],
     ];
     public function index($type, Request $request)
     {

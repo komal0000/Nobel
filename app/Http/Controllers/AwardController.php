@@ -52,5 +52,6 @@ class AwardController extends Controller
     {
         $awards = DB::table('awards')->get(['year', 'short_description']);
         Helper::putCache('home.awards', view('admin.template.home.awards', compact('awards'))->render());
+        Helper::putCache('career.awards', view('admin.template.career.awards', compact('awards'))->render());
     }
 }

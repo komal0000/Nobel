@@ -34,4 +34,52 @@ $(document).ready(function() {
     }
     slickToggler();
     $(window).resize(slickToggler);
+    $('.employee-slider').slick({
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        centerMode: false,
+        infinite: true,
+        arrows: true,
+        prevArrow: '<button class="slick-prev left-arrow"><img src="/front/assets/img/vector-left.png" alt="Left Arrow"></button>',
+        nextArrow: '<button class="slick-next right-arrow"><img src="/front/assets/img/vector-right.png" alt="Right Arrow"></button>',
+        responsive: [{
+            breakpoint: 576,
+            settings: {
+                slidesToShow: 1,
+            }
+        }]
+    });
+
+    function toggleAward() {
+        if ($(window).width() < 992) {
+            if (!$('.award-slider').hasClass('.slick-initialized')) {
+                $('.award-slider').slick({
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                    infinite: true,
+                    prevArrow: '<button class="slick-prev left-arrow"><img src="/front/assets/img/vector-left.png" alt="Left Arrow"></button>',
+                    nextArrow: '<button class="slick-next right-arrow"><img src="/front/assets/img/vector-right.png" alt="Right Arrow"></button>',
+                    responsive: [{
+                        breakpoint: 576,
+                        settings: {
+                            slidesToShow: 1,
+                        }
+                    }]
+                })
+            } else {
+                if ($('.award-slider').hasClass('slick-initialized')) {
+                    $('.award-slider').unslick();
+                }
+            }
+        }
+
+    }
+    toggleAward();
+    $(window).resize(toggleAward);
+    function changeTab(el) {
+        console.log('click');
+
+        $('.tab').removeClass('active-tab');
+        $(el).addClass('active-tab');
+    }
 });
