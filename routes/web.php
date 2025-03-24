@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\EmployeeTestimonialController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomeCareController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\LeadershipController;
@@ -23,15 +24,15 @@ use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/',[FrontController::class,'index'])->name('index');
-Route::get('contact',[FrontController::class,'contact'])->name('contact');
-Route::get('careers',[FrontController::class,'careers'])->name('careers');
+Route::get('/', [FrontController::class, 'index'])->name('index');
+Route::get('contact', [FrontController::class, 'contact'])->name('contact');
+Route::get('careers', [FrontController::class, 'careers'])->name('careers');
 
 Route::match(["GET", "POST"], 'login', [LoginController::class, 'login'])->name('login');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
-    Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::prefix('speciality')->name('speciality.')->group(function () {
         Route::get('', [SpecialityController::class, 'index'])->name('index');
         Route::match(["GET", "POST"], 'add', [SpecialityController::class, 'add'])->name('add');
@@ -105,6 +106,17 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
             Route::match(['GET', 'POST'], 'del/{download}', [DownloadController::class, 'DownloadDel'])->name('del');
         });
     });
+    Route::prefix('gallery')->name('gallery.')->group(function () {
+        Route::prefix('type')->name('type.')->group(function () {
+            Route::match(['GET', 'POST'], 'index', [GalleryController::class, 'typeIndex'])->name('index');
+            Route::post('edit/{type_id}', [GalleryController::class, 'typeEdit'])->name('edit');
+            Route::get('del/{type_id}', [GalleryController::class, 'typeDel'])->name('del');
+        });
+        Route::get('index/{type_id}', [GalleryController::class, 'index'])->name('index');
+        Route::match(['GET', 'POST'], 'add/{type_id}', [GalleryController::class, 'add'])->name('add');
+        Route::post('edit/{gallery_id}', [GalleryController::class, 'edit'])->name('edit');
+        Route::get('del/{gallery_id}', [GalleryController::class, 'del'])->name('del');
+    });
 
     Route::prefix('blogCategory')->name('blogCategory.')->group(function () {
         Route::get('index/{type}', [BlogController::class, 'index'])->name('index');
@@ -143,48 +155,51 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::post('edit/{award_id}', [AwardController::class, 'edit'])->name('edit');
         Route::get('del/{award_id}', [AwardController::class, 'del'])->name('del');
     });
+
+
+
     Route::prefix('settings')->name('setting.')->group(function () {
-        Route::match(['GET','POST'],'index/{type}',[SettingController::class,'index'])->name('index');
+        Route::match(['GET', 'POST'], 'index/{type}', [SettingController::class, 'index'])->name('index');
         Route::match(['GET', 'POST'], '/contact', [SettingController::class, 'contact'])->name('contact');
     });
     Route::prefix('technology')->name('technology.')->group(function () {
         Route::match(['GET'], '', [TechnologyController::class, 'index'])->name('index');
-        Route::match(['GET','POST'],'add', [TechnologyController::class, 'add'])->name('add');
-        Route::match(['GET','POST'],'edit/{technology_id}', [TechnologyController::class, 'edit'])->name('edit');
+        Route::match(['GET', 'POST'], 'add', [TechnologyController::class, 'add'])->name('add');
+        Route::match(['GET', 'POST'], 'edit/{technology_id}', [TechnologyController::class, 'edit'])->name('edit');
         Route::get('del/{technology_id}', [TechnologyController::class, 'del'])->name('del');
         Route::prefix('section')->name('section.')->group(function () {
-            Route::get('index/{technology_id}',[TechnologySectionController::class,'index'])->name('index');
+            Route::get('index/{technology_id}', [TechnologySectionController::class, 'index'])->name('index');
             Route::match(['GET', 'POST'], 'add/{technology_id}', [TechnologySectionController::class, 'add'])->name('add');
             Route::match(['GET', 'POST'], 'edit/{section_id}', [TechnologySectionController::class, 'edit'])->name('edit');
             Route::match(['GET', 'POST'], 'del/{section_id}', [TechnologySectionController::class, 'del'])->name('del');
         });
-        Route::prefix('sectiontype')->name('sectiontype.')->group(function(){
-            Route::match(['GET','POST'],'/index',[TechnologySectionController::class,'typeIndex'])->name('index');
-            Route::post('edit/{type_id}',[TechnologySectionController::class,'typeEdit'])->name('edit');
-            Route::get('de//{type_id}',[TechnologySectionController::class,'typeDel'])->name('del');
+        Route::prefix('sectiontype')->name('sectiontype.')->group(function () {
+            Route::match(['GET', 'POST'], '/index', [TechnologySectionController::class, 'typeIndex'])->name('index');
+            Route::post('edit/{type_id}', [TechnologySectionController::class, 'typeEdit'])->name('edit');
+            Route::get('de//{type_id}', [TechnologySectionController::class, 'typeDel'])->name('del');
         });
     });
-    Route::prefix('leadership')->name('leadership.')->group(function(){
+    Route::prefix('leadership')->name('leadership.')->group(function () {
         Route::match(['GET'], '', [LeadershipController::class, 'index'])->name('index');
         Route::match(['GET', 'POST'], 'add', [LeadershipController::class, 'add'])->name('add');
         Route::match(['GET', 'POST'], 'edit/{leadership_id}', [LeadershipController::class, 'edit'])->name('edit');
         Route::get('del/{leadership_id}', [LeadershipController::class, 'del'])->name('del');
     });
-    Route::prefix('video')->name('video.')->group(function(){
-        Route::prefix('type')->name('type.')->group(function(){
-            Route::match(['GET','POST'],'index',[VideoController::class,'indexType'])->name('index');
-            Route::post('edit/{type_id}',[VideoController::class,'editType'])->name('edit');
-            Route::get('del/{type_id}',[VideoController::class,'delType'])->name('del');
+    Route::prefix('video')->name('video.')->group(function () {
+        Route::prefix('type')->name('type.')->group(function () {
+            Route::match(['GET', 'POST'], 'index', [VideoController::class, 'indexType'])->name('index');
+            Route::post('edit/{type_id}', [VideoController::class, 'editType'])->name('edit');
+            Route::get('del/{type_id}', [VideoController::class, 'delType'])->name('del');
         });
-        Route::match(['GET','POST'],'index/{type_id}',[VideoController::class,'index'])->name('index');
-        Route::match(['GET','POST'],'add/{type_id}',[VideoController::class,'add'])->name('add');
-        Route::match(['GET','POST'],'edit/{video_id}',[VideoController::class,'edit'])->name('edit');
-        Route::match(['GET'],'del/{video_id}',[VideoController::class,'del'])->name('del');
+        Route::match(['GET', 'POST'], 'index/{type_id}', [VideoController::class, 'index'])->name('index');
+        Route::match(['GET', 'POST'], 'add/{type_id}', [VideoController::class, 'add'])->name('add');
+        Route::match(['GET', 'POST'], 'edit/{video_id}', [VideoController::class, 'edit'])->name('edit');
+        Route::match(['GET'], 'del/{video_id}', [VideoController::class, 'del'])->name('del');
     });
-    Route::prefix('homeCare')->name('homeCare.')->group(function(){
-        Route::get('',[HomeCareController::class,'index'])->name('index');
-        Route::match(['GET','POST'],'add',[HomeCareController::class,'add'])->name('add');
-        Route::match(['GET','POST'],'edit/{homeCare_id}',[HomeCareController::class,'edit'])->name('edit');
-        Route::get('del/{homeCare_id}',[HomeCareController::class,'del'])->name('del');
+    Route::prefix('homeCare')->name('homeCare.')->group(function () {
+        Route::get('', [HomeCareController::class, 'index'])->name('index');
+        Route::match(['GET', 'POST'], 'add', [HomeCareController::class, 'add'])->name('add');
+        Route::match(['GET', 'POST'], 'edit/{homeCare_id}', [HomeCareController::class, 'edit'])->name('edit');
+        Route::get('del/{homeCare_id}', [HomeCareController::class, 'del'])->name('del');
     });
 });
