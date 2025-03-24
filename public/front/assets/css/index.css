@@ -4580,7 +4580,7 @@ section:nth-of-type(odd) {
   }
 }
 .leader .main-container .leader-wrapper .slider-for .each-card .detail {
-  width: 60%;
+  width: 50%;
 }
 @media (max-width: 768px) {
   .leader .main-container .leader-wrapper .slider-for .each-card .detail {
@@ -4599,9 +4599,10 @@ section:nth-of-type(odd) {
 .leader .main-container .leader-wrapper .slider-for .each-card img {
   flex: 1;
   width: 100%;
-  aspect-ratio: 1/1;
   height: auto;
   border-radius: 25px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .leader .main-container .leader-wrapper .slider-nav {
   padding: 40px 40px 0;
