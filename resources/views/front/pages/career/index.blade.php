@@ -3,11 +3,11 @@
 @section('meta', 'Career page for the website')
 
 @section('content')
-    @includeIf('front.cache.career.top-banner')
+    @include('front.pages.career.topbanner')
     @includeIf('front.cache.career.job')
     @include('front.pages.career.testinomial')
     @includeIf('front.cache.career.leaderships')
-    @includeIf('front.cache.career.not-sure')
+    @includeIf('front.pages.career.resume')
     @includeIf('front.cache.career.life-here')
     @includeIf('front.cache.career.internship')
 @endsection

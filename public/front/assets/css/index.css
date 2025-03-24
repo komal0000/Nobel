@@ -4016,10 +4016,12 @@ section:nth-of-type(odd) {
 }
 #case-studies .case-study-content .slide .body .para-wrap {
   color: var(--color-main);
+  margin-bottom: 10px;
 }
 #case-studies .case-study-content .slide .body .title {
   font-weight: 600;
   color: var(--color-dark-grey);
+  margin-bottom: 15px;
 }
 #case-studies .case-study-content .slide .body .name-post {
   font-size: 14px;
@@ -4027,7 +4029,11 @@ section:nth-of-type(odd) {
   color: var(--color-dark-grey);
 }
 #case-studies .case-study-content .slide .body .name-post .post {
+  font-size: 13.5px;
+  display: inline-block;
   font-weight: 400;
+  margin-top: 5px;
+  margin-bottom: 15px;
 }
 #case-studies .case-study-content .slide .body .speciality {
   font-size: 13px;
@@ -4564,7 +4570,7 @@ section:nth-of-type(odd) {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 10px;
+  gap: 50px;
   height: auto;
 }
 @media (max-width: 768px) {
