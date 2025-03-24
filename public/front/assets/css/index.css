@@ -3915,6 +3915,138 @@ section:nth-of-type(odd) {
   }
 }
 
+#case-studies .filters {
+  width: 700px;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+#case-studies .filters .select-field {
+  width: 45%;
+  position: relative;
+}
+#case-studies .filters .select-field .default-select {
+  border-radius: 50px;
+  padding: 10px;
+  border: 1px solid var(--color-main);
+  cursor: pointer;
+  position: relative;
+  z-index: 100;
+  color: #fff;
+  background-color: var(--color-main);
+  font-size: 14px;
+  font-weight: 600;
+}
+#case-studies .filters .select-field .default-select .anchor-down-btn {
+  position: absolute;
+  right: 6%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#case-studies .filters .select-field .select-wrap {
+  padding: 10px;
+  padding-top: 50px;
+  border-radius: 25px;
+  background-color: #fff;
+  display: none;
+  overflow: hidden;
+  overflow-y: auto;
+  max-height: 240px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: 0 3px 40px rgba(0, 0, 0, 0.14);
+  z-index: 99;
+}
+#case-studies .filters .select-field .select-wrap .select-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+#case-studies .filters .select-field .select-wrap .select-list li {
+  font-weight: 600;
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--border-color-light);
+  font-size: 14px;
+  cursor: pointer;
+}
+#case-studies .filters .select-field .active {
+  display: block;
+}
+#case-studies .filters .search-field {
+  width: 52%;
+  position: relative;
+}
+#case-studies .filters .search-field input {
+  padding: 9px;
+}
+#case-studies .filters .search-field i {
+  font-size: 18px;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+}
+#case-studies .case-study-content .slide {
+  background-color: #fff;
+  min-height: 60px;
+  border-radius: 25px;
+  box-shadow: 0 3px 17px rgba(0, 0, 0, 0.14);
+}
+#case-studies .case-study-content .slide .img-wrapper {
+  position: relative;
+  border-radius: 25px;
+  overflow: hidden;
+}
+#case-studies .case-study-content .slide .img-wrapper .date {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: var(--color-white);
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+#case-studies .case-study-content .slide .body {
+  padding: 30px;
+}
+#case-studies .case-study-content .slide .body .para-wrap {
+  color: var(--color-main);
+}
+#case-studies .case-study-content .slide .body .title {
+  font-weight: 600;
+  color: var(--color-dark-grey);
+}
+#case-studies .case-study-content .slide .body .name-post {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-dark-grey);
+}
+#case-studies .case-study-content .slide .body .name-post .post {
+  font-weight: 400;
+}
+#case-studies .case-study-content .slide .body .speciality {
+  font-size: 13px;
+  font-weight: 500;
+}
+#case-studies .case-study-content .slide .body .speciality a {
+  font-weight: 600;
+  color: var(--color-main);
+}
+#case-studies .case-study-content .slide .body .speciality a::before {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  margin: 0 10px;
+  background-color: #CBD1D3;
+  content: "";
+  display: inline-block;
+}
+
 #event-top-banner {
   padding: 0;
   position: relative;
@@ -4199,12 +4331,13 @@ section:nth-of-type(odd) {
 }
 .profession .main-container .card-wrapper .slide .each-card .body .content {
   font-size: 15px;
+  line-height: 20px;
   font-weight: 500;
   color: var(--color-grey);
   margin: 14px 0;
-  max-height: 6rem;
-  overflow-y: auto;
-  scrollbar-gutter: stable;
+  height: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 @media (max-width: 992px) {
   .profession .main-container .card-wrapper .slide .each-card .body .content {
@@ -4315,7 +4448,7 @@ section:nth-of-type(odd) {
   padding: 15px;
 }
 .employee-section .main-container .content-main .employee-flex .award {
-  width: 40%;
+  width: 30%;
 }
 @media (max-width: 991px) {
   .employee-section .main-container .content-main .employee-flex .award {
