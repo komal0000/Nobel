@@ -9,7 +9,7 @@ $(document).ready(function() {
                     slidesToScroll: 1,
                     infinite: true,
                     prevArrow: '<button class="slick-prev left-arrow"><img src="/front/assets/img/vector-left.png" alt="Left Arrow"></button>',
-                    nextArrow: '<button class="slick-next right-arrow"><img src="/front/img/vector-right.png" alt="Right Arrow"></button>',
+                    nextArrow: '<button class="slick-next right-arrow"><img src="/front/assets/img/vector-right.png" alt="Right Arrow"></button>',
                     responsive: [{
                             breakpoint: 768,
                             settings: {
@@ -87,13 +87,13 @@ $(document).ready(function() {
         slidesToScroll: 1,
         arrows: false,
         fade: true,
-        asNavFor: '.slider-nav' // Link to thumbnail slider
+        asNavFor: '.slider-nav'
     });
 
     $('.slider-nav').slick({
-        slidesToShow: 3, // Adjust based on your design
+        slidesToShow: 3,
         slidesToScroll: 1,
-        asNavFor: '.slider-for', // Link to main slider
+        asNavFor: '.slider-for',
         dots: false,
         centerMode: true,
         focusOnSelect: true
