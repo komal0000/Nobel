@@ -98,10 +98,11 @@ class SpecialityController extends Controller
 
     public function renderSingle($speciality_id){
         $speciality = DB::table('specialties')->where('id', $speciality_id)->first();
+        Helper::putCache('speciality.single.'.$speciality_id.'.overview', view('admin.template.speciality.overview', compact('speciality'))->render());
         if($speciality->parent_speciality_id){
             $this->renderSingle($speciality->parent_speciality_id);
+            Helper::putCache('speciality.single.'.$speciality->id.'.sub-specialization', view('admin.template.speciality.subspecialization', compact('speciality'))->render());
         }
-        Helper::putCache('speciality.single.'.$speciality_id.'.overview', view('admin.template.speciality.overview', compact('speciality'))->render());
     }
 
     public function render()
