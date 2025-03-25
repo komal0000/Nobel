@@ -168,14 +168,10 @@ class AlimentController extends Controller
 
     public function render($aliment_id)
     {
-        $specialty_id = DB::table('aliments')
-            ->where('id', $aliment_id)
-            ->value('specialty_id');
-
+        $specialty_id = DB::table('aliments')->where('id', $aliment_id)->value('specialty_id');
         if ($specialty_id) {
             $specialityAliments = Aliment::where('specialty_id', $specialty_id)->get();
-            Helper::putCache('speciality.single.' . $specialty_id . '.aliment',
-                view('admin.template.speciality.single.aliment', compact('specialityAliments'))->render());
+            Helper::putCache('speciality.single.' . $specialty_id . '.aliment', view('admin.template.speciality.single.aliment', compact('specialityAliments'))->render());
         }
     }
 }

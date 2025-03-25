@@ -9,10 +9,8 @@
             $parents = \App\Helper::getSpecialityRoutes($parent_speciality_id);
         @endphp
         @foreach ($parents as $parent)
-            <a href="{{ route('admin.speciality.index', ['parent_speciality_id' => $parent->id]) }}">{{ $parent->title }}</a>
-            /
+            <a href="{{ route('admin.speciality.index', ['parent_speciality_id' => $parent->id]) }}">{{ $parent->title }}</a> /
         @endforeach
-        <span>Sub Specialties</span> /
         <span>Add</span>
     @endif
 @endsection

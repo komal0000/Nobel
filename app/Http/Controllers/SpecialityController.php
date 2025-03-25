@@ -53,10 +53,11 @@ class SpecialityController extends Controller
 
     public function edit(Request $request, $speciality_id)
     {
+        $parent_speciality_id = $request->parent_speciality_id;
         $speciality = Speciality::where("id", $speciality_id)->first();
 
         if (Helper::G($request)) {
-            return view('admin.speciality.edit', compact('speciality'));
+            return view('admin.speciality.edit', compact('speciality','parent_speciality_id'));
         } else {
             $speciality->title = $request->title;
             $speciality->short_description = $request->short_description;
@@ -96,13 +97,22 @@ class SpecialityController extends Controller
         return redirect()->back()->with("delete_success", "Speciality Successfully Deleted");
     }
 
-    public function renderSingle($speciality_id){
-        $speciality = DB::table('specialties')->where('id', $speciality_id)->first();
-        Helper::putCache('speciality.single.'.$speciality_id.'.overview', view('admin.template.speciality.overview', compact('speciality'))->render());
-        if($speciality->parent_speciality_id){
-            $this->renderSingle($speciality->parent_speciality_id);
-            Helper::putCache('speciality.single.'.$speciality->id.'.sub-specialization', view('admin.template.speciality.subspecialization', compact('speciality'))->render());
+    public function renderSingle($speciality_id)
+    {
+        $speciality = DB::table('specialties')->find($speciality_id);
+        if (!$speciality) {
+            Helper::putCache('speciality.single.' . $speciality_id . '.overview', null);
+            return;
         }
+        if ($speciality->parent_speciality_id) {
+            $parentSpeciality = DB::table('specialties')->find($speciality->parent_speciality_id);
+            Helper::putCache('speciality.single.' . $speciality->parent_speciality_id . '.subspecialization', view('admin.template.speciality.subspecialization', [
+                'speciality'=>$parentSpeciality
+            ])->render());
+            $this->renderSingle($speciality->parent_speciality_id);
+        }
+
+        Helper::putCache('speciality.single.' . $speciality_id . '.overview', view('admin.template.speciality.overview', compact('speciality'))->render());
     }
 
     public function render()
@@ -114,3 +124,5 @@ class SpecialityController extends Controller
         Helper::putCache('home.footer', view('admin.template.home.footer', compact('specialities'))->render());
     }
 }
+
+

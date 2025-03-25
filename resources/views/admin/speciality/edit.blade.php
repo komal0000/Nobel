@@ -1,15 +1,13 @@
 @extends('admin.layout.app')
 @section('title')
-    @if ($speciality->parent_speciality_id)
+    @if ($parent_speciality_id)
         <a href="{{ route('admin.speciality.index') }}">Specialties</a> /
         @php
             $parents = \App\Helper::getSpecialityRoutes($speciality->parent_speciality_id);
         @endphp
         @foreach ($parents as $parent)
-            <a href="{{ route('admin.speciality.index', ['parent_speciality_id' => $parent->id]) }}">{{ $parent->title }}</a>
-            /
+            <a href="{{ route('admin.speciality.index', ['parent_speciality_id' => $parent->id]) }}">{{ $parent->title }}</a> /
         @endforeach
-        <span>Sub Specialties</span> /
         <span>Edit</span>
     @else
         <a href="{{ route('admin.speciality.index') }}">Specialties</a> /
