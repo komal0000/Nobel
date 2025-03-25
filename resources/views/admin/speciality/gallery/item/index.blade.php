@@ -37,18 +37,18 @@
                 <div class="col-md-4">
                     <div class="item-group border p-3 mb-3 rounded">
                         <div class="form-group">
-                            <label for="icon">Icon <span style="color: red;">*</span> </label>
-                            <input type="file" name="icon" class="form-control dropify" id="icon_update"
+                            <label for="icon_{{ $item->id }}">Icon <span style="color: red;">*</span> </label>
+                            <input type="file" name="icon" class="form-control dropify" id="icon_update_{{ $item->id }}"
                                 data-height="100" data-default-file="{{ Storage::url($item->icon) }}" accept="image/*">
                         </div>
                         <div class="form-group">
-                            <label for="title">Title <span style="color: red;">*</span></label>
-                            <input type="text" name="title" class="form-control" id="title_update"
+                            <label for="title_{{ $item->id }}">Title <span style="color: red;">*</span></label>
+                            <input type="text" name="title" class="form-control" id="title_update_{{ $item->id }}"
                                 placeholder="Enter title" value="{{ $item->title }}">
                         </div>
                         <div class="form-group">
-                            <label for="description">Description </label>
-                            <textarea name="description" class="form-control" id="description_update" rows="3"
+                            <label for="description_{{ $item->id }}">Description </label>
+                            <textarea name="description" class="form-control" id="description_update_{{ $item->id }}" rows="3"
                                 placeholder="Enter description">{!! old('description', $item->description) !!}</textarea>
                         </div>
                         <a href="{{ route('admin.speciality.gallery.item.delete', ['item_id' => $item->id]) }}"
@@ -73,7 +73,8 @@
                         <textarea name="description" class="form-control" rows="3" placeholder="Enter description"></textarea>
                     </div>
                     <button type="button" class="btn btn-danger btn-sm remove-item">Remove</button>
-                    <button class="btn btn-primary btn-sm" onclick="saveItem(event, {{ $specialityGallery->id }})">Save</button>
+                    <button class="btn btn-primary btn-sm"
+                        onclick="saveItem(event, {{ $specialityGallery->id }})">Save</button>
                 </div>
 
             </div>
@@ -85,47 +86,46 @@
     <script>
         $(document).ready(function() {
             $('.dropify').dropify();
-
-            function addItem(id) {
-                var itemGroup = `
-                  <div class="col-md-4">
-                    <div class="item-group border p-3 mb-3 rounded">
-                        <div class="form-group">
-                            <label for="icon">Icon</label>
-                            <input type="file" name="icon" id="icon" class="form-control dropify" data-height="100"
-                                accept="image/*">
-                        </div>
-                        <div class="form-group">
-                            <label for="title">Title</label>
-                            <input type="text" name="title" class="form-control" placeholder="Enter title">
-                        </div>
-                        <div class="form-group">
-                            <label for="description">Description</label>
-                            <textarea name="description" class="form-control" rows="3" placeholder="Enter description"></textarea>
-                        </div>
-                        <button type="button" class="btn btn-danger btn-sm remove-item">Remove</button>
-                        <button class="btn btn-primary btn-sm" onclick="saveItem({{ $specialityGallery->id }})">Save</button>
-                    </div>
-                </div>
-                `;
-                $('#items-container').append(itemGroup);
-                $('.dropify').dropify();
-            }
-
-            function removeItem(event) {
+            $(document).on('click', '.remove-item', function() {
                 $(this).closest('.col-md-4').remove();
-            }
-            $(document).on('click', '.remove-item', removeItem);
+            });
         });
+
+        function addItem(id) {
+            var itemGroup = `
+              <div class="col-md-4">
+                <div class="item-group border p-3 mb-3 rounded">
+                    <div class="form-group">
+                        <label for="icon">Icon</label>
+                        <input type="file" name="icon" class="form-control dropify" data-height="100"
+                            accept="image/*">
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" name="title" class="form-control" placeholder="Enter title">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea name="description" class="form-control" rows="3" placeholder="Enter description"></textarea>
+                    </div>
+                    <button type="button" class="btn btn-danger btn-sm remove-item">Remove</button>
+                    <button class="btn btn-primary btn-sm" onclick="saveItem(event, ${id})">Save</button>
+                </div>
+            </div>
+            `;
+            $('#items-container').append(itemGroup);
+            $('.dropify').dropify();
+        }
 
         function EditData(id) {
             var formData = new FormData();
-            formData.append('title', $('#title_update').val());
-            formData.append('description', $('#description_update').val());
-            var icon = $('#icon_update')[0].files[0];
+            formData.append('title', $(`#title_update_${id}`).val());
+            formData.append('description', $(`#description_update_${id}`).val());
+            var icon = $(`#icon_update_${id}`)[0].files[0];
             if (icon) {
                 formData.append('icon', icon);
             }
+            formData.append('_token', '{{ csrf_token() }}');
 
             axios.post("{{ route('admin.speciality.gallery.item.edit', ['item_id' => '__ID__']) }}".replace('__ID__',
                     id), formData, {
@@ -142,9 +142,8 @@
                 });
         }
 
-        function saveItem(id) {
+        function saveItem(event, id) {
             const formData = new FormData();
-            // Select the elements within the specific item group that triggered the save
             const itemGroup = event.target.closest('.item-group');
             formData.append('title', $(itemGroup).find('input[name="title"]').val());
             formData.append('description', $(itemGroup).find('textarea[name="description"]').val());
@@ -152,16 +151,20 @@
             if (icon) {
                 formData.append('icon', icon);
             }
+            formData.append('_token', '{{ csrf_token() }}');
+
             axios.post("{{ route('admin.speciality.gallery.item.index', ['gallery_id' => '__ID__']) }}".replace('__ID__',
                     id), formData, {
                     headers: {
-                        'Content-Type': 'multipart/form-data',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        'Content-Type': 'multipart/form-data'
                     }
                 })
                 .then(function(response) {
-                    console.log(response);
+                    if (response.data.success){
+                        location.reload();
+                    }
                 }).catch(function(error) {
+                    alert('Error saving item');
                     console.error(error);
                 });
         }

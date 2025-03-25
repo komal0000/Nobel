@@ -86,6 +86,8 @@ class SpecialityGalleryController extends Controller
             $galleryItem->speciality_gallery_id = $gallery_id;
             $galleryItem->specialty_id = $specialityGallery->specialty_id;
             $galleryItem->save();
+            session()->flash('success', 'Award Successfully Added');
+            return response()->json(['success' => true]);
         }
     }
 
@@ -103,7 +105,8 @@ class SpecialityGalleryController extends Controller
             $item->icon = $path;
         }
         $item->save();
-        return redirect()->back()->with("success", "Gallery Item Successfully Updated");
+        session()->flash('success', 'Award Successfully updated');
+        return response()->json(['success' => true]);
     }
 
     public function itemDelete($item_id)
