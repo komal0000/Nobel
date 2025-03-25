@@ -35,7 +35,7 @@ class SpecialityGalleryController extends Controller
             $specialityGallery->title = $request->title;
             $specialityGallery->description = $request->description;
             $specialityGallery->specialty_id = $speciality_id;
-            if (request()->has('file')) {
+            if (request()->hasFile('file')) {
                 $specialityGallery->icon = $request->file('icon')->store('uploads/images', 'public');
             }
             $specialityGallery->save();
@@ -77,20 +77,15 @@ class SpecialityGalleryController extends Controller
             $galleryItems = DB::table('speciality_gallery_items')->where('speciality_gallery_id', $gallery_id)->get();
             return view('admin.speciality.gallery.item.index', compact('gallery_id','specialityGallery','speciality', 'galleryItems','parent_speciality_id'));
         } else {
+            $galleryItem = new SpecialityGalleryItem();
+            $galleryItem->title = $request->input('title');
+            $galleryItem->description = $request->input('description');
             if ($request->hasFile('icon')) {
-                foreach ($request->file('icon') as $index => $file) {
-                    $path = $file->store('uploads/gallery_items', 'public');
-                    $item = new SpecialityGalleryItem();
-                    $item->speciality_gallery_id = $gallery_id;
-                    $item->specialty_id = $speciality->id;
-                    $item->icon = $path;
-                    $item->title = $request->title[$index];
-                    $item->description = $request->description[$index] ?? null;
-                    $item->extra_data = $request->extra_data[$index] ?? null;
-                    $item->save();
-                }
+                $galleryItem->icon = $request->file('icon')->store('uploads/gallery_items', 'public');
             }
-            return redirect()->back()->with("success", "Gallery Items Successfully Added");
+            $galleryItem->speciality_gallery_id = $gallery_id;
+            $galleryItem->specialty_id = $specialityGallery->specialty_id;
+            $galleryItem->save();
         }
     }
 
