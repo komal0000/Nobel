@@ -26,7 +26,7 @@ class AlimentController extends Controller
     public function add(Request $request)
     {
         $speciality_id = $request->speciality_id;
-        if (Helper::G($request)) {
+        if (Helper::G()) {
             $speciality = Speciality::where('id', $speciality_id)->first();
             $speciality_section_types = AlimentSectionType::get();
             return view('admin.aliment.add', compact('speciality_id', 'speciality', 'speciality_section_types'));
@@ -44,6 +44,7 @@ class AlimentController extends Controller
             }
 
             $aliment->save();
+
             if ($request->has('sections') && is_array($request->sections)) {
                 foreach ($request->sections as $typeId => $sectionData) {
                     $section = new AlimentSection();
@@ -59,7 +60,7 @@ class AlimentController extends Controller
                     $section->save();
                 }
             }
-
+            $this->render($aliment->id);
             session()->flash('success', 'Award Successfully Added');
             return response()->json(['success' => true]);
         }
@@ -70,7 +71,7 @@ class AlimentController extends Controller
     {
         $aliment = Aliment::findOrFail($aliment_id);
 
-        if (Helper::G($request)) {
+        if (Helper::G()) {
             $speciality_id = $request->speciality_id;
             $speciality_section_types = AlimentSectionType::get();
             $speciality = Speciality::where('id', $aliment->specialty_id)->first();
@@ -86,6 +87,7 @@ class AlimentController extends Controller
                 $aliment->single_page_image = $request->file('aliment_single_page_image')->store('uploads/aliments', 'public');
             }
             $aliment->save();
+
             if ($request->has('sections') && is_array($request->sections)) {
                 foreach ($request->sections as $typeId => $sectionData) {
                     $section = AlimentSection::where('aliment_section_type_id', $typeId)->where('aliment_id', $aliment->id)->first();
@@ -105,6 +107,7 @@ class AlimentController extends Controller
                     $section->save();
                 }
             }
+            $this->render($aliment->id);
             session()->flash('success', 'Award Successfully updated');
             return response()->json(['success' => true]);
         }
@@ -114,6 +117,7 @@ class AlimentController extends Controller
     public function del($aliment_id)
     {
         AlimentSection::where('aliment_id', $aliment_id)->delete();
+        $this->render($aliment_id);
         Aliment::where('id', $aliment_id)->delete();
         return redirect()->back()->with("delete_success", "Aliment Successfully Deleted");
     }
@@ -126,7 +130,7 @@ class AlimentController extends Controller
 
     public function typeAdd(Request $request)
     {
-        if (Helper::g($request)) {
+        if (Helper::G()) {
             return view('admin.aliment.sectionType.add');
         } else {
             $alimentType = new AlimentSectionType();
@@ -143,7 +147,7 @@ class AlimentController extends Controller
     public function typeEdit(Request $request, $type_id)
     {
         $alimentType = AlimentSectionType::where('id', $type_id)->first();
-        if (Helper::G($request)) {
+        if (Helper::G()) {
             return view('admin.aliment.sectionType.edit', compact('alimentType'));
         } else {
             $alimentType->title = $request->title;
@@ -160,5 +164,18 @@ class AlimentController extends Controller
     {
         AlimentSectionType::where('id', $type_id)->delete();
         return redirect()->back()->with("delete_success", "Aliment Type Successfully Deleted");
+    }
+
+    public function render($aliment_id)
+    {
+        $specialty_id = DB::table('aliments')
+            ->where('id', $aliment_id)
+            ->value('specialty_id');
+
+        if ($specialty_id) {
+            $specialityAliments = Aliment::where('specialty_id', $specialty_id)->get();
+            Helper::putCache('speciality.single.' . $specialty_id . '.aliment',
+                view('admin.template.speciality.single.aliment', compact('specialityAliments'))->render());
+        }
     }
 }

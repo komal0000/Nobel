@@ -41,7 +41,7 @@
                 </div>
                 <div class="col-md-12 mb-3">
                     <label for="short_description">Short Description <span style="color: red;">*</span></label>
-                    <textarea class="form-control summernote" id="aliment_short_description" name="short_description" required></textarea>
+                    <textarea class="form-control " id="aliment_short_description" name="short_description" required></textarea>
                 </div>
             </div>
         </div>
@@ -84,7 +84,7 @@
                                                 <div class="col-md-12 mb-3">
                                                     <label for="description">Description <span
                                                             style="color: red;">*</span></label>
-                                                    <textarea name="description" id="description_{{ $type->id }}" class="form-control summernote" required></textarea>
+                                                    <textarea name="description" id="description_{{ $type->id }}" class="form-control " required></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -133,14 +133,14 @@
                 var checkbox = section.find('input[name="show_on_frontend"]');
                 formData.append("sections[" + typeId + "][show_on_frontend]", checkbox.is(":checked") ? 1 : 0);
             });
-            axios.post('{{ route('admin.aliment.add') }}', formData, {
+            axios.post("{{ route('admin.aliment.add') }}", formData, {
                     headers: {
-                        'Content-Type': 'multipart/form-data'
+                        'Content-Type': 'multipart/form-data',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
                     }
                 })
                 .then(function(response) {
                     if (response.data.success) {
-                        sessionStorage.setItem('success', 'Aliment updated successfully');
                         location.reload();
                     }
                 })

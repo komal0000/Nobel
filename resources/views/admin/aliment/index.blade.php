@@ -9,7 +9,6 @@
         @foreach ($parents as $parent)
             <a href="{{ route('admin.speciality.index', ['speciality_id' => $parent->id]) }}">{{ $parent->title }}</a> /
         @endforeach
-
         <span>Aliments</span>
     @else
         <span>Aliments</span>
@@ -23,7 +22,6 @@
         <thead>
             <tr>
                 <th>Title</th>
-                <th>Short Description</th>
                 <th>Manage</th>
             </tr>
         </thead>
@@ -31,7 +29,6 @@
             @foreach ($aliments as $aliment)
                 <tr>
                     <td>{{ $aliment->title }}</td>
-                    <td>{{ $aliment->short_description }}</td>
                     <td>
                         <a href="{{ route('admin.aliment.edit', ['aliment_id' => $aliment->id, 'speciality_id' => $speciality_id]) }}"
                             class="btn btn-warning btn-sm ">Edit</a>
@@ -44,7 +41,6 @@
         <tfoot>
             <tr>
                 <th>Title</th>
-                <th>Short Description</th>
                 <th>Manage</th>
             </tr>
         </tfoot>
