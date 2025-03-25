@@ -32,7 +32,6 @@ class TreatmentController extends Controller
             $speciality = Speciality::where('id', $speciality_id)->first();
             return view('admin.treatment.add', compact('speciality_id', 'speciality'));
         } else {
-            // dd($request->all());
             $treatment = new Treatment();
             $treatment->title = $request->title;
             $treatment->short_description = $request->short_description;
@@ -44,6 +43,7 @@ class TreatmentController extends Controller
                 $treatment->single_page_image = $request->file('single_page_image')->store('uploads/treatments', 'public');
             }
             $treatment->save();
+            $this->render($treatment->id);
             return redirect()->back()->with("success", "Treatment Successfully Added");
         }
     }
@@ -65,6 +65,7 @@ class TreatmentController extends Controller
                 $treatment->single_page_image = $request->file('single_page_image')->store('uploads/treatments', 'public');
             }
             $treatment->save();
+            $this->render($treatment_id);
             return redirect()->back()->with("success", "Treatment Successfully Updated");
         }
     }
@@ -80,7 +81,13 @@ class TreatmentController extends Controller
             }
         }
         Treatment::where('id', $treatment_id)->delete();
-
+        $this->render($treatment_id);
         return redirect()->back()->with("delete_success", "Treatment Successfully Deleted");
+    }
+
+    public function render($treatment_id){
+        $treatment = Treatment::where('id', $treatment_id)->first();
+        $specialityTreatment = Treatment::where('specialty_id', $treatment->specialty_id)->get();
+        Helper::putCache('speciality.single.' . $treatment->specialty_id . '.treatment',view('admin.template.speciality.single.treatment',compact('specialityTreatment'))->render());
     }
 }

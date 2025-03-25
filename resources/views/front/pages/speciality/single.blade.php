@@ -12,3 +12,6 @@
     @includeIf('front.cache.speciality.single.'.$id.'.story')
     @includeIf('front.cache.speciality.single.'.$id.'.know-more')
 @endsection
+@section('js')
+    <script src="{{ asset('front/assets/js/speciality/single.js') }}"></script>
+@endsection
