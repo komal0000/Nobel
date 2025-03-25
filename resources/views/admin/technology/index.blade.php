@@ -18,7 +18,6 @@
         <thead>
             <tr>
                 <th>Title</th>
-                <th>Short Description</th>
                 <th>Manage</th>
             </tr>
         </thead>
@@ -27,9 +26,6 @@
                 <tr>
                     <td>
                         {{ $technology->title }}
-                    </td>
-                    <td>
-                        {{ $technology->short_description }}
                     </td>
                     <td>
                         <a href="{{ route('admin.technology.edit', ['technology_id' => $technology->id]) }}"
@@ -43,7 +39,6 @@
         <tfoot>
             <tr>
                 <th>Title</th>
-                <th>Short Description</th>
                 <th>Manage</th>
             </tr>
         </tfoot>

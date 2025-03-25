@@ -6,24 +6,41 @@
 @section('content')
     <div class="row">
         <div class="col-md-6 mb-3">
-            <label for="title">Title <span style="color: red;">*</span></label>
-            <input type="text" name="title" id="technology_title" class="form-control" value="{{ $technology->title }}"
-                required>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="technology_image">Image <span style="color: red">*</span></label>
+                    <input type="file" name="technology_image" id="technology_image" class="form-control dropify"
+                        accept="image/*" data-default-file="{{ Storage::url($technology->image) }}">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="technology_single_page_image">Single Page Image <span style="color: red">*</span></label>
+                    <input type="file" name="technology_single_page_image" id="technology_single_page_image"
+                        class="form-control dropify" data-default-file="{{ Storage::url($technology->single_page_image) }}"
+                        required accept="image/*">
+                </div>
+            </div>
         </div>
         <div class="col-md-6 mb-3">
-            <label for="specialty_id">Speciality</label>
-            <select name="specialty_id" id="specialty_id" class="form-control">
-                @foreach ($specialities as $speciality)
-                    <option value="{{ $speciality->id }}"
-                        {{ $speciality->id == $technology->specialty_id ? 'selected' : '' }}>{{ $speciality->title }}
-                    </option>
-                @endforeach
-            </select>
-        </div>
-        <div class="col-md-12 mb-3">
-            <label for="short_description">Short Description <span style="color: red;">*</span></label>
-            <input type="text" name="short_description" id="technology_short_description" class="form-control"
-                value="{{ $technology->short_description }}">
+            <div class="col-md-12 mb-3">
+                <label for="technology_title">Title <span style="color: red;">*</span></label>
+                <input type="text" name="technology_title" id="technology_title" class="form-control"
+                    value="{{ $technology->title }}" required>
+            </div>
+            <div class="col-md-12 mb-3">
+                <label for="specialty_id">Speciality <span style="color: red;">*</span></label>
+                <select name="specialty_id" id="specialty_id" class="form-control" required>
+                    @foreach ($specialities as $speciality)
+                        <option value="{{ $speciality->id }}"
+                            {{ $speciality->id == $technology->specialty_id ? 'selected' : '' }}>
+                            {{ $speciality->title }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-md-12 mb-3">
+                <label for="technology_short_description">Short Description <span style="color: red;">*</span></label>
+                <textarea name="technology_short_description" id="technology_short_description" class="form-control" required>{{ $technology->short_description }}</textarea>
+            </div>
         </div>
     </div>
     <div class="shadow mt-2 p-3">
@@ -95,26 +112,33 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row mt-3" id="sectionData_{{ $type->id }}" >
+                                <div class="row mt-3" id="sectionData_{{ $type->id }}">
                                     <h5 class="my-2">Section Data</h5>
                                     <div class="col-md-4 mb-3">
-                                        <label for="section_image_{{ $type->id }}">Image <span style="color: red;">*</span></label>
-                                        <input type="file" name="image" id="section_image_{{ $type->id }}" data-default-file="{{ Storage::url($sectionData->image) }}" class="form-control dropify"
-                                            accept="image/*" required>
+                                        <label for="section_image_{{ $type->id }}">Image <span
+                                                style="color: red;">*</span></label>
+                                        <input type="file" name="image" id="section_image_{{ $type->id }}"
+                                            data-default-file="{{ Storage::url($sectionData->image) }}"
+                                            class="form-control dropify" accept="image/*" required>
                                     </div>
                                     <div class="col-md-8">
                                         <div class="row">
                                             <div class="col-md-6 mb-3">
-                                                <label for="section_title_{{ $type->id }}">Title <span style="color: red;">*</span></label>
-                                                <input type="text" name="title" id="section_title_{{ $type->id }}" class="form-control" value="{{ $sectionData->title }}" required>
+                                                <label for="section_title_{{ $type->id }}">Title <span
+                                                        style="color: red;">*</span></label>
+                                                <input type="text" name="title"
+                                                    id="section_title_{{ $type->id }}" class="form-control"
+                                                    value="{{ $sectionData->title }}" required>
                                             </div>
                                             <div class="col-md-12 mb-3">
-                                                <label for="section_short_description_{{ $type->id }}">Short Description <span style="color: red;">*</span></label>
-                                                <textarea name="short_description" id="section_short_description_{{ $type->id }}" class="form-control" required>{{$sectionData->short_description}}</textarea>
+                                                <label for="section_short_description_{{ $type->id }}">Short
+                                                    Description <span style="color: red;">*</span></label>
+                                                <textarea name="short_description" id="section_short_description_{{ $type->id }}" class="form-control" required>{{ $sectionData->short_description }}</textarea>
                                             </div>
                                             <div class="col-md-12 mb-3">
-                                                <label for="section_long_description_{{ $type->id }}">Long Description</label>
-                                                <textarea name="long_description" id="section_long_description_{{ $type->id }}" class="form-control">{{$sectionData->long_description}}</textarea>
+                                                <label for="section_long_description_{{ $type->id }}">Long
+                                                    Description</label>
+                                                <textarea name="long_description" id="section_long_description_{{ $type->id }}" class="form-control">{{ $sectionData->long_description }}</textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -139,6 +163,14 @@
             formData.append("specialty_id", $("#specialty_id").val());
             formData.append("technology_title", $("#technology_title").val());
             formData.append("technology_short_description", $("#technology_short_description").val());
+            var technologyImage = $("#technology_image")[0].files[0];
+            var technologySinglePageImage = $("#technology_single_page_image")[0].files[0];
+            if (technologyImage) {
+                formData.append("technology_image", technologyImage);
+            }
+            if (technologySinglePageImage) {
+                formData.append("technology_single_page_image", technologySinglePageImage);
+            }
             $(".accordion-type").each(function() {
                 var section = $(this);
                 var typeId = section.find('input[name="type_id"]').val();
@@ -155,11 +187,15 @@
                 if (sectionData.length) {
                     var sectionDataImageInput = sectionData.find("#section_image_" + typeId);
                     if (sectionDataImageInput.length && sectionDataImageInput[0].files[0]) {
-                        formData.append("sections[" + typeId + "][section_image]", sectionDataImageInput[0].files[0]);
+                        formData.append("sections[" + typeId + "][section_image]", sectionDataImageInput[0].files[
+                            0]);
                     }
-                    formData.append("sections[" + typeId + "][section_title]", sectionData.find("#section_title_" + typeId).val());
-                    formData.append("sections[" + typeId + "][section_short_description]", sectionData.find("#section_short_description_" + typeId).val());
-                    formData.append("sections[" + typeId + "][section_long_description]", sectionData.find("#section_long_description_" + typeId).val());
+                    formData.append("sections[" + typeId + "][section_title]", sectionData.find("#section_title_" +
+                        typeId).val());
+                    formData.append("sections[" + typeId + "][section_short_description]", sectionData.find(
+                        "#section_short_description_" + typeId).val());
+                    formData.append("sections[" + typeId + "][section_long_description]", sectionData.find(
+                        "#section_long_description_" + typeId).val());
                 }
             });
             axios.post("{{ route('admin.technology.edit', ['technology_id' => '_ID_']) }}".replace('_ID_', technology_id),

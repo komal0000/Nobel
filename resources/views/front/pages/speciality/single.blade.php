@@ -7,7 +7,7 @@
     @includeIf('front.cache.speciality.single.'.$id.'.team')
     @includeIf('front.cache.speciality.single.'.$id.'.treatment')
     @includeIf('front.cache.speciality.single.'.$id.'.aliment')
-    @includeIf('front.cache.speciality.single.'.$id.'.technology')
+    @includeIf('front.cache.speciality.single.'.$id.'.technologies')
     @includeIf('front.cache.speciality.single.'.$id.'.sub-specialization')
     @includeIf('front.cache.speciality.single.'.$id.'.story')
     @includeIf('front.cache.speciality.single.'.$id.'.know-more')
