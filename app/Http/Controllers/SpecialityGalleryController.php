@@ -39,6 +39,7 @@ class SpecialityGalleryController extends Controller
                 $specialityGallery->icon = $request->file('icon')->store('uploads/images', 'public');
             }
             $specialityGallery->save();
+            $this->GalleryItemRender($speciality_id);
             return redirect()->back()->with("success", "Speciality Gallery Successfully Added");
         }
     }
@@ -57,14 +58,17 @@ class SpecialityGalleryController extends Controller
                 $specialityGallery->icon = $request->file('icon')->store('uploads/images', 'public');
             }
             $specialityGallery->save();
+            $this->GalleryItemRender($specialityGallery->specialty_id);
             return redirect()->back()->with("success", "Speciality Gallery Successfully Updated");
         }
     }
 
     public function del($gallery_id)
     {
+        $specialityGallery = SpecialityGallery::where("id", $gallery_id)->first();
         SpecialityGalleryItem::where('speciality_gallery_id', $gallery_id)->delete();
-        SpecialityGallery::where("id", $gallery_id)->delete();
+        $specialityGallery->delete();
+        $this->GalleryItemRender($specialityGallery->specialty_id);
         return redirect()->back()->with("delete_success", "Speciality Gallery Successfully Deleted");
     }
 
@@ -86,6 +90,7 @@ class SpecialityGalleryController extends Controller
             $galleryItem->speciality_gallery_id = $gallery_id;
             $galleryItem->specialty_id = $specialityGallery->specialty_id;
             $galleryItem->save();
+            $this->GalleryItemRender($specialityGallery->specialty_id);
             session()->flash('success', 'Award Successfully Added');
             return response()->json(['success' => true]);
         }
@@ -93,7 +98,7 @@ class SpecialityGalleryController extends Controller
 
     public function itemEdit(Request $request, $item_id)
     {
-        $item = SpecialityGalleryItem::findOrFail($item_id);
+        $item = SpecialityGalleryItem::where('id',$item_id)->first();
         $item->title = $request->input('title');
         $item->description = $request->input('description');
         $item->extra_data = $request->input('extra_data');
@@ -105,13 +110,22 @@ class SpecialityGalleryController extends Controller
             $item->icon = $path;
         }
         $item->save();
+        $this->GalleryItemRender($item->specialty_id);
         session()->flash('success', 'Award Successfully updated');
         return response()->json(['success' => true]);
     }
 
     public function itemDelete($item_id)
     {
-        SpecialityGalleryItem::where('id', $item_id)->delete();
+        $galleryItem = SpecialityGalleryItem::where('id', $item_id)->first();
+        $galleryItem->delete();
+        $this->GalleryItemRender($galleryItem->specialty_id);
         return redirect()->back()->with("delete_success", "Gallery Item Successfully Deleted");
+    }
+
+    public function GalleryItemRender($speciality_id){
+        $specialityGallery = DB::table('speciality_galleries')->where('specialty_id', $speciality_id)->first(['id','title','specialty_id','description']);
+        $galleryItems = DB::table('speciality_gallery_items')->where('speciality_gallery_id', $specialityGallery->id)->get();
+        Helper::putCache('speciality.single.'.$speciality_id.'.team',view('admin.template.speciality.single.team',compact('specialityGallery','galleryItems'))->render());
     }
 }
