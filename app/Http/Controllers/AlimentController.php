@@ -171,10 +171,11 @@ class AlimentController extends Controller
         $specialty_id = DB::table('aliments')->where('id', $aliment_id)->value('specialty_id');
         if ($specialty_id) {
             $specialityAliments = Aliment::where('specialty_id', $specialty_id)->get();
-            Helper::putCache('speciality.single.' . $specialty_id . '.aliment', view('admin.template.speciality.single.aliment', compact('specialityAliments'))->render());
+            Helper::putCache('speciality.single.'.$specialty_id.'.aliment', view('admin.template.speciality.single.aliment', compact('specialityAliments'))->render());
         }
-
         $aliments = Aliment::get();
+        $aliment = Aliment::where('id', $aliment_id)->first();
+        Helper::putCache('aliment.single.'.$aliment->id.'', view('admin.template.aliment.single', compact('aliment'))->render());
         Helper::putCache('aliment.index', view('admin.template.aliment.index', compact('aliments'))->render());
     }
 }

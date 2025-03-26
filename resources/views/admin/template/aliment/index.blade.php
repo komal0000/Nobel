@@ -1,4 +1,3 @@
-
 <x-allPage title="All Ailments">
     @foreach ($aliments as $aliment)
         <div class="col-md-6 each-card">

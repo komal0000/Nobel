@@ -7,9 +7,7 @@ function equalizeCardHeight(selector) {
     elements.height(maxHeight);
 }
 
-// Document ready function - main entry point
 $(document).ready(function() {
-    // Initialize slick slider with responsive settings
     $('.letter-slider').slick({
         slidesToShow: 10,
         slidesToScroll: 3,
