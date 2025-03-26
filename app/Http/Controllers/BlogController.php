@@ -137,7 +137,7 @@ class BlogController extends Controller
 
     public function render(){
         $eventData = DB::table('blogs')->where('type', Helper::blog_type_event)->get();
-        $newsData = DB::table('blogs')->where('type', Helper::blog_type_news)->whereNull('is_featured')->take(3)->get();
+        $newsData = DB::table('blogs')->where('type', Helper::blog_type_news)->where('is_featured',0)->take(3)->get();
         $eventTypes = DB::table('blog_categories')->where('type', helper::blog_type_event)->get();
         $latestNews = DB::table('blogs')->where('type', Helper::blog_type_news)->where('is_featured', 1)->first();
         $updateData = DB::table('blogs')->where('type', Helper::blog_type_update)->get();

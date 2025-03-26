@@ -35,7 +35,16 @@
             @foreach ($treatmentSections as $section)
                 <tr>
                     <td>{{ $section->title }}</td>
-                    <td>{{ $section->style_type }}</td>
+                    <td>
+                        @php
+                            $styleTypes = [
+                                1 => 'Type 1',
+                                2 => 'Type 2',
+                                3 => 'Type 3'
+                            ];
+                        @endphp
+                        {{ $styleTypes[$section->style_type] ?? $section->style_type }}
+                    </td>
                     <td>
                         <a href="{{ route('admin.treatment.section.edit', ['section_id' => $section->id, 'speciality_id' => $speciality_id]) }}"
                             class="btn btn-warning btn-sm ">Edit</a>

@@ -96,8 +96,9 @@ class TreatmentController extends Controller
             view('admin.template.speciality.single.treatment', compact('specialityTreatment'))->render()
         );
 
-
+        $treatment = Treatment::where('id', $treatment_id)->first();
         $treatments = Treatment::all();
+        Helper::putCache('treatment.single.'.$treatment->id, view('admin.template.treatment.single', compact('treatment', 'treatments'))->render());
         Helper::putCache('treatment.index',view('admin.template.treatment.index', compact('treatments'))->render());
     }
 }

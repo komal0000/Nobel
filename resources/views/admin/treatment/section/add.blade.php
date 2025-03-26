@@ -34,12 +34,16 @@
                 </div>
                 <div class="col-md-12 mb-3">
                     <label for="style_type">Style Type <span style="color: red;">*</span></label>
-                    <input type="text" class="form-control" id="style_type" name="style_type">
+                    <select class="form-control" id="style_type" name="style_type">
+                        <option value="1">Type 1</option>
+                        <option value="2">Type 2</option>
+                        <option value="3">Type 3</option>
+                    </select>
                 </div>
             </div>
             <div class="col-md-7">
                 <div class="col-md-12 mb-3">
-                    <label for="description">Description <span style="color: red;">*</span></label>
+                    <label for="description">Description</label>
                     <textarea class="form-control" id="description" name="description"></textarea>
                 </div>
                 <div class="col-md-12 d-flex justify-content-end">

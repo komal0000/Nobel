@@ -601,6 +601,17 @@ section:nth-of-type(odd) {
   }
 }
 
+.slider-component .heading-group {
+  width: 700px;
+  max-width: 100%;
+  text-align: center;
+  margin: auto;
+}
+.slider-component .heading-group .heading-xs {
+  font-weight: 500 !important;
+  color: var(--color-grey);
+}
+
 .main-container {
   width: 90%;
   margin: auto;
@@ -2533,18 +2544,24 @@ section:nth-of-type(odd) {
 .events-news .main-container .post-list .list-card img {
   width: 100%;
   height: auto;
-  aspect-ratio: 5/4;
   border-radius: 10px;
 }
 .events-news .main-container .post-list .list-card .list {
   padding: 0 0 20px;
   display: grid;
   gap: 20px;
-  grid-template-columns: 20% 80%;
+  grid-template-columns: 30% 70%;
   align-items: center;
 }
 .events-news .main-container .post-list .list-card .list .date {
   font-weight: 500;
+}
+.events-news .main-container .post-list .list-card .list .content {
+  font-size: 14px;
+  line-height: 18px;
+  height: 54px;
+  overflow: hidden;
+  text-overflow: clip;
 }
 .events-news .main-container .events {
   flex: 1;
@@ -3381,13 +3398,13 @@ section:nth-of-type(odd) {
 }
 
 #all-specialities .specialities-cards .card-col {
-
+  display: none;
 }
 #all-specialities .specialities-cards .each-card {
   box-shadow: 0 4px 19px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
   padding: 30px;
-  background: url("/front/assets/img/health-library/pattern-bg.png") top left #fff;
+  background: url("/front/img/health-library/pattern-bg.png") top left #fff;
   display: flex;
   flex-direction: column;
   transition: 0.3s ease;
@@ -5948,6 +5965,166 @@ section:nth-of-type(odd) {
 .map iframe {
   width: 100%;
   height: 450px;
+}
+
+#talent .main-container .glightbox .each-video {
+  position: relative;
+  display: inline-block;
+  border-radius: 20px;
+  overflow: hidden;
+}
+@media (max-width: 1199px) {
+  #talent .main-container .glightbox .each-video {
+    margin: 0 20px;
+    display: flex;
+    justify-content: center;
+  }
+}
+#talent .main-container .glightbox .each-video img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+  transition: 0.3s;
+}
+#talent .main-container .glightbox .each-video .play-icon {
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: auto;
+  z-index: 55;
+  transition: 0.3s;
+}
+#talent .main-container .glightbox .each-video .caption {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 15px;
+  text-align: center;
+  color: #fff !important;
+}
+
+#infrastructure .content {
+  display: flex;
+  flex-wrap: nowrap;
+}
+@media (max-width: 768px) {
+  #infrastructure .content {
+    flex-direction: column-reverse;
+  }
+}
+#infrastructure .content .para-wrap {
+  width: 50%;
+  padding: 0 15px;
+  font-weight: 500;
+  align-self: center;
+}
+@media (max-width: 768px) {
+  #infrastructure .content .para-wrap {
+    width: 100%;
+  }
+}
+#infrastructure .content .img-wrapper {
+  width: 50%;
+  padding: 0 15px;
+}
+@media (max-width: 768px) {
+  #infrastructure .content .img-wrapper {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+}
+#infrastructure .content .img-wrapper .image img {
+  transition: 0.2s ease;
+}
+#infrastructure .content .img-wrapper .image img:hover {
+  transform: scale(1.1);
+}
+
+#technology .main-container .each-card {
+  margin: 15px;
+  border-radius: 20px;
+  background-color: #fff;
+  box-shadow: 0 3px 17px rgba(0, 0, 0, 0.14);
+}
+#technology .main-container .each-card .img-wrapper {
+  position: relative;
+  padding-bottom: 67%;
+}
+#technology .main-container .each-card .img-wrapper img {
+  border-radius: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#technology .main-container .each-card .body {
+  padding: 30px;
+}
+#technology .main-container .each-card .body .heading-sm {
+  color: var(--color-grey);
+  text-align: center;
+  line-height: 25px;
+  height: 25px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#care {
+  background: url("/front/img/why-us/care.jpg") center center no-repeat;
+}
+#care .bg-img img {
+  width: 100%;
+  height: 100%;
+}
+#care .content {
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
+  width: 580px;
+  max-width: 100%;
+  text-align: center;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+#trust {
+  padding-bottom: 0;
+}
+#trust .content {
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 3px 17px rgba(0, 0, 0, 0.14);
+}
+#trust .content .img-wrapper {
+  width: 50%;
+}
+@media (max-width: 991px) {
+  #trust .content .img-wrapper {
+    width: 100%;
+  }
+}
+#trust .content .img-wrapper img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#trust .content .body {
+  width: 50%;
+  padding: 30px;
+}
+@media (max-width: 991px) {
+  #trust .content .body {
+    width: 100%;
+  }
 }
 
 footer {

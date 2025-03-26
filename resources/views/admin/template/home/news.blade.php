@@ -10,7 +10,7 @@
                     <img src="{{ Storage::url($latestNews->image) }}" alt="Post Image" class="img-fluid">
                     <div class="body">
                         <div class="date">{{ \App\Helper::formatTimestampToDateString($latestNews->date) }}</div>
-                        <p class="content">{{ $latestNews->text }}</p>
+                        <p class="content">{{ $latestNews->title }}</p>
                         <div class="d-flex justify-content-between know-btn">
                             <x-hoverBtn>Read Post</x-hoverBtn>
                         </div>
@@ -26,7 +26,7 @@
                             <div class="body d-flex flex-column gap-2">
                                 <div class="date">{{ \App\Helper::formatTimestampToDateString($data->date) }}</div>
                                 <div class="content">
-                                    {{ $data->text }}
+                                    {{ $data->title }}
                                 </div>
                                 <div class="button">
                                     <x-hoverBtn>Read Post</x-hoverBtn>
@@ -59,13 +59,13 @@
                                     <div class="month">February</div>
                                 </div>
                                 <div class="content d-flex flex-column gap-2">
-                                    <p>{{ $event->datas }}</p>
+                                    <p>{{ $event->title}}</p>
                                     <div class="location">
                                         <i class="bi bi-geo-alt"></i> {{ $event->location }}
                                     </div>
-                                    <div class="button">
+                                    {{-- <div class="button">
                                         <x-hoverBtn>View Details</x-hoverBtn>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         @endforeach
