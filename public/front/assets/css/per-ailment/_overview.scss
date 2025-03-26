@@ -1,0 +1,57 @@
+#ailment-overview {
+   @media (max-width: 991px) {
+      padding-bottom: 50px;
+   }
+
+   .main-container {
+      .heading {
+         width: 34%;
+         padding: 0 15px;
+
+         @media (max-width: 768px) {
+            width: 100%;
+         }
+      }
+
+      .content-wrapper {
+         width: 66%;
+         padding: 0 15px;
+
+         @media (max-width: 768px) {
+            width: 100%;
+         }
+      }
+
+      .para-wrap {
+         position: relative;
+         display: -webkit-box;
+         -webkit-box-orient: vertical;
+         overflow: hidden;
+         max-height: none;
+         transition: all 0.3s ease;
+         
+         &.collapsed {
+            -webkit-line-clamp: 3;
+         }
+
+      }
+
+      .read-more-btn {
+         display: none;
+         border: none;
+         background-color: transparent;
+         color: var(--color-main);
+         font-weight: 600;
+         font-size: 14px;
+         padding: 0;
+
+         .bi {
+            &::before {
+               font-weight: bold;
+               display: inline-block;
+               color: var(--color-main);
+            }
+         }
+      }
+   }
+}

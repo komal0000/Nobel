@@ -1,0 +1,182 @@
+.type-1 {
+   .heading-group {
+      width: 700px;
+      max-width: 100%;
+      text-align: center;
+      margin: 0 auto;
+   }
+
+   .content-wrapper {
+      display: flex;
+
+      .custom-tab {
+         @media (min-width:1199px) {
+            min-height: 70px;
+         }
+
+         display: flex;
+         align-items: center;
+         box-shadow: 0 4px 40px rgba(0, 0, 0, .1);
+         border-radius: 20px;
+         padding: 16px 60px 16px 25px;
+         background-color: #fff;
+         position: relative;
+         font-size: 14px;
+         font-weight: 700;
+         transition: 0.2s ease;
+
+         &:hover {
+            span {
+               stroke: var(--color-light-1);
+               border-color: var(--color-light-1);
+            }
+         }
+
+         span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border: 1px solid #454545;
+            background-color: #fff;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, .1);
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            margin-top: -14px;
+            border-radius: 50%;
+            stroke: #454545;
+         }
+
+         &.active {
+            color: var(--color-main);
+
+            span {
+               border-color: var(--color-main);
+               color: var(--color-main);
+
+               svg {
+                  stroke: var(--color-main);
+               }
+
+               stroke: var(--color-main) !important;
+            }
+         }
+      }
+
+      .custom-tabs-desktop {
+         width: 25%;
+         padding: 0 15px;
+
+         ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            li {
+               margin-bottom: 15px;
+            }
+         }
+
+         @media (max-width: 1199px) {
+            width: 40%;
+         }
+
+         @media (max-width: 768px) {
+            display: none;
+         }
+
+
+      }
+
+      .list {
+         width: 75%;
+         padding: 0 15px;
+
+         @media screen and (max-width: 1199px) {
+            width: 60%;
+         }
+
+         @media (max-width: 768px) {
+            width: 100%;
+         }
+
+         .custom-tab-content {
+            .custom-tab-panel {
+               display: none;
+
+               @media (max-width: 768px) {
+                  display: block;
+               }
+
+
+
+               .custom-tab {
+                  margin-top: 20px;
+
+                  @media (min-width: 769px) {
+                     display: none;
+                  }
+               }
+
+               .content {
+                  display: none;
+
+                  @media (max-width: 768px) {
+                     padding: 20px 0 10px;
+                  }
+
+                  .col-wrap {
+                     display: flex;
+                     flex-direction: row;
+                     flex-wrap: nowrap;
+
+                     @media (max-width: 1199px) {
+                        flex-direction: column;
+                     }
+
+                     .para {
+                        width: 40%;
+                        padding: 0 15px;
+                        font-weight: 600;
+
+                        @media (max-width: 1199px) {
+                           width: 100%;
+                        }
+
+                        .para-wrap-para {
+                           font-weight: 600;
+                        }
+                     }
+
+                     .img-wrap {
+                        width: 60%;
+                        padding: 0 15px;
+                        border-radius: 20px;
+                        overflow: hidden;
+
+                        @media (max-width: 1199px) {
+                           width: 100%;
+                        }
+
+                        img {
+                           border-radius: 20px;
+                        }
+                     }
+                  }
+               }
+
+               &.active {
+                  display: block;
+
+                  .content {
+                     display: block;
+                  }
+               }
+            }
+
+         }
+      }
+   }
+}

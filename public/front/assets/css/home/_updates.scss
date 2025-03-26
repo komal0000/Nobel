@@ -52,6 +52,11 @@
                     font-weight: 600;
                     color: var(--color-dark-grey);
                     margin-bottom: 10px;
+                    font-size: 16px;
+                    line-height: 20px;
+                    height: 20px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
 
                 .content {
@@ -61,8 +66,12 @@
                     overflow: hidden;
                     display: -webkit-box;
                     -webkit-box-orient: vertical;
-                    height: 66px;
                     font-weight: 500;
+                    font-size: 14px;
+                    line-height: 18px;
+                    height: 54px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
 
                 .button {

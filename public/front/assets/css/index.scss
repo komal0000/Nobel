@@ -34,6 +34,7 @@ a {
 
     &:hover {
         color: var(--color-light-1);
+        
     }
 }
 
@@ -288,6 +289,9 @@ body {
 @import './speciality/main';
 @import './all-specialities';
 @import './health-library/main';
+@import './per-treatment/main';
+@import './per-technology/main';
+@import './per-ailment/main';
 @import './events/main';
 @import './career/main';
 @import './downloads/main';

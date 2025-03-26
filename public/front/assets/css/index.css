@@ -4866,6 +4866,55 @@ section:nth-of-type(odd) {
   outline: 0;
 }
 
+@media (max-width: 991px) {
+  #ailment-overview {
+    padding-bottom: 50px;
+  }
+}
+#ailment-overview .main-container .heading {
+  width: 34%;
+  padding: 0 15px;
+}
+@media (max-width: 768px) {
+  #ailment-overview .main-container .heading {
+    width: 100%;
+  }
+}
+#ailment-overview .main-container .content-wrapper {
+  width: 66%;
+  padding: 0 15px;
+}
+@media (max-width: 768px) {
+  #ailment-overview .main-container .content-wrapper {
+    width: 100%;
+  }
+}
+#ailment-overview .main-container .para-wrap {
+  position: relative;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  max-height: none;
+  transition: all 0.3s ease;
+}
+#ailment-overview .main-container .para-wrap.collapsed {
+  -webkit-line-clamp: 3;
+}
+#ailment-overview .main-container .read-more-btn {
+  display: none;
+  border: none;
+  background-color: transparent;
+  color: var(--color-main);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 0;
+}
+#ailment-overview .main-container .read-more-btn .bi::before {
+  font-weight: bold;
+  display: inline-block;
+  color: var(--color-main);
+}
+
 #event-top-banner {
   padding: 0;
   position: relative;

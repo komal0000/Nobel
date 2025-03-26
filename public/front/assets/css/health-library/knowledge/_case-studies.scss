@@ -117,11 +117,13 @@
 
                 .para-wrap {
                     color: var(--color-main);
+                    margin-bottom: 10px;
                 }
 
                 .title {
                     font-weight: 600;
                     color: var(--color-dark-grey);
+                    margin-bottom: 15px;
                 }
 
                 .name-post {
@@ -130,7 +132,11 @@
                     color: var(--color-dark-grey);
 
                     .post {
+                        font-size: 13.5px;
+                        display: inline-block; 
                         font-weight: 400;
+                        margin-top: 5px;
+                        margin-bottom: 15px;
                     }
                 }
 

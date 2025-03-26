@@ -1,0 +1,108 @@
+#news-letter {
+
+    .letter-row {
+        .custom-tabs {
+            ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                border-top: 1px solid var(--border-color);
+
+                li {
+                    a {
+                        font-weight: 700;
+                        color: var(--color-grey);
+                        display: flex;
+                        justify-content: space-between;
+                        border-bottom: 1px solid var(--border-color);
+                        padding: 15px 0;
+                    }
+                }
+
+                .active {
+                    a {
+                        color: var(--color-main);
+                        border-color: var(--color-main);
+                    }
+                }
+            }
+        }
+
+        .letter-card {
+            background: #fff url('/front/img/why-bg.png') no-repeat center center;
+            background-size: cover;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 300px;
+
+            .download {
+                align-self: flex-end;
+            }
+
+            .heading-group {
+                text-align: center;
+                font-size: 15px;
+                font-weight: 600;
+                line-height: 20px;
+
+                .title {
+                    margin-bottom: 5px;
+                    font-weight: 700;
+                    font-size: 16px;
+                    color: var(--color-main);
+                }
+            }
+
+            .logo {
+                width: 100%;
+
+                img {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+        }
+
+        [data-content] {
+            display: none;
+
+            &.active {
+                display: block;
+            }
+        }
+
+        .pagination-container {
+            .page-btn {
+                font-size: 16px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                font-weight: 600;
+                color: var(--color-grey);
+
+                border: none;
+                background-color: var(--color-white);
+            }
+
+            .right-arrow,
+            .left-arrow {
+                padding: 0;
+                background-color: transparent;
+                color: var(--color-grey);
+                box-shadow: none;
+                border: none;
+            }
+
+            .active {
+                background-color: var(--color-main);
+                color: var(--color-white);
+            }
+        }
+
+    }
+}

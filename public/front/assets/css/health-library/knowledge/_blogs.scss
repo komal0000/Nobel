@@ -9,8 +9,8 @@
         }
         .search-icon {
             position: absolute;
-            right: 20px;
-            top: 16px;
+            right: 15px;
+            top:    6px;
             i {
                 font-size: 18px;
             }
@@ -22,7 +22,7 @@
         @media (min-width:769px) {
             position: relative;
 
-            .form-floating {
+            .floating {
                 position: absolute;
                 top: 0;
                 right: 0;
