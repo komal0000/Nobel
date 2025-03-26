@@ -45,10 +45,10 @@
              </div>
          </div>
          <div class="pagination-container d-flex justify-content-center mt-4">
-             <button id="prevPage" class="left-arrow mx-4"><img src="{{ asset('front/img/vector-left.png') }}"
+             <button id="prevPage" class="left-arrow mx-4"><img src="{{ asset('front/assets/img/vector-left.png') }}"
                      alt="Left Arrow"></button>
              <div id="paginationButtons" class="d-flex"></div>
-             <button id="nextPage" class="right-arrow mx-4"><img src="{{ asset('front/img/vector-right.png') }}"
+             <button id="nextPage" class="right-arrow mx-4"><img src="{{ asset('front/assets/img/vector-right.png') }}"
                      alt="Right Arrow"></button>
          </div>
 
@@ -62,8 +62,8 @@
                  slidesToScroll: 3,
                  infinite: false,
                  arrows: true,
-                 prevArrow: '<button class="slick-prev left-arrow"><img src="{{ asset('front/img/vector-left.png') }}" alt="Left Arrow"></button>',
-                 nextArrow: '<button class="slick-next right-arrow"><img src="{{ asset('front/img/vector-right.png') }}" alt="Right Arrow"></button>',
+                 prevArrow: '<button class="slick-prev left-arrow"><img src="{{ asset('front/assets/img/vector-left.png') }}" alt="Left Arrow"></button>',
+                 nextArrow: '<button class="slick-next right-arrow"><img src="{{ asset('front/assets/img/vector-right.png') }}" alt="Right Arrow"></button>',
                  responsive: [{
                          breakpoint: 1200,
                          settings: {

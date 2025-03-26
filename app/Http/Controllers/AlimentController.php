@@ -173,5 +173,8 @@ class AlimentController extends Controller
             $specialityAliments = Aliment::where('specialty_id', $specialty_id)->get();
             Helper::putCache('speciality.single.' . $specialty_id . '.aliment', view('admin.template.speciality.single.aliment', compact('specialityAliments'))->render());
         }
+
+        $aliments = Aliment::get();
+        Helper::putCache('aliment.index', view('admin.template.aliment.index', compact('aliments'))->render());
     }
 }

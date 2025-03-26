@@ -25,7 +25,7 @@
                                 <a href="/technologies" class="drop-item">Technologies</a>
                             </li>
                             <li>
-                                <a href="/ailments" class="drop-item">Ailments</a>
+                                <a href="{{ route('aliment.index') }}" class="drop-item">Ailments</a>
                             </li>
                             <li class="navbar-item knowledge-drop" onclick="extendKnowledgeSubMenu(this, event)">
                                 <a href="#" class="drop-item navbar-link knowledge-link d-flex justify-content-between">

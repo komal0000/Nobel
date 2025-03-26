@@ -25,4 +25,11 @@ class FrontController extends Controller
     public function specialitySingle($id){
         return view('front.pages.speciality.single',compact('id'));
     }
+
+    public function alimentIndex(){
+        return view('front.pages.aliment.index');
+    }
+    public function alimentSingle($id){
+        return view('front.pages.aliment.single',compact('id'));
+    }
 }
