@@ -122,6 +122,7 @@ class SpecialityController extends Controller
         Helper::putCache('home.teams', view('admin.template.home.teams', compact('specialities'))->render());
         Helper::putCache('home.header', view('admin.template.home.header', compact('specialities'))->render());
         Helper::putCache('home.footer', view('admin.template.home.footer', compact('specialities'))->render());
+        Helper::putCache('speciality.index', view('admin.template.speciality.index', compact('specialities'))->render());
     }
 }
 
