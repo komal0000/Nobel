@@ -31,7 +31,20 @@ Route::prefix('speciality')->name('speciality.')->group(function () {
     Route::get('', [FrontController::class, 'specialityIndex'])->name('index');
     Route::get('single/{speciality_id}', [FrontController::class, 'specialitySingle'])->name('single');
 });
+Route::prefix('treatment')->name('treatment.')->group(function () {
+    Route::get('', [FrontController::class, 'treatmentIndex'])->name('index');
+    Route::get('single/{treatment_id}', [FrontController::class, 'treatmentSingle'])->name('single');
+});
 
+Route::prefix('aliment')->name('aliment.')->group(function () {
+    Route::get('', [FrontController::class, 'alimentIndex'])->name('index');
+    Route::get('single/{aliment_id}', [FrontController::class, 'alimentSingle'])->name('single');
+});
+
+Route::prefix('technology')->name('technology.')->group(function () {
+    Route::get('', [FrontController::class, 'technologyIndex'])->name('index');
+    Route::get('single/{technology_id}', [FrontController::class, 'technologySingle'])->name('single');
+});
 Route::match(["GET", "POST"], 'login', [LoginController::class, 'login'])->name('login');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
