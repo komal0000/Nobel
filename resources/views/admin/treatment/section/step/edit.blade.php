@@ -56,7 +56,7 @@
                     </div>
                     <div class="col-md-12 mb-2">
                         <label for="long_description">Long Description</label>
-                        <textarea class="form-control" id="long_description" name="long_description">{{ $SectionStep->long_description }}</textarea>
+                        <textarea class="form-control" id="long_description" name="long_description">{{ $SectionStep->description }}</textarea>
                     </div>
                 </div>
             </div>
