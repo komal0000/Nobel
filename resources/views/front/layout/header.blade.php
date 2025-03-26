@@ -19,7 +19,7 @@
                                 <a href="/health-library" class="drop-item">Health Library</a>
                             </li>
                             <li>
-                                <a href="/treatments" class="drop-item">Treatments</a>
+                                <a href="{{ route('treatment.index') }}" class="drop-item">Treatments</a>
                             </li>
                             <li>
                                 <a href="/technologies" class="drop-item">Technologies</a>

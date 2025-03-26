@@ -95,5 +95,9 @@ class TreatmentController extends Controller
             'speciality.single.' . $specialityId . '.treatment',
             view('admin.template.speciality.single.treatment', compact('specialityTreatment'))->render()
         );
+
+
+        $treatments = Treatment::all();
+        Helper::putCache('treatment.index',view('admin.template.treatment.index', compact('treatments'))->render());
     }
 }

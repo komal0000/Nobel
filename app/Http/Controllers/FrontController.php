@@ -32,4 +32,11 @@ class FrontController extends Controller
     public function alimentSingle($id){
         return view('front.pages.aliment.single',compact('id'));
     }
+
+    public function treatmentIndex(){
+        return view('front.pages.treatment.index');
+    }
+    public function treatmentSingle($id){
+        return view('front.pages.treatment.single',compact('id'));
+    }
 }

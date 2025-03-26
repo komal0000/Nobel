@@ -61,7 +61,7 @@
                                 <div class="content d-flex flex-column gap-2">
                                     <p>{{ $event->datas }}</p>
                                     <div class="location">
-                                        <i class="bi bi-geo-alt"></i> {{ $type->location }}
+                                        <i class="bi bi-geo-alt"></i> {{ $event->location }}
                                     </div>
                                     <div class="button">
                                         <x-hoverBtn>View Details</x-hoverBtn>
