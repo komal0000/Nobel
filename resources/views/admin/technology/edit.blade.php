@@ -123,7 +123,7 @@
                                 <div class="row mt-3" id="sectionData_{{ $type->id }}">
                                     @foreach ($sectionDatas as $sectionData)
                                         <h5 class="my-2">Section Data</h5>
-                                        <div class="section-data-item">
+                                        <div class="row section-data-item">
                                             <div class="col-md-4 mb-3">
                                                 <label for="section_image_{{ $type->id }}_{{ time() }}">Image
                                                     <span style="color: red;">*</span></label>
@@ -233,15 +233,12 @@
 
                 var sectionDataContainer = $("#sectionData_" + typeId);
                 if (sectionDataContainer.length) {
-                    // Find all section-data-item elements and dynamically added items
                     var sectionDataItems = sectionDataContainer.find('.section-data-item');
                     var timestamps = new Set();
 
                     if (sectionDataItems.length) {
-                        // Process existing section data items
                         sectionDataItems.each(function(index) {
                             var item = $(this);
-                            // Find all inputs in this section data item
                             var imageInput = item.find('input[type="file"]');
                             if (imageInput.length && imageInput[0].files[0]) {
                                 formData.append(`sections[${typeId}][section_data][${index}][image]`, imageInput[0].files[0]);
@@ -255,7 +252,6 @@
                                 item.find('textarea[name="long_description"]').val());
                         });
                     } else {
-                        // Process dynamically added items by finding unique timestamps
                         sectionDataContainer.find('input[id^="section_"], textarea[id^="section_"]').each(function() {
                             var idParts = $(this).attr('id').split('_');
                             if (idParts.length >= 4) {
@@ -263,7 +259,6 @@
                             }
                         });
 
-                        // Now process each timestamp group
                         Array.from(timestamps).forEach(function(timestamp, index) {
                             var imageInput = sectionDataContainer.find(`#section_image_${typeId}_${timestamp}`);
                             if (imageInput.length && imageInput[0].files[0]) {

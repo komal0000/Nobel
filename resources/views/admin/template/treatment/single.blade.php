@@ -64,7 +64,7 @@
         </section>
     @endif
 @endforeach
-{{-- <section id="treated">
+
     <div class="main-container">
        <x-sliderComponent heading="Get Treated In Our Specialised Get Treated In Our Specialised Institutes & Departments">
           <div class="each-card">
