@@ -91,42 +91,14 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-12 mt-3 d-flex justify-content-end">
-                                                <button type="button" class="btn btn-sm btn-primary btn-active"
-                                                    onclick="toggleSectionData(event, {{ $type->id }})">
-                                                    Manage Section Data
+                                                <button type="button" class="btn btn-sm btn-primary btn-active" onclick="addSectionData(event, {{ $type->id }})">
+                                                    Add Section Data
                                                 </button>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row mt-3" id="sectionData_{{ $type->id }}" style="display: none">
-                                        <h5 class="my-2">Section Data</h5>
-                                        <div class="col-md-4 mb-3">
-                                            <label for="section_image_{{ $type->id }}">Image <span
-                                                    style="color: red;">*</span></label>
-                                            <input type="file" name="image" id="section_image_{{ $type->id }}"
-                                                class="form-control dropify" accept="image/*" required>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="row">
-                                                <div class="col-md-6 mb-3">
-                                                    <label for="section_title_{{ $type->id }}">Title <span
-                                                            style="color: red;">*</span></label>
-                                                    <input type="text" name="title"
-                                                        id="section_title_{{ $type->id }}" class="form-control"
-                                                        required>
-                                                </div>
-                                                <div class="col-md-12 mb-3">
-                                                    <label for="section_short_description_{{ $type->id }}">Short
-                                                        Description <span style="color: red;">*</span></label>
-                                                    <textarea name="short_description" id="section_short_description_{{ $type->id }}" class="form-control" required></textarea>
-                                                </div>
-                                                <div class="col-md-12 mb-3">
-                                                    <label for="section_long_description_{{ $type->id }}">Long
-                                                        Description</label>
-                                                    <textarea name="long_description" id="section_long_description_{{ $type->id }}" class="form-control"></textarea>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="row mt-3" id="sectionData_{{ $type->id }}">
+
                                     </div>
                                 </div>
                             </div>
@@ -145,9 +117,33 @@
 
 @section('js')
     <script>
-        function toggleSectionData(event, typeId) {
+        function addSectionData(event, typeId) {
             event.preventDefault();
-            $('#sectionData_' + typeId).toggle();
+            const timestamp = Date.now();
+            $("#sectionData_" + typeId).append(`
+                <h5 class="my-2">Section Data</h5>
+                <div class="col-md-4 mb-3">
+                    <label for="section_image_${typeId}_${timestamp}">Image <span style="color: red;">*</span></label>
+                    <input type="file" name="image" id="section_image_${typeId}_${timestamp}" class="form-control dropify" accept="image/*" required>
+                </div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="section_title_${typeId}_${timestamp}">Title <span style="color: red;">*</span></label>
+                            <input type="text" name="title" id="section_title_${typeId}_${timestamp}" class="form-control" required>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="section_short_description_${typeId}_${timestamp}">Short Description <span style="color: red;">*</span></label>
+                            <textarea name="short_description" id="section_short_description_${typeId}_${timestamp}" class="form-control" required></textarea>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="section_long_description_${typeId}_${timestamp}">Long Description</label>
+                            <textarea name="long_description" id="section_long_description_${typeId}_${timestamp}" class="form-control"></textarea>
+                        </div>
+                    </div>
+                </div>
+            `);
+            $('.dropify').dropify();
         }
 
         function saveAll() {
@@ -176,19 +172,31 @@
                 if (mainImageInput.length && mainImageInput[0].files[0]) {
                     formData.append("sections[" + typeId + "][image]", mainImageInput[0].files[0]);
                 }
-                var sectionData = $("#sectionData_" + typeId);
-                if (sectionData.length) {
-                    var sectionDataImageInput = sectionData.find("#section_image_" + typeId);
-                    if (sectionDataImageInput.length && sectionDataImageInput[0].files[0]) {
-                        formData.append("sections[" + typeId + "][section_image]", sectionDataImageInput[0].files[
-                            0]);
+                var sectionDataContainer = $("#sectionData_" + typeId);
+                if (sectionDataContainer.length) {
+                    var sectionDataItems = sectionDataContainer.find(".section-data-item");
+                    if (sectionDataItems.length === 0) {
+                        var timestamps = new Set();
+                        sectionDataContainer.find('input[id^="section_"], textarea[id^="section_"]').each(function() {
+                            var idParts = $(this).attr('id').split('_');
+                            if (idParts.length >= 3) {
+                                timestamps.add(idParts[idParts.length - 1]);
+                            }
+                        });
+                        timestamps.forEach(function(timestamp, index) {
+                            var sectionImageInput = sectionDataContainer.find("#section_image_" + typeId + "_" + timestamp);
+                            if (sectionImageInput.length && sectionImageInput[0].files[0]) {
+                                formData.append("sections[" + typeId + "][section_data][" + index + "][image]", sectionImageInput[0].files[0]);
+                            }
+
+                            var sectionTitle = sectionDataContainer.find("#section_title_" + typeId + "_" + timestamp).val();
+                            var sectionShortDesc = sectionDataContainer.find("#section_short_description_" + typeId + "_" + timestamp).val();
+                            var sectionLongDesc = sectionDataContainer.find("#section_long_description_" + typeId + "_" + timestamp).val();
+                            formData.append("sections[" + typeId + "][section_data][" + index + "][title]", sectionTitle || "");
+                            formData.append("sections[" + typeId + "][section_data][" + index + "][short_description]", sectionShortDesc || "");
+                            formData.append("sections[" + typeId + "][section_data][" + index + "][long_description]", sectionLongDesc || "");
+                        });
                     }
-                    formData.append("sections[" + typeId + "][section_title]", sectionData.find("#section_title_" +
-                        typeId).val());
-                    formData.append("sections[" + typeId + "][section_short_description]", sectionData.find(
-                        "#section_short_description_" + typeId).val());
-                    formData.append("sections[" + typeId + "][section_long_description]", sectionData.find(
-                        "#section_long_description_" + typeId).val());
                 }
             });
 
