@@ -8,7 +8,7 @@
             <div class="sp-inner-care p-3 pt-0 fw-bold">
                @includeIf('front.cache.home.speciality')
                 <div class="hover-button">
-                    <x-hoverBtn class="hover-btn" href="https://www.google.com" target="_blank">
+                    <x-hoverBtn class="hover-btn" href="{{ route('speciality.index') }}" >
                         View All Specialities
                     </x-hoverBtn>
                 </div>

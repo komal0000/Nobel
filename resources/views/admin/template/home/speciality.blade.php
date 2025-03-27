@@ -1,6 +1,6 @@
 <div class="sp-wrapper">
     @foreach ($specialities as $speciality)
-        <a href="#">
+        <a href="{{ route('speciality.single', $speciality->id) }}">
             <div class="speciality-row">
                 <img src="{{ Storage::url($speciality->icon) }}" alt="Heart">
                 <span>

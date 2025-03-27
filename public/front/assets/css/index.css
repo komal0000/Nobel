@@ -2309,7 +2309,7 @@ section:nth-of-type(odd) {
 }
 
 .update {
-  background: url("/front/img/updates-bg.jpg") center center/cover no-repeat;
+  background: url("/public/front/assets/img/updates-bg.jpg") center center/cover no-repeat;
   padding-top: 60px;
   margin-bottom: 50px;
   background-color: var(--secondary-white) !important;
@@ -3432,9 +3432,6 @@ section:nth-of-type(odd) {
   max-height: 1000px;
 }
 
-#all-specialities .specialities-cards .card-col {
-  display: none;
-}
 #all-specialities .specialities-cards .each-card {
   box-shadow: 0 4px 19px rgba(0, 0, 0, 0.1);
   border-radius: 12px;

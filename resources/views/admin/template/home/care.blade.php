@@ -1,4 +1,4 @@
-<section class="why-hospital py-75 pb-0">
+<section class="why-hospital">
     <div>
         <div class="why-wrapper">
             <h2 class="text-center heading pb-40 wow fadeInDown">
