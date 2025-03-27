@@ -59,7 +59,7 @@
     </div>
 </section>
 @foreach ($technologySections as $section)
-    @if ($section->style_type == 1)
+    @if ($section->design_type == 1)
         @php
             $items = App\Models\TechnologySectionData::where('technology_section_id', $section->id)
                 ->where('technology_id', $technology->id)
@@ -71,7 +71,7 @@
                     :items="$items"></x-type1>
             </div>
         </section>
-    @elseif($section->style_type == 2)
+    @elseif($section->design_type == 2)
         @php
             $items = App\Models\TechnologySectionData::where('technology_section_id', $section->id)
                 ->where('technology_id', $technology->id)
@@ -83,7 +83,7 @@
                     :items="$items"></x-type2>
             </div>
         </section>
-    @elseif ($section->style_type == 3)
+    @elseif ($section->design_type == 3)
         <section id="technology-description">
             <div class="main-container">
                 <x-type3 heading="{{ $section->title }}" content="{{ $section->short_description }}"

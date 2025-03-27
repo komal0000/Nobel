@@ -67,12 +67,13 @@ class TechnologyController extends Controller
                                 $sectionDataRecord->image = $request->file("sections.$typeId.section_data.$index.image")
                                     ->store('uploads/technology_section_data', 'public');
                             }
+
                             $sectionDataRecord->save();
                         }
                     }
                 }
             }
-
+            $this->renderSingle($technology->id);
             session()->flash('success', 'Technology Successfully Added');
             return response()->json(['success' => true]);
         }
@@ -97,8 +98,6 @@ class TechnologyController extends Controller
             }
             $technology->save();
             $this->render($technology->specialty_id);
-            $this->renderSingle($technology_id);
-
             if ($request->has('sections') && is_array($request->sections)) {
                 foreach ($request->sections as $typeId => $sectionData) {
                     $section = TechnologySection::where('technology_section_type_id', $typeId)
@@ -120,18 +119,16 @@ class TechnologyController extends Controller
                             ->store('uploads/technology_sections', 'public');
                     }
                     $section->save();
-
-                    // Handle section data
                     if (isset($sectionData['section_data']) && is_array($sectionData['section_data'])) {
-                        // Delete all existing section data for this section
-                        TechnologySectionData::where('technology_section_id', $section->id)
-                            ->where('technology_id', $technology->id)
-                            ->where('technology_section_type_id', $typeId)
-                            ->delete();
-
-                        // Create new section data entries
                         foreach ($sectionData['section_data'] as $index => $item) {
-                            $sectionDataRecord = new TechnologySectionData();
+                            $sectionDataRecord = TechnologySectionData::where('technology_section_id', $section->id)
+                                ->where('technology_id', $technology->id)
+                                ->where('technology_section_type_id', $typeId)
+                                ->skip($index)
+                                ->first();
+                            if (!$sectionDataRecord) {
+                                $sectionDataRecord = new TechnologySectionData();
+                            }
                             $sectionDataRecord->technology_id = $technology->id;
                             $sectionDataRecord->technology_section_type_id = $typeId;
                             $sectionDataRecord->technology_section_id = $section->id;
@@ -149,7 +146,7 @@ class TechnologyController extends Controller
                     }
                 }
             }
-
+            $this->renderSingle($technology_id);
             session()->flash('success', 'Technology Successfully updated');
             return response()->json(['success' => true]);
         }
@@ -178,6 +175,6 @@ class TechnologyController extends Controller
     {
         $technology = Technology::findOrFail($technology_id);
         $technologySections = TechnologySection::where('technology_id', $technology_id)->get();
-        Helper::putCache('technology.single.' . $technology_id . '.technology', view('admin.template.technology.single', compact('technology', 'technologySections'))->render());
+        Helper::putCache('technology.single.' . $technology_id, view('admin.template.technology.single', compact('technology', 'technologySections'))->render());
     }
 }

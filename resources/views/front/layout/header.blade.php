@@ -71,7 +71,7 @@
                         </ul>
                     </li>
                     <li class="navbar-item">
-                        <a href="/career" class="navbar-link ">Career</a>
+                        <a href="{{ route('careers') }}" class="navbar-link ">Career</a>
                     </li>
                     <li class="navbar-item" onclick="extendSubMenu(this)">
                         <a href="#" class="navbar-link">

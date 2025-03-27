@@ -2,10 +2,8 @@
 @section('title', 'Technology Name')
 @section('meta', 'Technology-Name page for the website')
 @section('content')
-   @includeIf('front.cache.per-technology.technology-banner')
-   @includeIf('front.cache.per-technology.overview')
-   @includeIf('front.cache.per-technology.help')
-   @includeIf('front.cache.per-technology.done')
-   @includeIf('front.cache.per-technology.benefit-risk')
-   @includeIf('front.cache.per-technology.description')
+@includeIf('front.cache.technology.single.'.$id)
+@endsection
+@section('js')
+ <script src="{{ asset('front/assets/js/technology/single.js' )}}"  ></script>
 @endsection

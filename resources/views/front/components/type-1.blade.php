@@ -11,26 +11,29 @@
     <div class="content-wrapper">
         <div class="custom-tabs-desktop">
             <ul>
-                @if(is_array($items) || is_object($items) && $items instanceof \Traversable)
-                    @foreach($items as $index => $item)
-                    <li>
-                        <a class="custom-tab {{ $index === 0 ? 'active' : '' }}" href="#tab{{ $item->id ?? ($index + 1) }}">
-                            {{ $item->title ?? 'Item' }}
-                            <span class="icon">
-                                <svg width="7" height="11" viewBox="0 0 7 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M1.64062 1.77973L5.36063 5.49973L1.64062 9.21973" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round"></path>
-                                </svg>
-                            </span>
-                        </a>
-                    </li>
+                @if (is_array($items) || (is_object($items) && $items instanceof \Traversable))
+                    @foreach ($items as $index => $item)
+                        <li>
+                            <a class="custom-tab {{ $index === 0 ? 'active' : '' }}"
+                                href="#tab{{ $item->id ?? $index + 1 }}">
+                                {{ $item->title ?? 'Item' }}
+                                <span class="icon">
+                                    <svg width="7" height="11" viewBox="0 0 7 11" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1.64062 1.77973L5.36063 5.49973L1.64062 9.21973" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>
+                                </span>
+                            </a>
+                        </li>
                     @endforeach
                 @else
                     <li>
                         <a class="custom-tab active" href="#tab{{ $items->id ?? 1 }}">
                             {{ $items->title ?? 'Item' }}
                             <span class="icon">
-                                <svg width="7" height="11" viewBox="0 0 7 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <svg width="7" height="11" viewBox="0 0 7 11" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1.64062 1.77973L5.36063 5.49973L1.64062 9.21973" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round"></path>
                                 </svg>
@@ -42,47 +45,52 @@
         </div>
         <div class="list">
             <div class="custom-tab-content">
-                @if(is_array($items) || is_object($items) && $items instanceof \Traversable)
-                    @foreach($items as $index => $item)
-                    <div class="custom-tab-panel {{ $index === 0 ? 'active' : '' }}" id="tab{{ $item->id ?? ($index + 1) }}">
-                        <a href="#tab{{ $item->id ?? ($index + 1) }}" class="custom-tab {{ $index === 0 ? 'active' : '' }}">
-                            {{ $item->title ?? 'Item' }}
-                            <span class="icon">
-                                <svg width="7" height="11" viewBox="0 0 7 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M1.64062 1.77973L5.36063 5.49973L1.64062 9.21973" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round"></path>
-                                </svg>
-                            </span>
-                        </a>
-                        <div class="content">
-                            <div class="col-wrap">
-                                <div class="para">
-                                    <ul>
-                                        <li>
-                                            <div class="para-wrap">
-                                                <p><strong>{{ $item->short_description ?? '' }}</strong></p>
-                                                <br>
-                                                <p class="para-wrap-para">{{ $item->description ?? '' }}</p>
-                                            </div>
-                                        </li>
-                                    </ul>
+                @if (is_array($items) || (is_object($items) && $items instanceof \Traversable))
+                    @foreach ($items as $index => $item)
+                        <div class="custom-tab-panel {{ $index === 0 ? 'active' : '' }}"
+                            id="tab{{ $item->id ?? $index + 1 }}">
+                            <a href="#tab{{ $item->id ?? $index + 1 }}"
+                                class="custom-tab {{ $index === 0 ? 'active' : '' }}">
+                                {{ $item->title ?? 'Item' }}
+                                <span class="icon">
+                                    <svg width="7" height="11" viewBox="0 0 7 11" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1.64062 1.77973L5.36063 5.49973L1.64062 9.21973" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>
+                                </span>
+                            </a>
+                            <div class="content">
+                                <div class="col-wrap">
+                                    <div class="para">
+                                        <ul>
+                                            <li>
+                                                <div class="para-wrap">
+                                                    <p><strong>{{ $item->short_description ?? '' }}</strong></p>
+                                                    <br>
+                                                    <p class="para-wrap-para">{{ $item->description ?? '' }}</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    @if ($item->icon ?? ($item->image ?? null))
+                                        <div class="img-wrap square-image">
+                                            <img src="{{ Storage::url($item->icon ?? $item->image) }}"
+                                                class="img-fluid w-100 object-fit-cover"
+                                                alt="{{ $item->title ?? 'Item Image' }}">
+                                        </div>
+                                    @endif
                                 </div>
-                                @if($item->icon ?? null)
-                                <div class="img-wrap square-image">
-                                    <img src="{{ Storage::url($item->icon) }}"
-                                        class="img-fluid w-100 object-fit-cover" alt="{{ $item->title ?? 'Item Image' }}">
-                                </div>
-                                @endif
                             </div>
                         </div>
-                    </div>
                     @endforeach
                 @else
                     <div class="custom-tab-panel active" id="tab{{ $items->id ?? 1 }}">
                         <a href="#tab{{ $items->id ?? 1 }}" class="custom-tab active">
                             {{ $items->title ?? 'Item' }}
                             <span class="icon">
-                                <svg width="7" height="11" viewBox="0 0 7 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <svg width="7" height="11" viewBox="0 0 7 11" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1.64062 1.77973L5.36063 5.49973L1.64062 9.21973" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round"></path>
                                 </svg>
@@ -101,11 +109,12 @@
                                         </li>
                                     </ul>
                                 </div>
-                                @if($items->icon ?? null)
-                                <div class="img-wrap square-image">
-                                    <img src="{{ Storage::url($items->icon) }}"
-                                        class="img-fluid w-100 object-fit-cover" alt="{{ $items->title ?? 'Item Image' }}">
-                                </div>
+                                @if ($items->icon ?? null)
+                                    <div class="img-wrap square-image">
+                                        <img src="{{ Storage::url($items->icon) }}"
+                                            class="img-fluid w-100 object-fit-cover"
+                                            alt="{{ $items->title ?? 'Item Image' }}">
+                                    </div>
                                 @endif
                             </div>
                         </div>

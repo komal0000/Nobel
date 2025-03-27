@@ -38,15 +38,15 @@
                         <i class="bi bi-chevron-down"></i>
                     </button>
                     <div class="treatment-container" data-content="item-{{ $item->id }}">
-                        @if($item->icon ?? null)
+                        @if($item->icon ?? $item->image ?? null)
                         <div class="img-side px-3">
                             <div class="treatment-img">
-                                <img src="{{ Storage::url($item->icon) }}" alt="{{ $item->title}}">
+                                <img src="{{ Storage::url($item->icon ?? $item->image) }}" alt="{{ $item->title}}">
                             </div>
                         </div>
                         @endif
                         <div class="para-wrap">
-                            {{ $item->description ?? '' }}
+                            {{ $item->description ??  $item->short_description ?? '' }}
                         </div>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                         </div>
                         @endif
                         <div class="para-wrap">
-                            {{ $items->description ?? '' }}
+                            {{ $items->description ?? $items->short_description ?? '' }}
                         </div>
                     </div>
                 </div>
