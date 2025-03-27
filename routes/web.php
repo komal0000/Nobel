@@ -41,6 +41,10 @@ Route::prefix('aliment')->name('aliment.')->group(function () {
     Route::get('single/{aliment_id}', [FrontController::class, 'alimentSingle'])->name('single');
 });
 
+Route::prefix('download')->name('download.')->group(function () {
+    Route::get('', [FrontController::class, 'downloadIndex'])->name('index');
+    Route::get('single/{category}', [FrontController::class, 'downloadSingle'])->name('single');
+});
 Route::prefix('technology')->name('technology.')->group(function () {
     Route::get('', [FrontController::class, 'technologyIndex'])->name('index');
     Route::get('single/{technology_id}', [FrontController::class, 'technologySingle'])->name('single');

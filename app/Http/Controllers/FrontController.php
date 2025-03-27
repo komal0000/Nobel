@@ -46,4 +46,11 @@ class FrontController extends Controller
     public function technologySingle($id){
         return view('front.pages.technology.single',compact('id'));
     }
+
+    public function downloadIndex(){
+        return view('front.pages.download.index');
+    }
+    public function downloadSingle($id){
+        return view('front.pages.download.single',compact('id'));
+    }
 }
