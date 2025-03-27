@@ -1,0 +1,11 @@
+@extends('front.layout.app')
+@section('title', 'Technology Name')
+@section('meta', 'Technology-Name page for the website')
+@section('content')
+   @includeIf('front.cache.per-technology.technology-banner')
+   @includeIf('front.cache.per-technology.overview')
+   @includeIf('front.cache.per-technology.help')
+   @includeIf('front.cache.per-technology.done')
+   @includeIf('front.cache.per-technology.benefit-risk')
+   @includeIf('front.cache.per-technology.description')
+@endsection

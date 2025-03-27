@@ -82,8 +82,7 @@ class TechnologyController extends Controller
 
     public function edit(Request $request, $technology_id)
     {
-        $technology = Technology::findOrFail($technology_id);
-
+        $technology = Technology::where('id',$technology_id)->first();
         if (Helper::G()) {
             $specialities = DB::table('specialties')->get();
             $technologySectionTypes = DB::table('technology_section_types')->get();
@@ -160,10 +159,9 @@ class TechnologyController extends Controller
 
     }
 
-    // public function renderSingle($technology_id){
-    //     $technology = Technology::findOrFail($technology_id);
-    //     $technologySections = TechnologySection::where('technology_id', $technology_id)->get();
-    //     $technologySectionData = TechnologySectionData::where('technology_id', $technology_id)->get();
-    //     Helper::putCache('technology.single.'.$technology_id.'.technology', view('admin.template.technology.single', compact('technology', 'technologySections', 'technologySectionData'))->render());
-    // }
+    public function renderSingle($technology_id){
+        $technology = Technology::findOrFail($technology_id);
+        $technologySections = TechnologySection::where('technology_id', $technology_id)->get();
+        Helper::putCache('technology.single.'.$technology_id.'.technology', view('admin.template.technology.single', compact('technology', 'technologySections'))->render());
+    }
 }

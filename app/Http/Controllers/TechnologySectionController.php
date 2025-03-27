@@ -18,7 +18,6 @@ class TechnologySectionController extends Controller
         } else {
             $techSectionType = new TechnologySectionType();
             $techSectionType->title = $request->title;
-            $techSectionType->short_description = $request->short_description;
             $techSectionType->save();
             return redirect()->back()->with('success', 'Technology Section Type Successfully Added');
         }
@@ -28,7 +27,6 @@ class TechnologySectionController extends Controller
     {
         $techSectionType = TechnologySectionType::where('id', $type_id)->first();
         $techSectionType->title = $request->title;
-        $techSectionType->short_description = $request->short_description;
         $techSectionType->save();
         session()->flash('success', 'Technology Section Type Successfully updated');
         return response()->json(['success' => true]);

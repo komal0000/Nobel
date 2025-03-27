@@ -23,10 +23,6 @@
                 <label for="title">Title <span style="color: red;">*</span></label>
                 <input type="text" name="title" id="title" class="form-control" required>
             </div>
-            <div class="col-md-8 mb-3">
-                <label for="short_description">Short Description <span style="color: red;">*</span></label>
-                <input type="text" name="short_description" id="short_description" class="form-control">
-            </div>
             <div class="col-md-4">
                 <button class="btn btn-primary">
                     Save
@@ -40,7 +36,6 @@
             <thead>
                 <tr>
                     <th>Title</th>
-                    <th>Short Description</th>
                     <th>Manage</th>
                 </tr>
             </thead>
@@ -52,10 +47,6 @@
                                 class="form-control update_input" value="{{ $type->title }}">
                         </td>
                         <td>
-                            <input type="text" name="short_description" id="short_description_{{ $type->id }}"
-                                class="form-control update_input" value="{{ $type->short_description }}">
-                        </td>
-                        <td>
                             <button onclick="editType({{ $type->id }})" class="btn btn-sm btn-warning">Update</button>
                             <button onclick="deleteType({{ $type->id }})" class="btn btn-sm btn-danger">Delete</button>
                         </td>
@@ -65,7 +56,6 @@
             <tfoot>
                 <tr>
                     <th>Title</th>
-                    <th>Short Description</th>
                     <th>Manage</th>
                 </tr>
             </tfoot>
