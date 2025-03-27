@@ -9,7 +9,7 @@
                     <a href="https://www.youtube.com/embed/{{ $video->video_link }}" class="glightbox col-xl-4 col-xxl-3">
                         <div class="each-video m-3">
                             <img src="{{ $video->video_image }}" alt="Thumbnail">
-                            <img class="play-icon" src="{{ asset('front/assets/img/play-icon.png') }}" alt="Play Icon">
+                            <img class="play-icon" src="{{ asset('front/assets/img/youtube.png') }}" alt="Play Icon">
                         </div>
                     </a>
                 @endforeach
