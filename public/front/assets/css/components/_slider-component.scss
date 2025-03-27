@@ -1,0 +1,12 @@
+.slider-component {
+   .heading-group{
+      width: 700px;
+      max-width: 100%;
+      text-align: center;
+      margin: auto;  
+      .heading-xs {
+         font-weight: 500 !important;
+         color: var(--color-grey);
+      }
+   }
+}

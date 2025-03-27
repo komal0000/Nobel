@@ -15,6 +15,12 @@
             ],
         ];
 @endphp
+<div class="mob-back-img">
+    <img src="{{ asset('front/assets/img/contact-us/contact-banner-xs.jpg') }}" alt="Mobile Background Image" class="img-fluid w-100">
+    <div class="banner-title">
+        Contact Us
+    </div>
+</div>
 <section class="contact">
     <div class="main-container">
         <div class="heading-group mb-5">
@@ -27,7 +33,7 @@
             <div class="row g-4 justify-content-evenly">
                 <div class="detail col-lg-4 p-0 pb-4">
                     <div class="heading-md p-4">Contact Details</div>
-                    <div class="first d-flex gap-3 border-bottom w-100 px-4 pb-2">
+                    <div class="first for-border d-flex gap-3 w-100 px-4 pb-2">
                         <div class="logo align-self-center">
                             <i class="bi bi-telephone-fill"></i>
                         </div>
@@ -51,32 +57,33 @@
                         </div>
                     </div>
                 </div>
-                <div class="form col-lg-7">
+                <form class="form col-lg-7">
                     @csrf
                     <div class="heading-md mb-4">Feedback</div>
                     <div class="row">
-                        <div class="form-floating mb-3 col-md-6">
-                            <input type="text" name="fullName" class="form-control" placeholder="Full Name *" required>
-                            <label for="fullName">Full Name *</label>
+                        <div class="mb-3 col-md-6">
+                            <label for="fullName">Name *</label>
+                            <input type="text" name="fullName" class="form-control" placeholder="Enter Your Name" required>
                         </div>
-                        <div class="form-floating mb-3 col-md-6">
-                            <input type="email" name="email" class="form-control" placeholder="Email Address *" required>
+                        <div class="mb-3 col-md-6">
                             <label for="email">Email Address *</label>
+                            <input type="email" name="email" class="form-control" placeholder="Enter Your E-mail" required>
                         </div>
-                        <div class="form-floating mb-3 col-md-6">
-                            <input type="text" name="mobileNumber" class="form-control" placeholder="Mobile Number *" required>
+                        <div class="mb-3 col-md-6">
                             <label for="mobileNumber">Mobile Number *</label>
+                            <input type="text" name="mobileNumber" class="form-control" placeholder="Enter Your Phone Number" required>
                         </div>
-                        <div class="form-floating mb-3 col-12">
-                            <textarea name="Feedback" class="form-control" placeholder="Enter your feedback here" required></textarea>
-                            <label for="feedback">Enter your feedback here *</label>
+                        <div class=" mb-3 col-12">
+                            <label for="feedback">Your Message *</label>
+                            <textarea name="Feedback" class="form-control" placeholder="Enter your Message here" required></textarea>
                         </div>
                     </div>
                     <div class="button align-self-center">
                         <button class="submit-btn">Submit</button>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
 </section>
+

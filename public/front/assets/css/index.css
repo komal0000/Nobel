@@ -239,6 +239,11 @@ section:nth-of-type(odd) {
   box-shadow: none;
   border: none;
 }
+#all-section .main-container .pagination-container .right-arrow:disabled,
+#all-section .main-container .pagination-container .left-arrow:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 #all-section .main-container .pagination-container .active {
   background-color: var(--color-main);
   color: var(--color-white);
@@ -1689,7 +1694,7 @@ section:nth-of-type(odd) {
   right: 0;
   margin: auto;
   text-align: center;
-  width: 30%;
+  width: 38%;
 }
 @media (min-width: 1199px) {
   .why-hospital .why-wrapper .why-details .why-list .why-block-a {
@@ -2380,10 +2385,9 @@ section:nth-of-type(odd) {
 }
 
 .awards {
-  margin-top: 150px;
+  padding-top: 80px;
   background-color: var(--color-white) !important;
   background: url("/front/img/why-bg.png") top left;
-  padding: 40px 0;
 }
 .awards .main-container .award-slide .slick-prev {
   border: none;
@@ -2511,7 +2515,7 @@ section:nth-of-type(odd) {
 .events-news .main-container .post-card {
   background-color: var(--color-white);
   border-radius: 20px;
-  flex: 1;
+  width: 33.33%;
 }
 @media (max-width: 1199px) {
   .events-news .main-container .post-card {
@@ -2539,7 +2543,7 @@ section:nth-of-type(odd) {
   padding: 10px 0;
 }
 .events-news .main-container .post-list {
-  flex: 1;
+  width: 33.33%;
 }
 .events-news .main-container .post-list .list-card img {
   width: 100%;
@@ -2563,23 +2567,54 @@ section:nth-of-type(odd) {
   overflow: hidden;
   text-overflow: clip;
 }
+.events-news .main-container .mob-event-slider .event-card {
+  position: relative;
+  margin: 15px;
+  box-shadow: 0 4px 19px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  height: 100%;
+  overflow: hidden;
+}
+.events-news .main-container .mob-event-slider .event-card .img-wrapper {
+  height: 60%;
+  overflow: hidden;
+}
+.events-news .main-container .mob-event-slider .event-card img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1/1;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 20px;
+}
+.events-news .main-container .mob-event-slider .event-card .content {
+  height: 40%;
+}
+.events-news .main-container .mob-event-slider .event-card .content .date {
+  font-size: 13px;
+  font-weight: 500;
+}
+.events-news .main-container .mob-event-slider .event-card .content .para-wrap {
+  font-weight: 600;
+}
 .events-news .main-container .events {
-  flex: 1;
+  width: 33.34%;
   padding: 30px;
   overflow: scroll;
   border-radius: 20px;
   background-color: var(--color-white);
   height: 550px;
 }
-@media (min-width: 1024px) and (max-width: 1366px) {
+@media (min-width: 1200px) and (max-width: 1366px) {
   .events-news .main-container .events {
     height: 470px;
   }
 }
-@media (max-width: 1023px) {
+@media (max-width: 1199px) {
   .events-news .main-container .events {
     height: auto;
     overflow: visible;
+    width: 100%;
   }
 }
 .events-news .main-container .events .heading-sm {
@@ -4150,6 +4185,11 @@ section:nth-of-type(odd) {
   width: 45%;
   position: relative;
 }
+@media (max-width: 500px) {
+  #case-studies .filters .select-field {
+    width: 100%;
+  }
+}
 #case-studies .filters .select-field .default-select {
   border-radius: 50px;
   padding: 10px;
@@ -4202,6 +4242,11 @@ section:nth-of-type(odd) {
 #case-studies .filters .search-field {
   width: 52%;
   position: relative;
+}
+@media (max-width: 500px) {
+  #case-studies .filters .search-field {
+    width: 100%;
+  }
 }
 #case-studies .filters .search-field input {
   padding: 9px;
@@ -4271,6 +4316,37 @@ section:nth-of-type(odd) {
   background-color: #CBD1D3;
   content: "";
   display: inline-block;
+}
+#case-studies .pagination-container .page-button {
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-weight: 600;
+  color: var(--color-grey);
+  box-shadow: 0 3px 17px rgba(0, 0, 0, 0.1);
+  border: none;
+  background-color: var(--color-white);
+}
+#case-studies .pagination-container .right-arrow,
+#case-studies .pagination-container .left-arrow {
+  padding: 0;
+  background-color: transparent;
+  color: var(--color-grey);
+  box-shadow: none;
+  border: none;
+}
+#case-studies .pagination-container .right-arrow:disabled,
+#case-studies .pagination-container .left-arrow:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+#case-studies .pagination-container .active {
+  background-color: var(--color-main);
+  color: var(--color-white);
 }
 
 #news-letter .letter-row .custom-tabs ul {
@@ -6125,6 +6201,266 @@ section:nth-of-type(odd) {
   #trust .content .body {
     width: 100%;
   }
+}
+
+#listing-banner {
+  position: relative;
+  padding: 0;
+}
+#listing-banner .banner-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--color-white);
+  text-align: center;
+  width: 100%;
+}
+
+#doctor-list .filter .select-field {
+  width: 45%;
+  position: relative;
+}
+#doctor-list .filter .select-field .default-select {
+  border-radius: 50px;
+  padding: 10px;
+  border: 1px solid var(--color-main);
+  cursor: pointer;
+  position: relative;
+  z-index: 100;
+  color: #fff;
+  background-color: var(--color-main);
+  font-size: 14px;
+  font-weight: 600;
+}
+#doctor-list .filter .select-field .default-select .anchor-down-btn {
+  position: absolute;
+  right: 6%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#doctor-list .filter .select-field .select-wrap {
+  padding: 10px;
+  padding-top: 50px;
+  border-radius: 25px;
+  background-color: #fff;
+  display: none;
+  overflow: hidden;
+  overflow-y: auto;
+  max-height: 240px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: 0 3px 40px rgba(0, 0, 0, 0.14);
+  z-index: 99;
+}
+#doctor-list .filter .select-field .select-wrap .select-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+#doctor-list .filter .select-field .select-wrap .select-list li {
+  font-weight: 600;
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--border-color-light);
+  font-size: 14px;
+  cursor: pointer;
+}
+#doctor-list .filter .select-field .select-wrap .select-list li:last-child {
+  border-bottom: none;
+}
+#doctor-list .filter .select-field .active {
+  display: block;
+}
+#doctor-list .list .doctor-card {
+  background-color: #fff;
+  box-shadow: 0 3px 17px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  position: relative;
+  padding-bottom: 35px;
+  margin-bottom: 30px;
+  position: relative;
+}
+#doctor-list .list .doctor-card .header {
+  display: flex;
+  padding: 20px;
+}
+#doctor-list .list .doctor-card .header .doc-img {
+  width: 100px;
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
+  height: 100px;
+  border: 10px solid #fff;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  overflow: hidden;
+}
+#doctor-list .list .doctor-card .header .doc-img img {
+  border-radius: 50%;
+  width: 80px;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: auto 80/80;
+}
+#doctor-list .list .doctor-card .header .doc-desc {
+  width: calc(100% - 100px);
+  padding-left: 20px;
+  position: relative;
+  font-size: 14px;
+}
+#doctor-list .list .doctor-card .header .doc-desc button {
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  top: -7px;
+  cursor: pointer;
+}
+#doctor-list .list .doctor-card .header .doc-desc .heading-sm {
+  margin-bottom: 5px;
+  padding-right: 30px;
+}
+#doctor-list .list .doctor-card .header .doc-desc .post {
+  color: var(--color-grey);
+  font-weight: 400;
+  border-bottom: 1px solid var(--border-color-light);
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  position: relative;
+}
+#doctor-list .list .doctor-card .header .doc-desc .post::after {
+  content: "";
+  background: var(--color-main);
+  height: 1px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40px;
+}
+#doctor-list .list .doctor-card .header .doc-desc .doc-specialization {
+  margin-bottom: 8px;
+}
+#doctor-list .list .doctor-card .header .doc-desc .doc-specialization span {
+  padding-right: 10px;
+}
+#doctor-list .list .doctor-card .header .doc-desc .doc-specialization a {
+  color: var(--color-main);
+  display: inline-block;
+  font-weight: 600;
+  font-size: 90%;
+}
+#doctor-list .list .doctor-card .header .doc-desc .doc-specialization a::before {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  margin-right: 10px;
+  background-color: #cbd1d3;
+  content: "";
+  display: inline-block;
+}
+#doctor-list .list .doctor-card .body {
+  border-top: 1px solid #e1e1e1;
+  padding: 20px;
+}
+#doctor-list .list .doctor-card .body .tabs {
+  color: var(--color-dark-grey);
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  font-size: 14px;
+}
+#doctor-list .list .doctor-card .body .tab {
+  border: none;
+  background-color: transparent;
+  border-bottom: 3px solid transparent;
+  padding-bottom: 5px;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+#doctor-list .list .doctor-card .body .tab.active {
+  color: var(--color-main);
+  border-color: var(--color-main);
+}
+#doctor-list .list .doctor-card .body .tab-container {
+  max-height: 220px;
+  overflow: hidden;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+#doctor-list .list .doctor-card .body .tab-container .tab-panel {
+  display: none;
+}
+#doctor-list .list .doctor-card .body .tab-container .tab-panel.active {
+  display: block;
+}
+#doctor-list .list .doctor-card .body .tab-container .tab-panel ul {
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+}
+#doctor-list .list .doctor-card .body .tab-container .tab-panel ul li {
+  width: 50%;
+  margin-bottom: 10px;
+  padding: 0 10px;
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+}
+#doctor-list .list .doctor-card .body .tab-container .tab-panel ul li span {
+  margin-right: 6px;
+}
+#doctor-list .list .doctor-card .meet-doc {
+  margin: auto;
+  bottom: -20px;
+  left: 0;
+  right: 0;
+  width: 160px;
+  display: block;
+  position: absolute;
+  padding: 14px 18px;
+  text-align: center;
+  color: #fff;
+  background-color: var(--color-main);
+  font-size: 13px;
+  border-radius: 35px;
+  cursor: pointer;
+  min-width: 150px;
+  font-weight: 700;
+  border: 0;
+  outline: 0;
+}
+#doctor-list .pagination-container .page-button {
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-weight: 600;
+  color: var(--color-grey);
+  box-shadow: 0 3px 17px rgba(0, 0, 0, 0.1);
+  border: none;
+  background-color: var(--color-white);
+}
+#doctor-list .pagination-container .right-arrow,
+#doctor-list .pagination-container .left-arrow {
+  padding: 0;
+  background-color: transparent;
+  color: var(--color-grey);
+  box-shadow: none;
+  border: none;
+}
+#doctor-list .pagination-container .right-arrow:disabled,
+#doctor-list .pagination-container .left-arrow:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+#doctor-list .pagination-container .active {
+  background-color: var(--color-main);
+  color: var(--color-white);
 }
 
 footer {
