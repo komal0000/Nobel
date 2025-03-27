@@ -72,3 +72,28 @@ if there is title make  slug
 }
 
 
+services {
+    id icon single_page_image title short_desc
+}
+
+service_doctors{
+    id,service_id,title,image,name,designation,department,working
+}
+
+service_faqs{
+    id,service_id,quesition,answer
+}
+
+service_steps{
+    id,title,icon,short_desc
+}
+
+service_sections{
+    id,title,short_desc1,short_desc2,image,image_placement<left:center:right>,
+}
+
+
+
+
+
+
