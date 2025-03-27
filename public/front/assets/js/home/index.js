@@ -31,8 +31,8 @@ function initSliders() {
     // Configure common slider settings
     const commonSliderConfig = {
         arrows: true,
-        prevArrow: '<button class="slick-prev left-arrow"><img src="/front/img/vector-left.png" alt="Left Arrow"></button>',
-        nextArrow: '<button class="slick-next right-arrow"><img src="/front/img/vector-right.png" alt="Right Arrow"></button>',
+        prevArrow: '<button class="slick-prev left-arrow"><img src="/front/assets/img/vector-left.png" alt="Left Arrow"></button>',
+        nextArrow: '<button class="slick-next right-arrow"><img src="/front/assets/img/vector-right.png" alt="Right Arrow"></button>',
     };
 
     // Standard 3-column slider config
