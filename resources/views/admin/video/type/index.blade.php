@@ -24,6 +24,10 @@
                 <label for="title">Title <span style="color: red;">*</span></label>
                 <input type="text" name="title" id="title" class="form-control" required>
             </div>
+            <div class="col-md-4 d-flex align-items-center">
+                <input class="form-check-input" type="radio" name="home_video" id="home_video" value="1">
+                <label for="title">Home Video</label>
+            </div>
             <div class="col-md-4 d-flex align-items-end">
                 <button class="btn btn-primary">
                     Save
@@ -49,7 +53,8 @@
                         <td>
                             <button onclick="editVideo({{ $type->id }})" class="btn btn-sm btn-warning">Update</button>
                             <button onclick="deleteVideo({{ $type->id }})" class="btn btn-sm btn-danger">Delete</button>
-                            <a href="{{route('admin.video.index',['type_id'=>$type->id])}}" class="btn btn-sm btn-info">Manage video</a>
+                            <a href="{{ route('admin.video.index', ['type_id' => $type->id]) }}"
+                                class="btn btn-sm btn-info">Manage video</a>
                         </td>
                     </tr>
                 @endforeach
@@ -68,7 +73,7 @@
         function editVideo(id) {
             const title = $(`#title_${id}`).val();
             axios.post("{{ route('admin.video.type.edit', ['type_id' => 'ID']) }}".replace('ID', id), {
-                    title:title,
+                    title: title,
                 })
                 .then(res => {
                     if (res.data.success) {

@@ -18,6 +18,7 @@ class VideoController extends Controller
         } else {
             $video = new VideoType();
             $video->title = $request->title;
+            $video->
             $video->save();
             return redirect()->back()->with('success', 'Video Type SuccessFully Added');
         }
@@ -71,5 +72,11 @@ class VideoController extends Controller
     {
         Video::where('id', $video_id)->delete();
         return redirect()->back()->with('delete_success', 'Video Successfully deleted');
+    }
+
+
+    public function reder(){
+        $HomeVidoes = DB::table('videos')->where('title','HomeSpeciality')->get();
+        Helper::putCache('home.videos',view('admin.template.home.videos')->render());
     }
 }
