@@ -51,7 +51,6 @@
                                 <a href="{{route('admin.video.del',['video_id'=>$video->id])}}" class="btn btn-danger">Delete</a>
                             </div>
                         </div>
-
                     </div>
                 @endforeach
             </div>
@@ -70,6 +69,7 @@
                     $('#video-preview-panel').show();
                     $('#title').val(data.title);
                     $('#video_link').val(data.video_id);
+                    $('#video-image').val(data.image);
                 })
                 .catch(err => {
                     console.error(err);
@@ -79,8 +79,10 @@
         function saveVideo() {
             const title = $('#title').val();
             const video_link = $('#video_link').val();
+            const video_image = $('#video-image').val();
             axios.post('{{ route('admin.video.index', ['type_id' => $videoType->id]) }}', {
                     video_link: video_link,
+                    video_image: video_image,
                     title: title,
                 })
                 .then(res => {

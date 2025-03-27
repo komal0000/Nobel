@@ -102,6 +102,9 @@ $(document).ready(function() {
         asNavFor: '.slider-for',
         dots: false,
         centerMode: true,
+        centerPadding: '40px',
+        arrows: false,
+        infinite: false,
         focusOnSelect: true
     });
 

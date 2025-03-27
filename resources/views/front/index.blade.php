@@ -7,6 +7,7 @@
     @include('front.pages.home.speciality')
     @include('front.pages.home.team')
     @includeIf('front.cache.home.care')
+    @includeIf('front.cache.home.videos')
     @includeIf('front.cache.home.updates')
     @includeIf('front.cache.home.awards')
     @includeIf('front.cache.home.newsEvent')
