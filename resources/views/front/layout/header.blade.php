@@ -22,7 +22,7 @@
                                 <a href="{{ route('treatment.index') }}" class="drop-item">Treatments</a>
                             </li>
                             <li>
-                                <a href="/technologies" class="drop-item">Technologies</a>
+                                <a href="{{ route('technology.index') }}" class="drop-item">Technologies</a>
                             </li>
                             <li>
                                 <a href="{{ route('aliment.index') }}" class="drop-item">Ailments</a>

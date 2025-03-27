@@ -154,6 +154,16 @@ class TechnologyController extends Controller
 
     public function render($speciality_id){
         $technologies = DB::table('technologies')->where('specialty_id',$speciality_id)->take(3)->get();
+        $technologiesIndex = DB::table('technologies')->get();
         Helper::putCache('speciality.single.'.$speciality_id.'.technologies', view('admin.template.speciality.technology', compact('technologies'))->render());
+        Helper::putCache('technology.index', view('admin.template.technology.index', compact('technologiesIndex'))->render());
+
     }
+
+    // public function renderSingle($technology_id){
+    //     $technology = Technology::findOrFail($technology_id);
+    //     $technologySections = TechnologySection::where('technology_id', $technology_id)->get();
+    //     $technologySectionData = TechnologySectionData::where('technology_id', $technology_id)->get();
+    //     Helper::putCache('technology.single.'.$technology_id.'.technology', view('admin.template.technology.single', compact('technology', 'technologySections', 'technologySectionData'))->render());
+    // }
 }

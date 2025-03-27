@@ -39,4 +39,11 @@ class FrontController extends Controller
     public function treatmentSingle($id){
         return view('front.pages.treatment.single',compact('id'));
     }
+
+    public function technologyIndex(){
+        return view('front.pages.technology.index');
+    }
+    public function technologySingle($id){
+        return view('front.pages.technology.single',compact('id'));
+    }
 }
