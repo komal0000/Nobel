@@ -50,6 +50,8 @@ Route::prefix('technology')->name('technology.')->group(function () {
     Route::get('', [FrontController::class, 'technologyIndex'])->name('index');
     Route::get('single/{technology_id}', [FrontController::class, 'technologySingle'])->name('single');
 });
+
+Route::get('event',[FrontController::class,'eventIndex'])->name('event');
 Route::match(["GET", "POST"], 'login', [LoginController::class, 'login'])->name('login');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 

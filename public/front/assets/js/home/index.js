@@ -1,6 +1,9 @@
-// Initialize when document is ready
-$(document).ready(function() {
-    // Setup lightbox for videos
+/**
+ * Nobel Home Page JavaScript
+ * Consolidated and optimized from multiple scripts
+ */
+$(document).ready(function () {
+    // Initialize lightbox for videos
     const lightBox = GLightbox({
         selector: '.glightbox',
         touchNavigation: true,
@@ -15,71 +18,66 @@ $(document).ready(function() {
 
     // Initialize UI components
     initUIComponents();
+
+    // Equalize card heights after everything is loaded
+    equalizeCardHeight('.card-content');
 });
 
-// Utility function to equalize heights of elements
+/**
+ * Utility function to equalize heights of elements
+ * @param {string} selector - CSS selector for elements to equalize
+ */
 function equalizeCardHeight(selector) {
     let maxHeight = 0;
-    $(selector).css('height', 'auto').each(function() {
+    $(selector).css('height', 'auto').each(function () {
         maxHeight = Math.max(maxHeight, $(this).height());
     });
     $(selector).height(maxHeight);
 }
 
-// Initialize all sliders with shared configuration
+/**
+ * Initialize all sliders with appropriate configurations
+ */
 function initSliders() {
-    // Configure common slider settings
-    const commonSliderConfig = {
+    // Common slider configuration
+    const commonConfig = {
         arrows: true,
+        infinite: true,
+        slidesToScroll: 1,
         prevArrow: '<button class="slick-prev left-arrow"><img src="/front/assets/img/vector-left.png" alt="Left Arrow"></button>',
         nextArrow: '<button class="slick-next right-arrow"><img src="/front/assets/img/vector-right.png" alt="Right Arrow"></button>',
+        responsive: [
+            {
+                breakpoint: 1199,
+                settings: { slidesToShow: 2 }
+            },
+            {
+                breakpoint: 768,
+                settings: { slidesToShow: 1 }
+            }
+        ]
     };
 
-    // Standard 3-column slider config
-    const standard3ColConfig = {
-        ...commonSliderConfig,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        infinite: true,
-        responsive: [{
-            breakpoint: 1199,
-            settings: { slidesToShow: 2 }
-        }, {
-            breakpoint: 768,
-            settings: { slidesToShow: 1 }
-        }]
-    };
-
-    // Initialize regular sliders
-    $('.service-slider, .update-slider, .award-slide, .slider-67e53dc039493').each(function() {
-        $(this).slick(standard3ColConfig);
+    // Initialize standard 3-column sliders
+    $('.service-slider, .update-slider, .award-slide, .slider-67e64d13a4fc2, .video-wrapper').each(function () {
+        $(this).slick({
+            ...commonConfig,
+            slidesToShow: 3
+        });
     });
 
     // Initialize specialized sliders
-    initSpecializedSliders(commonSliderConfig);
-}
-
-// Initialize sliders with special configurations
-function initSpecializedSliders(commonSliderConfig) {
-    // Story slider (responsive)
     const $storySlider = $('#story-slider');
-    toggleStorySlider();
-    $(window).resize(toggleStorySlider);
-
-    // Main slider (responsive)
     const $mainSlider = $('#slick-slider');
-    toggleMainSlider();
-    $(window).resize(toggleMainSlider);
 
-    // Helper function for story slider
-    function toggleStorySlider() {
+    // Initialize responsive sliders based on screen size
+    function handleResponsiveSliders() {
+        // Story slider
         if ($(window).width() < 1100) {
             if (!$storySlider.hasClass('slick-initialized')) {
                 $storySlider.slick({
-                    ...commonSliderConfig,
+                    ...commonConfig,
                     slidesToShow: 2,
-                    infinite: true,
-                    slidesToScroll: 1,
                     responsive: [{
                         breakpoint: 768,
                         settings: {
@@ -92,55 +90,64 @@ function initSpecializedSliders(commonSliderConfig) {
         } else if ($storySlider.hasClass('slick-initialized')) {
             $storySlider.slick('unslick');
         }
-    }
 
-    // Helper function for main slider
-    function toggleMainSlider() {
+        // Main slider
         if ($(window).width() <= 1299) {
             if (!$mainSlider.hasClass('slick-initialized')) {
                 $mainSlider.slick({
+                    ...commonConfig,
                     slidesToShow: 2,
-                    slidesToScroll: 1,
-                    infinite: true,
-                    ...commonSliderConfig,
-                    responsive: [{
-                        breakpoint: 768,
-                        settings: {
-                            arrows: false,
-                            slidesToShow: 2,
+                    responsive: [
+                        {
+                            breakpoint: 768,
+                            settings: {
+                                arrows: false,
+                                slidesToShow: 2
+                            }
+                        },
+                        {
+                            breakpoint: 480,
+                            settings: {
+                                slidesToShow: 1,
+                                arrows: false
+                            }
                         }
-                    }, {
-                        breakpoint: 480,
-                        settings: {
-                            slidesToShow: 1,
-                            arrows: false
-                        }
-                    }]
+                    ]
                 });
             }
         } else if ($mainSlider.hasClass('slick-initialized')) {
             $mainSlider.slick('unslick');
         }
 
-        // Show/hide arrows based on screen size
+        // Toggle arrow visibility based on screen size
         $('.slick-prev, .slick-next').toggle($(window).width() > 768);
     }
+
+    // Initialize responsive sliders
+    handleResponsiveSliders();
+
+    // Re-evaluate on window resize
+    $(window).on('resize', handleResponsiveSliders);
 }
 
-// Setup responsive behaviors
+/**
+ * Setup responsive behaviors for interactive elements
+ */
 function setupResponsiveBehaviors() {
-    // Show/hide navbar toggle
-    $('#toggle-navbar').click(function() {
-        $('#navbar').toggleClass('show-navbar').css('transform', 'scale(1)');
+    // Navbar toggle
+    $('#toggle-navbar').click(function () {
+        $('#navbar').toggleClass('show-navbar').css({
+            'transform': 'scale(1)'
+        });
     });
 
     // Image transition effect
-    $('.click-circle').on('click', function(e) {
+    $('.click-circle').on('click', function (e) {
         e.preventDefault();
         const imgSrc = $(this).attr('datasrc');
         const $image = $('.center-image');
 
-        // Remove active classes from other elements
+        // Remove active classes
         $('.click-circle').removeClass('active');
         $('.why-block').removeClass('active-why');
 
@@ -150,22 +157,22 @@ function setupResponsiveBehaviors() {
 
         // Apply animation
         $image.css('transition', 'none')
-              .css({
-                  'transform': 'scale(0.01)',
-                  'opacity': '0'
-              });
+            .css({
+                'transform': 'scale(0.01)',
+                'opacity': '0'
+            });
 
-        // Force reflow
+        // Force browser reflow
         $image[0].offsetHeight;
 
         // Change image and animate in
         $image.attr('src', imgSrc);
-        setTimeout(function() {
+        setTimeout(function () {
             $image.css('transition', 'transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.8s ease')
-                  .css({
-                      'transform': 'scale(1)',
-                      'opacity': '1'
-                  });
+                .css({
+                    'transform': 'scale(1)',
+                    'opacity': '1'
+                });
         }, 50);
     });
 
@@ -173,15 +180,17 @@ function setupResponsiveBehaviors() {
     $('.center-image').addClass('normal');
 }
 
-// Initialize UI components
+/**
+ * Initialize UI components and interactions
+ */
 function initUIComponents() {
     // Speciality dropdown
-    $('#default-speciality-wrap').click(function() {
+    $('#default-speciality-wrap').click(function () {
         const $listWrap = $('#list-wrap');
         $listWrap.toggle($listWrap.css('display') !== 'block');
     });
 
-    $('#list-wrap ul li').click(function() {
+    $('#list-wrap ul li').click(function () {
         const selectedText = $(this).text();
         const selectedValue = $(this).data('value');
 
@@ -190,18 +199,31 @@ function initUIComponents() {
         $('#list-wrap').hide();
     });
 
-    // Setup tabs and buttons
-    $('.tab').click(function() {
+    // Initialize tabs
+    $('.tab').click(function () {
         changeTab(this);
     });
+
+    // If there's an initial active tab, trigger it
+    const $initialActiveTab = $('.tab.active-tab');
+    if ($initialActiveTab.length) {
+        changeTab($initialActiveTab[0]);
+    }
 }
 
-// UI Helper Functions
+/**
+ * Set active state for buttons
+ * @param {HTMLElement} el - Button element to activate
+ */
 function setActive(el) {
     $('.sp-btn').removeClass('active-btn');
     $(el).addClass('active-btn');
 }
 
+/**
+ * Change tab and show corresponding content
+ * @param {HTMLElement} el - Tab element to activate
+ */
 function changeTab(el) {
     const tabId = $(el).data('target');
     $('.tab').removeClass('active-tab');
@@ -211,6 +233,10 @@ function changeTab(el) {
     $('#' + tabId).addClass('active').fadeIn();
 }
 
+/**
+ * Toggle submenu expansion
+ * @param {HTMLElement} el - Menu item to toggle
+ */
 function extendSubMenu(el) {
     if ($(el).hasClass('active-list')) {
         $(el).removeClass('active-list');
@@ -220,11 +246,26 @@ function extendSubMenu(el) {
     $(el).addClass('active-list');
 }
 
+/**
+ * Toggle knowledge submenu expansion
+ * @param {HTMLElement} el - Knowledge menu item to toggle
+ * @param {Event} event - Click event
+ */
 function extendKnowledgeSubMenu(el, event) {
     event.stopPropagation();
     $(el).toggleClass('active-knowledge');
 }
 
+/**
+ * Toggle active class for expandable elements
+ * @param {HTMLElement} el - Element to expand/collapse
+ */
 function expand(el) {
     $(el).toggleClass('active');
 }
+
+// Handle window resize
+$(window).resize(function () {
+    // Re-equalize card heights when window is resized
+    equalizeCardHeight('.card-content');
+});

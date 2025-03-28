@@ -88,13 +88,11 @@
                         </div>
                     </div>
                 @endif
-                @if ($blog->image)
-                    <div class="col-md-12">
-                        <label for="image">Image <span style="color: red;">*</span></label>
-                        <input type="file" name="image" id="image" class="form-control dropify" accept="image/*"
-                            data-default-file="{{ Storage::url($blog->image) }}">
-                    </div>
-                @endif
+                <div class="col-md-12">
+                    <label for="image">Image <span style="color: red;">*</span></label>
+                    <input type="file" name="image" id="image" class="form-control dropify" accept="image/*"
+                        data-default-file="{{ Storage::url($blog->image) }}">
+                </div>
             </div>
             <div class="col-md-6">
                 <div class="row d-flex align-items-end">
@@ -128,7 +126,8 @@
                     </div>
                     <div class="dol-md-12">
                         <label for="short_description">Short Description</label>
-                        <input type="text" name="short_description" id="short_description" class="form-control" value="{{ $blog->short_description }}">
+                        <input type="text" name="short_description" id="short_description" class="form-control"
+                            value="{{ $blog->short_description }}">
                     </div>
                     @if ($blogCategory->type == 4)
                     @else

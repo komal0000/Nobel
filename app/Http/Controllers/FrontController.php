@@ -53,4 +53,8 @@ class FrontController extends Controller
     public function downloadSingle($id){
         return view('front.pages.download.single',compact('id'));
     }
+
+    public function eventIndex(){
+        return view('front.pages.event.index');
+    }
 }

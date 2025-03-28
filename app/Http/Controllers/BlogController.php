@@ -141,8 +141,10 @@ class BlogController extends Controller
         $eventTypes = DB::table('blog_categories')->where('type', helper::blog_type_event)->get();
         $latestNews = DB::table('blogs')->where('type', Helper::blog_type_news)->where('is_featured', 1)->first();
         $updateData = DB::table('blogs')->where('type', Helper::blog_type_update)->get();
-        Helper::putCache('home.newsEvent', view('admin.template.home.news', compact('newsData', 'eventData', 'latestNews', 'eventTypes',))->render());
+        $indexNews = DB::table('blogs')->where('type', Helper::blog_type_news)->get();
+        Helper::putCache('event.index', view('admin.template.event.index', compact('indexNews','eventTypes'))->render());
         Helper::putCache('home.updates', view('admin.template.home.update', compact('updateData'))->render());
+        Helper::putCache('home.newsEvent', view('admin.template.home.news', compact('newsData', 'eventData', 'latestNews', 'eventTypes',))->render());
     }
 }
 

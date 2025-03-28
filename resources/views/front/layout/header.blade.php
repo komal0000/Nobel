@@ -55,7 +55,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="/events" class="drop-item">Events</a>
+                                <a href="{{ route('event') }}" class="drop-item">Events</a>
                             </li>
                             <li>
                                 <a href="/downloads" class="drop-item">Downloads</a>
