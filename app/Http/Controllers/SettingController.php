@@ -29,6 +29,16 @@ class SettingController extends Controller
                 ["homeSpecialityTitle", "views/front/cache/home/specialityTitle.blade.php"],
             ],
         ],
+        'top' => [
+            "Top",
+            [
+                ['logo', 0],
+                ['favicon', 0],
+            ],
+            [
+                ["logo", "views/front/cache/home/logo.blade.php"],
+            ],
+        ],
         'philosophy' => [
             "Philosophy",
             [

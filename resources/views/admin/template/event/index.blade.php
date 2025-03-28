@@ -39,13 +39,13 @@
     </div>
 </section>
 @foreach ($eventTypes as $type)
-    <section id="{{ $type->title }}">
+    <section>
         <div class="main-container">
             <div class="heading-group mb-4">
                 <div class="heading text-center">{{ $type->title }}</div>
                 <x-hoverBtn class="button">View All {{ $type->title }}</x-hoverBtn>
             </div>
-            <div class="cme-slider">
+            <div class="slider">
                 @php
                     $events = \App\Models\Blog::where('blog_category_id', $type->id)->where('type', App\Helper::blog_type_event)->get();
                 @endphp
