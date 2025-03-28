@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helper;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
@@ -146,6 +147,27 @@ class SettingController extends Controller
             Helper::putCache('contact.index', view('admin.setting.template.contact', compact('data'))->render());
             Helper::putCache('contact.map', view('admin.setting.template.map', compact('data'))->render());
             return redirect()->back()->with('success', "Contact Saved Sucessfully");
+        }
+    }
+
+    public function colorScheme(Request $request)
+    {
+        if (Helper::G()) {
+            $colorScheme = Setting::where('key', 'color_scheme')->first();
+            if (!$colorScheme) {
+                $colorScheme = new Setting();
+                $colorScheme->key = 'color_scheme';
+                $colorScheme->value = 'default';
+                $colorScheme->save();
+            }
+            return view('admin.setting.colorscheme', compact('colorScheme'));
+        } else {
+            Setting::updateOrCreate(
+                ['key' => 'color_scheme'],
+                ['value' => $request->color_value]
+            );
+            session()->flash('success', 'Color scheme successfully updated');
+            return response()->json(['success' => true]);
         }
     }
 }
