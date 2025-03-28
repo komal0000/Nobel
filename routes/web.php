@@ -12,6 +12,7 @@ use App\Http\Controllers\HomeCareController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\LeadershipController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\SpecialityController;
@@ -222,5 +223,11 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::match(['GET', 'POST'], 'add', [HomeCareController::class, 'add'])->name('add');
         Route::match(['GET', 'POST'], 'edit/{homeCare_id}', [HomeCareController::class, 'edit'])->name('edit');
         Route::get('del/{homeCare_id}', [HomeCareController::class, 'del'])->name('del');
+    });
+    Route::prefix('service')->name('service.')->group(function(){
+        Route::get('', [ServiceController::class, 'index'])->name('index');
+        Route::match(['GET', 'POST'], 'add', [ServiceController::class, 'add'])->name('add');
+        Route::match(['GET', 'POST'], 'edit/{service_id}', [ServiceController::class, 'edit'])->name('edit');
+        Route::get('del/{service_id}', [ServiceController::class, 'del'])->name('del');
     });
 });

@@ -73,7 +73,7 @@ if there is title make  slug
 
 
 services {
-    id icon single_page_image title short_desc
+    id icon image single_page_image title short_desc
 }
 
 service_doctors{
