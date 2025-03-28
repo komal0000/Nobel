@@ -29,117 +29,142 @@
         Choose any Color Scheme
     </h5>
 
-    <form>
-        <div class="color-scheme-options">
-            <div class="row">
-                <div class="col-md-3 mb-3">
-                    <div class="color-option">
-                        <input type="radio" name="color_scheme" id="default" value="default" {{ $colorScheme->value == 'default' ? 'checked' : '' }}>
-                        <label for="default" style="background-color: #f04e30;">Default</label>
-                    </div>
-                </div>
+    <form action="{{ route('admin.setting.colorscheme') }}" method="POST" onsubmit="event.preventDefault();saveData(this);">
 
-                <div class="col-md-3 mb-3">
-                    <div class="color-option">
-                        <input type="radio" name="color_scheme" id="dark-1" value="dark-1" {{ $colorScheme->value == 'dark-1' ? 'checked' : '' }}>
-                        <label for="dark-1" style="background-color: #d8462b;">Dark 1</label>
-                    </div>
-                </div>
+        @csrf
 
-                <div class="col-md-3 mb-3">
-                    <div class="color-option">
-                        <input type="radio" name="color_scheme" id="dark-2" value="dark-2"  {{ $colorScheme->value == 'dark-2' ? 'checked' : '' }}>
-                        <label for="dark-2" style="background-color: #c03e26;">Dark 2</label>
-                    </div>
-                </div>
 
-                <div class="col-md-3 mb-3">
-                    <div class="color-option">
-                        <input type="radio" name="color_scheme" id="dark-3" value="dark-3" {{ $colorScheme->value == 'dark-3' ? 'checked' : '' }}>
-                        <label for="dark-3" style="background-color: #a83722;">Dark 3</label>
-                    </div>
-                </div>
 
-                <div class="col-md-3 mb-3">
-                    <div class="color-option">
-                        <input type="radio" name="color_scheme" id="dark-4" value="dark-4" {{ $colorScheme == 'dark-4' ? 'checked' : '' }}>
-                        <label for="dark-4" style="background-color: #902f1d;">Dark 4</label>
-                    </div>
-                </div>
+        <div class="row">
+            <div class="col-md-4 form-group">
+                <input type="color" id="color-main" name="color-main" value="{{ $oldData['color-main'] ?? '#f04e30' }}">
+                <label for="color-main">--color-main</label>
+            </div>
 
-                <div class="col-md-3 mb-3">
-                    <div class="color-option">
-                        <input type="radio" name="color_scheme" id="dark-5" value="dark-5" {{ $colorScheme == 'dark-5' ? 'checked' : '' }}>
-                        <label for="dark-5" style="background-color: #782718;">Dark 5</label>
-                    </div>
-                </div>
+            <div class="col-md-4 form-group">
+                <input type="color" id="color-dark-1" name="color-dark-1"
+                    value="{{ $oldData['color-dark-1'] ?? '#d8462b' }}">
+                <label for="color-dark-1">--color-dark-1</label>
+            </div>
 
-                <div class="col-md-3 mb-3">
-                    <div class="color-option">
-                        <input type="radio" name="color_scheme" id="light-1" value="light-1" {{ $colorScheme == 'light-1' ? 'checked' : '' }}>
-                        <label for="light-1" style="background-color: #f26045;">Light 1</label>
-                    </div>
-                </div>
+            <div class="col-md-4 form-group">
+                <input type="color" id="color-dark-2" name="color-dark-2"
+                    value="{{ $oldData['color-dark-2'] ?? '#c03e26' }}">
+                <label for="color-dark-2">--color-dark-2</label>
+            </div>
 
-                <div class="col-md-3 mb-3">
-                    <div class="color-option">
-                        <input type="radio" name="color_scheme" id="light-2" value="light-2"{{ $colorScheme == 'light-2' ? 'checked' : '' }}>
-                        <label for="light-2" style="background-color: #f37159;">Light 2</label>
-                    </div>
-                </div>
+            <div class="col-md-4 form-group">
+                <input type="color" id="color-dark-3" name="color-dark-3"
+                    value="{{ $oldData['color-dark-3'] ?? '#a83722' }}">
+                <label for="color-dark-3">--color-dark-3</label>
+            </div>
 
-                <div class="col-md-3 mb-3">
-                    <div class="color-option">
-                        <input type="radio" name="color_scheme" id="light-3" value="light-3"
-                            {{ $colorScheme == 'light-3' ? 'checked' : '' }}>
-                        <label for="light-3" style="background-color: #f5836e;">Light 3</label>
-                    </div>
-                </div>
+            <div class="col-md-4 form-group">
+                <input type="color" id="color-dark-4" name="color-dark-4"
+                    value="{{ $oldData['color-dark-4'] ?? '#902f1d' }}">
+                <label for="color-dark-4">--color-dark-4</label>
+            </div>
 
-                <div class="col-md-3 mb-3">
-                    <div class="color-option">
-                        <input type="radio" name="color_scheme" id="light-4" value="light-4"
-                            {{ $colorScheme == 'light-4' ? 'checked' : '' }}>
-                        <label for="light-4" style="background-color: #f69583;">Light 4</label>
-                    </div>
-                </div>
+            <div class="col-md-4 form-group">
+                <input type="color" id="color-dark-5" name="color-dark-5"
+                    value="{{ $oldData['color-dark-5'] ?? '#782718' }}">
+                <label for="color-dark-5">--color-dark-5</label>
+            </div>
 
-                <div class="col-md-3 mb-3">
-                    <div class="color-option">
-                        <input type="radio" name="color_scheme" id="light-5" value="light-5"
-                            {{ $colorScheme == 'light-5' ? 'checked' : '' }}>
-                        <label for="light-5" style="background-color: #f8a798;">Light 5</label>
-                    </div>
-                </div>
+            <div class="col-md-4 form-group">
+                <input type="color" id="color-light-1" name="color-light-1"
+                    value="{{ $oldData['color-light-1'] ?? '#f26045' }}">
+                <label for="color-light-1">--color-light-1</label>
+            </div>
+
+            <div class="col-md-4 form-group">
+                <input type="color" id="color-light-2" name="color-light-2"
+                    value="{{ $oldData['color-light-2'] ?? '#f37159' }}">
+                <label for="color-light-2">--color-light-2</label>
+            </div>
+
+            <div class="col-md-4 form-group">
+                <input type="color" id="color-light-3" name="color-light-3"
+                    value="{{ $oldData['color-light-3'] ?? '#f5836e' }}">
+                <label for="color-light-3">--color-light-3</label>
+            </div>
+
+            <div class="col-md-4 form-group">
+                <input type="color" id="color-light-4" name="color-light-4"
+                    value="{{ $oldData['color-light-4'] ?? '#f69583' }}">
+                <label for="color-light-4">--color-light-4</label>
+            </div>
+
+            <div class="col-md-4 form-group">
+                <input type="color" id="color-light-5" name="color-light-5"
+                    value="{{ $oldData['color-light-5'] ?? '#f8a798' }}">
+                <label for="color-light-5">--color-light-5</label>
+            </div>
+
+            <div class="col-md-4 form-group">
+                <input type="color" id="color-black" name="color-black"
+                    value="{{ $oldData['color-black'] ?? '#000000' }}">
+                <label for="color-black">--color-black</label>
+            </div>
+
+            <div class="col-md-4 form-group">
+                <input type="color" id="color-white" name="color-white"
+                    value="{{ $oldData['color-white'] ?? '#ffffff' }}">
+                <label for="color-white">--color-white</label>
+            </div>
+
+            <div class="col-md-4 form-group">
+                <input type="color" id="color-grey" name="color-grey" value="{{ $oldData['color-grey'] ?? '#58595B' }}">
+                <label for="color-grey">--color-grey</label>
+            </div>
+
+            <div class="col-md-4 form-group">
+                <input type="color" id="color-dark-grey" name="color-dark-grey"
+                    value="{{ $oldData['color-dark-grey'] ?? '#454545' }}">
+                <label for="color-dark-grey">--color-dark-grey</label>
+            </div>
+
+            <div class="col-md-4 form-group">
+                <input type="color" id="secondary-white" name="secondary-white"
+                    value="{{ $oldData['secondary-white'] ?? '#f6f6f6' }}">
+                <label for="secondary-white">--secondary-white</label>
+            </div>
+
+            <div class="col-md-4 form-group">
+                <input type="color" id="border-color" name="border-color"
+                    value="{{ $oldData['border-color'] ?? '#b7b7b7' }}">
+                <label for="border-color">--border-color</label>
+            </div>
+
+            <div class="col-md-4 form-group">
+                <input type="color" id="border-color-light" name="border-color-light"
+                    value="{{ $oldData['border-color-light'] ?? '#eee' }}">
+                <label for="border-color-light">--border-color-light</label>
+            </div>
+
+            <div class="col-md-4 form-group">
+                <input type="text" id="font-main" name="font-main"
+                    value="{{ $oldData['font-main'] ?? '\"Montserrat\", sans-serif' }}">
+                <label for="font-main">--font-main</label>
+            </div>
+            <div class="col-md-4 form-group">
+                <button class="btn btn-primary">Save Data</button>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary mt-3" onclick="SaveColorScheme()">Save Changes</button>
     </form>
 @endsection
 @section('js')
     <script>
-        function SaveColorScheme() {
-            event.preventDefault();
-            var colorScheme = $('input[name="color_scheme"]:checked').val();
-            var colorvalue = $('input[name="color_scheme"]:checked + label').css('background-color');
-
-            console.log(colorvalue);
-            var url = "{{ route('admin.setting.colorscheme') }}";
-            axios.post(url, {
-                    color_value: colorvalue,
-                    _token: '{{ csrf_token() }}'
-                })
-                .then(function(res) {
-                    if (res.data.success) {
+        function saveData(ele) {
+            axios.post(ele.action, new FormData(ele))
+                .then(res => {
+                    if(res.data.success == true){
                         location.reload();
-                    } else {
-                        alert('Error updating color scheme.');
                     }
                 })
-                .catch(function(error) {
-                    console.error(error);
-                    alert('An error occurred while updating the color scheme.');
-                });
+                .catch(err => {
+                    console.error(err);
+                })
         }
     </script>
 @endsection

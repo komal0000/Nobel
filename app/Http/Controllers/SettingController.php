@@ -157,15 +157,17 @@ class SettingController extends Controller
             if (!$colorScheme) {
                 $colorScheme = new Setting();
                 $colorScheme->key = 'color_scheme';
-                $colorScheme->value = 'default';
+                $colorScheme->value = '[]';
                 $colorScheme->save();
             }
-            return view('admin.setting.colorscheme', compact('colorScheme'));
+            $oldData  = json_decode($colorScheme->value, true);
+            return view('admin.setting.colorscheme', compact('colorScheme','oldData'));
         } else {
             Setting::updateOrCreate(
                 ['key' => 'color_scheme'],
-                ['value' => $request->color_value]
+                ['value' => json_encode($request->except('_token'))]
             );
+            Helper::putCache('colorScheme', view('admin.setting.template.colorScheme', ['data' => $request->except('_token')])->render());
             session()->flash('success', 'Color scheme successfully updated');
             return response()->json(['success' => true]);
         }

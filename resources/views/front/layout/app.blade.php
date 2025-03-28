@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{ asset('front/assets/css/index.css') }}">
     <title>@yield('title')</title>
     @yield('css')
+    @includeIf('front.cache.colorScheme')
 </head>
 
 <body>
