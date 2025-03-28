@@ -1,4 +1,4 @@
-.story {
+#home-story {
 
     .main-container {
         padding: 0 20px;
@@ -19,50 +19,15 @@
             .video-wrapper {
                 position: relative;
 
-                .slick-prev {
-
-                    border: none;
-                    height: 38px;
-                    width: 38px;
-                    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-                    border-radius: 50%;
-                    background-color: #fff;
-                    position: absolute;
-                    top: 50%;
-                    left: 0;
-                    transform: translateY(-50%);
-                    z-index: 99;
-                }
-
-                .slick-next {
-                    border: none;
-                    height: 38px;
-                    width: 38px;
-                    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-                    border-radius: 50%;
-                    background-color: #fff;
-                    position: absolute;
-                    position: absolute;
-                    top: 50%;
-                    right: 0;
-                    transform: translateY(-50%);
-                    z-index: 99;
-                }
-
                 .glightbox {
+                   margin: 15px;
+                   position: relative;
+                   display: inline-block;
 
-                    .each-video {
-                        position: relative;
-                        display: inline-block;
-                        border-radius: 20px;
-                        overflow: hidden;
 
-                        @media (max-width: 1199px) {
-                            margin: 0 20px;
-                            display: flex;
-                            justify-content: center;
-                            // margin-right: 10px;
-                        }
+                   .each-video {
+                       overflow: hidden;
+                       border-radius: 20px;
 
                         img {
                             object-fit: cover;
@@ -85,88 +50,7 @@
                     }
                 }
 
-                .video {
-                    position: relative;
-                    padding-bottom: 24px;
 
-                    &:hover {
-                        img {
-                            scale: 1.1;
-                        }
-                    }
-
-                    @media (max-width: 1199px) {
-                        margin: 0 20px;
-                    }
-
-                    .video-thumb {
-                        position: relative;
-                        border-radius: 20px;
-                        overflow: hidden;
-                        line-height: 0;
-                        height: 100%;
-
-                        img {
-                            // position: absolute;
-                            // left: 0;
-                            // right: 0;
-                            // bottom: 0;
-                            // top: 0;
-                            object-fit: cover;
-                            width: 100%;
-                            height: 100%;
-                            transition: .3s;
-
-
-                        }
-
-                        a {
-                            width: 48px;
-                            height: 48px;
-                            position: absolute;
-                            left: 0;
-                            right: 0;
-                            top: 0;
-                            bottom: 0;
-                            margin: auto;
-                            z-index: 55;
-                            transform: scale(.9);
-                            transition: .3s;
-                        }
-                    }
-
-                    .video-caption {
-                        position: absolute;
-                        left: 0;
-                        right: 0;
-                        bottom: 0;
-                        padding: 20px;
-                        text-align: center;
-                        color: #fff;
-                        z-index: 5;
-
-                        .title {
-                            font-size: 16px;
-                            margin-bottom: 8px;
-                            font-weight: 600;
-                            color: var(--color-white);
-
-                            @media (min-width: 1199px) {
-                                font-size: 20px;
-                            }
-                        }
-
-                        .name {
-                            font-size: 11px;
-                            font-weight: 500;
-
-                            @media (min-width: 1199px) {
-                                font-size: 16px;
-                            }
-
-                        }
-                    }
-                }
             }
         }
     }
