@@ -21,7 +21,7 @@
         Contact Us
     </div>
 </div>
-<section class="contact">
+<section class="contact" style="background-image: url('{{ asset('front/assets/img/contact-us/contact-banner-lg.jpg') }}');">
     <div class="main-container">
         <div class="heading-group mb-5">
             <div class="heading text-center mb-3">Contact Us</div>

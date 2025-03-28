@@ -1,3 +1,11 @@
+@php
+    $data =
+        App\Helper::getSetting('contact') ??
+        (object) [
+            'email' => '',
+            'phone' => '',
+        ];
+@endphp
 <header class="site-header" id="site-header">
     <div class="main-container">
         <a href="/"><img src="{{ asset('front/assets/img/logo.png') }}" class="logo" alt=""></a>
@@ -58,17 +66,7 @@
                         <a href="#" class="navbar-link">
                             Services <i class="bi bi-chevron-down"></i>
                         </a>
-                        <ul class="drop-menu">
-                            <li>
-                                <a href="#" class="drop-item">Services 1</a>
-                            </li>
-                            <li>
-                                <a href="#" class="drop-item">Services 2</a>
-                            </li>
-                            <li>
-                                <a href="#" class="drop-item">Services 3</a>
-                            </li>
-                        </ul>
+                        @includeIf('front.cache.home.headerService')
                     </li>
                     <li class="navbar-item">
                         <a href="{{ route('careers') }}" class="navbar-link ">Career</a>
@@ -82,10 +80,10 @@
                                 <a href="{{ route('contact') }}" class="drop-item">Contact Us</a>
                             </li>
                             <li>
-                                <a href="mailto:hello@example.com" class="drop-item">Mail</a>
+                                <a href="mailto:{{ $data->email }}" class="drop-item">{{ $data->email }}</a>
                             </li>
                             <li>
-                                <a href="tel:+9779876543210" class="drop-item">number</a>
+                                <a href="tel:+977 {{ $data->phone }}" class="drop-item">{{ $data->phone }}</a>
                             </li>
                         </ul>
                     </li>

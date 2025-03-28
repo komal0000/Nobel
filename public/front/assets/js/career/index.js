@@ -186,6 +186,10 @@ $(document).ready(function() {
 function changeTab(el) {
     $('.tab').removeClass('active-tab');
     $(el).addClass('active-tab');
+
+    $('.content-main').removeClass('active');
+    let tabId = $(el).data('tab');
+    $(tabId).addClass('active');
 }
 
 // Menu functions
