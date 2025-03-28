@@ -15,7 +15,7 @@
                         <div class="d-flex justify-content-between know-btn">
                             <x-hoverBtn>Know More</x-hoverBtn>
                             <div class="service-logo">
-                                <img src="{{ $service->icon }}" alt="Home Care">
+                                <img src="{{ Storage::url($service->icon) }}" alt="Home Care">
                             </div>
                         </div>
                     </div>

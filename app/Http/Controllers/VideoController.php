@@ -20,7 +20,7 @@ class VideoController extends Controller
             $video->title = $request->title;
             $video->home_video = $request->home_video;
             $video->save();
-            $this->reder();
+            $this->render();
             return redirect()->back()->with('success', 'Video Type SuccessFully Added');
         }
     }
@@ -28,9 +28,8 @@ class VideoController extends Controller
     {
         $video = VideoType::where('id', $type_id)->first();
         $video->title = $request->input('title');
-        $video->home_video = $request->home_video;
         $video->save();
-        $this->reder();
+        $this->render();
         session()->flash('success', 'Video Type  Successfully Updated');
         return response()->json(['success' => true]);
     }
@@ -38,7 +37,7 @@ class VideoController extends Controller
     {
         Video::where('video_type_id', $type_id)->delete();
         VideoType::where('id', $type_id)->delete();
-        $this->reder();
+        $this->render();
         session()->flash('delete_success', 'Video Type Successfully Deleted');
         return response()->json(['success' => true]);
     }
@@ -58,7 +57,7 @@ class VideoController extends Controller
             $video->video_image = $request->video_image;
             $video->video_type_id = $type_id;
             $video->save();
-            $this->reder();
+            $this->render();
             session()->flash('success', 'Award Successfully updated');
             return response()->json(['success' => true]);
         }
@@ -71,19 +70,19 @@ class VideoController extends Controller
         $video->extra_data = $request->extra_data;
         $video->video_image = $request->video_image;
         $video->save();
-        $this->reder();
+        $this->render();
         return redirect()->back()->with('success', 'Video Successfully Updated');
     }
 
     public function del($video_id)
     {
         Video::where('id', $video_id)->delete();
-        $this->reder();
+        $this->render();
         return redirect()->back()->with('delete_success', 'Video Successfully deleted');
     }
 
 
-    public function reder()
+    public function render()
     {
         $VideoType = DB::table('video_types')->where('home_video', 1)->first();
         $homeVideos = Video::where('video_type_id', $VideoType->id)->get();

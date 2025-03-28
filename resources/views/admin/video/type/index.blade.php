@@ -25,7 +25,7 @@
                 <input type="text" name="title" id="title" class="form-control" required>
             </div>
             <div class="col-md-4 d-flex align-items-end">
-                <input class="form-check-input" type="checkbox" name="home_video" id="home_video" value="1" style="margin: 0px 3px 6px">
+                <input class="form-check-input" type="checkbox" name="home_video" id="home_video" {{ old('home_video') ? 'checked' : '' }} style="margin: 0px 3px 6px" onclick="this.value = this.checked ? 1 : 0">
                 <label for="title">Home Video</label>
             </div>
             <div class="col-md-4 d-flex align-items-end">
@@ -72,10 +72,8 @@
     <script>
         function editVideo(id) {
             const title = $(`#title_${id}`).val();
-            const homeVideo = $(`#home_video_${id}`).is(':checked') ? 1 : 0;
             axios.post("{{ route('admin.video.type.edit', ['type_id' => 'ID']) }}".replace('ID', id), {
                     title: title,
-                    home_video: homeVideo
                 })
                 .then(res => {
                     if (res.data.success) {

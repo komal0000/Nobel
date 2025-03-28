@@ -33,7 +33,7 @@ class ServiceController extends Controller
                 $service->single_page_image = $request->file('single_page_image')->store('uploads/service/single', 'public');
             }
             $service->save();
-
+            $this->reder();
             return redirect()->back()->with('success', 'Service added successfully');
         }
     }
@@ -59,6 +59,7 @@ class ServiceController extends Controller
             }
 
             $service->save();
+            $this->reder();
             return redirect()->back()->with('success', 'Service updated successfully');
         }
     }
@@ -66,6 +67,7 @@ class ServiceController extends Controller
     public function del($service_id)
     {
         Service::where('id', $service_id)->delete();
+        $this->reder();
         return redirect()->back()->with('delete_success', 'Service deleted successfully');
     }
 
