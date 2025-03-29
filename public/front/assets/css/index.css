@@ -2209,7 +2209,7 @@ section:nth-of-type(odd) {
 }
 
 .update {
-  background: url("/public/front/assets/img/updates-bg.jpg") center center/cover no-repeat;
+  background: url("/front/assets/img/updates-bg.jpg") center center/cover no-repeat;
   padding-top: 60px;
   margin-bottom: 50px;
   background-color: var(--secondary-white) !important;
@@ -5925,7 +5925,7 @@ section:nth-of-type(odd) {
 }
 
 #care {
-  background: url("/front/img/why-us/care.jpg") center center no-repeat;
+  background: url("/front/assets/img/why-us/care.jpg") center center no-repeat;
 }
 #care .bg-img img {
   width: 100%;

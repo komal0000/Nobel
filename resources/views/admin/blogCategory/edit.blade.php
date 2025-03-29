@@ -22,17 +22,15 @@
     @endif
 @endsection
 @section('content')
-    <form action="{{ route('admin.blogCategory.edit', ['category' => $BlogCategory->id, 'parent_id' => $parent_id]) }}">
+    <form action="{{ route('admin.blogCategory.edit', ['category' => $BlogCategory->id, 'parent_id' => $parent_id]) }}" method="POST">
         @csrf
         <div class="row">
             <div class="col-md-4">
                 <label for="title">Title <span style="color: red;">*</span></label>
                 <input type="text" name="title" id="title" class="form-control" value="{{ $BlogCategory->title }}">
             </div>
-            <div class="col-md-4">
-                <button type="submit" class="btn btn-success">
-                    Update
-                </button>
+            <div class="col-md-4 d-flex align-items-end">
+                <button class="btn btn-warning"> Update </button>
             </div>
         </div>
     </form>

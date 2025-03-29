@@ -39,14 +39,12 @@ class BlogController extends Controller
     }
     public function edit(Request $request, $category)
     {
-        $BlogCategory = BlogCategory::where('id', $category)->first();
         $parent_id = $request->parent_id;
+        $BlogCategory = BlogCategory::where('id', $category)->first();
         if (Helper::G()) {
-            return view('admin.blogCategory.edit', compact('BlogCategory','parent_id'));
+            return view('admin.blogCategory.edit', compact('BlogCategory', 'parent_id'));
         } else {
-            $BlogCategory = new BlogCategory();
             $BlogCategory->title = $request->title;
-            $BlogCategory->type = $BlogCategory->type;
             $BlogCategory->save();
             $this->render();
             return redirect()->back()->with('success', 'BlogCategory Successfully Updated');
@@ -65,9 +63,9 @@ class BlogController extends Controller
         $blogs = DB::table('blogs')->where('blog_category_id', $blogCategory_id)->get();
         $parent_id  = $request->parent_id;
         if ($parent_id) {
-            $blogCategory = DB::table('blog_categories')->where('id', $parent_id)->where('id',$blogCategory_id)->where('type', $type)->first();
+            $blogCategory = DB::table('blog_categories')->where('id', $parent_id)->where('id', $blogCategory_id)->where('type', $type)->first();
         } else {
-            $blogCategory = DB::table('blog_categories')->whereNull('parent_id')->where('id',$blogCategory_id)->where('type', $type)->first();
+            $blogCategory = DB::table('blog_categories')->whereNull('parent_id')->where('id', $blogCategory_id)->where('type', $type)->first();
         }
         return view('admin.blogCategory.blog.index', compact('parent_id', 'blogs', 'type', 'blogCategory_id', 'blogCategory'));
     }
@@ -92,7 +90,7 @@ class BlogController extends Controller
             $blog->datas = $request->datas;
             $blog->video_link = $request->video_link;
             $blog->creator_user_id = Auth::id();
-            $blog->location =$request->location;
+            $blog->location = $request->location;
             $blog->is_featured = $request->is_featured;
             $blog->blog_category_id = $blogCategory->id;
             $blog->short_description = $request->short_description;
@@ -115,7 +113,7 @@ class BlogController extends Controller
             $blog->text = $request->text;
             $blog->datas = $request->datas;
             $blog->title = $request->title;
-            $blog->location =$request->location;
+            $blog->location = $request->location;
             $blog->video_link = $request->video_link;
             $blog->short_description = $request->short_description;
             $blog->date = Helper::convertDateToInteger($request->date);
@@ -135,10 +133,11 @@ class BlogController extends Controller
         return redirect()->back()->with('delete_success', 'Successfully Blog Deleted');
     }
 
-    public function render(){
+    public function render()
+    {
         //Home page
         $eventData = DB::table('blogs')->where('type', Helper::blog_type_event)->get();
-        $newsData = DB::table('blogs')->where('type', Helper::blog_type_news)->where('is_featured',0)->take(3)->get();
+        $newsData = DB::table('blogs')->where('type', Helper::blog_type_news)->where('is_featured', 0)->take(3)->get();
         $latestNews = DB::table('blogs')->where('type', Helper::blog_type_news)->where('is_featured', 1)->first();
         $updateData = DB::table('blogs')->where('type', Helper::blog_type_update)->get();
         //Event and news
@@ -152,9 +151,8 @@ class BlogController extends Controller
         }
 
         Helper::putCache('knowledge.blog', view('admin.template.knowledge.blog.index', compact('indexBlogs', 'featuredBlogs'))->render());
-        Helper::putCache('event.index', view('admin.template.event.index', compact('indexNews','eventTypes'))->render());
+        Helper::putCache('event.index', view('admin.template.event.index', compact('indexNews', 'eventTypes'))->render());
         Helper::putCache('home.updates', view('admin.template.home.update', compact('updateData'))->render());
         Helper::putCache('home.newsEvent', view('admin.template.home.news', compact('newsData', 'eventData', 'latestNews', 'eventTypes',))->render());
     }
 }
-
