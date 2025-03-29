@@ -51,6 +51,11 @@ Route::prefix('technology')->name('technology.')->group(function () {
     Route::get('single/{technology_id}', [FrontController::class, 'technologySingle'])->name('single');
 });
 
+Route::prefix('knowledge')->name('knowledge.')->group(function () {
+    Route::get('blog', [FrontController::class, 'blogIndex'])->name('blog');
+    Route::get('video', [FrontController::class, 'videoIndex'])->name('video');
+});
+
 Route::get('event',[FrontController::class,'eventIndex'])->name('event');
 Route::match(["GET", "POST"], 'login', [LoginController::class, 'login'])->name('login');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');

@@ -121,7 +121,7 @@
                                     fill="currentColor"></path>
                             </svg>
                         </i>
-                        <span class="item-name">ALl Aliments</span>
+                        <span class="item-name">All Aliments</span>
                     </a>
                 </li>
                 <li class="nav-item">

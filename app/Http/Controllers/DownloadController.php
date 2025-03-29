@@ -128,4 +128,9 @@ class DownloadController extends Controller
         Download::where('id', $download)->delete();
         return redirect()->back()->with('delete_success', 'Download Successfully Deleted');
     }
+
+    public function render(){
+        $downloadMainType = DB::table('download_categories')->where('parent_id', null)->get();
+        Helper::putCache('download.index',view('admin.template.download.index',compact('downloadMainType'))->render());
+    }
 }

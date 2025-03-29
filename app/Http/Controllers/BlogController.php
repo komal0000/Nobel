@@ -136,12 +136,22 @@ class BlogController extends Controller
     }
 
     public function render(){
+        //Home page
         $eventData = DB::table('blogs')->where('type', Helper::blog_type_event)->get();
         $newsData = DB::table('blogs')->where('type', Helper::blog_type_news)->where('is_featured',0)->take(3)->get();
-        $eventTypes = DB::table('blog_categories')->where('type', helper::blog_type_event)->get();
         $latestNews = DB::table('blogs')->where('type', Helper::blog_type_news)->where('is_featured', 1)->first();
         $updateData = DB::table('blogs')->where('type', Helper::blog_type_update)->get();
+        //Event and news
+        $eventTypes = DB::table('blog_categories')->where('type', helper::blog_type_event)->get();
         $indexNews = DB::table('blogs')->where('type', Helper::blog_type_news)->get();
+        //Blog Category
+        $indexBlogs = DB::table('blogs')->where('type', Helper::blog_type_blog)->get();
+        $featuredBlogs = DB::table('blogs')->where('type', Helper::blog_type_blog)->where('is_featured', 1)->get();
+        if ($featuredBlogs->isEmpty()) {
+            $featuredBlogs = collect(); // Ensure an empty collection if no featured blogs
+        }
+
+        Helper::putCache('knowledge.blog', view('admin.template.knowledge.blog.index', compact('indexBlogs', 'featuredBlogs'))->render());
         Helper::putCache('event.index', view('admin.template.event.index', compact('indexNews','eventTypes'))->render());
         Helper::putCache('home.updates', view('admin.template.home.update', compact('updateData'))->render());
         Helper::putCache('home.newsEvent', view('admin.template.home.news', compact('newsData', 'eventData', 'latestNews', 'eventTypes',))->render());

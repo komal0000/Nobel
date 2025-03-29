@@ -57,4 +57,12 @@ class FrontController extends Controller
     public function eventIndex(){
         return view('front.pages.event.index');
     }
+
+    public function blogIndex(){
+        return view('front.pages.knowledge.blog.index');
+    }
+
+    public function videoIndex(){
+        return view('front.pages.knowledge.video.index');
+    }
 }

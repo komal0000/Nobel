@@ -41,7 +41,7 @@
                                 </a>
                                 <ul class="knowledge-drop-menu">
                                     <li>
-                                        <a href="/blogs" class="drop-item">Blogs</a>
+                                        <a href="{{ route('knowledge.blog') }}" class="drop-item">Blogs</a>
                                     </li>
                                     <li>
                                         <a href="/videos" class="drop-item">Videos</a>
