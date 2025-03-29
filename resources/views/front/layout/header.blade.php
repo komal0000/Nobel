@@ -44,7 +44,7 @@
                                         <a href="{{ route('knowledge.blog') }}" class="drop-item">Blogs</a>
                                     </li>
                                     <li>
-                                        <a href="/videos" class="drop-item">Videos</a>
+                                        <a href="{{ route('knowledge.video') }}" class="drop-item">Videos</a>
                                     </li>
                                     <li>
                                         <a href="/case-studies" class="drop-item">Case Studies</a>

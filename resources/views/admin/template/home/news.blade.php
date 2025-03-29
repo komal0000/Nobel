@@ -6,7 +6,7 @@
         <x-hoverBtn class="common-button">View All News &amp; Events</x-hoverBtn>
         <div class="d-flex flex-column flex-xl-row justify-content-between gap-5">
             @if ($latestNews)
-                <div class="post-card">
+                <div class="post-card d-none d-xl-block">
                     <img src="{{ Storage::url($latestNews->image) }}" alt="Post Image" class="img-fluid">
                     <div class="body">
                         <div class="date">{{ \App\Helper::formatTimestampToDateString($latestNews->date) }}</div>
@@ -18,7 +18,7 @@
                 </div>
             @endif
 
-            <div class="post-list">
+            <div class="post-list d-none d-xl-block">
                 @foreach ($newsData as $data)
                     <div class="list-card">
                         <div class="list">
@@ -35,6 +35,23 @@
                         </div>
                     </div>
                 @endforeach
+            </div>
+            <div class="mob-event-slider d-block d-xl-none">
+                <x-sliderComponent>
+                    @foreach ($newsData as $data)
+                        <div class="event-card">
+                            <div class="img-wrapper">
+                                <img src="{{ Storage::url($data->image) }}" alt="Staff">
+                            </div>
+                            <div class="content p-3">
+                                <div class="date mb-3">{{ \App\Helper::formatTimestampToDateString($data->date) }}
+                                </div>
+                                <p class="para-wrap">{{ $data->title }}</p>
+                                <x-hoverBtn class="heading-xs">Read Post</x-hoverBtn>
+                            </div>
+                        </div>
+                    @endforeach
+                </x-sliderComponent>
             </div>
             <div class="events">
                 <div class="heading-sm">Upcoming Events</div>
@@ -59,7 +76,7 @@
                                     <div class="month">February</div>
                                 </div>
                                 <div class="content d-flex flex-column gap-2">
-                                    <p>{{ $event->title}}</p>
+                                    <p>{{ $event->title }}</p>
                                     <div class="location">
                                         <i class="bi bi-geo-alt"></i> {{ $event->location }}
                                     </div>
