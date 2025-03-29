@@ -72,17 +72,14 @@
                         @foreach ($events as $event)
                             <div class="each-event {{ $event->type }} d-flex align-items-center gap-4">
                                 <div class="date d-flex flex-column justify-content-center align-items-center">
-                                    <div class="number">21</div>
-                                    <div class="month">February</div>
+                                    <div class="number">{{ App\Helper::getDayNumber($event->date) }}</div>
+                                    <div class="month">{{ App\Helper::getMonthName($event->date) }}</div>
                                 </div>
                                 <div class="content d-flex flex-column gap-2">
                                     <p>{{ $event->title }}</p>
                                     <div class="location">
                                         <i class="bi bi-geo-alt"></i> {{ $event->location }}
                                     </div>
-                                    {{-- <div class="button">
-                                        <x-hoverBtn>View Details</x-hoverBtn>
-                                    </div> --}}
                                 </div>
                             </div>
                         @endforeach

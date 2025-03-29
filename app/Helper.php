@@ -50,6 +50,16 @@ class Helper
         $date = Carbon::createFromTimestamp($timestamp);
         return $date->format('d F ,Y');
     }
+
+    public static function getMonthName(int $timestamp): string
+    {
+        return Carbon::createFromTimestamp($timestamp)->format('F');
+    }
+
+    public static function getDayNumber($date): int
+    {
+        return Carbon::parse($date)->day;
+    }
     public static function getSpecialityRoutes($parent_speciality_id, $get_routes = true)
     {
 
