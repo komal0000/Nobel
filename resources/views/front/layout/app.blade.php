@@ -17,6 +17,15 @@
     <title>@yield('title')</title>
     @yield('css')
     @includeIf('front.cache.colorScheme')
+    <style>
+        body {
+            color: #58595B;
+            font-family: var(--font-main);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+    </style>
 </head>
 
 <body>

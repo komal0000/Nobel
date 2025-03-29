@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    // Equalize card heights
+    // Helper functions
     function equalizeCardHeight(selector) {
         let maxHeight = 0;
         $(selector).css('height', 'auto').each(function() {
@@ -170,8 +170,6 @@ $(document).ready(function() {
         slickToggler();
         toggleAward();
         lifeHereSlider();
-        // Uncomment if needed
-        // equalizeCardHeight('.each-card');
     });
 
     // Toggle navbar

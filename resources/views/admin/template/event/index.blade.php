@@ -9,13 +9,13 @@
     </picture>
     <div class="banner-title">News And Events</div>
 </section>
-<section id="news">
+<section id="event-page">
     <div class="main-container">
         <div class="heading-group mb-4">
             <div class="heading text-center">News</div>
             <x-hoverBtn class="button">View All News</x-hoverBtn>
         </div>
-        <div class="news-slider">
+        <div class="event-slider">
             @foreach ($indexNews as $news)
                 <div class="slide m-3">
                     <div class="img-wrapper">
@@ -24,10 +24,10 @@
                     </div>
                     <div class="body">
                         <h3 class="title heading-sm mb-2">{{ $news->title }}</h3>
-                        <div class="para-wrap location mb-2"><i class="bi bi-geo-alt-fill"></i>{{ $news->location }}
+                        <div class="para-wrap location mb-2"><i class="bi bi-geo-alt-fill"></i> {{ $news->location }}
                         </div>
                         <div class="d-flex justify-content-between know-btn">
-                            <x-hoverBtn>View News Details</x-hoverBtn>
+                            <x-hoverBtn>View Event Details</x-hoverBtn>
                         </div>
                     </div>
                 </div>
@@ -39,38 +39,38 @@
     </div>
 </section>
 @foreach ($eventTypes as $type)
-    <section>
+    <section id="event-page">
         <div class="main-container">
             <div class="heading-group mb-4">
                 <div class="heading text-center">{{ $type->title }}</div>
                 <x-hoverBtn class="button">View All {{ $type->title }}</x-hoverBtn>
             </div>
-            <div class="slider">
+            <div class="event-slider">
                 @php
-                    $events = \App\Models\Blog::where('blog_category_id', $type->id)->where('type', App\Helper::blog_type_event)->get();
+                    $events = \App\Models\Blog::where('blog_category_id', $type->id)
+                        ->where('type', App\Helper::blog_type_event)
+                        ->get();
                 @endphp
-                @foreach ($events as $event)
-                    <div class="slide m-3">
-                        <div class="img-wrapper">
-                            <img src="{{ Storage::url($event->image) }}" alt="Service Image" class="img-fluid">
-                            <div class="heading-xs date">{{ \App\Helper::formatTimestampToDateString($event->date) }}
-                            </div>
-                        </div>
-                        <div class="body">
-                            <h3 class="title heading-sm mb-2">{{ $event->title }}</h3>
-                            <div class="para-wrap location mb-2"><i
-                                    class="bi bi-geo-alt-fill"></i>{{ $event->location }}
-                            </div>
-                            <div class="d-flex justify-content-between know-btn">
-                                <x-hoverBtn>View Event Details</x-hoverBtn>
-                            </div>
+                @foreach ($events as $event )
+                <div class="slide m-3">
+                    <div class="img-wrapper">
+                        <img src="{{ Storage::url($event->image) }}" alt="Service Image" class="img-fluid">
+                        <div class="heading-xs date">{{ \App\Helper::formatTimestampToDateString($event->date) }}</div>
+                    </div>
+                    <div class="body">
+                        <h3 class="title heading-sm mb-2">{{ $event->title }}</h3>
+                        <div class="para-wrap location mb-2"><i class="bi bi-geo-alt-fill"></i> {{ $event->location }}</div>
+                        <div class="d-flex justify-content-between know-btn">
+                            <x-hoverBtn>View Event Details</x-hoverBtn>
                         </div>
                     </div>
+                </div>
                 @endforeach
             </div>
             <div class="mobile-btn">
-                <x-hoverBtn>View All {{ $type->title }} </x-hoverBtn>
+                <x-hoverBtn>View All News</x-hoverBtn>
             </div>
         </div>
     </section>
 @endforeach
+
