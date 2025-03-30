@@ -184,9 +184,6 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::post('edit/{award_id}', [AwardController::class, 'edit'])->name('edit');
         Route::get('del/{award_id}', [AwardController::class, 'del'])->name('del');
     });
-
-
-
     Route::prefix('settings')->name('setting.')->group(function () {
         Route::match(['GET', 'POST'], 'index/{type}', [SettingController::class, 'index'])->name('index');
         Route::match(['GET', 'POST'], '/contact', [SettingController::class, 'contact'])->name('contact');

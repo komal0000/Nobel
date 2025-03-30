@@ -12,7 +12,65 @@ function equalizeCardHeight(selector) {
     $(selector).height(maxHeight);
 }
 
+/**
+ * Changes the active tab
+ * @param {HTMLElement} el - Tab element to activate
+ */
+function changeTab(el) {
+    let tabId = $(el).data('target');
+    $('.tab').removeClass('active-tab');
+    $(el).addClass('active-tab');
+
+    $('.event-list').removeClass('active').hide();
+    $('#' + tabId).addClass('active').fadeIn();
+}
+
+/**
+ * Sets the active speciality button
+ * @param {HTMLElement} el - Button element to activate
+ */
+function setActive(el) {
+    $('.sp-btn').removeClass('active-btn');
+    $(el).addClass('active-btn');
+}
+
+/**
+ * Handles submenu extension
+ * @param {HTMLElement} el - Menu element to extend
+ */
+function extendSubMenu(el) {
+    if ($(el).hasClass('active-list')) {
+        $(el).removeClass('active-list');
+        return;
+    }
+    $('.navbar-item').removeClass('active-list');
+    $(el).addClass('active-list');
+}
+
+/**
+ * Handles knowledge submenu extension
+ * @param {HTMLElement} el - Submenu element to extend
+ * @param {Event} event - Click event
+ */
+function extendKnowledgeSubMenu(el, event) {
+    event.stopPropagation();
+    if ($(el).hasClass('active-knowledge')) {
+        $(el).removeClass('active-knowledge');
+        return;
+    }
+    $(el).addClass('active-knowledge');
+}
+
+/**
+ * Toggles element expansion
+ * @param {HTMLElement} el - Element to expand
+ */
+function expand(el) {
+    $(el).toggleClass('active');
+}
+
 $(document).ready(function() {
+    // Initialize slick slider
     let $slider = $('#slick-slider');
 
     function initSlider() {
@@ -59,10 +117,8 @@ $(document).ready(function() {
     $(window).on("resize", function() {
         initSlider();
     });
-    function setActive(el) {
-        $('.sp-btn').removeClass('active-btn');
-        $(el).addClass('active-btn');
-    }
+
+    // Specialty dropdown
     $('#default-speciality-wrap').click(function() {
         if ($('#list-wrap').css('display') == 'block') {
             $('#list-wrap').css('display', 'none');
@@ -80,6 +136,7 @@ $(document).ready(function() {
         $('#list-wrap').css('display', 'none');
     });
 
+    // Circle click animation
     $('.click-circle').on('click', function(e) {
         e.preventDefault();
         let imgSrc = $(this).attr('datasrc');
@@ -111,121 +168,80 @@ $(document).ready(function() {
 
     $('.center-image').addClass('normal');
 
+    // Initialize all sliders
+    const slidersConfig = {
+        common: {
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            arrows: true,
+            prevArrow: '<button class="slick-prev left-arrow"><img src="front/assets/img/vector-left.png" alt="Left Arrow"></button>',
+            nextArrow: '<button class="slick-next right-arrow"><img src="front/assets/img/vector-right.png" alt="Right Arrow"></button>',
+            responsive: [{
+                    breakpoint: 1199,
+                    settings: {
+                        slidesToShow: 2,
+                    }
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 1,
+                    }
+                }
+            ]
+        },
+        serviceSlider: {
+            responsive: [{
+                    breakpoint: 992,
+                    settings: {
+                        slidesToShow: 2,
+                    }
+                },
+                {
+                    breakpoint: 650,
+                    settings: {
+                        slidesToShow: 1,
+                    }
+                }
+            ]
+        }
+    };
+
+    // Initialize service slider
     $('.service-slider').slick({
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        arrows: true,
-        prevArrow: '<button class="slick-prev left-arrow"><img src="front/assets/img/vector-left.png" alt="Left Arrow"></button>',
-        nextArrow: '<button class="slick-next right-arrow"><img src="front/assets/img/vector-right.png" alt="Right Arrow"></button>',
-        responsive: [{
-                breakpoint: 992,
-                settings: {
-                    slidesToShow: 2,
-                },
-            },
-            {
-                breakpoint: 650,
-                settings: {
-                    slidesToShow: 1,
-                },
-            },
-        ],
+        ...slidersConfig.common,
+        ...slidersConfig.serviceSlider
     });
 
+    // Initialize GLightbox
     const lightBox = GLightbox({
         selector: '.glightbox',
         touchNavigation: true,
         loop: true
     });
 
+    // Initialize video wrapper slider
     $('.video-wrapper').slick({
-        slidesToShow: 3,
-        infinite: true,
-        slidesToScroll: 1,
-        arrows: true,
-        prevArrow: '<button class="slick-prev left-arrow"><img src="front/assets/img/vector-left.png" alt="Left Arrow"></button>',
-        nextArrow: '<button class="slick-next right-arrow"><img src="front/assets/img/vector-right.png" alt="Right Arrow"></button>',
-        responsive: [{
-            breakpoint: 1199,
-            settings: {
-                slidesToShow: 2,
-            }
-        }, {
-            breakpoint: 768,
-            settings: {
-                slidesToShow: 1,
-            }
-        }]
+        ...slidersConfig.common,
+        infinite: true
     });
 
-    // Update slider initialization
-    $('.update-slider').slick({
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        arrows: true,
-        prevArrow: '<button class="slick-prev left-arrow"><img src="front/assets/img/vector-left.png" alt="Left Arrow"></button>',
-        nextArrow: '<button class="slick-next right-arrow"><img src="front/assets/img/vector-right.png" alt="Right Arrow"></button>',
-        responsive: [{
-                breakpoint: 1199,
-                settings: {
-                    slidesToShow: 2,
-                }
-            },
-            {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 1
-                }
-            }
-        ]
-    });
+    // Initialize update slider
+    $('.update-slider').slick(slidersConfig.common);
 
-    // Award slider initialization
+    // Initialize award slider
     $('.award-slide').slick({
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        infinite: true,
-        arrows: true,
-        prevArrow: '<button class="slick-prev left-arrow"><img src="front/assets/img/vector-left.png" alt="Left Arrow"></button>',
-        nextArrow: '<button class="slick-next right-arrow"><img src="front/assets/img/vector-right.png" alt="Right Arrow"></button>',
-        responsive: [{
-                breakpoint: 1199,
-                settings: {
-                    slidesToShow: 2,
-                }
-            },
-            {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 1,
-                }
-            }
-        ]
+        ...slidersConfig.common,
+        infinite: true
     });
 
-    // Custom slider initialization
-    $('.slider-67e651c3b9ea1').slick({
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        arrows: true,
-        prevArrow: '<button class="slick-prev left-arrow"><img src="front/assets/img/vector-left.png" alt="Left Arrow"></button>',
-        nextArrow: '<button class="slick-next right-arrow"><img src="front/assets/img/vector-right.png" alt="Right Arrow"></button>',
-        responsive: [{
-                breakpoint: 992,
-                settings: {
-                    slidesToShow: 2,
-                },
-            },
-            {
-                breakpoint: 650,
-                settings: {
-                    slidesToShow: 1,
-                },
-            },
-        ],
+    // Initialize custom slider (both IDs for compatibility)
+    $('.slider-67e651c3b9ea1, .slider-67e92fa812d89').slick({
+        ...slidersConfig.common,
+        ...slidersConfig.serviceSlider
     });
 
-    // Navbar toggle
+    // Toggle navbar
     $('#toggle-navbar').click(function() {
         $('#navbar').toggleClass('show-navbar');
         $('#navbar').css({
@@ -233,36 +249,3 @@ $(document).ready(function() {
         });
     });
 });
-
-// Tab changing functionality
-function changeTab(el) {
-    let tabId = $(el).data('target');
-    $('.tab').removeClass('active-tab');
-    $(el).addClass('active-tab');
-
-    $('.event-list').removeClass('active').hide();
-    $('#' + tabId).addClass('active').fadeIn();
-}
-
-// Menu interaction functions
-function extendSubMenu(el) {
-    if ($(el).hasClass('active-list')) {
-        $(el).removeClass('active-list');
-        return;
-    }
-    $('.navbar-item').removeClass('active-list');
-    $(el).addClass('active-list');
-}
-
-function extendKnowledgeSubMenu(el, event) {
-    event.stopPropagation();
-    if ($(el).hasClass('active-knowledge')) {
-        $(el).removeClass('active-knowledge');
-        return;
-    }
-    $(el).addClass('active-knowledge');
-}
-
-function expand(el) {
-    $(el).toggleClass('active');
-}
