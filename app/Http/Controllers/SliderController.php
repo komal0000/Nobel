@@ -30,7 +30,6 @@ class SliderController extends Controller
             $slider->has_link = $request->has_link;
             $slider->link_url = $request->link_url;
             $slider->link_text = $request->link_text;
-            $slider->extra_data = $request->extra_data;
             $slider->save();
             $this->render();
             return redirect()->back()->with("success", "Slider Successfully Added");
@@ -52,7 +51,6 @@ class SliderController extends Controller
             $slider->has_link = $request->has_link;
             $slider->link_url = $request->link_url;
             $slider->link_text = $request->link_text;
-            $slider->extra_data = $request->extra_data;
             $slider->save();
             $this->render();
             return redirect()->back()->with("success", "Slider Successfully Updated");

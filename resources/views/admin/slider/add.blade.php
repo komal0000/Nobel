@@ -41,10 +41,6 @@
                         <label for="link_text">Link Text</label>
                         <input type="text" class="form-control" id="link_text" name="link_text">
                     </div>
-                    <div class="col-md-12 mb-3">
-                        <label for="extra_data">Extra Data</label>
-                        <textarea class="form-control" id="extra_data" name="extra_data"></textarea>
-                    </div>
                 </div>
 
             </div>
