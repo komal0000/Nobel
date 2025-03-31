@@ -26,7 +26,6 @@
                                 </a>
                             </div>
                         @elseif ($loop->index == 1)
-
                             <div class="why-block-b why-block blocking-hover wow fadeInRight">
                                 <a href="#" class="abc">
                                     <div datasrc="{{ Storage::url($data->image) }}" class="click-circle active"></div>
@@ -40,10 +39,7 @@
                                     </div>
                                 </div>
                             </div>
-
                         @elseif ($loop->index == 2)
-
-
                             <div class="why-block-c why-block blocking-hover wow fadeInRight">
                                 <a href="#" class="abc">
                                     <div datasrc="{{ Storage::url($data->image) }}" class="click-circle active"></div>
@@ -57,9 +53,7 @@
                                     </div>
                                 </div>
                             </div>
-
                         @elseif ($loop->index == 3)
-
                             <div class="why-block-d why-block blocking-hover wow fadeInLeft">
                                 <div class="click-text">
                                     <div class="block-head active">{{ $data->title }}</div>
@@ -73,7 +67,6 @@
                                     <div datasrc="{{ Storage::url($data->image) }}" class="click-circle active"></div>
                                 </a>
                             </div>
-
                         @elseif ($loop->index == 4)
                             <div class="why-block-e why-block blocking-hover wow fadeInLeft">
                                 <div class="click-text">
@@ -98,7 +91,6 @@
     <div class="why-resp-wrapper">
         <div class="text-center heading">Model of Care</div>
         <div class="why-resp-content">
-
             <div class="accor-list wow fadeInUp">
                 <ul class="list-accor">
                     @foreach ($HomeCareData as $data)
@@ -118,6 +110,4 @@
             </div>
         </div>
     </div>
-    </div>
-
 </section>
