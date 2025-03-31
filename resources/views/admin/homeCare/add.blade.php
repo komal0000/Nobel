@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="col-md-12 mb-3">
-                    <label for="image">Image <span style="color: red;">*</span></label>
+                    <label for="image">Image 1:1 <span style="color: red;">*</span></label>
                     <input type="file" class="form-control dropify" id="image" name="image" accept="image/*" required>
                 </div>
             </div>

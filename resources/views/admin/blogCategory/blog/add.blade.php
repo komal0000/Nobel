@@ -87,7 +87,7 @@
                     </div>
                 </div>
                 <div class="col-md-12">
-                    <label for="image">Image </label>
+                    <label for="image">Image 4:3</label>
                     <input type="file" name="image" id="image" class="form-control dropify" accept="image/*">
                 </div>
             </div>

@@ -89,7 +89,7 @@
                     </div>
                 @endif
                 <div class="col-md-12">
-                    <label for="image">Image <span style="color: red;">*</span></label>
+                    <label for="image">Image 4:3</label>
                     <input type="file" name="image" id="image" class="form-control dropify" accept="image/*"
                         data-default-file="{{ Storage::url($blog->image) }}">
                 </div>

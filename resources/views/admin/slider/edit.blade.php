@@ -10,11 +10,11 @@
             <div class="col-md-6">
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="desktop_image">Desktop Image <span style="color: red;">*</span></label>
+                        <label for="desktop_image">Desktop Image 4:1  <span style="color: red;">*</span></label>
                         <input type="file" class="form-control dropify" id="desktop_image" name="desktop_image" accept="image/*" data-default-file="{{ Storage::url($slider->desktop_image) }}">
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="mobile_image">Mobile Image <span style="color: red;">*</span></label>
+                        <label for="mobile_image">Mobile Image 4:3 <span style="color: red;">*</span></label>
                         <input type="file" class="form-control dropify" id="mobile_image" name="mobile_image" accept="image/*" data-default-file="{{ Storage::url($slider->mobile_image) }}">
                     </div>
                 </div>
