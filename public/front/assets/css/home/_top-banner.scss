@@ -3,6 +3,41 @@
     padding-top: 0;
     background-color: var(--color-white) !important;
 
+    .top-banner-slider {
+        .image-card {
+              height: auto;
+
+              img {
+                 width: 100%;
+              }
+
+           }
+        .slick-dots {
+              bottom: 25px;
+              // z-index: 99;
+              display: flex;
+              position: absolute;
+              left: 0;
+              right: 0;
+              margin: auto;
+              align-items: center;
+              justify-content: center;
+              gap: 10px;
+              padding: 0;
+
+              li {
+                 button {
+                    display: none;
+                 }
+
+                 &.slick-active {
+                    color: var(--color-main);
+
+                 }
+              }
+
+           }
+     }
     .search-wrapper {
         position: absolute;
         z-index: 99;
