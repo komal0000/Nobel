@@ -21,6 +21,6 @@
         <source media="(min-width:768px)" srcset="{{ Storage::url($image) }}" alt="meet-our-doctors">
         <source media="(min-width:320px)" srcset="{{ asset('front/assets/img/doctor-mobile.webp') }}"
             alt="meet-our-doctors">
-        <img class="img-fluid" src="{{ Storage::url($image) }}" alt="meet-our-doctors">
+        <img class="img-fluid w-100" src="{{ Storage::url($image) }}" alt="meet-our-doctors">
     </picture>
 </section>
