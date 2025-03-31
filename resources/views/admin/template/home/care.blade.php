@@ -16,7 +16,7 @@
                                 <div class="click-text">
                                     <div class="block-head active">{{ $data->title }}</div>
                                     <div class="common-button">
-                                        <x-hoverBtn href="{{ $data->link }}" class="anchor-button">Know
+                                        <x-hoverBtn href="#" class="anchor-button">Know
                                             More
                                         </x-hoverBtn>
                                     </div>
@@ -34,7 +34,7 @@
                                 <div class="click-text">
                                     <div class="block-head active">{{ $data->title }}</div>
                                     <div class="common-button">
-                                        <x-hoverBtn href="{{ $data->link }}" class="anchor-button">Know
+                                        <x-hoverBtn href="#" class="anchor-button">Know
                                             More
                                         </x-hoverBtn>
                                     </div>
@@ -51,7 +51,7 @@
                                 <div class="click-text">
                                     <div class="block-head active">{{ $data->title }}</div>
                                     <div class="common-button">
-                                        <x-hoverBtn href="{{ $data->link }}" class="anchor-button">Know
+                                        <x-hoverBtn href="#" class="anchor-button">Know
                                             More
                                         </x-hoverBtn>
                                     </div>
@@ -64,7 +64,7 @@
                                 <div class="click-text">
                                     <div class="block-head active">{{ $data->title }}</div>
                                     <div class="common-button">
-                                        <x-hoverBtn href="{{ $data->link }}" class="anchor-button">Know
+                                        <x-hoverBtn href="#" class="anchor-button">Know
                                             More
                                         </x-hoverBtn>
                                     </div>
@@ -79,7 +79,7 @@
                                 <div class="click-text">
                                     <div class="block-head active">{{ $data->title }}</div>
                                     <div class="common-button">
-                                        <x-hoverBtn href="{{ $data->link }}" class="anchor-button">Know
+                                        <x-hoverBtn href="#" class="anchor-button">Know
                                             More
                                         </x-hoverBtn>
                                     </div>
@@ -108,7 +108,7 @@
                                 <img loading="lazy" src="{{ Storage::url($data->image) }}" alt="Why Nobel"
                                     width="460" height="460">
                                 <div class="common-button">
-                                    <x-hoverBtn href="{{ $data->link }}" class="anchor-button">Know More
+                                    <x-hoverBtn href="#" class="anchor-button">Know More
                                     </x-hoverBtn>
                                 </div>
                             </div>

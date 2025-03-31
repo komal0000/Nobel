@@ -1,80 +1,134 @@
-/**
- * Equalizes the height of elements matching the selector
- * @param {string} selector - CSS selector for elements to equalize
- */
-function equalizeCardHeight(selector) {
-    let maxHeight = 0;
+// Main JS for home page
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize sliders
+    initSliders();
 
-    $(selector).css('height', 'auto').each(function() {
-        maxHeight = Math.max(maxHeight, $(this).height());
+    // Set up event listeners
+    setupEventListeners();
+
+    // Initialize lightbox
+    initLightbox();
+});
+
+/**
+ * Initialize all sliders
+ */
+function initSliders() {
+    // Top banner slider
+    $('.top-banner-slider').slick({
+        arrows: false,
+        dots: true
     });
 
-    $(selector).height(maxHeight);
+    // Floating tabs slider - responsive
+    initFloatingTabsSlider();
+
+    // Service slider
+    $('.service-slider').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        arrows: true,
+        prevArrow: '<button class="slick-prev left-arrow"><img src="front/assets/img/vector-left.png" alt="Left Arrow"></button>',
+        nextArrow: '<button class="slick-next right-arrow"><img src="front/assets/img/vector-right.png" alt="Right Arrow"></button>',
+        responsive: [
+            {
+                breakpoint: 992,
+                settings: { slidesToShow: 2 }
+            },
+            {
+                breakpoint: 650,
+                settings: { slidesToShow: 1 }
+            }
+        ]
+    });
+
+    // Patient stories slider
+    $('#story-slider').slick({
+        slidesToShow: 3,
+        infinite: true,
+        slidesToScroll: 1,
+        arrows: true,
+        prevArrow: '<button class="slick-prev left-arrow"><img src="front/assets/img/vector-left.png" alt="Left Arrow"></button>',
+        nextArrow: '<button class="slick-next right-arrow"><img src="front/assets/img/vector-right.png" alt="Right Arrow"></button>',
+        responsive: [
+            {
+                breakpoint: 1199,
+                settings: { slidesToShow: 2 }
+            },
+            {
+                breakpoint: 768,
+                settings: { slidesToShow: 1 }
+            }
+        ]
+    });
+
+    // Update slider
+    $('.update-slider').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        arrows: true,
+        prevArrow: '<button class="slick-prev left-arrow"><img src="front/assets/img/vector-left.png" alt="Left Arrow"></button>',
+        nextArrow: '<button class="slick-next right-arrow"><img src="front/assets/img/vector-right.png" alt="Right Arrow"></button>',
+        responsive: [
+            {
+                breakpoint: 1199,
+                settings: { slidesToShow: 2 }
+            },
+            {
+                breakpoint: 768,
+                settings: { slidesToShow: 1 }
+            }
+        ]
+    });
+
+    // Awards slider
+    $('.award-slide').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        infinite: true,
+        arrows: true,
+        prevArrow: '<button class="slick-prev left-arrow"><img src="front/assets/img/vector-left.png" alt="Left Arrow"></button>',
+        nextArrow: '<button class="slick-next right-arrow"><img src="front/assets/img/vector-right.png" alt="Right Arrow"></button>',
+        responsive: [
+            {
+                breakpoint: 1199,
+                settings: { slidesToShow: 2 }
+            },
+            {
+                breakpoint: 768,
+                settings: { slidesToShow: 1 }
+            }
+        ]
+    });
+
+    // Mobile event slider
+    $('.slider-67ea07c849014').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        arrows: true,
+        prevArrow: '<button class="slick-prev left-arrow"><img src="front/assets/img/vector-left.png" alt="Left Arrow"></button>',
+        nextArrow: '<button class="slick-next right-arrow"><img src="front/assets/img/vector-right.png" alt="Right Arrow"></button>',
+        responsive: [
+            {
+                breakpoint: 992,
+                settings: { slidesToShow: 2 }
+            },
+            {
+                breakpoint: 650,
+                settings: { slidesToShow: 1 }
+            }
+        ]
+    });
 }
 
 /**
- * Changes the active tab
- * @param {HTMLElement} el - Tab element to activate
+ * Initialize floating tabs slider based on screen width
  */
-function changeTab(el) {
-    let tabId = $(el).data('target');
-    $('.tab').removeClass('active-tab');
-    $(el).addClass('active-tab');
+function initFloatingTabsSlider() {
+    const $slider = $('#slick-slider');
 
-    $('.event-list').removeClass('active').hide();
-    $('#' + tabId).addClass('active').fadeIn();
-}
-
-/**
- * Sets the active speciality button
- * @param {HTMLElement} el - Button element to activate
- */
-function setActive(el) {
-    $('.sp-btn').removeClass('active-btn');
-    $(el).addClass('active-btn');
-}
-
-/**
- * Handles submenu extension
- * @param {HTMLElement} el - Menu element to extend
- */
-function extendSubMenu(el) {
-    if ($(el).hasClass('active-list')) {
-        $(el).removeClass('active-list');
-        return;
-    }
-    $('.navbar-item').removeClass('active-list');
-    $(el).addClass('active-list');
-}
-
-/**
- * Handles knowledge submenu extension
- * @param {HTMLElement} el - Submenu element to extend
- * @param {Event} event - Click event
- */
-function extendKnowledgeSubMenu(el, event) {
-    event.stopPropagation();
-    if ($(el).hasClass('active-knowledge')) {
-        $(el).removeClass('active-knowledge');
-        return;
-    }
-    $(el).addClass('active-knowledge');
-}
-
-/**
- * Toggles element expansion
- * @param {HTMLElement} el - Element to expand
- */
-function expand(el) {
-    $(el).toggleClass('active');
-}
-
-$(document).ready(function() {
-    // Initialize slick slider
-    let $slider = $('#slick-slider');
-
-    function initSlider() {
-        if ($(window).width() <= 1299) {
+    function configureSlider() {
+        if (window.innerWidth <= 1299) {
             if (!$slider.hasClass('slick-initialized')) {
                 $slider.slick({
                     slidesToShow: 2,
@@ -83,11 +137,12 @@ $(document).ready(function() {
                     arrows: true,
                     prevArrow: '<button class="slick-prev left-arrow"><img src="front/assets/img/vector-left.png" alt="Left Arrow"></button>',
                     nextArrow: '<button class="slick-next right-arrow"><img src="front/assets/img/vector-right.png" alt="Right Arrow"></button>',
-                    responsive: [{
+                    responsive: [
+                        {
                             breakpoint: 768,
                             settings: {
                                 arrows: false,
-                                slidesToShow: 2,
+                                slidesToShow: 2
                             }
                         },
                         {
@@ -106,50 +161,68 @@ $(document).ready(function() {
             }
         }
 
-        if ($(window).width() <= 768) {
+        // Toggle arrow visibility based on screen width
+        if (window.innerWidth <= 768) {
             $('.slick-prev, .slick-next').hide();
         } else {
             $('.slick-prev, .slick-next').show();
         }
     }
 
-    initSlider();
-    $(window).on("resize", function() {
-        initSlider();
+    // Initial setup and resize listener
+    configureSlider();
+    window.addEventListener('resize', configureSlider);
+}
+
+/**
+ * Initialize lightbox for videos
+ */
+function initLightbox() {
+    GLightbox({
+        selector: '.glightbox',
+        touchNavigation: true,
+        loop: true
+    });
+}
+
+/**
+ * Set up all event listeners
+ */
+function setupEventListeners() {
+    // Speciality filter
+    $('.sp-btn').on('click', function() {
+        setActive(this);
     });
 
-    // Specialty dropdown
-    $('#default-speciality-wrap').click(function() {
-        if ($('#list-wrap').css('display') == 'block') {
-            $('#list-wrap').css('display', 'none');
-            return;
-        }
-        $('#list-wrap').css('display', 'block');
+    // Find doctor speciality dropdown
+    $('#default-speciality-wrap').on('click', function() {
+        const $listWrap = $('#list-wrap');
+        $listWrap.css('display', $listWrap.css('display') === 'block' ? 'none' : 'block');
     });
 
-    $('#list-wrap ul li').click(function() {
+    $('#list-wrap ul li').on('click', function() {
         const selectedText = $(this).text();
         const selectedValue = $(this).data('value');
 
         $('#default-speciality-wrap span.default-speciality-item').text(selectedText);
-        $('#find-doc-location-input').val(selectedValue);
+        $('#find-doc-speciality-input').val(selectedValue);
         $('#list-wrap').css('display', 'none');
     });
 
-    // Circle click animation
+    // Model of care - center image changing
     $('.click-circle').on('click', function(e) {
         e.preventDefault();
-        let imgSrc = $(this).attr('datasrc');
+        const imgSrc = $(this).attr('datasrc');
+        const $image = $('.center-image');
 
-        $('.center-image').attr('src', imgSrc);
-
-        let $image = $('.center-image');
-
+        // Animate image change
         $image.css('transition', 'none');
         $image.css({
             'transform': 'scale(0.01)',
             'opacity': '0'
         });
+
+        // Force reflow
         $image[0].offsetHeight;
 
         setTimeout(function() {
@@ -160,92 +233,105 @@ $(document).ready(function() {
             });
         }, 50);
 
+        // Update active states
         $('.click-circle').removeClass('active');
         $(this).addClass('active');
         $('.why-block').removeClass('active-why');
         $(this).closest('.why-block').addClass('active-why');
+
+        // Change image source
+        $image.attr('src', imgSrc);
     });
 
-    $('.center-image').addClass('normal');
-
-    // Initialize all sliders
-    const slidersConfig = {
-        common: {
-            slidesToShow: 3,
-            slidesToScroll: 1,
-            arrows: true,
-            prevArrow: '<button class="slick-prev left-arrow"><img src="front/assets/img/vector-left.png" alt="Left Arrow"></button>',
-            nextArrow: '<button class="slick-next right-arrow"><img src="front/assets/img/vector-right.png" alt="Right Arrow"></button>',
-            responsive: [{
-                    breakpoint: 1199,
-                    settings: {
-                        slidesToShow: 2,
-                    }
-                },
-                {
-                    breakpoint: 768,
-                    settings: {
-                        slidesToShow: 1,
-                    }
-                }
-            ]
-        },
-        serviceSlider: {
-            responsive: [{
-                    breakpoint: 992,
-                    settings: {
-                        slidesToShow: 2,
-                    }
-                },
-                {
-                    breakpoint: 650,
-                    settings: {
-                        slidesToShow: 1,
-                    }
-                }
-            ]
-        }
-    };
-
-    // Initialize service slider
-    $('.service-slider').slick({
-        ...slidersConfig.common,
-        ...slidersConfig.serviceSlider
+    // Tab functionality for events
+    $('.tab').on('click', function() {
+        changeTab(this);
     });
 
-    // Initialize GLightbox
-    const lightBox = GLightbox({
-        selector: '.glightbox',
-        touchNavigation: true,
-        loop: true
-    });
-
-    // Initialize video wrapper slider
-    $('.video-wrapper').slick({
-        ...slidersConfig.common,
-        infinite: true
-    });
-
-    // Initialize update slider
-    $('.update-slider').slick(slidersConfig.common);
-
-    // Initialize award slider
-    $('.award-slide').slick({
-        ...slidersConfig.common,
-        infinite: true
-    });
-
-    // Initialize custom slider (both IDs for compatibility)
-    $('.slider-67e651c3b9ea1, .slider-67e92fa812d89').slick({
-        ...slidersConfig.common,
-        ...slidersConfig.serviceSlider
-    });
-
-    // Toggle navbar
-    $('#toggle-navbar').click(function() {
+    // Mobile nav toggle
+    $('#toggle-navbar').on('click', function() {
         $('#navbar').toggleClass('show-navbar');
         $('#navbar').css({
             'transform': 'scale(1)'
         });
+
+        // Toggle icon
+        $('.open-icon, .close-icon').toggleClass('d-none');
     });
-});
+
+    // Menu toggles for header dropdowns
+    $('.navbar-item').on('click', function(e) {
+        extendSubMenu(this);
+    });
+
+    // Knowledge submenu toggle (with stop propagation)
+    $('.knowledge-drop').on('click', function(e) {
+        extendKnowledgeSubMenu(this, e);
+    });
+
+    // Footer accordion for mobile
+    $('.footer-block').on('click', function() {
+        expand(this);
+    });
+
+    // Why us mobile accordion
+    $('.accor-list li').on('click', function() {
+        expand(this);
+    });
+}
+
+/**
+ * Utility Functions
+ */
+
+// Set active class on speciality button
+function setActive(el) {
+    $('.sp-btn').removeClass('active-btn');
+    $(el).addClass('active-btn');
+}
+
+// Change tab for events section
+function changeTab(el) {
+    const tabId = $(el).data('target');
+    $('.tab').removeClass('active-tab');
+    $(el).addClass('active-tab');
+
+    $('.event-list').removeClass('active').hide();
+    $('#' + tabId).addClass('active').fadeIn();
+}
+
+// Expand/collapse elements (for footer and mobile accordions)
+function expand(el) {
+    $(el).toggleClass('active');
+}
+
+// Handle submenu display in header
+function extendSubMenu(el) {
+    if ($(el).hasClass('active-list')) {
+        $(el).removeClass('active-list');
+        return;
+    }
+    $('.navbar-item').removeClass('active-list');
+    $(el).addClass('active-list');
+}
+
+// Handle knowledge submenu display in header
+function extendKnowledgeSubMenu(el, event) {
+    event.stopPropagation();
+    if ($(el).hasClass('active-knowledge')) {
+        $(el).removeClass('active-knowledge');
+        return;
+    }
+    $(el).addClass('active-knowledge');
+}
+
+// Equalize card heights for consistent UI
+function equalizeCardHeight(selector) {
+    let maxHeight = 0;
+
+    $(selector).css('height', 'auto').each(function() {
+        maxHeight = Math.max(maxHeight, $(this).height());
+    });
+
+    $(selector).height(maxHeight);
+}
