@@ -141,7 +141,6 @@ function initFloatingTabsSlider() {
                         {
                             breakpoint: 768,
                             settings: {
-                                arrows: true,
                                 slidesToShow: 2
                             }
                         },
@@ -149,7 +148,6 @@ function initFloatingTabsSlider() {
                             breakpoint: 480,
                             settings: {
                                 slidesToShow: 1,
-                                arrows: true
                             }
                         }
                     ]
@@ -159,13 +157,6 @@ function initFloatingTabsSlider() {
             if ($slider.hasClass("slick-initialized")) {
                 $slider.slick("unslick");
             }
-        }
-
-        // Toggle arrow visibility based on screen width
-        if ($(window).width() <= 768) {
-            $('.slick-prev, .slick-next').hide();
-        } else {
-            $('.slick-prev, .slick-next').show();
         }
     }
 

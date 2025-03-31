@@ -69,9 +69,6 @@ section {
 section:nth-of-type(odd) {
   background-color: var(--secondary-white);
 }
-section:last-child:nth-of-type(even) {
-  border-bottom: 1px solid var(--border-color);
-}
 
 [id] {
   scroll-margin-top: 85px;
@@ -1275,7 +1272,7 @@ section:last-child:nth-of-type(even) {
 }
 @media (max-width: 768px) {
   #home-top-banner .search-wrapper {
-    padding: 0 20px 20px;
+    padding: 20px 20px;
     position: static;
   }
 }
@@ -2266,33 +2263,16 @@ section:last-child:nth-of-type(even) {
   margin-bottom: 30px;
 }
 .update .main-container .update-slider {
-  border-radius: 20px;
-  background-color: #fff;
-  border: 1px solid #d9d9d9;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   bottom: -100px;
   position: relative;
   margin-top: -100px;
 }
-.update .main-container .update-slider .slick-prev {
-  left: -1.5%;
-}
-@media (max-width: 768px) {
-  .update .main-container .update-slider .slick-prev {
-    left: 0;
-  }
-}
-.update .main-container .update-slider .slick-next {
-  right: -1.5%;
-}
-@media (max-width: 768px) {
-  .update .main-container .update-slider .slick-next {
-    right: 0;
-  }
-}
 .update .main-container .update-slider .update-card {
   text-align: center;
-  border-right: 1px solid var(--border-color);
+  border-radius: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  margin: 15px;
   padding: 30px;
 }
 .update .main-container .update-slider .update-card img {
@@ -2615,18 +2595,14 @@ section:last-child:nth-of-type(even) {
 }
 .events-news .main-container .events .each-event .date {
   width: 120px;
-  height: 116px;
+  height: 120px;
   text-align: center;
   line-height: 1;
   padding: 28px 5px;
   border-radius: 10px;
   background-color: var(--secondary-white);
-  flex: 2;
   font-weight: 800;
   font-size: 24px;
-}
-.events-news .main-container .events .each-event .content {
-  flex: 5;
 }
 
 .overview .main-container .col-wrapper .btn {

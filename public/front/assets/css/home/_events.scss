@@ -222,20 +222,16 @@
 
             .date {
                width: 120px;
-               height: 116px;
+               height: 120px;
                text-align: center;
                line-height: 1;
                padding: 28px 5px;
                border-radius: 10px;
                background-color: var(--secondary-white);
-               flex: 2;
                font-weight: 800;
                font-size: 24px;
             }
 
-            .content {
-               flex: 5;
-            }
          }
 
       }

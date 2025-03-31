@@ -48,9 +48,6 @@ section {
     &:nth-of-type(odd) {
         background-color: var(--secondary-white);
     }
-    &:last-child:nth-of-type(even) {
-      border-bottom: 1px solid var(--border-color);
-    }
 }
 [id] {
    scroll-margin-top: 85px;

@@ -1,85 +1,69 @@
 .update {
-    background: url('/front/assets/img/updates-bg.jpg') center center / cover no-repeat;
-    padding-top: 60px;
-    margin-bottom: 50px;
-    background-color: var(--secondary-white) !important;
+   background: url('/front/assets/img/updates-bg.jpg') center center / cover no-repeat;
+   padding-top: 60px;
+   margin-bottom: 50px;
+   background-color: var(--secondary-white) !important;
 
-    .main-container {
-        padding: 0 20px;
+   .main-container {
+      padding: 0 20px;
 
-        .heading {
+      .heading {
+         text-align: center;
+         margin-bottom: 30px;
+      }
+
+      .update-slider {
+
+         bottom: -100px;
+         position: relative;
+         margin-top: -100px;
+
+         .update-card {
             text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .update-slider {
             border-radius: 20px;
             background-color: #fff;
-            border: 1px solid #d9d9d9;
             box-shadow: 0 4px 30px rgba(0, 0, 0, .1);
-            bottom: -100px;
-            position: relative;
-            margin-top: -100px;
+            margin: 15px;
 
-            .slick-prev {
-                left: -1.5%;
-
-                @media (max-width: 768px) {
-                    left: 0;
-                }
+            img {
+               margin-bottom: 20px;
             }
 
-            .slick-next {
-                right: -1.5%;
+            padding: 30px;
+            // border: 1px solid transparent;
 
-                @media (max-width: 768px) {
-                    right: 0;
-                }
+            .head {
+               font-weight: 600;
+               color: var(--color-dark-grey);
+               margin-bottom: 10px;
+               font-size: 16px;
+               line-height: 20px;
+               height: 20px;
+               overflow: hidden;
+               text-overflow: ellipsis;
             }
 
-            .update-card {
-                text-align: center;
-                border-right: 1px solid var(--border-color);
-
-                img {
-                    margin-bottom: 20px;
-                }
-
-                padding: 30px;
-                // border: 1px solid transparent;
-
-                .head {
-                    font-weight: 600;
-                    color: var(--color-dark-grey);
-                    margin-bottom: 10px;
-                    font-size: 16px;
-                    line-height: 20px;
-                    height: 20px;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                }
-
-                .content {
-                    width: 300px;
-                    max-width: 100%;
-                    margin: auto;
-                    overflow: hidden;
-                    display: -webkit-box;
-                    -webkit-box-orient: vertical;
-                    font-weight: 500;
-                    font-size: 14px;
-                    line-height: 18px;
-                    height: 54px;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                }
-
-                .button {
-                    margin-top: 1rem;
-                    font-size: 12px;
-                    font-weight: 600;
-                }
+            .content {
+               width: 300px;
+               max-width: 100%;
+               margin: auto;
+               overflow: hidden;
+               display: -webkit-box;
+               -webkit-box-orient: vertical;
+               font-weight: 500;
+               font-size: 14px;
+               line-height: 18px;
+               height: 54px;
+               overflow: hidden;
+               text-overflow: ellipsis;
             }
-        }
-    }
+
+            .button {
+               margin-top: 1rem;
+               font-size: 12px;
+               font-weight: 600;
+            }
+         }
+      }
+   }
 }
