@@ -1,0 +1,32 @@
+#why-learn {
+   padding: 0;
+   .main-content {
+      display: flex;
+      flex-direction: row;
+      @media (max-width: 991px) {
+         flex-direction: column;
+      }
+   }
+   .video-wrapper {
+      height: 515px;
+      align-self: center;
+      width: 55%;
+      @media screen and (max-width: 991px) {
+            width: 100%;
+         }
+         @media (max-width: 768px) {
+            height: 250px;
+         }
+   }
+
+   .para-wrap {
+      width: 45%;
+      align-self: center;
+      padding: 80px;
+      @media (max-width: 991px) {
+         width: 100%;
+         flex-direction: column;
+         padding: 25px;
+      }
+   }
+}

@@ -1,0 +1,28 @@
+#dr-milestone {
+
+   .each-card {
+      box-shadow: 0 4px 19px rgba(0, 0, 0, .1);
+      border-radius: 12px;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 30px;
+      margin: 15px;
+      i {
+         font-size: 25px;
+      }
+
+      .heading-sm {
+         font-size: 20px;
+         line-height: 25px;
+         height: 75px;
+         overflow: hidden;
+         text-overflow: ellipsis;
+
+      }
+      .year {
+         color: var(--color-main);
+      }
+   }
+}

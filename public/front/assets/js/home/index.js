@@ -43,7 +43,7 @@ function initSliders() {
     });
 
     // Patient stories slider
-    $('#story-slider').slick({
+    $('.video-wrapper').slick({
         slidesToShow: 3,
         infinite: true,
         slidesToScroll: 1,
@@ -102,7 +102,7 @@ function initSliders() {
     });
 
     // Mobile event slider
-    $('.slider-67ea07c849014').slick({
+    $('.slider-67ea3ffc514bf').slick({
         slidesToShow: 3,
         slidesToScroll: 1,
         arrows: true,
@@ -128,7 +128,7 @@ function initFloatingTabsSlider() {
     const $slider = $('#slick-slider');
 
     function configureSlider() {
-        if (window.innerWidth <= 1299) {
+        if ($(window).width() <= 1299) {
             if (!$slider.hasClass('slick-initialized')) {
                 $slider.slick({
                     slidesToShow: 2,
@@ -162,7 +162,7 @@ function initFloatingTabsSlider() {
         }
 
         // Toggle arrow visibility based on screen width
-        if (window.innerWidth <= 768) {
+        if ($(window).width() <= 768) {
             $('.slick-prev, .slick-next').hide();
         } else {
             $('.slick-prev, .slick-next').show();
@@ -171,7 +171,7 @@ function initFloatingTabsSlider() {
 
     // Initial setup and resize listener
     configureSlider();
-    window.addEventListener('resize', configureSlider);
+    $(window).on('resize', configureSlider);
 }
 
 /**
@@ -197,7 +197,11 @@ function setupEventListeners() {
     // Find doctor speciality dropdown
     $('#default-speciality-wrap').on('click', function() {
         const $listWrap = $('#list-wrap');
-        $listWrap.css('display', $listWrap.css('display') === 'block' ? 'none' : 'block');
+        if($listWrap.css('display') === 'block') {
+            $listWrap.css('display', 'none');
+            return;
+        }
+        $listWrap.css('display', 'block');
     });
 
     $('#list-wrap ul li').on('click', function() {
@@ -205,7 +209,7 @@ function setupEventListeners() {
         const selectedValue = $(this).data('value');
 
         $('#default-speciality-wrap span.default-speciality-item').text(selectedText);
-        $('#find-doc-speciality-input').val(selectedValue);
+        $('#find-doc-location-input').val(selectedValue);
         $('#list-wrap').css('display', 'none');
     });
 
@@ -243,6 +247,9 @@ function setupEventListeners() {
         $image.attr('src', imgSrc);
     });
 
+    // Add normal class to center image
+    $('.center-image').addClass('normal');
+
     // Tab functionality for events
     $('.tab').on('click', function() {
         changeTab(this);
@@ -260,7 +267,7 @@ function setupEventListeners() {
     });
 
     // Menu toggles for header dropdowns
-    $('.navbar-item').on('click', function(e) {
+    $('.navbar-item').on('click', function() {
         extendSubMenu(this);
     });
 

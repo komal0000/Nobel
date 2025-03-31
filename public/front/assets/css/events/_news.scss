@@ -1,51 +1,57 @@
-#news {
-    .main-container {
-        .heading-group {
-                position: relative;
+#event {
+   .main-container {
+      .heading-group {
+         position: relative;
 
-                .button {
-                    @media (max-width:768px) {
-                        display: none !important;
-                    }
-
-                    position: absolute;
-                    top: 4px;
-                    right: 2%;
-                }
+         .button {
+            @media (max-width:768px) {
+               display: none !important;
             }
-        .news-slider {
-            .slide {
-                min-height: 60px;
-                border-radius: 25px;
-                box-shadow: 0 3px 17px rgba(0, 0, 0, .14);
-                .img-wrapper {
-                    position: relative;
-                    border-radius: 25px;
-                    overflow: hidden;
-                    .date {
-                        position: absolute;
-                        top: 20px;
-                        left: 20px;
-                        background-color: var(--color-white);
-                        padding: 5px 10px;
-                        border-radius: 10px;
-                    }
-                }
-                .body {
-                    padding: 30px;
-                    .location {
-                        color: var(--color-main);
-                    }
-                }
-            }
-        }
-                .mobile-btn {
-                    display: flex;
-                    justify-content: center;
 
-                    @media (min-width:769px) {
-                        display: none;
-                    }
-                }
-    }
+            position: absolute;
+            top: 4px;
+            right: 2%;
+         }
+      }
+
+      .news-slider {
+         .slide {
+            min-height: 60px;
+            border-radius: 25px;
+            box-shadow: 0 3px 17px rgba(0, 0, 0, .14);
+
+            .img-wrapper {
+               position: relative;
+               border-radius: 25px;
+               overflow: hidden;
+
+               .date {
+                  position: absolute;
+                  top: 20px;
+                  left: 20px;
+                  background-color: var(--color-white);
+                  padding: 5px 10px;
+                  border-radius: 10px;
+               }
+            }
+
+            .body {
+               padding: 30px;
+
+               .location {
+                  color: var(--color-main);
+               }
+            }
+         }
+      }
+
+      .mobile-btn {
+         display: flex;
+         justify-content: center;
+
+         @media (min-width:769px) {
+            display: none;
+         }
+      }
+   }
 }

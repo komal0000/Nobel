@@ -1,0 +1,24 @@
+#cpr-blog {
+   .article-card {
+      margin: 15px;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      background-color: var(--color-white);
+
+      &:hover {
+         color: initial !important;
+      }
+
+      img {
+         height: 100%;
+         border-radius: 25px;
+      }
+   }
+
+   .all-btn {
+      margin-top: 25px;
+      display: flex;
+      justify-content: center;
+
+   }
+}

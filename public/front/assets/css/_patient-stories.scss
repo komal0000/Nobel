@@ -1,0 +1,152 @@
+#patient-banner {
+   position: relative;
+   padding: 0;
+
+   .banner-title {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: var(--color-white);
+      text-align: center;
+      width: 100%;
+   }
+}
+
+.glightbox {
+   width: 100%;
+   display: inline-block;
+
+   .each-video {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+
+      @media (max-width: 1199px) {
+         display: flex;
+         justify-content: center;
+      }
+
+      img {
+         object-fit: cover;
+         width: 100%;
+         height: 100%;
+         transition: .3s
+      }
+
+      .play-icon {
+         width: 48px;
+         height: 48px;
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         margin: auto;
+         z-index: 55;
+         transition: .3s;
+      }
+   }
+}
+
+#patient-featured {
+   .each-card {
+      margin: 15px;
+      border-radius: 20px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+
+      .img-wrapper {
+         overflow: hidden;
+         border-radius: 20px;
+      }
+
+
+      .body {
+         padding: 30px;
+         color: var(--color-main);
+         font-weight: 600;
+
+         .heading-sm {
+            color: var(--color-grey);
+            line-height: 25px;
+            height: 50px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+         }
+      }
+   }
+}
+
+#all-stories {
+   .floating {
+         position: relative;
+         width: 500px;
+         max-width: 100%;
+         margin: auto;
+         input {
+            border-radius: 25px;
+            &:focus {
+               box-shadow: none;
+               outline: none;
+            }
+         }
+      }
+   
+      .search-icon {
+         position: absolute;
+         right: 15px;
+         top: 6px;
+   
+         i {
+            font-size: 18px;
+         }
+      }
+   .all-card {
+      display: none;
+   }
+
+   .each-card {
+      box-shadow: 0 4px 40px #0000001a;
+      border-radius: 20px;
+      background-color: var(--color-white);
+
+      .img-wrapper {
+         width: 100%;
+
+         img {
+            object-fit: cover;
+            border-radius: 20px;
+            aspect-ratio: 16/9;
+         }
+      }
+
+
+      .body {
+         padding: 30px;
+         cursor: pointer;
+
+         .type {
+            color: var(--color-main);
+         }
+
+         .heading-md {
+            line-height: 25px;
+            height: 50px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+         }
+
+
+      }
+   }
+
+   .load-more {
+      background-color: var(--color-main);
+      border: none;
+      color: var(--color-white);
+      padding: 10px 15px;
+      border-radius: 25px;
+      margin-top: 25px;
+   }
+}

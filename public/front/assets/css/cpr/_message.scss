@@ -1,0 +1,48 @@
+#message {
+
+   .glightbox {
+      margin: 15px;
+      .each-video {
+         position: relative;
+         display: inline-block;
+         border-radius: 20px;
+         overflow: hidden;
+
+         @media (max-width: 1199px) {
+            margin: 0 20px;
+            display: flex;
+            justify-content: center;
+            // margin-right: 10px;
+         }
+
+         img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            transition: .3s
+         }
+
+         .play-icon {
+            width: 48px;
+            height: 48px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin: auto;
+            z-index: 55;
+            transition: .3s;
+         }
+
+         .heading-sm {
+            width: 100%;
+            color: #fff;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            padding: 10px;
+            text-align: center;
+         }
+      }
+   }
+}

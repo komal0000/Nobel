@@ -34,7 +34,7 @@ a {
 
     &:hover {
         color: var(--color-light-1);
-
+        
     }
 }
 
@@ -48,6 +48,15 @@ section {
     &:nth-of-type(odd) {
         background-color: var(--secondary-white);
     }
+    &:last-child:nth-of-type(even) {
+      border-bottom: 1px solid var(--border-color);
+    }
+}
+[id] {
+   scroll-margin-top: 85px;
+   @media (max-width: 1199px) {
+      scroll-margin-top: 65px;
+   }
 }
 
 @import './components/main';
@@ -116,7 +125,8 @@ section {
 
 .heading-sm {
     font-size: 22px;
-    font-weight: 700;
+    font-weight: 600;
+    color: var(--color-grey);
 
     @media (min-width: 1200px) and (max-width: 1599px) {
         font-size: 18px;
@@ -283,6 +293,11 @@ body {
     display: block !important;
 }
 
+.play-icon {
+   height: 48px !important;
+   width: 48px !important;
+   object-fit: contain !important;
+}
 
 @import './header/main';
 @import './home/main';
@@ -298,5 +313,14 @@ body {
 @import './contact-us/main';
 @import './why-us/main';
 @import './doctor-listing/main';
+@import './doctor-profile/main';
+@import './per-blog/main';
+@import './cpr/main';
+@import './patient-stories';
+@import './policy';
+@import './all-videos';
+@import './help-desk';
+@import './about-us/main';
+@import './single-event';
 @import './footer/main';
 @import './mobile-nav/main';

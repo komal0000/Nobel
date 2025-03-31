@@ -1,0 +1,38 @@
+#cpr-mission {
+   .content {
+      display: flex;
+      flex-direction: row-reverse;
+      gap: 50px;
+
+      @media (max-width: 768px) {
+         flex-direction: column;
+      }
+
+      .img-wrapper {
+         align-self: center;
+         width: 50%;
+
+         @media (max-width: 768px) {
+            width: 100%;
+            padding: 0;
+         }
+
+         img {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            object-fit: cover;
+         }
+      }
+
+      .heading-sm {
+         align-self: center;
+         width: 50%;
+         font-weight: 600;
+
+         @media (max-width: 768px) {
+            width: 100%;
+         }
+      }
+   }
+}

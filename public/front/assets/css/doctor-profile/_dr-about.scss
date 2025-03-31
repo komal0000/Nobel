@@ -1,0 +1,17 @@
+#dr-about {
+   .row {
+      padding: inherit;
+   }
+   .each-col {
+      font-size: 15px;
+      border-right: 1px solid var(--border-color);
+      @media (max-width:768px) {
+         border-right: none;
+         border-bottom: 1px solid var(--border-color);
+         padding: 15px 0;
+      }
+      &:last-child {
+         border: none !important;
+      }
+   }
+}

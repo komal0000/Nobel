@@ -1,14 +1,14 @@
 #all-specialities {
     .specialities-cards {
         .card-col {
-
+            display: none;
         }
 
         .each-card {
             box-shadow: 0 4px 19px rgba(0, 0, 0, 0.1);
             border-radius: 12px;
             padding: 30px;
-            background: url('/front/assets/img/health-library/pattern-bg.png') top left #fff;
+            background: url('/front/img/health-library/pattern-bg.png') top left #fff;
             display: flex;
             flex-direction: column;
             transition: 0.3s ease;
@@ -18,6 +18,9 @@
             &:hover {
                 background-color: var(--color-light-1);
                 color: var(--color-white);
+                .heading-sm {
+                  color: var(--color-white) !important;
+                }
 
                 .btn {
                     color: var(--color-white) !important;

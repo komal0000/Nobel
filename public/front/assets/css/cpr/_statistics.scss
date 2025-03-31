@@ -1,0 +1,22 @@
+#cpr-stats {
+   .each-card {
+      background: url('/front/img/health-library/pattern-bg.png') top left var(--secondary-white);
+      margin: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 50px;
+      box-shadow: 5px 4px 19px rgba(0, 0, 0, .1);
+      text-align: center;
+      border-radius: 10px;
+      i {
+         font-size: 50px;
+      }
+
+      .number {
+         font-size: 120%;
+         color: var(--color-main);
+      }
+   }
+}

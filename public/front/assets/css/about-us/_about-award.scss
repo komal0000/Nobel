@@ -1,0 +1,69 @@
+#about-award {
+   .slide-card {
+         border-radius: 20px;
+         background-color: #fff;
+         padding: 25px 50px;
+         text-align: center;
+         position: relative;
+         aspect-ratio: 2/1;
+         box-shadow: 0 3px 17px rgba(0, 0, 0, .14);
+         margin: 20px;
+         display: flex;
+         flex-direction: column;
+         justify-content: flex-start;
+         gap: 20px;
+         align-items: center;
+   
+         .leaf-left {
+            width: 50px;
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            z-index: 1;
+            transform: translateY(-50%);
+            text-align: left;
+   
+            img {
+               display: inline-block;
+               height: 100px;
+            }
+         }
+   
+         .year {
+            color: var(--color-main);
+   
+            &::before {
+               display: inline-block;
+               background: url('/front/img/award-heading-vector-left.png') center center / 100% no-repeat;
+               width: 40px;
+               vertical-align: middle;
+               height: 25px;
+               content: "";
+            }
+   
+            &::after {
+               display: inline-block;
+               background: url('/front/img/award-heading-vector-right.png') center center / 100% no-repeat;
+               width: 40px;
+               vertical-align: middle;
+               height: 25px;
+               content: "";
+            }
+         }
+   
+         .leaf-right {
+            width: 50px;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            z-index: 1;
+            transform: translateY(-50%);
+            text-align: left;
+   
+            img {
+               display: inline-block;
+               height: 100px;
+            }
+         }
+      }
+}

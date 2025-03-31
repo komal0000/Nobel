@@ -1,7 +1,4 @@
-#blogs {
-    section {
-        background-color: var(--color-white) !important;
-    }
+#all-blogs, #featured-blogs {
 
     .heading-group {
         input {
@@ -36,7 +33,6 @@
         }
     }
 
-    .featured-blog-card,
     .all-blog-card {
         display: none;
     }
@@ -102,5 +98,6 @@
         color: var(--color-white);
         padding: 10px 15px;
         border-radius: 25px;
+        margin-top: 25px;
     }
 }

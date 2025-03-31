@@ -1,0 +1,38 @@
+#dr-specialization {
+
+   .each-card {
+      background: url('/front/img/health-library/pattern-bg.png') top left #fff;
+      position: relative;
+      box-shadow: 0 4px 19px rgba(0, 0, 0, .1);
+      border-radius: 12px;
+      padding: 30px;
+      display: flex;
+      justify-content: center;
+      margin: 15px;
+
+      .body {
+         margin-top: 30px;
+         font-size: 20px;
+         font-weight: 700;
+         line-height: 25px;
+         height: 50px;
+         overflow: hidden;
+         text-overflow: ellipsis;
+
+         @media (max-width: 1199px) {
+            font-size: 15px;
+            line-height: 22px;
+            height: 44px;
+         }
+
+      }
+   }
+
+   .all-btn {
+      width: 100%;
+      margin-top: 2%;
+      display: flex;
+      justify-content: center;
+
+   }
+}
