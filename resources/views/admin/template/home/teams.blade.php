@@ -1,7 +1,7 @@
 <div class="find-doc">
     <form>
         <div class="find-doc-form">
-            <div class="select-wrap d-flex justify-content-center gap-2">
+            <div class="select-wrap d-flex justify-content-center gap-2" style="margin-bottom: 20px;">
                 <div class="find-doc-speciality-wrap">
                     <div class="default-speciality-wrap d-flex justify-content-between gap-5" onclick="showList()" style="cursor: pointer">
                         <span class="default-speciality-item d-inline-block text-truncate">All Specialities</span>

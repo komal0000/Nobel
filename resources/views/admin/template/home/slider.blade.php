@@ -1,5 +1,5 @@
 
-<div id="home-top-banner">
+<section id="home-top-banner">
     <div class="top-banner-slider">
         @foreach ($sliders as $slider)
         <div class="image-card">
@@ -50,5 +50,5 @@
             </a>
         </div>
     </div>
-</div>
+</section>
 

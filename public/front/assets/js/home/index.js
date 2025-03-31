@@ -342,3 +342,9 @@ function equalizeCardHeight(selector) {
 
     $(selector).height(maxHeight);
 }
+document.querySelectorAll('.list-accor li').forEach(element => {
+    element.addEventListener('click', function() {
+        console.log('clicked');
+        this.classList.toggle('active');
+    });
+});
