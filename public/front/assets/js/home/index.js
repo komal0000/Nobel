@@ -141,7 +141,7 @@ function initFloatingTabsSlider() {
                         {
                             breakpoint: 768,
                             settings: {
-                                arrows: false,
+                                arrows: true,
                                 slidesToShow: 2
                             }
                         },
@@ -149,7 +149,7 @@ function initFloatingTabsSlider() {
                             breakpoint: 480,
                             settings: {
                                 slidesToShow: 1,
-                                arrows: false
+                                arrows: true
                             }
                         }
                     ]
@@ -346,5 +346,31 @@ document.querySelectorAll('.list-accor li').forEach(element => {
     element.addEventListener('click', function() {
         console.log('clicked');
         this.classList.toggle('active');
+    });
+});
+
+/**
+ * Show speciality dropdown list
+ */
+function showList() {
+    const $listWrap = $('#list-wrap');
+    $listWrap.toggle();
+}
+$(document).ready(function() {
+    $('#speciality-search').on('input', function() {
+        const searchText = $(this).val().toLowerCase();
+        $('#find-doc-speciality li').each(function() {
+            const text = $(this).text().toLowerCase();
+            $(this).toggle(text.includes(searchText));
+        });
+    });
+
+    $('#find-doc-speciality li').on('click', function() {
+        const selectedText = $(this).text();
+        const selectedValue = $(this).data('value');
+
+        $('.default-speciality-item').text(selectedText);
+        $('#find-doc-speciality-input').val(selectedValue);
+        $('#list-wrap').hide();
     });
 });
