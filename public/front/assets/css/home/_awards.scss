@@ -1,7 +1,7 @@
 .awards {
    padding-top: 80px;
     background-color: var(--color-white) !important;
-    background: url('/front/img/why-bg.png') top left;
+    background: url('/front/assets/img/why-bg.png') top left;
     .main-container {
 
         .award-slide {
@@ -69,7 +69,7 @@
 
                     &::before {
                         display: inline-block;
-                        background: url('/front/img/award-heading-vector-left.png') center center / 100% no-repeat;
+                        background: url('/front/assets/img/award-heading-vector-left.png') center center / 100% no-repeat;
                         width: 40px;
                         vertical-align: middle;
                         height: 25px;
@@ -78,7 +78,7 @@
 
                     &::after {
                         display: inline-block;
-                        background: url('/front/img/award-heading-vector-right.png') center center / 100% no-repeat;
+                        background: url('/front/assets/img/award-heading-vector-right.png') center center / 100% no-repeat;
                         width: 40px;
                         vertical-align: middle;
                         height: 25px;

@@ -13,7 +13,7 @@
          justify-content: flex-start;
          gap: 20px;
          align-items: center;
-   
+
          .leaf-left {
             width: 50px;
             position: absolute;
@@ -22,35 +22,35 @@
             z-index: 1;
             transform: translateY(-50%);
             text-align: left;
-   
+
             img {
                display: inline-block;
                height: 100px;
             }
          }
-   
+
          .year {
             color: var(--color-main);
-   
+
             &::before {
                display: inline-block;
-               background: url('/front/img/award-heading-vector-left.png') center center / 100% no-repeat;
+               background: url('/front/assets/img/award-heading-vector-left.png') center center / 100% no-repeat;
                width: 40px;
                vertical-align: middle;
                height: 25px;
                content: "";
             }
-   
+
             &::after {
                display: inline-block;
-               background: url('/front/img/award-heading-vector-right.png') center center / 100% no-repeat;
+               background: url('/front/assets/img/award-heading-vector-right.png') center center / 100% no-repeat;
                width: 40px;
                vertical-align: middle;
                height: 25px;
                content: "";
             }
          }
-   
+
          .leaf-right {
             width: 50px;
             position: absolute;
@@ -59,7 +59,7 @@
             z-index: 1;
             transform: translateY(-50%);
             text-align: left;
-   
+
             img {
                display: inline-block;
                height: 100px;
