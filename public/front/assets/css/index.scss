@@ -14,16 +14,16 @@ body {
 }
 
 main {
-    margin-top: 82px;
+    margin-top: 85px;
 
     @media (min-width: 769px) and (max-width: 1199px) {
-        margin-top: 64px;
+        margin-top: 93px;
     }
 
     @media (max-width: 768px) {
         display: flex;
         flex-direction: column;
-        margin-top: 62px;
+        margin-top: 93px;
     }
 }
 
@@ -34,7 +34,7 @@ a {
 
     &:hover {
         color: var(--color-light-1);
-        
+
     }
 }
 

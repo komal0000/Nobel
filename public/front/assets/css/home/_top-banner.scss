@@ -1,43 +1,42 @@
-.top-banner {
+#home-top-banner {
     position: relative;
-    padding-top: 0;
+    padding: 0 ;
     background-color: var(--color-white) !important;
+   .top-banner-slider {
+      .image-card {
+            height: auto;
 
-    .top-banner-slider {
-        .image-card {
-              height: auto;
+            img {
+               width: 100%;
+            }
 
-              img {
-                 width: 100%;
-              }
+         }
+      .slick-dots {
+            bottom: 40px;
+            // z-index: 99;
+            display: flex;
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: auto;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 0;
 
-           }
-        .slick-dots {
-              bottom: 25px;
-              // z-index: 99;
-              display: flex;
-              position: absolute;
-              left: 0;
-              right: 0;
-              margin: auto;
-              align-items: center;
-              justify-content: center;
-              gap: 10px;
-              padding: 0;
+            li {
+               button {
+                  display: none;
+               }
 
-              li {
-                 button {
-                    display: none;
-                 }
+               &.slick-active {
+                  color: var(--color-main);
 
-                 &.slick-active {
-                    color: var(--color-main);
+               }
+            }
 
-                 }
-              }
-
-           }
-     }
+         }
+   }
     .search-wrapper {
         position: absolute;
         z-index: 99;
@@ -45,14 +44,14 @@
         left: 0;
         right: 0;
         border-radius: 0 0 28px 28px;
-        padding: 4px 15px 15px;
+        padding: 10px 15px 15px;
         background-color: #fff;
         width: 540px;
         max-width: 100%;
         margin: auto;
 
         @media (max-width: 768px) {
-            padding: 30px 20px;
+            padding: 0 20px 20px;
             position: static;
         }
     }
@@ -105,7 +104,7 @@
             left: 50%;
             transform: translate(-50%, 0);
             bottom: -45px;
-            box-shadow: 0 0 20px #f0f0f0;
+            box-shadow: 0 0 10px #f0f0f0;
             border-radius: 15px;
             justify-content: space-between;
             align-items: center;
@@ -164,7 +163,7 @@
                 transition: background-color 0.5s, color 0.5s;
                 justify-content: center;
                 min-height: 80px;
-                border-right: 1px solid var(--border-color);
+                border-right: 1px solid var(--border-color-light);
 
 
                 @media (max-width: 768px) {
