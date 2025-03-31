@@ -23,8 +23,9 @@ class SettingController extends Controller
             [
                 ['SpecialityTitle', 1],
                 ['TeamTitle', 1],
-                ['TeamDescription', 2],
                 ['TeamImage', 0],
+                ['TeamMobileImage', 0],
+                ['TeamDescription', 2],
             ],
             [
                 ["homeSpecialityTitle", "views/front/cache/home/specialityTitle.blade.php"],
