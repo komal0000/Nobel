@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('popups', function (Blueprint $table) {
             $table->id();
+            $table->string('title')->nullable();
+            $table->text('image')->nullable();
+            $table->text('link')->nullable();
             $table->timestamps();
         });
     }

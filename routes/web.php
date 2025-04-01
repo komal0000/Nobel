@@ -12,6 +12,7 @@ use App\Http\Controllers\HomeCareController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\LeadershipController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PopupController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SliderController;
@@ -91,6 +92,12 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
             Route::match(["GET", "POST"], 'edit/{navigation_id}', [SliderController::class, 'navigationEdit'])->name('edit');
             Route::match(["GET", "POST"], 'del/{navigation_id}', [SliderController::class, 'navigationDel'])->name('del');
         });
+    });
+    Route::prefix('popup')->name('popup.')->group(function () {
+        Route::get('', [PopupController::class, 'index'])->name('index');
+        Route::match(["GET", "POST"], 'add', [PopupController::class, 'add'])->name('add');
+        Route::match(["GET", "POST"], 'edit/{popup_id}', [PopupController::class, 'edit'])->name('edit');
+        Route::match(["GET", "POST"], 'del/{popup_id}', [PopupController::class, 'del'])->name('del');
     });
     Route::prefix('treatment')->name('treatment.')->group(function () {
         Route::get('', [TreatmentController::class, 'index'])->name('index');
