@@ -443,7 +443,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="{{ route('admin.homeCare.index') }}">
+                            <a class="nav-link " href="{{ route('admin.slider.navigation.index') }}">
                                 <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
                                         viewBox="0 0 24 24" fill="currentColor">
@@ -453,6 +453,20 @@
                                     </svg>
                                 </i>
                                 <i class="sidenav-mini-icon"> B </i>
+                                <span class="item-name">Sliders Navigation </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="{{ route('admin.homeCare.index') }}">
+                                <i class="icon">
+                                    <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
+                                        viewBox="0 0 24 24" fill="currentColor">
+                                        <g>
+                                            <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                        </g>
+                                    </svg>
+                                </i>
+                                <i class="sidenav-mini-icon"> C </i>
                                 <span class="item-name">Home Care</span>
                             </a>
                         </li>
@@ -467,7 +481,7 @@
                                         </g>
                                     </svg>
                                 </i>
-                                <i class="sidenav-mini-icon"> C </i>
+                                <i class="sidenav-mini-icon"> D </i>
                                 <span class="item-name">Home Description</span>
                             </a>
                         </li>
@@ -481,7 +495,7 @@
                                         </g>
                                     </svg>
                                 </i>
-                                <i class="sidenav-mini-icon"> D </i>
+                                <i class="sidenav-mini-icon"> E </i>
                                 <span class="item-name">Copyright</span>
                             </a>
                         </li>
@@ -495,7 +509,7 @@
                                         </g>
                                     </svg>
                                 </i>
-                                <i class="sidenav-mini-icon"> E </i>
+                                <i class="sidenav-mini-icon"> F </i>
                                 <span class="item-name">Logo And Favicon</span>
                             </a>
                         </li>
@@ -509,7 +523,7 @@
                                         </g>
                                     </svg>
                                 </i>
-                                <i class="sidenav-mini-icon"> F </i>
+                                <i class="sidenav-mini-icon"> G </i>
                                 <span class="item-name">Color Scheme</span>
                             </a>
                         </li>

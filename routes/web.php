@@ -85,6 +85,12 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::match(["GET", "POST"], 'add', [SliderController::class, 'add'])->name('add');
         Route::match(["GET", "POST"], 'edit/{slider_id}', [SliderController::class, 'edit'])->name('edit');
         Route::match(["GET", "POST"], 'del/{slider_id}', [SliderController::class, 'del'])->name('del');
+        Route::prefix('navigation')->name('navigation.')->group(function () {
+            Route::get('index', [SliderController::class, 'navigationIndex'])->name('index');
+            Route::match(["GET", "POST"], 'add', [SliderController::class, 'navigationAdd'])->name('add');
+            Route::match(["GET", "POST"], 'edit/{navigation_id}', [SliderController::class, 'navigationEdit'])->name('edit');
+            Route::match(["GET", "POST"], 'del/{navigation_id}', [SliderController::class, 'navigationDel'])->name('del');
+        });
     });
     Route::prefix('treatment')->name('treatment.')->group(function () {
         Route::get('', [TreatmentController::class, 'index'])->name('index');
