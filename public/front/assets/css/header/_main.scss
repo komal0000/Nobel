@@ -25,10 +25,17 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        @media (max-width: 500px) {
+            padding: 0;
+
+        }
 
         .logo {
             max-height: 75px;
             width: auto;
+            @media (max-width: 1199px) {
+                max-height: 50px;
+            }
         }
 
         .navbar {

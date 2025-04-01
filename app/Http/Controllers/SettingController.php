@@ -35,6 +35,7 @@ class SettingController extends Controller
             "Top",
             [
                 ['logo', 0],
+                ['mobileLogo',0],
                 ['favicon', 0],
             ],
             [

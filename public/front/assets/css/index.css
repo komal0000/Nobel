@@ -911,9 +911,19 @@ section:nth-of-type(odd) {
   justify-content: space-between;
   align-items: center;
 }
+@media (max-width: 500px) {
+  .site-header .main-container {
+    padding: 0;
+  }
+}
 .site-header .main-container .logo {
   max-height: 75px;
   width: auto;
+}
+@media (max-width: 1199px) {
+  .site-header .main-container .logo {
+    max-height: 50px;
+  }
 }
 .site-header .main-container .navbar {
   color: var(--color-grey);
