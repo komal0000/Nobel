@@ -47,7 +47,6 @@
                             </div>
                             <br>
                             <div class="option">
-                                <a href="{{route('admin.video.edit',['video_id'=>$video->id])}}" class="btn btn-warning">Edit</a>
                                 <a href="{{route('admin.video.del',['video_id'=>$video->id])}}" class="btn btn-danger">Delete</a>
                             </div>
                         </div>
