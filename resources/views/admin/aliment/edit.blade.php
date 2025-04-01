@@ -21,7 +21,7 @@
         <div class="col-md-7 mb-3">
             <div class="row">
                 <div class="col-md-6">
-                    <label for="aliment_icon">Icon <span style="color: red;">*</span></label>
+                    <label for="aliment_icon">Icon 1:1<span style="color: red;">*</span></label>
                     <input type="file" class="form-control dropify" id="aliment_icon" name="icon" accept="image/*"
                         data-default-file="{{ Storage::url($aliment->icon) }}">
                 </div>

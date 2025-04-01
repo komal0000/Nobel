@@ -9,7 +9,7 @@
         @csrf
         <div class="row">
             <div class="col-md-6">
-                <label for="icon">Icon</label>
+                <label for="icon">Icon 1:1 </label>
                 <input type="file" name="icon" id="icon" class="form-control dropify" accept="image/*"
                     data-default-file="{{ Storage::url($alimentType->icon) }}">
             </div>

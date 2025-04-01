@@ -1242,7 +1242,6 @@ section:nth-of-type(odd) {
 }
 @media (max-width: 480px) {
   .site-header .main-container .hide-feedback {
-    width: 100%;
     max-height: 0;
     transform: translateY(-100%);
     opacity: 0;
@@ -1271,6 +1270,15 @@ section:nth-of-type(odd) {
 }
 #submit-callback:hover {
   background-color: var(--color-dark-1);
+}
+
+#homepageModal .modal-dialog {
+  max-width: 768px;
+}
+@media (max-width: 800px) {
+  #homepageModal .modal-dialog {
+    margin: 8px;
+  }
 }
 
 #home-top-banner {
@@ -1380,6 +1388,9 @@ section:nth-of-type(odd) {
     box-shadow: none;
   }
 }
+#home-top-banner .slide-list .floating-tab .slick-list {
+  border-radius: 15px;
+}
 #home-top-banner .slide-list .floating-tab .slick-prev {
   border: none;
   height: 38px;
@@ -1418,7 +1429,7 @@ section:nth-of-type(odd) {
   transition: background-color 0.5s, color 0.5s;
   justify-content: center;
   min-height: 80px;
-  border-right: 1px solid var(--border-color-light);
+  border-right: 1px solid var(--border-color);
 }
 @media (max-width: 768px) {
   #home-top-banner .slide-list .floating-tab a {

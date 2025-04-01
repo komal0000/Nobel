@@ -8,7 +8,7 @@
         @csrf
         <div class="row">
             <div class="col-md-6">
-                <label for="icon">Icon <span style="color: red;">*</span></label>
+                <label for="icon">Icon 1:1 <span style="color: red;">*</span></label>
                 <input type="file" name="icon" id="icon" class="form-control dropify" accept="image/*" required>
             </div>
             <div class="col-md-6">
