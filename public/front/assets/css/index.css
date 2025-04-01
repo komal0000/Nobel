@@ -926,6 +926,9 @@ section:nth-of-type(odd) {
     align-items: flex-start;
   }
 }
+.site-header .main-container .logo-link {
+  align-self: center;
+}
 .site-header .main-container .logo {
   align-self: center;
   height: 75px;
@@ -1141,14 +1144,9 @@ section:nth-of-type(odd) {
   background-color: var(--color-white);
   max-height: 50px;
 }
-@media screen and (max-width: 769px) {
-  .site-header .main-container .feedback-contact {
-    gap: 15px;
-  }
-}
 @media (max-width: 480px) {
   .site-header .main-container .feedback-contact {
-    justify-content: center;
+    align-self: center;
   }
 }
 .site-header .main-container .feedback-contact a,
