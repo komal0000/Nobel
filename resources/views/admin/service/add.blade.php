@@ -15,12 +15,12 @@
                             required>
                     </div>
                     <div class="col-md-4 mb-2">
-                        <label for="image">Image <span style="color: red;">*</span></label>
+                        <label for="image">Image 4:2 <span style="color: red;">*</span></label>
                         <input type="file" name="image" id="image" class="form-control dropify" accept="image/*"
                             required>
                     </div>
                     <div class="col-md-4 mb-2">
-                        <label for="single_page_image">Single Page Image <span style="color: red;">*</span></label>
+                        <label for="single_page_image">Single Page Image 4:1<span style="color: red;">*</span></label>
                         <input type="file" name="single_page_image" id="single_page_image" class="form-control dropify"
                             accept="image/*" required>
                     </div>
