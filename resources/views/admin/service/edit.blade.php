@@ -11,7 +11,7 @@
             <div class="col-md-7">
                 <div class="row">
                     <div class="col-md-4 mb-2">
-                        <label for="icon">Icon</label>
+                        <label for="icon">Icon 1:1</label>
                         <input type="file" name="icon" id="icon" class="form-control dropify"
                             data-default-file="{{ Storage::url($service->icon) }}" accept="image/*">
                     </div>

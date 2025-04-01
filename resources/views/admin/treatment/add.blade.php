@@ -24,11 +24,11 @@
             <div class="col-md-6">
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="icon">Icon <span style="color: red;">*</span></label>
+                        <label for="icon">Icon 1:1 <span style="color: red;">*</span></label>
                         <input type="file" class="form-control dropify" id="icon" name="icon" accept="image/*">
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="single_page_image">Single Page Image <span style="color: red;">*</span></label>
+                        <label for="single_page_image">Single Page Image 4:1 <span style="color: red;">*</span></label>
                         <input type="file" class="form-control dropify" id="single_page_image" name="single_page_image"
                             accept="image/*">
                     </div>

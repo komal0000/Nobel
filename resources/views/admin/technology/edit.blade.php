@@ -8,12 +8,12 @@
         <div class="col-md-6 mb-3">
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <label for="technology_image">Image <span style="color: red">*</span></label>
+                    <label for="technology_image">Image 4:2 <span style="color: red">*</span></label>
                     <input type="file" name="technology_image" id="technology_image" class="form-control dropify"
                         accept="image/*" data-default-file="{{ Storage::url($technology->image) }}">
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="technology_single_page_image">Single Page Image <span style="color: red">*</span></label>
+                    <label for="technology_single_page_image">Single Page Image 4:1 <span style="color: red">*</span></label>
                     <input type="file" name="technology_single_page_image" id="technology_single_page_image"
                         class="form-control dropify" data-default-file="{{ Storage::url($technology->single_page_image) }}"
                         required accept="image/*">
