@@ -77,8 +77,11 @@ class SliderController extends Controller
             $navigation = new SliderNavigation();
             $navigation->title = $request->title;
             $navigation->link = $request->link;
-            $navigation->icon = $request->icon;
+            if ($request->hasFile('icon')) {
+                $navigation->icon = $request->file('icon')->store('uploads/slider/navigation', 'public');
+            }
             $navigation->save();
+            $this->renderNavigation();
             return redirect()->back()->with("success", "Slider Navigation Successfully Added");
         }
     }
@@ -89,18 +92,27 @@ class SliderController extends Controller
         } else {
             $navigation->title = $request->title;
             $navigation->link = $request->link;
-            $navigation->icon = $request->icon;
+            if ($request->hasFile('icon')) {
+                $navigation->icon = $request->file('icon')->store('uploads/slider/navigation', 'public');
+            }
             $navigation->save();
+            $this->renderNavigation();
             return redirect()->back()->with("success", "Slider Navigation Successfully Updated");
         }
     }
     public function navigationDel($navigation_id){
         SliderNavigation::where('id',$navigation_id)->delete();
+        $this->renderNavigation();
         return redirect()->back()->with("delete_success", "Slider Navigation Successfully Deleted");
     }
     public function render(){
         $sliders = DB::table('sliders')->get(['id','desktop_image','mobile_image']);
         Helper::putCache('home.slider',view('admin.template.home.slider',compact('sliders'))->render());
+    }
+
+    public function renderNavigation(){
+        $navigations = DB::table('slider_navigations')->get(['id','title','link','icon']);
+        Helper::putCache('home.sliderNavigation',view('admin.template.home.sliderNavigation',compact('navigations'))->render());
     }
 
 

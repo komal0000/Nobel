@@ -3,7 +3,7 @@
     <link rel="stylesheet" type="text/css" />
 @endsection
 @section('content')
-    @includeif('front.cache.home.slider')
+    @include('front.pages.home.slider')
     @include('front.pages.home.speciality')
     @include('front.pages.home.team')
     @includeIf('front.cache.home.care')

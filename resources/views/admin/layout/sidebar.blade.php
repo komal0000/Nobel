@@ -388,20 +388,7 @@
                                 <span class="item-name">Technology Section Type</span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="{{ route('admin.setting.contact') }}">
-                                <i class="icon">
-                                    <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
-                                        viewBox="0 0 24 24" fill="currentColor">
-                                        <g>
-                                            <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
-                                        </g>
-                                    </svg>
-                                </i>
-                                <i class="sidenav-mini-icon"> C </i>
-                                <span class="item-name">Contact</span>
-                            </a>
-                        </li>
+
                     </ul>
                 </li>
                 <li class="nav-item" style="margin-bottom: 50px;">
@@ -514,7 +501,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="{{ route('admin.setting.colorscheme') }}">
+                            <a class="nav-link " href="{{ route('admin.setting.contact') }}">
                                 <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
                                         viewBox="0 0 24 24" fill="currentColor">
@@ -524,6 +511,20 @@
                                     </svg>
                                 </i>
                                 <i class="sidenav-mini-icon"> G </i>
+                                <span class="item-name">Contact</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="{{ route('admin.setting.colorscheme') }}">
+                                <i class="icon">
+                                    <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
+                                        viewBox="0 0 24 24" fill="currentColor">
+                                        <g>
+                                            <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                        </g>
+                                    </svg>
+                                </i>
+                                <i class="sidenav-mini-icon"> H </i>
                                 <span class="item-name">Color Scheme</span>
                             </a>
                         </li>

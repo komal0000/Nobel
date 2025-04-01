@@ -7,16 +7,16 @@
     <form action="{{ route('admin.slider.navigation.add') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-5">
                 <div class="row">
                     <div class="col-md-12 mb-2">
-                        <label for="icon">Icon <span style="color: red;">*</span></label>
+                        <label for="icon">Icon 1:1<span style="color: red;">*</span></label>
                         <input type="file" name="icon" id="icon" class="form-control dropify" accept="image/*"
                             required>
                     </div>
                 </div>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-7">
                 <div class="col-md-12 mb-2">
                     <label for="title">Title <span style="color: red;">*</span></label>
                     <input type="text" name="title" id="title" class="form-control" required>

@@ -365,3 +365,20 @@ $(document).ready(function() {
         $('#list-wrap').hide();
     });
 });
+function toggleFeedback() {
+    if ($(window).width() < 481) {
+        $(window).on("scroll", function() {
+            if ($(window).scrollTop() > 100) {
+                $(".feedback-contact").addClass('hide-feedback');
+
+            } else {
+                $(".feedback-contact").removeClass('hide-feedback');
+            }
+        });
+    } else {
+        $(window).off("scroll");
+    }
+}
+
+toggleFeedback();
+$(window).on("resize", toggleFeedback);
