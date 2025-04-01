@@ -16,6 +16,7 @@ $(document).ready(function() {
 
     showMoreCards();
     $("#load-more").on("click", function() {
+        console.log("Load more clicked");
         showMoreCards();
     });
 });

@@ -46,11 +46,3 @@
         </div>
     </div>
 </footer>
-
-@push('js')
-    <script>
-        function expand(el) {
-            $(el).toggleClass('active');
-        }
-    </script>
-@endpush

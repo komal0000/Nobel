@@ -43,8 +43,55 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
-
     @yield('js')
+    <script>
+        // Toggle submenu active state
+        function extendSubMenu(el) {
+            const $el = $(el);
+            if ($el.hasClass('active-list')) {
+                $el.removeClass('active-list');
+                return;
+            }
+            $('.navbar-item').removeClass('active-list');
+            $el.addClass('active-list');
+        }
+
+        // Toggle knowledge submenu
+        function extendKnowledgeSubMenu(el, event) {
+            event.stopPropagation();
+            $(el).toggleClass('active-knowledge');
+        }
+
+        // Show/hide feedback based on scroll position on mobile
+        function toggleFeedback() {
+            if ($(window).width() < 481) {
+                $(window).on("scroll", function() {
+                    $(".feedback-contact").toggleClass('hide-feedback', $(window).scrollTop() > 100);
+                });
+            } else {
+                $(window).off("scroll");
+            }
+        }
+
+        // Toggle active class
+        function expand(el) {
+            $(el).toggleClass('active');
+        }
+
+        // Document ready handler
+        $(document).ready(function() {
+            // Initialize feedback visibility
+            toggleFeedback();
+
+            // Handle window resize
+            $(window).on("resize", toggleFeedback);
+
+            // Mobile navbar toggle
+            $('#toggle-navbar').click(function() {
+                $('#navbar').toggleClass('show-navbar').css('transform', 'scale(1)');
+            });
+        });
+    </script>
 </body>
 
 </html>

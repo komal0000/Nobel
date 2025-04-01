@@ -7,5 +7,5 @@
 @include('front.cache.speciality.index')
 @endsection
 @section('js')
-<script src="{{ asset('front/assets/js/home/index.js') }}" ></script>
+<script src="{{ asset('front/assets/js/speciality/index.js') }}" ></script>
 @endsection

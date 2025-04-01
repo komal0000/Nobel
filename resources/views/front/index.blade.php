@@ -15,5 +15,5 @@
     @includeIf('front.cache.home.newsEvent')
 @endsection
 @section('js')
-    <script src="front/assets/js/home/index.js"></script>
+    <script src="{{ asset('front/assets/js/home/index.js') }}"></script>
 @endsection

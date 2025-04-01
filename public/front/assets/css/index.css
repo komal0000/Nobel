@@ -927,6 +927,7 @@ section:nth-of-type(odd) {
   }
 }
 .site-header .main-container .logo {
+  align-self: center;
   height: 75px;
   width: auto;
   z-index: 999;
@@ -1143,6 +1144,11 @@ section:nth-of-type(odd) {
 @media screen and (max-width: 769px) {
   .site-header .main-container .feedback-contact {
     gap: 15px;
+  }
+}
+@media (max-width: 480px) {
+  .site-header .main-container .feedback-contact {
+    justify-content: center;
   }
 }
 .site-header .main-container .feedback-contact a,
