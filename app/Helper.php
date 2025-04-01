@@ -53,7 +53,7 @@ class Helper
 
     public static function getMonthName(int $timestamp): string
     {
-        return Carbon::createFromTimestamp($timestamp)->format('F');
+     return Carbon::createFromTimestamp($timestamp)->format('M');
     }
 
     public static function getDayNumber($date): int
