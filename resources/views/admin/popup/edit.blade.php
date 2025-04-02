@@ -24,7 +24,7 @@
                 </div>
                 <div class="col-md-12 mb-2">
                     <label for="link">Link</label>
-                    <input type="text" name="link" id="link" class="form-control" value="{{ $popup->link ?? '' }}">
+                    <input type="text" name="link" id="link" class="form-control" value="{{ $popup->link }}">
                 </div>
                 <div class="col-md-12 d-flex justify-content-end">
                     <button class="btn btn-primary">

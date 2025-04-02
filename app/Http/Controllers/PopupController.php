@@ -22,6 +22,7 @@ class PopupController extends Controller
         } else {
             $popup = new Popup();
             $popup->title = $request->title;
+            $popup->link = $request->link;
 
             if ($request->hasFile('image')) {
                 $popup->image = $request->file('image')->store('uploads/popup', 'public');
@@ -40,7 +41,7 @@ class PopupController extends Controller
             return view('admin.popup.edit', compact('popup'));
         } else {
             $popup->title = $request->title;
-
+            $popup->link = $request->link;
             if ($request->hasFile('image')) {
                 $popup->image = $request->file('image')->store('uploads/popup', 'public');
             }

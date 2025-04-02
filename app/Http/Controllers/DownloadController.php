@@ -131,6 +131,7 @@ class DownloadController extends Controller
 
     public function render(){
         $downloadMainType = DB::table('download_categories')->where('parent_id', null)->get();
-        Helper::putCache('download.index',view('admin.template.download.index',compact('downloadMainType'))->render());
+        $downloads = DB::table('downloads')->get();
+        Helper::putCache('download.index',view('admin.template.download.index',compact('downloadMainType','downloads'))->render());
     }
 }
