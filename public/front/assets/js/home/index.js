@@ -1,5 +1,5 @@
 // Main JS for home page
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Initialize sliders
     initSliders();
 
@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize lightbox
     initLightbox();
+    $("#homepageModal").modal("show");
 });
 
 /**
@@ -181,21 +182,21 @@ function initLightbox() {
  */
 function setupEventListeners() {
     // Speciality filter
-    $('.sp-btn').on('click', function() {
+    $('.sp-btn').on('click', function () {
         setActive(this);
     });
 
     // Find doctor speciality dropdown
-    $('#default-speciality-wrap').on('click', function() {
+    $('#default-speciality-wrap').on('click', function () {
         const $listWrap = $('#list-wrap');
-        if($listWrap.css('display') === 'block') {
+        if ($listWrap.css('display') === 'block') {
             $listWrap.css('display', 'none');
             return;
         }
         $listWrap.css('display', 'block');
     });
 
-    $('#list-wrap ul li').on('click', function() {
+    $('#list-wrap ul li').on('click', function () {
         const selectedText = $(this).text();
         const selectedValue = $(this).data('value');
 
@@ -205,7 +206,7 @@ function setupEventListeners() {
     });
 
     // Model of care - center image changing
-    $('.click-circle').on('click', function(e) {
+    $('.click-circle').on('click', function (e) {
         e.preventDefault();
         const imgSrc = $(this).attr('datasrc');
         const $image = $('.center-image');
@@ -220,7 +221,7 @@ function setupEventListeners() {
         // Force reflow
         $image[0].offsetHeight;
 
-        setTimeout(function() {
+        setTimeout(function () {
             $image.css('transition', 'transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.8s ease');
             $image.css({
                 'transform': 'scale(1)',
@@ -242,12 +243,12 @@ function setupEventListeners() {
     $('.center-image').addClass('normal');
 
     // Tab functionality for events
-    $('.tab').on('click', function() {
+    $('.tab').on('click', function () {
         changeTab(this);
     });
 
     // Mobile nav toggle
-    $('#toggle-navbar').on('click', function() {
+    $('#toggle-navbar').on('click', function () {
         $('#navbar').toggleClass('show-navbar');
         $('#navbar').css({
             'transform': 'scale(1)'
@@ -258,22 +259,22 @@ function setupEventListeners() {
     });
 
     // Menu toggles for header dropdowns
-    $('.navbar-item').on('click', function() {
+    $('.navbar-item').on('click', function () {
         extendSubMenu(this);
     });
 
     // Knowledge submenu toggle (with stop propagation)
-    $('.knowledge-drop').on('click', function(e) {
+    $('.knowledge-drop').on('click', function (e) {
         extendKnowledgeSubMenu(this, e);
     });
 
     // Footer accordion for mobile
-    $('.footer-block').on('click', function() {
+    $('.footer-block').on('click', function () {
         expand(this);
     });
 
     // Why us mobile accordion
-    $('.accor-list li').on('click', function() {
+    $('.accor-list li').on('click', function () {
         expand(this);
     });
 }
@@ -327,14 +328,14 @@ function extendKnowledgeSubMenu(el, event) {
 function equalizeCardHeight(selector) {
     let maxHeight = 0;
 
-    $(selector).css('height', 'auto').each(function() {
+    $(selector).css('height', 'auto').each(function () {
         maxHeight = Math.max(maxHeight, $(this).height());
     });
 
     $(selector).height(maxHeight);
 }
 document.querySelectorAll('.list-accor li').forEach(element => {
-    element.addEventListener('click', function() {
+    element.addEventListener('click', function () {
         console.log('clicked');
         this.classList.toggle('active');
     });
@@ -347,16 +348,16 @@ function showList() {
     const $listWrap = $('#list-wrap');
     $listWrap.toggle();
 }
-$(document).ready(function() {
-    $('#speciality-search').on('input', function() {
+$(document).ready(function () {
+    $('#speciality-search').on('input', function () {
         const searchText = $(this).val().toLowerCase();
-        $('#find-doc-speciality li').each(function() {
+        $('#find-doc-speciality li').each(function () {
             const text = $(this).text().toLowerCase();
             $(this).toggle(text.includes(searchText));
         });
     });
 
-    $('#find-doc-speciality li').on('click', function() {
+    $('#find-doc-speciality li').on('click', function () {
         const selectedText = $(this).text();
         const selectedValue = $(this).data('value');
 
@@ -367,7 +368,7 @@ $(document).ready(function() {
 });
 function toggleFeedback() {
     if ($(window).width() < 481) {
-        $(window).on("scroll", function() {
+        $(window).on("scroll", function () {
             if ($(window).scrollTop() > 100) {
                 $(".feedback-contact").addClass('hide-feedback');
 
