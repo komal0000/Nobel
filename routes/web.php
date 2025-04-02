@@ -98,6 +98,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::match(["GET", "POST"], 'add', [PopupController::class, 'add'])->name('add');
         Route::match(["GET", "POST"], 'edit/{popup_id}', [PopupController::class, 'edit'])->name('edit');
         Route::match(["GET", "POST"], 'del/{popup_id}', [PopupController::class, 'del'])->name('del');
+        Route::match(["GET", "POST"], 'activate/{popup_id}', [PopupController::class, 'activate'])->name('activate');
+        Route::match(["GET", "POST"], 'deactivate/{popup_id}', [PopupController::class, 'deactivate'])->name('deactivate');
     });
     Route::prefix('treatment')->name('treatment.')->group(function () {
         Route::get('', [TreatmentController::class, 'index'])->name('index');
