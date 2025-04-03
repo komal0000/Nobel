@@ -17,7 +17,7 @@
     @endif
 @endsection
 @section('content')
-    <form>
+    <form onSubmit="event.preventDefault();">
         <div class="row">
             <input type="hidden" name="specialty_id" id="specialty_id" value="{{ $speciality_id }}">
             <div class="col-md-7 mb-3">
