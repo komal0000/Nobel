@@ -50,10 +50,6 @@ class FrontController extends Controller
     public function downloadIndex(){
         return view('front.pages.download.index');
     }
-    public function downloadSingle($id){
-        return view('front.pages.download.single',compact('id'));
-    }
-
     public function eventIndex(){
         return view('front.pages.event.index');
     }
@@ -64,5 +60,9 @@ class FrontController extends Controller
 
     public function videoIndex(){
         return view('front.pages.knowledge.video.index');
+    }
+
+    public function healthIndex(){
+        return view('front.pages.health.index');
     }
 }

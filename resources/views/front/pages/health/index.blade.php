@@ -1,0 +1,15 @@
+@extends('front.layout.app')
+@section('title', 'Health Library')
+@section('meta', 'Health Library page for the website')
+
+@section('content')
+    @includeIF('front.cache.health.banner')
+    @includeIF('front.cache.health.diseases')
+    @includeIF('front.cache.health')
+    @includeIF('front.cache.health.health-care')
+    @includeIF('front.cache.health.technology')
+    @includeIF('front.cache.health.knowledge')
+    @includeIF('front.cache.health.health-wellness')
+    @includeIF('front.cache.health.download')
+    @includeIF('front.cache.health.event')
+@endsection
