@@ -174,4 +174,17 @@ class SettingController extends Controller
             return response()->json(['success' => true]);
         }
     }
+
+    public function RequestCallBack(){
+        $setting = New Setting();
+        $setting->key = 'request_call_back';
+        $data = request()->validate([
+            'name' => 'required|string',
+            'phoneNumber' => 'required|string',
+            'email' => 'required|email',
+        ]);
+        $setting->value = json_encode($data);
+        return redirect()->back()->with('success', 'Request submitted successfully');
+        $setting->save();
+    }
 }

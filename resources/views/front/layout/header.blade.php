@@ -91,22 +91,14 @@
             </div>
         </nav>
         <div class="feedback-contact d-flex">
-            <a href="#" class="feedback-btn navbar-link">
+            <a href="{{ route('contact') }}" class="feedback-btn navbar-link">
                 <img src="{{ asset('front/assets/img/write-message.png') }}" class="feedback-image" alt="Feedback">
             </a>
             <a href="#" class="whatsapp-link">
                 <img src="{{ asset('front/assets/img/whatsapp.png') }}" alt="WhatsApp" class="whatsapp-image">
                 <span>WhatsApp</span>
             </a>
-            <a class="emergency-btn" href="tel:1068">
-                <img src="{{ asset('front/assets/img/emergency.png') }}" alt="Emergency" width="50" height="50">
-            </a>
-            <a class="md-emergency-btn" href="tel:1068">
-                <img src="{{ asset('front/assets/img/emergency.png') }}" alt="Emergency" width="50" height="50">
-                <span>Emergency</span>
-            </a>
-
-            <button href="#" class="call-back navbar-link" data-bs-toggle="modal"
+            <button class="call-back navbar-link" data-bs-toggle="modal"
                 data-bs-target="#resume-modal">
                 <img src="{{ asset('front/assets/img/phone-icon.png') }}" alt="Call Back" class="call-back-image me-1">
                 <small>Request Call Back</small>
@@ -125,7 +117,7 @@
                 <h2 class="modal-title heading-md text-center">Request Call Back</h2>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="">
+            <form action="{{ route('admin.setting.requestCallBack') }}">
                 @csrf
                 <div class="row">
                     <div class="col-12">
