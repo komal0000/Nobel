@@ -1259,6 +1259,42 @@ section:nth-of-type(odd) {
   }
 }
 
+.section-nav {
+  padding: 12px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.section-nav .section-navbar-container {
+  max-width: 1200px;
+  display: flex;
+  justify-content: flex-start;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+.section-nav .section-navbar-container ul {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  padding: 0 10px;
+}
+.section-nav .section-navbar-container ul margin li a {
+  text-decoration: none;
+  color: var(--color-grey);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 5px 10px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+.section-nav .section-navbar-container ul margin li a:hover {
+  color: var(--color-light-1);
+}
+.section-nav .section-navbar-container ul margin li a.active {
+  color: var(--color-main);
+}
+
 #submit-callback {
   color: var(--color-white);
   background-color: var(--color-main);
@@ -1278,7 +1314,7 @@ section:nth-of-type(odd) {
 }
 @media (max-width: 800px) {
   #homepageModal .modal-dialog {
-    margin: 8px;
+    margin: 16px;
   }
 }
 
@@ -2012,6 +2048,7 @@ section:nth-of-type(odd) {
   z-index: 99;
 }
 .services .main-container .service-slider .slide {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   background-color: var(--color-white);
   border-radius: 25px;
 }
@@ -2021,7 +2058,7 @@ section:nth-of-type(odd) {
   border-radius: 20px;
 }
 .services .main-container .service-slider .slide .body {
-  padding: 50px;
+  padding: 30px;
   cursor: pointer;
   text-align: left;
 }
@@ -2033,10 +2070,18 @@ section:nth-of-type(odd) {
 .services .main-container .service-slider .slide .body .heading-md {
   font-weight: 700;
   color: var(--color-dark-grey);
+  line-height: 30px;
+  height: 30px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .services .main-container .service-slider .slide .body .content {
   color: var(--color-grey);
   margin: 14px 0;
+  line-height: 16px;
+  height: 64px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 @media (max-width: 992px) {
   .services .main-container .service-slider .slide .body .content {
@@ -4187,6 +4232,10 @@ section:nth-of-type(odd) {
   border-bottom: 1px solid var(--border-color);
   padding-bottom: 15px;
   margin-bottom: 15px;
+  line-height: 25px;
+  height: 55px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .video-card .body .heading-sm::after {
   left: 0;
