@@ -97,7 +97,7 @@ class DownloadController extends Controller
             if ($request->hasFile('link')) {
                 $download->link = $request->file('link')->store('uploads/link', 'public');
             }
-            $download->uploaded_date = $request->uploaded_date;
+            $download->uploaded_date = Helper::convertDateToInteger($request->uploaded_date);
             $download->download_category_id = $category;
             $download->save();
             $this->render();
@@ -121,7 +121,7 @@ class DownloadController extends Controller
             if ($request->hasFile('link')) {
                 $download->link = $request->file('link')->store('uploads/link', 'public');
             }
-            $download->uploaded_date = $request->uploaded_date;
+            $download->uploaded_date = Helper::convertDateToInteger($request->uploaded_date);
             $download->save();
             $this->render();
             return redirect()->back()->with('success', 'Download successfully updated ');
@@ -137,6 +137,7 @@ class DownloadController extends Controller
     public function render(){
         $downloadMainType = DB::table('download_categories')->where('parent_id', null)->get();
         $downloads = DB::table('downloads')->get();
+        Helper::putCache('health.download',view('admin.template.health.download',compact('downloads'))->render());
         Helper::putCache('download.index',view('admin.template.download.index',compact('downloadMainType','downloads'))->render());
     }
 }

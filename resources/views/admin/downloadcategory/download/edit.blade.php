@@ -43,8 +43,7 @@
                 <div class="row d-flex align-items-end">
                     <div class="col-md-8">
                         <label for="uploaded_date">Uploaded Date <span style="color: red;">*</span></label>
-                        <input type="date" name="uploaded_date" id="uploaded_date" class="form-control"
-                            value="{{ $download->uploaded_date }}" required>
+                        <input type="date" name="uploaded_date" id="uploaded_date" class="form-control" value="{{ $download->uploaded_date }}" required>
                     </div>
                     <div class="col-md-4">
                         <button type="submit" class="btn btn-success">
