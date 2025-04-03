@@ -23,7 +23,7 @@
                 <label for="title">Title <span style="color: red;">*</span></label>
                 <input type="text" name="title" id="title" class="form-control" required>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 d-flex align-items-end">
                 <button class="btn btn-primary">
                     Save
                 </button>

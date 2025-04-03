@@ -51,11 +51,15 @@
                         ->where('technology_id', $technology->id)
                         ->where('technology_section_type_id', $type->id)
                         ->first();
-                    $sectionDatas = DB::table('technology_section_data')
-                        ->where('technology_id', $technology->id)
-                        ->where('technology_section_type_id', $type->id)
-                        ->where('technology_section_id', $section->id)
-                        ->get();
+                    $sectionDatas=[];
+                    if($section){
+
+                        $sectionDatas = DB::table('technology_section_data')
+                            ->where('technology_id', $technology->id)
+                            ->where('technology_section_type_id', $type->id)
+                            ->where('technology_section_id', $section->id)
+                            ->get();
+                    }
                 @endphp
                 <div class="accordion mb-3" id="accordionPanelsStayOpenExample">
                     <div class="accordion-type" style="border-radius: 0px;">
@@ -79,14 +83,14 @@
                                         <label for="image">Image <span style="color: red;">*</span></label>
                                         <input type="file" name="image" id="image_{{ $type->id }}"
                                             class="form-control dropify" accept="image/*"
-                                            data-default-file="{{ Storage::url($section->image) }}">
+                                            data-default-file="{{ Storage::url($section?->image) }}">
                                     </div>
                                     <div class="col-md-8">
                                         <div class="row">
                                             <div class="col-md-6 mb-3">
                                                 <label for="title">Title <span style="color: red;">*</span> </label>
                                                 <input type="text" name="title" id="title_{{ $type->id }}"
-                                                    class="form-control" value="{{ $section->title }}">
+                                                    class="form-control" value="{{ $section?->title }}">
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="designType">Design Type <span
@@ -94,20 +98,20 @@
                                                 <select name="designType" id="designType_{{ $type->id }}"
                                                     class="form-control">
                                                     <option value="1"
-                                                        {{ $section->design_type == 1 ? 'selected' : '' }}>
+                                                        {{ $section?->design_type == 1 ? 'selected' : '' }}>
                                                         Type 1</option>
                                                     <option value="2"
-                                                        {{ $section->design_type == 2 ? 'selected' : '' }}>
+                                                        {{ $section?->design_type == 2 ? 'selected' : '' }}>
                                                         Type 2</option>
                                                     <option value="3"
-                                                        {{ $section->design_type == 3 ? 'selected' : '' }}>
+                                                        {{ $section?->design_type == 3 ? 'selected' : '' }}>
                                                         Type 3</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-12 mb-3">
                                                 <label for="short_description">Short Description <span
                                                         style="color: red;">*</span></label>
-                                                <textarea name="short_description" id="short_description_{{ $type->id }}" class="form-control">{{ $section->short_description }}</textarea>
+                                                <textarea name="short_description" id="short_description_{{ $type->id }}" class="form-control">{{ $section?->short_description }}</textarea>
                                             </div>
                                         </div>
                                     </div>
