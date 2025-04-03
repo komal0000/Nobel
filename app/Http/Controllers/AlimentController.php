@@ -61,7 +61,7 @@ class AlimentController extends Controller
                 }
             }
             $this->render($aliment->id ,$aliment->specialty_id);
-            session()->flash('success', 'Award Successfully Added');
+            session()->flash('success', 'Ailment Successfully Added');
             return response()->json(['success' => true]);
         }
     }
