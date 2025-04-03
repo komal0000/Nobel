@@ -17,6 +17,6 @@
         </div>
     </div>
     <div class="main-container text-center">
-        <x-hoverBtn href="#" class="view-all">View All Patients</x-hoverBtn>
+        <x-hoverBtn href="#" class="view-all">View All </x-hoverBtn>
     </div>
 </section>

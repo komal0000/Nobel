@@ -84,8 +84,10 @@ class VideoController extends Controller
     {
         $VideoType = DB::table('video_types')->where('home_video', 1)->first();
         $homeVideos = Video::where('video_type_id', $VideoType->id)->get();
-
         $videoTypes = DB::table('video_types')->get(['id', 'title']);
+
+        $videos = DB::table('videos')->get();
+        Helper::putCache('health.knowledge.video',view('admin.template.health.knowledge.video', compact('videos'))->render());
         Helper::putCache('knowledge.video',view('admin.template.knowledge.video.index', compact('videoTypes'))->render());
         Helper::putCache('home.videos', view('admin.template.home.videos', compact('VideoType', 'homeVideos'))->render());
     }

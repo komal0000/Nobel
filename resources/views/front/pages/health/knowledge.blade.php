@@ -10,7 +10,7 @@
         </div>
         <div class="tab-content">
             @includeIf('front.cache.health.knowledge.blogs')
-
+            @includeIf('front.cache.health.knowledge.videos')
 
             <div class="tab-panel" id="tab-3">
                 <div class="tab-slider">

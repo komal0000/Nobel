@@ -150,7 +150,7 @@ class BlogController extends Controller
             $featuredBlogs = collect(); // Ensure an empty collection if no featured blogs
         }
 
-        Helper::putCache('health.knowledge.blogs',view('admin.template.health.knowledge',compact('indexBlogs')));
+        Helper::putCache('health.knowledge.blogs',view('admin.template.health.knowledge.blogs',compact('indexBlogs')));
         Helper::putCache('knowledge.blog', view('admin.template.knowledge.blog.index', compact('indexBlogs', 'featuredBlogs'))->render());
         Helper::putCache('event.index', view('admin.template.event.index', compact('indexNews', 'eventTypes'))->render());
         Helper::putCache('home.updates', view('admin.template.home.update', compact('updateData'))->render());
