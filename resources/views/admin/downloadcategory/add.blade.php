@@ -22,9 +22,8 @@
             <div class="col-md-6">
                 <div class="row">
                     <div class="col-md-12">
-                        <label for="icon">Icon <span style="color: red;">*</span></label>
-                        <input type="file" class="form-control dropify" id="icon" name="icon" accept="image/*"
-                            required>
+                        <label for="icon">Icon</label>
+                        <input type="file" class="form-control dropify" id="icon" name="icon" accept="image/*">
                     </div>
                 </div>
             </div>

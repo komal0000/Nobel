@@ -29,7 +29,7 @@
                 <div class="col-md-12">
                     <label for="link">Pdf <span style="color: red;">*</span></label>
                     <input type="file" name="link" id="link" class="form-control dropify"
-                        accept=".pdf,application/pdf" required>
+                        accept=".pdf,application/pdf" >
 
                 </div>
             </div>
