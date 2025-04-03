@@ -5,7 +5,7 @@
     <span>Edit</span>
 @endsection
 @section('content')
-    <form action="{{ route('admin.jobCategory.job.edit', [$jobCategory->id, $job->id]) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('admin.jobCategory.job.edit', ['job_id', $job->id]) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-md-3 mb-2">
