@@ -74,7 +74,7 @@ class JobController extends Controller
             $job->title = $request->title;
             $job->type = $request->type;
             $job->location = $request->location;
-            $job->date = $request->date;
+            $job->date = Helper::convertDateToInteger($request->date);
             $job->description = $request->description;
             $job->qualification = $request->qualification;
             $job->experience = $request->experience;
@@ -95,7 +95,7 @@ class JobController extends Controller
             $job->title = $request->title;
             $job->type = $request->type;
             $job->location = $request->location;
-            $job->date = $request->date;
+            $job->date = Helper::convertDateToInteger($request->date);
             $job->description = $request->description;
             $job->qualification = $request->qualification;
             $job->experience = $request->experience;
@@ -115,7 +115,7 @@ class JobController extends Controller
     public function render()
     {
         $jobcategories = DB::table('job_categories')->get(['id', 'title', 'icon','short_description']);
-        Helper::putCache('career.jobcategory',view('admin.template.career.jobCategory', compact('jobcategories'))->render());
+        // Helper::putCache('career.jobcategory',view('admin.template.career.jobCategory', compact('jobcategories'))->render());
         Helper::putCache('career.job', view('admin.template.career.jobs', compact('jobcategories'))->render());
     }
 }
