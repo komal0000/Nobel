@@ -65,4 +65,8 @@ class FrontController extends Controller
     public function healthIndex(){
         return view('front.pages.health.index');
     }
+
+    public function jobCategory(){
+        return view('front.pages.career.jobCategory');
+    }
 }
