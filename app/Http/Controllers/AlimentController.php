@@ -69,7 +69,7 @@ class AlimentController extends Controller
 
     public function edit(Request $request, $aliment_id)
     {
-        $aliment = Aliment::findOrFail($aliment_id);
+        $aliment = Aliment::where('id',$aliment_id)->first();
 
         if (Helper::G()) {
             $speciality_id = $request->speciality_id;

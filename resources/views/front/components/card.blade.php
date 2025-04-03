@@ -6,8 +6,8 @@
         </div>
     @endif
     <div class="body {{ !$image ? 'full-width' : ''}}">
-        <h3 class="title heading-md">{{ $title ?? 'Default Title' }}</h3>
-        <p class="para-wrap content">{{ $slot ?? 'Default content' }}</p>
+        <h3 class="title heading-md">{{ $title }}</h3>
+        <p class="para-wrap content">{{ $slot }}</p>
         <div class="d-flex justify-content-between know-btn">
             <x-hoverBtn href="{{ $href }}">{{ $btn }}</x-hoverBtn>
         </div>
