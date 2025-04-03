@@ -1403,14 +1403,18 @@ section:nth-of-type(odd) {
   position: absolute;
   width: calc(90% - 40px);
   background-color: #fff;
-  display: flex;
   left: 50%;
   transform: translate(-50%, 0);
   bottom: -45px;
   box-shadow: 0 0 10px #f0f0f0;
   border-radius: 15px;
-  justify-content: space-between;
-  align-items: center;
+}
+@media (min-width: 1315px) {
+  #home-top-banner .slide-list .floating-tab {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
 }
 @media (max-width: 768px) {
   #home-top-banner .slide-list .floating-tab {
@@ -1460,13 +1464,18 @@ section:nth-of-type(odd) {
   padding: 10px 25px;
   display: flex;
   align-items: center;
-  flex: 1;
   font-size: 13px;
   font-weight: 600;
   transition: background-color 0.5s, color 0.5s;
   justify-content: center;
   min-height: 80px;
+  flex: 1;
   border-right: 1px solid var(--border-color);
+}
+@media (min-width: 1315px) {
+  #home-top-banner .slide-list .floating-tab a:last-child {
+    border-right: none;
+  }
 }
 @media (max-width: 768px) {
   #home-top-banner .slide-list .floating-tab a {
@@ -6521,6 +6530,7 @@ section:nth-of-type(odd) {
 }
 #dr-banner .content-wrapper .details button {
   padding: 10px 12px;
+  border: 1px solid;
   border-color: var(--color-main);
   border-radius: 15px;
   background-color: transparent;
@@ -8166,6 +8176,21 @@ section:nth-of-type(odd) {
 }
 #job-bottom-banner .banner-desc .resume-btn:hover {
   background-color: var(--color-dark-1);
+}
+
+#job-detail-header .desc .heading .bi {
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+#job-detail-header .desc .heading .bi:hover {
+  color: var(--color-main);
+}
+
+#job-detail-description .job-detail-title {
+  margin: 25px 0 10px;
+}
+#job-detail-description ul {
+  font-weight: 500;
 }
 
 footer {

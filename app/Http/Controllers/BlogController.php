@@ -155,5 +155,6 @@ class BlogController extends Controller
         Helper::putCache('event.index', view('admin.template.event.index', compact('indexNews', 'eventTypes'))->render());
         Helper::putCache('home.updates', view('admin.template.home.update', compact('updateData'))->render());
         Helper::putCache('home.newsEvent', view('admin.template.home.news', compact('newsData', 'eventData', 'latestNews', 'eventTypes',))->render());
+        Helper::putCache('health.blog',view('admin.template.health.event',compact('eventData')));
     }
 }
