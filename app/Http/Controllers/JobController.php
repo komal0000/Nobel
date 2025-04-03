@@ -115,7 +115,7 @@ class JobController extends Controller
     public function render()
     {
         $jobcategories = DB::table('job_categories')->get(['id', 'title', 'icon','short_description']);
-        // Helper::putCache('career.jobcategory',view('admin.template.career.jobCategory', compact('jobcategories'))->render());
+        Helper::putCache('career.jobcategory',view('admin.template.career.jobCategory', compact('jobcategories'))->render());
         Helper::putCache('career.job', view('admin.template.career.jobs', compact('jobcategories'))->render());
     }
 }
