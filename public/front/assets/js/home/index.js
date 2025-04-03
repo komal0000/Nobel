@@ -381,5 +381,11 @@ function toggleFeedback() {
     }
 }
 
+
+function SearchSpeciality(id) {
+    if (!id) return;
+    window.location.href = `/speciality/single/${id}`;
+}
+
 toggleFeedback();
 $(window).on("resize", toggleFeedback);
