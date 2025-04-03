@@ -117,7 +117,7 @@
                 <h2 class="modal-title heading-md text-center">Request Call Back</h2>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ route('admin.setting.requestCallBack') }}">
+            <form action="{{ route('admin.setting.requestCallBack') }}" method="POST">
                 @csrf
                 <div class="row">
                     <div class="col-12">

@@ -35,7 +35,7 @@ class SettingController extends Controller
             "Top",
             [
                 ['logo', 0],
-                ['mobileLogo',0],
+                ['mobileLogo', 0],
                 ['favicon', 0],
             ],
             [
@@ -163,7 +163,7 @@ class SettingController extends Controller
                 $colorScheme->save();
             }
             $oldData  = json_decode($colorScheme->value, true);
-            return view('admin.setting.colorscheme', compact('colorScheme','oldData'));
+            return view('admin.setting.colorscheme', compact('colorScheme', 'oldData'));
         } else {
             Setting::updateOrCreate(
                 ['key' => 'color_scheme'],
@@ -175,8 +175,9 @@ class SettingController extends Controller
         }
     }
 
-    public function RequestCallBack(){
-        $setting = New Setting();
+    public function RequestCallBack()
+    {
+        $setting = new Setting();
         $setting->key = 'request_call_back';
         $data = request()->validate([
             'name' => 'required|string',
@@ -184,7 +185,6 @@ class SettingController extends Controller
             'email' => 'required|email',
         ]);
         $setting->value = json_encode($data);
-        return redirect()->back()->with('success', 'Request submitted successfully');
         $setting->save();
     }
 }
