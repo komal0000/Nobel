@@ -1,10 +1,10 @@
 <div id="blogs" class="border-bottom pb-5">
-    <section id="featured-blog">
+    <section id="all-blogs">
         <div class="main-container">
             <div class="heading mb-4">Featured Blogs</div>
             <div class="row g-4">
                 @foreach ($featuredBlogs as $blog)
-                    <div class="col-md-6 col-xl-3 featured-blog-card">
+                    <div class="col-md-6 col-xl-3 all-blog-card">
                         @php
                             $blogType = App\Models\BlogCategory::where('id', $blog->blog_category_id)->first();
                         @endphp
