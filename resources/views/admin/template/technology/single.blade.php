@@ -40,24 +40,6 @@
         </form>
     </div>
 </section>
-<section id="technology-overview">
-    <div class="main-container d-block d-md-flex">
-        <div class="heading mb-4">
-            {{ $technology->title }} Overview
-        </div>
-        <div class="content-wrapper">
-            <p class="para-wrap collapsed">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure ab dolorum accusantium sit est, fuga fugit
-                animi exercitationem Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure ab dolorum
-                accusantium sit est, fuga fugit
-                animi exercitationem Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis minima libero
-                eligendi commodi cumque tempore maxime! Consectetur ex qui error quo recusandae quam ipsum? Voluptatem
-                itaque molestias sequi facere laborum?
-            </p>
-            <button class="read-more-btn">Read More <i class="bi bi-chevron-down"></i></button>
-        </div>
-    </div>
-</section>
 @foreach ($technologySections as $section)
     @if ($section->design_type == 1)
         @php
