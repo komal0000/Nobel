@@ -19,7 +19,7 @@
             <div class="col-md-6">
                 <div class="col-md-12 mb-2">
                     <label for="title">Title</label>
-                    <input type="text" name="title" id="title" class="form-control" required>
+                    <input type="text" name="title" id="title" class="form-control">
                 </div>
                 <div class="col-md-12 mb-2">
                     <label for="link">Link</label>

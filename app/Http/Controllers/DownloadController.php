@@ -33,6 +33,7 @@ class DownloadController extends Controller
             }
             $downloadcategory->parent_id = $request->parent_id;
             $downloadcategory->save();
+            $this->render();
             return redirect()->back()->with('success', 'Download Category Successfully added');
         }
     }
@@ -45,6 +46,7 @@ class DownloadController extends Controller
                 $downloadcategory->icon = $request->file('icon')->store('uploads/dowloads', 'public');
             }
             $downloadcategory->save();
+            $this->render();
             return redirect()->back()->with('success', 'Download Category Successfully updated');
         }
         return view('admin.downloadcategory.edit', compact('downloadcategory'));
@@ -53,6 +55,7 @@ class DownloadController extends Controller
     public function del($category)
     {
         $this->deleteCategoryRecursively($category);
+        $this->render();
         return redirect()->back()->with('delete_success', 'Download Category Successfully Deleted');
     }
 
@@ -97,6 +100,7 @@ class DownloadController extends Controller
             $download->uploaded_date = $request->uploaded_date;
             $download->download_category_id = $category;
             $download->save();
+            $this->render();
             return redirect()->back()->with('success', 'Download successfully added');
         }
     }
@@ -119,6 +123,7 @@ class DownloadController extends Controller
             }
             $download->uploaded_date = $request->uploaded_date;
             $download->save();
+            $this->render();
             return redirect()->back()->with('success', 'Download successfully updated ');
         }
     }

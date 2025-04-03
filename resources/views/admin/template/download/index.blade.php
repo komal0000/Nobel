@@ -21,36 +21,21 @@
             </div>
             <div class="col-md-8 content-col">
                 <div class="row g-3 card-row">
-                    @foreach ($downloads as $download )
-                    @php
-                        $type_name = App\Model\DownloadType::where('id', $download->type_id)->first(['title']);
-                    @endphp
-                    <div class="col-md-6 col-xl-4" data-content="{{ $type_name->title }}">
-                        <div class="download-card" data-bs-target="#disease-modal">
-                            <div class="img-wrapper">
-                                <img src="{{ Storage::url($download->pdf) }}" alt="Service Image"
-                                    class="w-100 img-fluid">
-                                <div class="logo d-flex justify-content-between">
-                                    <a class="" href="#" target="_blank">
-                                        <i class="bi bi-file-earmark"></i>
+                    @foreach ($downloads as $download)
+                        @php
+                            $type = App\Models\DownloadCategory::where('id', $download->download_category_id)->first(['title']);
+                        @endphp
+                        <div class="col-md-6 col-xl-4" data-content="{{ $type->title }}">
+                            <div class="download-card p-4">
+                                <h3 class="title heading-sm mb-4">{{ $download->title }}</h3>
+                                <div class="date-download d-flex justify-content-between">
+                                    <div class="para-wrap date">{{ $download->uploaded_date }}</div>
+                                    <a class="z-1" href="{{ Storage::url($download->link) }}">
+                                        <i class="bi bi-download"></i>
                                     </a>
-                                    <div class="end d-flex gap-3">
-                                        <a class="" href="#">
-                                            <i class="bi bi-eye"></i>
-                                        </a>
-                                        <a class="" href="#">
-                                            <i class="bi bi-download"></i>
-                                        </a>
-                                    </div>
                                 </div>
                             </div>
-                            <div class="body">
-                                <h3 class="title heading-sm mb-2">{{ $i }}{{ $i }} for
-                                    info-graphics Title</h3>
-                                <div class="para-wrap date">12/12/2081</div>
-                            </div>
                         </div>
-                    </div>
                     @endforeach
                 </div>
             </div>
