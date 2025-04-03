@@ -18,7 +18,7 @@
                     <div class="select-wrap" id="select-wrap">
                         <ul class="select-list" id="select-list">
                             <li data-target="all">All</li>
-                            @foreach ($jobCategories as $category)
+                            @foreach ($jobcategories as $category)
                                 <li data-target="{{ $category->title }}">{{ $category->title }}</li>
                             @endforeach
                             <li data-target="no-result">For No Result</li>
@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="job-list">
-                @foreach ($jobCategories as $category)
+                @foreach ($jobcategories as $category)
                     @php
                         $jobs = App\Models\Job::where('job_category_id', $category->id)->get();
                     @endphp
