@@ -88,8 +88,8 @@ class JobController extends Controller
     public function jobEdit(Request $request, $job_id)
     {
         $job = Job::where('id', $job_id)->first();
-        $jobCategory = DB::table('job_categories')->where('id', $job->job_category_id)->first();
         if (Helper::G($request)) {
+            $jobCategory = DB::table('job_categories')->where('id', $job->job_category_id)->first();
             return view('admin.jobCategory.job.edit', compact('job', 'jobCategory'));
         } else {
             $job->title = $request->title;
