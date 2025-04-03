@@ -4,9 +4,9 @@
 @section('meta', 'Home page for the website')
 
 @section('content')
- @includeIf('front.cache.career.jobcategory');
+    @includeIf('front.cache.career.jobcategory');
 @endsection
-@push('js')
+@section('js')
     <script>
         // Wait for the document to be ready
         $(document).ready(function() {
@@ -165,4 +165,4 @@
             }
         });
     </script>
-@endpush
+@endsection

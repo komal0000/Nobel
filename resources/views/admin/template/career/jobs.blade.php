@@ -14,7 +14,7 @@
                             <h3 class="heading">{{ $jobcategory->title }}</h3>
                             <p class="content">{{ $jobcategory->short_description }}</p>
                             <div class="d-flex justify-content-center know-btn">
-                                <x-hoverBtn>View Jobs</x-hoverBtn>
+                                <x-hoverBtn href="{{ route('jobcategory') }}">View Jobs</x-hoverBtn>
                             </div>
                         </div>
                     </div>
@@ -24,6 +24,3 @@
         </div>
     </div>
 </section>
-@push('js')
-
-@endpush
