@@ -20,7 +20,6 @@
                         @foreach ($jobcategories as $category)
                             <li data-target="{{ $category->title }}">{{ $category->title }}</li>
                         @endforeach
-                        <li data-target="no-result">For No Result</li>
                     </ul>
                     <input type="hidden" name="find-job" id="find-job-input">
                 </div>
