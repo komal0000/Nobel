@@ -121,7 +121,7 @@
                                     fill="currentColor"></path>
                             </svg>
                         </i>
-                        <span class="item-name">All Aliments</span>
+                        <span class="item-name">All Ailments</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -371,7 +371,7 @@
                                     </svg>
                                 </i>
                                 <i class="sidenav-mini-icon"> A </i>
-                                <span class="item-name">Aliment Section Type</span>
+                                <span class="item-name">Ailment Section Type</span>
                             </a>
                         </li>
                         <li class="nav-item">

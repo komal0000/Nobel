@@ -1,6 +1,6 @@
 @extends('admin.layout.app')
 @section('title')
-    <a href="{{ route('admin.aliment.sectionType.index') }}">Aliment Section Type</a> /
+    <a href="{{ route('admin.aliment.sectionType.index') }}">Ailment Section Type</a> /
     <span>Add</span>
 @endsection
 @section('content')

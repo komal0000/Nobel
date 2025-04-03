@@ -9,10 +9,10 @@
             <a href="{{ route('admin.speciality.index', ['speciality_id' => $parent->id]) }}">{{ $parent->title }}</a> /
         @endforeach
 
-        <a href="{{ route('admin.aliment.index', ['speciality_id' => $speciality_id]) }}">Aliments</a> /
+        <a href="{{ route('admin.aliment.index', ['speciality_id' => $speciality_id]) }}">Ailments</a> /
         <span>Add</span>
     @else
-        <a href="{{ route('admin.aliment.index') }}">Aliments</a> /
+        <a href="{{ route('admin.aliment.index') }}">Ailments</a> /
         <span>Add</span>
     @endif
 @endsection

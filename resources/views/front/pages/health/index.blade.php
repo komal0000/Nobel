@@ -8,7 +8,7 @@
     @include('front.pages.health.health-library')
     @include('front.pages.health.health-care')
     @includeIF('front.cache.health.technology')
-    @includeIF('front.cache.health.knowledge')
+    @include('front.pages.health.knowledge')
     @includeIF('front.cache.health.health-wellness')
     @includeIF('front.cache.health.download')
     @includeIF('front.cache.health.event')

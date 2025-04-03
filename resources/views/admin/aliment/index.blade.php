@@ -9,9 +9,9 @@
         @foreach ($parents as $parent)
             <a href="{{ route('admin.speciality.index', ['speciality_id' => $parent->id]) }}">{{ $parent->title }}</a> /
         @endforeach
-        <span>Aliments</span>
+        <span>Ailments</span>
     @else
-        <span>Aliments</span>
+        <span>Ailments</span>
     @endif
 @endsection
 @section('btn')

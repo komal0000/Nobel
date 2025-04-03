@@ -1,6 +1,6 @@
 @extends('admin.layout.app')
 @section('title')
-    <span>Alinment Section Type</span>
+    <span>Ailment Section Type</span>
 @endsection
 @section('btn')
     <a href="{{ route('admin.aliment.sectionType.add') }}" class="btn btn-primary">Add</a>
