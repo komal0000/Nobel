@@ -186,6 +186,5 @@ class SettingController extends Controller
         ]);
         $setting->value = json_encode($data);
         $setting->save();
-        return redirect()->back();
     }
 }
