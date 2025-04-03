@@ -169,6 +169,7 @@ class TechnologyController extends Controller
         $technologiesIndex = DB::table('technologies')->get();
         Helper::putCache('speciality.single.' . $speciality_id . '.technologies', view('admin.template.speciality.technology', compact('technologies'))->render());
         Helper::putCache('technology.index', view('admin.template.technology.index', compact('technologiesIndex'))->render());
+        Helper::putCache('health.technology', view('admin.template.health.technology', compact('technologiesIndex'))->render());
     }
 
     public function renderSingle($technology_id)
