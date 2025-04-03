@@ -17,6 +17,6 @@
         </div>
     </div>
     <div class="main-container text-center">
-        <x-hoverBtn href="#" class="view-all">View All </x-hoverBtn>
+        <x-hoverBtn href="{{ route('knowledge.video') }}" class="view-all">View All Videos </x-hoverBtn>
     </div>
 </section>
