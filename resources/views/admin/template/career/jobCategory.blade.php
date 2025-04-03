@@ -43,7 +43,7 @@
                                     </div>
                                 </div>
                                 <div class="date">
-                                    <i class="bi bi-calendar"></i> : <strong>{{App\Helper::formatTimestampToDateString($job->date)}}</strong>
+                                    <i class="bi bi-calendar"></i> : <strong>{{ \App\Helper::formatTimestampToDateString($job->date) }}</strong>
                                 </div>
                             </div>
                             <div class="apply-btn">
