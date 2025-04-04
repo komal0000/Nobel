@@ -3853,10 +3853,21 @@ section:nth-of-type(odd) {
 }
 #technology .main-container .technology-slider .tech-card {
   background-color: var(--color-white);
+  justify-content: space-between;
+}
+#technology .main-container .technology-slider .tech-card .image-wrapper {
+  flex: 2;
 }
 #technology .main-container .technology-slider .tech-card img {
+  max-width: 250px;
   height: 100%;
+  aspect-ratio: 1/1;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 25px;
+}
+#technology .main-container .technology-slider .tech-card .body {
+  flex: 3;
 }
 #technology .main-container .mobile-btn {
   display: flex;
