@@ -2,7 +2,6 @@
     <div class="main-container">
         <div class="heading-group mb-4">
             <div class="heading text-center">Technology</div>
-            <x-hoverBtn href="{{ route('technology.index') }}"  class="button">View All Technology</x-hoverBtn>
         </div>
         <div class="technology-slider">
             @foreach ($technologiesIndex as $technology)

@@ -2,7 +2,6 @@
     <div class="main-container">
         <div class="heading-group">
             <div class="heading text-center">Downloads</div>
-            <x-hoverBtn href="{{ route('download.index') }}" >Downloads</x-hoverBtn>
         </div>
         <div class="download-slider">
             @foreach ($downloads as $download)

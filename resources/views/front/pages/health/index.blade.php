@@ -3,7 +3,7 @@
 @section('meta', 'Health Library page for the website')
 
 @section('content')
-    @includeIF('front.cache.health.banner')
+    @include('front.pages.health.banner')
     @includeIF('front.cache.health.diseases')
     @include('front.pages.health.health-library')
     @include('front.pages.health.health-care')

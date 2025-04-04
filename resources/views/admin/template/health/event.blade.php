@@ -2,10 +2,8 @@
     <div class="main-container">
         <div class="heading-group">
             <div class="heading text-center">Events</div>
-            <x-hoverBtn class="button">All Events</x-hoverBtn>
         </div>
         <div class="event-slider">
-
             @foreach ($eventData as $data )
             <div class="event-card">
                 <div>
@@ -24,7 +22,7 @@
             @endforeach
         </div>
         <div class="mobile-btn">
-            <x-hoverBtn> View All Events </x-hoverBtn>
+            <x-hoverBtn href="{{ route('event') }}" > View All Events </x-hoverBtn>
         </div>
     </div>
 </section>

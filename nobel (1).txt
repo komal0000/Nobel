@@ -84,7 +84,7 @@ service_faqs{
     id,service_id,quesition,answer
 }
 
-service_steps{
+ {
     id,title,icon,short_desc
 }
 

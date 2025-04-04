@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function setLetter(el) {
         // Implementation needed
     }
-
     // Initialize slick sliders with common options
     function initSlider(selector, options) {
         const defaultOptions = {
