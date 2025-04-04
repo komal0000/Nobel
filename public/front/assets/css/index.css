@@ -1362,7 +1362,7 @@ section:nth-of-type(odd) {
 }
 @media (max-width: 768px) {
   #home-top-banner .search-wrapper {
-    padding: 0 20px 20px;
+    padding: 20px 20px;
     position: static;
   }
 }
@@ -1690,9 +1690,13 @@ section:nth-of-type(odd) {
   color: #fff;
   background-color: var(--color-main);
 }
-.specialities .main-container .specialities-inner .sp-inner-search .hover-btn {
+.specialities .main-container .specialities-inner .sp-inner-search .hover-button-sp {
+  display: none;
   font-size: 13px;
   font-weight: 600;
+}
+.specialities .main-container .specialities-inner .sp-inner-search .hover-button-sp.active {
+  display: block;
 }
 
 .team-section {
@@ -1920,7 +1924,7 @@ section:nth-of-type(odd) {
   left: 0;
   width: 100%;
   height: 250px;
-  background: url("/front/assets/img/why-bg.png") 0 0/cover no-repeat;
+  background: url("front/assets/img/why-bg.png") 0 0/cover no-repeat;
   background-color: var(--color-main);
   z-index: -1;
 }
@@ -2362,7 +2366,7 @@ section:nth-of-type(odd) {
 }
 
 .update {
-  background: url("/front/assets/img/updates-bg.jpg") center center/cover no-repeat;
+  background: url("front/assets/img/updates-bg.jpg") center center/cover no-repeat;
   padding-top: 60px;
   margin-bottom: 50px;
   background-color: var(--secondary-white) !important;
@@ -2423,7 +2427,7 @@ section:nth-of-type(odd) {
 .awards {
   padding-top: 80px;
   background-color: var(--color-white) !important;
-  background: url("/front/assets/img/why-bg.png") top left;
+  background: url("front/assets/img/why-bg.png") top left;
 }
 .awards .main-container .award-slide .slick-prev {
   border: none;
@@ -2485,7 +2489,7 @@ section:nth-of-type(odd) {
 }
 .awards .main-container .award-slide .slide-card .year::before {
   display: inline-block;
-  background: url("/front/assets/img/award-heading-vector-left.png") center center/100% no-repeat;
+  background: url("front/assets/img/award-heading-vector-left.png") center center/100% no-repeat;
   width: 40px;
   vertical-align: middle;
   height: 25px;
@@ -2493,7 +2497,7 @@ section:nth-of-type(odd) {
 }
 .awards .main-container .award-slide .slide-card .year::after {
   display: inline-block;
-  background: url("/front/assets/img/award-heading-vector-right.png") center center/100% no-repeat;
+  background: url("front/assets/img/award-heading-vector-right.png") center center/100% no-repeat;
   width: 40px;
   vertical-align: middle;
   height: 25px;
@@ -3513,7 +3517,7 @@ section:nth-of-type(odd) {
   box-shadow: 0 4px 19px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
   padding: 30px;
-  background: url("/front/assets/img/health-library/pattern-bg.png") top left #fff;
+  background: url("front/assets/img/health-library/pattern-bg.png") top left #fff;
   display: flex;
   flex-direction: column;
   transition: 0.3s ease;
@@ -3722,7 +3726,7 @@ section:nth-of-type(odd) {
   box-shadow: 0 4px 19px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
   padding: 30px;
-  background: url("/front/assets/img/health-library/pattern-bg.png") top left #fff;
+  background: url("front/assets/img/health-library/pattern-bg.png") top left #fff;
   display: flex;
   flex-direction: column;
   transition: 0.3s ease;
@@ -4470,7 +4474,7 @@ section:nth-of-type(odd) {
   border-color: var(--color-main);
 }
 #news-letter .letter-row .letter-card {
-  background: #fff url("/front/assets/img/why-bg.png") no-repeat center center;
+  background: #fff url("front/assets/img/why-bg.png") no-repeat center center;
   background-size: cover;
   padding: 20px;
   display: flex;
@@ -4724,11 +4728,11 @@ section:nth-of-type(odd) {
 }
 
 #how {
-  background: url("/front/assets/img/health-library/pattern-bg.png") top left var(--secondary-white);
+  background: url("front/assets/img/health-library/pattern-bg.png") top left var(--secondary-white);
 }
 
 #treated .each-card {
-  background: url("/front/assets/img/health-library/pattern-bg.png") top left #fff;
+  background: url("front/assets/img/health-library/pattern-bg.png") top left #fff;
   position: relative;
   box-shadow: 0 4px 19px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
@@ -5461,7 +5465,7 @@ section:nth-of-type(odd) {
 }
 .employee-section .main-container .content-main .employee-flex .award .award-slider .slide-card .year::before {
   display: inline-block;
-  background: url("/front/assets/img/award-heading-vector-left.png") center center/100% no-repeat;
+  background: url("front/assets/img/award-heading-vector-left.png") center center/100% no-repeat;
   width: 15%;
   max-width: 40px;
   vertical-align: middle;
@@ -5470,7 +5474,7 @@ section:nth-of-type(odd) {
 }
 .employee-section .main-container .content-main .employee-flex .award .award-slider .slide-card .year::after {
   display: inline-block;
-  background: url("/front/assets/img/award-heading-vector-right.png") center center/100% no-repeat;
+  background: url("front/assets/img/award-heading-vector-right.png") center center/100% no-repeat;
   width: 15%;
   max-width: 40px;
   vertical-align: middle;
@@ -5939,7 +5943,7 @@ section:nth-of-type(odd) {
 }
 
 .contact {
-  background: url("/front/assets/img/contact-us/contact-banner-lg.jpg") no-repeat;
+  background: url("front/assets/img/contact-us/contact-banner-lg.jpg") no-repeat;
   background-size: cover;
 }
 @media (max-width: 991px) {
@@ -6160,7 +6164,7 @@ section:nth-of-type(odd) {
 }
 
 #care {
-  background: url("/front/assets/img/why-us/care.jpg") center center no-repeat;
+  background: url("front/assets/img/why-us/care.jpg") center center no-repeat;
 }
 #care .bg-img img {
   width: 100%;
@@ -6566,7 +6570,7 @@ section:nth-of-type(odd) {
 }
 
 #dr-specialization .each-card {
-  background: url("/front/assets/img/health-library/pattern-bg.png") top left #fff;
+  background: url("front/assets/img/health-library/pattern-bg.png") top left #fff;
   position: relative;
   box-shadow: 0 4px 19px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
@@ -6642,7 +6646,7 @@ section:nth-of-type(odd) {
 }
 
 #dr-media {
-  background: url("/front/assets/img/health-library/pattern-bg.png") top left;
+  background: url("front/assets/img/health-library/pattern-bg.png") top left;
 }
 #dr-media .glightbox .each-video {
   position: relative;
@@ -6997,7 +7001,7 @@ section:nth-of-type(odd) {
 }
 
 #cpr-stats .each-card {
-  background: url("/front/assets/img/health-library/pattern-bg.png") top left var(--secondary-white);
+  background: url("front/assets/img/health-library/pattern-bg.png") top left var(--secondary-white);
   margin: 15px;
   display: flex;
   flex-direction: column;
@@ -7214,7 +7218,7 @@ section:nth-of-type(odd) {
 }
 
 #cpr-training {
-  background: url("/front/assets/img/health-library/pattern-bg.png") top left repeat;
+  background: url("front/assets/img/health-library/pattern-bg.png") top left repeat;
 }
 
 #cpr-blog .article-card {
@@ -7954,7 +7958,7 @@ section:nth-of-type(odd) {
 }
 #about-award .slide-card .year::before {
   display: inline-block;
-  background: url("/front/assets/img/award-heading-vector-left.png") center center/100% no-repeat;
+  background: url("front/assets/img/award-heading-vector-left.png") center center/100% no-repeat;
   width: 40px;
   vertical-align: middle;
   height: 25px;
@@ -7962,7 +7966,7 @@ section:nth-of-type(odd) {
 }
 #about-award .slide-card .year::after {
   display: inline-block;
-  background: url("/front/assets/img/award-heading-vector-right.png") center center/100% no-repeat;
+  background: url("front/assets/img/award-heading-vector-right.png") center center/100% no-repeat;
   width: 40px;
   vertical-align: middle;
   height: 25px;
@@ -8027,7 +8031,7 @@ section:nth-of-type(odd) {
 }
 
 #job-career {
-  background: url("/front/assets/img/why-bg.png") top left repeat;
+  background: url("front/assets/img/why-bg.png") top left repeat;
 }
 #job-career .filters {
   width: 700px;
@@ -8191,6 +8195,115 @@ section:nth-of-type(odd) {
 }
 #job-detail-description ul {
   font-weight: 500;
+}
+
+#each-update {
+  background-color: #fff;
+}
+#each-update .single-update .heading-sm {
+  font-weight: 500;
+}
+#each-update .single-update .event-main-img {
+  width: 100%;
+  overflow: hidden;
+}
+#each-update .single-update .event-main-img .glightbox {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+}
+#each-update .single-update .event-main-img .glightbox img {
+  width: 100%;
+  aspect-ratio: 3/2;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#each-update .single-update .event-main-img .glightbox .play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  height: auto;
+}
+#each-update .second-col .query-form form {
+  max-width: 100%;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 50px rgba(0, 0, 0, 0.15);
+}
+#each-update .second-col .query-form form .heading-md {
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+@media (min-width: 1600px) {
+  #each-update .second-col .query-form form .heading-md {
+    font-size: 25px;
+  }
+}
+#each-update .second-col .query-form form .input-wrap {
+  margin-bottom: 15px;
+}
+#each-update .second-col .query-form form input {
+  border: 0;
+  border-bottom: 1px solid var(--border-color);
+  padding: 0;
+  border-radius: 0;
+  font-weight: 500;
+  font-size: 12px;
+  height: 38px;
+  background-color: transparent;
+  width: 100%;
+}
+#each-update .second-col .query-form form label {
+  font-size: 15px;
+  font-weight: 600;
+}
+#each-update .second-col .query-form form button {
+  display: inline-block;
+  padding: 14px 18px;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  background-color: var(--color-main);
+  font-size: 13px;
+  border-radius: 35px;
+  cursor: pointer;
+  min-width: 150px;
+  font-weight: 700;
+  border: 0;
+  outline: 0;
+}
+#each-update .second-col .recent-event {
+  max-width: 100%;
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 50px rgba(0, 0, 0, 0.15);
+}
+#each-update .second-col .recent-event .event-card {
+  max-width: 100%;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+#each-update .second-col .recent-event .event-card .img-wrapper {
+  width: 100%;
+}
+#each-update .second-col .recent-event .event-card .img-wrapper img {
+  width: 100%;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#each-update .second-col .recent-event .event-card .body {
+  padding: 15px;
+}
+#each-update .second-col .recent-event .event-card .body .heading-md {
+  line-height: 1.2;
+  margin-bottom: 6px;
 }
 
 footer {
