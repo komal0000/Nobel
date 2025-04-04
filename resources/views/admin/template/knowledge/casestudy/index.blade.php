@@ -46,7 +46,7 @@
                                             Dr {{ $case->submitted_by }}
                                         </span>
                                         <br>
-                                        <span class="post">{{$position}}</span>
+                                        <span class="post">{{$case->position}}</span>
                                     </div>
                                     <div class="speciality">{{$type->title}} <a href="">View Profile</a> </div>
                                 </div>
