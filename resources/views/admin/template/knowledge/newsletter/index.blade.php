@@ -27,7 +27,7 @@
                             <div class="col-6 col-md-4 col-xl-3">
                                 <div class="letter-card">
                                     <div class="download">
-                                        <a href="#">
+                                        <a href="{{ $letter->image }}">
                                             <i class="bi bi-eye"></i>
                                         </a>
                                     </div>
@@ -35,10 +35,10 @@
                                         <div class="title">
                                             {{ $letter->title }}
                                         </div>
-                                        <div class="para">{{ $letter->short_description }}</div>
+                                        <div class="para">{{ App\Helper::getMonthYear($letter->date) }}</div>
                                     </div>
                                     <div class="logo">
-                                        <img src="{{ Storage::url($letter->image) }}" alt="Hospital Logo">
+                                        <img src="{{ asset('front/assets/img/Nobel.png') }}" alt="Hospital Logo">
                                     </div>
                                 </div>
                             </div>
@@ -48,11 +48,11 @@
             @endforeach
 
             <div class="pagination-container d-flex justify-content-center mt-4">
-                <button id="prevPage" class="left-arrow mx-4"><img src="{{ asset('front/assets/img/vector-left.png') }}"
-                        alt="Left Arrow"></button>
+                <button id="prevPage" class="left-arrow mx-4"><img
+                        src="{{ asset('front/assets/img/vector-left.png') }}" alt="Left Arrow"></button>
                 <div id="paginationButtons" class="d-flex"></div>
-                <button id="nextPage" class="right-arrow mx-4"><img src="{{ asset('front/assets/img/vector-right.png') }}"
-                        alt="Right Arrow"></button>
+                <button id="nextPage" class="right-arrow mx-4"><img
+                        src="{{ asset('front/assets/img/vector-right.png') }}" alt="Right Arrow"></button>
             </div>
         </div>
     </div>

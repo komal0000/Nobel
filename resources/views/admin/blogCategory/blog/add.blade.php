@@ -63,7 +63,7 @@
                 <div class="col-md-12">
                     <label for="image">
                         @if ($blogCategory->type == 6)
-                            PDF
+                            PDF <span style="color: red;">*</span>
                         @else
                             Image 4:3
                         @endif

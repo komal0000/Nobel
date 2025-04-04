@@ -64,6 +64,11 @@ class Helper
     {
         return Carbon::parse($date)->day;
     }
+
+    public static function getMonthYear(int $timestamp): string
+    {
+        return Carbon::createFromTimestamp($timestamp)->format('F_Y');
+    }
     public static function getSpecialityRoutes($parent_speciality_id, $get_routes = true)
     {
 
