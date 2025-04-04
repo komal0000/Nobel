@@ -61,8 +61,14 @@
                     </div>
                 </div>
                 <div class="col-md-12">
-                    <label for="image">Image 4:3</label>
-                    <input type="file" name="image" id="image" class="form-control dropify" accept="image/*">
+                    <label for="image">
+                        @if ($blogCategory->type == 6)
+                            PDF
+                        @else
+                            Image 4:3
+                        @endif
+                    </label>
+                    <input type="file" name="image" id="image" class="form-control dropify" accept="image/*,.pdf">
                 </div>
             </div>
             <div class="col-md-7">
@@ -108,7 +114,11 @@
                         </div>
                     @else
                         <div class="col-md-12">
-                            <label for="short_description">Short Description <span style="color: red;">*</span></label>
+                            <label for="short_description">Short Description @if ($blogCategory->type == 6)
+                                @else
+                                    <span style="color: red;">*</span>
+                                @endif
+                            </label>
                             <input type="text" name="short_description" id="short_description" class="form-control">
                         </div>
                     @endif

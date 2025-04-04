@@ -60,7 +60,10 @@ Route::prefix('technology')->name('technology.')->group(function () {
 Route::prefix('knowledge')->name('knowledge.')->group(function () {
     Route::get('blog', [FrontController::class, 'blogIndex'])->name('blog');
     Route::get('video', [FrontController::class, 'videoIndex'])->name('video');
-    Route::get('casestudy', [FrontController::class, 'caseStudyIndex'])->name('casestudy');
+    Route::prefix('casestudy')->name('casestudy.')->group(function () {
+        Route::get('index', [FrontController::class, 'caseStudyIndex'])->name('index');
+        Route::get('single/{case_study_id}', [FrontController::class, 'caseStudySingle'])->name('single');
+    });
     Route::get('newsletter', [FrontController::class, 'newsLetterIndex'])->name('newsletter');
 });
 

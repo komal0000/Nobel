@@ -62,6 +62,10 @@ class FrontController extends Controller
         return view('front.pages.knowledge.casestudy.index');
     }
 
+    public function casestudySingle($casestudy_id){
+        return view('front.pages.knowledge.casestudy.single',compact('casestudy_id'));
+    }
+
     public function newsLetterIndex(){
         return view('front.pages.knowledge.newsLetter.index');
     }
