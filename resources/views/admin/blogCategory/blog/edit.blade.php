@@ -1,17 +1,15 @@
 @extends('admin.layout.app')
 
 @section('title')
+    @php
+        $typeNames = [];
+        foreach (\App\Helper::blog_types as $key => $value) {
+            $typeNames[$key] = ucfirst(str_replace('_', ' ', $value));
+        }
+    @endphp
     @if ($parent_id)
         <a href="{{ route('admin.blogCategory.index', ['type' => $blogCategory->type]) }}">
-            @if ($blogCategory->type == 1)
-                Blogs Categories
-            @elseif($blogCategory->type == 2)
-                News Categories
-            @elseif($blogCategory->type == 3)
-                Event Categories
-            @else
-                Update Categories
-            @endif
+            {{ isset($typeNames[$blogCategory->type]) ? $typeNames[$blogCategory->type] . ' Categories' : 'Categories' }}
         </a> /
         @php
             $parents = \App\Helper::getParentRoute($parent_id, 'blog_Categories', 'blogCategory', $blogCategory->type);
@@ -25,41 +23,17 @@
         <span>{{ $blogCategory->title }}</span> /
         <a
             href="{{ route('admin.blogCategory.blog.add', ['blogCategory_id' => $blogCategory->id, 'type' => $blogCategory->type, 'parent_id' => $parent_id]) }}">
-            @if ($blogCategory->type == 1)
-                Blogs
-            @elseif ($blogCategory->type == 2)
-                News
-            @elseif($blogCategory->type == 3)
-                Events
-            @else
-                Updates
-            @endif
+            {{ isset($typeNames[$blogCategory->type]) ? rtrim($typeNames[$blogCategory->type], 's') : 'Content' }}
         </a> /
         <span>Edit</span>
     @else
         <a href="{{ route('admin.blogCategory.index', ['type' => $blogCategory->type]) }}">
-            @if ($blogCategory->type == 1)
-                Blogs Categories
-            @elseif($blogCategory->type == 2)
-                News Categories
-            @elseif($blogCategory->type == 3)
-                Event Categories
-            @else
-                Update Categories
-            @endif
+            {{ isset($typeNames[$blogCategory->type]) ? $typeNames[$blogCategory->type] . ' Categories' : 'Categories' }}
         </a> /
         <span>{{ $blogCategory->title }}</span> /
         <a
             href="{{ route('admin.blogCategory.blog.index', ['blogCategory_id' => $blogCategory->id, 'type' => $blogCategory->type, 'parent_id' => $parent_id]) }}">
-            @if ($blogCategory->type == 1)
-                Blogs
-            @elseif ($blogCategory->type == 2)
-                News
-            @elseif($blogCategory->type == 3)
-                Events
-            @else
-                Updates
-            @endif
+            {{ isset($typeNames[$blogCategory->type]) ? rtrim($typeNames[$blogCategory->type], 's') : 'Content' }}
         </a> /
         <span>Edit</span>
     @endif

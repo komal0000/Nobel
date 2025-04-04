@@ -3,7 +3,13 @@
 @section('title')
     @if ($parent_id)
         <a href="{{ route('admin.blogCategory.index', ['type' => $type]) }}">
-            @if ($type == 1) Blogs Categories @elseif($type == 2) News Categories @elseif($type == 3) Event Categories @else Update Categories @endif
+            @php
+                $typeNames = [];
+                foreach (\App\Helper::blog_types as $key => $value) {
+                    $typeNames[$key] = ucfirst(str_replace('_', ' ', $value));
+                }
+                echo isset($typeNames[$type]) ? $typeNames[$type] . ' Categories' : 'Categories';
+            @endphp
         </a> /
         @php
             $parents = \App\Helper::getParentRoute($parent_id, 'blog_Categories', 'blogCategory', $type);
@@ -12,13 +18,19 @@
             <a href="{{ route('admin.blogCategory.index', ['type' => $type, 'parent_id' => $parent->id]) }}">{{ $parent->title }}</a> /
         @endforeach
         <span>Sub Category</span> /
-        @if ($type == 1) Blogs @elseif ($type == 2) News @elseif($type ==3) Events @else Updates @endif
+        <span>{{ isset($typeNames[$type]) ? rtrim($typeNames[$type], 's') : 'Content' }}</span>
     @else
         <a href="{{ route('admin.blogCategory.index', ['type' => $type]) }}">
-            @if ($type == 1) Blogs Categories @elseif ($type == 2) News Categories @elseif($type == 3) Event Categories @else Update Categories @endif
+            @php
+                $typeNames = [];
+                foreach (\App\Helper::blog_types as $key => $value) {
+                    $typeNames[$key] = ucfirst(str_replace('_', ' ', $value));
+                }
+                echo isset($typeNames[$type]) ? $typeNames[$type] . ' Categories' : 'Categories';
+            @endphp
         </a> /
         <span>{{ $blogCategory->title }}</span> /
-        @if ($type == 1) Blogs  @elseif ($type == 2) News  @elseif($type == 3) Events @else Updates @endif
+        <span>{{ isset($typeNames[$type]) ? rtrim($typeNames[$type], 's') : 'Content' }}</span>
     @endif
 @endsection
 @section('btn')
