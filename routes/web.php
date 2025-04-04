@@ -60,6 +60,8 @@ Route::prefix('technology')->name('technology.')->group(function () {
 Route::prefix('knowledge')->name('knowledge.')->group(function () {
     Route::get('blog', [FrontController::class, 'blogIndex'])->name('blog');
     Route::get('video', [FrontController::class, 'videoIndex'])->name('video');
+    Route::get('casestudy', [FrontController::class, 'caseStudyIndex'])->name('caseStudy');
+    Route::get('newsletter', [FrontController::class, 'newsLetterIndex'])->name('newsletter');
 });
 
 Route::match(["GET", "POST"], 'login', [LoginController::class, 'login'])->name('login');

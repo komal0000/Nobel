@@ -149,6 +149,9 @@ class BlogController extends Controller
         if ($featuredBlogs->isEmpty()) {
             $featuredBlogs = collect(); // Ensure an empty collection if no featured blogs
         }
+        //Case Study
+        $caseStudyTypes = DB::table('blog_categories')->where('type', helper::blog_type_case_study)->get();
+        Helper::putCache('knowledge.casestudy',view('admin.template.knowledge.casestudy.index',compact('caseStudyTypes')));
 
         Helper::putCache('health.knowledge.blogs',view('admin.template.health.knowledge.blogs',compact('indexBlogs')));
         Helper::putCache('knowledge.blog', view('admin.template.knowledge.blog.index', compact('indexBlogs', 'featuredBlogs'))->render());
