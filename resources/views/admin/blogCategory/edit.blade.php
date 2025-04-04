@@ -2,7 +2,13 @@
 @section('title')
     @if ($parent_id)
         <a href="{{ route('admin.blogCategory.index', ['type' => $BlogCategory->type]) }}">
-            @if ($BlogCategory->type == 1) Blogs Categories @elseif($BlogCategory->type == 2) News Categories @elseif($BlogCategory->type == 3) Event Categories @else Update Categories @endif
+            @php
+            $typeNames = [];
+            foreach (\App\Helper::blog_types as $key => $value) {
+                $typeNames[$key] = ucfirst(str_replace('_', ' ', $value));
+            }
+            echo isset($typeNames[$BlogCategory->type]) ? $typeNames[$BlogCategory->type] . ' Categories' : 'Categories';
+            @endphp
         </a> /
         @php
             $parents = \App\Helper::getParentRoute($parent_id, 'blog_categories', 'blogCategory', $BlogCategory->type);
@@ -16,7 +22,13 @@
         <span>Edit</span>
     @else
         <a href="{{ route('admin.blogCategory.index', ['type' => $BlogCategory->type]) }}">
-            @if ($BlogCategory->type == 1) Blogs Categories @elseif($BlogCategory->type == 2) News Categories @elseif($BlogCategory->type == 3) Event Categories @else Update Categories @endif
+            @php
+                $typeNames = [];
+                foreach (\App\Helper::blog_types as $key => $value) {
+                    $typeNames[$key] = ucfirst(str_replace('_', ' ', $value));
+                }
+                echo isset($typeNames[$BlogCategory->type]) ? $typeNames[$BlogCategory->type] . ' Categories' : 'Categories';
+            @endphp
         </a> /
         <span>Edit</span>
     @endif

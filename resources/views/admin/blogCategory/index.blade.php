@@ -3,15 +3,13 @@
 @section('title')
     @if ($parent_id)
         <a href="{{ route('admin.blogCategory.index', ['type' => $type]) }}">
-            @if ($type == 1)
-                Blogs Categories
-            @elseif($type == 2)
-                News Categories
-            @elseif($type == 3)
-                Event Categories
-            @else
-                Update Categories
-            @endif
+            @php
+                $typeNames = [];
+                foreach (\App\Helper::blog_types as $key => $value) {
+                    $typeNames[$key] = ucfirst(str_replace('_', ' ', $value));
+                }
+                echo isset($typeNames[$type]) ? $typeNames[$type] . ' Categories' : 'Categories';
+            @endphp
         </a> /
         @php
             $parents = \App\Helper::getParentRoute($parent_id, 'blog_Categories', 'blogCategory', $type);
@@ -24,15 +22,13 @@
         <span>Sub Category</span>
     @else
         <span>
-            @if ($type == 1)
-                Blogs Categories
-            @elseif($type == 2)
-                News Categories
-            @elseif($type == 3)
-                Event Categories
-            @else
-                Update Categories
-            @endif
+            @php
+                $typeNames = [];
+                foreach (\App\Helper::blog_types as $key => $value) {
+                    $typeNames[$key] = ucfirst(str_replace('_', ' ', $value)) . ' Categories';
+                }
+                echo isset($typeNames[$type]) ? $typeNames[$type] : 'Categories';
+            @endphp
         </span>
     @endif
 @endsection
@@ -61,15 +57,13 @@
                             class="btn btn-danger btn-sm">Delete</a>
                         <a href="{{ route('admin.blogCategory.blog.index', ['blogCategory_id' => $category->id, 'type' => $type, 'parent_id' => $parent_id]) }}"
                             class="btn btn-sm btn-info">
-                            @if ($type == 1)
-                                Manage Blogs
-                            @elseif($type == 2)
-                                Manage News
-                            @elseif($type == 3)
-                                Manage Events
-                            @else
-                                Manage Updates
-                            @endif
+                            @php
+                                $typeNames = [];
+                                foreach (\App\Helper::blog_types as $key => $value) {
+                                    $typeNames[$key] = 'Manage ' . ucfirst(str_replace('_', ' ', $value)) . 's';
+                                }
+                                echo isset($typeNames[$type]) ? $typeNames[$type] : 'Manage Items';
+                            @endphp
                         </a>
                     </td>
                 </tr>

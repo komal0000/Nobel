@@ -336,6 +336,34 @@
                                 <span class="item-name">Updates</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="{{ route('admin.blogCategory.index', ['type' => '5']) }}">
+                                <i class="icon">
+                                    <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
+                                        viewBox="0 0 24 24" fill="currentColor">
+                                        <g>
+                                            <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                        </g>
+                                    </svg>
+                                </i>
+                                <i class="sidenav-mini-icon"> E </i>
+                                <span class="item-name">Case Studies</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="{{ route('admin.blogCategory.index', ['type' => '6']) }}">
+                                <i class="icon">
+                                    <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
+                                        viewBox="0 0 24 24" fill="currentColor">
+                                        <g>
+                                            <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                        </g>
+                                    </svg>
+                                </i>
+                                <i class="sidenav-mini-icon"> F </i>
+                                <span class="item-name">New letter</span>
+                            </a>
+                        </li>
 
                     </ul>
                 </li>
