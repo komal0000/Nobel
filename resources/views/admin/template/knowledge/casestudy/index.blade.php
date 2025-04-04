@@ -27,18 +27,20 @@
             <div class="row g-2" id="case-study-list">
                 @foreach ($caseStudyTypes as $type)
                     @php
-                        $caseStudies = App\Models\Blog::where('blog_category_type_id', $type->id)->get();
+                        $caseStudies = App\Models\Blog::where('blog_category_id', $type->id)->get();
                     @endphp
                     @foreach ($caseStudies as $case)
                         <div class="col-xl-4 col-md-6 case-study-item" data-content="{{ Str::slug($type->title) }}">
                             <div class="slide m-3">
                                 <div class="img-wrapper">
-                                    <img src="{{ Storage::url($case->image) }}" alt="Service Image" class="img-fluid w-100">
-                                    <div class="heading-xs date">{{App\Helper::formatTimestampToDateString($download->uploaded_date)}}</div>
+                                    <img src="{{ Storage::url($case->image) }}" alt="Service Image"
+                                        class="img-fluid w-100">
+                                    <div class="heading-xs date">
+                                        {{ App\Helper::formatTimestampToDateString($case->date) }}</div>
                                 </div>
                                 <div class="body">
                                     <div class="para-wrap">Case Study</div>
-                                    <h3 class="title heading-sm">{{$case->title}}</h3>
+                                    <h3 class="title heading-sm">{{ $case->title }}</h3>
                                     <div class="name-post">
                                         <span class="name">
                                             Dr Name
@@ -52,7 +54,6 @@
                         </div>
                     @endforeach
                 @endforeach
-                @endfor
             </div>
         </div>
         <div class="pagination-container d-flex justify-content-center mt-4">
