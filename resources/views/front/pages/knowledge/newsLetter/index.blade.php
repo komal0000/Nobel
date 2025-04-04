@@ -6,7 +6,7 @@
 @section('content')
 @includeIf('front.cache.knowledge.newsLetter')
 @endsection
-@push('js')
+@section('js')
     <script>
         $(document).ready(function() {
             // Hide all content sections except the active one initially
@@ -128,4 +128,4 @@
             }
         });
     </script>
-@endpush
+@endsection
