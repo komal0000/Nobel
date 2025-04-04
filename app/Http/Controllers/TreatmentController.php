@@ -90,15 +90,14 @@ class TreatmentController extends Controller
         $treatment = Treatment::find($treatment_id);
         if (!$treatment) return;
         $specialityId = $treatment->specialty_id;
-        $specialityTreatment = Treatment::where('specialty_id', $specialityId)->get();
-        Helper::putCache(
-            'speciality.single.' . $specialityId . '.treatment',
-            view('admin.template.speciality.single.treatment', compact('specialityTreatment'))->render()
-        );
-
-        $treatment = Treatment::where('id', $treatment_id)->first();
         $treatments = Treatment::all();
-        Helper::putCache('treatment.single.'.$treatment->id, view('admin.template.treatment.single', compact('treatment', 'treatments'))->render());
+        $specialityTreatment = Treatment::where('specialty_id', $specialityId)->get();
+        Helper::putCache('speciality.single.' . $specialityId . '.treatment',view('admin.template.speciality.single.treatment', compact('specialityTreatment'))->render());
+        if($treatment_id){
+            $treatment = Treatment::where('id', $treatment_id)->first();
+            $treatmentSections = DB::table('treatment_sections')->where('treatment_id', $treatment->id)->get();
+            Helper::putCache('treatment.single.'.$treatment->id, view('admin.template.treatment.single', compact('treatment', 'treatments','treatmentSections'))->render());
+        }
         Helper::putCache('treatment.index',view('admin.template.treatment.index', compact('treatments'))->render());
     }
 }

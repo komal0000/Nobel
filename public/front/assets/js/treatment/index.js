@@ -29,8 +29,8 @@ function initLetterSlider() {
         slidesToScroll: 3,
         infinite: false,
         arrows: true,
-        prevArrow: '<button class="slick-prev left-arrow"><img src="/front/img/vector-left.png" alt="Left Arrow"></button>',
-        nextArrow: '<button class="slick-next right-arrow"><img src="/front/img/vector-right.png" alt="Right Arrow"></button>',
+        prevArrow: '<button class="slick-prev left-arrow"><img src="/front/assets/img/vector-left.png" alt="Left Arrow"></button>',
+        nextArrow: '<button class="slick-next right-arrow"><img src="/front/assets/img/vector-right.png" alt="Right Arrow"></button>',
         responsive: [
             { breakpoint: 1200, settings: { slidesToShow: 8, slidesToScroll: 3 } },
             { breakpoint: 992, settings: { slidesToShow: 6, slidesToScroll: 3 } },

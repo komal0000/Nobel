@@ -47,7 +47,7 @@
                                         <a href="{{ route('knowledge.video') }}" class="drop-item">Videos</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('knowledge.caseStudy') }}" class="drop-item">Case Studies</a>
+                                        <a href="{{ route('knowledge.casestudy') }}" class="drop-item">Case Studies</a>
                                     </li>
                                     <li>
                                         <a href="{{ route('knowledge.newsletter') }}" class="drop-item">News Letter</a>
