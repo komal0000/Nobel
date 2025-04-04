@@ -45,39 +45,42 @@
         @csrf
         <div class="row">
             <div class="col-md-5">
-                @if ($blog->video_link)
-                    <div class="col-md-12 mb-3">
-                        <div class="tab-pane mb-2" id="video" role="tabpanel" aria-labelledby="video-tab">
-                            <label for="video_link">Youtube Link</label>
-                            <input type="url" name="video_link" class="form-control" value="{{ $blog->video_link }}"
-                                placeholder="Enter Youtube Url" onchange="GetMedia(this)">
-                            <div id="video-preview-panel" style="display: none;">
-                                <hr>
-                                <div class="row">
-                                    <div class="col-5">
-                                        <iframe id="video-video-preview" class="w-100" frameborder="0"></iframe>
-                                    </div>
+                <div class="col-md-12 mb-3">
+                    <div class="tab-pane mb-2" id="video" role="tabpanel" aria-labelledby="video-tab">
+                        <label for="video_link">Youtube link</label>
+                        <input type="url" name="video_link" class="form-control" value="{{ $blog->video_link }}"
+                            placeholder="Enter Youtube Url" onchange="GetMedia(this)">
+                        <div id="video-preview-panel" style="display: none;">
+                            <hr>
+                            <div class="row">
+                                <div class="col-5">
+                                    <iframe id="video-video-preview" class="w-100" frameborder="0"></iframe>
                                 </div>
                             </div>
                         </div>
                     </div>
-                @endif
+                </div>
                 <div class="col-md-12">
-                    <label for="image">Image 4:3</label>
-                    <input type="file" name="image" id="image" class="form-control dropify" accept="image/*"
+                    <label for="image">
+                        @if ($blogCategory->type == 6)
+                            PDF <span style="color: red;">*</span>
+                        @else
+                            Image 4:3
+                        @endif
+                    </label>
+                    <input type="file" name="image" id="image" class="form-control dropify" accept="image/*,.pdf"
                         data-default-file="{{ Storage::url($blog->image) }}">
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-7">
                 <div class="row d-flex align-items-end">
-
                     @if ($blogCategory->type == 4)
                         <div class="" style="display: none">
-                            <div class="col-md-4 mb-2 d-flex align-items-center">
+                            <div class="col-md-4 mb-2 d-flex align-items-center" style="display: none">
                                 <input type="hidden" name="is_featured" value="0">
                                 <input type="checkbox" name="is_featured" value="1" class="form-check-input me-2"
                                     @if ($blog->is_featured) checked @endif>
-                                <label for="is_featured">Is Featured <span style="color: red;">*</span></label>
+                                <label for="is_featured">Is Featured</label>
                             </div>
                         </div>
                     @else
@@ -85,19 +88,27 @@
                             <input type="hidden" name="is_featured" value="0">
                             <input type="checkbox" name="is_featured" value="1" class="form-check-input me-2"
                                 @if ($blog->is_featured) checked @endif>
-                            <label for="is_featured">Is Featured </label>
+                            <label for="is_featured">Is Featured</label>
                         </div>
                     @endif
                     <div class="col-md-8 mb-2">
                         <label for="title">Title <span style="color: red;">*</span></label>
                         <input type="text" name="title" id="title" class="form-control"
-                            value="{{ $blog->title }}">
+                            value="{{ $blog->title }}" required>
                     </div>
                     <div class="col-md-4 mb-2">
                         <label for="date">Date <span style="color: red;">*</span></label>
                         <input type="date" name="date" id="date" class="form-control"
                             value="{{ \App\Helper::convertIntegerToDate($blog->date) }}">
                     </div>
+                    @if ($blogCategory->type == 4)
+                    @else
+                        <div class="col-md-6 mb-2">
+                            <label for="location">Location</label>
+                            <input type="text" name="location" id="location" class="form-control"
+                                value="{{ $blog->location }}">
+                        </div>
+                    @endif
                     @if ($blogCategory->type == 5)
                         <div class="col-md-6">
                             <label for="submitted_by">Submitted By</label>
@@ -111,26 +122,22 @@
                         </div>
                     @else
                         <div class="col-md-12">
-                            <label for="short_description">Short Description <span style="color: red;">*</span></label>
+                            <label for="short_description">Short Description @if ($blogCategory->type == 6)
+                                @else
+                                    <span style="color: red;">*</span>
+                                @endif
+                            </label>
                             <input type="text" name="short_description" id="short_description" class="form-control"
                                 value="{{ $blog->short_description }}">
                         </div>
                     @endif
-                    @if ($blogCategory->type == 4)
-                    @else
-                        <div class="col-md-6 mb-2">
-                            <label for="loaction">Location</label>
-                            <input type="text" name="location" id="location" class="form-control"
-                                value="{{ $blog->location }}">
-                        </div>
-                    @endif
                 </div>
             </div>
-            <div class="col-md-12 mb-2">
-                <label for="text_data">Text <span style="color: red;">*</span></label>
+            <div class="col-md-12 my-2">
+                <label for="text_data">Text </label>
                 <textarea type="text" name="text" id="text" class="form-control summernote">{{ $blog->text }}</textarea>
             </div>
-            <div class="col-md-12 mb-2 d-flex justify-content-end">
+            <div class="col-md-12 my-2 d-flex justify-content-end">
                 <button class="btn btn-success">
                     Update
                 </button>
