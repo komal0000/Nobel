@@ -4,7 +4,7 @@
 @section('meta', 'News Letter page for the website')
 
 @section('content')
-@includeIf('front.cache.knowledge.newsLetter')
+@includeIf('front.cache.knowledge.newsletter')
 @endsection
 @section('js')
     <script>
