@@ -1,13 +1,30 @@
+// Main JS file for all pages with alphabetical filtering
+$(document).ready(function() {
+    // Initialize components
+    initLetterSlider();
+    initFilterAndPagination();
+    initNavigation();
+    equalizeCardHeight('.your-card-selector'); // Make sure to replace with your actual card selector
+    initScrollFunctions();
+
+    // Toggle navbar for mobile
+    $('#toggle-navbar').click(toggleNavbar);
+});
+
 // Function to equalize card heights for consistent UI
 function equalizeCardHeight(selector) {
     const elements = $(selector);
-    const maxHeight = Math.max(...elements.map(function() {
-        return $(this).height();
-    }).get());
+    let maxHeight = 0;
+
+    elements.css('height', 'auto').each(function() {
+        maxHeight = Math.max(maxHeight, $(this).height());
+    });
+
     elements.height(maxHeight);
 }
 
-$(document).ready(function() {
+// Initialize letter slider
+function initLetterSlider() {
     $('.letter-slider').slick({
         slidesToShow: 10,
         slidesToScroll: 3,
@@ -22,8 +39,10 @@ $(document).ready(function() {
             { breakpoint: 576, settings: { slidesToShow: 3, slidesToScroll: 2 } }
         ]
     });
+}
 
-    // Pagination and filtering variables
+// Initialize filtering and pagination system
+function initFilterAndPagination() {
     const itemsPerPage = 10;
     let currentPage = 1;
     let selectedLetter = "all";
@@ -32,7 +51,52 @@ $(document).ready(function() {
     const searchBox = $("input[name='searchBox']");
     const letterButtons = $(".char");
 
-    // Determine which letter filters should be enabled based on available content
+    // Check for letter parameter in URL
+    const paramLetter = getUrlParameter('letter');
+    if (paramLetter) {
+        const letterButton = $(`.char-${paramLetter.toLowerCase()}`);
+        if (letterButton.length && !letterButton.prop("disabled")) {
+            letterButtons.removeClass("active");
+            letterButton.addClass("active");
+            selectedLetter = paramLetter.toLowerCase();
+        } else {
+            letterButtons.removeClass("active");
+            $('.char-all').addClass('active');
+            selectedLetter = "all";
+            if (paramLetter) alert('No Result Found For Letter ' + paramLetter);
+        }
+    }
+
+    // Determine which letter filters should be enabled
+    getAvailableLetters();
+
+    // Apply initial filtering
+    filterCards();
+
+    // Set up event handlers
+    letterButtons.click(function() {
+        if ($(this).prop("disabled")) return;
+        letterButtons.removeClass("active");
+        $(this).addClass("active");
+        selectedLetter = $(this).text().trim().toLowerCase();
+        filterCards();
+    });
+
+    searchBox.on("input", filterCards);
+
+    $("#prevPage").click(() => {
+        if (currentPage > 1) showPage(currentPage - 1, $(".each-card:visible"));
+    });
+
+    $("#nextPage").click(() => {
+        const visibleCards = $(".each-card:visible");
+        const maxPage = Math.ceil(visibleCards.length / itemsPerPage);
+        if (currentPage < maxPage) {
+            showPage(currentPage + 1, visibleCards);
+        }
+    });
+
+    // Helper functions for filtering and pagination
     function getAvailableLetters() {
         const letters = new Set();
         cards.each(function() {
@@ -49,7 +113,6 @@ $(document).ready(function() {
         });
     }
 
-    // Filter cards by selected letter and search text
     function filterCards() {
         const searchText = searchBox.val().toLowerCase();
         const filteredCards = cards.filter(function() {
@@ -62,7 +125,6 @@ $(document).ready(function() {
         createPaginationButtons(filteredCards);
     }
 
-    // Display the specified page of filtered cards
     function showPage(page, filteredCards) {
         currentPage = page;
         cards.hide();
@@ -70,7 +132,6 @@ $(document).ready(function() {
         const start = (page - 1) * itemsPerPage;
         filteredCards.slice(start, start + itemsPerPage).show();
 
-        // Update pagination UI
         const maxPage = Math.ceil(filteredCards.length / itemsPerPage);
         $("#prevPage").prop("disabled", page === 1);
         $("#nextPage").prop("disabled", page === maxPage);
@@ -78,7 +139,6 @@ $(document).ready(function() {
         $(`#page-${page}`).addClass("active");
     }
 
-    // Create pagination buttons based on filtered results
     function createPaginationButtons(filteredCards) {
         paginationContainer.empty();
         const pages = Math.ceil(filteredCards.length / itemsPerPage);
@@ -89,46 +149,81 @@ $(document).ready(function() {
             paginationContainer.append(button);
         }
     }
+}
 
-    // Letter filter button click handler
-    letterButtons.click(function() {
-        if ($(this).is(":disabled")) return;
+// Navigation functions
+function initNavigation() {
+    // Generate section navigation if needed
+    const $sections = $('section[data-content]');
+    const $sectionLinks = $('#sectionLinks');
 
-        letterButtons.removeClass("active");
-        $(this).addClass("active");
-        selectedLetter = $(this).text().trim().toLowerCase();
-        filterCards();
-    });
+    if ($sections.length && $sectionLinks.length) {
+        // Generate navigation links from sections
+        $sections.each(function() {
+            const sectionId = $(this).attr('id');
+            const sectionName = $(this).data('content');
 
-    // Search input handler
-    searchBox.on("input", filterCards);
+            const $listItem = $('<li>');
+            const $link = $('<a>')
+                .attr('href', `#${sectionId}`)
+                .text(sectionName)
+                .on('click', function(e) {
+                    e.preventDefault();
+                    $('html, body').animate({
+                        scrollTop: $(`#${sectionId}`).offset().top - 120
+                    }, 800);
+                });
 
-    // Pagination navigation handlers
-    $("#prevPage").click(() => {
-        if (currentPage > 1) {
-            showPage(currentPage - 1, $(".each-card:visible"));
-        }
-    });
+            $listItem.append($link);
+            $sectionLinks.append($listItem);
+        });
 
-    $("#nextPage").click(() => {
-        const visibleCards = $(".each-card:visible");
-        const maxPage = Math.ceil(visibleCards.length / itemsPerPage);
-        if (currentPage < maxPage) {
-            showPage(currentPage + 1, visibleCards);
-        }
-    });
+        // Active link highlighting when scrolling
+        $(window).on('scroll', function() {
+            let current = '';
 
-    // Toggle navigation elements
-    $('#toggle-navbar').click(function() {
-        $('#navbar').toggleClass('show-navbar').css('transform', 'scale(1)');
-    });
+            $sections.each(function() {
+                const sectionTop = $(this).offset().top;
+                if ($(window).scrollTop() >= (sectionTop - 150)) {
+                    current = $(this).attr('id');
+                }
+            });
 
-    // Initialize filtering
-    getAvailableLetters();
-    filterCards();
-});
+            $('#sectionLinks a').removeClass('active');
+            $(`#sectionLinks a[href="#${current}"]`).addClass('active');
+        });
+    }
+}
 
-// Navigation menu handling functions
+// Scroll and responsive functions
+function initScrollFunctions() {
+    toggleFeedback();
+    $(window).on("resize", toggleFeedback);
+}
+
+// Helper functions
+function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    const results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+}
+
+function toggleFeedback() {
+    if ($(window).width() < 481) {
+        $(window).on("scroll", function() {
+            $(".feedback-contact").toggleClass('hide-feedback', $(window).scrollTop() > 100);
+        });
+    } else {
+        $(window).off("scroll");
+        $(".feedback-contact").removeClass('hide-feedback');
+    }
+}
+
+function toggleNavbar() {
+    $('#navbar').toggleClass('show-navbar').css('transform', 'scale(1)');
+}
+
 function extendSubMenu(el) {
     if ($(el).hasClass('active-list')) {
         $(el).removeClass('active-list');

@@ -368,12 +368,11 @@ function setActive(el) {
     // Handle category selection functionality
     const category = $(el).text().trim().toLowerCase();
 
-    // Get the appropriate URL based on category
-    let targetUrl = '/ailments'; // Default
-    if (category === 'treatments') {
-        targetUrl = '/treatments';
+    let targetUrl = '/ailment'; // Default
+    if (category === 'treatment') {
+        targetUrl = '/treatment';
     } else if (category === 'technologies') {
-        targetUrl = '/technologies';
+        targetUrl = '/technology';
     }
 
     // Store the current category URL for letter buttons to use
@@ -421,7 +420,7 @@ function setActiveLetter(letterButton) {
     const letter = $(letterButton).find('span').text().trim().toLowerCase();
 
     // Get the current category base URL from data attribute
-    const categoryUrl = $('.sp-search-letter').attr('data-current-url') || '/ailments';
+    const categoryUrl = $('.sp-search-letter').attr('data-current-url') || '/ailment';
 
     // Directly navigate to the category+letter page
     window.location.href = `${categoryUrl}?letter=${letter}`;
