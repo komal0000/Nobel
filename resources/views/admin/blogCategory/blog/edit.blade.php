@@ -98,11 +98,24 @@
                         <input type="date" name="date" id="date" class="form-control"
                             value="{{ \App\Helper::convertIntegerToDate($blog->date) }}">
                     </div>
-                    <div class="dol-md-12">
-                        <label for="short_description">Short Description</label>
-                        <input type="text" name="short_description" id="short_description" class="form-control"
-                            value="{{ $blog->short_description }}">
-                    </div>
+                    @if ($blogCategory->type == 5)
+                        <div class="col-md-6">
+                            <label for="submitted_by">Submitted By</label>
+                            <input type="text" name="submitted_by" id="submitted_by" class="form-control"
+                                value="{{ $blog->submitted_by }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="position">Position</label>
+                            <input type="text" name="position" id="position" class="form-control"
+                                value="{{ $blog->position }}">
+                        </div>
+                    @else
+                        <div class="col-md-12">
+                            <label for="short_description">Short Description <span style="color: red;">*</span></label>
+                            <input type="text" name="short_description" id="short_description" class="form-control"
+                                value="{{ $blog->short_description }}">
+                        </div>
+                    @endif
                     @if ($blogCategory->type == 4)
                     @else
                         <div class="col-md-6 mb-2">

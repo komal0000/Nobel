@@ -369,7 +369,7 @@ function setActive(el) {
     const category = $(el).text().trim().toLowerCase();
 
     let targetUrl = '/aliment'; // Default
-    if (category === 'treatment') {
+    if (category === 'treatments') {
         targetUrl = '/treatment';
     } else if (category === 'technologies') {
         targetUrl = '/technology';
@@ -379,32 +379,20 @@ function setActive(el) {
     $('.sp-search-letter').attr('data-current-category', category);
     $('.sp-search-letter').attr('data-current-url', targetUrl);
 
-    // Update the hover button href and text without changing inner structure
     $('.hover-button-sp .hover-btn').each(function () {
-        // Update href
         $(this).attr('href', targetUrl);
-
-        // Try to find a text element to update
         let textEl = $(this).find('.hover-text');
         if (textEl.length === 0) {
-            // If no dedicated text element exists, update text carefully
             const newText = 'View All ' + category.charAt(0).toUpperCase() + category.slice(1);
-
-            // Clone to work with its contents
             const $clone = $(this).clone();
             $clone.children().remove();
-
-            // Store original HTML
             const originalHTML = $(this).html();
-
-            // Replace the text content
             const originalText = $clone.text().trim();
             if (originalText) {
                 const newHTML = originalHTML.replace(originalText, newText);
                 $(this).html(newHTML);
             }
         } else {
-            // If we found a dedicated text element, just update it
             textEl.text('View All ' + category.charAt(0).toUpperCase() + category.slice(1));
         }
     });

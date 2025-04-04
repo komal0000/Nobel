@@ -78,7 +78,7 @@
                     </div>
                 </div>
                 <div class="hover-button-sp active">
-                    <x-hoverBtn class="hover-btn" href="{{ route('aliment.index') }}" data-content="ailments"><span
+                    <x-hoverBtn class="hover-btn" href="{{ route('aliment.index') }}" data-content="aliments"><span
                             class="hover-text">View All Ailments</span></x-hoverBtn>
                 </div>
                 <div class="hover-button-sp">

@@ -97,10 +97,21 @@
                             <input type="text" name="location" id="location" class="form-control">
                         </div>
                     @endif
-                    <div class="col-md-12">
-                        <label for="short_description">Short Description <span style="color: red;">*</span></label>
-                        <input type="text" name="short_description" id="short_description" class="form-control">
-                    </div>
+                    @if ($blogCategory->type == 5)
+                        <div class="col-md-6">
+                            <label for="submitted_by">Submitted By</label>
+                            <input type="text" name="submitted_by" id="submitted_by" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="position">Position</label>
+                            <input type="text" name="position" id="position" class="form-control">
+                        </div>
+                    @else
+                        <div class="col-md-12">
+                            <label for="short_description">Short Description <span style="color: red;">*</span></label>
+                            <input type="text" name="short_description" id="short_description" class="form-control">
+                        </div>
+                    @endif
 
 
                 </div>

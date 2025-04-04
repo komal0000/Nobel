@@ -43,12 +43,12 @@
                                     <h3 class="title heading-sm">{{ $case->title }}</h3>
                                     <div class="name-post">
                                         <span class="name">
-                                            Dr Name
+                                            Dr {{ $case->submitted_by }}
                                         </span>
                                         <br>
-                                        <span class="post">Post, Nobel</span>
+                                        <span class="post">{{$position}}</span>
                                     </div>
-                                    <div class="speciality">Liver Transplant <a href="">View Profile</a> </div>
+                                    <div class="speciality">{{$type->title}} <a href="">View Profile</a> </div>
                                 </div>
                             </div>
                         </div>

@@ -3,7 +3,7 @@
         <div class="col-md-6 each-card">
             <x-card class="bg-white"  title="{{ $treatment->title }}"  image="{{ Storage::url($treatment->icon) }}"
                 href="{{ route('treatment.single', $treatment->id) }}">
-                {{ $treatment->description  }}
+                {{ $treatment->short_description }}
             </x-card>
         </div>
     @endforeach

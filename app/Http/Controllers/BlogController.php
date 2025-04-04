@@ -94,6 +94,8 @@ class BlogController extends Controller
             $blog->is_featured = $request->is_featured;
             $blog->blog_category_id = $blogCategory->id;
             $blog->short_description = $request->short_description;
+            $blog->submitted_by = $request->submitted_by;
+            $blog->position = $request->position;
             $blog->date = Helper::convertDateToInteger($request->date);
             $blog->save();
             $this->render();
@@ -116,6 +118,8 @@ class BlogController extends Controller
             $blog->location = $request->location;
             $blog->video_link = $request->video_link;
             $blog->short_description = $request->short_description;
+            $blog->submitted_by = $request->submitted_by;
+            $blog->position = $request->position;
             $blog->date = Helper::convertDateToInteger($request->date);
             $blog->is_featured = $request->is_featured;
             if ($request->hasFile('image')) {

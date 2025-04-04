@@ -126,6 +126,7 @@ function initFilterAndPagination() {
     // Check for letter parameter in URL
     const paramLetter = getUrlParameter('letter');
     if (paramLetter) {
+        console.log('Letter parameter:', paramLetter);
         const letter = paramLetter.toLowerCase();
         const letterButton = $(`.char-${letter}`);
 
