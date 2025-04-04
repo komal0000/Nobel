@@ -27,15 +27,18 @@
                             <div class="col-6 col-md-4 col-xl-3">
                                 <div class="letter-card">
                                     <div class="download">
-                                        <a href="{{ $letter->image }}">
+                                        <a href="{{ Storage::url($letter->image) }}" target="_blank">
                                             <i class="bi bi-eye"></i>
                                         </a>
                                     </div>
                                     <div class="heading-group">
                                         <div class="title">
-                                            {{ $letter->title }}
+                                            {{ $type->title }}
                                         </div>
-                                        <div class="para">{{ \App\Helper::getMonthYear($letter->date) }}</div>
+                                        <div class="para">{{ $letter->title }}</div>
+                                        <div class="date mt-2">
+                                            {{ \App\Helper::getMonthYear($letter->date) }}
+                                        </div>
                                     </div>
                                     <div class="logo">
                                         <img src="{{ asset('front/assets/img/Nobel.png') }}" alt="Hospital Logo">
