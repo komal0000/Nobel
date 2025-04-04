@@ -1,5 +1,5 @@
 // Main JS for home page
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Initialize sliders
     initSliders();
 
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initLightbox();
 
     // Show homepage modal with slight delay
-    setTimeout(function() {
+    setTimeout(function () {
         $("#homepageModal").modal("show");
     }, 500);
 
@@ -189,7 +189,7 @@ function initSectionNavigation() {
     const $sectionLinks = $('#sectionLinks');
 
     // Generate navigation links from sections
-    $sections.each(function() {
+    $sections.each(function () {
         const sectionId = $(this).attr('id');
         const sectionName = $(this).data('content');
 
@@ -198,7 +198,7 @@ function initSectionNavigation() {
         const $link = $('<a>')
             .attr('href', `#${sectionId}`)
             .text(sectionName)
-            .on('click', function(e) {
+            .on('click', function (e) {
                 e.preventDefault();
                 $('html, body').animate({
                     scrollTop: $(`#${sectionId}`).offset().top - 120
@@ -211,10 +211,10 @@ function initSectionNavigation() {
     });
 
     // Active link highlighting when scrolling
-    $(window).on('scroll', function() {
+    $(window).on('scroll', function () {
         let current = '';
 
-        $sections.each(function() {
+        $sections.each(function () {
             const sectionTop = $(this).offset().top;
             if ($(window).scrollTop() >= (sectionTop - 150)) {
                 current = $(this).attr('id');
@@ -232,12 +232,12 @@ function initSectionNavigation() {
  */
 function setupEventListeners() {
     // Speciality filter
-    $('.sp-btn').on('click', function() {
+    $('.sp-btn').on('click', function () {
         setActive(this);
     });
 
     // Find doctor speciality dropdown
-    $('#default-speciality-wrap').on('click', function() {
+    $('#default-speciality-wrap').on('click', function () {
         const $listWrap = $('#list-wrap');
         if ($listWrap.css('display') === 'block') {
             $listWrap.css('display', 'none');
@@ -246,7 +246,7 @@ function setupEventListeners() {
         $listWrap.css('display', 'block');
     });
 
-    $('#list-wrap ul li').on('click', function() {
+    $('#list-wrap ul li').on('click', function () {
         const selectedText = $(this).text();
         const selectedValue = $(this).data('value');
 
@@ -256,7 +256,7 @@ function setupEventListeners() {
     });
 
     // Model of care - center image changing
-    $('.click-circle').on('click', function(e) {
+    $('.click-circle').on('click', function (e) {
         e.preventDefault();
         const imgSrc = $(this).attr('datasrc');
         const $image = $('.center-image');
@@ -271,7 +271,7 @@ function setupEventListeners() {
         // Force reflow
         $image[0].offsetHeight;
 
-        setTimeout(function() {
+        setTimeout(function () {
             $image.css('transition', 'transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.8s ease');
             $image.css({
                 'transform': 'scale(1)',
@@ -293,12 +293,12 @@ function setupEventListeners() {
     $('.center-image').addClass('normal');
 
     // Tab functionality for events
-    $('.tab').on('click', function() {
+    $('.tab').on('click', function () {
         changeTab(this);
     });
 
     // Mobile nav toggle
-    $('#toggle-navbar').on('click', function() {
+    $('#toggle-navbar').on('click', function () {
         $('#navbar').toggleClass('show-navbar');
         $('#navbar').css({
             'transform': 'scale(1)'
@@ -309,40 +309,40 @@ function setupEventListeners() {
     });
 
     // Menu toggles for header dropdowns
-    $('.navbar-item').on('click', function() {
+    $('.navbar-item').on('click', function () {
         extendSubMenu(this);
     });
 
     // Knowledge submenu toggle (with stop propagation)
-    $('.knowledge-drop').on('click', function(e) {
+    $('.knowledge-drop').on('click', function (e) {
         extendKnowledgeSubMenu(this, e);
     });
 
     // Footer accordion for mobile
-    $('.footer-block').on('click', function() {
+    $('.footer-block').on('click', function () {
         expand(this);
     });
 
     // Why us mobile accordion
-    $('.accor-list li, .list-accor li').on('click', function() {
+    $('.accor-list li, .list-accor li').on('click', function () {
         expand(this);
     });
 
     // Responsive list items
-    $('.resp-li').on('click', function() {
+    $('.resp-li').on('click', function () {
         expandRespLi(this);
     });
 
     // Speciality search
-    $('#speciality-search').on('input', function() {
+    $('#speciality-search').on('input', function () {
         const searchText = $(this).val().toLowerCase();
-        $('#find-doc-speciality li').each(function() {
+        $('#find-doc-speciality li').each(function () {
             const text = $(this).text().toLowerCase();
             $(this).toggle(text.includes(searchText));
         });
     });
 
-    $('#find-doc-speciality li').on('click', function() {
+    $('#find-doc-speciality li').on('click', function () {
         const selectedText = $(this).text();
         const selectedValue = $(this).data('value');
 
@@ -368,7 +368,7 @@ function setActive(el) {
     // Handle category selection functionality
     const category = $(el).text().trim().toLowerCase();
 
-    let targetUrl = '/ailment'; // Default
+    let targetUrl = '/aliment'; // Default
     if (category === 'treatment') {
         targetUrl = '/treatment';
     } else if (category === 'technologies') {
@@ -380,7 +380,7 @@ function setActive(el) {
     $('.sp-search-letter').attr('data-current-url', targetUrl);
 
     // Update the hover button href and text without changing inner structure
-    $('.hover-button-sp .hover-btn').each(function() {
+    $('.hover-button-sp .hover-btn').each(function () {
         // Update href
         $(this).attr('href', targetUrl);
 
@@ -420,7 +420,7 @@ function setActiveLetter(letterButton) {
     const letter = $(letterButton).find('span').text().trim().toLowerCase();
 
     // Get the current category base URL from data attribute
-    const categoryUrl = $('.sp-search-letter').attr('data-current-url') || '/ailment';
+    const categoryUrl = $('.sp-search-letter').attr('data-current-url') || '/aliment';
 
     // Directly navigate to the category+letter page
     window.location.href = `${categoryUrl}?letter=${letter}`;
@@ -470,7 +470,7 @@ function extendKnowledgeSubMenu(el, event) {
 // Show/hide feedback based on scroll position on mobile
 function toggleFeedback() {
     if ($(window).width() < 481) {
-        $(window).on("scroll", function() {
+        $(window).on("scroll", function () {
             if ($(window).scrollTop() > 100) {
                 $(".feedback-contact").addClass('hide-feedback');
             } else {
