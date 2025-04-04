@@ -35,7 +35,7 @@
                                         <div class="title">
                                             {{ $letter->title }}
                                         </div>
-                                        <div class="para">{{ App\Helper::getMonthYear($letter->date) }}</div>
+                                        <div class="para">{{ \App\Helper::getMonthYear($letter->date) }}</div>
                                     </div>
                                     <div class="logo">
                                         <img src="{{ asset('front/assets/img/Nobel.png') }}" alt="Hospital Logo">
