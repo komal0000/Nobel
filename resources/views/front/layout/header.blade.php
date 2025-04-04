@@ -50,7 +50,7 @@
                                         <a href="{{ route('knowledge.caseStudy') }}" class="drop-item">Case Studies</a>
                                     </li>
                                     <li>
-                                        <a href="/news-letter" class="drop-item">News Letter</a>
+                                        <a href="{{ route('knowledge.newsletter') }}" class="drop-item">News Letter</a>
                                     </li>
                                 </ul>
                             </li>
