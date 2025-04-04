@@ -98,7 +98,7 @@
                         </div>
                     @endif
                     <div class="col-md-12">
-                        <label for="short_description">Short Description</label>
+                        <label for="short_description">Short Description <span style="color: red;">*</span></label>
                         <input type="text" name="short_description" id="short_description" class="form-control">
                     </div>
 
@@ -107,8 +107,8 @@
 
             </div>
             <div class="col-md-12 my-2">
-                <label for="text_data">Text <span style="color: red;">*</span></label>
-                <textarea type="text" name="text" id="text" class="form-control summernote" required></textarea>
+                <label for="text_data">Text </label>
+                <textarea type="text" name="text" id="text" class="form-control summernote"></textarea>
             </div>
             <div class="col-md-12 my-2 d-flex justify-content-end">
                 <button class="btn btn-success">

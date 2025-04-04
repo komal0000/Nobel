@@ -153,6 +153,10 @@ class BlogController extends Controller
         $caseStudyTypes = DB::table('blog_categories')->where('type', helper::blog_type_case_study)->get();
         Helper::putCache('knowledge.casestudy',view('admin.template.knowledge.casestudy.index',compact('caseStudyTypes')));
 
+        //News Letter
+        $newsLetterTypes = DB::table('blog_categories')->where('type', helper::blog_type_news_letter)->get();
+        Helper::putCache('knowledge.newsletter',view('admin.template.knowledge.newsletter.index',compact('newsLetterTypes')));
+
         Helper::putCache('health.knowledge.blogs',view('admin.template.health.knowledge.blogs',compact('indexBlogs')));
         Helper::putCache('knowledge.blog', view('admin.template.knowledge.blog.index', compact('indexBlogs', 'featuredBlogs'))->render());
         Helper::putCache('event.index', view('admin.template.event.index', compact('indexNews', 'eventTypes'))->render());

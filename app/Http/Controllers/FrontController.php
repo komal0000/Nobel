@@ -62,6 +62,10 @@ class FrontController extends Controller
         return view('front.pages.knowledge.casestudy.index');
     }
 
+    public function newsLetterIndex(){
+        return view('front.pages.knowledge.newsLetter.index');
+    }
+
     public function videoIndex(){
         return view('front.pages.knowledge.video.index');
     }

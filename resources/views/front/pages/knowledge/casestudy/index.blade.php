@@ -175,6 +175,3 @@
         });
     </script>
 @endsection
-
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt, culpa quasi! Eveniet necessitatibus porro perferendis iure quasi quas alias aliquid! Harum velit voluptas animi ullam accusamus ad voluptatum odio alias!
