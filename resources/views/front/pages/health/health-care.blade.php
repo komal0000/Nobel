@@ -12,23 +12,25 @@
                     <div class="heading-sm mb-3">Our Doctors</div>
                     <x-hoverBtn class="heading-xs">Know More</x-hoverBtn>
                 </div>
-                <div class="col-3"> <img src="{{ asset('front/assets/img/health-library/health-library-2.jpg') }}" alt="Doctor"></div>
+                <div class="col-3"> <img src="{{ asset('front/assets/img/health-library/health-library-2.jpg') }}"
+                        alt="Doctor"></div>
                 <div class="col-3">
                     <div class="heading-sm mb-3">
                         Our Specialities
                     </div>
-                    <x-hoverBtn herf={{ route('speciality.index') }} class="heading-xs">Know More</x-hoverBtn>
+                    <x-hoverBtn href="{{ route('speciality.index') }}" class="heading-xs">Know More</x-hoverBtn>
                 </div>
                 <div class="col-3">
                     <div class="heading-sm mb-3">Treatments</div>
-                    <x-hoverBtn href={{ route('treatment.index') }} class="heading-xs">Know More</x-hoverBtn>
+                    <x-hoverBtn href="{{ route('treatment.index') }}" class="heading-xs">Know More</x-hoverBtn>
                 </div>
-                <div class="col-3"> <img src="{{ asset('front/assets/img/health-library/health-library-2.jpg') }}" alt="Doctor"></div>
+                <div class="col-3"> <img src="{{ asset('front/assets/img/health-library/health-library-2.jpg') }}"
+                        alt="Doctor"></div>
                 <div class="col-3">
                     <div class="heading-sm mb-3">
                         Ailments
                     </div>
-                    <x-hoverBtn href={{ route('aliment.index') }} class="heading-xs">Know More</x-hoverBtn>
+                    <x-hoverBtn href="{{ route('aliment.index') }}" class="heading-xs">Know More</x-hoverBtn>
                 </div>
                 <div class="col-3">
                     <img src="{{ asset('front/assets/img/health-library/health-library-1.jpg') }}" alt="Doctor">
@@ -41,7 +43,7 @@
                     <img src="{{ asset('front/assets/img/health-library/health-library-1.jpg') }}" alt="Doctor">
                 </div>
                 <div class="body">
-                     <div class="heading-sm mb-3">Our Doctors</div>
+                    <div class="heading-sm mb-3">Our Doctors</div>
                     <x-hoverBtn class="heading-xs">Know More</x-hoverBtn>
                 </div>
             </div>
@@ -50,8 +52,8 @@
                     <img src="{{ asset('front/assets/img/health-library/health-library-2.jpg') }}" alt="Doctor">
                 </div>
                 <div class="body">
-                     <div class="heading-sm mb-3">Our Specialities</div>
-                    <x-hoverBtn href={{ route('speciality.index') }} class="heading-xs">Know More</x-hoverBtn>
+                    <div class="heading-sm mb-3">Our Specialities</div>
+                    <x-hoverBtn href="{{ route('speciality.index') }}" class="heading-xs">Know More</x-hoverBtn>
                 </div>
             </div>
             <div class="mobile-card">
@@ -59,8 +61,8 @@
                     <img src="{{ asset('front/assets/img/health-library/health-library-1.jpg') }}" alt="Doctor">
                 </div>
                 <div class="body">
-                     <div class="heading-sm mb-3">Our Ailments</div>
-                    <x-hoverBtn href={{ route('aliment.index') }} class="heading-xs">Know More</x-hoverBtn>
+                    <div class="heading-sm mb-3">Our Ailments</div>
+                    <x-hoverBtn href="{{ route('aliment.index') }}" class="heading-xs">Know More</x-hoverBtn>
                 </div>
             </div>
             <div class="mobile-card">
@@ -68,8 +70,8 @@
                     <img src="{{ asset('front/assets/img/health-library/health-library-2.jpg') }}" alt="Doctor">
                 </div>
                 <div class="body">
-                     <div class="heading-sm mb-3">Our Treatments</div>
-                    <x-hoverBtn href={{ route('treatment.index') }} class="heading-xs">Know More</x-hoverBtn>
+                    <div class="heading-sm mb-3">Our Treatments</div>
+                    <x-hoverBtn href="{{ route('treatment.index') }}" class="heading-xs">Know More</x-hoverBtn>
                 </div>
             </div>
         </div>

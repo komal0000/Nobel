@@ -23,9 +23,9 @@
                             Health Library <i class="bi bi-chevron-down"></i>
                         </a>
                         <ul class="drop-menu">
-                            {{-- <li>
-                                <a href="/health-library" class="drop-item">Health Library</a>
-                            </li> --}}
+                            <li>
+                                <a href="{{ route('healthlibrary.index') }}" class="drop-item">Health Library</a>
+                            </li>
                             <li>
                                 <a href="{{ route('treatment.index') }}" class="drop-item">Treatments</a>
                             </li>

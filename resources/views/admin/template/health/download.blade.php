@@ -2,7 +2,7 @@
     <div class="main-container">
         <div class="heading-group">
             <div class="heading text-center">Downloads</div>
-            <x-hoverBtn href= >Downloads</x-hoverBtn>
+            <x-hoverBtn href="{{ route('download.index') }}" >Downloads</x-hoverBtn>
         </div>
         <div class="download-slider">
             @foreach ($downloads as $download)
@@ -18,7 +18,7 @@
             @endforeach
         </div>
         <div class="mobile-btn">
-            <x-hoverBtn >View All Downloads </x-hoverBtn>
+            <x-hoverBtn  href="{{ route('download.index') }}" >View All Downloads </x-hoverBtn>
         </div>
     </div>
 </section>

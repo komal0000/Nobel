@@ -149,16 +149,38 @@ section:nth-of-type(odd) {
 .main-card .body .heading-md {
   font-weight: 700;
   color: var(--color-dark-grey);
+  line-height: 30px;
+  height: 60px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media screen and (max-width: 1599px) {
+  .main-card .body .heading-md {
+    line-height: 25px;
+    height: 50px;
+  }
+}
+@media (max-width: 768px) {
+  .main-card .body .heading-md {
+    line-height: 20px;
+    height: 40px;
+  }
 }
 .main-card .body .content {
   text-align: left;
   color: var(--color-grey);
   margin: 14px 0;
+  line-height: 18px;
+  height: 72px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 @media (max-width: 992px) {
   .main-card .body .content {
     width: 100%;
     font-size: 12px;
+    line-height: 15px;
+    height: 60px;
   }
 }
 .main-card .body .know-btn {
@@ -1924,7 +1946,7 @@ section:nth-of-type(odd) {
   left: 0;
   width: 100%;
   height: 250px;
-  background: url("front/assets/img/why-bg.png") 0 0/cover no-repeat;
+  background: url("/front/assets/img/why-bg.png") 0 0/cover no-repeat;
   background-color: var(--color-main);
   z-index: -1;
 }
@@ -2366,7 +2388,7 @@ section:nth-of-type(odd) {
 }
 
 .update {
-  background: url("front/assets/img/updates-bg.jpg") center center/cover no-repeat;
+  background: url("/front/assets/img/updates-bg.jpg") center center/cover no-repeat;
   padding-top: 60px;
   margin-bottom: 50px;
   background-color: var(--secondary-white) !important;
@@ -2427,7 +2449,7 @@ section:nth-of-type(odd) {
 .awards {
   padding-top: 80px;
   background-color: var(--color-white) !important;
-  background: url("front/assets/img/why-bg.png") top left;
+  background: url("/front/assets/img/why-bg.png") top left;
 }
 .awards .main-container .award-slide .slick-prev {
   border: none;
@@ -2489,7 +2511,7 @@ section:nth-of-type(odd) {
 }
 .awards .main-container .award-slide .slide-card .year::before {
   display: inline-block;
-  background: url("front/assets/img/award-heading-vector-left.png") center center/100% no-repeat;
+  background: url("/front/assets/img/award-heading-vector-left.png") center center/100% no-repeat;
   width: 40px;
   vertical-align: middle;
   height: 25px;
@@ -2497,7 +2519,7 @@ section:nth-of-type(odd) {
 }
 .awards .main-container .award-slide .slide-card .year::after {
   display: inline-block;
-  background: url("front/assets/img/award-heading-vector-right.png") center center/100% no-repeat;
+  background: url("/front/assets/img/award-heading-vector-right.png") center center/100% no-repeat;
   width: 40px;
   vertical-align: middle;
   height: 25px;
@@ -3517,7 +3539,7 @@ section:nth-of-type(odd) {
   box-shadow: 0 4px 19px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
   padding: 30px;
-  background: url("front/assets/img/health-library/pattern-bg.png") top left #fff;
+  background: url("/front/assets/img/health-library/pattern-bg.png") top left #fff;
   display: flex;
   flex-direction: column;
   transition: 0.3s ease;
@@ -3726,7 +3748,7 @@ section:nth-of-type(odd) {
   box-shadow: 0 4px 19px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
   padding: 30px;
-  background: url("front/assets/img/health-library/pattern-bg.png") top left #fff;
+  background: url("/front/assets/img/health-library/pattern-bg.png") top left #fff;
   display: flex;
   flex-direction: column;
   transition: 0.3s ease;
@@ -4474,7 +4496,7 @@ section:nth-of-type(odd) {
   border-color: var(--color-main);
 }
 #news-letter .letter-row .letter-card {
-  background: #fff url("front/assets/img/why-bg.png") no-repeat center center;
+  background: #fff url("/front/assets/img/why-bg.png") no-repeat center center;
   background-size: cover;
   padding: 20px;
   display: flex;
@@ -4728,11 +4750,11 @@ section:nth-of-type(odd) {
 }
 
 #how {
-  background: url("front/assets/img/health-library/pattern-bg.png") top left var(--secondary-white);
+  background: url("/front/assets/img/health-library/pattern-bg.png") top left var(--secondary-white);
 }
 
 #treated .each-card {
-  background: url("front/assets/img/health-library/pattern-bg.png") top left #fff;
+  background: url("/front/assets/img/health-library/pattern-bg.png") top left #fff;
   position: relative;
   box-shadow: 0 4px 19px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
@@ -5465,7 +5487,7 @@ section:nth-of-type(odd) {
 }
 .employee-section .main-container .content-main .employee-flex .award .award-slider .slide-card .year::before {
   display: inline-block;
-  background: url("front/assets/img/award-heading-vector-left.png") center center/100% no-repeat;
+  background: url("/front/assets/img/award-heading-vector-left.png") center center/100% no-repeat;
   width: 15%;
   max-width: 40px;
   vertical-align: middle;
@@ -5474,7 +5496,7 @@ section:nth-of-type(odd) {
 }
 .employee-section .main-container .content-main .employee-flex .award .award-slider .slide-card .year::after {
   display: inline-block;
-  background: url("front/assets/img/award-heading-vector-right.png") center center/100% no-repeat;
+  background: url("/front/assets/img/award-heading-vector-right.png") center center/100% no-repeat;
   width: 15%;
   max-width: 40px;
   vertical-align: middle;
@@ -5943,7 +5965,7 @@ section:nth-of-type(odd) {
 }
 
 .contact {
-  background: url("front/assets/img/contact-us/contact-banner-lg.jpg") no-repeat;
+  background: url("/front/assets/img/contact-us/contact-banner-lg.jpg") no-repeat;
   background-size: cover;
 }
 @media (max-width: 991px) {
@@ -6164,7 +6186,7 @@ section:nth-of-type(odd) {
 }
 
 #care {
-  background: url("front/assets/img/why-us/care.jpg") center center no-repeat;
+  background: url("/front/assets/img/why-us/care.jpg") center center no-repeat;
 }
 #care .bg-img img {
   width: 100%;
@@ -6570,7 +6592,7 @@ section:nth-of-type(odd) {
 }
 
 #dr-specialization .each-card {
-  background: url("front/assets/img/health-library/pattern-bg.png") top left #fff;
+  background: url("/front/assets/img/health-library/pattern-bg.png") top left #fff;
   position: relative;
   box-shadow: 0 4px 19px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
@@ -6646,7 +6668,7 @@ section:nth-of-type(odd) {
 }
 
 #dr-media {
-  background: url("front/assets/img/health-library/pattern-bg.png") top left;
+  background: url("/front/assets/img/health-library/pattern-bg.png") top left;
 }
 #dr-media .glightbox .each-video {
   position: relative;
@@ -7001,7 +7023,7 @@ section:nth-of-type(odd) {
 }
 
 #cpr-stats .each-card {
-  background: url("front/assets/img/health-library/pattern-bg.png") top left var(--secondary-white);
+  background: url("/front/assets/img/health-library/pattern-bg.png") top left var(--secondary-white);
   margin: 15px;
   display: flex;
   flex-direction: column;
@@ -7218,7 +7240,7 @@ section:nth-of-type(odd) {
 }
 
 #cpr-training {
-  background: url("front/assets/img/health-library/pattern-bg.png") top left repeat;
+  background: url("/front/assets/img/health-library/pattern-bg.png") top left repeat;
 }
 
 #cpr-blog .article-card {
@@ -7958,7 +7980,7 @@ section:nth-of-type(odd) {
 }
 #about-award .slide-card .year::before {
   display: inline-block;
-  background: url("front/assets/img/award-heading-vector-left.png") center center/100% no-repeat;
+  background: url("/front/assets/img/award-heading-vector-left.png") center center/100% no-repeat;
   width: 40px;
   vertical-align: middle;
   height: 25px;
@@ -7966,7 +7988,7 @@ section:nth-of-type(odd) {
 }
 #about-award .slide-card .year::after {
   display: inline-block;
-  background: url("front/assets/img/award-heading-vector-right.png") center center/100% no-repeat;
+  background: url("/front/assets/img/award-heading-vector-right.png") center center/100% no-repeat;
   width: 40px;
   vertical-align: middle;
   height: 25px;
@@ -8031,7 +8053,7 @@ section:nth-of-type(odd) {
 }
 
 #job-career {
-  background: url("front/assets/img/why-bg.png") top left repeat;
+  background: url("/front/assets/img/why-bg.png") top left repeat;
 }
 #job-career .filters {
   width: 700px;

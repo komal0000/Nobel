@@ -2,7 +2,7 @@
     <div class="main-container">
         <div class="heading-group mb-4">
             <div class="heading text-center">Technology</div>
-            <x-hoverBtn class="button">View All Technology</x-hoverBtn>
+            <x-hoverBtn href="{{ route('technology.index') }}"  class="button">View All Technology</x-hoverBtn>
         </div>
         <div class="technology-slider">
             @foreach ($technologiesIndex as $technology)
@@ -23,7 +23,7 @@
             @endforeach
         </div>
         <div class="mobile-btn">
-            <x-hoverBtn>View All </x-hoverBtn>
+            <x-hoverBtn href="{{ route('technology.index') }}">View All </x-hoverBtn>
         </div>
     </div>
 </section>

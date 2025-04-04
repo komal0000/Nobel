@@ -12,3 +12,6 @@
     @includeIF('front.cache.health.download')
     @includeIF('front.cache.health.event')
 @endsection
+@section('js')
+    <script src="{{ asset('front/assets/js/health/index.js') }}"></script>
+@endsection
