@@ -31,6 +31,7 @@ Route::get('event',[FrontController::class,'eventIndex'])->name('event');
 Route::get('contact', [FrontController::class, 'contact'])->name('contact');
 Route::get('careers', [FrontController::class, 'careers'])->name('careers');
 Route::get('jobcategory', [FrontController::class, 'jobCategory'])->name('jobcategory');
+Route::get('update/single/{update_id}', [FrontController::class, 'updateSingle'])->name('update.single');
 
 Route::prefix('speciality')->name('speciality.')->group(function () {
     Route::get('', [FrontController::class, 'specialityIndex'])->name('index');

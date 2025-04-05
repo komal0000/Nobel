@@ -84,22 +84,25 @@ class BlogController extends Controller
 
             if ($request->hasFile('image')) {
                 $blog->image = $request->file('image')->store("uploads/blogcategory/{$blogCategory->type}", 'public');
+            };
+            if($request->hasFile('single_page_image')) {
+                $blog->single_page_image = $request->file('single_page_image')->store("uploads/blogcategory/{$blogCategory->type}", 'public');
             }
             $blog->type = $type;
             $blog->text = $request->text;
             $blog->datas = $request->datas;
-            $blog->video_link = $request->video_link;
             $blog->creator_user_id = Auth::id();
             $blog->location = $request->location;
+            $blog->position = $request->position;
+            $blog->video_link = $request->video_link;
             $blog->is_featured = $request->is_featured;
             $blog->blog_category_id = $blogCategory->id;
-            $blog->short_description = $request->short_description;
             $blog->submitted_by = $request->submitted_by;
-            $blog->position = $request->position;
+            $blog->short_description = $request->short_description;
             $blog->date = Helper::convertDateToInteger($request->date);
             $blog->save();
             $this->render();
-            $this->renderSingle($blog->id);
+            $this->renderSingle($blog->id, $blog->type);
             return redirect()->back()->with('success', 'Blog Successfully Added');
         }
     }
@@ -113,38 +116,53 @@ class BlogController extends Controller
         if (Helper::G()) {
             return view('admin.blogCategory.blog.edit', compact('parent_id', 'blog', 'blogCategory'));
         } else {
-            $blog->text = $request->text;
-            $blog->datas = $request->datas;
-            $blog->title = $request->title;
-            $blog->location = $request->location;
-            $blog->video_link = $request->video_link;
-            $blog->short_description = $request->short_description;
-            $blog->submitted_by = $request->submitted_by;
-            $blog->position = $request->position;
-            $blog->date = Helper::convertDateToInteger($request->date);
-            $blog->is_featured = $request->is_featured;
             if ($request->hasFile('image')) {
                 $blog->image = $request->file('image')->store("uploads/blogcategory/{$blogCategory->type}", 'public');
             }
+            if($request->hasFile('single_page_image')) {
+                $blog->single_page_image = $request->file('single_page_image')->store("uploads/blogcategory/{$blogCategory->type}", 'public');
+            }
+            $blog->text = $request->text;
+            $blog->datas = $request->datas;
+            $blog->title = $request->title;
+            $blog->position = $request->position;
+            $blog->location = $request->location;
+            $blog->video_link = $request->video_link;
+            $blog->is_featured = $request->is_featured;
+            $blog->submitted_by = $request->submitted_by;
+            $blog->short_description = $request->short_description;
+            $blog->date = Helper::convertDateToInteger($request->date);
             $blog->save();
             $this->render();
-            $this->renderSingle($blog_id);
+            $this->renderSingle($blog_id , $blog->type);
             return redirect()->back()->with('success', 'Blog Successfully updated');
         }
     }
     public function blogdel($blog_id)
     {
-        Blog::where('id', $blog_id)->delete();
+        $blog =  Blog::where('id', $blog_id)->first();
+        $blog->delete();
         $this->render();
-        $this->renderSingle($blog_id);
+        $this->renderSingle($blog_id, $blog->type);
+
         return redirect()->back()->with('delete_success', 'Successfully Blog Deleted');
     }
 
-    public function renderSingle($blog_id){
-        $case = DB::table('blogs')->where('id',$blog_id)->first();
-        $caseCategory = DB::table('blog_categories')->where('id',$case->blog_category_id)->first();
-        $latestCase = DB::table('blogs')->where('type', Helper::blog_type_case_study)->orderBy('id', 'desc')->take(2)->get();
-        Helper::putCache('knowledge.casestudy.'.$blog_id, view('admin.template.knowledge.casestudy.single',compact('case','caseCategory','latestCase'))->render());
+    public function renderSingle($blog_id, $type)
+    {
+        //News case single page
+        if($type == Helper::blog_type_case_study){
+            $case = DB::table('blogs')->where('id', $blog_id)->first();
+            $latestCase = DB::table('blogs')->where('type', Helper::blog_type_case_study)->orderBy('id', 'desc')->take(2)->get();
+            Helper::putCache('knowledge.casestudy.' . $blog_id, view('admin.template.knowledge.casestudy.single', compact('case', 'latestCase'))->render());
+        }
+
+        //update single page
+        if($type == Helper::blog_type_update){
+            $update = DB::table('blogs')->where('id', $blog_id)->first();
+            $latestUpdate = DB::table('blogs')->where('type', Helper::blog_type_update)->orderBy('id', 'desc')->take(2)->get();
+            Helper::putCache('home.update.' . $blog_id, view('admin.template.home.update.single', compact('update', 'latestUpdate'))->render());
+        }
     }
     public function render()
     {
@@ -164,17 +182,17 @@ class BlogController extends Controller
         }
         //Case Study
         $caseStudyTypes = DB::table('blog_categories')->where('type', helper::blog_type_case_study)->get();
-        Helper::putCache('knowledge.casestudy',view('admin.template.knowledge.casestudy.index',compact('caseStudyTypes')));
+        Helper::putCache('knowledge.casestudy', view('admin.template.knowledge.casestudy.index', compact('caseStudyTypes')));
 
         //News Letter
         $newsLetterTypes = DB::table('blog_categories')->where('type', helper::blog_type_news_letter)->get();
-        Helper::putCache('knowledge.newsletter',view('admin.template.knowledge.newsletter.index',compact('newsLetterTypes')));
+        Helper::putCache('knowledge.newsletter', view('admin.template.knowledge.newsletter.index', compact('newsLetterTypes')));
 
-        Helper::putCache('health.knowledge.blogs',view('admin.template.health.knowledge.blogs',compact('indexBlogs')));
+        Helper::putCache('health.knowledge.blogs', view('admin.template.health.knowledge.blogs', compact('indexBlogs')));
         Helper::putCache('knowledge.blog', view('admin.template.knowledge.blog.index', compact('indexBlogs', 'featuredBlogs'))->render());
         Helper::putCache('event.index', view('admin.template.event.index', compact('indexNews', 'eventTypes'))->render());
         Helper::putCache('home.updates', view('admin.template.home.update', compact('updateData'))->render());
         Helper::putCache('home.newsEvent', view('admin.template.home.news', compact('newsData', 'eventData', 'latestNews', 'eventTypes',))->render());
-        Helper::putCache('health.event',view('admin.template.health.event',compact('eventData')));
+        Helper::putCache('health.event', view('admin.template.health.event', compact('eventData')));
     }
 }

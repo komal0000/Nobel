@@ -60,15 +60,37 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12">
-                    <label for="image">
-                        @if ($blogCategory->type == 6)
-                            PDF <span style="color: red;">*</span>
-                        @else
-                            Image 4:3
-                        @endif
-                    </label>
-                    <input type="file" name="image" id="image" class="form-control dropify" accept="image/*,.pdf">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="image">
+                            @php
+                                $imageLabels = [
+                                    1 => 'Image 4:3',
+                                    2 => 'Image 4:3',
+                                    3 => 'Image 4:3',
+                                    4 => 'Icon',
+                                    5 => 'Image 4:3',
+                                    6 => 'PDF',
+                                ];
+                                $isRequired = in_array($blogCategory->type, [1, 2, 3, 5, 6]);
+                            @endphp
+
+                            {{ $imageLabels[$blogCategory->type] ?? 'Image' }}
+                            @if ($isRequired)
+                                <span style="color: red;">*</span>
+                            @endif
+
+                            @if ($blogCategory->type != 6)
+                                <input type="file" name="image" id="image" class="form-control dropify"
+                                    accept="image/*">
+                            @endif
+                        </label>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="single_page_image">Single Page Image</label>
+                        <input type="file" name="single_page_image" id="single_page_image" class="form-control dropify"
+                            accept="image/*">
+                    </div>
                 </div>
             </div>
             <div class="col-md-7">

@@ -60,16 +60,44 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12">
-                    <label for="image">
-                        @if ($blogCategory->type == 6)
-                            PDF <span style="color: red;">*</span>
-                        @else
-                            Image 4:3
-                        @endif
-                    </label>
-                    <input type="file" name="image" id="image" class="form-control dropify" accept="image/*,.pdf"
-                        data-default-file="{{ Storage::url($blog->image) }}">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="image">
+                            @php
+                                $imageLabels = [
+                                    1 => 'Image 4:3',
+                                    2 => 'Image 4:3',
+                                    3 => 'Image 4:3',
+                                    4 => 'Icon',
+                                    5 => 'Image 4:3',
+                                    6 => 'PDF',
+                                ];
+                                $isRequired = in_array($blogCategory->type, [1, 2, 3, 5, 6]);
+                            @endphp
+
+                            {{ $imageLabels[$blogCategory->type] ?? 'Image' }}
+                            @if ($isRequired)
+                                <span style="color: red;">*</span>
+                            @endif
+                            @if ($blogCategory->type != 6)
+                                <input type="file" name="image" id="image" class="form-control dropify"
+                                    accept="image/*" data-default-file="{{ Storage::url($blog->image) }}">
+                            @endif
+                            @if ($blogCategory->type == 6)
+                                <input type="file" name="pdf" id="pdf" class="form-control dropify"
+                                    accept="application/pdf" data-default-file="{{ Storage::url($blog->image) }}">
+                            @endif
+                        </label>
+                    </div>
+                    @if ($blogCategory->type == 6)
+                    @else
+                        <div class="col-md-6">
+                            <label for="single_page_image">Single Page Image</label>
+                            <input type="file" name="single_page_image" id="single_page_image"
+                                class="form-control dropify" accept="image/*"
+                                data-default-file="{{ Storage::url($blog->single_page_image) }}">
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="col-md-7">
@@ -133,15 +161,16 @@
                     @endif
                 </div>
             </div>
-            <div class="col-md-12 my-2">
-                <label for="text_data">Text </label>
-                <textarea type="text" name="text" id="text" class="form-control summernote">{{ $blog->text }}</textarea>
-            </div>
-            <div class="col-md-12 my-2 d-flex justify-content-end">
-                <button class="btn btn-success">
-                    Update
-                </button>
-            </div>
+        </div>
+        <div class="col-md-12 my-2">
+            <label for="text_data">Text </label>
+            <textarea type="text" name="text" id="text" class="form-control summernote">{{ $blog->text }}</textarea>
+        </div>
+        <div class="col-md-12 my-2 d-flex justify-content-end">
+            <button class="btn btn-success">
+                Update
+            </button>
+        </div>
         </div>
     </form>
 @endsection

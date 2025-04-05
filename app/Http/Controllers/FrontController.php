@@ -81,4 +81,8 @@ class FrontController extends Controller
     public function jobCategory(){
         return view('front.pages.career.jobCategory');
     }
+
+    public function updateSingle($update_id){
+        return view('front.pages.home.update.single',compact('update_id'));
+    }
 }
