@@ -154,14 +154,28 @@ class BlogController extends Controller
         if($type == Helper::blog_type_case_study){
             $case = DB::table('blogs')->where('id', $blog_id)->first();
             $latestCase = DB::table('blogs')->where('type', Helper::blog_type_case_study)->orderBy('id', 'desc')->take(2)->get();
-            Helper::putCache('knowledge.casestudy.' . $blog_id, view('admin.template.knowledge.casestudy.single', compact('case', 'latestCase'))->render());
+            Helper::putCache('knowledge.casestudy.'.$blog_id, view('admin.template.knowledge.casestudy.single', compact('case', 'latestCase'))->render());
         }
 
         //update single page
         if($type == Helper::blog_type_update){
             $update = DB::table('blogs')->where('id', $blog_id)->first();
             $latestUpdate = DB::table('blogs')->where('type', Helper::blog_type_update)->orderBy('id', 'desc')->take(2)->get();
-            Helper::putCache('home.update.' . $blog_id, view('admin.template.home.update.single', compact('update', 'latestUpdate'))->render());
+            Helper::putCache('home.update.'.$blog_id, view('admin.template.home.update.single', compact('update', 'latestUpdate'))->render());
+        }
+
+        //News single page
+        if($type == Helper::blog_type_news) {
+            $news = DB::table('blogs')->where('id', $blog_id)->first();
+            $latestNews = DB::table('blogs')->where('type', Helper::blog_type_news)->orderBy('id', 'desc')->take(2)->get();
+            Helper::putCache('home.news.'.$blog_id, view('admin.template.home.news.single', compact('news', 'latestNews'))->render());
+        }
+
+        //Event single page
+        if($type == Helper::blog_type_event) {
+            $event = DB::table('blogs')->where('id', $blog_id)->first();
+            $latestEvent = DB::table('blogs')->where('type', Helper::blog_type_event)->orderBy('id', 'desc')->take(2)->get();
+            Helper::putCache('event.single.'.$blog_id, view('admin.template.event.single', compact('event', 'latestEvent'))->render());
         }
     }
     public function render()

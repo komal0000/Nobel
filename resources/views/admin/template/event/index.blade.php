@@ -27,7 +27,8 @@
                         <div class="para-wrap location mb-2"><i class="bi bi-geo-alt-fill"></i> {{ $news->location }}
                         </div>
                         <div class="d-flex justify-content-between know-btn">
-                            <x-hoverBtn>View Event Details</x-hoverBtn>
+                            <x-hoverBtn href="{{ route('news.single', ['news_id' => $news->id]) }}">View Event
+                                Details</x-hoverBtn>
                         </div>
                     </div>
                 </div>
@@ -51,20 +52,23 @@
                         ->where('type', App\Helper::blog_type_event)
                         ->get();
                 @endphp
-                @foreach ($events as $event )
-                <div class="slide m-3">
-                    <div class="img-wrapper">
-                        <img src="{{ Storage::url($event->image) }}" alt="Service Image" class="img-fluid">
-                        <div class="heading-xs date">{{ \App\Helper::formatTimestampToDateString($event->date) }}</div>
-                    </div>
-                    <div class="body">
-                        <h3 class="title heading-sm mb-2">{{ $event->title }}</h3>
-                        <div class="para-wrap location mb-2"><i class="bi bi-geo-alt-fill"></i> {{ $event->location }}</div>
-                        <div class="d-flex justify-content-between know-btn">
-                            <x-hoverBtn>View Event Details</x-hoverBtn>
+                @foreach ($events as $event)
+                    <div class="slide m-3">
+                        <div class="img-wrapper">
+                            <img src="{{ Storage::url($event->image) }}" alt="Service Image" class="img-fluid">
+                            <div class="heading-xs date">{{ \App\Helper::formatTimestampToDateString($event->date) }}
+                            </div>
+                        </div>
+                        <div class="body">
+                            <h3 class="title heading-sm mb-2">{{ $event->title }}</h3>
+                            <div class="para-wrap location mb-2"><i class="bi bi-geo-alt-fill"></i>
+                                {{ $event->location }}</div>
+                            <div class="d-flex justify-content-between know-btn">
+                                <x-hoverBtn href="{{ route('event.single', ['event_id' => $event->id]) }}">View Event
+                                    Details</x-hoverBtn>
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
             </div>
             <div class="mobile-btn">
@@ -73,4 +77,3 @@
         </div>
     </section>
 @endforeach
-

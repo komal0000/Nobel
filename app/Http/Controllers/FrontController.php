@@ -85,4 +85,11 @@ class FrontController extends Controller
     public function updateSingle($update_id){
         return view('front.pages.home.update.single',compact('update_id'));
     }
+
+    public function newsSingle($news_id){
+        return view('front.pages.home.news.single',compact('news_id'));
+    }
+    public function eventSingle($event_id){
+        return view('front.pages.event.single',compact('event_id'));
+    }
 }
