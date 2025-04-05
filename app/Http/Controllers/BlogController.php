@@ -144,7 +144,7 @@ class BlogController extends Controller
         $case = DB::table('blogs')->where('id',$blog_id)->first();
         $caseCategory = DB::table('blog_categories')->where('id',$case->blog_category_id)->first();
         $latestCase = DB::table('blogs')->where('type', Helper::blog_type_case_study)->orderBy('id', 'desc')->take(2)->get();
-        Helper::putCache('knowledge.casestudy.'.$blog_id, view('admin.template.knowledge.newsletter.single',compact('case','caseCategory','latestCase'))->render());
+        Helper::putCache('knowledge.casestudy.'.$blog_id, view('admin.template.knowledge.casestudy.single',compact('case','caseCategory','latestCase'))->render());
     }
     public function render()
     {

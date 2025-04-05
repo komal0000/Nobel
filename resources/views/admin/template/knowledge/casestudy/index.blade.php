@@ -32,23 +32,28 @@
                     @foreach ($caseStudies as $case)
                         <div class="col-xl-4 col-md-6 case-study-item" data-content="{{ Str::slug($type->title) }}">
                             <div class="slide m-3">
-                                <div class="img-wrapper">
-                                    <img src="{{ Storage::url($case->image) }}" alt="Service Image"
-                                        class="img-fluid w-100">
-                                    <div class="heading-xs date">
-                                        {{ App\Helper::formatTimestampToDateString($case->date) }}</div>
-                                </div>
+                                <a href="{{ route('knowledge.casestudy.single', ['case_study_id' => $case->id]) }}">
+                                    <div class="img-wrapper">
+                                        <img src="{{ Storage::url($case->image) }}" alt="Service Image"
+                                            class="img-fluid w-100">
+                                        <div class="heading-xs date">
+                                            {{ App\Helper::formatTimestampToDateString($case->date) }}</div>
+                                    </div>
+                                </a>
                                 <div class="body">
                                     <div class="para-wrap">Case Study</div>
-                                    <h3 class="title heading-sm">{{ $case->title }}</h3>
+                                    <a href="{{ route('knowledge.casestudy.single', ['case_study_id' => $case->id]) }}">
+                                        <h3 class="title heading-sm">{{ $case->title }}</h3>
+                                    </a>
                                     <div class="name-post">
                                         <span class="name">
                                             Dr {{ $case->submitted_by }}
                                         </span>
                                         <br>
-                                        <span class="post">{{$case->position}}</span>
+                                        <span class="post">{{ $case->position }}</span>
                                     </div>
-                                    <div class="speciality">{{$type->title}} <a href="">View Profile</a> </div>
+                                    <div class="speciality">{{ $type->title }} <a href="">View Profile</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
