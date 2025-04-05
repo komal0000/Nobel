@@ -719,24 +719,14 @@ section:nth-of-type(odd) {
   font-weight: 600;
   color: var(--color-grey);
 }
-@media (min-width: 1200px) and (max-width: 1599px) {
-  .heading-sm {
-    font-size: 18px;
-  }
-}
-@media (min-width: 992px) and (max-width: 1199px) {
-  .heading-sm {
-    font-size: 16px;
-  }
-}
-@media (min-width: 769px) and (max-width: 991px) {
+@media (min-width: 769px) and (max-width: 1599px) {
   .heading-sm {
     font-size: 20px;
   }
 }
 @media (max-width: 768px) {
   .heading-sm {
-    font-size: 16px;
+    font-size: 18px;
   }
 }
 
@@ -3854,29 +3844,36 @@ section:nth-of-type(odd) {
 #technology .main-container .technology-slider .tech-card {
   background-color: var(--color-white);
   justify-content: space-between;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
-#technology .main-container .technology-slider .tech-card .image-wrapper {
+#technology .main-container .technology-slider .tech-card .img-wrapper {
   flex: 2;
 }
 #technology .main-container .technology-slider .tech-card img {
-  max-width: 250px;
   height: 100%;
   aspect-ratio: 1/1;
   -o-object-fit: cover;
      object-fit: cover;
-  border-radius: 25px;
+  border-radius: 16px;
 }
 #technology .main-container .technology-slider .tech-card .body {
   flex: 3;
 }
+#technology .main-container .technology-slider .tech-card .body .heading-sm {
+  line-height: 25px;
+  height: 50px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#technology .main-container .technology-slider .tech-card .body .para-wrap {
+  line-height: 18px;
+  height: 72px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 #technology .main-container .mobile-btn {
   display: flex;
   justify-content: center;
-}
-@media (min-width: 769px) {
-  #technology .main-container .mobile-btn {
-    display: none;
-  }
 }
 
 #knowledge .main-container .knowledge-tabs .tab button {
@@ -3996,6 +3993,7 @@ section:nth-of-type(odd) {
   bottom: 0;
   left: 0;
   padding: 16px;
+  color: var(--color-white);
 }
 #health-wellness .main-container .desktop-blogs .small-col .heading-sm button {
   border: none;
@@ -4060,11 +4058,6 @@ section:nth-of-type(odd) {
   display: flex;
   justify-content: center;
 }
-@media (min-width: 769px) {
-  #health-library-download .main-container .mobile-btn {
-    display: none;
-  }
-}
 
 #events .main-container .heading-group {
   position: relative;
@@ -4093,23 +4086,32 @@ section:nth-of-type(odd) {
 }
 #events .main-container .event-slider .event-card img {
   width: 100%;
-  height: 100%;
-  aspect-ratio: 1/1;
+  height: 250px;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 20px;
 }
-#events .main-container .event-slider .event-card .content {
-  height: 40%;
+#events .main-container .event-slider .event-card .content .heading-sm {
+  line-height: 24px;
+  height: 48px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media (max-width: 768px) {
+  #events .main-container .event-slider .event-card .content .heading-sm {
+    line-height: 20px;
+    height: 40px;
+  }
+}
+#events .main-container .event-slider .event-card .content .para-wrap {
+  line-height: 18px;
+  height: 72px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 #events .main-container .mobile-btn {
   display: flex;
   justify-content: center;
-}
-@media (min-width: 769px) {
-  #events .main-container .mobile-btn {
-    display: none;
-  }
 }
 
 #all-blogs .heading-group input,
@@ -4414,6 +4416,9 @@ section:nth-of-type(odd) {
   background-color: var(--color-white);
   padding: 5px 10px;
   border-radius: 10px;
+}
+#case-studies .case-study-content .slide a:hover {
+  color: initial;
 }
 #case-studies .case-study-content .slide .body {
   padding: 30px;
@@ -5294,22 +5299,20 @@ section:nth-of-type(odd) {
   cursor: pointer;
   padding: 15px;
 }
-.profession .main-container .card-wrapper .slide .each-card .body .heading {
-  font-size: 28px;
+.profession .main-container .card-wrapper .slide .each-card .body .heading-md {
   font-weight: 600;
   color: var(--color-dark-grey);
-}
-@media (max-width: 992px) {
-  .profession .main-container .card-wrapper .slide .each-card .body .heading {
-    font-size: 16px;
-  }
+  height: 50px;
+  line-height: 25px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .profession .main-container .card-wrapper .slide .each-card .body .content {
   font-size: 15px;
   line-height: 20px;
   font-weight: 500;
   color: var(--color-grey);
-  margin: 14px 0;
+  margin-bottom: 14px;
   height: 80px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -8063,6 +8066,132 @@ section:nth-of-type(odd) {
   margin-bottom: 6px;
 }
 
+#per-case-study {
+  background-color: #fff;
+}
+#per-case-study .case-study .heading-sm {
+  font-weight: 500;
+}
+#per-case-study .case-study img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#per-case-study .case-study .case-study-main-img {
+  width: 100%;
+  overflow: hidden;
+}
+#per-case-study .case-study .author-profile {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+  margin-top: 30px;
+  align-items: center;
+  padding: 15px;
+  border-radius: 15px;
+}
+#per-case-study .case-study .author-profile .author-img {
+  width: 120px;
+  flex: none;
+}
+#per-case-study .case-study .author-profile .author-img img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+#per-case-study .case-study .author-profile .author-desc {
+  padding-left: 10px;
+}
+#per-case-study .case-study .author-profile .author-desc .heading-sm {
+  font-weight: 600;
+}
+#per-case-study .case-study .author-profile .author-desc a {
+  font-size: 14px;
+}
+#per-case-study .second-col .query-form form {
+  max-width: 100%;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 50px rgba(0, 0, 0, 0.15);
+}
+#per-case-study .second-col .query-form form .heading-md {
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+@media (min-width: 1600px) {
+  #per-case-study .second-col .query-form form .heading-md {
+    font-size: 25px;
+  }
+}
+#per-case-study .second-col .query-form form .input-wrap {
+  margin-bottom: 15px;
+}
+#per-case-study .second-col .query-form form input {
+  border: 0;
+  border-bottom: 1px solid var(--border-color);
+  padding: 0;
+  border-radius: 0;
+  font-weight: 500;
+  font-size: 12px;
+  height: 38px;
+  background-color: transparent;
+  width: 100%;
+}
+#per-case-study .second-col .query-form form label {
+  font-size: 15px;
+  font-weight: 600;
+}
+#per-case-study .second-col .query-form form button {
+  display: inline-block;
+  padding: 14px 18px;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  background-color: var(--color-main);
+  font-size: 13px;
+  border-radius: 35px;
+  cursor: pointer;
+  min-width: 150px;
+  font-weight: 700;
+  border: 0;
+  outline: 0;
+}
+#per-case-study .second-col .recent-case-study {
+  max-width: 100%;
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 50px rgba(0, 0, 0, 0.15);
+}
+#per-case-study .second-col .recent-case-study .case-study-card {
+  max-width: 100%;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+#per-case-study .second-col .recent-case-study .case-study-card .img-wrapper {
+  width: 100%;
+}
+#per-case-study .second-col .recent-case-study .case-study-card .img-wrapper img {
+  width: 100%;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#per-case-study .second-col .recent-case-study .case-study-card .body {
+  padding: 15px;
+}
+#per-case-study .second-col .recent-case-study .case-study-card .body .heading-md {
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+
 #job-career {
   background: url("/front/assets/img/why-bg.png") top left repeat;
 }
@@ -8222,12 +8351,52 @@ section:nth-of-type(odd) {
 #job-detail-header .desc .heading .bi:hover {
   color: var(--color-main);
 }
+#job-detail-header .desc .category-type {
+  display: flex;
+  gap: 20px;
+}
 
 #job-detail-description .job-detail-title {
   margin: 25px 0 10px;
 }
 #job-detail-description ul {
   font-weight: 500;
+}
+
+#job-form-header .desc .category-type {
+  display: flex;
+  gap: 20px;
+}
+
+#job-form-header .desc .para-wrap {
+  position: relative;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  max-height: none;
+  transition: max-height 0.3s ease;
+  margin-bottom: 0;
+}
+#job-form-header .desc .para-wrap.collapsed {
+  -webkit-line-clamp: 2;
+}
+#job-form-header .desc .category-type {
+  display: flex;
+  gap: 20px;
+}
+#job-form-header .desc .read-more-btn {
+  display: none;
+  border: none;
+  background-color: transparent;
+  color: var(--color-main);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 0;
+}
+#job-form-header .desc .read-more-btn .bi::before {
+  font-weight: bold;
+  display: inline-block;
+  color: var(--color-main);
 }
 
 #each-update {

@@ -99,6 +99,7 @@ class BlogController extends Controller
             $blog->date = Helper::convertDateToInteger($request->date);
             $blog->save();
             $this->render();
+            $this->renderSingle($blog->id);
             return redirect()->back()->with('success', 'Blog Successfully Added');
         }
     }
@@ -127,6 +128,7 @@ class BlogController extends Controller
             }
             $blog->save();
             $this->render();
+            $this->renderSingle($blog_id);
             return redirect()->back()->with('success', 'Blog Successfully updated');
         }
     }
@@ -134,9 +136,16 @@ class BlogController extends Controller
     {
         Blog::where('id', $blog_id)->delete();
         $this->render();
+        $this->renderSingle($blog_id);
         return redirect()->back()->with('delete_success', 'Successfully Blog Deleted');
     }
 
+    public function renderSingle($blog_id){
+        $case = DB::table('blogs')->where('id',$blog_id)->first();
+        $caseCategory = DB::table('blog_categories')->where('id',$case->blog_category_id)->first();
+        $latestCase = DB::table('blogs')->where('type', Helper::blog_type_case_study)->orderBy('id', 'desc')->take(2)->get();
+        Helper::putCache('knowledge.casestudy.'.$blog_id, view('admin.template.knowledge.newsletter.single',compact('case','caseCategory','latestCase'))->render());
+    }
     public function render()
     {
         //Home page
