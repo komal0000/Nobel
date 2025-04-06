@@ -41,9 +41,7 @@
                                 </a>
                             </div>
                             <div class="body">
-                                <div class="heading-md video-title">Doctors Video heading</div>
-                                <div class="location"><span class="name">Dr Name </span>| Division and/or Speciality
-                                </div>
+                                <div class="heading-md video-title">{{$video->title}}</div>
                             </div>
                         </div>
                     </div>
