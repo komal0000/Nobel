@@ -4,7 +4,7 @@
 @section('meta', 'All Academic page for the website')
 
 @section('content')
-@includeIf('front.cache.academic.programs')
+@includeIf('front.cache.academic.list')
 @endsection
 @section('js')
     <script>

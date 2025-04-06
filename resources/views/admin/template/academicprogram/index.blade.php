@@ -17,7 +17,7 @@
         <div class="main-container">
             <div class="heading-group">
                 <div class="heading text-center">{{ $type->title }}</div>
-                <x-hoverBtn class="button" href="/all-videos">View All</x-hoverBtn>
+                <x-hoverBtn class="button" href="{{ route('academicprogram.list') }}">View All</x-hoverBtn>
             </div>
             @php
                 $academicPrograms = App\Models\Blog::where('blog_category_id', $type->id)->get();
@@ -42,7 +42,7 @@
                 @endforeach
             </div>
             <div class="mobile-btn">
-                <x-hoverBtn href="/all-videos">View All</x-hoverBtn>
+                <x-hoverBtn href="{{ route('academicprogram.list') }}">View All</x-hoverBtn>
             </div>
         </div>
     </section>

@@ -28,24 +28,25 @@
                     $academicPrograms = App\Models\Blog::where('blog_category_id', $type->id)->get();
                 @endphp
                 @foreach ($academicPrograms as $academicProgram)
-                    <div class="col-md-6 col-xl-4 all-card" data-content="{{ trim($type->title) }}">
-                        <div class="each-card">
-                            <div class="img-wrapper">
-                                    <img src="{{ $academicProgram->image }}" alt="Thumbnail">
-                                </a>
-                            </div>
-                            <div class="body">
+                    <a href="{{ route('academicprogram.single', ['academic_id' => $academicProgram->id]) }}">
+                        <div class="col-md-6 col-xl-4 all-card" data-content="{{ trim($type->title) }}">
+                            <div class="each-card">
+                                <div class="img-wrapper">
+                                    <img src="{{ Storage::url($academicProgram->image) }}" alt="Thumbnail" class="img-fluid">
+                                </div>
                                 <div class="body">
-                                    <div class="heading-sm">
-                                        {{ $academicProgram->title }}
-                                    </div>
-                                    <div class="para-wrap">
-                                        {{ $academicProgram->short_description }}
+                                    <div class="body">
+                                        <div class="heading-sm">
+                                            {{ $academicProgram->title }}
+                                        </div>
+                                        <div class="para-wrap">
+                                            {{ $academicProgram->short_description }}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 @endforeach
             @endforeach
         </div>

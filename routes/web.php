@@ -63,7 +63,7 @@ Route::prefix('technology')->name('technology.')->group(function () {
 });
 Route::prefix('academicprogram')->name('academicprogram.')->group(function () {
     Route::get('', [FrontController::class, 'academicIndex'])->name('index');
-    Route::get('all',[FrontController::class, 'academicAll'])->name('all');
+    Route::get('list',[FrontController::class, 'academicAll'])->name('list');
     Route::get('single/{academic_id}', [FrontController::class, 'academicSingle'])->name('single');
 });
 
