@@ -63,7 +63,7 @@
                         </form>
                     </div>
                     <div class="recent-event ">
-                        <div class="heading mb-4">Recent Events</div>
+                        <div class="heading mb-4">Academic Programs</div>
                         @foreach ($latestAcademic as $academic)
                             <div class="event-card mb-4">
                                 <div class="img-wrapper">

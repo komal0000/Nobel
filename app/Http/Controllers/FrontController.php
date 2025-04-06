@@ -100,4 +100,7 @@ class FrontController extends Controller
     public function academicSingle($academic_id){
         return view('front.pages.academic.single',compact('academic_id'));
     }
+    public function videoAll(){
+        return view('front.pages.knowledge.video.singleType');
+    }
 }

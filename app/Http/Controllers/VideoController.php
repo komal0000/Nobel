@@ -80,6 +80,7 @@ class VideoController extends Controller
         $this->render();
         return redirect()->back()->with('delete_success', 'Video Successfully deleted');
     }
+
     public function render()
     {
         $VideoType = DB::table('video_types')->where('home_video', 1)->first();
@@ -87,6 +88,7 @@ class VideoController extends Controller
         $videoTypes = DB::table('video_types')->get(['id', 'title']);
 
         $videos = DB::table('videos')->get();
+        Helper::putCache('knowledge.video.all', view('admin.template.knowledge.video.singleType', compact('videoTypes', 'videos'))->render());
         Helper::putCache('health.knowledge.video',view('admin.template.health.knowledge.video', compact('videos'))->render());
         Helper::putCache('knowledge.video',view('admin.template.knowledge.video.index', compact('videoTypes'))->render());
         Helper::putCache('home.videos', view('admin.template.home.videos', compact('VideoType', 'homeVideos'))->render());
