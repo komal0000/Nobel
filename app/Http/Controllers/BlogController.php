@@ -211,7 +211,10 @@ class BlogController extends Controller
 
         //Academic Program
         $academicProgramTypes = DB::table('blog_categories')->where('type', helper::blog_type_acedemic_program)->get();
+        $academicPrograms = DB::table('blogs')->where('type', Helper::blog_type_acedemic_program)->get();
+        Helper::putCache('academic.list', view('admin.template.academicprogram.list', compact('academicProgramTypes','academicPrograms')));
         Helper::putCache('academic.index', view('admin.template.academicprogram.index', compact('academicProgramTypes')));
+
 
         Helper::putCache('health.knowledge.blogs', view('admin.template.health.knowledge.blogs', compact('indexBlogs')));
         Helper::putCache('knowledge.blog', view('admin.template.knowledge.blog.index', compact('indexBlogs', 'featuredBlogs'))->render());

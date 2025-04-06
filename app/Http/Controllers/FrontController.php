@@ -103,4 +103,7 @@ class FrontController extends Controller
     public function videoAll(){
         return view('front.pages.knowledge.video.singleType');
     }
+    public function academicAll(){
+        return view('front.pages.academic.all');
+    }
 }

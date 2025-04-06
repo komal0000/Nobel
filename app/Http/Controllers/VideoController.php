@@ -81,8 +81,8 @@ class VideoController extends Controller
         return redirect()->back()->with('delete_success', 'Video Successfully deleted');
     }
 
-    public function render()
-    {
+    public function render(){
+
         $VideoType = DB::table('video_types')->where('home_video', 1)->first();
         $homeVideos = Video::where('video_type_id', $VideoType->id)->get();
         $videoTypes = DB::table('video_types')->get(['id', 'title']);

@@ -62,7 +62,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="image">
+                        <label for="image"></label>
                             @php
                                 $imageLabels = [
                                     1 => 'Image 4:3',
@@ -87,7 +87,7 @@
                                 <input type="file" name="pdf" id="pdf" class="form-control dropify"
                                     accept="application/pdf" data-default-file="{{ Storage::url($blog->image) }}">
                             @endif
-                        </label>
+
                     </div>
                     @if ($blogCategory->type == 6)
                     @else
