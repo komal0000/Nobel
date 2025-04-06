@@ -69,6 +69,9 @@
                         @includeIf('front.cache.home.headerService')
                     </li>
                     <li class="navbar-item">
+                        <a href="{{ route('academicprogram.index') }}" class="navbar-link ">Academic Program</a>
+                    </li>
+                    <li class="navbar-item">
                         <a href="{{ route('careers') }}" class="navbar-link ">Career</a>
                     </li>
                     <li class="navbar-item" onclick="extendSubMenu(this)">

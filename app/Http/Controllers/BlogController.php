@@ -177,6 +177,13 @@ class BlogController extends Controller
             $latestEvent = DB::table('blogs')->where('type', Helper::blog_type_event)->orderBy('id', 'desc')->take(2)->get();
             Helper::putCache('event.single.'.$blog_id, view('admin.template.event.single', compact('event', 'latestEvent'))->render());
         }
+
+        //Academic single page
+        if($type == Helper::blog_type_acedemic_program) {
+            $academic = DB::table('blogs')->where('id', $blog_id)->first();
+            $latestAcademic = DB::table('blogs')->where('type', Helper::blog_type_acedemic_program)->orderBy('id', 'desc')->take(2)->get();
+            Helper::putCache('academic.single.'.$blog_id, view('admin.template.academic.single', compact('academic', 'latestAcademic'))->render());
+        }
     }
     public function render()
     {
@@ -201,6 +208,10 @@ class BlogController extends Controller
         //News Letter
         $newsLetterTypes = DB::table('blog_categories')->where('type', helper::blog_type_news_letter)->get();
         Helper::putCache('knowledge.newsletter', view('admin.template.knowledge.newsletter.index', compact('newsLetterTypes')));
+
+        //Academic Program
+        $academicProgramTypes = DB::table('blog_categories')->where('type', helper::blog_type_acedemic_program)->get();
+        Helper::putCache('academic.index', view('admin.template.academicprogram.index', compact('academicProgramTypes')));
 
         Helper::putCache('health.knowledge.blogs', view('admin.template.health.knowledge.blogs', compact('indexBlogs')));
         Helper::putCache('knowledge.blog', view('admin.template.knowledge.blog.index', compact('indexBlogs', 'featuredBlogs'))->render());

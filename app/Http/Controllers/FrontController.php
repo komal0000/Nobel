@@ -92,4 +92,12 @@ class FrontController extends Controller
     public function eventSingle($event_id){
         return view('front.pages.event.single',compact('event_id'));
     }
+
+    public function academicIndex(){
+        return view('front.pages.academic.index');
+    }
+
+    public function academicSingle($academic_id){
+        return view('front.pages.academic.single',compact('academic_id'));
+    }
 }

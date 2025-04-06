@@ -61,6 +61,10 @@ Route::prefix('technology')->name('technology.')->group(function () {
     Route::get('', [FrontController::class, 'technologyIndex'])->name('index');
     Route::get('single/{technology_id}', [FrontController::class, 'technologySingle'])->name('single');
 });
+Route::prefix('academicprogram')->name('academicprogram.')->group(function () {
+    Route::get('', [FrontController::class, 'academicIndex'])->name('index');
+    Route::get('single/{academic_id}', [FrontController::class, 'academicSingle'])->name('single');
+});
 
 Route::prefix('knowledge')->name('knowledge.')->group(function () {
     Route::get('blog', [FrontController::class, 'blogIndex'])->name('blog');
@@ -100,6 +104,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::match(["GET", "POST"], 'add', [SliderController::class, 'add'])->name('add');
         Route::match(["GET", "POST"], 'edit/{slider_id}', [SliderController::class, 'edit'])->name('edit');
         Route::match(["GET", "POST"], 'del/{slider_id}', [SliderController::class, 'del'])->name('del');
+        Route::prefix('type')->name('type.')->group(function () {
+            Route::match(['GET','POST'],'index', [SliderController::class, 'typeIndex'])->name('index');
+        });
         Route::prefix('navigation')->name('navigation.')->group(function () {
             Route::get('index', [SliderController::class, 'navigationIndex'])->name('index');
             Route::match(["GET", "POST"], 'add', [SliderController::class, 'navigationAdd'])->name('add');
@@ -134,6 +141,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
             });
         });
     });
+
     Route::prefix('aliment')->name('aliment.')->group(function () {
         Route::get('index', [AlimentController::class, 'index'])->name('index');
         Route::match(["GET", "POST"], 'add', [AlimentController::class, 'add'])->name('add');

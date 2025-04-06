@@ -19,6 +19,7 @@ class Helper
         4 => 'update',
         5 => 'case_study',
         6 => 'news_letter',
+        7 => 'acedemic_program',
     ];
 
     const blog_type_blog = 1;
@@ -27,6 +28,7 @@ class Helper
     const blog_type_update = 4;
     const blog_type_case_study = 5;
     const blog_type_news_letter = 6;
+    const blog_type_acedemic_program = 7;
 
     public static function G(): bool
     {
@@ -57,7 +59,7 @@ class Helper
 
     public static function getMonthName(int $timestamp): string
     {
-     return Carbon::createFromTimestamp($timestamp)->format('M');
+        return Carbon::createFromTimestamp($timestamp)->format('M');
     }
 
     public static function getDayNumber($date): int

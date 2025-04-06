@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helper;
 use App\Models\Slider;
 use App\Models\SliderNavigation;
+use App\Models\SliderType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -12,7 +13,7 @@ class SliderController extends Controller
 {
     public function index()
     {
-        $sliders = DB::table('sliders')->get(['id','mobile_image']);
+        $sliders = DB::table('sliders')->get(['id', 'mobile_image']);
         return view('admin.slider.index', compact('sliders'));
     }
 
@@ -65,12 +66,32 @@ class SliderController extends Controller
         return redirect()->back()->with("delete_success", "Slider Successfully Deleted");
     }
 
-    public function navigationIndex(){
-        $navigations = DB::table('slider_navigations')->get(['id','title','link','icon']);
-        return view('admin.slider.navigation.index',compact('navigations'));
+    public function typeIndex(Request $request)
+    {
+        if (Helper::G()) {
+            return view('admin.slider.type.index');
+        } else {
+            $type = new SliderType();
+            $type->title = $request->title;
+            $type->designated_for = $request->designated_for;
+            $type->save();
+            return redirect()->back()->with('success', 'Slider Type Successfully Added');
+        }
+    }
+    public function typeDel($type_id)
+    {
+        SliderType::where('id', $type_id)->delete();
+        return redirect()->back()->with('delete_success', 'Slider Type Successfully Deleted');
     }
 
-    public function navigationAdd(Request $request){
+    public function navigationIndex()
+    {
+        $navigations = DB::table('slider_navigations')->get(['id', 'title', 'link', 'icon']);
+        return view('admin.slider.navigation.index', compact('navigations'));
+    }
+
+    public function navigationAdd(Request $request)
+    {
         if (Helper::G($request)) {
             return view('admin.slider.navigation.add');
         } else {
@@ -85,10 +106,11 @@ class SliderController extends Controller
             return redirect()->back()->with("success", "Slider Navigation Successfully Added");
         }
     }
-    public function navigationEdit(Request $request, $navigation_id){
-        $navigation = SliderNavigation::where('id',$navigation_id)->first();
+    public function navigationEdit(Request $request, $navigation_id)
+    {
+        $navigation = SliderNavigation::where('id', $navigation_id)->first();
         if (Helper::G($request)) {
-            return view('admin.slider.navigation.edit',compact('navigation'));
+            return view('admin.slider.navigation.edit', compact('navigation'));
         } else {
             $navigation->title = $request->title;
             $navigation->link = $request->link;
@@ -100,20 +122,21 @@ class SliderController extends Controller
             return redirect()->back()->with("success", "Slider Navigation Successfully Updated");
         }
     }
-    public function navigationDel($navigation_id){
-        SliderNavigation::where('id',$navigation_id)->delete();
+    public function navigationDel($navigation_id)
+    {
+        SliderNavigation::where('id', $navigation_id)->delete();
         $this->renderNavigation();
         return redirect()->back()->with("delete_success", "Slider Navigation Successfully Deleted");
     }
-    public function render(){
-        $sliders = DB::table('sliders')->get(['id','desktop_image','mobile_image']);
-        Helper::putCache('home.slider',view('admin.template.home.slider',compact('sliders'))->render());
+    public function render()
+    {
+        $sliders = DB::table('sliders')->get(['id', 'desktop_image', 'mobile_image']);
+        Helper::putCache('home.slider', view('admin.template.home.slider', compact('sliders'))->render());
     }
 
-    public function renderNavigation(){
-        $navigations = DB::table('slider_navigations')->get(['id','title','link','icon']);
-        Helper::putCache('home.sliderNavigation',view('admin.template.home.sliderNavigation',compact('navigations'))->render());
+    public function renderNavigation()
+    {
+        $navigations = DB::table('slider_navigations')->get(['id', 'title', 'link', 'icon']);
+        Helper::putCache('home.sliderNavigation', view('admin.template.home.sliderNavigation', compact('navigations'))->render());
     }
-
-
 }
