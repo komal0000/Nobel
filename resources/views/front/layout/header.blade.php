@@ -69,7 +69,7 @@
                         @includeIf('front.cache.home.headerService')
                     </li>
                     <li class="navbar-item">
-                        <a href="{{ route('academicprogram.index') }}" class="navbar-link ">Academic Program</a>
+                        <a href="{{ route('academicprogram.index') }}" class="navbar-link ">Academic Programs</a>
                     </li>
                     <li class="navbar-item">
                         <a href="{{ route('careers') }}" class="navbar-link ">Career</a>
