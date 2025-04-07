@@ -42,6 +42,11 @@ Route::prefix('speciality')->name('speciality.')->group(function () {
     Route::get('', [FrontController::class, 'specialityIndex'])->name('index');
     Route::get('single/{speciality_id}', [FrontController::class, 'specialitySingle'])->name('single');
 });
+
+Route::prefix('doctor')->name('doctor.')->group(function () {
+    Route::get('', [FrontController::class, 'doctorIndex'])->name('index');
+    Route::get('single/{doctor_id}', [FrontController::class, 'doctorSingle'])->name('single');
+});
 Route::prefix('treatment')->name('treatment.')->group(function () {
     Route::get('', [FrontController::class, 'treatmentIndex'])->name('index');
     Route::get('single/{treatment_id}', [FrontController::class, 'treatmentSingle'])->name('single');
@@ -288,5 +293,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::match(['GET', 'POST'], 'add', [DoctorController::class, 'add'])->name('add');
         Route::match(['GET', 'POST'], 'edit/{doctor_id}', [DoctorController::class, 'edit'])->name('edit');
         Route::get('del/{doctor_id}', [DoctorController::class, 'del'])->name('del');
+        Route::prefix('speciality')->name('speciality.')->group(function () {
+            Route::match(['GET','POST'],'index/{doctor_id}', [DoctorController::class, 'specialityIndex'])->name('index');
+            Route::get('del/{doctor_speciality_id}', [DoctorController::class, 'specialityDel'])->name('del');
+        });
     });
 });

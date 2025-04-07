@@ -106,4 +106,8 @@ class FrontController extends Controller
     public function academicAll(){
         return view('front.pages.academic.all');
     }
+
+    public function doctorIndex(){
+        return view('front.pages.doctor.index');
+    }
 }

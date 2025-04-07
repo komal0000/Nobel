@@ -13,21 +13,13 @@
             </div>
             <div class="col-md-7 mb-3">
                 <div class="row">
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-12 mb-3">
                         <label for="title">Name <span style="color: red;">*</span></label>
                         <input type="text" name="title" id="title" class="form-control" required>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="position">Position <span style="color: red;">*</span></label>
                         <input type="text" name="position" id="position" class="form-control" required>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="specialty_id">Specialty <span style="color: red;">*</span></label>
-                        <select name="specialty_id" id="specialty_id" class="form-control" required>
-                            @foreach ($specialties as $specialty)
-                                <option value="{{ $specialty->id }}">{{ $specialty->title }}</option>
-                            @endforeach
-                        </select>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="location">Location <span style="color: red;">*</span></label>
