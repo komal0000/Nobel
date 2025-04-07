@@ -6,21 +6,19 @@
     <a href="{{ route('admin.doctor.add') }}" class="btn btn-primary">Add Doctor</a>
 @endsection
 @section('content')
-    <form action="{{ route('admin.doctor.speciality.index', ['doctor_id' => $doctor->id]) }}" method="POST">
+    <form action="{{ route('admin.doctor.speciality.index', ['doctor_id' => $doctor->id]) }}" method="POST" class="mb-3">
         @csrf
         <div class="row">
             <div class="col-md-6">
-                <div class="form-group">
-                    <label for="speciality">Speciality</label>
-                    <select name="speciality" id="speciality" class="form-control">
-                        @foreach ($specialities as $speciality)
-                            <option value="{{ $speciality->id }}">{{ $speciality->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
+                <label for="speciality_id">Speciality</label>
+                <select name="speciality_id" id="speciality_id" class="form-control">
+                    @foreach ($specialties as $speciality)
+                        <option value="{{ $speciality->id }}">{{ $speciality->title }}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="col-md-2 d-flex align-items-end">
-                <button class="btn btn-primary btn-sm">Add</button>
+                <button class="btn btn-primary ">Add</button>
             </div>
         </div>
     </form>
@@ -34,7 +32,7 @@
         <tbody>
             @foreach ($doctorSpecialities as $speciality)
                 <tr>
-                    <td>{{ $speciality->title }}</td>
+                    <td>{{ $speciality->speciality_id }}</td>
                     <td>
                         <a href="{{ route('admin.doctor.speciality.del', ['doctor_speciality_id' => $speciality->id]) }}"
                             class="btn btn-danger btn-sm">Delete</a>
@@ -46,7 +44,6 @@
         <tfoot>
             <tr>
                 <th>Name</th>
-                <th>Position</th>
                 <th>Actions</th>
             </tr>
         </tfoot>

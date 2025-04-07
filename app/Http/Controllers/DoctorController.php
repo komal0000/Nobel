@@ -69,7 +69,8 @@ class DoctorController extends Controller
             $doctor = Doctor::where('id', $doctor_id)->first();
             $specialties = DB::table('specialties')->whereNull('parent_speciality_id')->get();
             $doctorSpecialities = DB::table('doctor_specialities')->where('doctor_id', $doctor_id)->get();
-            return view('admin.doctor.speciality.index', compact('doctor', 'specialties'));
+            dd($doctorSpecialities);
+            return view('admin.doctor.speciality.index', compact('doctor', 'specialties','doctorSpecialities'));
         } else {
             $doctorSpeciality = new DoctorSpeciality();
             $doctorSpeciality->doctor_id = $doctor_id;
