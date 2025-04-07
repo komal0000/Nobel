@@ -275,5 +275,17 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::match(['GET', 'POST'], 'add', [ServiceController::class, 'add'])->name('add');
         Route::match(['GET', 'POST'], 'edit/{service_id}', [ServiceController::class, 'edit'])->name('edit');
         Route::get('del/{service_id}', [ServiceController::class, 'del'])->name('del');
+        Route::prefix('faq')->name('faq.')->group(function () {
+            Route::get('index/{service_id}', [ServiceController::class, 'faqIndex'])->name('index');
+            Route::match(['GET', 'POST'], 'add/{service_id}', [ServiceController::class, 'faqAdd'])->name('add');
+            Route::match(['GET', 'POST'], 'edit/{faq_id}', [ServiceController::class, 'faqEdit'])->name('edit');
+            Route::get('del/{faq_id}', [ServiceController::class, 'faqDel'])->name('del');
+        });
+        Route::prefix('doctor')->name('doctor.')->group(function () {
+            Route::get('index/{service_id}', [ServiceController::class, 'doctorIndex'])->name('index');
+            Route::match(['GET', 'POST'], 'add/{service_id}', [ServiceController::class, 'doctorAdd'])->name('add');
+            Route::match(['GET', 'POST'], 'edit/{doctor_id}', [ServiceController::class, 'doctorEdit'])->name('edit');
+            Route::get('del/{doctor_id}', [ServiceController::class, 'doctorDel'])->name('del');
+        });
     });
 });

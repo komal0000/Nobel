@@ -22,6 +22,8 @@
                             class="btn btn-warning btn-sm">Edit</a>
                         <a href="{{ route('admin.service.del', ['service_id' => $service->id]) }}"
                             class="btn btn-danger btn-sm">Delete</a>
+                        <a href="{{ route('admin.service.faq.index', ['service_id' => $service->id]) }}"
+                            class="btn btn-sm btn-info ">Manage FAQs</a>
                     </td>
                 </tr>
             @endforeach

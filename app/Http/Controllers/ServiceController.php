@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helper;
 use App\Models\Service;
+use App\Models\ServiceFaq;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -71,6 +72,48 @@ class ServiceController extends Controller
         return redirect()->back()->with('delete_success', 'Service deleted successfully');
     }
 
+    public function faqIndex($service_id)
+    {
+        $service = Service::where('id', $service_id)->first();
+        $faqs = DB::table('service_faqs')->where('service_id', $service_id)->get();
+        return view('admin.service.faq.index', compact('service', 'faqs'));
+    }
+
+    public function faqAdd(Request $request, $service_id)
+    {
+        $service = Service::where('id', $service_id)->first();
+        if (Helper::G()) {
+            return view('admin.service.faq.add', compact('service'));
+        } else {
+            $faq = new ServiceFaq();
+            $faq->service_id = $service_id;
+            $faq->question = $request->question;
+            $faq->answer = $request->answer;
+            $faq->save();
+            return redirect()->back()->with('success', 'FAQ added successfully');
+        }
+    }
+
+    public function faqEdit(Request $request, $faq_id)
+    {
+        $faq = DB::table('service_faqs')->where('id', $faq_id)->first();
+        $service = Service::where('id', $faq->service_id)->first();
+        if (Helper::G()) {
+            return view('admin.service.faq.edit', compact('faq', 'service'));
+        } else {
+            $faq->service_id = $service->id;
+            $faq->question = $request->question;
+            $faq->answer = $request->answer;
+            $faq->save();
+            return redirect()->back()->with('success', 'FAQ updated successfully');
+        }
+    }
+
+    public function faqDel($faq_id)
+    {
+        ServiceFaq::where('id', $faq_id)->delete();
+        return redirect()->back()->with('delete_success', 'FAQ deleted successfully');
+    }
     public function reder(){
         $homeServices = DB::table('services')->get(['id', 'icon', 'title', 'image', 'short_desc']);
         Helper::putCache('home.headerService',view('admin.template.home.headerService',compact('homeServices'))->render());
