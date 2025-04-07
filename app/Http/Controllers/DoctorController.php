@@ -75,6 +75,7 @@ class DoctorController extends Controller
             $doctorSpeciality = new DoctorSpeciality();
             $doctorSpeciality->doctor_id = $doctor_id;
             $doctorSpeciality->speciality_id = $request->speciality_id;
+            $doctorSpeciality->speciality_name = DB::table('specialties')->where('id', $request->speciality_id)->value('name');
             $doctorSpeciality->save();
             return redirect()->back()->with('success', 'Doctor speciality added successfully');
         }
