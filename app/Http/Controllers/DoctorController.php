@@ -19,17 +19,15 @@ class DoctorController extends Controller
     public function add(Request $request)
     {
         if (Helper::G()) {
-            $specialties = DB::table('specialties')->whereNull('parent_id')->get();
+            $specialties = DB::table('specialties')->whereNull('parent_speciality_id')->get();
             return view('admin.doctor.add', compact('specialties'));
         } else {
             $doctor = new Doctor();
-            $doctor->name = $request->name;
-            $doctor->position = $request->position;
-            $doctor->location = $request->location;
-            $doctor->qualification = $request->qualification ? json_encode($request->qualification) : null;
-            $doctor->short_description = $request->short_description;
-            $doctor->specialty_id = $request->specialty_id;
-
+            $doctor->title = $request->input('title');
+            $doctor->position = $request->input('position');
+            $doctor->location = $request->input('location');
+            $doctor->qualification = json_encode(array_filter($request->input('qualification', [])));
+            $doctor->short_description = $request->input('short_description');
             if ($request->hasFile('image')) {
                 $doctor->image = $request->file('image')->store('uploads/doctors', 'public');
             }
@@ -42,18 +40,20 @@ class DoctorController extends Controller
 
     public function edit(Request $request, $doctor_id)
     {
-        $doctor = Doctor::where('id',$doctor_id)->first();
+        $doctor = Doctor::where('id', $doctor_id)->first();
         if (Helper::G()) {
-            return view('admin.doctor.edit', compact('doctor'));
+            $specialties = DB::table('specialties')->whereNull('parent_speciality_id')->get();
+            return view('admin.doctor.edit', compact('doctor','specialties'));
         } else {
-            $doctor->name = $request->name;
-            $doctor->position = $request->position;
-            $doctor->location = $request->location;
-            $doctor->qualification = $request->qualification ? json_encode($request->qualification) : null;
-            $doctor->short_description = $request->short_description;
+            $doctor->title = $request->input('title');
+            $doctor->position = $request->input('position');
+            $doctor->location = $request->input('location');
+            $doctor->qualification = json_encode(array_filter($request->input('qualification', [])));
+            $doctor->short_description = $request->input('short_description');
             if ($request->hasFile('image')) {
                 $doctor->image = $request->file('image')->store('uploads/doctors', 'public');
             }
+
             $doctor->save();
             return redirect()->back()->with('success', 'Doctor updated successfully');
         }
@@ -63,4 +63,10 @@ class DoctorController extends Controller
         Doctor::where('id', $doctor_id)->delete();
         return redirect()->back()->with('delete_success', 'Doctor deleted successfully');
     }
+
+    public function render($specialty_id)
+    {
+
+    }
 }
+

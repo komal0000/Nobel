@@ -17,7 +17,7 @@
         <tbody>
             @foreach ($doctors as $doctor)
                 <tr>
-                    <td>{{ $doctor->name }}</td>
+                    <td>{{ $doctor->title }}</td>
                     <td>{{ $doctor->position }}</td>
                     <td>
                         <a href="{{ route('admin.doctor.edit', ['doctor_id' => $doctor->id]) }}"

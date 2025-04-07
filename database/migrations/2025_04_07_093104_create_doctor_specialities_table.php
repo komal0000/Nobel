@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('doctors', function (Blueprint $table) {
+        Schema::create('doctor_specialities', function (Blueprint $table) {
             $table->id();
-            $table->text('image');
-            $table->string('title');
-            $table->string('position');
-            $table->string('location');
-            $table->json('qualification')->nullable();
-            $table->text('short_description')->nullable();
+            $table->foreignId('doctor_id')->constrained('doctors');
+            $table->foreignId('speciality_id')->constrained('specialties');
             $table->timestamps();
         });
     }
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('doctors');
+        Schema::dropIfExists('doctor_specialities');
     }
 };
