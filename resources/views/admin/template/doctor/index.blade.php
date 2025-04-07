@@ -21,7 +21,7 @@
                     <ul class="select-list" id="select-list">
                         <li data-target="all">All Specialities</li>
                         @foreach ($specialties as $specialty)
-                            <li data-target="{{ $specialty->title }}">
+                            <li data-target="{{ strtolower($specialty->title) }}">
                                 {{ $specialty->title }}</li>
                         @endforeach
                     </ul>

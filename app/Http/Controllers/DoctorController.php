@@ -69,6 +69,9 @@ class DoctorController extends Controller
             if ($request->has('doctorSpeciality')) {
                 foreach ($request->doctorSpeciality as $specialityId) {
                     $doctorSpeciality = DoctorSpeciality::where('doctor_id', $doctor->id)->where('speciality_id', $specialityId)->first();
+                    if (!$doctorSpeciality) {
+                        $doctorSpeciality = new DoctorSpeciality();
+                    }
                     $doctorSpeciality->doctor_id = $doctor->id;
                     $doctorSpeciality->speciality_id = $specialityId;
                     $doctorSpeciality->speciality_name = DB::table('specialties')->where('id', $specialityId)->value('title');

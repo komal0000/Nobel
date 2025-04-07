@@ -10,7 +10,7 @@
                 </div>
                 <div class="col-3">
                     <div class="heading-sm mb-3">Our Doctors</div>
-                    <x-hoverBtn class="heading-xs">Know More</x-hoverBtn>
+                    <x-hoverBtn href="{{ route('doctor.index') }}" class="heading-xs">Know More</x-hoverBtn>
                 </div>
                 <div class="col-3"> <img src="{{ asset('front/assets/img/health-library/health-library-2.jpg') }}"
                         alt="Doctor"></div>
