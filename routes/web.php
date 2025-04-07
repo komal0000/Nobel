@@ -4,6 +4,7 @@ use App\Http\Controllers\AlimentController;
 use App\Http\Controllers\AwardController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\EmployeeTestimonialController;
 use App\Http\Controllers\FrontController;
@@ -281,12 +282,11 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
             Route::match(['GET', 'POST'], 'edit/{faq_id}', [ServiceController::class, 'faqEdit'])->name('edit');
             Route::get('del/{faq_id}', [ServiceController::class, 'faqDel'])->name('del');
         });
-        Route::prefix('doctor')->name('doctor.')->group(function () {
-            Route::get('index/{service_id}', [ServiceController::class, 'doctorIndex'])->name('index');
-            Route::match(['GET', 'POST'], 'add/{service_id}', [ServiceController::class, 'doctorAdd'])->name('add');
-            Route::match(['GET', 'POST'], 'edit/{doctor_id}', [ServiceController::class, 'doctorEdit'])->name('edit');
-            Route::get('del/{doctor_id}', [ServiceController::class, 'doctorDel'])->name('del');
-        });
-
+    });
+    Route::prefix('doctor')->name('doctor.')->group(function () {
+        Route::get('index/{service_id}', [DoctorController::class, 'index'])->name('index');
+        Route::match(['GET', 'POST'], 'add/{service_id}', [DoctorController::class, 'add'])->name('add');
+        Route::match(['GET', 'POST'], 'edit/{doctor_id}', [DoctorController::class, 'edit'])->name('edit');
+        Route::get('del/{doctor_id}', [DoctorController::class, 'del'])->name('del');
     });
 });
