@@ -287,5 +287,6 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
             Route::match(['GET', 'POST'], 'edit/{doctor_id}', [ServiceController::class, 'doctorEdit'])->name('edit');
             Route::get('del/{doctor_id}', [ServiceController::class, 'doctorDel'])->name('del');
         });
+
     });
 });
