@@ -20,8 +20,9 @@ class SliderController extends Controller
 
     public function add(Request $request, $type_id)
     {
-        $sliderType  = DB::table('slider_types')->where('id', $type_id)->first(['id', 'title']);
+        $sliderType  = DB::table('slider_types')->where('id', $type_id)->first(['id', 'title','designated_for']);
         if (Helper::G()) {
+            // dd($sliderType);
             return view('admin.slider.add', compact('sliderType'));
         } else {
             $slider = new Slider();
@@ -136,7 +137,7 @@ class SliderController extends Controller
     }
     public function render($type_id)
     {
-        $sliderType  = DB::table('slider_types')->where('id', $type_id)->first(['id', 'title']);
+        $sliderType  = DB::table('slider_types')->where('id', $type_id)->first(['id', 'title','designated_for']);
 
         if ($sliderType->designated_for == 'home') {
             $sliders = DB::table('sliders')->get(['id', 'desktop_image', 'mobile_image']);
@@ -144,7 +145,7 @@ class SliderController extends Controller
         } elseif ($sliderType->designated_for == 'career') {
             $sliders = DB::table('sliders')->where('slider_type_id', $type_id)->get(['id', 'desktop_image', 'mobile_image']);
             Helper::putCache('career.slider', view('admin.template.career.slider', compact('sliders'))->render());
-        }elseif($sliderType->designated_for =='careerInternship'){
+        }elseif($sliderType->designated_for =='careerIntern'){
             $sliders = DB::table('sliders')->where('slider_type_id', $type_id)->get(['id', 'desktop_image', 'mobile_image']);
             Helper::putCache('career.internship.slider', view('admin.template.career.internship.slider', compact('sliders'))->render());
         }
