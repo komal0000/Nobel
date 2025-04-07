@@ -11,16 +11,18 @@ use Illuminate\Support\Facades\DB;
 
 class SliderController extends Controller
 {
-    public function index()
+    public function index($type_id)
     {
-        $sliders = DB::table('sliders')->get(['id', 'mobile_image']);
-        return view('admin.slider.index', compact('sliders'));
+        $sliderType  = DB::table('slider_types')->where('id', $type_id)->first(['id', 'title']);
+        $sliders = DB::table('sliders')->where('slider_type_id', $type_id)->get(['id', 'mobile_image']);
+        return view('admin.slider.index', compact('sliders', 'sliderType'));
     }
 
-    public function add(Request $request)
+    public function add(Request $request, $type_id)
     {
-        if (Helper::G($request)) {
-            return view('admin.slider.add');
+        $sliderType  = DB::table('slider_types')->where('id', $type_id)->first(['id', 'title']);
+        if (Helper::G()) {
+            return view('admin.slider.add', compact('sliderType'));
         } else {
             $slider = new Slider();
             if ($request->hasFile('desktop_image')) {
@@ -32,8 +34,9 @@ class SliderController extends Controller
             $slider->has_link = $request->has_link;
             $slider->link_url = $request->link_url;
             $slider->link_text = $request->link_text;
+            $slider->slider_type_id = $sliderType->id;
             $slider->save();
-            $this->render();
+            $this->render($type_id);
             return redirect()->back()->with("success", "Slider Successfully Added");
         }
     }
@@ -41,7 +44,7 @@ class SliderController extends Controller
     public function edit(Request $request, $slider_id)
     {
         $slider = Slider::where("id", $slider_id)->first();
-        if (Helper::G($request)) {
+        if (Helper::G()) {
             return view('admin.slider.edit', compact('slider'));
         } else {
             if ($request->hasFile('desktop_image')) {
@@ -54,22 +57,24 @@ class SliderController extends Controller
             $slider->link_url = $request->link_url;
             $slider->link_text = $request->link_text;
             $slider->save();
-            $this->render();
+            $this->render($slider->slider_type_id);
             return redirect()->back()->with("success", "Slider Successfully Updated");
         }
     }
 
     public function del($slider_id)
     {
-        Slider::where('id', $slider_id)->delete();
-        $this->render();
+        $slider =  Slider::where('id', $slider_id)->first();
+        $slider->delete();
+        $this->render($slider->slider_type_id);
         return redirect()->back()->with("delete_success", "Slider Successfully Deleted");
     }
 
     public function typeIndex(Request $request)
     {
         if (Helper::G()) {
-            return view('admin.slider.type.index');
+            $sliderTypes = DB::table('slider_types')->get(['id', 'title', 'designated_for']);
+            return view('admin.slider.type.index', compact('sliderTypes'));
         } else {
             $type = new SliderType();
             $type->title = $request->title;
@@ -80,6 +85,7 @@ class SliderController extends Controller
     }
     public function typeDel($type_id)
     {
+        Slider::where('slider_type_id', $type_id)->delete();
         SliderType::where('id', $type_id)->delete();
         return redirect()->back()->with('delete_success', 'Slider Type Successfully Deleted');
     }
@@ -109,7 +115,7 @@ class SliderController extends Controller
     public function navigationEdit(Request $request, $navigation_id)
     {
         $navigation = SliderNavigation::where('id', $navigation_id)->first();
-        if (Helper::G($request)) {
+        if (Helper::G()) {
             return view('admin.slider.navigation.edit', compact('navigation'));
         } else {
             $navigation->title = $request->title;
@@ -128,10 +134,20 @@ class SliderController extends Controller
         $this->renderNavigation();
         return redirect()->back()->with("delete_success", "Slider Navigation Successfully Deleted");
     }
-    public function render()
+    public function render($type_id)
     {
-        $sliders = DB::table('sliders')->get(['id', 'desktop_image', 'mobile_image']);
-        Helper::putCache('home.slider', view('admin.template.home.slider', compact('sliders'))->render());
+        $sliderType  = DB::table('slider_types')->where('id', $type_id)->first(['id', 'title']);
+
+        if ($sliderType->designated_for == 'home') {
+            $sliders = DB::table('sliders')->get(['id', 'desktop_image', 'mobile_image']);
+            Helper::putCache('home.slider', view('admin.template.home.slider', compact('sliders'))->render());
+        } elseif ($sliderType->designated_for == 'career') {
+            $sliders = DB::table('sliders')->where('slider_type_id', $type_id)->get(['id', 'desktop_image', 'mobile_image']);
+            Helper::putCache('career.slider', view('admin.template.career.slider', compact('sliders'))->render());
+        }elseif($sliderType->designated_for =='careerInternship'){
+            $sliders = DB::table('sliders')->where('slider_type_id', $type_id)->get(['id', 'desktop_image', 'mobile_image']);
+            Helper::putCache('career.internship.slider', view('admin.template.career.internship.slider', compact('sliders'))->render());
+        }
     }
 
     public function renderNavigation()

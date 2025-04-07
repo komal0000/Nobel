@@ -1,10 +1,11 @@
 @extends('admin.layout.app')
 @section('title')
-    <a href="{{ route('admin.slider.index') }}">Sliders</a> /
+    <a href="{{ route('admin.slider.type.index') }}">Slider Types</a> /
+    <a href="{{ route('admin.slider.index', ['type_id' => $sliderType->id]) }}">Sliders</a> /
     <span>Add</span>
 @endsection
 @section('content')
-    <form action="{{ route('admin.slider.add') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('admin.slider.add', ['type_id' => $sliderType->id]) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-md-6">

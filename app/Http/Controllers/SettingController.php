@@ -56,6 +56,7 @@ class SettingController extends Controller
         'internship' => [
             "Internship",
             [
+                ['title', 1],
                 ['description', 2],
             ],
             [

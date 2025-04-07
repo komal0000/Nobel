@@ -9,8 +9,8 @@
     @includeIf('front.cache.career.leaderships')
     @includeIf('front.pages.career.resume')
     @includeIf('front.cache.career.life-here')
-    @includeIf('front.cache.career.internship')
+    @include('front.pages.career.internship')
 @endsection
 @section('js')
-    <script src="front/assets/js/career/index.js"></script>
+    <script src={{ asset('front/assets/js/career/index.js') }}></script>
 @endsection

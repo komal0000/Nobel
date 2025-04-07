@@ -1,6 +1,6 @@
 <div class="para">
     <h5 class="heading-sm">
-        Title Here.
+        {{ $curdata['title'] }}
     </h5>
     <p>{{ $curdata['description'] }}</p>
 </div>

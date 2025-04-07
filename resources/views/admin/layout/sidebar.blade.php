@@ -456,7 +456,7 @@
                     </a>
                     <ul class="sub-nav collapse" id="frontSetting" data-bs-parent="#sidebar-menu">
                         <li class="nav-item">
-                            <a class="nav-link " href="{{ route('admin.slider.index') }}">
+                            <a class="nav-link " href="{{ route('admin.slider.type.index') }}">
                                 <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
                                         viewBox="0 0 24 24" fill="currentColor">
@@ -466,7 +466,7 @@
                                     </svg>
                                 </i>
                                 <i class="sidenav-mini-icon"> A </i>
-                                <span class="item-name">Sliders</span>
+                                <span class="item-name">Sliders Type</span>
                             </a>
                         </li>
                         <li class="nav-item">

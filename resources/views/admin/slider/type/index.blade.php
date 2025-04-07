@@ -15,7 +15,8 @@
                     <label for="designated_for">Sider Designation</label>
                     <select name="designated_for" id="designated_for" class="form-control">
                         <option value="home">Home</option>
-                        <option value="career">Career Internship</option>
+                        <option value="career">Career</option>
+                        <option value="careerIntern">Career Internship</option>
                     </select>
                 </div>
                 <div class="col-md-4">
@@ -39,11 +40,13 @@
                         <td>{{ $sliderType->title }}</td>
                         <td>{{ ucfirst($sliderType->designated_for) }}</td>
                         <td>
-                            <a href="{{ route('admin.slider.type.del',['type_id'=>$sliderType->id]) }}" class="btn btn-sm btn-danger">Delete</a>
-                            <a href="{{ route('admin.slider.index',['type_id'=>$sliderType->id]) }}" class="btn btn-sm btn-info">Manage Slider</a>
+                            <a href="{{ route('admin.slider.type.del', ['type_id' => $sliderType->id]) }}"
+                                class="btn btn-sm btn-danger">Delete</a>
+                            <a href="{{ route('admin.slider.index', ['type_id' => $sliderType->id]) }}"
+                                class="btn btn-sm btn-info">Manage Slider</a>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-@endsection
+    @endsection
