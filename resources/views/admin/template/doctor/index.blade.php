@@ -1,9 +1,9 @@
 <section id="listing-banner">
     <picture class="img-wrap">
-        <source media="(min-width: 768px)" srcset="{{ asset('front/assets/img/doctor-listing/banner.jpg') }}" width="1920"
-            height="500" alt="Medical Experts">
-        <source media="(min-width: 320px)" srcset="{{ asset('front/assets/img/doctor-listing/banner-md.jpg') }}" width="480"
-            height="320" alt="Medical Experts">
+        <source media="(min-width: 768px)" srcset="{{ asset('front/assets/img/doctor-listing/banner.jpg') }}"
+            width="1920" height="500" alt="Medical Experts">
+        <source media="(min-width: 320px)" srcset="{{ asset('front/assets/img/doctor-listing/banner-md.jpg') }}"
+            width="480" height="320" alt="Medical Experts">
         <img src="https://medanta.s3.ap-south-1.amazonaws.com/banners/October2023/u6JyySMlXNGHQESP34oHfVViZp7IJc-metaRG9jdG9yLUxpc3RpbmcuanBn-.jpg"
             class="img-fluid w-100" alt="Medical Experts">
     </picture>
@@ -21,7 +21,8 @@
                     <ul class="select-list" id="select-list">
                         <li data-target="all">All Specialities</li>
                         @foreach ($specialties as $specialty)
-                            <li data-target="{{ trim($specialty->title) }}">{{ $specialty->title }}</li>
+                            <li data-target="{{ $specialty->title }}">
+                                {{ $specialty->title }}</li>
                         @endforeach
                     </ul>
                     <input type="hidden" name="find-doc-speciality" id="find-doc-speciality-input">
@@ -31,7 +32,7 @@
         <div class="list mt-4 mb-2">
             <div class="row">
                 @foreach ($doctors as $doctor)
-                    <div class="col-md-6 col-xl-4 doctor-card-col" data-value="">
+                    <div class="col-md-6 col-xl-4 doctor-card-col">
                         <div class="doctor-card">
                             <div class="header">
                                 <div class="doc-img">
@@ -59,30 +60,33 @@
                                     <button class="tab">QUALIFICATION</button>
                                 </div>
                                 <div class="tab-container">
-                                    <div class="tab-panel active">
+                                    <div class="tab-panel for-specialization active">
                                         <ul>
-                                            <li>
-                                                <span> <i class="bi bi-check2-circle"></i></span>
-                                                Specialization Name
-                                            </li>
-                                            <li>
-                                                <span> <i class="bi bi-check2-circle"></i></span>
-                                                Specialization Name
-                                            </li>
-                                            <li>
-                                                <span> <i class="bi bi-check2-circle"></i></span>
-                                                Specialization Name
-                                            </li>
+                                            @php
+                                                $speciality = App\Models\DoctorSpeciality::where(
+                                                    'doctor_id',
+                                                    $doctor->id,
+                                                )->get();
+                                            @endphp
+                                            @foreach ($speciality as $speciality)
+                                                <li>
+                                                    <span> <i class="bi bi-check2-circle"></i></span>
+                                                    {{ $speciality->speciality_name }}
+                                                </li>
+                                            @endforeach
                                         </ul>
                                     </div>
                                     <div class="tab-panel">
                                         <ul>
-                                            @foreach ($doctor->qualification as $qualification)
-                                                <li>
-                                                    <span><i class="bi bi-check2-circle"></i></span>
-                                                    {{ $qualification }}
-                                                </li>
+                                            @foreach (json_decode($doctor->qualification, true) as $qualification)
+                                                @if (!empty($qualification))
+                                                    <li>
+                                                        <span><i class="bi bi-check2-circle"></i></span>
+                                                        {{ $qualification }}
+                                                    </li>
+                                                @endif
                                             @endforeach
+
                                         </ul>
                                     </div>
                                 </div>

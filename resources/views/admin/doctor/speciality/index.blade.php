@@ -32,7 +32,7 @@
         <tbody>
             @foreach ($doctorSpecialities as $speciality)
                 <tr>
-                    <td>{{ $speciality->speciality_id }}</td>
+                    <td>{{ $speciality->speciality_name }}</td>
                     <td>
                         <a href="{{ route('admin.doctor.speciality.del', ['doctor_speciality_id' => $speciality->id]) }}"
                             class="btn btn-danger btn-sm">Delete</a>

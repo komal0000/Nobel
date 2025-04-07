@@ -50,6 +50,17 @@
                 <textarea name="short_description" id="short_description" class="form-control" rows="3"></textarea>
             </div>
 
+            <div class="row shadow p-3 mb-3">
+                <div class="col-md-12">
+                    <label for="doctorSpecialities">Choose Specialities</label>
+                    <select name="doctorSpeciality[]" class="form-control select2" id="doctorSpecialities" multiple="multiple">
+                        @foreach ($specialties as $speciality)
+                            <option value="{{ $speciality->id }}">{{ $speciality->title }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
             <div class="col-md-12 d-flex justify-content-end">
                 <button type="submit" class="btn btn-primary">Save</button>
             </div>

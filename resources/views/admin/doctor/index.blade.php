@@ -24,10 +24,10 @@
                             class="btn btn-warning btn-sm">Edit</a>
                         <a href="{{ route('admin.doctor.del', ['doctor_id' => $doctor->id]) }}"
                             class="btn btn-danger btn-sm">Delete</a>
-                        <a href="{{ route('admin.doctor.speciality.index', ['doctor_id' => $doctor->id]) }}"
+                        {{-- <a href="{{ route('admin.doctor.speciality.index', ['doctor_id' => $doctor->id]) }}"
                             class="btn btn-sm btn-info">
                             Manage Speciality
-                        </a>
+                        </a> --}}
                     </td>
                 </tr>
             @endforeach
