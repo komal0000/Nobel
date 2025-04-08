@@ -86,3 +86,16 @@
         </x-sliderComponent>
     </div>
 </section>
+<section id="dr-milestone">
+    <div class="main-container">
+        <x-sliderComponent heading="Milestone Achieved">
+            @foreach ($doctorMilestones as $milestone)
+                <div class="each-card">
+                    <i class="bi bi-check2-circle"></i>
+                    <div class="heading-sm">{{ $milestone->description }}</div>
+                    <div class="year">{{ $milestone->year }}</div>
+                </div>
+            @endforeach
+        </x-sliderComponent>
+    </div>
+</section>
