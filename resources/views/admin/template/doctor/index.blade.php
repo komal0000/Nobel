@@ -21,8 +21,7 @@
                     <ul class="select-list" id="select-list">
                         <li data-target="all">All Specialities</li>
                         @foreach ($specialties as $specialty)
-                            <li data-target="{{ strtolower($specialty->title) }}">
-                                {{ $specialty->title }}</li>
+                            <li>{{ $specialty->title }}</li>
                         @endforeach
                     </ul>
                     <input type="hidden" name="find-doc-speciality" id="find-doc-speciality-input">
@@ -70,8 +69,9 @@
                                             @endphp
                                             @foreach ($speciality as $speciality)
                                                 <li>
-                                                    <span> <i class="bi bi-check2-circle"></i></span>
-                                                    {{ $speciality->speciality_name }}
+                                                    <span> <i class="bi bi-check2-circle"></i>
+                                                        {{ $speciality->speciality_name }}
+                                                    </span>
                                                 </li>
                                             @endforeach
                                         </ul>

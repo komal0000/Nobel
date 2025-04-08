@@ -89,7 +89,21 @@ class DoctorController extends Controller
         return redirect()->back()->with('delete_success', 'Doctor deleted successfully');
     }
 
+    public function specialityDel($doctor_id,$speciality_id)
+    {
+        DoctorSpeciality::where('doctor_id', $doctor_id)->where('speciality_id', $speciality_id)->delete();
+        return response()->json([
+            'success' => true,
+            'message' => 'Speciality removed successfully'
+        ]);
+    }
 
+    public function singleRender($doctor_id)
+    {
+        $doctor = Doctor::where('id', $doctor_id)->first();
+        $doctorSpecialities = DB::table('doctor_specialities')->where('doctor_id', $doctor_id)->get();
+        Helper::putCache('doctor.single.'.$doctor_id, view('admin.template.doctor.single', compact('doctor', 'doctorSpecialities'))->render());
+    }
     public function render()
     {
         $doctors = DB::table(Doctor::table_name)->get();

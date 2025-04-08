@@ -110,4 +110,8 @@ class FrontController extends Controller
     public function doctorIndex(){
         return view('front.pages.doctor.index');
     }
+
+    public function doctorSingle($doctor_id){
+        return view('front.pages.doctor.single',compact('doctor_id'));
+    }
 }

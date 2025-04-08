@@ -66,7 +66,7 @@
                 <div class="col-md-12">
                     <label for="doctorSpecialities">Choose Specialities</label>
                     <select name="doctorSpeciality[]" class="form-control select2" id="doctorSpecialities"
-                        multiple="multiple">
+                        multiple="multiple" onchange="handleSpecialtyChange(this)">
                         @php
                             $selectedSpecialties = $doctorSpecialities->pluck('speciality_id')->toArray();
                         @endphp
@@ -85,4 +85,40 @@
         </div>
     </form>
 @endsection
+@section('js')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const specialtiesSelect = document.getElementById('doctorSpecialities');
+            window.previouslySelectedSpecialties = Array.from(specialtiesSelect.selectedOptions).map(option =>
+                option.value);
+            console.log("Initially selected specialties:", window.previouslySelectedSpecialties);
+        });
 
+        function handleSpecialtyChange(selectElement) {
+            const previouslySelected = window.previouslySelectedSpecialties || [];
+            const selectedValues = Array.from(selectElement.selectedOptions).map(option => option.value);
+            const newlySelected = selectedValues.filter(value => !previouslySelected.includes(value));
+            const newlyUnselected = previouslySelected.filter(value => !selectedValues.includes(value));
+
+            if (newlyUnselected.length > 0) {
+                const specialtyId = newlyUnselected[0];
+                console.log(specialtyId);
+                axios.get("{{ route('admin.doctor.speciality.del', ['doctor_id'=>':doc','speciality_id' => ':ID']) }}".replace(
+                        ':ID', specialtyId).replace(':doc', {{ $doctor->id }}))
+                    .then(response => {
+                        if (response.data.success) {
+                            console.log(`Successfully removed specialty ${specialtyId}`);
+                        } else {
+                            console.error(`Failed to remove specialty ${specialtyId}`);
+                        }
+                    })
+                    .catch(error => {
+                        console.error(`Error removing specialty ${specialtyId}:`, error);
+                    });
+            }
+
+            // Update the previous selection for next change
+            window.previouslySelectedSpecialties = selectedValues;
+        }
+    </script>
+@endsection

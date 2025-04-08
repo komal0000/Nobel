@@ -20,7 +20,7 @@
                         <img src="{{ Storage::url($speciality->single_page_image) }}" alt="Desktop Heart Image">
                     </div>
                     <div class="md-img">
-                        <img src="{{ asset('front/assets/img/speciality/top-banner-md.png') }}" alt="Mobile Heart Image">
+                        <img src="{{ Storage::url($speciality->single_page_image) }}" alt="Mobile Heart Image">
                     </div>
                 </div>
                 <div class="top-banner-slide">

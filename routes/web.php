@@ -294,8 +294,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::match(['GET', 'POST'], 'edit/{doctor_id}', [DoctorController::class, 'edit'])->name('edit');
         Route::get('del/{doctor_id}', [DoctorController::class, 'del'])->name('del');
         Route::prefix('speciality')->name('speciality.')->group(function () {
-            Route::match(['GET','POST'],'index/{doctor_id}', [DoctorController::class, 'specialityIndex'])->name('index');
-            Route::get('del/{doctor_speciality_id}', [DoctorController::class, 'specialityDel'])->name('del');
+            Route::get('del/{doctor_id}/{speciality_id}', [DoctorController::class, 'specialityDel'])->name('del');
         });
     });
 });
