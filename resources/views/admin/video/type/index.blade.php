@@ -25,9 +25,18 @@
                 <input type="text" name="title" id="title" class="form-control" required>
             </div>
             <div class="col-md-4 d-flex align-items-end">
-                <input class="form-check-input" type="checkbox" name="home_video" id="home_video" {{ old('home_video') ? 'checked' : '' }} style="margin: 0px 3px 6px" onclick="this.value = this.checked ? 1 : 0">
+                <input class="form-check-input" type="checkbox" name="home_video" id="home_video"
+                    {{ old('home_video') ? 'checked' : '' }} style="margin: 0px 3px 6px"
+                    onclick="this.value = this.checked ? 1 : 0">
                 <label for="title">Home Video</label>
             </div>
+            <div class="col-md-4">
+                <input class="form-check-input" type="checkbox" name="home_video" id="home_video"
+                    {{ old('home_video') ? 'checked' : '' }} style="margin: 0px 3px 6px"
+                    onclick="this.value = this.checked ? 1 : 0">
+                <label for="doctor">Doctor Video</label>
+            </div>
+
             <div class="col-md-4 d-flex align-items-end">
                 <button class="btn btn-primary">
                     Save
@@ -47,11 +56,16 @@
                 @foreach ($videoTypes as $type)
                     <tr id="tr_{{ $type->id }}">
                         <td>
-                            <input type="text" name="title" id="title_{{ $type->id }}"
-                                class="form-control update_input" value="{{ $type->title }}">
+                            @if ($type->home_video == 1)
+                                Home Videos
+                            @elseif($type->doctor_video == 1)
+                                Doctor Videos
+                            @else
+                               Normal Videos
+                            @endif
                         </td>
                         <td>
-                            <button onclick="editVideo({{ $type->id }})" class="btn btn-sm btn-warning">Update</button>
+                            {{-- <button onclick="editVideo({{ $type->id }})" class="btn btn-sm btn-warning">Update</button> --}}
                             <button onclick="deleteVideo({{ $type->id }})" class="btn btn-sm btn-danger">Delete</button>
                             <a href="{{ route('admin.video.index', ['type_id' => $type->id]) }}"
                                 class="btn btn-sm btn-info">Manage video</a>

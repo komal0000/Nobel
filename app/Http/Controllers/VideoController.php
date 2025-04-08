@@ -13,7 +13,7 @@ class VideoController extends Controller
     public function indexType(Request $request)
     {
         if (Helper::G()) {
-            $videoTypes = DB::table('video_types')->get(['id', 'title']);
+            $videoTypes = DB::table('video_types')->get();
             return view('admin.video.type.index', compact('videoTypes'));
         } else {
             $video = new VideoType();
