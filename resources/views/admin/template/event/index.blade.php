@@ -9,7 +9,7 @@
     </picture>
     <div class="banner-title">News And Events</div>
 </section>
-<section id="event-page">
+<section id="event-page" data-content="News">
     <div class="main-container">
         <div class="heading-group mb-4">
             <div class="heading text-center">News</div>
@@ -40,7 +40,7 @@
     </div>
 </section>
 @foreach ($eventTypes as $type)
-    <section id="event-page">
+    <section id="event-page" data-content="{{$type->title}}">
         <div class="main-container">
             <div class="heading-group mb-4">
                 <div class="heading text-center">{{ $type->title }}</div>
@@ -48,9 +48,9 @@
             </div>
             <div class="event-slider">
                 @php
-                    $events = \App\Models\Blog::where('blog_category_id', $type->id)
-                        ->where('type', App\Helper::blog_type_event)
-                        ->get();
+    $events = \App\Models\Blog::where('blog_category_id', $type->id)
+        ->where('type', App\Helper::blog_type_event)
+        ->get();
                 @endphp
                 @foreach ($events as $event)
                     <div class="slide m-3">

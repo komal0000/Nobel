@@ -1,4 +1,4 @@
-<section id="all-videos">
+<section id="all-videos" data-content="All Videos">
     <div class="main-container">
         <div class="heading-group mb-4 d-flex justify-content-center flex-wrap gap-3">
             <div class="select-field">
@@ -25,7 +25,7 @@
         <div class="row g-4">
             @foreach ($academicProgramTypes as $type)
                 @php
-                    $academicPrograms = App\Models\Blog::where('blog_category_id', $type->id)->get();
+    $academicPrograms = App\Models\Blog::where('blog_category_id', $type->id)->get();
                 @endphp
                 @foreach ($academicPrograms as $academicProgram)
                     <a href="{{ route('academicprogram.single', ['academic_id' => $academicProgram->id]) }}">

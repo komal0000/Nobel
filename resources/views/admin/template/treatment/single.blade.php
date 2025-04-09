@@ -43,9 +43,9 @@
 </section>
 @foreach ($treatmentSections as $section)
     @if ($section->style_type == 1)
-        <section id="how">
+        <section id="how" data-content="How is it Done?">
             @php
-                $sectionSteps = App\Models\TreatmentStep::where('treatment_section_id', $section->id)->get();
+        $sectionSteps = App\Models\TreatmentStep::where('treatment_section_id', $section->id)->get();
             @endphp
             <div class="main-container">
                 <x-type1 heading="{{ $section->title }}" subHeading="{{ $section->description }}"
@@ -54,9 +54,9 @@
         </section>
     @elseif($section->style_type == 2)
         @php
-            $sectionSteps = App\Models\TreatmentStep::where('treatment_section_id', $section->id)->get();
+        $sectionSteps = App\Models\TreatmentStep::where('treatment_section_id', $section->id)->get();
         @endphp
-        <section id="benefit-risk">
+        <section id="benefit-risk" data-content="Benefits & Risks">
             <div class="main-container">
                 <x-type2 heading="{{ $section->title }}" subHeading="{{ $section->description }}"
                     :items="$sectionSteps"></x-type2>

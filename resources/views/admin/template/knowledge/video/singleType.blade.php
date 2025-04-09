@@ -1,4 +1,4 @@
-<section id="all-videos">
+<section id="all-videos" data-content="All Videos">
     <div class="main-container">
         <div class="heading-group mb-4 d-flex justify-content-center flex-wrap gap-3">
             <div class="select-field">
@@ -25,7 +25,7 @@
         <div class="row g-4">
             @foreach ($videoTypes as $type)
                 @php
-                    $videos = App\Models\Video::where('video_type_id', $type->id)->get();
+    $videos = App\Models\Video::where('video_type_id', $type->id)->get();
                 @endphp
                 @foreach ($videos as $video)
                     <div class="col-md-6 col-xl-4 all-card" data-content="{{ trim($type->title) }}">

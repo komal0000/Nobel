@@ -1,4 +1,4 @@
- <section id="all-section">
+ <section id="all-section" data-content="{{$title}}">
      <div class="main-container">
          <div class="heading mb-4 text-center">{{ $title }}</div>
          <div class="letter-slider">

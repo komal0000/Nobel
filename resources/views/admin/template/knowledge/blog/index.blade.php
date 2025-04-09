@@ -1,12 +1,12 @@
 <div id="blogs" class="border-bottom pb-5">
-    <section id="all-blogs">
+    <section id="featured-blogs" data-content="Featured Blogs">
         <div class="main-container">
             <div class="heading mb-4">Featured Blogs</div>
             <div class="row g-4">
                 @foreach ($featuredBlogs as $blog)
                     <div class="col-md-6 col-xl-3 all-blog-card">
                         @php
-                            $blogType = App\Models\BlogCategory::where('id', $blog->blog_category_id)->first();
+    $blogType = App\Models\BlogCategory::where('id', $blog->blog_category_id)->first();
                         @endphp
                         <div class="blog-card ">
                             <div class="img-wrapper">
@@ -32,7 +32,7 @@
             <button id="load-more-featured" class="load-more heading-xs">Load More</button>
         </div>
     </section>
-    <section id="all-blogs">
+    <section id="all-blogs" data-content="All Blogs">
         <div class="main-container">
             <div class="heading-group mb-4">
                 <div class="heading mb-2">All Blogs</div>
@@ -46,7 +46,7 @@
                 @foreach ($indexBlogs as $blog)
                     <div class="col-md-6 col-xl-3 all-blog-card">
                         @php
-                            $blogType = App\Models\BlogCategory::where('id', $blog->blog_category_id)->first();
+    $blogType = App\Models\BlogCategory::where('id', $blog->blog_category_id)->first();
                         @endphp
                         <div class="blog-card ">
                             <div class="img-wrapper">

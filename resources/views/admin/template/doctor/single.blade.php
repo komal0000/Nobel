@@ -57,7 +57,7 @@
         </div>
     </div>
 </section>
-<section id="dr-about">
+<section id="dr-about" data-content="About">
     <div class="main-container">
         <div class="heading mb-4">About {{ $doctor->title }}</div>
         <div class="para-wrap">
@@ -65,12 +65,12 @@
         </div>
     </div>
 </section>
-<section id="dr-specialization">
+<section id="dr-specialization" data-content="Specialization">
     <div class="main-container">
         <x-sliderComponent heading="Specialization & Expertise">
             @foreach ($doctorSpecialities as $doctorSpeciality)
                 @php
-                    $speciality = App\Models\Specialty::where('id', $doctorSpeciality->speciality_id)->first();
+    $speciality = App\Models\Specialty::where('id', $doctorSpeciality->speciality_id)->first();
                 @endphp
                 <div class="each-card">
                     <a>
@@ -86,7 +86,7 @@
         </x-sliderComponent>
     </div>
 </section>
-<section id="dr-milestone">
+<section id="dr-milestone" data-content="Milestone">
     <div class="main-container">
         <x-sliderComponent heading="Milestone Achieved">
             @foreach ($doctorMilestones as $milestone)

@@ -1,4 +1,4 @@
-<section id="technology">
+<section id="technology" data-content="Technology">
     <div class="main-container">
         <div class="heading-group mb-4">
             <div class="heading text-center">Technology</div>

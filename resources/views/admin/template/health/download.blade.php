@@ -1,4 +1,4 @@
-<section id="health-library-download">
+<section id="health-library-download" data-content="Downloads">
     <div class="main-container">
         <div class="heading-group">
             <div class="heading text-center">Downloads</div>

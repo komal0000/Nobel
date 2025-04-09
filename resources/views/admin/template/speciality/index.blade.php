@@ -1,4 +1,4 @@
-<section id="all-specialities">
+<section id="all-specialities" data-content="All Specialities">
     <div class="main-container">
         <div class="heading text-center mb-4">
             All Specialities

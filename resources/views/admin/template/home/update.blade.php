@@ -1,4 +1,4 @@
-<section class="update">
+<section id="update" class="update" data-content="Update">
     <div class="main-container">
         <div class="heading">
             Updates

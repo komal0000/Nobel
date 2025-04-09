@@ -1,4 +1,4 @@
-<section id="events">
+<section id="events" data-content="Events">
     <div class="main-container">
         <div class="heading-group">
             <div class="heading text-center">Events</div>

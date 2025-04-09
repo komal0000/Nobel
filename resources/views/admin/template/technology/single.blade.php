@@ -1,4 +1,4 @@
-<section id="technology-banner">
+<section id="technology-banner" >
     <div class="wrapper">
         <picture class="img-wrap">
             @if ($technology->image)
@@ -43,11 +43,11 @@
 @foreach ($technologySections as $section)
     @if ($section->design_type == 1)
         @php
-            $items = App\Models\TechnologySectionData::where('technology_section_id', $section->id)
-                ->where('technology_id', $technology->id)
-                ->get();
+        $items = App\Models\TechnologySectionData::where('technology_section_id', $section->id)
+            ->where('technology_id', $technology->id)
+            ->get();
         @endphp
-        <section id="technology-help">
+        <section id="technology-help" data-content="How does it help?">
             <div class="main-container">
                 <x-type1 heading="{{ $section->title }}" subHeading="{{ $section->short_description }}"
                     :items="$items"></x-type1>
@@ -55,18 +55,18 @@
         </section>
     @elseif($section->design_type == 2)
         @php
-            $items = App\Models\TechnologySectionData::where('technology_section_id', $section->id)
-                ->where('technology_id', $technology->id)
-                ->get();
+        $items = App\Models\TechnologySectionData::where('technology_section_id', $section->id)
+            ->where('technology_id', $technology->id)
+            ->get();
         @endphp
-        <section id="benefit-risk">
+        <section id="benefit-risk" data-content="Benifits & Risks">
             <div class="main-container">
                 <x-type2 heading="{{ $section->title }}" subHeading="{{ $section->short_description }}"
                     :items="$items"></x-type2>
             </div>
         </section>
     @elseif ($section->design_type == 3)
-        <section id="technology-description">
+        <section id="technology-description" data-content="About {{$technology->title}}">
             <div class="main-container">
                 <x-type3 heading="{{ $section->title }}" content="{{ $section->short_description }}"
                     href="{{ Storage::url($section->image) }}"></x-type3>

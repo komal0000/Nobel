@@ -1,4 +1,4 @@
-<section id="each-update">
+<section id="each-update" data-content="Update">
     <div class="main-container">
         <div class="row g-5">
             <div class="col-lg-9">

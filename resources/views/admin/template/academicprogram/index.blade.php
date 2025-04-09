@@ -13,7 +13,7 @@
 </section>
 
 @foreach ($academicProgramTypes as $type)
-    <section id="doctor-videos">
+    <section id="doctor-videos" data-content="Doctor Videos">
         <div class="main-container">
             <div class="heading-group">
                 <div class="heading text-center">{{ $type->title }}</div>

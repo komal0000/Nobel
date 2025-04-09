@@ -1,4 +1,4 @@
-<section class="team">
+<section id="team" class="team" data-content="Team">
     <div class="main-container text-center">
         <div class="flex-container d-flex flex-column">
             <div class="heading-lg title">

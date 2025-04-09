@@ -9,7 +9,7 @@
     </picture>
     <div class="banner-title">Medical Experts</div>
 </section>
-<section id="doctor-list">
+<section id="doctor-list" data-content="Doctor List">
     <div class="main-container">
         <div class="filter d-flex justify-content-start">
             <div class="select-field">
@@ -62,10 +62,10 @@
                                     <div class="tab-panel for-specialization active">
                                         <ul>
                                             @php
-                                                $speciality = App\Models\DoctorSpeciality::where(
-                                                    'doctor_id',
-                                                    $doctor->id,
-                                                )->get();
+    $speciality = App\Models\DoctorSpeciality::where(
+        'doctor_id',
+        $doctor->id,
+    )->get();
                                             @endphp
                                             @foreach ($speciality as $speciality)
                                                 <li>

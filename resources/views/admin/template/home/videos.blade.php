@@ -1,4 +1,4 @@
-<section id="home-story">
+<section id="home-story" data-content="Stories">
     <div class="main-container">
         <div class="heading">
             {{ $VideoType->title }}

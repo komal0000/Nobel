@@ -1,4 +1,4 @@
-<section class="why-hospital">
+<section id="why-hospital" class="why-hospital" data-content="Why Us?">
     <div>
         <div class="why-wrapper">
             <h2 class="text-center heading pb-40 wow fadeInDown">

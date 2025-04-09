@@ -1,4 +1,4 @@
-<section id="downloads">
+<section id="downloads" data-content="Downloads">
     <div class="main-container">
         <div class="tabs-container mb-4">
             <button class="tab active">All</button>
@@ -23,7 +23,7 @@
                 <div class="row g-3 card-row">
                     @foreach ($downloads as $download)
                         @php
-                            $type = App\Models\DownloadCategory::where('id', $download->download_category_id)->first(['title']);
+    $type = App\Models\DownloadCategory::where('id', $download->download_category_id)->first(['title']);
                         @endphp
                         <div class="col-md-6 col-xl-4" data-content="{{ $type->title }}">
                             <div class="download-card p-4">

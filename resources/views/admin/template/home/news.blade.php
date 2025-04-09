@@ -1,4 +1,4 @@
-<section class="events-news">
+<section id="events-news" class="events-news" data-content="News & Events">
     <div class="main-container">
         <div class="heading text-center">
             News &amp; Events
@@ -69,7 +69,7 @@
                 @foreach ($eventTypes as $type)
                     <div class="event-list {{ $loop->first ? 'active' : '' }}" id="tab-{{ $loop->index + 1 }}">
                         @php
-                            $events = $eventData->where('blog_category_id', $type->id);
+    $events = $eventData->where('blog_category_id', $type->id);
                         @endphp
                         @foreach ($events as $event)
                             <div class="each-event {{ $event->type }} d-flex align-items-center gap-4">

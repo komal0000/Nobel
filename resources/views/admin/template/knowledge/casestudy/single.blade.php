@@ -1,4 +1,4 @@
-<section id="per-case-study">
+<section id="per-case-study" data-content="Case Study">
     <div class="main-container">
         <div class="row g-5">
             <div class="col-lg-9">

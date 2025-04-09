@@ -1,4 +1,4 @@
-<section class="awards">
+<section id="awards" class="awards" data-content="Awards">
     <div class="main-container">
         <div class="heading text-center">Awards and Recognitions</div>
         <div class="award-slide">
