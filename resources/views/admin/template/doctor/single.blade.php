@@ -6,7 +6,7 @@
             </div>
             <div class="details align-self-center">
                 <h4 class="name">Dr. {{ $doctor->title }}</h4>
-                <p class="post"> Dr. {{ $doctor->post }}</p>
+                <p class="post">{{ $doctor->position }}</p>
                 <p>
                     @if (!empty(json_decode($doctor->qualification, true)))
                         {{ json_decode($doctor->qualification, true)[0] ?? '' }}
