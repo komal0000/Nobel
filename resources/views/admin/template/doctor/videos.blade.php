@@ -1,6 +1,6 @@
 <section id="dr-media">
     <div class="main-container">
-        <x-sliderComponent heading="Media">
+        <x-sliderComponent heading="Media" mainClass="drVideoSlider">
             @foreach ($videos as $video)
                 <a href="https://www.youtube.com/watch?v={{ $video->video_link }}" class="glightbox m-3">
                     <div class="each-video">

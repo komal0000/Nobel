@@ -1,6 +1,6 @@
-@props(['heading' => 'Default Heading', 'subHeading' => '', 'sliderId' => uniqid('slider-')])
+@props(['heading' => 'Default Heading', 'subHeading' => '', 'mainClass' => ''])
 
-<div  class="slider-component">
+<div class="slider-component">
     @if ($subHeading)
         <div class="heading-group">
             <div class="heading">{{ $heading }}</div>
@@ -9,20 +9,20 @@
     @else
         <div class="heading">{{ $heading }}</div>
     @endif
-    <div class="{{$sliderId}}">
+    <div class="{{$mainClass}}">
         {{ $slot }}
     </div>
 </div>
-@push('js')
+@section('js')
     <script>
         $(document).ready(function() {
 
-            $('.{{$sliderId}}').slick({
+            $('.{{$mainClass}}').slick({
                 slidesToShow: 3,
                 slidesToScroll: 1,
                 arrows: true,
-                prevArrow: '<button class="slick-prev left-arrow"><img src="{{ asset('front/img/vector-left.png') }}" alt="Left Arrow"></button>',
-                nextArrow: '<button class="slick-next right-arrow"><img src="{{ asset('front/img/vector-right.png') }}" alt="Right Arrow"></button>',
+                prevArrow: '<button class="slick-prev left-arrow"><img src="front/assets/img/vector-left.png" alt="Left Arrow"></button>',
+                nextArrow: '<button class="slick-next right-arrow"><img src="front/assets/img/vector-right.png" alt="Right Arrow"></button>',
 
                 responsive: [{
                         breakpoint: 992,
@@ -40,4 +40,4 @@
             })
         });
     </script>
-@endpush
+@endsection

@@ -61,13 +61,13 @@
     <div class="main-container">
         <div class="heading mb-4">About {{ $doctor->title }}</div>
         <div class="para-wrap">
-            {{ $doctor->short_description }}
+            {!! $doctor->text !!}
         </div>
     </div>
 </section>
 <section id="dr-specialization" data-content="Specialization">
     <div class="main-container">
-        <x-sliderComponent heading="Specialization & Expertise">
+        <x-sliderComponent mainClass="drSpecialSlider" heading="Specialization & Expertise">
             @foreach ($doctorSpecialities as $doctorSpeciality)
                 @php
                     $speciality = App\Models\Speciality::where('id', $doctorSpeciality->speciality_id)->first();
@@ -88,7 +88,7 @@
 </section>
 <section id="dr-milestone" data-content="Milestone">
     <div class="main-container">
-        <x-sliderComponent heading="Milestone Achieved">
+        <x-sliderComponent heading="Milestone Achieved" mainClass="milestoneSlider">
             @foreach ($doctorMilestones as $milestone)
                 <div class="each-card">
                     <i class="bi bi-check2-circle"></i>

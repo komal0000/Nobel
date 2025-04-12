@@ -215,6 +215,8 @@ class BlogController extends Controller
         Helper::putCache('academic.list', view('admin.template.academicprogram.list', compact('academicProgramTypes','academicPrograms')));
         Helper::putCache('academic.index', view('admin.template.academicprogram.index', compact('academicProgramTypes')));
 
+        //Doctor Article
+
 
         Helper::putCache('health.knowledge.blogs', view('admin.template.health.knowledge.blogs', compact('indexBlogs')));
         Helper::putCache('knowledge.blog', view('admin.template.knowledge.blog.index', compact('indexBlogs', 'featuredBlogs'))->render());
