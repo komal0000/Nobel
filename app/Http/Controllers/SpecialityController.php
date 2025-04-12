@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Helper;
+use App\Models\DoctorSpeciality;
 use App\Models\Speciality;
 use App\Models\SpecialityGallery;
 use App\Models\SpecialityGalleryItem;
 use App\Models\Technology;
 use App\Models\TechnologySection;
 use App\Models\TechnologySectionData;
+use App\Models\Treatment;
+use App\Models\TreatmentSection;
+use App\Models\TreatmentStep;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -57,7 +61,7 @@ class SpecialityController extends Controller
         $speciality = Speciality::where("id", $speciality_id)->first();
 
         if (Helper::G($request)) {
-            return view('admin.speciality.edit', compact('speciality','parent_speciality_id'));
+            return view('admin.speciality.edit', compact('speciality', 'parent_speciality_id'));
         } else {
             $speciality->title = $request->title;
             $speciality->short_description = $request->short_description;
@@ -78,6 +82,14 @@ class SpecialityController extends Controller
     {
         $SpecialityGalleries = SpecialityGallery::where('specialty_id', $speciality_id)->get();
         $technology = Technology::where('specialty_id', $speciality_id)->first();
+        $treatment = Treatment::where('specialty_id', $speciality_id)->first();
+
+        if ($treatment) {
+            $treatmentSection = TreatmentSection::where('treatment_id', $treatment->id)->first();
+            TreatmentStep::where('treatment_section_id', $treatmentSection->id)->delete();
+            $treatmentSection->delete();
+            $treatment->delete();
+        }
         if ($SpecialityGalleries->isNotEmpty()) {
             foreach ($SpecialityGalleries as $gallery) {
                 SpecialityGalleryItem::where('speciality_gallery_id', $gallery->id)->delete();
@@ -91,7 +103,8 @@ class SpecialityController extends Controller
             TechnologySection::where('technology_id', $technology_id)->delete();
             Technology::where('id', $technology_id)->delete();
         }
-        Speciality::where("id", $speciality_id)->delete();
+        DoctorSpeciality::where('speciality_id', $speciality_id)->delete();
+        Speciality::where('id', $speciality_id)->delete();
         $this->render();
         $this->renderSingle($speciality_id);
         return redirect()->back()->with("delete_success", "Speciality Successfully Deleted");
@@ -107,7 +120,7 @@ class SpecialityController extends Controller
         if ($speciality->parent_speciality_id) {
             $parentSpeciality = DB::table('specialties')->find($speciality->parent_speciality_id);
             Helper::putCache('speciality.single.' . $speciality->parent_speciality_id . '.subspecialization', view('admin.template.speciality.subspecialization', [
-                'speciality'=>$parentSpeciality
+                'speciality' => $parentSpeciality
             ])->render());
             $this->renderSingle($speciality->parent_speciality_id);
         }
@@ -125,5 +138,3 @@ class SpecialityController extends Controller
         Helper::putCache('speciality.index', view('admin.template.speciality.index', compact('specialities'))->render());
     }
 }
-
-

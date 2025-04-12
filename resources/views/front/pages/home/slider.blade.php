@@ -9,17 +9,17 @@
             </div>
 
             <div class="feedback-section">
-                <a href="/contact-us" class="btn-action button-secondary feedback-btn">
+                <a href="{{ route('contact') }}" class="btn-action button-secondary feedback-btn">
                     <img src="{{ asset('front/assets/img/feedback.png') }}" alt="Feedback">
                     <span>Feedback</span>
                 </a>
 
-                <a href="tel:1068" class="btn-action button-primary emergency-btn">
+                <a href="tel:100" class="btn-action button-primary emergency-btn">
                     <img src="{{ asset('front/assets/img/emergency.png') }}" alt="Emergency">
                     <span>Emergency</span>
                 </a>
 
-                <a href="#" class="btn-action button-primary" data-bs-toggle="modal" data-bs-target="#callback-modal">
+                <a class="btn-action button-primary" data-bs-toggle="modal" data-bs-target="#callback-modal">
                     <img src="{{ asset('front/assets/img/phone-icon.png') }}" alt="Call Back">
                     <span>Request Call</span>
                 </a>
