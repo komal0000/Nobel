@@ -76,14 +76,17 @@ class VideoController extends Controller
     public function render()
     {
 
+
         $VideoType = DB::table('video_types')->where('home_video', 1)->first();
-        $homeVideos = Video::where('video_type_id', $VideoType->id)->get();
+        if($VideoType){
+            $homeVideos = Video::where('video_type_id', $VideoType->id)->get();
+            Helper::putCache('home.videos', view('admin.template.home.videos', compact('VideoType', 'homeVideos'))->render());
+        }
         $videoTypes = DB::table('video_types')->get(['id', 'title']);
 
         $videos = DB::table('videos')->get();
         Helper::putCache('knowledge.video.all', view('admin.template.knowledge.video.singleType', compact('videoTypes', 'videos'))->render());
         Helper::putCache('health.knowledge.video', view('admin.template.health.knowledge.video', compact('videos'))->render());
         Helper::putCache('knowledge.video', view('admin.template.knowledge.video.index', compact('videoTypes'))->render());
-        Helper::putCache('home.videos', view('admin.template.home.videos', compact('VideoType', 'homeVideos'))->render());
     }
 }

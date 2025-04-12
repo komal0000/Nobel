@@ -25,7 +25,7 @@
         <div class="row g-4">
             @foreach ($videoTypes as $type)
                 @php
-    $videos = App\Models\Video::where('video_type_id', $type->id)->get();
+                    $videos = App\Models\Video::where('video_type_id', $type->id)->get();
                 @endphp
                 @foreach ($videos as $video)
                     <div class="col-md-6 col-xl-4 all-card" data-content="{{ trim($type->title) }}">
@@ -41,7 +41,7 @@
                                 </a>
                             </div>
                             <div class="body">
-                                <div class="heading-md video-title">{{$video->title}}</div>
+                                <div class="heading-md video-title">{{ $video->title }}</div>
                             </div>
                         </div>
                     </div>

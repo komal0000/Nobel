@@ -20,6 +20,7 @@ class Helper
         5 => 'case_study',
         6 => 'news_letter',
         7 => 'acedemic_program',
+        8 => 'doctor_article',
     ];
 
     const blog_type_blog = 1;

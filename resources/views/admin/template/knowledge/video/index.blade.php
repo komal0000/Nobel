@@ -13,14 +13,14 @@
 </section>
 
 @foreach ($videoTypes as $type)
-    <section id="doctor-videos" data-content="{{$type->title}}">
+    <section id="doctor-videos" data-content="{{ $type->title }}">
         <div class="main-container">
             <div class="heading-group">
                 <div class="heading text-center">{{ $type->title }}</div>
-                <x-hoverBtn class="button" href="{{ route('knowledge.videos') }}">View All</x-hoverBtn>
+                <x-hoverBtn class="button" href="{{ route('knowledge.videos',['type_id'=>$type->id]) }}">View All</x-hoverBtn>
             </div>
             @php
-    $videos = App\Models\Video::where('video_type_id', $type->id)->get();
+                $videos = App\Models\Video::where('video_type_id', $type->id)->get();
             @endphp
             <div class="doctor-slider">
                 @foreach ($videos as $video)
