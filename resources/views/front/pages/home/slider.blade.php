@@ -33,3 +33,42 @@
         @includeIf('front.cache.home.sliderNavigation')
     </div>
 </section>
+<div class="modal fade" id="callback-modal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content p-4">
+            <div class="modal-header p-0 pb-3 border-bottom-0">
+                <h2 class="modal-title heading-md text-center">Request Call Back</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="">
+                @csrf
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="name" placeholder="Full Name *" required>
+                            <label for="name">Full Name *</label>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-floating mb-3">
+                            <input type="tel" class="form-control" name="phoneNumber" placeholder="Phone Number *"
+                                required>
+                            <label for="phoneNumber">Phone Number *</label>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" name="email" placeholder="Email Address *"
+                                required>
+                            <label for="email">Email
+                                Address *</label>
+                        </div>
+                    </div>
+                    <div class="col-12 submit-btn">
+                        <button class="w-100" id="submit-callback">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
