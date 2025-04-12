@@ -3,7 +3,7 @@
     <div class="main-container">
         <div class="search-wrapper mx-auto">
             <div class="search-field">
-                <a href="/doctor-listing" class="btn-action">
+                <a href="{{ route('doctor.index') }}" class="btn-action">
                     Search For Doctor
                 </a>
             </div>
