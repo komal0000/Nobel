@@ -1,6 +1,7 @@
 <section id="home-top-banner">
     @includeIf('front.cache.home.slider')
     <div class="main-container">
+        @includeIf('front.cache.home.sliderNavigation')
         <div class="search-wrapper mx-auto">
             <div class="search-field">
                 <a href="{{ route('doctor.index') }}" class="btn-action">
@@ -30,7 +31,7 @@
                 </a>
             </div>
         </div>
-        @includeIf('front.cache.home.sliderNavigation')
+       
     </div>
 </section>
 <div class="modal fade" id="callback-modal">
