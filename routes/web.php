@@ -13,6 +13,7 @@ use App\Http\Controllers\HomeCareController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\LeadershipController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\PopupController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SettingController;
@@ -306,5 +307,10 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
             Route::post('edit/{milestone_id}', [DoctorController::class, 'milestoneEdit'])->name('edit');
             Route::get('del/{milestone_id}', [DoctorController::class, 'milestoneDel'])->name('del');
         });
+    });
+    Route::prefix('poilicy')->name('policy.')->group(function () {
+        Route::match(['GET', 'POST'], 'index', [PolicyController::class, 'index'])->name('index');
+        Route::match(['GET', 'POST'], 'edit/{policy_id}', [PolicyController::class, 'edit'])->name('edit');
+        Route::get('del/{policy_id}', [PolicyController::class, 'del'])->name('del');
     });
 });
