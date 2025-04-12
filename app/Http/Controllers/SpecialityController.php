@@ -7,6 +7,7 @@ use App\Models\DoctorSpeciality;
 use App\Models\Speciality;
 use App\Models\SpecialityGallery;
 use App\Models\SpecialityGalleryItem;
+use App\Models\SpecialityTeamHead;
 use App\Models\Technology;
 use App\Models\TechnologySection;
 use App\Models\TechnologySectionData;
@@ -109,6 +110,30 @@ class SpecialityController extends Controller
         $this->renderSingle($speciality_id);
         return redirect()->back()->with("delete_success", "Speciality Successfully Deleted");
     }
+    public function teamHeadIndex(Request $request, $speciality_id)
+    {
+        $speciality = DB::table('specialties')->where('id', $speciality_id)->first();
+        if (Helper::G()) {
+            $doctors = DB::table('doctors')->get();
+            $teamHeads = DB::table('speciality_team_heads')->where('specialty_id', $speciality_id)->get();
+            return view('admin.speciality.teamHead.index', compact('speciality', 'doctors', 'teamHeads'));
+        } else {
+            $teamHead = new SpecialityTeamHead();
+            $teamHead->specialty_id = $speciality_id;
+            $teamHead->doctor_id = $request->doctor_id;
+            $doctor = DB::table('doctors')->where('id', $request->doctor_id)->first();
+            $teamHead->name = $doctor->title;
+            $teamHead->save();
+            $this->renderTeamHead($speciality_id);
+            return redirect()->back()->with('success', 'Team Head Successfully Added');
+        }
+    }
+    public function teamHeadDel($team_head_id, $speciality_id)
+    {
+        SpecialityTeamHead::where('id', $team_head_id)->delete();
+        $this->renderTeamHead($speciality_id);
+        return response()->json(['status' => 'success']);
+    }
 
     public function renderSingle($speciality_id)
     {
@@ -126,6 +151,12 @@ class SpecialityController extends Controller
         }
 
         Helper::putCache('speciality.single.' . $speciality_id . '.overview', view('admin.template.speciality.overview', compact('speciality'))->render());
+    }
+
+    public function renderTeamHead($speciality_id)
+    {
+        $teamHead = DB::table('speciality_team_heads')->where('specialty_id', $speciality_id)->first();
+        Helper::putCache('speciality.single.'.$speciality_id.'.message', view('admin.template.speciality.teamHead', compact('teamHead'))->render());
     }
 
     public function render()

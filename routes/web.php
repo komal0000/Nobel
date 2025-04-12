@@ -105,6 +105,11 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
                 Route::match(['GET'], 'delete/{item_id}', [SpecialityGalleryController::class, 'itemDelete'])->name('delete');
             });
         });
+        Route::prefix('teamHead')->name('teamHead.')->group(function () {
+            Route::match(['GET', 'POST'], 'index/{speciality_id}', [SpecialityController::class, 'teamHeadIndex'])->name('index');
+            Route::post('edit/{team_head_id}', [SpecialityController::class, 'teamHeadEdit'])->name('edit');
+            Route::get('del/{team_head_id}/{speciality_id}', [SpecialityController::class, 'teamHeadDel'])->name('del');
+        });
     });
 
     Route::prefix('slider')->name('slider.')->group(function () {
@@ -297,7 +302,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
             Route::get('del/{doctor_id}/{speciality_id}', [DoctorController::class, 'specialityDel'])->name('del');
         });
         Route::prefix('milestone')->name('milestone.')->group(function () {
-            Route::match(['GET','POST'],'index/{doctor_id}', [DoctorController::class, 'milestoneIndex'])->name('index');
+            Route::match(['GET', 'POST'], 'index/{doctor_id}', [DoctorController::class, 'milestoneIndex'])->name('index');
             Route::post('edit/{milestone_id}', [DoctorController::class, 'milestoneEdit'])->name('edit');
             Route::get('del/{milestone_id}', [DoctorController::class, 'milestoneDel'])->name('del');
         });

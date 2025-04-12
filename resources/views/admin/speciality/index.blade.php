@@ -44,6 +44,8 @@
                             class="btn btn-sm btn-secondary">Manage Aliment</a>
                         <a href="{{ route('admin.treatment.index', ['speciality_id' => $speciality->id]) }}"
                             class="btn btn-sm btn-secondary">Manage Treatment</a>
+                        <a href="{{ route('admin.speciality.teamHead.index', ['speciality_id' => $speciality->id]) }}"
+                            class="btn btn-sm btn-info">Team Head</a>
                     </td>
                 </tr>
             @endforeach
