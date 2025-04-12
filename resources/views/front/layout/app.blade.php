@@ -67,7 +67,7 @@
             let headerBaseHeight = $('.site-header').outerHeight();
 
             if (!window.appConfig.showSectionNav && $('.sectionNavbarMainContainer').length) {
-                
+
                 headerBaseHeight -= $('.sectionNavbarMainContainer').outerHeight();
             }
 
@@ -75,13 +75,11 @@
 
             $('main').css('margin-top', headerBaseHeight + 'px');
         }
-
-
     </script>
 
 
     <script>
-        $(function () {
+        $(function() {
             const $sections = $('section[data-content]');
             const $sectionLinks = $('#sectionLinks');
             const $mainSectionNavbarContainer = $('.sectionNavbarMainContainer');
@@ -93,42 +91,42 @@
             if (window.appConfig.showSectionNav && $sectionLinks.length) {
                 $mainSectionNavbarContainer.show();
 
-                $sections.each(function () {
+                $sections.each(function() {
                     const sectionId = $(this).attr('id');
                     const sectionName = $(this).data('content');
 
                     $('<li>')
                         .append(
                             $('<a>')
-                                .attr('href', `#${sectionId}`)
-                                .text(sectionName)
-                                .on('click', function (e) {
-                                    e.preventDefault();
-                                    scrolling = true;
+                            .attr('href', `#${sectionId}`)
+                            .text(sectionName)
+                            .on('click', function(e) {
+                                e.preventDefault();
+                                scrolling = true;
 
-                                    $('#sectionLinks a').removeClass('active');
-                                    $(this).addClass('active');
+                                $('#sectionLinks a').removeClass('active');
+                                $(this).addClass('active');
 
-                                    $('html, body').animate({
-                                        scrollTop: $(`#${sectionId}`).offset().top - 120
-                                    }, 10, function () {
-                                        setTimeout(() => scrolling = false, 100);
-                                    });
+                                $('html, body').animate({
+                                    scrollTop: $(`#${sectionId}`).offset().top - 120
+                                }, 10, function() {
+                                    setTimeout(() => scrolling = false, 100);
+                                });
 
-                                    scrollActiveLinkIntoView();
-                                })
+                                scrollActiveLinkIntoView();
+                            })
                         )
                         .appendTo($sectionLinks);
                 });
 
-                $(window).on('scroll', function () {
+                $(window).on('scroll', function() {
                     if (scrolling) return;
 
                     clearTimeout(scrollTimeout);
                     scrollTimeout = setTimeout(() => {
                         let currentId = '';
 
-                        $($sections.get().reverse()).each(function () {
+                        $($sections.get().reverse()).each(function() {
                             if ($(window).scrollTop() >= $(this).offset().top - 150) {
                                 currentId = $(this).attr('id');
                                 return false;
@@ -177,13 +175,15 @@
         }
 
         function extendKnowledgeSubMenu(el, event) {
-            event.stopPropagation();
-            $(el).toggleClass('active-knowledge');
+            if ($(window).width() < 1300) {
+                event.stopPropagation();
+                $(el).toggleClass('active-knowledge');
+            }
         }
 
         function toggleFeedback() {
             if ($(window).width() < 481) {
-                $(window).on("scroll", function () {
+                $(window).on("scroll", function() {
                     $(".feedback-contact").toggleClass('hide-feedback', $(window).scrollTop() > 100);
                 });
             } else {
@@ -193,8 +193,6 @@
 
         toggleFeedback();
         $(window).on('resize', toggleFeedback);
-
-
     </script>
     <script>
         let breadcrumbsVisible = false;
@@ -229,7 +227,7 @@
 
                 const displayName = segmentNames[segment] ||
                     segment.replace(/-/g, ' ')
-                        .replace(/\b\w/g, l => l.toUpperCase());
+                    .replace(/\b\w/g, l => l.toUpperCase());
 
                 if (i === pathSegments.length - 1) {
                     breadcrumbsContainer.append(`
