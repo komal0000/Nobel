@@ -22,7 +22,6 @@
         <thead>
             <tr>
                 <th>Title</th>
-                <th>Short Description</th>
                 <th>Manage</th>
             </tr>
         </thead>
@@ -30,7 +29,6 @@
             @foreach ($specialties as $speciality)
                 <tr>
                     <td>{{ $speciality->title }}</td>
-                    <td>{{ $speciality->short_description }}</td>
                     <td>
                         <a href="{{ route('admin.speciality.index', ['parent_speciality_id' => $speciality->id]) }}"
                             class="btn btn-info btn-sm">
@@ -53,7 +51,6 @@
         <tfoot>
             <tr>
                 <th>Title</th>
-                <th>Short Description</th>
                 <th>Manage</th>
             </tr>
         </tfoot>
