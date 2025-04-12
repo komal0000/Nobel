@@ -4,6 +4,7 @@
 @endsection
 @section('content')
     @includeIf('front.cache.home.popup')
+    
     @include('front.pages.home.slider')
     @include('front.pages.home.speciality')
     @include('front.pages.home.team')

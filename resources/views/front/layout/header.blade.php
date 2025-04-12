@@ -1,10 +1,10 @@
 @php
-    $data =
-        App\Helper::getSetting('contact') ??
-        (object) [
-            'email' => '',
-            'phone' => '',
-        ];
+$data =
+    App\Helper::getSetting('contact') ??
+    (object) [
+        'email' => '',
+        'phone' => '',
+    ];
 @endphp
 <header class="site-header" id="site-header">
     <div class="main-container">
@@ -47,7 +47,8 @@
                                         <a href="{{ route('knowledge.video') }}" class="drop-item">Videos</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('knowledge.casestudy.index') }}" class="drop-item">Case Studies</a>
+                                        <a href="{{ route('knowledge.casestudy.index') }}" class="drop-item">Case
+                                            Studies</a>
                                     </li>
                                     <li>
                                         <a href="{{ route('knowledge.newsletter') }}" class="drop-item">News Letter</a>
@@ -93,64 +94,23 @@
                 </ul>
             </div>
         </nav>
-        <div class="feedback-contact d-flex">
-            <a href="{{ route('contact') }}" class="feedback-btn navbar-link">
-                <img src="{{ asset('front/assets/img/write-message.png') }}" class="feedback-image" alt="Feedback">
-            </a>
-            <a href="#" class="whatsapp-link">
-                <img src="{{ asset('front/assets/img/whatsapp.png') }}" alt="WhatsApp" class="whatsapp-image">
-                <span>WhatsApp</span>
-            </a>
-            <button class="call-back navbar-link" data-bs-toggle="modal"
-                data-bs-target="#resume-modal">
-                <img src="{{ asset('front/assets/img/phone-icon.png') }}" alt="Call Back" class="call-back-image me-1">
-                <small>Request Call Back</small>
-            </button>
-            <a href="#" class="md-contact-us">
-                <img src="{{ asset('front/assets/img/phone-grey-icon.png') }}" alt="Call Back" class="call-back-image me-1">
-                <span>Contact</span>
-            </a>
+        <div class="feedback-contact">
+            <div class="cancer-care">
+                <img src="{{ asset('front/assets/img/nobel cancer.png') }}" alt="">
+            </div>
         </div>
+    </div>
+    <div class="sectionNavbarMainContainer d-none">
+        <hr>
+        <div class="main-container">
+            <nav class="section-nav" id="section-nav">
+                <div class="section-navbar-container">
+                    <ul id="sectionLinks">
+
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
     </div>
 </header>
-<div class="modal fade " id="resume-modal">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content p-4">
-            <div class="modal-header p-0 pb-3 border-bottom-0">
-                <h2 class="modal-title heading-md text-center">Request Call Back</h2>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form action="{{ route('admin.setting.requestCallBack') }}" method="POST">
-                @csrf
-                <div class="row">
-                    <div class="col-12">
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="name" placeholder="Full Name *"
-                                required>
-                            <label for="name">Full Name *</label>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="form-floating mb-3">
-                            <input type="tel" class="form-control" name="phoneNumber"
-                                placeholder="Phone Number *" required>
-                            <label for="phoneNumber">Phone Number *</label>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control" name="email" placeholder="Email Address *"
-                                required>
-                            <label for="email">Email
-                                Address *</label>
-                        </div>
-                    </div>
-                    <div class="col-12 submit-btn">
-                        <button class="w-100" id="submit-callback">Submit</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
