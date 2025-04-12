@@ -61,7 +61,7 @@
     <div class="main-container">
         <div class="heading mb-4">About {{ $doctor->title }}</div>
         <div class="para-wrap">
-            {!! $doctor->text !!}
+            {{ $doctor->short_description }}
         </div>
     </div>
 </section>
