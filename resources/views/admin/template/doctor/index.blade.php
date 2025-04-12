@@ -49,7 +49,8 @@
                                     </div>
                                     <div class="doc-specialization">
                                         <span>Specialization Name</span>
-                                        <a href="/doctor-profile">View Profile</a>
+                                        <a href="{{ route('doctor.single', ['doctor_id' => $doctor->id]) }}">View
+                                            Profile</a>
                                     </div>
                                 </div>
                             </div>
@@ -62,10 +63,10 @@
                                     <div class="tab-panel for-specialization active">
                                         <ul>
                                             @php
-    $speciality = App\Models\DoctorSpeciality::where(
-        'doctor_id',
-        $doctor->id,
-    )->get();
+                                                $speciality = App\Models\DoctorSpeciality::where(
+                                                    'doctor_id',
+                                                    $doctor->id,
+                                                )->get();
                                             @endphp
                                             @foreach ($speciality as $speciality)
                                                 <li>

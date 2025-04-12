@@ -2,7 +2,7 @@
     <div class="main-container">
         <div class="content-wrapper d-flex flex-column flex-lg-row justify-content-center gap-4">
             <div class="img-container">
-                <img src="{{ $doctor->image }}" alt="Doctor Image">
+                <img src="{{ Storage::url($doctor->image) }}" alt="Doctor Image">
             </div>
             <div class="details align-self-center">
                 <h4 class="name">Dr. {{ $doctor->title }}</h4>
@@ -70,7 +70,7 @@
         <x-sliderComponent heading="Specialization & Expertise">
             @foreach ($doctorSpecialities as $doctorSpeciality)
                 @php
-    $speciality = App\Models\Specialty::where('id', $doctorSpeciality->speciality_id)->first();
+                    $speciality = App\Models\Speciality::where('id', $doctorSpeciality->speciality_id)->first();
                 @endphp
                 <div class="each-card">
                     <a>

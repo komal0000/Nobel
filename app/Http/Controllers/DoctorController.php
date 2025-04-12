@@ -45,6 +45,7 @@ class DoctorController extends Controller
             }
 
             $this->render();
+            $this->singleRender($doctor->id);
             return redirect()->back()->with('success', 'Doctor added successfully');
         }
     }
@@ -80,6 +81,7 @@ class DoctorController extends Controller
                 }
             }
             $this->render();
+            $this->singleRender($doctor->id);
             return redirect()->back()->with('success', 'Doctor updated successfully');
         }
     }
@@ -87,6 +89,7 @@ class DoctorController extends Controller
     {
         Doctor::where('id', $doctor_id)->delete();
         $this->render();
+        $this->singleRender($doctor_id);
         return redirect()->back()->with('delete_success', 'Doctor deleted successfully');
     }
 
@@ -95,7 +98,6 @@ class DoctorController extends Controller
         DoctorSpeciality::where('doctor_id', $doctor_id)->where('speciality_id', $speciality_id)->delete();
         return response()->json([
             'success' => true,
-            'message' => 'Speciality removed successfully'
         ]);
     }
 
@@ -138,6 +140,11 @@ class DoctorController extends Controller
         $doctor = Doctor::where('id', $doctor_id)->first();
         $doctorSpecialities = DB::table('doctor_specialities')->where('doctor_id', $doctor_id)->get();
         $doctorMilestones = DB::table('milestones')->where('doctor_id', $doctor_id)->get();
+        $videoType = DB::table('video_types')->where('doctor_id',$doctor_id)->first();
+        if($videoType){
+            $videos = DB::table('videos')->where('video_type_id',$videoType->id)->get();
+            Helper::putCache('doctor.videos.'.$doctor_id, view('admin.template.doctor.videos', compact('videos'))->render());
+        }
         Helper::putCache('doctor.single.'.$doctor_id, view('admin.template.doctor.single', compact('doctor', 'doctorSpecialities','doctorMilestones'))->render());
     }
     public function render()

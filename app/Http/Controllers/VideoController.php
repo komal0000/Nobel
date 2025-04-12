@@ -14,24 +14,17 @@ class VideoController extends Controller
     {
         if (Helper::G()) {
             $videoTypes = DB::table('video_types')->get();
-            return view('admin.video.type.index', compact('videoTypes'));
+            $doctors = DB::table('doctors')->get(['id', 'title']);
+            return view('admin.video.type.index', compact('videoTypes', 'doctors'));
         } else {
             $video = new VideoType();
             $video->title = $request->title;
             $video->home_video = $request->home_video;
+            $video->doctor_id = $request->doctor_id;
             $video->save();
             $this->render();
             return redirect()->back()->with('success', 'Video Type SuccessFully Added');
         }
-    }
-    public function editType(Request $request, $type_id)
-    {
-        $video = VideoType::where('id', $type_id)->first();
-        $video->title = $request->input('title');
-        $video->save();
-        $this->render();
-        session()->flash('success', 'Video Type  Successfully Updated');
-        return response()->json(['success' => true]);
     }
     public function delType($type_id)
     {
@@ -45,10 +38,9 @@ class VideoController extends Controller
     public function index(Request $request, $type_id)
     {
         if (Helper::G()) {
-            $videoType = DB::table('video_types')->where('id', $type_id)->first(['id', 'title']);
-            $videos = DB::table('videos')->get();
+            $videoType = DB::table('video_types')->where('id', $type_id)->first(['id', 'title', 'home_video','doctor_id']);
             // dd($videos);
-            return view('admin.video.index', compact('videoType', 'videos'));
+            return view('admin.video.index', compact('videoType'));
         } else {
             $video = new Video();
             $video->video_link = $request->input('video_link');
@@ -81,7 +73,8 @@ class VideoController extends Controller
         return redirect()->back()->with('delete_success', 'Video Successfully deleted');
     }
 
-    public function render(){
+    public function render()
+    {
 
         $VideoType = DB::table('video_types')->where('home_video', 1)->first();
         $homeVideos = Video::where('video_type_id', $VideoType->id)->get();
@@ -89,8 +82,8 @@ class VideoController extends Controller
 
         $videos = DB::table('videos')->get();
         Helper::putCache('knowledge.video.all', view('admin.template.knowledge.video.singleType', compact('videoTypes', 'videos'))->render());
-        Helper::putCache('health.knowledge.video',view('admin.template.health.knowledge.video', compact('videos'))->render());
-        Helper::putCache('knowledge.video',view('admin.template.knowledge.video.index', compact('videoTypes'))->render());
+        Helper::putCache('health.knowledge.video', view('admin.template.health.knowledge.video', compact('videos'))->render());
+        Helper::putCache('knowledge.video', view('admin.template.knowledge.video.index', compact('videoTypes'))->render());
         Helper::putCache('home.videos', view('admin.template.home.videos', compact('VideoType', 'homeVideos'))->render());
     }
 }

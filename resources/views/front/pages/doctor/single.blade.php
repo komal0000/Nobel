@@ -5,9 +5,8 @@
 
 @section('content')
     @includeIF('front.cache.doctor.single.'.$doctor_id)
-    @includeIF('front.cache.doctor-profile.dr-about')
-    @includeIF('front.cache.doctor-profile.dr-specialization')
-    @includeIF('front.cache.doctor-profile.dr-milestone')
-    @includeIF('front.cache.doctor-profile.dr-article')
-    @includeIF('front.cache.doctor-profile.dr-media')
+    @includeIF('front.cache.doctor.videos.'.$doctor_id)
+@endsection
+@section('js')
+ <script src="{{ asset('front/assets/js/doctor/single.js') }}" ></script>
 @endsection

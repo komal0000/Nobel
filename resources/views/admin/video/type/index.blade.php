@@ -24,20 +24,31 @@
                 <label for="title">Title <span style="color: red;">*</span></label>
                 <input type="text" name="title" id="title" class="form-control" required>
             </div>
-            <div class="col-md-4 d-flex align-items-end">
-                <input class="form-check-input" type="checkbox" name="home_video" id="home_video"
-                    {{ old('home_video') ? 'checked' : '' }} style="margin: 0px 3px 6px"
-                    onclick="this.value = this.checked ? 1 : 0">
-                <label for="title">Home Video</label>
+            <div class="col-md-2 d-flex">
+                <div class="row">
+                    <div class="col-md-12">
+                        <input class="form-check-input" type="checkbox" name="home_video" id="home_video"
+                            {{ old('home_video') ? 'checked' : '' }} style="margin: 0px 3px 6px"
+                            onclick="this.value = this.checked ? 1 : 0">
+                        <label for="title">Home Video</label>
+                    </div>
+                    <div class="col-md-12 mt-2">
+                        <input class="form-check-input" type="checkbox" name="doctor_video" id="doctor_video"
+                            {{ old('doctor_video') ? 'checked' : '' }} style="margin: 0px 3px 6px"
+                            onclick="this.value = this.checked ? 1 : 0; toggleDoctorSelect();">
+                        <label for="doctor_video">Doctor Video</label>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4">
-                <input class="form-check-input" type="checkbox" name="home_video" id="home_video"
-                    {{ old('home_video') ? 'checked' : '' }} style="margin: 0px 3px 6px"
-                    onclick="this.value = this.checked ? 1 : 0">
-                <label for="doctor">Doctor Video</label>
+            <div class="col-md-4" style="display: none" id="doctor_select_div">
+                <label for="doctor_id">Doctor</label>
+                <select name="doctor_id" id="doctor_id" class="form-control">
+                    @foreach ($doctors as $doctor)
+                        <option value="{{ $doctor->id }}">{{ $doctor->title }}</option>
+                    @endforeach
+                </select>
             </div>
-
-            <div class="col-md-4 d-flex align-items-end">
+            <div class="col-md-2 mt-2 d-flex align-items-end">
                 <button class="btn btn-primary">
                     Save
                 </button>
@@ -49,6 +60,7 @@
             <thead>
                 <tr>
                     <th>Title</th>
+                    <th>Type</th>
                     <th>Manage</th>
                 </tr>
             </thead>
@@ -56,16 +68,18 @@
                 @foreach ($videoTypes as $type)
                     <tr id="tr_{{ $type->id }}">
                         <td>
+                            {{ $type->title }}
+                        </td>
+                        <td>
                             @if ($type->home_video == 1)
                                 Home Videos
-                            @elseif($type->doctor_video == 1)
+                            @elseif($type->doctor_id =! null)
                                 Doctor Videos
                             @else
-                               Normal Videos
+                                Normal Videos
                             @endif
                         </td>
                         <td>
-                            {{-- <button onclick="editVideo({{ $type->id }})" class="btn btn-sm btn-warning">Update</button> --}}
                             <button onclick="deleteVideo({{ $type->id }})" class="btn btn-sm btn-danger">Delete</button>
                             <a href="{{ route('admin.video.index', ['type_id' => $type->id]) }}"
                                 class="btn btn-sm btn-info">Manage video</a>
@@ -108,8 +122,18 @@
                     }
                 })
                 .catch(err => {
-                    console.error(err);
+                    console.error(err)
                 })
         }
+
+        function toggleDoctorSelect() {
+            const doctorSelect = document.getElementById('doctor_select_div');
+            const isChecked = document.getElementById('doctor_video').checked;
+            doctorSelect.style.display = isChecked ? 'block' : 'none';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            toggleDoctorSelect();
+        });
     </script>
 @endsection

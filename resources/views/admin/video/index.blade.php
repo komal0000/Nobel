@@ -38,6 +38,9 @@
             </div>
         </div>
         <div class="p-4">
+            @php
+                $videos = App\Models\Video::where('video_type_id', $videoType->id)->get();
+            @endphp
             <div class="row">
                 @foreach ($videos as $video)
                     <div class="col-md-4 mb-4">
