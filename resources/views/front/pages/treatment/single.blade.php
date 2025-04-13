@@ -7,7 +7,7 @@
     @includeIf('front.cache.treatment.single.' . $id)
 @endsection
 
-{{-- maile haleko --}}
+
 @section('js')
     <script src="{{ asset('front/assets/js/treatment/single.js') }}"></script>
 @endsection
