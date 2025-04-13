@@ -36,7 +36,7 @@ Route::get('jobcategory', [FrontController::class, 'jobCategory'])->name('jobcat
 Route::get('update/single/{update_id}', [FrontController::class, 'updateSingle'])->name('update.single');
 Route::get('news/single/{news_id}', [FrontController::class, 'newsSingle'])->name('news.single');
 Route::get('event/single/{event_id}', [FrontController::class, 'eventSingle'])->name('event.single');
-
+Route::get('policy', [FrontController::class, 'policy'])->name('policy');
 
 
 Route::prefix('speciality')->name('speciality.')->group(function () {
