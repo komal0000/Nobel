@@ -1,4 +1,22 @@
 document.addEventListener('DOMContentLoaded', function () {
+
+    $('.treatmentSlider').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        arrows: true,
+        prevArrow: '<button class="slick-prev left-arrow"><img src="/front/assets/img/vector-left.png" alt="Left Arrow"></button>',
+        nextArrow: '<button class="slick-next right-arrow"><img src="/front/assets/img/vector-right.png" alt="Right Arrow"></button>',
+        responsive: [
+            {
+                breakpoint: 992,
+                settings: { slidesToShow: 2 }
+            },
+            {
+                breakpoint: 650,
+                settings: { slidesToShow: 1 }
+            }
+        ]
+    });
     // Navbar toggle functionality
     $('#toggle-navbar').click(function () {
         $('#navbar').toggleClass('show-navbar').css('transform', 'scale(1)');
@@ -83,6 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    
     // Initialize slick slider if it exists
     if ($.fn.slick && $('.slider-67e3f2e85d90a').length) {
         $('.slider-67e3f2e85d90a').slick({

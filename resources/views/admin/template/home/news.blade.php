@@ -39,7 +39,7 @@
                 @endforeach
             </div>
             <div class="mob-event-slider d-block d-xl-none">
-                <x-sliderComponent>
+                <x-sliderComponent mainClass="eventNewsSlider">
                     @foreach ($newsData as $data)
                         <div class="event-card">
                             <div class="img-wrapper">

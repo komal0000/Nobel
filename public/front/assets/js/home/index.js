@@ -110,7 +110,7 @@ function initSliders() {
     });
 
     // Mobile event slider (dynamic class name)
-    $('.slider-67ea3ffc514bf, .slider-67ef8e64cc278').slick({
+    $('.eventNewsSlider').slick({
         slidesToShow: 3,
         slidesToScroll: 1,
         arrows: true,
@@ -127,6 +127,7 @@ function initSliders() {
             }
         ]
     });
+
 }
 
 /**
