@@ -12,8 +12,8 @@ class ServiceController extends Controller
 {
     public function index()
     {
-        $services = DB::table('services')->get(['id','title']);
-        return view('admin.service.index',compact('services'));
+        $services = DB::table('services')->get(['id', 'title']);
+        return view('admin.service.index', compact('services'));
     }
 
     public function add(Request $request)
@@ -35,6 +35,7 @@ class ServiceController extends Controller
             }
             $service->save();
             $this->reder();
+            $this->renderSingle($service->id);
             return redirect()->back()->with('success', 'Service added successfully');
         }
     }
@@ -61,6 +62,7 @@ class ServiceController extends Controller
 
             $service->save();
             $this->reder();
+            $this->renderSingle($service->id);
             return redirect()->back()->with('success', 'Service updated successfully');
         }
     }
@@ -69,6 +71,7 @@ class ServiceController extends Controller
     {
         Service::where('id', $service_id)->delete();
         $this->reder();
+        $this->renderSingle($service_id);
         return redirect()->back()->with('delete_success', 'Service deleted successfully');
     }
 
@@ -90,6 +93,7 @@ class ServiceController extends Controller
             $faq->question = $request->question;
             $faq->answer = $request->answer;
             $faq->save();
+            $this->renderSingle($service_id);
             return redirect()->back()->with('success', 'FAQ added successfully');
         }
     }
@@ -105,18 +109,32 @@ class ServiceController extends Controller
             $faq->question = $request->question;
             $faq->answer = $request->answer;
             $faq->save();
+            $this->renderSingle($service->id);
             return redirect()->back()->with('success', 'FAQ updated successfully');
         }
     }
 
     public function faqDel($faq_id)
     {
+        $faq = DB::table('service_faqs')->where('id', $faq_id)->first();
+        $service = Service::where('id', $faq->service_id)->first();
         ServiceFaq::where('id', $faq_id)->delete();
+        $this->renderSingle($service->id);
         return redirect()->back()->with('delete_success', 'FAQ deleted successfully');
     }
-    public function reder(){
+
+    public function renderSingle($service_id)
+    {
+        $service = Service::where('id', $service_id)->first();
+        if ($service) {
+            $faqs = DB::table('service_faqs')->where('service_id', $service_id)->get();
+            Helper::putCache('service.' . $service_id, view('admin.template.service.single', compact('service', 'faqs'))->render());
+        }
+    }
+    public function reder()
+    {
         $homeServices = DB::table('services')->get(['id', 'icon', 'title', 'image', 'short_desc']);
-        Helper::putCache('home.headerService',view('admin.template.home.headerService',compact('homeServices'))->render());
-        Helper::putCache('home.services',view('admin.template.home.services',compact('homeServices'))->render());
+        Helper::putCache('home.headerService', view('admin.template.home.headerService', compact('homeServices'))->render());
+        Helper::putCache('home.services', view('admin.template.home.services', compact('homeServices'))->render());
     }
 }

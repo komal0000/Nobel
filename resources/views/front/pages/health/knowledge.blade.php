@@ -1,4 +1,4 @@
-<section id="knowledge">
+<section id="knowledge"  data-content="knowledge">
     <div class="main-container">
         <div class="heading text-center mb-4">
             Knowledge Center

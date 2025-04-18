@@ -118,5 +118,9 @@ class FrontController extends Controller
     public function policy(){
         return view('front.pages.policy.index');
     }
+    public function serviceSingle($service_id){
+        $service = DB::table('services')->where('id',$service_id)->first(['title']);
+        return view('front.pages.service.single',compact('service_id','service'));
+    }
 
 }

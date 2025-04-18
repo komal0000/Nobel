@@ -13,7 +13,8 @@
                         <h3 class="title heading-md">{{ $service->title }}</h3>
                         <p class="para-wrap content">{{ $service->short_desc }}</p>
                         <div class="d-flex justify-content-between know-btn">
-                            <x-hoverBtn>Know More</x-hoverBtn>
+                            <x-hoverBtn href="{{ route('service.single', ['service_id' => $service->id]) }}">Know
+                                More</x-hoverBtn>
                             <div class="service-logo">
                                 <img src="{{ Storage::url($service->icon) }}" alt="Home Care">
                             </div>

@@ -109,7 +109,7 @@
 
                                 $('html, body').animate({
                                     scrollTop: $(`#${sectionId}`).offset().top - 120
-                                }, 10, function() {
+                                }, 1, function() {
                                     setTimeout(() => scrolling = false, 100);
                                 });
 

@@ -6,7 +6,7 @@
                 @foreach ($featuredBlogs as $blog)
                     <div class="col-md-6 col-xl-3 all-blog-card">
                         @php
-    $blogType = App\Models\BlogCategory::where('id', $blog->blog_category_id)->first();
+                            $blogType = App\Models\BlogCategory::where('id', $blog->blog_category_id)->first();
                         @endphp
                         <div class="blog-card ">
                             <div class="img-wrapper">
@@ -46,7 +46,7 @@
                 @foreach ($indexBlogs as $blog)
                     <div class="col-md-6 col-xl-3 all-blog-card">
                         @php
-    $blogType = App\Models\BlogCategory::where('id', $blog->blog_category_id)->first();
+                            $blogType = App\Models\BlogCategory::where('id', $blog->blog_category_id)->first();
                         @endphp
                         <div class="blog-card ">
                             <div class="img-wrapper">

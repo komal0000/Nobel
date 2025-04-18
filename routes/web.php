@@ -68,6 +68,10 @@ Route::prefix('technology')->name('technology.')->group(function () {
     Route::get('', [FrontController::class, 'technologyIndex'])->name('index');
     Route::get('single/{technology_id}', [FrontController::class, 'technologySingle'])->name('single');
 });
+Route::prefix('service')->name('service.')->group(function () {
+    Route::get('', [FrontController::class, 'serviceIndex'])->name('index');
+    Route::get('single/{service_id}', [FrontController::class, 'serviceSingle'])->name('single');
+});
 Route::prefix('academicprogram')->name('academicprogram.')->group(function () {
     Route::get('', [FrontController::class, 'academicIndex'])->name('index');
     Route::get('list', [FrontController::class, 'academicAll'])->name('list');

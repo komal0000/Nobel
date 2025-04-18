@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    toggleSectionNav(true);
     // Card height equalization
     function equalizeCardHeight(selector) {
         let maxHeight = 0;
