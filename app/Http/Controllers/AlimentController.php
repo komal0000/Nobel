@@ -60,7 +60,7 @@ class AlimentController extends Controller
                     $section->save();
                 }
             }
-            $this->render($aliment->id ,$aliment->specialty_id);
+            $this->render($aliment->id, $aliment->specialty_id);
             session()->flash('success', 'Ailment Successfully Added');
             return response()->json(['success' => true]);
         }
@@ -69,7 +69,7 @@ class AlimentController extends Controller
 
     public function edit(Request $request, $aliment_id)
     {
-        $aliment = Aliment::where('id',$aliment_id)->first();
+        $aliment = Aliment::where('id', $aliment_id)->first();
 
         if (Helper::G()) {
             $speciality_id = $request->speciality_id;
@@ -107,7 +107,7 @@ class AlimentController extends Controller
                     $section->save();
                 }
             }
-            $this->render($aliment->id ,$aliment->specialty_id);
+            $this->render($aliment->id, $aliment->specialty_id);
             session()->flash('success', 'Award Successfully updated');
             return response()->json(['success' => true]);
         }
@@ -119,7 +119,7 @@ class AlimentController extends Controller
         $aliment = Aliment::where('id', $aliment_id)->first();
         AlimentSection::where('aliment_id', $aliment_id)->delete();
         $aliment->delete();
-        $this->render($aliment_id ,$aliment->specialty_id);
+        $this->render($aliment_id, $aliment->specialty_id);
         return redirect()->back()->with("delete_success", "Aliment Successfully Deleted");
     }
 
@@ -171,12 +171,13 @@ class AlimentController extends Controller
     {
         if ($speciality_id) {
             $specialityAliments = Aliment::where('specialty_id', $speciality_id)->get();
-            Helper::putCache('speciality.single.' . $speciality_id . '.aliment', view('admin.template.speciality.single.aliment', compact('specialityAliments'))->render());
+            Helper::putCache('speciality.single.' . $speciality_id . '.aliment.', view('admin.template.speciality.single.aliment', compact('specialityAliments'))->render());
         }
         $aliments = Aliment::get();
         $aliment = Aliment::where('id', $aliment_id)->first();
         if ($aliment) {
-            Helper::putCache('aliment.single.' . $aliment->id . '', view('admin.template.aliment.single', compact('aliment'))->render());
+            $alimentTypes = DB::table('aliment_section_types')->get();
+            Helper::putCache('aliment.single.' . $aliment->id, view('admin.template.aliment.single', compact('aliment','alimentTypes'))->render());
         }
         Helper::putCache('aliment.index', view('admin.template.aliment.index', compact('aliments'))->render());
     }

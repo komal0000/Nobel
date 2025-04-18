@@ -11,10 +11,10 @@
                 <label for="title">Title <span style="color: red;">*</span></label>
                 <input type="text" name="title" id="title" class="form-control" required>
             </div>
-            <div class="col-md-6 mb-4">
+            {{-- <div class="col-md-6 mb-4">
                 <label for="description">Description </label>
                 <textarea name="description" id="description" class="form-control"></textarea>
-            </div>
+            </div> --}}
             <div class="col-md-12 d-flex justify-content-end">
                 <button class="btn btn-success">
                     Save

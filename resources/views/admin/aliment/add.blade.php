@@ -82,7 +82,7 @@
 
                                                 <div class="col-md-12 mb-3">
                                                     <label for="description_{{ $type->id }}">Description <span style="color: red;">*</span></label>
-                                                    <textarea name="description_{{ $type->id }}" id="description_{{ $type->id }}" class="form-control" required></textarea>
+                                                    <textarea name="description_{{ $type->id }}" id="description_{{ $type->id }}" class="form-control summernote" required></textarea>
                                                 </div>
                                             </div>
                                         </div>

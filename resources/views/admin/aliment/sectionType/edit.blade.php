@@ -20,10 +20,10 @@
                         <input type="text" name="title" id="title" class="form-control"
                             value="{{ $alimentType->title }}">
                     </div>
-                    <div class="col-md-12 mb-4">
+                    {{-- <div class="col-md-12 mb-4">
                         <label for="description">Description</label>
                         <textarea name="description" id="description" class="form-control">{{ $alimentType->description }}</textarea>
-                    </div>
+                    </div> --}}
                     <div class="col-md-12 d-flex justify-content-end">
                         <button class="btn btn-success">
                             Update
