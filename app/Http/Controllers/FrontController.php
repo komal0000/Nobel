@@ -133,4 +133,7 @@ class FrontController extends Controller
         return view('front.pages.service.single',compact('service_id','service'));
     }
 
+    public function about(){
+        return view('front.pages.about.index');
+    }
 }

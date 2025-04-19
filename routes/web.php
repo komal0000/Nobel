@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AlimentController;
 use App\Http\Controllers\AwardController;
 use App\Http\Controllers\BlogController;
@@ -88,6 +89,8 @@ Route::prefix('knowledge')->name('knowledge.')->group(function () {
     });
     Route::get('newsletter', [FrontController::class, 'newsLetterIndex'])->name('newsletter');
 });
+
+Route::get('about', [FrontController::class, 'about'])->name('about');
 
 Route::match(["GET", "POST"], 'login', [LoginController::class, 'login'])->name('login');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
@@ -316,5 +319,12 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::match(['GET', 'POST'], 'index', [PolicyController::class, 'index'])->name('index');
         Route::match(['GET', 'POST'], 'edit/{policy_id}', [PolicyController::class, 'edit'])->name('edit');
         Route::get('del/{policy_id}', [PolicyController::class, 'del'])->name('del');
+    });
+
+    Route::prefix('about')->name('about.')->group(function () {
+        Route::get('index', [AboutController::class, 'index'])->name('index');
+        Route::match(['GET', 'POST'], 'add', [AboutController::class, 'add'])->name('add');
+        Route::match(['GET', 'POST'], 'edit/{about_id}', [AboutController::class, 'edit'])->name('edit');
+        Route::get('del/{about_id}', [AboutController::class, 'del'])->name('del');
     });
 });

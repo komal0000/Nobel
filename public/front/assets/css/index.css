@@ -3366,7 +3366,18 @@ hr {
 }
 .tech .main-container .content-slider .main-card .body .body-head {
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
+  font-size: 18px;
+  line-height: 22px;
+  height: 44px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tech .main-container .content-slider .main-card .body .para-wrap {
+  line-height: 18px;
+  height: 72px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .tech .main-container .content-slider .slick-prev {
   border: none;
@@ -3409,6 +3420,7 @@ hr {
   position: relative;
   height: 250px;
   transition: 0.3s ease;
+  overflow: hidden;
 }
 .sub .main-container .sub-slider .sub-card:hover {
   background-color: var(--color-light-1);
@@ -4053,6 +4065,12 @@ hr {
 #knowledge .main-container .tab-content .tab-panel .tab-slider .each-card .body .type {
   color: var(--color-main);
 }
+#knowledge .main-container .tab-content .tab-panel .tab-slider .each-card .body .heading-xs {
+  line-height: 1.2;
+  height: 2lh;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 #knowledge .main-container .tab-content .tab-panel .tab-slider .video-card {
   position: relative;
   margin: 15px;
@@ -4330,11 +4348,15 @@ hr {
 #all-blogs .blog-card .body .type,
 #featured-blogs .blog-card .body .type {
   color: var(--color-main);
+  margin-bottom: 10px !important;
 }
 #all-blogs .blog-card .body .heading-md,
 #featured-blogs .blog-card .body .heading-md {
   font-weight: 700;
   color: var(--color-dark-grey);
+  height: 2lh;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 #all-blogs .blog-card .body .date-name,
 #featured-blogs .blog-card .body .date-name {
@@ -4571,7 +4593,10 @@ hr {
 #case-studies .case-study-content .slide .body .title {
   font-weight: 600;
   color: var(--color-dark-grey);
-  margin-bottom: 15px;
+  margin-bottom: 6px;
+  height: 2lh;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 #case-studies .case-study-content .slide .body .name-post {
   font-size: 14px;
@@ -5342,6 +5367,11 @@ hr {
 #event-page .main-container .event-slider .slide .body .location {
   color: var(--color-main);
 }
+#event-page .main-container .event-slider .slide .body .title {
+  height: 2lh;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 #event-page .main-container .mobile-btn {
   display: flex;
   justify-content: center;
@@ -5882,6 +5912,9 @@ hr {
 .life-here .main-container .desktop > *:first-child .img-1, .life-here .main-container .desktop > *:last-child .img-1 {
   overflow: hidden;
   border-radius: 20px;
+}
+.life-here .main-container .desktop > *:nth-child(3) .img-1 {
+  height: 100%;
 }
 .life-here .main-container .desktop > *:nth-child(3) img {
   height: 100%;
@@ -6567,7 +6600,7 @@ hr {
   border-color: var(--color-main);
 }
 #doctor-list .list .doctor-card .body .tab-container {
-  height: 220px;
+  height: 150px;
   overflow: hidden;
   overflow-y: auto;
   scrollbar-width: thin;
@@ -6819,6 +6852,11 @@ hr {
 #dr-article .article-card img {
   height: 100%;
   border-radius: 25px;
+}
+#dr-article .article-card .body .heading-sm {
+  height: 3lh;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 #dr-article .all-btn {
   margin-top: 25px;
