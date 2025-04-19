@@ -8,7 +8,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="@yield('meta')">
+
+    {{--
+    <meta name="description" content="@yield('meta')"> --}}
+
+    <title>@yield('meta_title', 'Nobel Hospital')</title>
+
+    <meta name="title" content="@yield('meta_title', 'Nobel Hospital')">
+    <meta name="description"
+        content="@yield('meta_description', 'Nobel is a super-specialty healthcare hospital in Nepal, providing high-quality treatment including heart, liver, kidney transplants, and cancer care.')">
+    <meta name="author" content="@yield('meta_author', 'Nobel Hospital')">
+    <meta name="category" content="Hospital, Healthcare, Medical">
+    <meta name="keywords"
+        content="hospital, healthcare, medical services, patient care, emergency services, @yield('meta_keywords')">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request()->url() }}">
+    <meta property="og:title" content="@yield('meta_title', 'Nobel Hospital')">
+    <meta property="og:description" content="@yield('meta_description')">
+    <meta property="og:image" content="@yield('og_image', asset('front/assets/img/logo.png'))">
+    <meta property="og:site_name" content="Nobel Hospital">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ request()->url() }}">
+    <meta name="twitter:title" content="@yield('meta_title', 'Nobel Hospital')">
+    <meta name="twitter:description" content="@yield('meta_description')">
+    <meta name="twitter:image" content="@yield('og_image', asset('front/assets/img/logo.png'))">
+
+    <meta name="geo.region" content="NP">
+    <meta name="geo.placename" content="Biratnagar">
+
+    <link rel="canonical" href="{{ url('/') }}">
+
     <link rel="icon" href="{{ Storage::url($data) }}" type="image/x-icon">
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
