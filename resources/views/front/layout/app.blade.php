@@ -53,9 +53,9 @@
             window.appConfig.showSectionNav = show;
 
             if (show) {
-                $('.sectionNavbarMainContainer').show().removeClass('d-none');
+                $('.sectionNavbarMainContainer').removeClass('d-none');
             } else {
-                $('.sectionNavbarMainContainer').hide();
+                $('.sectionNavbarMainContainer').addClass('d-none');
             }
         }
 
@@ -79,7 +79,7 @@
 
 
     <script>
-        $(function() {
+        $(function () {
             const $sections = $('section[data-content]');
             const $sectionLinks = $('#sectionLinks');
             const $mainSectionNavbarContainer = $('.sectionNavbarMainContainer');
@@ -89,44 +89,44 @@
             // Generate section nav links
 
             if (window.appConfig.showSectionNav && $sectionLinks.length) {
-                $mainSectionNavbarContainer.show();
+                toggleSectionNav(true);
+                $sectionLinks.empty();
 
-                $sections.each(function() {
+                $sections.each(function () {
                     const sectionId = $(this).attr('id');
                     const sectionName = $(this).data('content');
 
                     $('<li>')
                         .append(
                             $('<a>')
-                            .attr('href', `#${sectionId}`)
-                            .text(sectionName)
-                            .on('click', function(e) {
-                                e.preventDefault();
-                                scrolling = true;
+                                .attr('href', `#${sectionId}`)
+                                .text(sectionName)
+                                .on('click', function (e) {
+                                    e.preventDefault();
+                                    scrolling = true;
 
-                                $('#sectionLinks a').removeClass('active');
-                                $(this).addClass('active');
+                                    $('#sectionLinks a').removeClass('active');
+                                    $(this).addClass('active');
 
-                                $('html, body').animate({
-                                    scrollTop: $(`#${sectionId}`).offset().top - 120
-                                }, 1, function() {
+                                    window.scrollTo({
+                                        top: $(`#${sectionId}`).offset().top - 120,
+                                    });
                                     setTimeout(() => scrolling = false, 100);
-                                });
 
-                                scrollActiveLinkIntoView();
-                            })
+                                    scrollActiveLinkIntoView();
+                                })
                         )
                         .appendTo($sectionLinks);
                 });
 
-                $(window).on('scroll', function() {
+                $(window).on('scroll', function () {
                     if (scrolling) return;
 
                     clearTimeout(scrollTimeout);
                     scrollTimeout = setTimeout(() => {
                         let currentId = '';
 
-                        $($sections.get().reverse()).each(function() {
+                        $($sections.get().reverse()).each(function () {
                             if ($(window).scrollTop() >= $(this).offset().top - 150) {
                                 currentId = $(this).attr('id');
                                 return false;
@@ -141,7 +141,7 @@
                     }, 100);
                 });
             } else {
-                $mainSectionNavbarContainer.hide();
+                toggleSectionNav(false);
             }
 
             function scrollActiveLinkIntoView() {
@@ -183,7 +183,7 @@
 
         function toggleFeedback() {
             if ($(window).width() < 481) {
-                $(window).on("scroll", function() {
+                $(window).on("scroll", function () {
                     $(".feedback-contact").toggleClass('hide-feedback', $(window).scrollTop() > 100);
                 });
             } else {
@@ -227,7 +227,7 @@
 
                 const displayName = segmentNames[segment] ||
                     segment.replace(/-/g, ' ')
-                    .replace(/\b\w/g, l => l.toUpperCase());
+                        .replace(/\b\w/g, l => l.toUpperCase());
 
                 if (i === pathSegments.length - 1) {
                     breadcrumbsContainer.append(`
@@ -271,11 +271,10 @@
     </script>
     @yield('js')
     <script>
-        setTimeout(() => {
+        $(window).on('load', function () {
             adjustMainMargin();
-            console.log('working');
-
-        }, 1);
+            console.log('window loaded, adjusting margins');
+        });
     </script>
 </body>
 
