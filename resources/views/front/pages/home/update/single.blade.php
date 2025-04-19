@@ -1,10 +1,14 @@
 @extends('front.layout.app')
 
-@section('title', 'Update Name')
-@section('meta', 'Update Name page for the website')
+@section('title', $update->title.' | Nobel Hospital')
+
+@section('meta_title', $update->title . ' | Nobel Hospital')
+@section('meta_description', $update->short_description)
+@section('meta_keywords', $update->title)
+@section('og_image', asset('storage/' . $update->image))
 
 @section('content')
-@includeIf('front.cache.home.update.'.$update_id);
+@includeIf('front.cache.home.update.' . $update_id);
 @endsection
 
 @section('js')

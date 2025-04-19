@@ -1,7 +1,11 @@
 @extends('front.layout.app')
 
-@section('title', 'Policy & Form')
-@section('meta', 'Policy & Form page for the website')
+@section('title', 'Policy & Form | Nobel Hospital')
+
+@section('meta_title', 'Policy & Form | Nobel Hospital')
+@section('meta_description', 'Policies and forms of Nobel Hospital')
+@section('meta_keywords', 'policy, form, policy nobel, form nobel')
+
 
 @section('content')
     <section id="policy-banner">

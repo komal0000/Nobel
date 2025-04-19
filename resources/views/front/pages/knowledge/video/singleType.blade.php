@@ -1,7 +1,10 @@
 @extends('front.layout.app')
 
-@section('title', 'All Videos')
-@section('meta', 'All video page for the website')
+@section('title', 'All Videos | Nobel Hospital')
+
+@section('meta_title', 'All Videos | Nobel Hospital')
+@section('meta_description', 'All Videos section of Nobel Hospital')
+@section('meta_keywords', 'videos, video nobel')
 
 @section('content')
 @includeIf('front.cache.knowledge.video.all')

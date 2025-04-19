@@ -1,7 +1,10 @@
 @extends('front.layout.app')
 
-@section('title', 'Doctor List')
-@section('meta', 'List of doctor page for the website')
+@section('title', 'Doctor List | Nobel Hospital')
+
+@section('meta_title', 'Best Doctors | Nobel Hospital')
+@section('meta_description', 'Best Doctors in Biratnagar | Nobel Hospital')
+@section('meta_keywords', 'doctor, nobel doctor')
 
 @section('content')
     @includeIf('front.cache.doctor.index')

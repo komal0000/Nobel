@@ -23,7 +23,7 @@ class FrontController extends Controller
         return view('front.pages.speciality.index');
     }
     public function specialitySingle($id){
-        $speciality = DB::table('specialties')->where('id', $id)->first(['title']);
+        $speciality = DB::table('specialties')->where('id', $id)->first(['title', 'short_description']);
         return view('front.pages.speciality.single',compact('id', 'speciality'));
     }
 
@@ -31,7 +31,7 @@ class FrontController extends Controller
         return view('front.pages.aliment.index');
     }
     public function alimentSingle($id){
-        $ailment = DB::table('aliments')->where('id', $id)->first(['title']);
+        $ailment = DB::table('aliments')->where('id', $id)->first(['title', 'short_description']);
         return view('front.pages.aliment.single',compact('id', 'ailment'));
     }
 
@@ -39,7 +39,7 @@ class FrontController extends Controller
         return view('front.pages.treatment.index');
     }
     public function treatmentSingle($id){
-        $treatment = DB::table('treatments')->where('id', $id)->first(['title']);
+        $treatment = DB::table('treatments')->where('id', $id)->first(['title', 'short_description']);
         return view('front.pages.treatment.single',compact('id', 'treatment'));
     }
 
@@ -47,7 +47,7 @@ class FrontController extends Controller
         return view('front.pages.technology.index');
     }
     public function technologySingle($id){
-        $technology = DB::table('technologies')->where('id', $id)->first(['title']);
+        $technology = DB::table('technologies')->where('id', $id)->first(['title', 'short_description']);
         return view('front.pages.technology.single',compact('id', 'technology'));
     }
 
@@ -67,7 +67,7 @@ class FrontController extends Controller
     }
 
     public function casestudySingle($casestudy_id){
-        $casestudy = DB::table('blogs')->where('id', $casestudy_id)->first(['title']);
+        $casestudy = DB::table('blogs')->where('id', $casestudy_id)->first(['title', 'image', 'short_description']);
         return view('front.pages.knowledge.casestudy.single',compact('casestudy_id', 'casestudy'));
     }
 
@@ -88,16 +88,16 @@ class FrontController extends Controller
     }
 
     public function updateSingle($update_id){
-        $update = DB::table('blogs')->where('id', $update_id)->first(['title']);
+        $update = DB::table('blogs')->where('id', $update_id)->first(['title', 'image', 'short_description']);
         return view('front.pages.home.update.single',compact('update_id', 'update'));
     }
 
     public function newsSingle($news_id){
-        $news = DB::table('blogs')->where('id', $news_id)->first(['title']);
+        $news = DB::table('blogs')->where('id', $news_id)->first(['title', 'image', 'short_description']);
         return view('front.pages.home.news.single',compact('news_id', 'news'));
     }
     public function eventSingle($event_id){
-        $event = DB::table('blogs')->where('id', $event_id)->first(['title']);
+        $event = DB::table('blogs')->where('id', $event_id)->first(['title', 'image', 'short_description']);
         return view('front.pages.event.single',compact('event_id', 'event'));
     }
 
@@ -121,7 +121,7 @@ class FrontController extends Controller
     }
 
     public function doctorSingle($doctor_id){
-        $doctor = DB::table('doctors')->where('id', $doctor_id)->first(['title']);
+        $doctor = DB::table('doctors')->where('id', $doctor_id)->first(['title', 'image', 'short_description']);
         return view('front.pages.doctor.single',compact('doctor_id', 'doctor'));
     }
 
@@ -129,7 +129,7 @@ class FrontController extends Controller
         return view('front.pages.policy.index');
     }
     public function serviceSingle($service_id){
-        $service = DB::table('services')->where('id',$service_id)->first(['title']);
+        $service = DB::table('services')->where('id',$service_id)->first(['title', 'single_page_image', 'short_desc']);
         return view('front.pages.service.single',compact('service_id','service'));
     }
 

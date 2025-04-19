@@ -1,6 +1,10 @@
 @extends('front.layout.app')
-@section('title', 'Health Library')
-@section('meta', 'Health Library page for the website')
+@section('title', 'Health Library | Nobel Hospital')
+
+@section('meta_title', 'Health Library | Nobel Hospital')
+@section('meta_description', 'Health Library of Nobel Hospital')
+@section('meta_keywords', 'health library, health library nobel')
+
 
 @section('content')
     @include('front.pages.health.banner')

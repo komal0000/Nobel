@@ -1,7 +1,9 @@
 @extends('front.layout.app')
 
-@section('title', 'About Us')
-@section('meta', 'About Us page for the website')
+@section('title', 'About Us | Nobel Hospital')
+
+@section('meta_title', 'About Us | Nobel Hospital')
+@section('meta_keywords', 'about us, about us nobel')
 
 @section('content')
     @includeIf('front.cache.about.index')

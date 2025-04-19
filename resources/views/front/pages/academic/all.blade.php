@@ -1,7 +1,10 @@
 @extends('front.layout.app')
 
-@section('title', 'All Academic')
-@section('meta', 'All Academic page for the website')
+@section('title', 'All Academic | Nobel Hospital')
+
+@section('meta_title', 'All Academic | Nobel Hospital')
+@section('meta_description', 'All Academic section of Nobel Hospital')
+@section('meta_keywords', 'academic, nobel academic')
 
 @section('content')
 @includeIf('front.cache.academic.list')

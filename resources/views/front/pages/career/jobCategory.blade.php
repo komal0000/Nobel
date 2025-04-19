@@ -1,7 +1,11 @@
 @extends('front.layout.app')
 
-@section('title', 'Home')
-@section('meta', 'Home page for the website')
+@section('title', 'Home | Nobel Hospital')
+
+@section('meta_title', 'Job Categories | Nobel Hospital')
+@section('meta_description', 'Job categories available in Nobel Hospital')
+@section('meta_keywords', 'job, jobs, nobel job')
+
 
 @section('content')
     @includeIf('front.cache.career.jobcategory');

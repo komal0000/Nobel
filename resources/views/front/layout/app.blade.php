@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 @php
-    $data = App\Helper::getSetting('top_favicon', true);
+$data = App\Helper::getSetting('top_favicon', true);
 @endphp
 
 <head>
@@ -12,7 +12,7 @@
     {{--
     <meta name="description" content="@yield('meta')"> --}}
 
-    <title>@yield('meta_title', 'Nobel Hospital')</title>
+    <title>@yield('title', 'Nobel Hospital')</title>
 
     <meta name="title" content="@yield('meta_title', 'Nobel Hospital')">
     <meta name="description"
@@ -25,27 +25,27 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ request()->url() }}">
     <meta property="og:title" content="@yield('meta_title', 'Nobel Hospital')">
-    <meta property="og:description" content="@yield('meta_description')">
+    <meta property="og:description" content="@yield('meta_description', 'Nobel is a super-specialty healthcare hospital in Nepal, providing high-quality treatment including heart, liver, kidney transplants, and cancer care.')">
     <meta property="og:image" content="@yield('og_image', asset('front/assets/img/logo.png'))">
     <meta property="og:site_name" content="Nobel Hospital">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="{{ request()->url() }}">
     <meta name="twitter:title" content="@yield('meta_title', 'Nobel Hospital')">
-    <meta name="twitter:description" content="@yield('meta_description')">
+    <meta name="twitter:description" content="@yield('meta_description', 'Nobel is a super-specialty healthcare hospital in Nepal, providing high-quality treatment including heart, liver, kidney transplants, and cancer care.')">
     <meta name="twitter:image" content="@yield('og_image', asset('front/assets/img/logo.png'))">
 
     <meta name="geo.region" content="NP">
     <meta name="geo.placename" content="Biratnagar">
 
-    <link rel="canonical" href="{{ url('/') }}">
+    <link rel="canonical" href="{{ request()->url() }}">
 
     <link rel="icon" href="{{ Storage::url($data) }}" type="image/x-icon">
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     <link rel="stylesheet" href="{{ asset('front/assets/css/index.css') }}">
-    <title>@yield('title')</title>
+
     @yield('css')
     @includeIf('front.cache.colorScheme')
     <style>

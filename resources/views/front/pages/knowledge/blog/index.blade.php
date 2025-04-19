@@ -1,7 +1,11 @@
 @extends('front.layout.app')
 
-@section('title', 'Blogs')
-@section('meta', 'Blogs page for the website')
+@section('title', 'Blogs | Nobel Hospital')
+
+@section('meta_title', 'All Blogs | Nobel Hospital')
+@section('meta_description', 'All Technologies section available in Nobel Hospital')
+@section('meta_keywords', 'technologies')
+
 
 @section('content')
     @includeIf('front.cache.knowledge.blog');

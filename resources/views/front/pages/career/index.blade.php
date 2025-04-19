@@ -1,6 +1,9 @@
 @extends('front.layout.app')
-@section('title', 'Career');
-@section('meta', 'Career page for the website')
+@section('title', 'Career | Nobel Hospital');
+
+@section('meta_title', 'Career | Nobel Hospital')
+@section('meta_description', 'Reach out to Nobel for career opportunities.')
+@section('meta_keywords', 'career')
 
 @section('content')
     @includeIf('front.cache.career.slider')

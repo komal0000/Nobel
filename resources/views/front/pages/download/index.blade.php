@@ -1,7 +1,10 @@
 @extends('front.layout.app')
 
-@section('title', 'Events & News')
-@section('meta', 'Events & News page for the website')
+@section('title', 'Downloads | Nobel Hospital')
+
+@section('meta_title', 'Downloads | Nobel Hospital')
+@section('meta_description', 'All downloads section available in Nobel Hospital')
+@section('meta_keywords', 'downloads')
 
 @section('content')
     @includeIf('front.cache.download.index')

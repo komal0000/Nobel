@@ -1,7 +1,11 @@
 @extends('front.layout.app')
 
-@section('title', 'News Letter')
-@section('meta', 'News Letter page for the website')
+@section('title', 'News Letter | Nobel Hospital')
+
+@section('meta_title', 'News Letter | Nobel Hospital')
+@section('meta_description', 'All News Letter section available in Nobel Hospital')
+@section('meta_keywords', 'news letter nobel')
+
 
 @section('content')
 @includeIf('front.cache.knowledge.newsletter')
