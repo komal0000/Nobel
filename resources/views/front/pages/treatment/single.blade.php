@@ -1,7 +1,7 @@
 @extends('front.layout.app')
 
-@section('title', 'Treatment Name')
-@section('meta', 'Treatment-Name page for the website')
+@section('title', $treatment->title)
+@section('meta', $treatment->title.' Page')
 
 @section('content')
     @includeIf('front.cache.treatment.single.' . $id)

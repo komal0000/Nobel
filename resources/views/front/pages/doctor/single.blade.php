@@ -1,7 +1,7 @@
 @extends('front.layout.app')
 
-@section('title', 'Doctor Profile')
-@section('meta', 'Per Doctor page for the website')
+@section('title', $doctor->title)
+@section('meta', $doctor->title.' page for the website')
 
 @section('content')
     @includeIF('front.cache.doctor.single.'.$doctor_id)

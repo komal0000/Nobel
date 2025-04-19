@@ -23,28 +23,32 @@ class FrontController extends Controller
         return view('front.pages.speciality.index');
     }
     public function specialitySingle($id){
-        return view('front.pages.speciality.single',compact('id'));
+        $speciality = DB::table('specialties')->where('id', $id)->first(['title']);
+        return view('front.pages.speciality.single',compact('id', 'speciality'));
     }
 
     public function alimentIndex(){
         return view('front.pages.aliment.index');
     }
     public function alimentSingle($id){
-        return view('front.pages.aliment.single',compact('id'));
+        $ailment = DB::table('aliments')->where('id', $id)->first(['title']);
+        return view('front.pages.aliment.single',compact('id', 'ailment'));
     }
 
     public function treatmentIndex(){
         return view('front.pages.treatment.index');
     }
     public function treatmentSingle($id){
-        return view('front.pages.treatment.single',compact('id'));
+        $treatment = DB::table('treatments')->where('id', $id)->first(['title']);
+        return view('front.pages.treatment.single',compact('id', 'treatment'));
     }
 
     public function technologyIndex(){
         return view('front.pages.technology.index');
     }
     public function technologySingle($id){
-        return view('front.pages.technology.single',compact('id'));
+        $technology = DB::table('technologies')->where('id', $id)->first(['title']);
+        return view('front.pages.technology.single',compact('id', 'technology'));
     }
 
     public function downloadIndex(){
@@ -63,7 +67,8 @@ class FrontController extends Controller
     }
 
     public function casestudySingle($casestudy_id){
-        return view('front.pages.knowledge.casestudy.single',compact('casestudy_id'));
+        $casestudy = DB::table('blogs')->where('id', $casestudy_id)->first(['title']);
+        return view('front.pages.knowledge.casestudy.single',compact('casestudy_id', 'casestudy'));
     }
 
     public function newsLetterIndex(){
@@ -83,14 +88,17 @@ class FrontController extends Controller
     }
 
     public function updateSingle($update_id){
-        return view('front.pages.home.update.single',compact('update_id'));
+        $update = DB::table('blogs')->where('id', $update_id)->first(['title']);
+        return view('front.pages.home.update.single',compact('update_id', 'update'));
     }
 
     public function newsSingle($news_id){
-        return view('front.pages.home.news.single',compact('news_id'));
+        $news = DB::table('blogs')->where('id', $news_id)->first(['title']);
+        return view('front.pages.home.news.single',compact('news_id', 'news'));
     }
     public function eventSingle($event_id){
-        return view('front.pages.event.single',compact('event_id'));
+        $event = DB::table('blogs')->where('id', $event_id)->first(['title']);
+        return view('front.pages.event.single',compact('event_id', 'event'));
     }
 
     public function academicIndex(){
@@ -98,6 +106,7 @@ class FrontController extends Controller
     }
 
     public function academicSingle($academic_id){
+        // $academic = DB::table('academic')->where('id', $academic_id)->first(['title']);
         return view('front.pages.academic.single',compact('academic_id'));
     }
     public function videoAll(){
@@ -112,7 +121,8 @@ class FrontController extends Controller
     }
 
     public function doctorSingle($doctor_id){
-        return view('front.pages.doctor.single',compact('doctor_id'));
+        $doctor = DB::table('doctors')->where('id', $doctor_id)->first(['title']);
+        return view('front.pages.doctor.single',compact('doctor_id', 'doctor'));
     }
 
     public function policy(){

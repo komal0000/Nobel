@@ -1,6 +1,6 @@
 @extends('front.layout.app')
-@section('title', 'Ailment Name')
-@section('meta', 'Ailment-Name page for the website')
+@section('title', $ailment->title)
+@section('meta', $ailment->title.' Page')
 @section('content')
     @includeIf('front.cache.aliment.single.'.$id)
 @endsection

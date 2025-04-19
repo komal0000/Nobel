@@ -1,6 +1,6 @@
 @extends('front.layout.app')
-@section('title', 'Speciality')
-@section('meta', 'Speciality page')
+@section('title', $speciality->title)
+@section('meta', $speciality->title.' Page')
 @section('content')
     @includeIf('front.cache.speciality.single.'.$id.'.overview')
     @includeIf('front.cache.speciality.single.'.$id.'.message')

@@ -1,6 +1,6 @@
 @extends('front.layout.app')
-@section('title', 'Technology Name')
-@section('meta', 'Technology-Name page for the website')
+@section('title', $technology->title)
+@section('meta', $technology->title.' Page')
 @section('content')
 @includeIf('front.cache.technology.single.'.$id)
 @endsection
