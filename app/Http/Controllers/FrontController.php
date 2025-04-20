@@ -30,24 +30,24 @@ class FrontController extends Controller
     public function alimentIndex(){
         return view('front.pages.aliment.index');
     }
-    public function alimentSingle($id){
-        $ailment = DB::table('aliments')->where('id', $id)->first(['title', 'short_description']);
-        return view('front.pages.aliment.single',compact('id', 'ailment'));
+    public function alimentSingle($slug){
+        $ailment = DB::table('aliments')->where('slug', $slug)->first(['id', 'title', 'short_description']);
+        return view('front.pages.aliment.single',compact('ailment'));
     }
 
     public function treatmentIndex(){
         return view('front.pages.treatment.index');
     }
-    public function treatmentSingle($id){
-        $treatment = DB::table('treatments')->where('id', $id)->first(['title', 'short_description']);
-        return view('front.pages.treatment.single',compact('id', 'treatment'));
+    public function treatmentSingle($slug){
+        $treatment = DB::table('treatments')->where('slug', $slug)->first(['id', 'title', 'short_description']);
+        return view('front.pages.treatment.single',compact( 'treatment'));
     }
 
     public function technologyIndex(){
         return view('front.pages.technology.index');
     }
-    public function technologySingle($id){
-        $technology = DB::table('technologies')->where('id', $id)->first(['title', 'short_description']);
+    public function technologySingle($slug){
+        $technology = DB::table('technologies')->where('slug', $slug)->first(['id', 'title', 'short_description']);
         return view('front.pages.technology.single',compact('id', 'technology'));
     }
 

@@ -6,7 +6,7 @@
 @section('meta_keywords', $technology->title)
 
 @section('content')
-@includeIf('front.cache.technology.single.' . $id)
+@includeIf('front.cache.technology.single.' . $technology->id)
 @endsection
 @section('js')
  <script src="{{ asset('front/assets/js/technology/single.js')}}"  ></script>

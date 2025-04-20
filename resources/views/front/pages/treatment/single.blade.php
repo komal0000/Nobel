@@ -7,7 +7,7 @@
 @section('meta_keywords', $treatment->title)
 
 @section('content')
-    @includeIf('front.cache.treatment.single.' . $id)
+    @includeIf('front.cache.treatment.single.' . $treatment->id)
 @endsection
 
 

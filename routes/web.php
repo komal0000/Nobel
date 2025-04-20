@@ -51,12 +51,12 @@ Route::prefix('doctor')->name('doctor.')->group(function () {
 });
 Route::prefix('treatment')->name('treatment.')->group(function () {
     Route::get('', [FrontController::class, 'treatmentIndex'])->name('index');
-    Route::get('single/{treatment_id}', [FrontController::class, 'treatmentSingle'])->name('single');
+    Route::get('{slug}', [FrontController::class, 'treatmentSingle'])->name('single');
 });
 
 Route::prefix('aliment')->name('aliment.')->group(function () {
     Route::get('', [FrontController::class, 'alimentIndex'])->name('index');
-    Route::get('single/{aliment_id}', [FrontController::class, 'alimentSingle'])->name('single');
+    Route::get('{slug}', [FrontController::class, 'alimentSingle'])->name('single');
 });
 
 Route::prefix('download')->name('download.')->group(function () {
@@ -67,7 +67,7 @@ Route::prefix('healthlibrary')->name('healthlibrary.')->group(function () {
 });
 Route::prefix('technology')->name('technology.')->group(function () {
     Route::get('', [FrontController::class, 'technologyIndex'])->name('index');
-    Route::get('single/{technology_id}', [FrontController::class, 'technologySingle'])->name('single');
+    Route::get('{slug}', [FrontController::class, 'technologySingle'])->name('single');
 });
 Route::prefix('service')->name('service.')->group(function () {
     Route::get('', [FrontController::class, 'serviceIndex'])->name('index');
