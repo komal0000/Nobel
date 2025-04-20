@@ -9,6 +9,7 @@ use App\Models\Milestone;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class DoctorController extends Controller
 {
@@ -93,7 +94,7 @@ class DoctorController extends Controller
         return redirect()->back()->with('delete_success', 'Doctor deleted successfully');
     }
 
-    public function specialityDel($doctor_id,$speciality_id)
+    public function specialityDel($doctor_id, $speciality_id)
     {
         DoctorSpeciality::where('doctor_id', $doctor_id)->where('speciality_id', $speciality_id)->delete();
         return response()->json([
@@ -101,13 +102,13 @@ class DoctorController extends Controller
         ]);
     }
 
-    public function milestoneIndex(Request $request,$doctor_id)
+    public function milestoneIndex(Request $request, $doctor_id)
     {
-        if(Helper::G()){
+        if (Helper::G()) {
             $doctor = Doctor::where('id', $doctor_id)->first();
             $milestones = DB::table('milestones')->where('doctor_id', $doctor_id)->get();
             return view('admin.doctor.milestone.index', compact('doctor', 'milestones'));
-        }else{
+        } else {
             $milestone = new Milestone();
             $milestone->doctor_id = $doctor_id;
             $milestone->year = $request->input('year');
@@ -116,13 +117,14 @@ class DoctorController extends Controller
             return redirect()->back()->with('success', 'Milestone added successfully');
         }
     }
-    public function milestoneEdit(Request $request,$milestone_id){
+    public function milestoneEdit(Request $request, $milestone_id)
+    {
         $milestone = Milestone::where('id', $milestone_id)->first();
         $milestone->year = $request->input('year');
         $milestone->description = $request->input('description');
         $milestone->save();
         return response()->json([
-            'success' =>true,
+            'success' => true,
         ]);
     }
 
@@ -138,14 +140,20 @@ class DoctorController extends Controller
     public function singleRender($doctor_id)
     {
         $doctor = Doctor::where('id', $doctor_id)->first();
+        Helper::putMetaCache('doctor.'.$doctor->slug, $data = [
+            'title' => $doctor->title,
+            'description' => $doctor->short_description,
+            'image' => asset(Storage::url($doctor->image)),
+            'url' => route('doctor.single', ['slug' => $doctor->slug]),
+        ]);
         $doctorSpecialities = DB::table('doctor_specialities')->where('doctor_id', $doctor_id)->get();
         $doctorMilestones = DB::table('milestones')->where('doctor_id', $doctor_id)->get();
-        $videoType = DB::table('video_types')->where('doctor_id',$doctor_id)->first();
-        if($videoType){
-            $videos = DB::table('videos')->where('video_type_id',$videoType->id)->get();
-            Helper::putCache('doctor.videos.'.$doctor_id, view('admin.template.doctor.videos', compact('videos'))->render());
+        $videoType = DB::table('video_types')->where('doctor_id', $doctor_id)->first();
+        if ($videoType) {
+            $videos = DB::table('videos')->where('video_type_id', $videoType->id)->get();
+            Helper::putCache('doctor.videos.' . $doctor_id, view('admin.template.doctor.videos', compact('videos'))->render());
         }
-        Helper::putCache('doctor.single.'.$doctor_id, view('admin.template.doctor.single', compact('doctor', 'doctorSpecialities','doctorMilestones'))->render());
+        Helper::putCache('doctor.single.' . $doctor_id, view('admin.template.doctor.single', compact('doctor', 'doctorSpecialities', 'doctorMilestones'))->render());
     }
     public function render()
     {
@@ -154,5 +162,4 @@ class DoctorController extends Controller
         $doctorSpecialities = DB::table('doctor_specialities')->get();
         Helper::putCache('doctor.index', view('admin.template.doctor.index', compact('doctors', 'specialties', 'doctorSpecialities'))->render());
     }
-
 }

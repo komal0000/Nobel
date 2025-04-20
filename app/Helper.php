@@ -129,7 +129,7 @@ class Helper
     {
         // Check if the setting is already cached
         $cacheKey = 'setting_' . $key;
-        return Cache::rememberForever($cacheKey, function ()use($key, $direct) {
+        return Cache::rememberForever($cacheKey, function () use ($key, $direct) {
 
             $s = DB::table('settings')->where('key', $key)->select('value')->first();
             return $direct ? ($s != null ? $s->value : null) : ($s != null ? json_decode($s->value) : null);
@@ -185,14 +185,21 @@ class Helper
 
     /**
      * Get the cache file path
-    * @param string $filePath The file path where the cache should be stored
-    * @param array $data The meta content to be cached ['title' => '', 'description' => '', 'keywords' => '', 'image' => null, 'url' => null]
-    * @return void
+     * @param string $filePath The file path where the cache should be stored
+     * @param array $data The meta content to be cached ['title' => '', 'description' => '', 'keywords' => '', 'image' => null, 'url' => null]
+     * @return void
      */
 
 
     public static function putMetaCache($filePath, array $data = [])
     {
+        // Convert dot notation to directory structure
+        $pathDatas = explode('.', $filePath);
+        // Append .blade.php to last element if not exists
+        if (count($pathDatas) > 0) {
+            $pathDatas[count($pathDatas) - 1] .= '.blade.php';
+        }
+        $filePath = implode('/', $pathDatas);
         $filePath = resource_path("views/front/cache/meta/" . $filePath);
         $directoryPath = dirname($filePath);
 
