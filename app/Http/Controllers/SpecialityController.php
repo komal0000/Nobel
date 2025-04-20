@@ -161,7 +161,7 @@ class SpecialityController extends Controller
 
     public function render()
     {
-        $specialities = DB::table('specialties')->whereNull('parent_speciality_id')->get(['id', 'title', 'icon']);
+        $specialities = DB::table('specialties')->whereNull('parent_speciality_id')->get(['id','slug','title', 'icon']);
         Helper::putCache('home.speciality', view('admin.template.home.speciality', compact('specialities'))->render());
         Helper::putCache('home.teams', view('admin.template.home.teams', compact('specialities'))->render());
         Helper::putCache('home.header', view('admin.template.home.header', compact('specialities'))->render());

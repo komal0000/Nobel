@@ -7,6 +7,7 @@ use App\Models\BlogCategory;
 use App\Models\Setting;
 use App\Models\Speciality;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class Helper
@@ -126,8 +127,13 @@ class Helper
 
     public static function getSetting($key, $direct = false)
     {
-        $s = DB::table('settings')->where('key', $key)->select('value')->first();
-        return $direct ? ($s != null ? $s->value : null) : ($s != null ? json_decode($s->value) : null);
+        // Check if the setting is already cached
+        $cacheKey = 'setting_' . $key;
+        return Cache::rememberForever($cacheKey, function ()use($key, $direct) {
+
+            $s = DB::table('settings')->where('key', $key)->select('value')->first();
+            return $direct ? ($s != null ? $s->value : null) : ($s != null ? json_decode($s->value) : null);
+        });
     }
 
     public static function setSetting($key, $value, $direct = false)
@@ -144,6 +150,10 @@ class Helper
             $s->value = json_encode($value);
         }
         $s->save();
+
+        // Clear the cache for the setting
+        $cacheKey = 'setting_' . $key;
+        Cache::forget($cacheKey);
         return $s;
     }
 
@@ -170,5 +180,74 @@ class Helper
 
         // Put the content to the file path
         file_put_contents($filePath, $content);
+    }
+
+
+    /**
+     * Get the cache file path
+    * @param string $filePath The file path where the cache should be stored
+    * @param array $data The meta content to be cached ['title' => '', 'description' => '', 'keywords' => '', 'image' => null, 'url' => null]
+    * @return void
+     */
+
+
+    public static function putMetaCache($filePath, array $data = [])
+    {
+        $filePath = resource_path("views/front/cache/meta/" . $filePath);
+        $directoryPath = dirname($filePath);
+
+        // Ensure the directory exists
+        if (!is_dir($directoryPath)) {
+            mkdir($directoryPath, 0755, true);
+        }
+
+        // Extract values with defaults
+        $title = $data['title'] ?? '';
+        $description = $data['description'] ?? '';
+        $keywords = $data['keywords'] ?? '';
+        $image = $data['image'] ?? null;
+        $url = $data['url'] ?? null;
+
+        // Generate and save meta content
+        file_put_contents($filePath, self::makeMeta($title, $description, $keywords, $image, $url));
+    }
+
+    public static function makeMeta($title, $description, $keywords = '', $image = null, $url = null)
+    {
+        $url = $url ?? request()->url();
+        $image = $image ?? self::getSetting('default_og_image', true);
+
+        $html = '';
+
+        // Basic meta
+        $html .= "<title>{$title}</title>\n";
+        $html .= "<meta name=\"description\" content=\"{$description}\">\n";
+
+        if (!empty($keywords)) {
+            $html .= "<meta name=\"keywords\" content=\"{$keywords}\">\n";
+        }
+
+        // Open Graph
+        $html .= "<meta property=\"og:type\" content=\"website\">\n";
+        $html .= "<meta property=\"og:url\" content=\"{$url}\">\n";
+        $html .= "<meta property=\"og:title\" content=\"{$title}\">\n";
+        $html .= "<meta property=\"og:description\" content=\"{$description}\">\n";
+
+        if ($image) {
+            $html .= "<meta property=\"og:image\" content=\"{$image}\">\n";
+        }
+
+        // Twitter Card
+        $html .= "<meta name=\"twitter:card\" content=\"summary_large_image\">\n";
+        $html .= "<meta name=\"twitter:url\" content=\"{$url}\">\n";
+        $html .= "<meta name=\"twitter:title\" content=\"{$title}\">\n";
+        $html .= "<meta name=\"twitter:description\" content=\"{$description}\">\n";
+
+
+        if ($image) {
+            $html .= "<meta name=\"twitter:image\" content=\"/{$image}\">\n";
+        }
+
+        return $html;
     }
 }

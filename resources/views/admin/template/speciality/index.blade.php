@@ -15,7 +15,7 @@
                                 {{ $speciality->title }}
                             </div>
                             <div class="button d-flex justify-content-center">
-                                <x-hoverBtn href="{{ route('speciality.single', ['speciality_id' => $speciality->id]) }}"
+                                <x-hoverBtn href="{{ route('speciality.single', $speciality->slug) }}"
                                     class="btn">Know More</x-hoverBtn>
                             </div>
                         </div>

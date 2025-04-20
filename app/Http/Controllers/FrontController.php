@@ -22,9 +22,9 @@ class FrontController extends Controller
     public function specialityIndex(){
         return view('front.pages.speciality.index');
     }
-    public function specialitySingle($id){
-        $speciality = DB::table('specialties')->where('id', $id)->first(['title', 'short_description']);
-        return view('front.pages.speciality.single',compact('id', 'speciality'));
+    public function specialitySingle($slug){
+        $speciality = DB::table('specialties')->where('slug', $slug)->first(['id', 'title', 'short_description']);
+        return view('front.pages.speciality.single',compact('speciality'));
     }
 
     public function alimentIndex(){

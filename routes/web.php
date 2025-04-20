@@ -42,7 +42,7 @@ Route::get('policy', [FrontController::class, 'policy'])->name('policy');
 
 Route::prefix('speciality')->name('speciality.')->group(function () {
     Route::get('', [FrontController::class, 'specialityIndex'])->name('index');
-    Route::get('single/{speciality_id}', [FrontController::class, 'specialitySingle'])->name('single');
+    Route::get('{slug}', [FrontController::class, 'specialitySingle'])->name('single');
 });
 
 Route::prefix('doctor')->name('doctor.')->group(function () {
