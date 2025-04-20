@@ -34,9 +34,9 @@ Route::get('event', [FrontController::class, 'eventIndex'])->name('event');
 Route::get('contact', [FrontController::class, 'contact'])->name('contact');
 Route::get('careers', [FrontController::class, 'careers'])->name('careers');
 Route::get('jobcategory', [FrontController::class, 'jobCategory'])->name('jobcategory');
-Route::get('update/single/{update_id}', [FrontController::class, 'updateSingle'])->name('update.single');
-Route::get('news/single/{news_id}', [FrontController::class, 'newsSingle'])->name('news.single');
-Route::get('event/single/{event_id}', [FrontController::class, 'eventSingle'])->name('event.single');
+Route::get('update/{slug}', [FrontController::class, 'updateSingle'])->name('update.single');
+Route::get('news/{slug}', [FrontController::class, 'newsSingle'])->name('news.single');
+Route::get('event/{slug}', [FrontController::class, 'eventSingle'])->name('event.single');
 Route::get('policy', [FrontController::class, 'policy'])->name('policy');
 
 
@@ -71,7 +71,7 @@ Route::prefix('technology')->name('technology.')->group(function () {
 });
 Route::prefix('service')->name('service.')->group(function () {
     Route::get('', [FrontController::class, 'serviceIndex'])->name('index');
-    Route::get('single/{service_id}', [FrontController::class, 'serviceSingle'])->name('single');
+    Route::get('{slug}', [FrontController::class, 'serviceSingle'])->name('single');
 });
 Route::prefix('academicprogram')->name('academicprogram.')->group(function () {
     Route::get('', [FrontController::class, 'academicIndex'])->name('index');
@@ -85,7 +85,7 @@ Route::prefix('knowledge')->name('knowledge.')->group(function () {
     Route::get('videos', [FrontController::class, 'videoAll'])->name('videos');
     Route::prefix('casestudy')->name('casestudy.')->group(function () {
         Route::get('index', [FrontController::class, 'caseStudyIndex'])->name('index');
-        Route::get('single/{case_study_id}', [FrontController::class, 'caseStudySingle'])->name('single');
+        Route::get('{slug}', [FrontController::class, 'caseStudySingle'])->name('single');
     });
     Route::get('newsletter', [FrontController::class, 'newsLetterIndex'])->name('newsletter');
 });

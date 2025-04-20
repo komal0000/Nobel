@@ -133,7 +133,7 @@ class ServiceController extends Controller
     }
     public function reder()
     {
-        $homeServices = DB::table('services')->get(['id', 'icon', 'title', 'image', 'short_desc']);
+        $homeServices = DB::table('services')->get(['id', 'slug', 'icon', 'title', 'image', 'short_desc']);
         Helper::putCache('home.headerService', view('admin.template.home.headerService', compact('homeServices'))->render());
         Helper::putCache('home.services', view('admin.template.home.services', compact('homeServices'))->render());
     }

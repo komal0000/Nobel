@@ -66,9 +66,9 @@ class FrontController extends Controller
         return view('front.pages.knowledge.casestudy.index');
     }
 
-    public function casestudySingle($casestudy_id){
-        $casestudy = DB::table('blogs')->where('id', $casestudy_id)->first(['title', 'image', 'short_description']);
-        return view('front.pages.knowledge.casestudy.single',compact('casestudy_id', 'casestudy'));
+    public function casestudySingle($slug){
+        $casestudy = DB::table('blogs')->where('slug', $slug)->first(['id', 'title', 'image', 'short_description']);
+        return view('front.pages.knowledge.casestudy.single',compact( 'casestudy'));
     }
 
     public function newsLetterIndex(){
@@ -87,18 +87,18 @@ class FrontController extends Controller
         return view('front.pages.career.jobCategory');
     }
 
-    public function updateSingle($update_id){
-        $update = DB::table('blogs')->where('id', $update_id)->first(['title', 'image', 'short_description']);
-        return view('front.pages.home.update.single',compact('update_id', 'update'));
+    public function updateSingle($slug){
+        $update = DB::table('blogs')->where('id', $slug)->first(['id', 'title', 'image', 'short_description']);
+        return view('front.pages.home.update.single',compact('update'));
     }
 
-    public function newsSingle($news_id){
-        $news = DB::table('blogs')->where('id', $news_id)->first(['title', 'image', 'short_description']);
-        return view('front.pages.home.news.single',compact('news_id', 'news'));
+    public function newsSingle($slug){
+        $news = DB::table('blogs')->where('id', $slug)->first(['id', 'title', 'image', 'short_description']);
+        return view('front.pages.home.news.single',compact( 'news'));
     }
-    public function eventSingle($event_id){
-        $event = DB::table('blogs')->where('id', $event_id)->first(['title', 'image', 'short_description']);
-        return view('front.pages.event.single',compact('event_id', 'event'));
+    public function eventSingle($slug){
+        $event = DB::table('blogs')->where('slug', $slug)->first(['id', 'title', 'image', 'short_description']);
+        return view('front.pages.event.single',compact('event'));
     }
 
     public function academicIndex(){
@@ -128,9 +128,9 @@ class FrontController extends Controller
     public function policy(){
         return view('front.pages.policy.index');
     }
-    public function serviceSingle($service_id){
-        $service = DB::table('services')->where('id',$service_id)->first(['title', 'single_page_image', 'short_desc']);
-        return view('front.pages.service.single',compact('service_id','service'));
+    public function serviceSingle($slug){
+        $service = DB::table('services')->where('slug',$slug)->first(['id', 'title', 'single_page_image', 'short_desc']);
+        return view('front.pages.service.single',compact('service'));
     }
 
     public function about(){

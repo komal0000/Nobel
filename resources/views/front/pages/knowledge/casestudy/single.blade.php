@@ -8,5 +8,5 @@
 @section('og_image', asset('storage/'.$casestudy->image))
 
 @section('content')
-@includeIf('front.cache.knowledge.casestudy.' . $casestudy_id);
+@includeIf('front.cache.knowledge.casestudy.' . $casestudy->id);
 @endsection

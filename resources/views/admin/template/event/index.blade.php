@@ -27,7 +27,7 @@
                         <div class="para-wrap location mb-2"><i class="bi bi-geo-alt-fill"></i> {{ $news->location }}
                         </div>
                         <div class="d-flex justify-content-between know-btn">
-                            <x-hoverBtn href="{{ route('news.single', ['news_id' => $news->id]) }}">View Event
+                            <x-hoverBtn href="{{ route('news.single', ['slug' => $news->slug]) }}">View Event
                                 Details</x-hoverBtn>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                             <div class="para-wrap location mb-2"><i class="bi bi-geo-alt-fill"></i>
                                 {{ $event->location }}</div>
                             <div class="d-flex justify-content-between know-btn">
-                                <x-hoverBtn href="{{ route('event.single', ['event_id' => $event->id]) }}">View Event
+                                <x-hoverBtn href="{{ route('event.single', ['slug' => $event->slug]) }}">View Event
                                     Details</x-hoverBtn>
                             </div>
                         </div>

@@ -14,7 +14,7 @@
                             <div class="content p-3">
                                 <div class="heading-sm mb-3">{{ $data->title }} </div>
                                 <p class="para-wrap">{{ $data->short_description }}</p>
-                                <x-hoverBtn href="{{ route('event.single', ['event_id' => $data->id]) }}"
+                                <x-hoverBtn href="{{ route('event.single', ['slug' => $data->slug]) }}"
                                     class="heading-xs">Read Post</x-hoverBtn>
                             </div>
                         </div>

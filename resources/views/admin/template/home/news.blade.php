@@ -12,7 +12,7 @@
                         <div class="date">{{ \App\Helper::formatTimestampToDateString($latestNews->date) }}</div>
                         <p class="content">{{ $latestNews->title }}</p>
                         <div class="d-flex justify-content-between know-btn">
-                            <x-hoverBtn href="{{ route('news.single', ['news_id' => $latestNews->id]) }}">Read
+                            <x-hoverBtn href="{{ route('news.single', ['slug' => $latestNews->slug]) }}">Read
                                 Post</x-hoverBtn>
                         </div>
                     </div>
@@ -30,7 +30,7 @@
                                     {{ $data->title }}
                                 </div>
                                 <div class="button">
-                                    <x-hoverBtn href="{{ route('news.single', ['news_id' => $data->id]) }}">Read
+                                    <x-hoverBtn href="{{ route('news.single', ['slug' => $data->slug]) }}">Read
                                         Post</x-hoverBtn>
                                 </div>
                             </div>
@@ -49,7 +49,7 @@
                                 <div class="date mb-3">{{ \App\Helper::formatTimestampToDateString($data->date) }}
                                 </div>
                                 <p class="para-wrap">{{ $data->title }}</p>
-                                <x-hoverBtn class="heading-xs">Read Post</x-hoverBtn>
+                                <x-hoverBtn class="heading-xs" href="{{ route('news.single', ['slug' => $data->slug]) }}">Read Post</x-hoverBtn>
                             </div>
                         </div>
                     @endforeach

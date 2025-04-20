@@ -8,7 +8,7 @@
 @section('og_image', asset('storage/' . $update->image))
 
 @section('content')
-@includeIf('front.cache.home.update.' . $update_id);
+@includeIf('front.cache.home.update.' . $update->id);
 @endsection
 
 @section('js')

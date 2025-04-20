@@ -8,5 +8,5 @@
 @section('og_image', asset('storage/' . $news->image))
 
 @section('content')
-@includeIf('front.cache.home.news.' . $news_id);
+@includeIf('front.cache.home.news.' . $news->id);
 @endsection

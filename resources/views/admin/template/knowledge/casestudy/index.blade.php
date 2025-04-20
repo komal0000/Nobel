@@ -32,7 +32,7 @@
                     @foreach ($caseStudies as $case)
                         <div class="col-xl-4 col-md-6 case-study-item" data-content="{{ Str::slug($type->title) }}">
                             <div class="slide m-3">
-                                <a href="{{ route('knowledge.casestudy.single', ['case_study_id' => $case->id]) }}">
+                                <a href="{{ route('knowledge.casestudy.single', ['slug' => $case->slug]) }}">
                                     <div class="img-wrapper">
                                         <img src="{{ Storage::url($case->image) }}" alt="Service Image"
                                             class="img-fluid w-100">
@@ -42,7 +42,7 @@
                                 </a>
                                 <div class="body">
                                     <div class="para-wrap">Case Study</div>
-                                    <a href="{{ route('knowledge.casestudy.single', ['case_study_id' => $case->id]) }}">
+                                    <a href="{{ route('knowledge.casestudy.single', ['slug' => $case->slug]) }}">
                                         <h3 class="title heading-sm">{{ $case->title }}</h3>
                                     </a>
                                     <div class="name-post">

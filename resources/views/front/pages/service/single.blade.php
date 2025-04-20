@@ -8,7 +8,7 @@
 @section('og_image', asset('storage/' . $service->single_page_image))
 
 @section('content')
-    @includeIf('front.cache.service.' . $service_id)
+    @includeIf('front.cache.service.' . $service->id)
 @endsection
 @section('js')
     <script>
