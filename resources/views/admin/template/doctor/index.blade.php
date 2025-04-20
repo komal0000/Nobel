@@ -49,7 +49,7 @@
                                     </div>
                                     <div class="doc-specialization">
                                         <span>Specialization Name</span>
-                                        <a href="{{ route('doctor.single', ['doctor_id' => $doctor->id]) }}">View
+                                        <a href="{{ route('doctor.single', $doctor->slug) }}">View
                                             Profile</a>
                                     </div>
                                 </div>

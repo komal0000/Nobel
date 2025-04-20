@@ -120,9 +120,9 @@ class FrontController extends Controller
         return view('front.pages.doctor.index');
     }
 
-    public function doctorSingle($doctor_id){
-        $doctor = DB::table('doctors')->where('id', $doctor_id)->first(['title', 'image', 'short_description']);
-        return view('front.pages.doctor.single',compact('doctor_id', 'doctor'));
+    public function doctorSingle($slug){
+        $doctor = DB::table('doctors')->where('slug', $slug)->first(['id','title', 'image', 'short_description']);
+        return view('front.pages.doctor.single',compact('doctor'));
     }
 
     public function policy(){

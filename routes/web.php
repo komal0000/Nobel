@@ -47,7 +47,7 @@ Route::prefix('speciality')->name('speciality.')->group(function () {
 
 Route::prefix('doctor')->name('doctor.')->group(function () {
     Route::get('', [FrontController::class, 'doctorIndex'])->name('index');
-    Route::get('single/{doctor_id}', [FrontController::class, 'doctorSingle'])->name('single');
+    Route::get('{slug}', [FrontController::class, 'doctorSingle'])->name('single');
 });
 Route::prefix('treatment')->name('treatment.')->group(function () {
     Route::get('', [FrontController::class, 'treatmentIndex'])->name('index');
