@@ -28,7 +28,7 @@ $data = App\Helper::getSetting('top_favicon', true);
     <link rel="stylesheet" href="{{ asset('front/assets/css/index.css') }}">
 
     @yield('css')
-    @includeIf('front.cache.colorScheme')
+    @includeIf('front.cache.extra.colorScheme')
     <style>
         body {
             color: #58595B;
@@ -275,11 +275,6 @@ $data = App\Helper::getSetting('top_favicon', true);
 
             return breadcrumbsVisible;
         }
-
-        // Example of how to call the function:
-        // toggleBreadcrumbs(true); // Show breadcrumbs
-        // toggleBreadcrumbs(false); // Hide breadcrumbs
-        // toggleBreadcrumbs(); // Toggle current state
     </script>
     @yield('js')
     <script>

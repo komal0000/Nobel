@@ -15,7 +15,6 @@ class SettingController extends Controller
             "CopyRight",
             [
                 ['copyright', 1],
-
             ]
         ],
         'home_description' => [
@@ -89,7 +88,7 @@ class SettingController extends Controller
                     }
                 } else {
 
-                    file_put_contents(resource_path($data[2]), view('admin.setting.template.' . $type, compact('curdata'))->render());
+                    Helper::putCache(resource_path($data[2]), view('admin.setting.template.' . $type, compact('curdata'))->render());
                 }
             } else {
                 Helper::putCache($type, view('admin.setting.template.' . $type, compact('curdata'))->render());
@@ -170,7 +169,7 @@ class SettingController extends Controller
                 ['key' => 'color_scheme'],
                 ['value' => json_encode($request->except('_token'))]
             );
-            Helper::putCache('colorScheme', view('admin.setting.template.colorScheme', ['data' => $request->except('_token')])->render());
+            Helper::putCache('extra.colorScheme', view('admin.setting.template.colorScheme', ['data' => $request->except('_token')])->render());
             session()->flash('success', 'Color scheme successfully updated');
             return response()->json(['success' => true]);
         }

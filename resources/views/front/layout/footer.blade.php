@@ -37,7 +37,7 @@
     <div class="footer-bottom">
         <div class="main-container">
             @includeIf('front.cache.home.footerLink')
-            @includeIf('front.includes.copy')
+            @includeIf('front.cache.copy')
         </div>
     </div>
 </footer>
