@@ -10,11 +10,11 @@
             /
         @endforeach
         <span>Sub Specialties</span>/
-        <span>Galleries</span>
+        <span>Teams</span>
     @else
         <a href="{{ route('admin.speciality.index') }}">Specialties</a> /
         <span>{{ $speciality->title }}</span> /
-        <span>Galleries</span>
+        <span>Teams</span>
     @endif
 @endsection
 @section('btn')

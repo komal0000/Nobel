@@ -12,13 +12,13 @@
         <span>Sub Specialties</span>/
         <span>{{ $speciality->title }}</span> /
         <a
-            href="{{ route('admin.speciality.gallery.index', ['speciality_id' => $speciality->id, 'parent_speciality_id' => $parent_speciality_id]) }}">Galleries</a>
+            href="{{ route('admin.speciality.gallery.index', ['speciality_id' => $speciality->id, 'parent_speciality_id' => $parent_speciality_id]) }}">Teams</a>
         /
         <span>Add</span>
     @else
         <a href="{{ route('admin.speciality.index') }}">Specialties</a> /
         <span>{{ $speciality->title }}</span> /
-        <a href="{{ route('admin.speciality.gallery.index', ['speciality_id' => $speciality->id]) }}">Galleries</a> /
+        <a href="{{ route('admin.speciality.gallery.index', ['speciality_id' => $speciality->id]) }}">Teams</a> /
         <span>Add</span>
     @endif
 @endsection

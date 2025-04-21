@@ -45,7 +45,7 @@
     @if ($section->style_type == 1)
         <section id="how" data-content="How is it Done?">
             @php
-        $sectionSteps = App\Models\TreatmentStep::where('treatment_section_id', $section->id)->get();
+                $sectionSteps = App\Models\TreatmentStep::where('treatment_section_id', $section->id)->get();
             @endphp
             <div class="main-container">
                 <x-type1 heading="{{ $section->title }}" subHeading="{{ $section->description }}"
@@ -54,7 +54,7 @@
         </section>
     @elseif($section->style_type == 2)
         @php
-        $sectionSteps = App\Models\TreatmentStep::where('treatment_section_id', $section->id)->get();
+            $sectionSteps = App\Models\TreatmentStep::where('treatment_section_id', $section->id)->get();
         @endphp
         <section id="benefit-risk" data-content="Benefits & Risks">
             <div class="main-container">
@@ -64,7 +64,7 @@
         </section>
     @endif
 @endforeach
-<section id="treated">
+{{-- <section id="treated">
     <div class="main-container">
        <x-sliderComponent mainClass="treatmentSlider" heading="Get Treated In Our Specialised Get Treated In Our Specialised Institutes & Departments">
           <div class="each-card">
@@ -99,4 +99,4 @@
           </div>
        </x-sliderComponent >
     </div>
- </section>
+</section> --}}

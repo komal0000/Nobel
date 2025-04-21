@@ -39,7 +39,7 @@
                         <a href="{{ route('admin.speciality.del', ['speciality_id' => $speciality->id]) }}"
                             class="btn btn-danger btn-sm">Delete</a>
                         <a href="{{ route('admin.speciality.gallery.index', ['speciality_id' => $speciality->id, 'parent_speciality_id' => $parent_speciality_id]) }}"
-                            class="btn btn-info btn-sm">Manage Gallery </a>
+                            class="btn btn-info btn-sm">Manage Teams </a>
                         <a href="{{ route('admin.aliment.index', ['speciality_id' => $speciality->id]) }}"
                             class="btn btn-sm btn-secondary">Manage Aliment</a>
                         <a href="{{ route('admin.treatment.index', ['speciality_id' => $speciality->id]) }}"
