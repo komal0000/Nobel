@@ -1,10 +1,8 @@
 @extends('front.layout.app')
 
-@section('title', 'All Ailments | Nobel Hospital')
-
-@section('meta_title', 'All Ailments | Nobel Hospital')
-@section('meta_description', 'All Ailments section available in Nobel Hospital')
-@section('meta_keywords', 'ailments')
+@section('metaData')
+    @includeIf('front.cache.meta.ailment')
+@endsection
 
 @section('content')
     @includeIf('front.cache.aliment.index')

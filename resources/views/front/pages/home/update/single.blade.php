@@ -1,11 +1,8 @@
 @extends('front.layout.app')
 
-@section('title', $update->title.' | Nobel Hospital')
-
-@section('meta_title', $update->title . ' | Nobel Hospital')
-@section('meta_description', $update->short_description)
-@section('meta_keywords', $update->title)
-@section('og_image', asset('storage/' . $update->image))
+@section('metaData')
+    @includeIf('front.cache.meta.home.update.'.$slug)
+@endsection
 
 @section('content')
 @includeIf('front.cache.home.update.' . $update->id);

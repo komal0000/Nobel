@@ -2,9 +2,9 @@
 
 @section('title', 'Home | Nobel Hospital')
 
-@section('meta_title', 'Job Categories | Nobel Hospital')
-@section('meta_description', 'Job categories available in Nobel Hospital')
-@section('meta_keywords', 'job, jobs, nobel job')
+@section('metaData')
+    @includeIf('front.cache.meta.career.jobCategory')
+@endsection
 
 
 @section('content')

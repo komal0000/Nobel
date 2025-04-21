@@ -1,10 +1,8 @@
 @extends('front.layout.app')
 
-@section('title', 'News Letter | Nobel Hospital')
-
-@section('meta_title', 'News Letter | Nobel Hospital')
-@section('meta_description', 'All News Letter section available in Nobel Hospital')
-@section('meta_keywords', 'news letter nobel')
+@section('metaData')
+    @includeIf('front.cache.meta.knowledge.newsletter')
+@endsection
 
 
 @section('content')
@@ -13,9 +11,6 @@
 @section('js')
     <script>
         $(document).ready(function() {
-            // Hide all content sections except the active one initially
-            $('.letter-row > [data-content]').hide();
-            $('.letter-row > [data-content="exchange"]').show();
 
             // Pagination variables
             const itemsPerPage = 4;

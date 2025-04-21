@@ -15,7 +15,7 @@
                         <p class="para-wrap">
                             {{ $technology->short_description }}
                         </p>
-                        <x-hoverBtn href="{{ route('technology.single', ['technology_id' => $technology->id]) }}"
+                        <x-hoverBtn href="{{ route('technology.single', ['slug' => $technology->slug]) }}"
                             class="heading-xs">Know More</x-hoverBtn>
                     </div>
                 </div>

@@ -1,10 +1,8 @@
 @extends('front.layout.app')
 
-@section('title', 'Downloads | Nobel Hospital')
-
-@section('meta_title', 'Downloads | Nobel Hospital')
-@section('meta_description', 'All downloads section available in Nobel Hospital')
-@section('meta_keywords', 'downloads')
+@section('metaData')
+    @includeIf('front.cache.meta.download')
+@endsection
 
 @section('content')
     @includeIf('front.cache.download.index')

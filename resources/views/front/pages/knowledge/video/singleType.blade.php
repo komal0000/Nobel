@@ -1,10 +1,8 @@
 @extends('front.layout.app')
 
-@section('title', 'All Videos | Nobel Hospital')
-
-@section('meta_title', 'All Videos | Nobel Hospital')
-@section('meta_description', 'All Videos section of Nobel Hospital')
-@section('meta_keywords', 'videos, video nobel')
+@section('metaData')
+    @includeIf('front.cache.meta.knowledge.videos')
+@endsection
 
 @section('content')
 @includeIf('front.cache.knowledge.video.all')

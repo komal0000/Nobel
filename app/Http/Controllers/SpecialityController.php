@@ -149,19 +149,24 @@ class SpecialityController extends Controller
             ])->render());
             $this->renderSingle($speciality->parent_speciality_id);
         }
-
+        Helper::putMetaCache('speciality.' . $speciality->slug, $data = [
+            'title' => $speciality->title,
+            'description' => $speciality->short_description,
+            'image' => asset(Storage::url($speciality->single_page_image)) ,
+            'url' => route('speciality.single', ['slug' => $speciality->slug])
+        ]);
         Helper::putCache('speciality.single.' . $speciality_id . '.overview', view('admin.template.speciality.overview', compact('speciality'))->render());
     }
 
     public function renderTeamHead($speciality_id)
     {
         $teamHead = DB::table('speciality_team_heads')->where('specialty_id', $speciality_id)->first();
-        Helper::putCache('speciality.single.'.$speciality_id.'.message', view('admin.template.speciality.teamHead', compact('teamHead'))->render());
+        Helper::putCache('speciality.single.' . $speciality_id . '.message', view('admin.template.speciality.teamHead', compact('teamHead'))->render());
     }
 
     public function render()
     {
-        $specialities = DB::table('specialties')->whereNull('parent_speciality_id')->get(['id','slug','title', 'icon']);
+        $specialities = DB::table('specialties')->whereNull('parent_speciality_id')->get(['id', 'slug', 'title', 'icon']);
         Helper::putCache('home.speciality', view('admin.template.home.speciality', compact('specialities'))->render());
         Helper::putCache('home.teams', view('admin.template.home.teams', compact('specialities'))->render());
         Helper::putCache('home.header', view('admin.template.home.header', compact('specialities'))->render());

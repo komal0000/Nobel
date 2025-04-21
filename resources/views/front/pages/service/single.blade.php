@@ -1,11 +1,8 @@
 @extends('front.layout.app')
 
-@section('title', $service->title . ' | Nobel Hospital')
-
-@section('meta_title', $service->title . ' | Nobel Hospital')
-@section('meta_description', $service->short_desc)
-@section('meta_keywords', $service->title)
-@section('og_image', asset('storage/' . $service->single_page_image))
+@section('metaData')
+    @includeIf('front.cache.meta.service.'.$slug)
+@endsection
 
 @section('content')
     @includeIf('front.cache.service.' . $service->id)

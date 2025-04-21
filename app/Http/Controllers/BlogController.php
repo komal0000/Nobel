@@ -8,6 +8,7 @@ use App\Models\BlogCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
@@ -154,6 +155,14 @@ class BlogController extends Controller
         if($type == Helper::blog_type_case_study){
             $case = DB::table('blogs')->where('id', $blog_id)->first();
             $latestCase = DB::table('blogs')->where('type', Helper::blog_type_case_study)->orderBy('id', 'desc')->take(2)->get();
+
+            Helper::putMetaCache('knowledge.casestudy.' . $case->slug, $data = [
+                'title' => $case->title,
+                'description' => $case->short_description,
+                'image' => asset(Storage::url($case->image)),
+                'url' => route('knowledge.casestudy.single', ['slug' => $case->slug]),
+            ]);
+            
             Helper::putCache('knowledge.casestudy.'.$blog_id, view('admin.template.knowledge.casestudy.single', compact('case', 'latestCase'))->render());
         }
 
@@ -161,6 +170,14 @@ class BlogController extends Controller
         if($type == Helper::blog_type_update){
             $update = DB::table('blogs')->where('id', $blog_id)->first();
             $latestUpdate = DB::table('blogs')->where('type', Helper::blog_type_update)->orderBy('id', 'desc')->take(2)->get();
+
+            Helper::putMetaCache('home.update.' . $update->slug, $data = [
+                'title' => $update->title,
+                'description' => $update->short_description,
+                'image' => asset(Storage::url($update->image)),
+                'url' => route('update.single', ['slug' => $update->slug]),
+            ]);
+            
             Helper::putCache('home.update.'.$blog_id, view('admin.template.home.update.single', compact('update', 'latestUpdate'))->render());
         }
 
@@ -168,6 +185,12 @@ class BlogController extends Controller
         if($type == Helper::blog_type_news) {
             $news = DB::table('blogs')->where('id', $blog_id)->first();
             $latestNews = DB::table('blogs')->where('type', Helper::blog_type_news)->orderBy('id', 'desc')->take(2)->get();
+            Helper::putMetaCache('home.news.' . $news->slug, $data = [
+                'title' => $news->title,
+                'description' => $news->short_description,
+                'image' => asset(Storage::url($news->image)),
+                'url' => route('news.single', ['slug' => $news->slug]),
+            ]);
             Helper::putCache('home.news.'.$blog_id, view('admin.template.home.news.single', compact('news', 'latestNews'))->render());
         }
 
@@ -175,6 +198,12 @@ class BlogController extends Controller
         if($type == Helper::blog_type_event) {
             $event = DB::table('blogs')->where('id', $blog_id)->first();
             $latestEvent = DB::table('blogs')->where('type', Helper::blog_type_event)->orderBy('id', 'desc')->take(2)->get();
+            Helper::putMetaCache('event.' . $event->slug, $data = [
+                'title' => $event->title,
+                'description' => $event->short_description,
+                'image' => asset(Storage::url($event->image)),
+                'url' => route('event.single', ['slug' => $event->slug]),
+            ]);
             Helper::putCache('event.single.'.$blog_id, view('admin.template.event.single', compact('event', 'latestEvent'))->render());
         }
 
@@ -182,6 +211,12 @@ class BlogController extends Controller
         if($type == Helper::blog_type_acedemic_program) {
             $academic = DB::table('blogs')->where('id', $blog_id)->first();
             $latestAcademic = DB::table('blogs')->where('type', Helper::blog_type_acedemic_program)->orderBy('id', 'desc')->take(2)->get();
+            Helper::putMetaCache('academic.' . $academic->slug, $data = [
+                'title' => $academic->title,
+                'description' => $academic->short_description,
+                'image' => asset(Storage::url($academic->image)),
+                'url' => route('academicprogram.single', ['slug' => $academic->slug]),
+            ]);
             Helper::putCache('academic.single.'.$blog_id, view('admin.template.academic.single', compact('academic', 'latestAcademic'))->render());
         }
     }
@@ -203,24 +238,60 @@ class BlogController extends Controller
         }
         //Case Study
         $caseStudyTypes = DB::table('blog_categories')->where('type', helper::blog_type_case_study)->get();
+        Helper::putMetaCache('knowledge.casestudy', $data = [
+            'title' => 'Case Studies | Nobel Hospital',
+            'description' => 'List of all the case studies done by Nobel Hospital',
+            'image' => asset('front/assets/img/meta-image.png'),
+            'url' => route('knowledge.casestudy.index'),
+        ]);
         Helper::putCache('knowledge.casestudy', view('admin.template.knowledge.casestudy.index', compact('caseStudyTypes')));
 
         //News Letter
         $newsLetterTypes = DB::table('blog_categories')->where('type', helper::blog_type_news_letter)->get();
+        Helper::putMetaCache('knowledge.newsletter', $data = [
+            'title' => 'News Letter | Nobel Hospital',
+            'description' => 'List of all the News Letter done by Nobel Hospital',
+            'image' => asset('front/assets/img/meta-image.png'),
+            'url' => route('knowledge.newsletter'),
+        ]);
         Helper::putCache('knowledge.newsletter', view('admin.template.knowledge.newsletter.index', compact('newsLetterTypes')));
 
         //Academic Program
         $academicProgramTypes = DB::table('blog_categories')->where('type', helper::blog_type_acedemic_program)->get();
         $academicPrograms = DB::table('blogs')->where('type', Helper::blog_type_acedemic_program)->get();
         Helper::putCache('academic.list', view('admin.template.academicprogram.list', compact('academicProgramTypes','academicPrograms')));
+        Helper::putMetaCache('academic.list', $data = [
+            'title' => 'Academic Programs List | Nobel Hospital',
+            'description' => 'List of all the Academic Programs done by Nobel Hospital',
+            'image' => asset('front/assets/img/meta-image.png'),
+            'url' => route('academicprogram.list'),
+        ]);
         Helper::putCache('academic.index', view('admin.template.academicprogram.index', compact('academicProgramTypes')));
+        Helper::putMetaCache('academic.academic', $data = [
+            'title' => 'Academic Programs  | Nobel Hospital',
+            'description' => 'Academic Programs done by Nobel Hospital',
+            'image' => asset('front/assets/img/meta-image.png'),
+            'url' => route('academicprogram.index'),
+        ]);
 
         //Doctor Article
 
 
         Helper::putCache('health.knowledge.blogs', view('admin.template.health.knowledge.blogs', compact('indexBlogs')));
+        Helper::putMetaCache('knowledge.blogs.blog', $data = [
+            'title' => 'Blogs | Nobel Hospital',
+            'description' => 'Blogs done by Nobel Hospital',
+            'image' => asset('front/assets/img/meta-image.png'),
+            'url' => route('knowledge.blog'),
+        ]);
         Helper::putCache('knowledge.blog', view('admin.template.knowledge.blog.index', compact('indexBlogs', 'featuredBlogs'))->render());
         Helper::putCache('event.index', view('admin.template.event.index', compact('indexNews', 'eventTypes'))->render());
+        Helper::putMetaCache('event.event', $data = [
+            'title' => 'Events | Nobel Hospital',
+            'description' => 'Events done by Nobel Hospital',
+            'image' => asset('front/assets/img/meta-image.png'),
+            'url' => route('event'),
+        ]);
         Helper::putCache('home.updates', view('admin.template.home.update', compact('updateData'))->render());
         Helper::putCache('home.newsEvent', view('admin.template.home.news', compact('newsData', 'eventData', 'latestNews', 'eventTypes',))->render());
         Helper::putCache('health.event', view('admin.template.health.event', compact('eventData')));

@@ -1,10 +1,8 @@
 @extends('front.layout.app')
 
-@section('title', 'Blogs | Nobel Hospital')
-
-@section('meta_title', 'All Blogs | Nobel Hospital')
-@section('meta_description', 'All Technologies section available in Nobel Hospital')
-@section('meta_keywords', 'technologies')
+@section('metaData')
+    @includeIf('front.cache.meta.knowledge.blogs.blog')
+@endsection
 
 
 @section('content')

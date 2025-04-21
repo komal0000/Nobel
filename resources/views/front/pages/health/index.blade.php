@@ -1,9 +1,9 @@
 @extends('front.layout.app')
 @section('title', 'Health Library | Nobel Hospital')
 
-@section('meta_title', 'Health Library | Nobel Hospital')
-@section('meta_description', 'Health Library of Nobel Hospital')
-@section('meta_keywords', 'health library, health library nobel')
+@section('metaData')
+    @includeIf('front.cache.meta.healthLibrary')
+@endsection
 
 
 @section('content')

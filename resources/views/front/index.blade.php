@@ -2,6 +2,9 @@
 @section('css')
     <link rel="stylesheet" type="text/css" />
 @endsection
+@section('metaData')
+    @includeIf('front.cache.meta.home.home')
+@endsection
 @section('content')
     @includeIf('front.cache.home.popup')
     

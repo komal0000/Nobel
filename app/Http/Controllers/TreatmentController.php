@@ -9,6 +9,7 @@ use App\Models\TreatmentSection;
 use App\Models\TreatmentStep;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class TreatmentController extends Controller
 {
@@ -96,6 +97,14 @@ class TreatmentController extends Controller
         if($treatment_id){
             $treatment = Treatment::where('id', $treatment_id)->first();
             $treatmentSections = DB::table('treatment_sections')->where('treatment_id', $treatment->id)->get();
+
+            Helper::putMetaCache('treatment.' . $treatment->slug, $data = [
+                'title' => $treatment->title,
+                'description' => $treatment->short_description,
+                'image' => asset(Storage::url($treatment->single_page_image)),
+                'url' => route('treatment.single', ['slug' => $treatment->slug]),
+            ]);
+
             Helper::putCache('treatment.single.'.$treatment->id, view('admin.template.treatment.single', compact('treatment', 'treatments','treatmentSections'))->render());
         }
         Helper::putCache('treatment.index',view('admin.template.treatment.index', compact('treatments'))->render());

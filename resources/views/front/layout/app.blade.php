@@ -12,7 +12,7 @@ $data = App\Helper::getSetting('top_favicon', true);
     {{--
     <meta name="description" content="@yield('meta')"> --}}
 
-    <title>@yield('title', 'Nobel Hospital')</title>
+    {{-- <title>@yield('title', 'Nobel Hospital')</title> --}}
 
     @yield('metaData')
     <meta name="geo.region" content="NP">

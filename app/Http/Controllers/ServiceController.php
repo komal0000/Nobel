@@ -7,6 +7,7 @@ use App\Models\Service;
 use App\Models\ServiceFaq;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ServiceController extends Controller
 {
@@ -128,13 +129,27 @@ class ServiceController extends Controller
         $service = Service::where('id', $service_id)->first();
         if ($service) {
             $faqs = DB::table('service_faqs')->where('service_id', $service_id)->get();
+            // Helper::putMetaCache('service.service', $data = [
+            //     'title' => 'Services | Nobel Hospital',
+            //     'description' => 'Services offered by Nobel Hospital',
+            //     'image' => asset('front/assets/img/meta-image.png'),
+            //     'url' => route('service.index'),
+            // ]);
             Helper::putCache('service.' . $service_id, view('admin.template.service.single', compact('service', 'faqs'))->render());
         }
     }
     public function reder()
     {
-        $homeServices = DB::table('services')->get(['id', 'slug', 'icon', 'title', 'image', 'short_desc']);
+        $homeServices = DB::table('services')->get(['id', 'slug', 'icon', 'title', 'image', 'short_desc', 'single_page_image']);
         Helper::putCache('home.headerService', view('admin.template.home.headerService', compact('homeServices'))->render());
         Helper::putCache('home.services', view('admin.template.home.services', compact('homeServices'))->render());
+        foreach ($homeServices as $service) {
+            Helper::putMetaCache('service.' . $service->slug, $data = [
+                'title' => $service->title,
+                'description' => $service->short_desc,
+                'image' => asset(Storage::url($service->single_page_image)),
+                'url' => route('service.single', ['slug' => $service->slug]),
+            ]);
+        }
     }
 }

@@ -1,10 +1,8 @@
 @extends('front.layout.app')
 
-@section('title', 'All Technologies | Nobel Hospital')
-
-@section('meta_title', 'All Technologies | Nobel Hospital')
-@section('meta_description', 'All Technologies section available in Nobel Hospital')
-@section('meta_keywords', 'technologies')
+@section('metaData')
+    @includeIf('front.cache.meta.technology')
+@endsection
 
 @section('content')
 @includeIf('front.cache.technology.index')

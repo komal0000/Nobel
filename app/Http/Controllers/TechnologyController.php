@@ -8,6 +8,7 @@ use App\Models\TechnologySection;
 use App\Models\TechnologySectionData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class TechnologyController extends Controller
 {
@@ -176,6 +177,14 @@ class TechnologyController extends Controller
     {
         $technology = Technology::findOrFail($technology_id);
         $technologySections = TechnologySection::where('technology_id', $technology_id)->get();
+
+        Helper::putMetaCache('technology.' . $technology->slug, $data = [
+            'title' => $technology->title,
+            'description' => $technology->short_description,
+            'image' => asset(Storage::url($technology->single_page_image)),
+            'url' => route('technology.single', ['slug' => $technology->slug]),
+        ]);
+
         Helper::putCache('technology.single.' . $technology_id, view('admin.template.technology.single', compact('technology', 'technologySections'))->render());
     }
 }

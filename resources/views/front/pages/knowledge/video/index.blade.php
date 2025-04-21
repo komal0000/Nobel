@@ -2,9 +2,9 @@
 
 @section('title', 'Videos | Nobel Hospital')
 
-@section('meta_title', 'Videos | Nobel Hospital')
-@section('meta_description', 'All Videos section available in Nobel Hospital')
-@section('meta_keywords', 'videos, videos nobel')
+@section('metaData')
+    @includeIf('front.cache.meta.knowledge.video')
+@endsection
 
 
 @section('content')

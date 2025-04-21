@@ -1,10 +1,8 @@
 @extends('front.layout.app')
 
-@section('title', 'Policy & Form | Nobel Hospital')
-
-@section('meta_title', 'Policy & Form | Nobel Hospital')
-@section('meta_description', 'Policies and forms of Nobel Hospital')
-@section('meta_keywords', 'policy, form, policy nobel, form nobel')
+@section('metaData')
+    @includeIf('front.cache.meta.policy')
+@endsection
 
 
 @section('content')

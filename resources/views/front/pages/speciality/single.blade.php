@@ -1,9 +1,8 @@
 @extends('front.layout.app')
-@section('title', $speciality->title.' | Nobel Hospital')
 
-@section('meta_title', $speciality->title.' | Nobel Hospital')
-@section('meta_description', $speciality->short_description)
-@section('meta_keywords', $speciality->title)
+@section('metaData')
+    @includeIf('front.cache.meta.speciality.' . $slug)
+@endsection
 
 @section('content')
     @includeIf('front.cache.speciality.single.' . $speciality->id . '.overview')

@@ -9,6 +9,7 @@ use App\Models\AlimentSectionType;
 use App\Models\Speciality;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class AlimentController extends Controller
 {
@@ -177,6 +178,14 @@ class AlimentController extends Controller
         $aliment = Aliment::where('id', $aliment_id)->first();
         if ($aliment) {
             $alimentTypes = DB::table('aliment_section_types')->get();
+
+            Helper::putMetaCache('aliment.' . $aliment->slug, $data = [
+                'title' => $aliment->title,
+                'description' => $aliment->short_description,
+                'image' => asset(Storage::url($aliment->single_page_image)),
+                'url' => route('aliment.single', ['slug' => $aliment->slug]),
+            ]);
+
             Helper::putCache('aliment.single.' . $aliment->id, view('admin.template.aliment.single', compact('aliment','alimentTypes'))->render());
         }
         Helper::putCache('aliment.index', view('admin.template.aliment.index', compact('aliments'))->render());

@@ -76,7 +76,7 @@ Route::prefix('service')->name('service.')->group(function () {
 Route::prefix('academicprogram')->name('academicprogram.')->group(function () {
     Route::get('', [FrontController::class, 'academicIndex'])->name('index');
     Route::get('list', [FrontController::class, 'academicAll'])->name('list');
-    Route::get('single/{academic_id}', [FrontController::class, 'academicSingle'])->name('single');
+    Route::get('{slug}', [FrontController::class, 'academicSingle'])->name('single');
 });
 
 Route::prefix('knowledge')->name('knowledge.')->group(function () {

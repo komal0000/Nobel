@@ -1,13 +1,12 @@
 @extends('front.layout.app')
-@section('title', $technology->title . ' | Nobel Hospital')
 
-@section('meta_title', $technology->title . ' | Nobel Hospital')
-@section('meta_description', $technology->short_description)
-@section('meta_keywords', $technology->title)
+@section('metaData')
+    @includeIf('front.cache.meta.technology.' . $slug)
+@endsection
 
 @section('content')
-@includeIf('front.cache.technology.single.' . $technology->id)
+    @includeIf('front.cache.technology.single.' . $technology->id)
 @endsection
 @section('js')
- <script src="{{ asset('front/assets/js/technology/single.js')}}"  ></script>
+    <script src="{{ asset('front/assets/js/technology/single.js')}}"></script>
 @endsection

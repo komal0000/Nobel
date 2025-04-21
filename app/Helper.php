@@ -209,11 +209,11 @@ class Helper
         }
 
         // Extract values with defaults
-        $title = $data['title'] ?? '';
-        $description = $data['description'] ?? '';
-        $keywords = $data['keywords'] ?? '';
-        $image = $data['image'] ?? null;
-        $url = $data['url'] ?? null;
+        $title = ($data['title'] ?? null) ? $data['title'] . ' | Nobel Hospital' : 'Nobel Hospital';
+        $description = $data['description'] ?? 'Nobel is a super-specialty healthcare hospital in Nepal, providing high-quality treatment including heart, liver, kidney transplants, and cancer care.';
+        $keywords = $data['keywords'] ?? 'hospital, healthcare, medical services, patient care, emergency services, ';
+        $image = $data['image'] ?? asset('front/assets/img/meta-image.png');
+        $url = $data['url'] ?? request()->url();
 
         // Generate and save meta content
         file_put_contents($filePath, self::makeMeta($title, $description, $keywords, $image, $url));
@@ -252,7 +252,7 @@ class Helper
 
 
         if ($image) {
-            $html .= "<meta name=\"twitter:image\" content=\"/{$image}\">\n";
+            $html .= "<meta name=\"twitter:image\" content=\"{$image}\">\n";
         }
 
         return $html;

@@ -1,10 +1,8 @@
 @extends('front.layout.app')
 
-@section('title', 'Case Study | Nobel Hospital')
-
-@section('meta_title', 'Case Studies | Nobel Hospital')
-@section('meta_description', 'All case studies section available in Nobel Hospital')
-@section('meta_keywords', 'case study')
+@section('metaData')
+    @includeIf('front.cache.meta.knowledge.casestudy')
+@endsection
 
 
 @section('content')

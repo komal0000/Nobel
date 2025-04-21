@@ -1,6 +1,5 @@
 @extends('front.layout.app')
 
-@section('title', $doctor->title . ' | Nobel Hospital')
 @section('metaData')
     @includeIf('front.cache.meta.doctor.'.$slug)
 @endsection

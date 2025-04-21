@@ -24,7 +24,7 @@
             @endphp
             <div class="doctor-slider">
                 @foreach ($academicPrograms as $academicProgram)
-                    <a href="{{ route('academicprogram.single', ['academic_id' => $academicProgram->id]) }}">
+                    <a href="{{ route('academicprogram.single', ['slug' => $academicProgram->slug]) }}">
                         <div class="video-card doctor-card">
                             <div class="img-wrapper">
                                 <img src="{{ Storage::url($academicProgram->image) }}" alt="Staff">
