@@ -9,7 +9,7 @@
     </picture>
 </section>
 @foreach ($abouts as $about)
-    <section id="about-nobel">
+    {{-- <section id="about-nobel">
         <div class="main-container">
             <div class="d-flex flex-column flex-md-row gap-4">
                 <div class="img-wrap">
@@ -22,6 +22,19 @@
                     <div class="para-wrap">
                         {!! $about->description !!}
                     </div>
+                </div>
+            </div>
+        </div>
+    </section> --}}
+    <section id="about-mission">
+        <div class="main-container">
+            <div class="heading text-center mb-4">{{ $about->title }}</div>
+            <div class="content">
+                <div class="img-wrapper">
+                    <img src="{{ Storage::url($about->image) }}" alt="Mission Image">
+                </div>
+                <div class="heading-sm text-center">
+                    {!! $about->description !!}
                 </div>
             </div>
         </div>
