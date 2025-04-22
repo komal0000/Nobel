@@ -36,12 +36,12 @@ class ServicePackageController extends Controller
     public function index($type_id)
     {
         $packageType = ServicePackageType::where('id', $type_id)->first();
-        $packages = DB::table('service_packages')->get(['id', 'title', 'price','gender', 'age']);
+        $packages = DB::table('service_packages')->get(['id', 'title', 'price', 'gender', 'age']);
         return view('admin.service.package.index', compact('packages', 'packageType'));
     }
-    public function add(Request $request,$type_id)
+    public function add(Request $request, $type_id)
     {
-        $packageType = DB::table('service_package_types')->where('id',$type_id)->first();
+        $packageType = DB::table('service_package_types')->where('id', $type_id)->first();
         if (Helper::G()) {
             $services = DB::table('services')->where('has_package', 1)->get(['id', 'title']);
             return view('admin.service.package.add', compact('services', 'packageType'));
@@ -55,10 +55,12 @@ class ServicePackageController extends Controller
             $servicePackage->age = $request->age;
             $servicePackage->labtest = $request->labtest;
             $servicePackage->gender = $request->gender;
+            $servicePackage->type_name = $packageType->type;
             if ($request->hasFile('image')) {
                 $servicePackage->image = $request->file('image')->store('uploads/service/package', 'public');
             }
             $servicePackage->save();
+            $this->render($packageType->type, $packageType->service_id);
             return redirect()->back()->with('success', 'Service package created successfully');
         }
     }
@@ -67,7 +69,7 @@ class ServicePackageController extends Controller
         $package = ServicePackage::where('id', $package_id)->first();
         $packageType = ServicePackageType::where('id', $package->service_package_type_id)->first();
         if (Helper::G()) {
-            return view('admin.service.package.edit', compact('package','packageType'));
+            return view('admin.service.package.edit', compact('package', 'packageType'));
         } else {
             $package->title = $request->title;
             $package->price = $request->price;
@@ -79,6 +81,7 @@ class ServicePackageController extends Controller
                 $package->image = $request->file('image')->store('uploads/service/package', 'public');
             }
             $package->save();
+            $this->render($packageType->type, $package->service_id);
             return redirect()->back()->with('success', 'Service package updated successfully');
         }
     }
@@ -87,5 +90,16 @@ class ServicePackageController extends Controller
     {
         ServicePackage::where('id', $package_id)->delete();
         return redirect()->back()->with('delete_success', 'Service package deleted successfully');
+    }
+
+    public function render($type_name,$service_id)
+    {
+        if ($type_name == 'Type 1') {
+            $packages1 = DB::table('service_packages')->where('type_name', $type_name)->get();
+            Helper::putCache('service.single.package.'.$service_id,view('admin.template.service.package.type1', compact('packages1'))->render());
+        } else {
+            $packages2 = DB::table('service_packages')->where('type_name', $type_name)->get();
+            Helper::putCache('service.single.package'.$service_id,view('admin.service.package.type2', compact('packages2'))->render());
+        }
     }
 }

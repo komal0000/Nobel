@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::table('service_packages', function (Blueprint $table) {
             $table->foreignId('service_package_type_id')->nullable()->constrained('service_package_types')->after('type');
+            $table->string('type_name')->nullable()->after('service_package_type_id');
+
         });
     }
 
@@ -24,6 +26,7 @@ return new class extends Migration
         Schema::table('service_packages', function (Blueprint $table) {
             $table->dropForeign(['service_package_type_id']);
             $table->dropColumn('service_package_type_id');
+            $table->dropColumn('type_name');
         });
     }
 };

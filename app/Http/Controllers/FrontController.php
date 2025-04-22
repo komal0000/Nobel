@@ -215,7 +215,7 @@ class FrontController extends Controller
         return view('front.pages.policy.index');
     }
     public function serviceSingle($slug){
-        $service = DB::table('services')->where('slug',$slug)->first(['id']);
+        $service = DB::table('services')->where('slug',$slug)->first();
         return view('front.pages.service.single',compact('slug', 'service'));
     }
 

@@ -131,13 +131,8 @@ class ServiceController extends Controller
         $service = Service::where('id', $service_id)->first();
         if ($service) {
             $faqs = DB::table('service_faqs')->where('service_id', $service_id)->get();
-            // Helper::putMetaCache('service.service', $data = [
-            //     'title' => 'Services | Nobel Hospital',
-            //     'description' => 'Services offered by Nobel Hospital',
-            //     'image' => asset('front/assets/img/meta-image.png'),
-            //     'url' => route('service.index'),
-            // ]);
-            Helper::putCache('service.' . $service_id, view('admin.template.service.single', compact('service', 'faqs'))->render());
+            Helper::putCache('service.single.overview.'.$service_id, view('admin.template.service.overview', compact('service'))->render());
+            Helper::putCache('service.single.faqs.'.$service_id, view('admin.template.service.faqs', compact('faqs'))->render());
         }
     }
     public function reder()
