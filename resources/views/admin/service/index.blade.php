@@ -25,7 +25,7 @@
                         <a href="{{ route('admin.service.faq.index', ['service_id' => $service->id]) }}"
                             class="btn btn-sm btn-info ">Manage FAQs</a>
                         @if ($service->has_package == 1)
-                            <a href="{{ route('admin.service.package.index', ['service_id' => $service->id]) }}"
+                            <a href="{{ route('admin.service.package.type.index', ['service_id' => $service->id]) }}"
                                 class="btn btn-sm btn-info ">Manage Packages</a>
                         @endif
                     </td>

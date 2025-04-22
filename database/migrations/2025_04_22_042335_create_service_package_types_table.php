@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('service_package_types', function (Blueprint $table) {
             $table->id();
+            $table->string('type');
+            $table->foreignId('service_id')->constrained('services');
             $table->timestamps();
         });
     }

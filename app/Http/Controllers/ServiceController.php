@@ -13,7 +13,7 @@ class ServiceController extends Controller
 {
     public function index()
     {
-        $services = DB::table('services')->get(['id', 'title']);
+        $services = DB::table('services')->get(['id', 'title','has_package']);
         return view('admin.service.index', compact('services'));
     }
 

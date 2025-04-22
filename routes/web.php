@@ -303,11 +303,11 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         });
         Route::prefix('package')->name('package.')->group(function () {
             Route::prefix('type')->name('type.')->group(function () {
-                Route::match(['GET', 'POST'], 'index', [ServicePackageController::class, 'typeIndex'])->name('index');
+                Route::match(['GET', 'POST'], 'index/{service_id}', [ServicePackageController::class, 'typeIndex'])->name('index');
                 Route::get('del/{type_id}', [ServicePackageController::class, 'typeDel'])->name('del');
             });
-            Route::get('index/{service_id}', [ServicePackageController::class, 'index'])->name('index');
-            Route::match(['GET', 'POST'], 'add/{service_id}', [ServicePackageController::class, 'add'])->name('add');
+            Route::get('index/{type_id}', [ServicePackageController::class, 'index'])->name('index');
+            Route::match(['GET', 'POST'], 'add/{type_id}', [ServicePackageController::class, 'add'])->name('add');
             Route::match(['GET', 'POST'], 'edit/{package_id}', [ServicePackageController::class, 'edit'])->name('edit');
             Route::get('del/{package_id}', [ServicePackageController::class, 'del'])->name('del');
         });
