@@ -16,11 +16,16 @@ class ServicePackageController extends Controller
             $types = DB::table('service_package_types')->get(['id', 'type']);
             return view('admin.service.package.type.index', compact('service_id', 'types'));
         } else {
-            $type = new ServicePackageType();
-            $type->service_id = $service_id;
-            $type->type = $request->type;
-            $type->save();
-            return redirect()->back()->with('success', 'Service package type added successfully');
+            $existingType = ServicePackageType::where('service_id', $service_id)->first();
+            if ($existingType) {
+                return redirect()->back()->with('delete_success', 'This package type already exists for this service');
+            }else{
+                $type = new ServicePackageType();
+                $type->service_id = $service_id;
+                $type->type = $request->type;
+                $type->save();
+                return redirect()->back()->with('success', 'Service package type added successfully');
+            }
         }
     }
 

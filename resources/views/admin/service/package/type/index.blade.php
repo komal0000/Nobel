@@ -11,7 +11,7 @@
         @csrf
         <div class="row">
             <div class="col-md-4">
-                <label for="type">Package Type <span style="color: red;">*</span></label>
+                <label for="type">Package Type  <span style="color: red;">*</span> </label>
                 <select name="type" id="type" class="form-control">
                     <option value="Type 1">Type 1</option>
                     <option value="Type 2">Type 2</option>
