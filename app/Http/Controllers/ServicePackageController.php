@@ -99,7 +99,7 @@ class ServicePackageController extends Controller
             Helper::putCache('service.single.package.'.$service_id,view('admin.template.service.package.type1', compact('packages1'))->render());
         } else {
             $packages2 = DB::table('service_packages')->where('type_name', $type_name)->get();
-            Helper::putCache('service.single.package'.$service_id,view('admin.service.package.type2', compact('packages2'))->render());
+            Helper::putCache('service.single.package'.$service_id,view('admin.template.service.package.type2', compact('packages2'))->render());
         }
     }
 }
