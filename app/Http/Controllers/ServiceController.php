@@ -25,6 +25,7 @@ class ServiceController extends Controller
             $service = new Service();
             $service->title = $request->title;
             $service->short_desc = $request->short_desc;
+            $service->has_package = $request->has_package;
             if ($request->hasFile('icon')) {
                 $service->icon = $request->file('icon')->store('uploads/service', 'public');
             }
@@ -46,9 +47,10 @@ class ServiceController extends Controller
         if (Helper::G()) {
             return view('admin.service.edit', compact('service'));
         } else {
+            // dd($request->all());
             $service->title = $request->title;
             $service->short_desc = $request->short_desc;
-
+            $service->has_package = $request->has_package;
             if ($request->hasFile('icon')) {
                 $service->icon = $request->file('icon')->store('uploads/service', 'public');
             }

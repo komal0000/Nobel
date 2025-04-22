@@ -37,11 +37,20 @@
                     <label for="short_desc">Short Description</label>
                     <textarea name="short_desc" id="short_desc" class="form-control" required>{{ $service->short_desc }}</textarea>
                 </div>
-                <div class="col-md-12 d-flex justify-content-end">
-                    <button class="btn btn-warning">
-                        Update
-                    </button>
+
+                <div class="row">
+                    <div class="col-md-6 mb-2">
+                        <input type="hidden" name="has_package" value="0">
+                        <input type="checkbox" name="has_package" id="has_package" value="1" class="form-check-input" {{ $service->has_package == 1 ? 'checked' : '' }}>
+                        <label for="has_package">Has Package</label>
+                    </div>
+                    <div class="col-md-12 d-flex justify-content-end">
+                        <button class="btn btn-warning">
+                            Update
+                        </button>
+                    </div>
                 </div>
+
             </div>
         </div>
     </form>

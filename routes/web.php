@@ -17,6 +17,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\PopupController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\ServicePackageController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\SpecialityController;
@@ -299,6 +300,16 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
             Route::match(['GET', 'POST'], 'add/{service_id}', [ServiceController::class, 'faqAdd'])->name('add');
             Route::match(['GET', 'POST'], 'edit/{faq_id}', [ServiceController::class, 'faqEdit'])->name('edit');
             Route::get('del/{faq_id}', [ServiceController::class, 'faqDel'])->name('del');
+        });
+        Route::prefix('package')->name('package.')->group(function () {
+            Route::prefix('type')->name('type.')->group(function () {
+                Route::match(['GET', 'POST'], 'index', [ServicePackageController::class, 'typeIndex'])->name('index');
+                Route::get('del/{type_id}', [ServicePackageController::class, 'typeDel'])->name('del');
+            });
+            Route::get('index/{service_id}', [ServicePackageController::class, 'index'])->name('index');
+            Route::match(['GET', 'POST'], 'add/{service_id}', [ServicePackageController::class, 'add'])->name('add');
+            Route::match(['GET', 'POST'], 'edit/{package_id}', [ServicePackageController::class, 'edit'])->name('edit');
+            Route::get('del/{package_id}', [ServicePackageController::class, 'del'])->name('del');
         });
     });
     Route::prefix('doctor')->name('doctor.')->group(function () {
