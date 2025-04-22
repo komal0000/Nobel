@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->integer('age')->nullable();
             $table->integer('labtest')->nullable();
-            $table->string('slug')->unique();
+            $table->string('slug')->nullable()->unique();
             $table->text('image')->nullable();
             $table->string('price')->nullable();
             $table->text('description')->nullable();

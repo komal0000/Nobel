@@ -63,6 +63,7 @@
                 .then(res => {
                     if (res.data.success) {
                         $(`#tr_${id}`).remove();
+                        location.reload();
                     }
                 })
                 .catch(err => {

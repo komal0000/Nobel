@@ -7,7 +7,7 @@
     <span>Edit Package</span>
 @endsection
 @section('content')
-    <form action="{{ route('admin.service.package.edit', ['id' => $package->id]) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('admin.service.package.edit', ['package_id' => $package->id]) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @if ($packageType->type == 'Type 1')
             <div class="row">
@@ -15,7 +15,7 @@
                     <div class="col-md-12 mb-3">
                         <label for="image">Package Image <span style="color: red;">*</span></label>
                         <input type="file" class="form-control dropify" id="image" name="image" accept="image/*"
-                            data-default-file="{{ asset($package->image ?? '') }}">
+                            data-default-file="{{ Storage::url($package->image) }}">
                     </div>
                 </div>
                 <div class="col-md-6">
