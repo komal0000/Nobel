@@ -4566,6 +4566,7 @@ hr {
   min-height: 60px;
   border-radius: 25px;
   box-shadow: 0 3px 17px rgba(0, 0, 0, 0.14);
+  height: calc(100% - 15px);
 }
 #case-studies .case-study-content .slide .img-wrapper {
   position: relative;
@@ -8070,6 +8071,9 @@ hr {
   box-shadow: 0 3px 17px rgba(0, 0, 0, 0.1);
 }
 
+#about-mission:nth-of-type(odd) .content {
+  flex-direction: row !important;
+}
 #about-mission .content {
   display: flex;
   flex-direction: row-reverse;
@@ -8083,6 +8087,10 @@ hr {
 #about-mission .content .img-wrapper {
   align-self: center;
   width: 50%;
+  max-height: 500px;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 20px;
 }
 @media (max-width: 768px) {
   #about-mission .content .img-wrapper {
@@ -8092,7 +8100,7 @@ hr {
 }
 #about-mission .content .img-wrapper img {
   width: 100%;
-  height: 100%;
+  height: auto;
   border-radius: 20px;
   -o-object-fit: cover;
      object-fit: cover;
