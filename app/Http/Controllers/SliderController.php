@@ -13,14 +13,14 @@ class SliderController extends Controller
 {
     public function index($type_id)
     {
-        $sliderType  = DB::table('slider_types')->where('id', $type_id)->first(['id', 'title']);
+        $sliderType  = DB::table('slider_types')->where('id', $type_id)->first(['id']);
         $sliders = DB::table('sliders')->where('slider_type_id', $type_id)->get(['id', 'mobile_image']);
         return view('admin.slider.index', compact('sliders', 'sliderType'));
     }
 
     public function add(Request $request, $type_id)
     {
-        $sliderType  = DB::table('slider_types')->where('id', $type_id)->first(['id', 'title', 'designated_for']);
+        $sliderType  = DB::table('slider_types')->where('id', $type_id)->first(['id','designated_for']);
         if (Helper::G()) {
             return view('admin.slider.add', compact('sliderType'));
         } else {
