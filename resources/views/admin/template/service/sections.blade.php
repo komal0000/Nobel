@@ -2,22 +2,17 @@
     <section id="single-service-qn">
         <div class="main-container">
             <div class="heading text-center text-capitalize mb-4">
-                Understand When To Take This Service
+                {{ $section->title }}
             </div>
             <div class="qn-body">
                 <div class="qn-list">
                     <div class="qn-picture"> {{-- image aspect ratio: 4:2 --}}
-                        <img src="{{ asset('front/img/second-opinion.jpg') }}" height="400" width="800"
+                        <img src="{{ Storage::url($section->image) }}" height="400" width="800"
                             alt="Second Opinion Image">
                     </div>
-                    <div class="heading-sm list-heading">
-                        Heading of the list
+                    <div class="qn-list">
+                        {!! $section->short_desc1 !!}
                     </div>
-                    <ul>
-                        <li>Diagnosed with a critical ailment</li>
-                        <li>Doctors have suggested an invasive surgery</li>
-                        <li>If the recommended treatment is risky, invasive or has lifelong consequences</li>
-                    </ul>
                 </div>
 
             </div>
@@ -27,15 +22,36 @@
     <section id="single-service-qn">
         <div class="main-container">
             <div class="heading text-center text-capitalize mb-4">
-              {{ $section->title }}
+                {{ $section->title }}
             </div>
             <div class="qn-body">
                 <div class="qn-list">
-                   {!! $section->short_desc1 !!}
+                    {!! $section->short_desc1 !!}
                 </div>
                 <div class="qn-picture"> {{-- image aspect ratio: 4:2 --}}
-                    <img src="{{ asset('front/img/second-opinion.jpg') }}" height="400" width="800"
+                    <img src="{{ Storage::url($section->image) }}" height="400" width="800"
                         alt="Second Opinion Image">
+                </div>
+            </div>
+        </div>
+    </section>
+@elseif($section->image_placement == 'center')
+    <section id="single-service-middle-image">
+        <div class="main-container">
+            <div class="heading text-center mb-4">
+                {{ $section->title }}
+            </div>
+            <div class="image-main">
+                <div class="image-left">
+                    {{ $section->short_desc1 }}
+                </div>
+                <div class="image-middle">
+                    <picture>
+                        <img height="300" width="300" src="{{ Storage::url($section->image) }}" alt="">
+                    </picture>
+                </div>
+                <div class="image-right">
+                    {{ $section->short_desc2 }}
                 </div>
             </div>
         </div>

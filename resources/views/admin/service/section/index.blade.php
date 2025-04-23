@@ -12,7 +12,6 @@
         <thead>
             <tr>
                 <th>Title</th>
-                <th>Description</th>
                 <th>Image Placement</th>
                 <th>Actions</th>
             </tr>
@@ -21,8 +20,7 @@
             @foreach ($sections as $section)
                 <tr>
                     <td>{{ $section->title }}</td>
-                    <td>{{ Str::limit($section->short_desc1, 100) }}</td>
-                    <td>{{ $section->image_placement }}</td>
+                    <td>{{ ucfirst($section->image_placement) }}</td>
                     <td>
                         <a href="{{ route('admin.service.section.edit', ['section_id' => $section->id]) }}"
                             class="btn btn-warning btn-sm">Edit</a>
@@ -35,7 +33,6 @@
         <tfoot>
             <tr>
                 <th>Title</th>
-                <th>Description</th>
                 <th>Image Placement</th>
                 <th>Actions</th>
             </tr>
