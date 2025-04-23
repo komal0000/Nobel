@@ -6,7 +6,7 @@
         <div class="update-slider">
             @foreach ($updateData as $data)
                 <div class="update-card">
-                    <div class="d-flex justify-content-center">
+                    <div class="card-image d-flex justify-content-center">
                         <img src="{{ Storage::url($data->image) }}" alt="care">
                     </div>
                     <div class="head">{{ $data->title }}</div>
