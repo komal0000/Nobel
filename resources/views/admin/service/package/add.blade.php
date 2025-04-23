@@ -35,10 +35,11 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6 mb-2">
-                            <label for="gender">Gender</label>
-                            <select name="gender" id="gender" class="form-control">
-                                <option value="0">Male</option>
-                                <option value="1">Female</option>
+                            <label for="category">Category</label>
+                            <select name="category" id="category" class="form-control">
+                                @foreach ($packageCategories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="col-md-6 mb-2">

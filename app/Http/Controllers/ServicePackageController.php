@@ -42,15 +42,16 @@ class ServicePackageController extends Controller
     public function index($type_id)
     {
         $packageType = ServicePackageType::where('id', $type_id)->first();
-        $packages = DB::table('service_packages')->get(['id', 'title', 'price', 'gender', 'age']);
+        $packages = DB::table('service_packages')->get(['id', 'title', 'price', 'age']);
         return view('admin.service.package.index', compact('packages', 'packageType'));
     }
     public function add(Request $request, $type_id)
     {
         $packageType = DB::table('service_package_types')->where('id', $type_id)->first();
         if (Helper::G()) {
+            $packageCategories = DB::table('package_categories')->get(['id', 'title']);
             $services = DB::table('services')->where('has_package', 1)->get(['id', 'title']);
-            return view('admin.service.package.add', compact('services', 'packageType'));
+            return view('admin.service.package.add', compact('services', 'packageType','packageCategories'));
         } else {
             $servicePackage = new ServicePackage();
             $servicePackage->title = $request->title;
@@ -60,7 +61,7 @@ class ServicePackageController extends Controller
             $servicePackage->description = $request->description;
             $servicePackage->age = $request->age;
             $servicePackage->labtest = $request->labtest;
-            $servicePackage->gender = $request->gender;
+            $servicePackage->category = $request->category;
             $servicePackage->type_name = $packageType->type;
             if ($request->hasFile('image')) {
                 $servicePackage->image = $request->file('image')->store('uploads/service/package', 'public');
@@ -75,14 +76,15 @@ class ServicePackageController extends Controller
         $package = ServicePackage::where('id', $package_id)->first();
         $packageType = ServicePackageType::where('id', $package->service_package_type_id)->first();
         if (Helper::G()) {
-            return view('admin.service.package.edit', compact('package', 'packageType'));
+            $packageCategories = DB::table('package_categories')->get(['id', 'title']);
+            return view('admin.service.package.edit', compact('package', 'packageType','packageCategories'));
         } else {
             $package->title = $request->title;
             $package->price = $request->price;
             $package->description = $request->description;
             $package->age = $request->age;
             $package->labtest = $request->labtest;
-            $package->gender = $request->gender;
+            $package->category = $request->category;
             if ($request->hasFile('image')) {
                 $package->image = $request->file('image')->store('uploads/service/package', 'public');
             }

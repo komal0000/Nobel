@@ -17,7 +17,6 @@
                 <tr>
                     <th>Title</th>
                     <th>Price</th>
-                    <th>Gender</th>
                     <th>Age</th>
                     <th>Manage</th>
                 </tr>
@@ -27,7 +26,6 @@
                     <tr>
                         <td>{{ $package->title }}</td>
                         <td>{{ $package->price }}</td>
-                        <td>{{ $package->gender == 0 ? 'Male' : 'Female' }}</td>
                         <td>{{ $package->age }}</td>
                         <td>
                             <a href="{{ route('admin.service.package.edit', ['package_id' => $package->id]) }}"
@@ -42,7 +40,6 @@
                 <tr>
                     <th>Service</th>
                     <th>Price</th>
-                    <th>Gender</th>
                     <th>Age</th>
                     <th>Manage</th>
                 </tr>
