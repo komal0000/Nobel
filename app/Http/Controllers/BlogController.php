@@ -162,7 +162,7 @@ class BlogController extends Controller
                 'image' => asset(Storage::url($case->image)),
                 'url' => route('knowledge.casestudy.single', ['slug' => $case->slug]),
             ]);
-            
+
             Helper::putCache('knowledge.casestudy.'.$blog_id, view('admin.template.knowledge.casestudy.single', compact('case', 'latestCase'))->render());
         }
 
@@ -177,7 +177,7 @@ class BlogController extends Controller
                 'image' => asset(Storage::url($update->image)),
                 'url' => route('update.single', ['slug' => $update->slug]),
             ]);
-            
+
             Helper::putCache('home.update.'.$blog_id, view('admin.template.home.update.single', compact('update', 'latestUpdate'))->render());
         }
 

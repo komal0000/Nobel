@@ -156,12 +156,12 @@ class FrontController extends Controller
     }
 
     public function updateSingle($slug){
-        $update = DB::table('blogs')->where('id', $slug)->first(['id']);
+        $update = DB::table('blogs')->where('slug', $slug)->first(['id']);
         return view('front.pages.home.update.single',compact('slug','update'));
     }
 
     public function newsSingle($slug){
-        $news = DB::table('blogs')->where('id', $slug)->first(['id']);
+        $news = DB::table('blogs')->where('slug', $slug)->first(['id']);
         return view('front.pages.home.news.single',compact('slug', 'news'));
     }
     public function eventSingle($slug){

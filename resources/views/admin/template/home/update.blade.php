@@ -11,7 +11,7 @@
                     </div>
                     <div class="head">{{ $data->title }}</div>
                     <div class="content">{{ $data->short_description }}</div>
-                    <x-hoverBtn href="{{ route('update.single', ['slug' => $data->slug]) }}" class="button">Know
+                    <x-hoverBtn href="{{ route('update.single', $data->slug) }}" class="button">Know
                         More</x-hoverBtn>
                 </div>
             @endforeach
