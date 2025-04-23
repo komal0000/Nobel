@@ -15,14 +15,14 @@
                         <option value="careerIntern">Career Internship</option>
                     </select>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 d-flex align-items-end">
                     <button type="submit" class="btn btn-primary">Add</button>
                 </div>
             </div>
         </form>
     </div>
-    <div class="shadow p-2 bg-white mt-3">
-        <table class="table table-bordered">
+    <div class="shadow p-4 bg-white mt-3">
+        <table id="datatable" class="table table-striped" data-toggle="data-table">
             <thead>
                 <tr>
                     <th>Designation</th>
@@ -32,7 +32,6 @@
             <tbody>
                 @foreach ($sliderTypes as $sliderType)
                     <tr>
-                        <td>{{ $sliderType->title }}</td>
                         <td>{{ ucfirst($sliderType->designated_for) }}</td>
                         <td>
                             <a href="{{ route('admin.slider.type.del', ['type_id' => $sliderType->id]) }}"
@@ -43,5 +42,11 @@
                     </tr>
                 @endforeach
             </tbody>
+            <tfoot>
+                <tr>
+                    <th>Designation</th>
+                    <th>Action</th>
+                </tr>
         </table>
-    @endsection
+    </div>
+@endsection

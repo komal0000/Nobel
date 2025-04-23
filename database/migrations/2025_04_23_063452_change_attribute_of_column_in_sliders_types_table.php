@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('sliders_types', function (Blueprint $table) {
-            //
+        Schema::table('slider_types', function (Blueprint $table) {
+            $table->dropColumn('title');
+            $table->string('designated_for')->unique()->change();
         });
     }
 
@@ -21,8 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('sliders_types', function (Blueprint $table) {
-            //
+        Schema::table('slider_types', function (Blueprint $table) {
+            $table->string('title');
+            $table->string('designated_for')->dropUnique()->change();
         });
     }
 };
