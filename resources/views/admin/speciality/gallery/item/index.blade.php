@@ -11,14 +11,14 @@
         @endforeach
         <span>Sub Specialties</span>/
         <a
-            href="{{ route('admin.speciality.gallery.index', ['speciality_id' => $speciality->id, 'parent_speciality_id' => $parent_speciality_id]) }}">Galleries</a>
+            href="{{ route('admin.speciality.gallery.index', ['speciality_id' => $speciality->id, 'parent_speciality_id' => $parent_speciality_id]) }}">Teams</a>
         /
         <span> {{ $specialityGallery->title }} </span> /
         <span>Items</span>
     @else
         <a href="{{ route('admin.speciality.index') }}">Specialties</a> /
         <span>{{ $speciality->title }}</span> /
-        <a href="{{ route('admin.speciality.gallery.index', ['speciality_id' => $speciality->id]) }}">Galleries</a> /
+        <a href="{{ route('admin.speciality.gallery.index', ['speciality_id' => $speciality->id]) }}">Teams</a> /
         <span> {{ $specialityGallery->title }} </span> /
         <span>Items</span>
     @endif

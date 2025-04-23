@@ -19,7 +19,6 @@ class SpecialityGalleryController extends Controller
             $specialityGallery = DB::table('speciality_galleries')->where('specialty_id',$parent_speciality_id)->get(['id', 'title', 'description']);
         }else{
             $specialityGallery = DB::table('speciality_galleries')->where("specialty_id",$speciality_id)->get(['id', 'title', 'description']);
-
         }
         return view('admin.speciality.gallery.index', compact("parent_speciality_id",'speciality','specialityGallery'));
     }
@@ -35,9 +34,6 @@ class SpecialityGalleryController extends Controller
             $specialityGallery->title = $request->title;
             $specialityGallery->description = $request->description;
             $specialityGallery->specialty_id = $speciality_id;
-            if (request()->hasFile('file')) {
-                $specialityGallery->icon = $request->file('icon')->store('uploads/images', 'public');
-            }
             $specialityGallery->save();
             $this->GalleryItemRender($speciality_id);
             return redirect()->back()->with("success", "Speciality Gallery Successfully Added");
@@ -54,9 +50,6 @@ class SpecialityGalleryController extends Controller
         } else {
             $specialityGallery->title = $request->title;
             $specialityGallery->description = $request->description;
-            if ($request->hasFile('icon')) {
-                $specialityGallery->icon = $request->file('icon')->store('uploads/images', 'public');
-            }
             $specialityGallery->save();
             $this->GalleryItemRender($specialityGallery->specialty_id);
             return redirect()->back()->with("success", "Speciality Gallery Successfully Updated");

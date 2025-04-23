@@ -28,24 +28,18 @@
         method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
-            <div class="col-md-6 mb-3">
-                <label for="icon">Icon <span style="color: red;">*</span></label>
-                <input type="file" class="form-control dropify" id="icon" name="icon" accept="image/*" required>
+            <div class="col-md-4 mb-2">
+                <label for="title">Title <span style="color: red;">*</span></label>
+                <input type="text" class="form-control" id="title" name="title" required>
             </div>
-            <div class="col-md-6">
-                <div class="col-md-12 mb-2">
-                    <label for="title">Title <span style="color: red;">*</span></label>
-                    <input type="text" class="form-control" id="title" name="title" required>
-                </div>
-                <div class="col-md-12 mb-3">
-                    <label for="description">Description <span style="color: red;">*</span></label>
-                    <textarea class="form-control" id="description" name="description" required></textarea>
-                </div>
-                <div class="col-md-12 d-flex justify-content-end">
-                    <button type="submit" class="btn btn-success">
-                        Save
-                    </button>
-                </div>
+            <div class="col-md-8 mb-3">
+                <label for="description">Description <span style="color: red;">*</span></label>
+                <textarea class="form-control" id="description" name="description" required></textarea>
+            </div>
+            <div class="col-md-12 d-flex justify-content-end">
+                <button type="submit" class="btn btn-success">
+                    Save
+                </button>
             </div>
         </div>
     </form>

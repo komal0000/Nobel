@@ -43,7 +43,7 @@
                         <a href="{{ route('admin.speciality.gallery.del', ['gallery_id' => $gallery->id]) }}"
                             class="btn btn-danger btn-sm">Delete</a>
                         <a href="{{ route('admin.speciality.gallery.item.index', ['gallery_id' => $gallery->id, 'parent_speciality_id' => $parent_speciality_id]) }}"
-                            class="btn btn-sm btn-info">Gallery Items</a>
+                            class="btn btn-sm btn-info">Teams Members</a>
                     </td>
                 </tr>
             @endforeach
