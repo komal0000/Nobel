@@ -470,12 +470,31 @@ function toggleFeedback() {
         $(window).off("scroll");
     }
 }
-
-// Search and navigate to speciality
 function SearchSpeciality(slug) {
-    if (!id) return;
+    if (!slug) return;
+    console.log(slug);
     window.location.href = `/speciality/${slug}`;
 }
+document.addEventListener('DOMContentLoaded', function () {
+    const specialtyItems = document.querySelectorAll('.specialty-item');
+    const hiddenInput = document.getElementById('find-doc-speciality-input');
+    const displaySpan = document.querySelector('.default-speciality-item');
+    const searchBtn = document.getElementById('search-btn');
+
+    specialtyItems.forEach(item => {
+        item.addEventListener('click', function () {
+            const selectedSlug = this.getAttribute('data-value');
+            hiddenInput.value = selectedSlug;
+            displaySpan.textContent = this.textContent;
+        });
+    });
+
+    searchBtn.addEventListener('click', function () {
+        const slug = hiddenInput.value;
+        SearchSpeciality(slug); // Call your custom function
+    });
+});
+
 
 // Show speciality dropdown list
 function showList() {
