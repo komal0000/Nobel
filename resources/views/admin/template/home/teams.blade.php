@@ -12,7 +12,7 @@
                 <div class="list-wrap" id="list-wrap">
                     <ul class="find-doc-list-speciality" id="find-doc-speciality">
                         @foreach ($specialities as $specialty)
-                            <li data-value="{{ $specialty->id }}">{{ $specialty->title }}</li>
+                            <li data-value="{{ $specialty->slug }}">{{ $specialty->title }}</li>
                         @endforeach
                     </ul>
                     <input type="hidden" name="find-doc-speciality" id="find-doc-speciality-input">

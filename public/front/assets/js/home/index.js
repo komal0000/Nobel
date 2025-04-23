@@ -472,9 +472,9 @@ function toggleFeedback() {
 }
 
 // Search and navigate to speciality
-function SearchSpeciality(id) {
+function SearchSpeciality(slug) {
     if (!id) return;
-    window.location.href = `/speciality/single/${id}`;
+    window.location.href = `/speciality/${slug}`;
 }
 
 // Show speciality dropdown list

@@ -171,12 +171,14 @@ class BlogController extends Controller
             $update = DB::table('blogs')->where('id', $blog_id)->first();
             $latestUpdate = DB::table('blogs')->where('type', Helper::blog_type_update)->orderBy('id', 'desc')->take(2)->get();
 
-            Helper::putMetaCache('home.update.' . $update->slug, $data = [
-                'title' => $update->title,
-                'description' => $update->short_description,
-                'image' => asset(Storage::url($update->image)),
-                'url' => route('update.single', ['slug' => $update->slug]),
-            ]);
+            if($update){
+                Helper::putMetaCache('home.update.'.$update->slug, $data = [
+                    'title' => $update->title,
+                    'description' => $update->short_description,
+                    'image' => asset(Storage::url($update->image)),
+                    'url' => route('update.single', ['slug' => $update->slug]),
+                ]);
+            }
 
             Helper::putCache('home.update.'.$blog_id, view('admin.template.home.update.single', compact('update', 'latestUpdate'))->render());
         }
