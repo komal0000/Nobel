@@ -141,7 +141,7 @@ class SliderController extends Controller
     }
     public function render($type_id)
     {
-        $sliderType  = DB::table('slider_types')->where('id', $type_id)->first(['id', 'title', 'designated_for']);
+        $sliderType  = DB::table('slider_types')->where('id', $type_id)->first(['id', 'designated_for']);
 
         if ($sliderType->designated_for == 'home') {
             $sliders = DB::table('sliders')->get(['id', 'desktop_image', 'mobile_image']);
