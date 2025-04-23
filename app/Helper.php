@@ -257,4 +257,36 @@ class Helper
 
         return $html;
     }
+
+    public static function deleteCache($_filePath)
+    {
+        $pathDatas = explode('.', $_filePath);
+        if (count($pathDatas) > 0) {
+            $pathDatas[count($pathDatas) - 1] .= '.blade.php';
+        }
+
+        $filePath = implode('/', $pathDatas);
+        $filePath = resource_path("views/front/cache/" . $filePath);
+        if (file_exists($filePath)) {
+            unlink($filePath);
+            return true;
+        }
+
+        return false;
+    }
+    public static function deleteMetaCache($filePath)
+    {
+        $pathDatas = explode('.', $filePath);
+        if (count($pathDatas) > 0) {
+            $pathDatas[count($pathDatas) - 1] .= '.blade.php';
+        }
+
+        $filePath = implode('/', $pathDatas);
+        $filePath = resource_path("views/front/cache/meta/" . $filePath);
+        if (file_exists($filePath)) {
+            unlink($filePath);
+            return true;
+        }
+        return false;
+    }
 }

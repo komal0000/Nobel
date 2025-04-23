@@ -144,7 +144,7 @@ class BlogController extends Controller
         $blog =  Blog::where('id', $blog_id)->first();
         $blog->delete();
         $this->render();
-        $this->renderSingle($blog_id, $blog->type);
+        $this->deleteCache($blog_id, $blog->type);
 
         return redirect()->back()->with('delete_success', 'Successfully Blog Deleted');
     }
@@ -297,5 +297,20 @@ class BlogController extends Controller
         Helper::putCache('home.updates', view('admin.template.home.update', compact('updateData'))->render());
         Helper::putCache('home.newsEvent', view('admin.template.home.news', compact('newsData', 'eventData', 'latestNews', 'eventTypes',))->render());
         Helper::putCache('health.event', view('admin.template.health.event', compact('eventData')));
+    }
+    public function deleteCache($blog_id, $type)
+    {
+        if ($type == Helper::blog_type_news) {
+            Helper::deleteCache('home.news.' . $blog_id);
+            Helper::deleteMetaCache('home.news.' . $blog_id);
+        }
+        if ($type == Helper::blog_type_event) {
+            Helper::deleteCache('event.single.' . $blog_id);
+            Helper::deleteMetaCache('event.' . $blog_id);
+        }
+        if ($type == Helper::blog_type_update) {
+            Helper::deleteCache('home.update.' . $blog_id);
+            Helper::deleteMetaCache('home.update.' . $blog_id);
+        }
     }
 }
