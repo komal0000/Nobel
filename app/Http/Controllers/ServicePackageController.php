@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helper;
+use App\Models\PackageCategory;
 use App\Models\ServicePackage;
 use App\Models\ServicePackageType;
 use Illuminate\Http\Request;
@@ -19,7 +20,7 @@ class ServicePackageController extends Controller
             $existingType = ServicePackageType::where('service_id', $service_id)->first();
             if ($existingType) {
                 return redirect()->back()->with('delete_success', 'This package type already exists for this service');
-            }else{
+            } else {
                 $type = new ServicePackageType();
                 $type->service_id = $service_id;
                 $type->type = $request->type;
@@ -97,14 +98,34 @@ class ServicePackageController extends Controller
         return redirect()->back()->with('delete_success', 'Service package deleted successfully');
     }
 
-    public function render($type_name,$service_id)
+    public function categoryIndex(Request $request)
+    {
+        if (Helper::G()) {
+            $categories = DB::table('package_categories')->get();
+            return view('admin.service.package.category.index', compact('categories'));
+        } else {
+            $category = new PackageCategory();
+            $category->title = $request->title;
+            $category->save();
+            return redirect()->back()->with('success', 'Package category created successfully');
+        }
+    }
+    public function categoryDel($category_id)
+    {
+        PackageCategory::where('id', $category_id)->delete();
+        session()->flash('delete_success', 'Package category successfully deleted');
+        return response()->json(['success' => true]);
+    }
+
+
+    public function render($type_name, $service_id)
     {
         if ($type_name == 'Type 1') {
             $packages1 = DB::table('service_packages')->where('type_name', $type_name)->get();
-            Helper::putCache('service.single.package.'.$service_id,view('admin.template.service.package.type1', compact('packages1'))->render());
+            Helper::putCache('service.single.package.' . $service_id, view('admin.template.service.package.type1', compact('packages1'))->render());
         } else {
             $packages2 = DB::table('service_packages')->where('type_name', $type_name)->get();
-            Helper::putCache('service.single.package'.$service_id,view('admin.template.service.package.type2', compact('packages2'))->render());
+            Helper::putCache('service.single.package' . $service_id, view('admin.template.service.package.type2', compact('packages2'))->render());
         }
     }
 }

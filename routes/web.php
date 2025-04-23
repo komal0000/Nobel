@@ -318,11 +318,16 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
                 Route::match(['GET', 'POST'], 'index/{service_id}', [ServicePackageController::class, 'typeIndex'])->name('index');
                 Route::get('del/{type_id}', [ServicePackageController::class, 'typeDel'])->name('del');
             });
+            Route::prefix('category')->name('category.')->group(function () {
+                Route::match(['GET', 'POST'], 'index', [ServicePackageController::class, 'categoryIndex'])->name('index');
+                Route::get('del/{category_id}', [ServicePackageController::class, 'categoryDel'])->name('del');
+            });
             Route::get('index/{type_id}', [ServicePackageController::class, 'index'])->name('index');
             Route::match(['GET', 'POST'], 'add/{type_id}', [ServicePackageController::class, 'add'])->name('add');
             Route::match(['GET', 'POST'], 'edit/{package_id}', [ServicePackageController::class, 'edit'])->name('edit');
             Route::get('del/{package_id}', [ServicePackageController::class, 'del'])->name('del');
         });
+
     });
     Route::prefix('doctor')->name('doctor.')->group(function () {
         Route::get('', [DoctorController::class, 'index'])->name('index');
