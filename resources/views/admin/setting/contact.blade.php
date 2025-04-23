@@ -83,22 +83,22 @@
                                 <div class="col-md-6">
                                     <label for="facebook">Facebook</label>
                                     <input type="text" name="facebook" id="facebook" class="form-control"
-                                        value="{{ $data->links->facebook ?? '' }}" required>
+                                        value="{{ $data->links->facebook ?? '' }}" >
                                 </div>
                                 <div class="col-md-6">
                                     <label for="twitter">Twitter</label>
                                     <input type="text" name="twitter" id="twitter" class="form-control"
-                                        value="{{ $data->links->twitter ?? '' }}" required>
+                                        value="{{ $data->links->twitter ?? '' }}" >
                                 </div>
                                 <div class="col-md-6">
                                     <label for="instagram">Instagram</label>
                                     <input type="text" name="instagram" id="instagram" class="form-control"
-                                        value="{{ $data->links->instagram ?? '' }}" required>
+                                        value="{{ $data->links->instagram ?? '' }}" >
                                 </div>
                                 <div class="col-md-6">
                                     <label for="youtube">YouTube</label>
                                     <input type="text" name="youtube" id="youtube" class="form-control"
-                                        value="{{ $data->links->youtube ?? '' }}" required>
+                                        value="{{ $data->links->youtube ?? '' }}" >
                                 </div>
                             </div>
                         </div>

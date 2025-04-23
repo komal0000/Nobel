@@ -245,11 +245,15 @@ class ServiceController extends Controller
         if ($service) {
             $faqs = DB::table('service_faqs')->where('service_id', $service_id)->get();
             $benefits = DB::table('service_steps')->where('service_id', $service_id)->get();
+            $section = DB::table('service_sections')->where('service_id', $service_id)->first();
             if ($faqs) {
                 Helper::putCache('service.single.faqs.' . $service_id, view('admin.template.service.faqs', compact('faqs'))->render());
             }
             if ($benefits) {
                 Helper::putCache('service.single.benefit.' . $service_id, view('admin.template.service.benefits', compact('benefits'))->render());
+            }
+            if ($section) {
+                Helper::putCache('service.single.section.' . $service_id, view('admin.template.service.sections', compact('section'))->render());
             }
             Helper::putCache('service.single.overview.' . $service_id, view('admin.template.service.overview', compact('service'))->render());
         }

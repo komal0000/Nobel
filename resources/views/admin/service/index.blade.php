@@ -28,6 +28,8 @@
                             class="btn btn-sm btn-info">
                             Manage Benefits
                         </a>
+                        <a href="{{ route('admin.service.section.index', ['service_id' => $service->id]) }}"
+                            class="btn btn-sm btn-info ">Manage Sections</a>
                         @if ($service->has_package == 1)
                             <a href="{{ route('admin.service.package.type.index', ['service_id' => $service->id]) }}"
                                 class="btn btn-sm btn-info ">Manage Packages</a>

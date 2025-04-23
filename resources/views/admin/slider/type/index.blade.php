@@ -8,10 +8,6 @@
             @csrf
             <div class="row">
                 <div class="col-md-4">
-                    <label for="title">Slider Type Title</label>
-                    <input type="text" name="title" class="form-control">
-                </div>
-                <div class="col-md-4">
                     <label for="designated_for">Sider Designation</label>
                     <select name="designated_for" id="designated_for" class="form-control">
                         <option value="home">Home</option>
@@ -29,7 +25,6 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>Slider Type</th>
                     <th>Designation</th>
                     <th>Action</th>
                 </tr>
