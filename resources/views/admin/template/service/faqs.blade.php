@@ -15,7 +15,6 @@
         </div>
     </div>
 </section>
-<section id="single-service-connect">
     <div class="main-container" >
        <x-sliderComponent  mainClass="serviceSingle" heading="Connect With Us">
           <div class="connect-card">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helper;
 use App\Models\Service;
 use App\Models\ServiceFaq;
+use App\Models\ServiceStep;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -13,7 +14,7 @@ class ServiceController extends Controller
 {
     public function index()
     {
-        $services = DB::table('services')->get(['id', 'title','has_package']);
+        $services = DB::table('services')->get(['id', 'title', 'has_package']);
         return view('admin.service.index', compact('services'));
     }
 
@@ -126,13 +127,69 @@ class ServiceController extends Controller
         return redirect()->back()->with('delete_success', 'FAQ deleted successfully');
     }
 
+    public function benefitIndex($service_id)
+    {
+        $service = Service::where('id', $service_id)->first();
+        $benefits = DB::table('service_steps')->where('service_id', $service_id)->get();
+        return view('admin.service.benefit.index', compact('service', 'benefits'));
+    }
+    public function benefitAdd(Request $request, $service_id)
+    {
+        $service = Service::where('id', $service_id)->first();
+        if (Helper::G()) {
+            return view('admin.service.benefit.add', compact('service'));
+        } else {
+            $benefit = new ServiceStep();
+            $benefit->service_id = $service_id;
+            $benefit->title = $request->title;
+            if ($request->hasFile('icon')) {
+                $benefit->icon = $request->file('icon')->store('uploads/service', 'public');
+            }
+            $benefit->short_desc = $request->short_desc;
+            $benefit->save();
+            $this->renderSingle($service_id);
+            return redirect()->back()->with('success', 'Benefit added successfully');
+        }
+    }
+    public function benefitEdit(Request $request, $benefit_id)
+    {
+        $benefit = ServiceStep::where('id', $benefit_id)->first();
+        $service = Service::where('id', $benefit->service_id)->first();
+        if (Helper::G()) {
+            return view('admin.service.benefit.edit', compact('benefit', 'service'));
+        } else {
+            $benefit->title = $request->title;
+            if ($request->hasFile('icon')) {
+                $benefit->icon = $request->file('icon')->store('uploads/service', 'public');
+            }
+            $benefit->short_desc = $request->short_desc;
+            $benefit->save();
+            $this->renderSingle($service->id);
+            return redirect()->back()->with('success', 'Benefit updated successfully');
+        }
+    }
+    public function benefitDel($benefit_id)
+    {
+        $benefit = DB::table('service_steps')->where('id', $benefit_id)->first();
+        $service = Service::where('id', $benefit->service_id)->first();
+        ServiceStep::where('id', $benefit_id)->delete();
+        $this->renderSingle($service->id);
+        return redirect()->back()->with('delete_success', 'Benefit deleted successfully');
+    }
+
     public function renderSingle($service_id)
     {
         $service = Service::where('id', $service_id)->first();
         if ($service) {
             $faqs = DB::table('service_faqs')->where('service_id', $service_id)->get();
-            Helper::putCache('service.single.overview.'.$service_id, view('admin.template.service.overview', compact('service'))->render());
-            Helper::putCache('service.single.faqs.'.$service_id, view('admin.template.service.faqs', compact('faqs'))->render());
+            $benefits = DB::table('service_steps')->where('service_id', $service_id)->get();
+            if ($faqs) {
+                Helper::putCache('service.single.faqs.' . $service_id, view('admin.template.service.faqs', compact('faqs'))->render());
+            }
+            if ($benefits) {
+                Helper::putCache('service.single.benefit.' . $service_id, view('admin.template.service.benefits', compact('benefits'))->render());
+            }
+            Helper::putCache('service.single.overview.' . $service_id, view('admin.template.service.overview', compact('service'))->render());
         }
     }
     public function reder()

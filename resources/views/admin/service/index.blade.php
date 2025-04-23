@@ -24,6 +24,10 @@
                             class="btn btn-danger btn-sm">Delete</a>
                         <a href="{{ route('admin.service.faq.index', ['service_id' => $service->id]) }}"
                             class="btn btn-sm btn-info ">Manage FAQs</a>
+                        <a href="{{ route('admin.service.benefit.index', ['service_id' => $service->id]) }}"
+                            class="btn btn-sm btn-info">
+                            Manage Benefits
+                        </a>
                         @if ($service->has_package == 1)
                             <a href="{{ route('admin.service.package.type.index', ['service_id' => $service->id]) }}"
                                 class="btn btn-sm btn-info ">Manage Packages</a>

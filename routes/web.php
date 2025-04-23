@@ -301,6 +301,12 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
             Route::match(['GET', 'POST'], 'edit/{faq_id}', [ServiceController::class, 'faqEdit'])->name('edit');
             Route::get('del/{faq_id}', [ServiceController::class, 'faqDel'])->name('del');
         });
+        Route::prefix('benefit')->name('benefit.')->group(function () {
+            Route::get('index/{service_id}', [ServiceController::class, 'benefitIndex'])->name('index');
+            Route::match(['GET', 'POST'], 'add/{service_id}', [ServiceController::class, 'benefitAdd'])->name('add');
+            Route::match(['GET', 'POST'], 'edit/{benefit_id}', [ServiceController::class, 'benefitEdit'])->name('edit');
+            Route::get('del/{benefit_id}', [ServiceController::class, 'benefitDel'])->name('del');
+        });
         Route::prefix('package')->name('package.')->group(function () {
             Route::prefix('type')->name('type.')->group(function () {
                 Route::match(['GET', 'POST'], 'index/{service_id}', [ServicePackageController::class, 'typeIndex'])->name('index');

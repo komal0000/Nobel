@@ -8715,6 +8715,57 @@ hr {
   color: var(--color-main);
 }
 
+#single-service-qn .qn-body {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+@media (max-width: 991px) {
+  #single-service-qn .qn-body {
+    flex-direction: column;
+  }
+}
+#single-service-qn .qn-body > * {
+  padding: 0 15px;
+  width: 45%;
+}
+@media (max-width: 991px) {
+  #single-service-qn .qn-body > * {
+    padding: 0;
+    width: 100%;
+  }
+  #single-service-qn .qn-body > *:nth-child(2) {
+    padding-top: 14px;
+  }
+}
+#single-service-qn .qn-body .qn-list .list-heading {
+  color: var(--color-black);
+}
+#single-service-qn .qn-body .qn-list ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  padding-left: 15px;
+  margin-bottom: 10px;
+}
+#single-service-qn .qn-body .qn-list ul li {
+  padding: 6px;
+  padding-left: 4px;
+  font-weight: 500;
+}
+#single-service-qn .qn-body .qn-list ul li::marker {
+  color: var(--color-main);
+  content: "▶";
+  font-size: 15px;
+}
+#single-service-qn .qn-body .qn-picture img {
+  width: 100%;
+  height: auto;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border-radius: 20px;
+}
+
 #single-service-faq .faq-container {
   -moz-column-count: 2;
        column-count: 2;
@@ -8767,6 +8818,127 @@ hr {
   visibility: visible;
   max-height: 500px;
   opacity: 1;
+}
+
+#single-service-why-our-labs .why-labs-card {
+  background: url("/front/assets/img/health-library/pattern-bg.png") top left repeat #fff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  margin: 15px;
+  padding: 30px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: space-around;
+}
+#single-service-why-our-labs .why-labs-card i {
+  font-size: 60px;
+}
+#single-service-why-our-labs .why-labs-card .card-title {
+  font-size: 22px;
+  height: 3lh;
+  font-weight: 600;
+  color: var(--color-dark-grey);
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+@media (max-width: 768px) {
+  #single-service-why-our-labs .why-labs-card .card-title {
+    font-size: 18px;
+    line-height: 21px;
+    height: 42px;
+  }
+}
+#single-service-why-our-labs .why-labs-card .para-wrap {
+  font-weight: 600;
+}
+
+#single-service-elder .package-list .package-slider {
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  display: flex;
+  flex-wrap: nowrap;
+  margin: 0 15px;
+}
+#single-service-elder .package-list .package-slider .slick-prev {
+  left: -15px;
+}
+#single-service-elder .package-list .package-slider .slick-next {
+  right: -15px;
+}
+#single-service-elder .package-list .package-slider .draggable {
+  overflow: hidden;
+  border-radius: 20px;
+}
+#single-service-elder .package-list .package-slider .each-package {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border-right: 1px solid var(--border-color);
+  height: 100%;
+}
+#single-service-elder .package-list .package-slider .each-package:last-child {
+  border-right: none;
+}
+#single-service-elder .package-list .package-slider .each-package .heading-sm {
+  text-align: center;
+  text-transform: capitalize;
+  padding: 20px 0;
+  font-weight: 700;
+  background-color: var(--color-main);
+  color: var(--color-white);
+}
+#single-service-elder .package-list .package-slider .each-package .package-body {
+  padding: 15px;
+}
+#single-service-elder .package-list .package-slider .each-package .package-body ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+#single-service-elder .package-list .package-slider .each-package .package-body ul li {
+  text-transform: capitalize;
+  text-align: center;
+  padding: 8px 0;
+  font-weight: 600;
+  font-size: 16px;
+}
+#single-service-elder .package-list .package-slider .each-package .package-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border-color);
+  padding: 15px;
+}
+#single-service-elder .package-list .package-slider .each-package .package-price .price {
+  font-weight: 700;
+  font-size: 18px;
+}
+#single-service-elder .package-list .package-slider .each-package .package-price .enroll-btn {
+  font-weight: 700;
+  font-size: 15px;
+  padding: 8px 12px;
+  background-color: var(--color-white);
+  color: var(--color-main);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+#single-service-elder .package-list .package-slider .each-package .package-price .enroll-btn:hover {
+  color: var(--color-white);
+  background-color: var(--color-main);
+  border-color: var(--color-main);
+}
+
+#enrollModal form .form-select {
+  text-transform: capitalize;
 }
 
 #single-service-our-services .our-service-card {

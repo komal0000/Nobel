@@ -1,7 +1,7 @@
 @extends('admin.layout.app')
 @section('title')
     <a href="{{ route('admin.service.index') }}">Services</a> /
-    <a href="{{ route('admin.service.faq.index', ['service_id' => $service->id]) }}">{{ $service->title }}</a> /
+    <a href="{{ route('admin.service.faq.index', ['service_id' => $service->id]) }}">FAQs</a> /
     <span>Edit</span>
 @endsection
 @section('content')

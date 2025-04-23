@@ -2,29 +2,29 @@
 @section('title')
     <a href="{{ route('admin.service.index') }}">Services</a> /
     <span>{{ $service->title }}</span> /
-    <span>FAQs</span>
+    <span>Benefits</span>
 @endsection
 @section('btn')
-    <a href="{{ route('admin.service.faq.add', ['service_id' => $service->id]) }}" class="btn btn-primary">Add FAQ</a>
+    <a href="{{ route('admin.service.benefit.add', ['service_id' => $service->id]) }}" class="btn btn-primary">Add</a>
 @endsection
 @section('content')
     <table id="datatable" class="table table-striped" data-toggle="data-table">
         <thead>
             <tr>
-                <th>Question</th>
-                <th>Answer</th>
+                <th>Title</th>
+                <th>Description</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($faqs as $faq)
+            @foreach ($benefits as $benefit)
                 <tr>
-                    <td>{{ $faq->question }}</td>
-                    <td>{{ Str::limit($faq->answer, 100) }}</td>
+                    <td>{{ $benefit->title }}</td>
+                    <td>{{ Str::limit($benefit->short_desc, 100) }}</td>
                     <td>
-                        <a href="{{ route('admin.service.faq.edit', ['faq_id' => $faq->id]) }}"
+                        <a href="{{ route('admin.service.benefit.edit', ['benefit_id' => $benefit->id]) }}"
                             class="btn btn-warning btn-sm">Edit</a>
-                        <a href="{{ route('admin.service.faq.del', ['faq_id' => $faq->id]) }}"
+                        <a href="{{ route('admin.service.benefit.del', ['benefit_id' => $benefit->id]) }}"
                             class="btn btn-danger btn-sm">Delete</a>
                     </td>
                 </tr>
@@ -32,8 +32,8 @@
         </tbody>
         <tfoot>
             <tr>
-                <th>Question</th>
-                <th>Answer</th>
+                <th>Title</th>
+                <th>Description</th>
                 <th>Actions</th>
             </tr>
         </tfoot>

@@ -1,13 +1,14 @@
 @extends('front.layout.app')
 
 @section('metaData')
-    @includeIf('front.cache.meta.service.'.$slug)
+    @includeIf('front.cache.meta.service.' . $slug)
 @endsection
 
 @section('content')
-    @includeIf('front.cache.service.single.overview.'.$service->id)
-    @includeIf('front.cache.service.single.package.'.$service->id)
-    @includeIf('front.cache.service.single.faqs.'.$service->id)
+    @includeIf('front.cache.service.single.overview.' . $service->id)
+    @includeIf('front.cache.service.single.package.' . $service->id)
+    @includeIf('front.cache.service.single.benefit.' . $service->id)
+    @includeIf('front.cache.service.single.faqs.' . $service->id)
 @endsection
 @section('js')
     <script>
@@ -68,6 +69,36 @@
                         },
                     },
                 ],
+            })
+            $('.why-labs-slider').slick({
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                infinite: true,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                arrows: true,
+                prevArrow: '<button class="slick-prev left-arrow"><img src="{{ asset('front/assets/img/vector-left.png') }}" alt="Left Arrow"></button>',
+                nextArrow: '<button class="slick-next right-arrow"><img src="{{ asset('front/assets/img/vector-right.png') }}" alt="Right Arrow"></button>',
+
+                responsive: [{
+                        breakpoint: 1299,
+                        settings: {
+                            slidesToShow: 3
+                        }
+                    },
+                    {
+                        breakpoint: 991,
+                        settings: {
+                            slidesToShow: 2
+                        }
+                    },
+                    {
+                        breakpoint: 500,
+                        settings: {
+                            slidesToShow: 1
+                        }
+                    }
+                ]
             })
 
             $('.question').on('click', function() {
