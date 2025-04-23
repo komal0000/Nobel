@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helper;
 use App\Models\Service;
 use App\Models\ServiceFaq;
+use App\Models\ServiceSection;
 use App\Models\ServiceStep;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -175,6 +176,67 @@ class ServiceController extends Controller
         ServiceStep::where('id', $benefit_id)->delete();
         $this->renderSingle($service->id);
         return redirect()->back()->with('delete_success', 'Benefit deleted successfully');
+    }
+    public function sectionIndex($service_id)
+    {
+        $service = Service::where('id', $service_id)->first();
+        $sections = DB::table('service_sections')->where('service_id', $service_id)->get();
+        return view('admin.service.section.index', compact('service', 'sections'));
+    }
+
+    public function sectionAdd(Request $request, $service_id)
+    {
+        $service = Service::where('id', $service_id)->first();
+        if (Helper::G()) {
+            return view('admin.service.section.add', compact('service'));
+        } else {
+            $section = new ServiceSection();
+            $section->service_id = $service_id;
+            $section->title = $request->title;
+            $section->short_desc1 = $request->short_desc1;
+            $section->short_desc2 = $request->short_desc2;
+            $section->image_placement = $request->image_placement;
+
+            if ($request->hasFile('image')) {
+                $section->image = $request->file('image')->store('uploads/service/sections', 'public');
+            }
+
+            $section->save();
+            $this->renderSingle($service_id);
+            return redirect()->back()->with('success', 'Section added successfully');
+        }
+    }
+
+    public function sectionEdit(Request $request, $section_id)
+    {
+        $section = ServiceSection::where('id', $section_id)->first();
+        $service = Service::where('id', $section->service_id)->first();
+
+        if (Helper::G()) {
+            return view('admin.service.section.edit', compact('section', 'service'));
+        } else {
+            $section->title = $request->title;
+            $section->short_desc1 = $request->short_desc1;
+            $section->short_desc2 = $request->short_desc2;
+            $section->image_placement = $request->image_placement;
+
+            if ($request->hasFile('image')) {
+                $section->image = $request->file('image')->store('uploads/service/sections', 'public');
+            }
+
+            $section->save();
+            $this->renderSingle($service->id);
+            return redirect()->back()->with('success', 'Section updated successfully');
+        }
+    }
+
+    public function sectionDel($section_id)
+    {
+        $section = ServiceSection::where('id', $section_id)->first();
+        $service = Service::where('id', $section->service_id)->first();
+        ServiceSection::where('id', $section_id)->delete();
+        $this->renderSingle($service->id);
+        return redirect()->back()->with('delete_success', 'Section deleted successfully');
     }
 
     public function renderSingle($service_id)

@@ -307,6 +307,12 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
             Route::match(['GET', 'POST'], 'edit/{benefit_id}', [ServiceController::class, 'benefitEdit'])->name('edit');
             Route::get('del/{benefit_id}', [ServiceController::class, 'benefitDel'])->name('del');
         });
+        Route::prefix('section')->name('section.')->group(function () {
+            Route::get('index/{service_id}', [ServiceController::class, 'sectionIndex'])->name('index');
+            Route::match(['GET', 'POST'], 'add/{service_id}', [ServiceController::class, 'sectionAdd'])->name('add');
+            Route::match(['GET', 'POST'], 'edit/{section_id}', [ServiceController::class, 'sectionEdit'])->name('edit');
+            Route::get('del/{section_id}', [ServiceController::class, 'sectionDel'])->name('del');
+        });
         Route::prefix('package')->name('package.')->group(function () {
             Route::prefix('type')->name('type.')->group(function () {
                 Route::match(['GET', 'POST'], 'index/{service_id}', [ServicePackageController::class, 'typeIndex'])->name('index');
