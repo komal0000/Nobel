@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::table('slider_types', function (Blueprint $table) {
             $table->dropColumn('title');
-            $table->string('designated_for')->unique()->change();
         });
     }
 
@@ -24,7 +23,6 @@ return new class extends Migration
     {
         Schema::table('slider_types', function (Blueprint $table) {
             $table->string('title');
-            $table->string('designated_for')->dropUnique()->change();
         });
     }
 };
