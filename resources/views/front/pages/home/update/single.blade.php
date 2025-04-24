@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-@includeIf('front.cache.home.update.' . $update->id);
+@includeIf('front.cache.home.update.'. $slug);
 @endsection
 
 @section('js')

@@ -87,7 +87,7 @@ class BlogController extends Controller
                 $blog->image = $request->file('image')->store("uploads/blogcategory/{$blogCategory->type}", 'public');
             };
             if($request->hasFile('single_page_image')) {
-                $blog->single_page_image = $request->file('single_page_image')->store("uploads/blogcategory/{$blogCategory->type}", 'public');
+                $blog->single_page_image = $request->file('single_page_image')->store("uploads/blogcategory/{$blogCategory->type}");
             }
             $blog->type = $type;
             $blog->text = $request->text;
@@ -180,7 +180,7 @@ class BlogController extends Controller
                 ]);
             }
 
-            Helper::putCache('home.update.'.$blog_id, view('admin.template.home.update.single', compact('update', 'latestUpdate'))->render());
+            Helper::putCache('home.update.'.$update->slug, view('admin.template.home.update.single', compact('update', 'latestUpdate'))->render());
         }
 
         //News single page

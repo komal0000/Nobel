@@ -94,7 +94,7 @@
             <div class="accor-list wow fadeInUp">
                 <ul class="list-accor">
                     @foreach ($HomeCareData as $data)
-                        <li onclick="expand(this)">
+                        <li onclick="expandResLi(this)">
                             <h3 class="heading-sm accor-heading">{{ $data->title }}</h3>
                             <div class="accor-collapse-wrapper">
                                 <img loading="lazy" src="{{ Storage::url($data->image) }}" alt="Why Nobel"

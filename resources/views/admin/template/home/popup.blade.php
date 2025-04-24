@@ -7,12 +7,11 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <img class="w-100 img-fluid" src="{{ Storage::url($popup->image) }}" alt="">
+                        <img class="w-100 img-fluid" src="{{ asset($popup->image) }}" alt="">
                     </div>
                 </div>
             </div>
         </div>
     @else
-
     @endif
 @endforeach
