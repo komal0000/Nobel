@@ -56,6 +56,8 @@ $data = App\Helper::getSetting('top_favicon', true);
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
 
+    <script src="{{ asset('front/assets/js/navbar/index.js') }}"></script>
+
     <script>
         window.appConfig = window.appConfig || {};
         window.appConfig.showSectionNav = false;
@@ -174,37 +176,6 @@ $data = App\Helper::getSetting('top_favicon', true);
 
 
         });
-
-        function extendSubMenu(el) {
-            if ($(window).width() < 1300) {
-                if ($(el).hasClass('active-list')) {
-                    $(el).removeClass('active-list');
-                    return;
-                }
-                $('.navbar-item').removeClass('active-list');
-                $(el).addClass('active-list');
-            }
-        }
-
-        function extendKnowledgeSubMenu(el, event) {
-            if ($(window).width() < 1300) {
-                event.stopPropagation();
-                $(el).toggleClass('active-knowledge');
-            }
-        }
-
-        function toggleFeedback() {
-            if ($(window).width() < 481) {
-                $(window).on("scroll", function () {
-                    $(".feedback-contact").toggleClass('hide-feedback', $(window).scrollTop() > 100);
-                });
-            } else {
-                $(window).off("scroll");
-            }
-        }
-
-        toggleFeedback();
-        $(window).on('resize', toggleFeedback);
     </script>
     <script>
         let breadcrumbsVisible = false;

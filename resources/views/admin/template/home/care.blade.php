@@ -98,7 +98,7 @@
                             <h3 class="heading-sm accor-heading">{{ $data->title }}</h3>
                             <div class="accor-collapse-wrapper">
                                 <img loading="lazy" src="{{ Storage::url($data->image) }}" alt="Why Nobel"
-                                    width="460" height="460">
+                                    width="460" height="460" class="ratio ratio-1x1">
                                 <div class="common-button">
                                     <x-hoverBtn href="#" class="anchor-button">Know More
                                     </x-hoverBtn>

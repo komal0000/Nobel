@@ -25,7 +25,9 @@ function initSliders() {
     // Top banner slider
     $('.top-banner-slider').slick({
         arrows: false,
-        dots: true
+        dots: true,
+        autoplay: true,
+        autoplaySpeed: 2000
     });
 
     // Floating tabs slider - responsive
@@ -298,31 +300,8 @@ function setupEventListeners() {
         changeTab(this);
     });
 
-    // Mobile nav toggle
-    $('#toggle-navbar').on('click', function () {
-        $('#navbar').toggleClass('show-navbar');
-        $('#navbar').css({
-            'transform': 'scale(1)'
-        });
-
-        // Toggle icon
-        $('.open-icon, .close-icon').toggleClass('d-none');
-    });
-
-    // Menu toggles for header dropdowns
-    $('.navbar-item').on('click', function () {
-        extendSubMenu(this);
-    });
-
-    // Knowledge submenu toggle (with stop propagation)
-    $('.knowledge-drop').on('click', function (e) {
-        extendKnowledgeSubMenu(this, e);
-    });
-
     // Footer accordion for mobile
-    $('.footer-block').on('click', function () {
-        expand(this);
-    });
+    
 
     // Why us mobile accordion
     $('.accor-list li, .list-accor li').on('click', function () {
@@ -351,10 +330,6 @@ function setupEventListeners() {
         $('#find-doc-speciality-input').val(selectedValue);
         $('#list-wrap').hide();
     });
-
-    // Initialize responsive feedback toggle
-    toggleFeedback();
-    $(window).on("resize", toggleFeedback);
 }
 
 /**
@@ -436,40 +411,6 @@ function expandRespLi(el) {
     $(el).addClass('active');
 }
 
-// Handle submenu display in header
-function extendSubMenu(el) {
-    if ($(el).hasClass('active-list')) {
-        $(el).removeClass('active-list');
-        return;
-    }
-    $('.navbar-item').removeClass('active-list');
-    $(el).addClass('active-list');
-}
-
-// Handle knowledge submenu display in header
-function extendKnowledgeSubMenu(el, event) {
-    event.stopPropagation();
-    if ($(el).hasClass('active-knowledge')) {
-        $(el).removeClass('active-knowledge');
-        return;
-    }
-    $(el).addClass('active-knowledge');
-}
-
-// Show/hide feedback based on scroll position on mobile
-function toggleFeedback() {
-    if ($(window).width() < 481) {
-        $(window).on("scroll", function () {
-            if ($(window).scrollTop() > 100) {
-                $(".feedback-contact").addClass('hide-feedback');
-            } else {
-                $(".feedback-contact").removeClass('hide-feedback');
-            }
-        });
-    } else {
-        $(window).off("scroll");
-    }
-}
 function SearchSpeciality(slug) {
     if (!slug) return;
     console.log(slug);

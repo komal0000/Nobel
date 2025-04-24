@@ -48,17 +48,3 @@
     </ul>
 
 </div>
-@push('js')
-    <script>
-        $(document).ready(function() {
-            $('#toggle-navbar').click(function() {
-                console.log('click');
-
-                $('#navbar').toggleClass('show-navbar');
-                $('#navbar').css({
-                    'transform': 'scale(1)'
-                })
-            })
-        })
-    </script>
-@endpush
