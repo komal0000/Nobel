@@ -39,7 +39,7 @@
                 <div class="col-md-12">
                     <label for="icon">Icon 1:1 </label>
                     <input type="file" class="form-control dropify" id="icon" name="icon" accept="image/*"
-                        data-default-file="{{ Storage::url($SectionStep->icon) }}">
+                        data-default-file="{{ asset($SectionStep->icon) }}">
                 </div>
             </div>
             <div class="col-md-6">

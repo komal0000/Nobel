@@ -35,7 +35,7 @@
                         <div class="doctor-card">
                             <div class="header">
                                 <div class="doc-img">
-                                    <img src="{{ Storage::url($doctor->image) }}" alt="Doctor Image">
+                                    <img src="{{ asset($doctor->image) }}" alt="Doctor Image">
                                 </div>
                                 <div class="doc-desc">
                                     <button class="share-btn">

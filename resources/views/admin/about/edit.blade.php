@@ -11,7 +11,7 @@
                 <div class="col-md-12 mb-3">
                     <label for="image">Image</label>
                     <input type="file" class="form-control dropify" id="image" name="image" accept="image/*"
-                        data-default-file="{{ Storage::url($about->image) }}">
+                        data-default-file="{{ asset($about->image) }}">
                     <small class="text-muted">Leave empty to keep the current image</small>
                 </div>
             </div>

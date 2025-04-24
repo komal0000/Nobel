@@ -1,6 +1,6 @@
 @extends('admin.layout.app')
 @section('title')
-    <a href="{{ route('admin.slider.index') }}">Sliders</a> /
+    <a href="{{ route('admin.slider.index', $slider->id) }}">Sliders</a> /
     <span>Edit</span>
 @endsection
 @section('content')
@@ -11,11 +11,11 @@
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="desktop_image">Desktop Image 4:1  <span style="color: red;">*</span></label>
-                        <input type="file" class="form-control dropify" id="desktop_image" name="desktop_image" accept="image/*" data-default-file="{{ Storage::url($slider->desktop_image) }}">
+                        <input type="file" class="form-control dropify" id="desktop_image" name="desktop_image" accept="image/*" data-default-file="{{ asset($slider->desktop_image) }}">
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="mobile_image">Mobile Image 4:3 <span style="color: red;">*</span></label>
-                        <input type="file" class="form-control dropify" id="mobile_image" name="mobile_image" accept="image/*" data-default-file="{{ Storage::url($slider->mobile_image) }}">
+                        <input type="file" class="form-control dropify" id="mobile_image" name="mobile_image" accept="image/*" data-default-file="{{ asset($slider->mobile_image) }}">
                     </div>
                 </div>
             </div>

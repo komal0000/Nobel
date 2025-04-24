@@ -16,7 +16,7 @@
                     <div class="col-md-12 mb-3">
                         <label for="image">Package Image <span style="color: red;">*</span></label>
                         <input type="file" class="form-control dropify" id="image" name="image" accept="image/*"
-                            data-default-file="{{ Storage::url($package->image) }}">
+                            data-default-file="{{ asset($package->image) }}">
                     </div>
                 </div>
                 <div class="col-md-6">

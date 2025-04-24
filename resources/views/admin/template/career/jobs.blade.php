@@ -8,7 +8,7 @@
                 @foreach ($jobcategories as $jobcategory)
                     <div class="each-card">
                         <div class="image-container">
-                            <img src="{{ Storage::url($jobcategory->icon) }}" alt="Card Image" class="img-fluid">
+                            <img src="{{ asset($jobcategory->icon) }}" alt="Card Image" class="img-fluid">
                         </div>
                         <div class="body">
                             <h3 class="heading">{{ $jobcategory->title }}</h3>

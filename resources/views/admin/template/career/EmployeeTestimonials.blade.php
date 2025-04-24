@@ -6,7 +6,7 @@
         @foreach ($testimonials as $testimonial)
         <div class="each-card">
             <div class="image-container">
-                <img src="{{ Storage::url($testimonial->image) }}" alt="Card Image" class="img-fluid">
+                <img src="{{ asset($testimonial->image) }}" alt="Card Image" class="img-fluid">
             </div>
             <div class="body">
                 <h3 class="heading">{{$testimonial->title}}</h3>

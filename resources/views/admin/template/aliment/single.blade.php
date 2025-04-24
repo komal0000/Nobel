@@ -1,10 +1,10 @@
 <section id="ailment-banner">
     <div class="wrapper">
         <picture class="img-wrap">
-            <source media="(min-width: 768px)" srcset="{{ Storage::url($aliment->single_page_image) }}">
-            <source media="(min-width: 320px)" srcset="{{ Storage::url($aliment->single_page_image) }}">
+            <source media="(min-width: 768px)" srcset="{{ asset($aliment->single_page_image) }}">
+            <source media="(min-width: 320px)" srcset="{{ asset($aliment->single_page_image) }}">
 
-            <img src="{{ Storage::url($aliment->single_page_image) }}" class="img-fluid" alt="Treatment Banner Image">
+            <img src="{{ asset($aliment->single_page_image) }}" class="img-fluid" alt="Treatment Banner Image">
         </picture>
         <div class="banner-wrapper">
             <div class="banner-title">

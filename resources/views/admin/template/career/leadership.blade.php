@@ -12,14 +12,14 @@
                             <div class="heading-sm mb-2">{{ $leadership->position }}</div>
                             <div class="para">{{ $leadership->description }}</div>
                         </div>
-                        <img src="{{ Storage::url($leadership->image) }}" alt="Position Name">
+                        <img src="{{ asset($leadership->image) }}" alt="Position Name">
                     </div>
                 @endforeach
             </div>
             <div class="slider-nav">
                 @foreach ($leaderships as $leadership)
                     <div class="each-card-nav">
-                        <img src="{{ Storage::url($leadership->image) }}" alt="Position Name">
+                        <img src="{{ asset($leadership->image) }}" alt="Position Name">
                     </div>
                 @endforeach
             </div>

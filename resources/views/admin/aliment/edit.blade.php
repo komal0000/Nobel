@@ -23,13 +23,13 @@
                 <div class="col-md-6">
                     <label for="aliment_icon">Icon 1:1<span style="color: red;">*</span></label>
                     <input type="file" class="form-control dropify" id="aliment_icon" name="icon" accept="image/*"
-                        data-default-file="{{ Storage::url($aliment->icon) }}">
+                        data-default-file="{{ asset($aliment->icon) }}">
                 </div>
                 <div class="col-md-6">
                     <label for="aliment_single_page_image">Single Page Image <span style="color: red;">*</span></label>
                     <input type="file" class="form-control dropify" id="aliment_single_page_image"
                         name="single_page_image" accept="image/*"
-                        data-default-file="{{ Storage::url($aliment->single_page_image) }}">
+                        data-default-file="{{ asset($aliment->single_page_image) }}">
                 </div>
             </div>
         </div>
@@ -77,7 +77,7 @@
                                     <label for="image_{{ $type->id }}">Image</label>
                                     <input type="file" name="image" id="image_{{ $type->id }}"
                                         class="form-control dropify" accept="image/*"
-                                        data-default-file="{{ $section && $section->image ? Storage::url($section->image) : '' }}">
+                                        data-default-file="{{ $section && $section->image ? asset($section->image) : '' }}">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="row">

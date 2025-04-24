@@ -7,7 +7,7 @@
         <div class="d-flex flex-column flex-xl-row justify-content-between gap-5">
             @if ($latestNews)
                 <div class="post-card d-none d-xl-block">
-                    <img src="{{ Storage::url($latestNews->image) }}" alt="Post Image" class="img-fluid">
+                    <img src="{{ asset($latestNews->image) }}" alt="Post Image" class="img-fluid">
                     <div class="body">
                         <div class="date">{{ \App\Helper::formatTimestampToDateString($latestNews->date) }}</div>
                         <p class="content">{{ $latestNews->title }}</p>
@@ -23,7 +23,7 @@
                 @foreach ($newsData as $data)
                     <div class="list-card">
                         <div class="list">
-                            <img class="img-fluid" src="{{ Storage::url($data->image) }}" alt="Post Image">
+                            <img class="img-fluid" src="{{ asset($data->image) }}" alt="Post Image">
                             <div class="body d-flex flex-column gap-2">
                                 <div class="date">{{ \App\Helper::formatTimestampToDateString($data->date) }}</div>
                                 <div class="content">
@@ -43,7 +43,7 @@
                     @foreach ($newsData as $data)
                         <div class="event-card">
                             <div class="img-wrapper">
-                                <img src="{{ Storage::url($data->image) }}" alt="Staff">
+                                <img src="{{ asset($data->image) }}" alt="Staff">
                             </div>
                             <div class="content p-3">
                                 <div class="date mb-3">{{ \App\Helper::formatTimestampToDateString($data->date) }}

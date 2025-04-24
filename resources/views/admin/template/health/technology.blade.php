@@ -7,7 +7,7 @@
             @foreach ($technologiesIndex as $technology)
                 <div class="tech-card d-flex flex-column flex-xl-row-reverse m-3 rounded-4 overflow-hidden">
                     <div class="img-wrapper">
-                        <img class="w-100 img-fluid" src="{{ Storage::url($technology->image) }}" alt="Doctor">
+                        <img class="w-100 img-fluid" src="{{ asset($technology->image) }}" alt="Doctor">
                         alt="Doctor">
                     </div>
                     <div class="body d-flex flex-column justify-content-center p-4">

@@ -41,7 +41,7 @@
                         @if($item->icon ?? $item->image ?? null)
                         <div class="img-side px-3">
                             <div class="treatment-img">
-                                <img src="{{ Storage::url($item->icon ?? $item->image) }}" alt="{{ $item->title}}">
+                                <img src="{{ asset($item->icon ?? $item->image) }}" alt="{{ $item->title}}">
                             </div>
                         </div>
                         @endif

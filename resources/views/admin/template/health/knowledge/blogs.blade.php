@@ -3,7 +3,7 @@
         @foreach ($indexBlogs as $blog )
         <div class="each-card">
             <div class="img-wrapper">
-                <img src="{{ Storage::url($blog->image)}}" alt="Blog">
+                <img src="{{ asset($blog->image)}}" alt="Blog">
             </div>
             <div class="body">
                 <div class="type mb-2">{{$blog->title}}</div>

@@ -13,7 +13,7 @@
                 <div class="col-md-12 mb-3">
                     <label for="icon">Icon </label>
                     <input type="file" name="icon" id="icon" class="form-control dropify"
-                        data-default-file="{{ $benefit->icon ? Storage::url($benefit->icon) : '' }}">
+                        data-default-file="{{ $benefit->icon ? asset($benefit->icon) : '' }}">
                 </div>
             </div>
             <div class="col-md-6">

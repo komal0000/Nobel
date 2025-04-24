@@ -13,7 +13,7 @@
         <div class="main-container">
             <div class="d-flex flex-column flex-md-row gap-4">
                 <div class="img-wrap">
-                    <img src="{{ Storage::url($about->image) }}" alt="About Nobel Image">
+                    <img src="{{ asset($about->image) }}" alt="About Nobel Image">
                 </div>
                 <div class="content align-self-center d-flex flex-column gap-4">
                     <div class="heading">
@@ -31,7 +31,7 @@
             <div class="heading text-center mb-4">{{ $about->title }}</div>
             <div class="content">
                 <div class="img-wrapper">
-                    <img src="{{ Storage::url($about->image) }}" alt="Mission Image">
+                    <img src="{{ asset($about->image) }}" alt="Mission Image">
                 </div>
                 <div class="heading-sm text-center">
                     {!! $about->description !!}

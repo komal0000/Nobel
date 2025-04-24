@@ -32,7 +32,7 @@
                         <div class="col-md-6 col-xl-4 all-card" data-content="{{ trim($type->title) }}">
                             <div class="each-card">
                                 <div class="img-wrapper">
-                                    <img src="{{ Storage::url($academicProgram->image) }}" alt="Thumbnail" class="img-fluid">
+                                    <img src="{{ asset($academicProgram->image) }}" alt="Thumbnail" class="img-fluid">
                                 </div>
                                 <div class="body">
                                     <div class="body">

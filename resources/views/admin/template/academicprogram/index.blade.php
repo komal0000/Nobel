@@ -27,7 +27,7 @@
                     <a href="{{ route('academicprogram.single', ['slug' => $academicProgram->slug]) }}">
                         <div class="video-card doctor-card">
                             <div class="img-wrapper">
-                                <img src="{{ Storage::url($academicProgram->image) }}" alt="Staff">
+                                <img src="{{ asset($academicProgram->image) }}" alt="Staff">
                             </div>
                             <div class="body">
                                 <div class="heading-sm">

@@ -159,7 +159,7 @@ class BlogController extends Controller
             Helper::putMetaCache('knowledge.casestudy.' . $case->slug, $data = [
                 'title' => $case->title,
                 'description' => $case->short_description,
-                'image' => asset(Storage::url($case->image)),
+                'image' => asset(asset($case->image)),
                 'url' => route('knowledge.casestudy.single', ['slug' => $case->slug]),
             ]);
 
@@ -175,7 +175,7 @@ class BlogController extends Controller
                 Helper::putMetaCache('home.update.'.$update->slug, $data = [
                     'title' => $update->title,
                     'description' => $update->short_description,
-                    'image' => asset(Storage::url($update->image)),
+                    'image' => asset(asset($update->image)),
                     'url' => route('update.single', ['slug' => $update->slug]),
                 ]);
             }
@@ -190,7 +190,7 @@ class BlogController extends Controller
             Helper::putMetaCache('home.news.' . $news->slug, $data = [
                 'title' => $news->title,
                 'description' => $news->short_description,
-                'image' => asset(Storage::url($news->image)),
+                'image' => asset(asset($news->image)),
                 'url' => route('news.single', ['slug' => $news->slug]),
             ]);
             Helper::putCache('home.news.'.$blog_id, view('admin.template.home.news.single', compact('news', 'latestNews'))->render());
@@ -203,7 +203,7 @@ class BlogController extends Controller
             Helper::putMetaCache('event.' . $event->slug, $data = [
                 'title' => $event->title,
                 'description' => $event->short_description,
-                'image' => asset(Storage::url($event->image)),
+                'image' => asset(asset($event->image)),
                 'url' => route('event.single', ['slug' => $event->slug]),
             ]);
             Helper::putCache('event.single.'.$blog_id, view('admin.template.event.single', compact('event', 'latestEvent'))->render());
@@ -216,7 +216,7 @@ class BlogController extends Controller
             Helper::putMetaCache('academic.' . $academic->slug, $data = [
                 'title' => $academic->title,
                 'description' => $academic->short_description,
-                'image' => asset(Storage::url($academic->image)),
+                'image' => asset(asset($academic->image)),
                 'url' => route('academicprogram.single', ['slug' => $academic->slug]),
             ]);
             Helper::putCache('academic.single.'.$blog_id, view('admin.template.academic.single', compact('academic', 'latestAcademic'))->render());

@@ -2,11 +2,11 @@
     <div class="wrapper">
         <picture class="img-wrap">
             @if ($treatment->single_page_image)
-                <source media="(min-width: 768px)" srcset="{{ Storage::url($treatment->single_page_image) }}"
+                <source media="(min-width: 768px)" srcset="{{ asset($treatment->single_page_image) }}"
                     type="image/webp">
-                <source media="(min-width: 320px)" srcset="{{ Storage::url($treatment->single_page_image) }}"
+                <source media="(min-width: 320px)" srcset="{{ asset($treatment->single_page_image) }}"
                     type="image/webp">
-                <img src="{{ Storage::url($treatment->single_page_image) }}" class="img-fluid"
+                <img src="{{ asset($treatment->single_page_image) }}" class="img-fluid"
                     alt="Treatment Banner Image">
             @endif
         </picture>

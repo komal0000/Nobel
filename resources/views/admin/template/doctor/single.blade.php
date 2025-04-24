@@ -2,7 +2,7 @@
     <div class="main-container">
         <div class="content-wrapper d-flex flex-column flex-lg-row justify-content-center gap-4">
             <div class="img-container">
-                <img src="{{ Storage::url($doctor->image) }}" alt="Doctor Image">
+                <img src="{{ asset($doctor->image) }}" alt="Doctor Image">
             </div>
             <div class="details align-self-center">
                 <h4 class="name">Dr. {{ $doctor->title }}</h4>
@@ -75,7 +75,7 @@
                 <div class="each-card">
                     <a>
                         <div class="img-wrapper d-flex justify-content-center">
-                            <img src="{{ Storage::url($speciality->icon) }}" alt="Treatment Image">
+                            <img src="{{ asset($speciality->icon) }}" alt="Treatment Image">
                         </div>
                         <div class="body">
                             {{ $doctorSpeciality->speciality_name }}

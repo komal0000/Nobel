@@ -8,7 +8,7 @@
                 {{ $doctor->short_description }}
             </div>
             <div class="img-block align-self-center text-center">
-                <img src="{{ Storage::url($doctor->image) }}" alt="Chairman Image">
+                <img src="{{ asset($doctor->image) }}" alt="Chairman Image">
             </div>
             <div class="detail align-self-center text-center">
                 <div class="heading-lg name">

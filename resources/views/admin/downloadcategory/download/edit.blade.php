@@ -31,7 +31,7 @@
                 <div class="col-md-12">
                     <label for="link">Pdf <span style="color: red;">*</span></label>
                     <input type="file" name="link" id="link" class="form-control dropify"
-                        accept=".pdf,application/pdf" data-default-file="{{ Storage::url($download->link) }}">
+                        accept=".pdf,application/pdf" data-default-file="{{ asset($download->link) }}">
                 </div>
             </div>
             <div class="col-md-6">

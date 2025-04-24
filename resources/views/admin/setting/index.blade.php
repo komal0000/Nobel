@@ -43,7 +43,7 @@
                                     value="{{ \App\Helper::getSetting($key, true) ?? '' }}" class="form-control">
                             @elseif($item[1] == 0)
                                 <input type="file" name="{{ $key }}" id="{{ $key }}"
-                                    class="form-control dropify" data-default-file="{{ Storage::url(\App\Helper::getSetting($key, true)) }}">
+                                    class="form-control dropify" data-default-file="{{ asset(\App\Helper::getSetting($key, true)) }}">
                             @elseif($item[1] == 2)
                                 <textarea name="{{ $key }}" id="{{ $key }}" class="form-control ">{{ \App\Helper::getSetting($key, true) ?? '' }}</textarea>
                             @endif

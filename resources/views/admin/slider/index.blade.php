@@ -14,7 +14,7 @@
                 <div class="col-md-4 mb-4">
                     <div class="border rounded p-2 mb-2">
                         <div class="image">
-                            <img src="{{ Storage::url($slider->mobile_image) }}" alt="Slider Image" height="100px"
+                            <img src="{{ asset($slider->mobile_image) }}" alt="Slider Image" height="100px"
                                 class="img-fluid">
                         </div>
                         <br>

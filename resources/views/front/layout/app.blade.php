@@ -20,7 +20,7 @@ $data = App\Helper::getSetting('top_favicon', true);
 
     <link rel="canonical" href="{{ request()->url() }}">
 
-    <link rel="icon" href="{{ Storage::url($data) }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset($data) }}" type="image/x-icon">
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">

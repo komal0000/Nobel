@@ -17,10 +17,10 @@
             <div class="right">
                 <div class="img-block">
                     <div class="lg-img">
-                        <img src="{{ Storage::url($speciality->single_page_image) }}" alt="Desktop Heart Image">
+                        <img src="{{ asset($speciality->single_page_image) }}" alt="Desktop Heart Image">
                     </div>
                     <div class="md-img">
-                        <img src="{{ Storage::url($speciality->single_page_image) }}" alt="Mobile Heart Image">
+                        <img src="{{ asset($speciality->single_page_image) }}" alt="Mobile Heart Image">
                     </div>
                 </div>
                 <div class="top-banner-slide">

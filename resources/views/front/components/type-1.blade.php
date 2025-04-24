@@ -75,7 +75,7 @@
                                     </div>
                                     @if ($item->icon ?? ($item->image ?? null))
                                         <div class="img-wrap square-image">
-                                            <img src="{{ Storage::url($item->icon ?? $item->image) }}"
+                                            <img src="{{ asset($item->icon ?? $item->image) }}"
                                                 class="img-fluid w-100 object-fit-cover"
                                                 alt="{{ $item->title ?? 'Item Image' }}">
                                         </div>
@@ -111,7 +111,7 @@
                                 </div>
                                 @if ($items->icon ?? null)
                                     <div class="img-wrap square-image">
-                                        <img src="{{ Storage::url($items->icon) }}"
+                                        <img src="{{ asset($items->icon) }}"
                                             class="img-fluid w-100 object-fit-cover"
                                             alt="{{ $items->title ?? 'Item Image' }}">
                                     </div>

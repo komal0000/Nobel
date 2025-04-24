@@ -4,7 +4,7 @@
             <div class="col-lg-9">
                 <div class="single-update">
                     <div class="event-main-img mb-3">
-                        <img src="{{ Storage::url($news->single_page_image) }}" alt="Staff">
+                        <img src="{{ asset($news->single_page_image) }}" alt="Staff">
                     </div>
                     <div class="update-header">
                         <div class="heading mb-4">
@@ -66,7 +66,7 @@
                         @foreach ($latestNews as $news)
                             <div class="event-card mb-4">
                                 <div class="img-wrapper">
-                                    <img src="{{ Storage::url($news->image) }}" alt="event Image">
+                                    <img src="{{ asset($news->image) }}" alt="event Image">
                                 </div>
                                 <div class="body">
                                     <div class="heading-md "><a href="/each-event">{{ $news->title }}</a></div>

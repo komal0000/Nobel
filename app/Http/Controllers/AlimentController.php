@@ -182,7 +182,7 @@ class AlimentController extends Controller
             Helper::putMetaCache('aliment.' . $aliment->slug, $data = [
                 'title' => $aliment->title,
                 'description' => $aliment->short_description,
-                'image' => asset(Storage::url($aliment->single_page_image)),
+                'image' => asset(asset($aliment->single_page_image)),
                 'url' => route('aliment.single', ['slug' => $aliment->slug]),
             ]);
 

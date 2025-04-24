@@ -12,7 +12,7 @@
             <div class="col-md-4 mb-4">
                 <div class="card shadow-sm h-100">
                     <div class="position-relative">
-                        <img src="{{Storage::url($popup->image) }}" alt="{{ $popup->title ?? 'Popup image' }}" class="card-img-top" style="height: 200px; object-fit: cover;">
+                        <img src="{{asset($popup->image) }}" alt="{{ $popup->title ?? 'Popup image' }}" class="card-img-top" style="height: 200px; object-fit: cover;">
                         <div class="p-2">
                             @if($popup->is_active)
                                 <a href="{{ route('admin.popup.deactivate',['popup_id'=>$popup->id]) }}" class="btn btn-sm btn-warning deactivate-btn">Deactivate</a>

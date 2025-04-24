@@ -11,7 +11,7 @@
             <div class="col-md-4">
                 <div class="col-md-12">
                     <label for="image">Image <span style="color: red;">*</span></label>
-                    <input type="file" name="image" id="image" class="form-control dropify" data-default-file="{{ Storage::url($gallery->image) }}">
+                    <input type="file" name="image" id="image" class="form-control dropify" data-default-file="{{ asset($gallery->image) }}">
                 </div>
             </div>
             <div class="col-md-8">

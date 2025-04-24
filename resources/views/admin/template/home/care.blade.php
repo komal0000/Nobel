@@ -8,7 +8,7 @@
                     @foreach ($HomeCareData as $data)
                         <div class="images">
                             @if ($loop->index == 0)
-                                <img src="{{ Storage::url($data->image) }}" alt="Center Image" class="center-image">
+                                <img src="{{ asset($data->image) }}" alt="Center Image" class="center-image">
                             @endif
                         </div>
                         @if ($loop->index == 0)
@@ -22,13 +22,13 @@
                                     </div>
                                 </div>
                                 <a href="#" class="abc">
-                                    <div datasrc="{{ Storage::url($data->image) }}" class="click-circle active"></div>
+                                    <div datasrc="{{ asset($data->image) }}" class="click-circle active"></div>
                                 </a>
                             </div>
                         @elseif ($loop->index == 1)
                             <div class="why-block-b why-block blocking-hover wow fadeInRight">
                                 <a href="#" class="abc">
-                                    <div datasrc="{{ Storage::url($data->image) }}" class="click-circle active"></div>
+                                    <div datasrc="{{ asset($data->image) }}" class="click-circle active"></div>
                                 </a>
                                 <div class="click-text">
                                     <div class="block-head active">{{ $data->title }}</div>
@@ -42,7 +42,7 @@
                         @elseif ($loop->index == 2)
                             <div class="why-block-c why-block blocking-hover wow fadeInRight">
                                 <a href="#" class="abc">
-                                    <div datasrc="{{ Storage::url($data->image) }}" class="click-circle active"></div>
+                                    <div datasrc="{{ asset($data->image) }}" class="click-circle active"></div>
                                 </a>
                                 <div class="click-text">
                                     <div class="block-head active">{{ $data->title }}</div>
@@ -64,7 +64,7 @@
                                     </div>
                                 </div>
                                 <a href="#" class="abc">
-                                    <div datasrc="{{ Storage::url($data->image) }}" class="click-circle active"></div>
+                                    <div datasrc="{{ asset($data->image) }}" class="click-circle active"></div>
                                 </a>
                             </div>
                         @elseif ($loop->index == 4)
@@ -78,7 +78,7 @@
                                     </div>
                                 </div>
                                 <a href="#" class="abc">
-                                    <div datasrc="{{ Storage::url($data->image) }}" class="click-circle active"></div>
+                                    <div datasrc="{{ asset($data->image) }}" class="click-circle active"></div>
                                 </a>
                             </div>
                         @endif
@@ -97,7 +97,7 @@
                         <li onclick="expandResLi(this)">
                             <h3 class="heading-sm accor-heading">{{ $data->title }}</h3>
                             <div class="accor-collapse-wrapper">
-                                <img loading="lazy" src="{{ Storage::url($data->image) }}" alt="Why Nobel"
+                                <img loading="lazy" src="{{ asset($data->image) }}" alt="Why Nobel"
                                     width="460" height="460" class="ratio ratio-1x1">
                                 <div class="common-button">
                                     <x-hoverBtn href="#" class="anchor-button">Know More

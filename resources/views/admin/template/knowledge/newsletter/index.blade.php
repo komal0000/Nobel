@@ -27,7 +27,7 @@
                             <div class="col-6 col-md-4 col-xl-3">
                                 <div class="letter-card">
                                     <div class="download">
-                                        <a href="{{ Storage::url($letter->image) }}" target="_blank">
+                                        <a href="{{ asset($letter->image) }}" target="_blank">
                                             <i class="bi bi-eye"></i>
                                         </a>
                                     </div>

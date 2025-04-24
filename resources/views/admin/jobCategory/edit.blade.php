@@ -10,7 +10,7 @@
             <div class="col-md-6">
                 <div class="col-md-12 mb-3">
                     <label for="icon">Icon <span style="color: red;">*</span></label>
-                    <input type="file" class="form-control dropify" id="icon" name="icon" accept="image/*" data-default-file="{{Storage::url($jobCategory->icon)}}">
+                    <input type="file" class="form-control dropify" id="icon" name="icon" accept="image/*" data-default-file="{{asset($jobCategory->icon)}}">
                 </div>
             </div>
             <div class="col-md-6">

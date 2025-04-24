@@ -10,7 +10,7 @@
                         @endphp
                         <div class="blog-card ">
                             <div class="img-wrapper">
-                                <img src="{{ Storage::url($blog->image) }}" alt="Blog Title">
+                                <img src="{{ asset($blog->image) }}" alt="Blog Title">
                             </div>
                             <div class="body">
                                 <div class="type para-wrap mb-3">{{ $blogType->title }}</div>
@@ -50,7 +50,7 @@
                         @endphp
                         <div class="blog-card ">
                             <div class="img-wrapper">
-                                <img src="{{ Storage::url($blog->image) }}" alt="Blog Title">
+                                <img src="{{ asset($blog->image) }}" alt="Blog Title">
                             </div>
                             <div class="body">
                                 <div class="type para-wrap mb-3">{{ $blogType->title }}</div>

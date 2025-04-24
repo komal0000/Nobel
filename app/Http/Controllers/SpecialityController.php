@@ -152,7 +152,7 @@ class SpecialityController extends Controller
         Helper::putMetaCache('speciality.' . $speciality->slug, $data = [
             'title' => $speciality->title,
             'description' => $speciality->short_description,
-            'image' => asset(Storage::url($speciality->single_page_image)) ,
+            'image' => asset(asset($speciality->single_page_image)) ,
             'url' => route('speciality.single', ['slug' => $speciality->slug])
         ]);
         Helper::putCache('speciality.single.' . $speciality_id . '.overview', view('admin.template.speciality.overview', compact('speciality'))->render());

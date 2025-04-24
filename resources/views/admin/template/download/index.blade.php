@@ -30,7 +30,7 @@
                                 <h3 class="title heading-sm mb-4">{{ $download->title }}</h3>
                                 <div class="date-download d-flex justify-content-between">
                                     <div class="para-wrap date">{{ $download->uploaded_date }}</div>
-                                    <a class="z-1" href="{{ Storage::url($download->link) }}">
+                                    <a class="z-1" href="{{ asset($download->link) }}">
                                         <i class="bi bi-download"></i>
                                     </a>
                                 </div>

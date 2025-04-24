@@ -12,7 +12,7 @@
                     @foreach ($galleryItems as $item)
                         <div class="main-card">
                             <div class="img-wrapper">
-                                <img src="{{ Storage::url($item->icon) }}" alt="{{ $item->title }}" class="img-fluid">
+                                <img src="{{ asset($item->icon) }}" alt="{{ $item->title }}" class="img-fluid">
                             </div>
                             <div class="body text-left para-wrap">
                                 {{ $item->description  }}

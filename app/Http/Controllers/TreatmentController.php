@@ -101,7 +101,7 @@ class TreatmentController extends Controller
             Helper::putMetaCache('treatment.' . $treatment->slug, $data = [
                 'title' => $treatment->title,
                 'description' => $treatment->short_description,
-                'image' => asset(Storage::url($treatment->single_page_image)),
+                'image' => asset(asset($treatment->single_page_image)),
                 'url' => route('treatment.single', ['slug' => $treatment->slug]),
             ]);
 

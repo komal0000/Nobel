@@ -10,12 +10,12 @@
                 <div class="col-md-6 mb-3">
                     <label for="technology_image">Image 4:2 <span style="color: red">*</span></label>
                     <input type="file" name="technology_image" id="technology_image" class="form-control dropify"
-                        accept="image/*" data-default-file="{{ Storage::url($technology->image) }}">
+                        accept="image/*" data-default-file="{{ asset($technology->image) }}">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="technology_single_page_image">Single Page Image 4:1 <span style="color: red">*</span></label>
                     <input type="file" name="technology_single_page_image" id="technology_single_page_image"
-                        class="form-control dropify" data-default-file="{{ Storage::url($technology->single_page_image) }}"
+                        class="form-control dropify" data-default-file="{{ asset($technology->single_page_image) }}"
                         required accept="image/*">
                 </div>
             </div>
@@ -83,7 +83,7 @@
                                         <label for="image">Image <span style="color: red;">*</span></label>
                                         <input type="file" name="image" id="image_{{ $type->id }}"
                                             class="form-control dropify" accept="image/*"
-                                            data-default-file="{{ Storage::url($section?->image) }}">
+                                            data-default-file="{{ asset($section?->image) }}">
                                     </div>
                                     <div class="col-md-8">
                                         <div class="row">
@@ -133,7 +133,7 @@
                                                     <span style="color: red;">*</span></label>
                                                 <input type="file" name="image"
                                                     id="section_image_{{ $type->id }}_{{ time() }}"
-                                                    data-default-file="{{ Storage::url($sectionData->image) }}"
+                                                    data-default-file="{{ asset($sectionData->image) }}"
                                                     class="form-control dropify" accept="image/*">
                                             </div>
                                             <div class="col-md-8">

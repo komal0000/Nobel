@@ -181,7 +181,7 @@ class TechnologyController extends Controller
         Helper::putMetaCache('technology.' . $technology->slug, $data = [
             'title' => $technology->title,
             'description' => $technology->short_description,
-            'image' => asset(Storage::url($technology->single_page_image)),
+            'image' => asset(asset($technology->single_page_image)),
             'url' => route('technology.single', ['slug' => $technology->slug]),
         ]);
 

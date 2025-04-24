@@ -9,7 +9,7 @@
                     <div>
                         <div>
                             <div class="img-wrapper">
-                                <img src="{{ Storage::url($data->image) }}" alt="Staff">
+                                <img src="{{ asset($data->image) }}" alt="Staff">
                             </div>
                             <div class="content p-3">
                                 <div class="heading-sm mb-3">{{ $data->title }} </div>

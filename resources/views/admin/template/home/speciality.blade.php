@@ -2,7 +2,7 @@
     @foreach ($specialities as $speciality)
         <a href="{{ route('speciality.single', $speciality->slug) }}">
             <div class="speciality-row">
-                <img src="{{ Storage::url($speciality->icon) }}" alt="Heart">
+                <img src="{{ asset($speciality->icon) }}" alt="Heart">
                 <span>
                     {{ $speciality->title }}
                 </span>

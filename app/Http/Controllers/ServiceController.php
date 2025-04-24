@@ -267,7 +267,7 @@ class ServiceController extends Controller
             Helper::putMetaCache('service.' . $service->slug, $data = [
                 'title' => $service->title,
                 'description' => $service->short_desc,
-                'image' => asset(Storage::url($service->single_page_image)),
+                'image' => asset(asset($service->single_page_image)),
                 'url' => route('service.single', ['slug' => $service->slug]),
             ]);
         }

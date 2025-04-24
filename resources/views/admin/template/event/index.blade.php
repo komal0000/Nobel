@@ -19,7 +19,7 @@
             @foreach ($indexNews as $news)
                 <div class="slide m-3">
                     <div class="img-wrapper">
-                        <img src="{{ Storage::url($news->image) }}" alt="Service Image" class="img-fluid">
+                        <img src="{{ asset($news->image) }}" alt="Service Image" class="img-fluid">
                         <div class="heading-xs date">{{ \App\Helper::formatTimestampToDateString($news->date) }}</div>
                     </div>
                     <div class="body">
@@ -55,7 +55,7 @@
                 @foreach ($events as $event)
                     <div class="slide m-3">
                         <div class="img-wrapper">
-                            <img src="{{ Storage::url($event->image) }}" alt="Service Image" class="img-fluid">
+                            <img src="{{ asset($event->image) }}" alt="Service Image" class="img-fluid">
                             <div class="heading-xs date">{{ \App\Helper::formatTimestampToDateString($event->date) }}
                             </div>
                         </div>

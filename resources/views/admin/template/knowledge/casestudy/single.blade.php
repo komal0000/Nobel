@@ -4,7 +4,7 @@
             <div class="col-lg-9">
                 <div class="case-study">
                     <div class="case-study-main-img mb-3">
-                        <img src="{{ Storage::url($case->image) }}" alt="case-study Image">
+                        <img src="{{ asset($case->image) }}" alt="case-study Image">
                     </div>
                     <div class="case-study-header">
                         <div class="heading mb-4">
@@ -71,7 +71,7 @@
                         @foreach ($latestCase as $caseItem)
                             <div class="case-study-card mb-4">
                                 <div class="img-wrapper">
-                                    <img src="{{ Storage::url($caseItem->image) }}" alt="case-study Image">
+                                    <img src="{{ asset($caseItem->image) }}" alt="case-study Image">
                                 </div>
                                 <div class="body">
                                     <div class="heading-md "><a href="/single-case-study">{{ $caseItem->title }}</a>

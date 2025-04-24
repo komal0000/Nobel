@@ -1,6 +1,6 @@
 <div class="philosophy">
     <div class="img-wrapper">
-        <img src="{{ Storage::url($curdata['image']) }}" alt="Philosophy Image">
+        <img src="{{ asset($curdata['image']) }}" alt="Philosophy Image">
     </div>
     <div class="content">
         <div class="heading mb-4">

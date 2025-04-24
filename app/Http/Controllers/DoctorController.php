@@ -143,7 +143,7 @@ class DoctorController extends Controller
         Helper::putMetaCache('doctor.'.$doctor->slug, $data = [
             'title' => $doctor->title,
             'description' => $doctor->short_description,
-            'image' => asset(Storage::url($doctor->image)),
+            'image' => asset(asset($doctor->image)),
             'url' => route('doctor.single', ['slug' => $doctor->slug]),
         ]);
         $doctorSpecialities = DB::table('doctor_specialities')->where('doctor_id', $doctor_id)->get();

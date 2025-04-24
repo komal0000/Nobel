@@ -2,10 +2,10 @@
     <div class="wrapper">
         <picture class="img-wrap">
             @if ($technology->image)
-                <source media="(min-width: 768px)" srcset="{{ Storage::url($technology->single_page_image) }}">
-                <source media="(min-width: 320px)" srcset="{{ Storage::url($technology->single_page_image) }}">
+                <source media="(min-width: 768px)" srcset="{{ asset($technology->single_page_image) }}">
+                <source media="(min-width: 320px)" srcset="{{ asset($technology->single_page_image) }}">
 
-                <img src="{{ Storage::url($technology->single_page_image) }}" class="img-fluid"
+                <img src="{{ asset($technology->single_page_image) }}" class="img-fluid"
                     alt="Treatment Banner Image">
             @endif
         </picture>
@@ -69,7 +69,7 @@
         <section id="technology-description" data-content="About {{$technology->title}}">
             <div class="main-container">
                 <x-type3 heading="{{ $section->title }}" content="{{ $section->short_description }}"
-                    href="{{ Storage::url($section->image) }}"></x-type3>
+                    href="{{ asset($section->image) }}"></x-type3>
             </div>
         </section>
     @endif

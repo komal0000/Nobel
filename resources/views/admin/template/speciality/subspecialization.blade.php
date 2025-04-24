@@ -11,7 +11,7 @@ $subSpecialties = App\Models\Speciality::where('parent_speciality_id', $speciali
             @foreach($subSpecialties as $subSpecialty)
                 <div class="sub-card">
                     <div class="img-wrapper">
-                        <img src="{{ Storage::url($subSpecialty->icon) }}" alt="{{ $subSpecialty->title }}">
+                        <img src="{{ asset($subSpecialty->icon) }}" alt="{{ $subSpecialty->title }}">
                     </div>
                     <div class="heading-sm">
                         {{ $subSpecialty->title }}

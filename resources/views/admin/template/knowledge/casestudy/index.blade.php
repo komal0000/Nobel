@@ -34,7 +34,7 @@
                             <div class="slide m-3">
                                 <a href="{{ route('knowledge.casestudy.single', ['slug' => $case->slug]) }}">
                                     <div class="img-wrapper">
-                                        <img src="{{ Storage::url($case->image) }}" alt="Service Image"
+                                        <img src="{{ asset($case->image) }}" alt="Service Image"
                                             class="img-fluid w-100">
                                         <div class="heading-xs date">
                                             {{ App\Helper::formatTimestampToDateString($case->date) }}</div>

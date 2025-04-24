@@ -12,7 +12,7 @@
                     <div class="col-md-12 mb-2">
                         <label for="image">Image<span style="color: red;">*</span></label>
                         <input type="file" name="image" id="image" class="form-control dropify"
-                            data-default-file="{{ Storage::url($popup->image) }}" accept="image/*">
+                            data-default-file="{{ asset($popup->image) }}" accept="image/*">
                         <small class="text-muted">Leave empty to keep current image</small>
                     </div>
                 </div>

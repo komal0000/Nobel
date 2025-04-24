@@ -9,7 +9,7 @@
                     <div class="card-col col-lg-3 col-md-6 col-sm-6 p-2">
                         <div class="each-card">
                             <div class="img-wrapper">
-                                <img src="{{ Storage::url($speciality->icon) }}" alt="{{ $speciality->title }}">
+                                <img src="{{ asset($speciality->icon) }}" alt="{{ $speciality->title }}">
                             </div>
                             <div class="heading-sm">
                                 {{ $speciality->title }}

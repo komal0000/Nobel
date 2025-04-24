@@ -81,11 +81,11 @@
                             @endif
                             @if ($blogCategory->type != 6)
                                 <input type="file" name="image" id="image" class="form-control dropify"
-                                    accept="image/*" data-default-file="{{ Storage::url($blog->image) }}">
+                                    accept="image/*" data-default-file="{{ asset($blog->image) }}">
                             @endif
                             @if ($blogCategory->type == 6)
                                 <input type="file" name="pdf" id="pdf" class="form-control dropify"
-                                    accept="application/pdf" data-default-file="{{ Storage::url($blog->image) }}">
+                                    accept="application/pdf" data-default-file="{{ asset($blog->image) }}">
                             @endif
 
                     </div>
@@ -95,7 +95,7 @@
                             <label for="single_page_image">Single Page Image</label>
                             <input type="file" name="single_page_image" id="single_page_image"
                                 class="form-control dropify" accept="image/*"
-                                data-default-file="{{ Storage::url($blog->single_page_image) }}">
+                                data-default-file="{{ asset($blog->single_page_image) }}">
                         </div>
                     @endif
                 </div>

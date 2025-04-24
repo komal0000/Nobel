@@ -6,7 +6,7 @@
                 <div class="why-labs-card">
                     <div class="logo overflow-hidden d-flex justify-content-center align-items-center"
                         style="height: 100px; width:100px;">
-                        <img class="h-100 w-100" style="object-fit: cover;" src="{{ Storage::url($benefit->icon) }}"
+                        <img class="h-100 w-100" style="object-fit: cover;" src="{{ asset($benefit->icon) }}"
                             alt="">
                     </div>
                     <div class="card-title">

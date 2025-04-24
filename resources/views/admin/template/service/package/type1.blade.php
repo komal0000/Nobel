@@ -33,7 +33,7 @@
                         data-category="category-1">
                         <div class="package-card">
                             <div class="img-wrapper">
-                                <img src="{{ Storage::url($package->image) }}" alt="Service Image">
+                                <img src="{{ asset($package->image) }}" alt="Service Image">
                             </div>
                             <div class="body">
                                 <div class="package-title">

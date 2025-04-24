@@ -39,7 +39,7 @@
                         <div class="form-group">
                             <label for="icon_{{ $item->id }}">Icon <span style="color: red;">*</span> </label>
                             <input type="file" name="icon" class="form-control dropify" id="icon_update_{{ $item->id }}"
-                                data-height="100" data-default-file="{{ Storage::url($item->icon) }}" accept="image/*">
+                                data-height="100" data-default-file="{{ asset($item->icon) }}" accept="image/*">
                         </div>
                         <div class="form-group">
                             <label for="title_{{ $item->id }}">Title <span style="color: red;">*</span></label>

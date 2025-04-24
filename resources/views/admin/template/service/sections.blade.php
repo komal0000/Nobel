@@ -7,7 +7,7 @@
             <div class="qn-body">
                 <div class="qn-list">
                     <div class="qn-picture"> {{-- image aspect ratio: 4:2 --}}
-                        <img src="{{ Storage::url($section->image) }}" height="400" width="800"
+                        <img src="{{ asset($section->image) }}" height="400" width="800"
                             alt="Second Opinion Image">
                     </div>
                     <div class="qn-list">
@@ -29,7 +29,7 @@
                     {!! $section->short_desc1 !!}
                 </div>
                 <div class="qn-picture"> {{-- image aspect ratio: 4:2 --}}
-                    <img src="{{ Storage::url($section->image) }}" height="400" width="800"
+                    <img src="{{ asset($section->image) }}" height="400" width="800"
                         alt="Second Opinion Image">
                 </div>
             </div>
@@ -47,7 +47,7 @@
                 </div>
                 <div class="image-middle">
                     <picture>
-                        <img height="300" width="300" src="{{ Storage::url($section->image) }}" alt="">
+                        <img height="300" width="300" src="{{ asset($section->image) }}" alt="">
                     </picture>
                 </div>
                 <div class="image-right">

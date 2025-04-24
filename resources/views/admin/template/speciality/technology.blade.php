@@ -12,7 +12,7 @@
             @foreach ($technologies as $technology)
                 <div class="main-card">
                     <div class="img-wrapper">
-                        <img src="{{ Storage::url($technology->image) }}" alt="{{ $technology->title }}"
+                        <img src="{{ asset($technology->image) }}" alt="{{ $technology->title }}"
                             class="img-fluid">
                     </div>
                     <div class="body text-center">
