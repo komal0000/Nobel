@@ -5,5 +5,5 @@
 @endsection
 
 @section('content')
-    @includeIf('front.cache.academic.single.' . $academic->id)
+    @includeIf('front.cache.academic.single.' . $slug)
 @endsection

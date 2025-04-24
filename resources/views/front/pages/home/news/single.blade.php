@@ -5,5 +5,5 @@
 @endsection
 
 @section('content')
-@includeIf('front.cache.home.news.' . $news->id);
+@includeIf('front.cache.home.news.' . $slug);
 @endsection

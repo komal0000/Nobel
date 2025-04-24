@@ -10,7 +10,7 @@
             <div class="col-md-5 mb-3">
                 <label for="image">Image</label>
                 <input type="file" name="image" id="image" class="form-control dropify"
-                    data-default-file="{{ asset('storage/' . $doctor->image) }}" accept="image/*">
+                    data-default-file="{{ asset( $doctor->image) }}" accept="image/*">
             </div>
             <div class="col-md-7 mb-3">
                 <div class="row">

@@ -1,5 +1,4 @@
 @extends('front.layout.app')
-@section('title', 'Health Library | Nobel Hospital')
 
 @section('metaData')
     @includeIf('front.cache.meta.healthLibrary')

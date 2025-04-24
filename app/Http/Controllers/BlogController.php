@@ -163,7 +163,7 @@ class BlogController extends Controller
                 'url' => route('knowledge.casestudy.single', ['slug' => $case->slug]),
             ]);
 
-            Helper::putCache('knowledge.casestudy.'.$blog_id, view('admin.template.knowledge.casestudy.single', compact('case', 'latestCase'))->render());
+            Helper::putCache('knowledge.casestudy.'.$case->slug, view('admin.template.knowledge.casestudy.single', compact('case', 'latestCase'))->render());
         }
 
         //update single page
@@ -193,7 +193,7 @@ class BlogController extends Controller
                 'image' => asset(asset($news->image)),
                 'url' => route('news.single', ['slug' => $news->slug]),
             ]);
-            Helper::putCache('home.news.'.$blog_id, view('admin.template.home.news.single', compact('news', 'latestNews'))->render());
+            Helper::putCache('home.news.'.$news->slug, view('admin.template.home.news.single', compact('news', 'latestNews'))->render());
         }
 
         //Event single page
@@ -206,7 +206,7 @@ class BlogController extends Controller
                 'image' => asset(asset($event->image)),
                 'url' => route('event.single', ['slug' => $event->slug]),
             ]);
-            Helper::putCache('event.single.'.$blog_id, view('admin.template.event.single', compact('event', 'latestEvent'))->render());
+            Helper::putCache('event.single.'.$event->slug, view('admin.template.event.single', compact('event', 'latestEvent'))->render());
         }
 
         //Academic single page
@@ -219,7 +219,7 @@ class BlogController extends Controller
                 'image' => asset(asset($academic->image)),
                 'url' => route('academicprogram.single', ['slug' => $academic->slug]),
             ]);
-            Helper::putCache('academic.single.'.$blog_id, view('admin.template.academic.single', compact('academic', 'latestAcademic'))->render());
+            Helper::putCache('academic.single.'.$academic->slug, view('admin.template.academic.single', compact('academic', 'latestAcademic'))->render());
         }
     }
     public function render()
@@ -241,7 +241,7 @@ class BlogController extends Controller
         //Case Study
         $caseStudyTypes = DB::table('blog_categories')->where('type', helper::blog_type_case_study)->get();
         Helper::putMetaCache('knowledge.casestudy', $data = [
-            'title' => 'Case Studies | Nobel Hospital',
+            'title' => 'Case Studies',
             'description' => 'List of all the case studies done by Nobel Hospital',
             'image' => asset('front/assets/img/meta-image.png'),
             'url' => route('knowledge.casestudy.index'),
@@ -251,7 +251,7 @@ class BlogController extends Controller
         //News Letter
         $newsLetterTypes = DB::table('blog_categories')->where('type', helper::blog_type_news_letter)->get();
         Helper::putMetaCache('knowledge.newsletter', $data = [
-            'title' => 'News Letter | Nobel Hospital',
+            'title' => 'News Letter',
             'description' => 'List of all the News Letter done by Nobel Hospital',
             'image' => asset('front/assets/img/meta-image.png'),
             'url' => route('knowledge.newsletter'),
@@ -263,14 +263,14 @@ class BlogController extends Controller
         $academicPrograms = DB::table('blogs')->where('type', Helper::blog_type_acedemic_program)->get();
         Helper::putCache('academic.list', view('admin.template.academicprogram.list', compact('academicProgramTypes','academicPrograms')));
         Helper::putMetaCache('academic.list', $data = [
-            'title' => 'Academic Programs List | Nobel Hospital',
+            'title' => 'Academic Programs List',
             'description' => 'List of all the Academic Programs done by Nobel Hospital',
             'image' => asset('front/assets/img/meta-image.png'),
             'url' => route('academicprogram.list'),
         ]);
         Helper::putCache('academic.index', view('admin.template.academicprogram.index', compact('academicProgramTypes')));
         Helper::putMetaCache('academic.academic', $data = [
-            'title' => 'Academic Programs  | Nobel Hospital',
+            'title' => 'Academic Programs',
             'description' => 'Academic Programs done by Nobel Hospital',
             'image' => asset('front/assets/img/meta-image.png'),
             'url' => route('academicprogram.index'),
@@ -281,7 +281,7 @@ class BlogController extends Controller
 
         Helper::putCache('health.knowledge.blogs', view('admin.template.health.knowledge.blogs', compact('indexBlogs')));
         Helper::putMetaCache('knowledge.blogs.blog', $data = [
-            'title' => 'Blogs | Nobel Hospital',
+            'title' => 'Blogs',
             'description' => 'Blogs done by Nobel Hospital',
             'image' => asset('front/assets/img/meta-image.png'),
             'url' => route('knowledge.blog'),
@@ -289,7 +289,7 @@ class BlogController extends Controller
         Helper::putCache('knowledge.blog', view('admin.template.knowledge.blog.index', compact('indexBlogs', 'featuredBlogs'))->render());
         Helper::putCache('event.index', view('admin.template.event.index', compact('indexNews', 'eventTypes'))->render());
         Helper::putMetaCache('event.event', $data = [
-            'title' => 'Events | Nobel Hospital',
+            'title' => 'Events',
             'description' => 'Events done by Nobel Hospital',
             'image' => asset('front/assets/img/meta-image.png'),
             'url' => route('event'),

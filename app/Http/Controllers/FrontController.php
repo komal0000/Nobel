@@ -44,7 +44,7 @@ class FrontController extends Controller
     }
     public function specialitySingle($slug){
         $speciality = DB::table('specialties')->where('slug', $slug)->first(['id']);
-        return view('front.pages.speciality.single',compact('speciality', 'slug'));
+        return view('front.pages.speciality.single',compact( 'slug'));
     }
 
     public function alimentIndex(){
@@ -118,7 +118,7 @@ class FrontController extends Controller
 
     public function casestudySingle($slug){
         $casestudy = DB::table('blogs')->where('slug', $slug)->first(['id']);
-        return view('front.pages.knowledge.casestudy.single',compact('slug', 'casestudy'));
+        return view('front.pages.knowledge.casestudy.single',compact('slug'));
     }
 
     public function newsLetterIndex(){
@@ -157,16 +157,16 @@ class FrontController extends Controller
 
     public function updateSingle($slug){
         $update = DB::table('blogs')->where('slug', $slug)->first(['id']);
-        return view('front.pages.home.update.single',compact('slug','update'));
+        return view('front.pages.home.update.single',compact('slug'));
     }
 
     public function newsSingle($slug){
         $news = DB::table('blogs')->where('slug', $slug)->first(['id']);
-        return view('front.pages.home.news.single',compact('slug', 'news'));
+        return view('front.pages.home.news.single',compact('slug'));
     }
     public function eventSingle($slug){
         $event = DB::table('blogs')->where('slug', $slug)->first(['id']);
-        return view('front.pages.event.single',compact('slug','event'));
+        return view('front.pages.event.single',compact('slug'));
     }
 
     public function academicIndex(){
@@ -175,7 +175,7 @@ class FrontController extends Controller
 
     public function academicSingle($slug){
         $academic = DB::table('blogs')->where('slug', $slug)->first(['id']);
-        return view('front.pages.academic.single',compact('slug','academic'));
+        return view('front.pages.academic.single',compact('slug'));
     }
     public function videoAll(){
         Helper::putMetaCache('knowledge.videos', $data = [
@@ -202,7 +202,7 @@ class FrontController extends Controller
 
     public function doctorSingle($slug){
         $doctor = DB::table('doctors')->where('slug', $slug)->first(['id']);
-        return view('front.pages.doctor.single',compact('doctor','slug'));
+        return view('front.pages.doctor.single',compact('slug'));
     }
 
     public function policy(){
@@ -216,7 +216,7 @@ class FrontController extends Controller
     }
     public function serviceSingle($slug){
         $service = DB::table('services')->where('slug',$slug)->first();
-        return view('front.pages.service.single',compact('slug', 'service'));
+        return view('front.pages.service.single',compact('slug'));
     }
 
     public function about(){

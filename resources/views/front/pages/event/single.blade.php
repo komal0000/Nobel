@@ -5,5 +5,5 @@
 @endsection
 
 @section('content')
-@includeIf('front.cache.event.single.' . $event->id);
+@includeIf('front.cache.event.single.' . $slug);
 @endsection

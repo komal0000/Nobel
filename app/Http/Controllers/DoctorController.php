@@ -153,7 +153,7 @@ class DoctorController extends Controller
             $videos = DB::table('videos')->where('video_type_id', $videoType->id)->get();
             Helper::putCache('doctor.videos.' . $doctor_id, view('admin.template.doctor.videos', compact('videos'))->render());
         }
-        Helper::putCache('doctor.single.' . $doctor_id, view('admin.template.doctor.single', compact('doctor', 'doctorSpecialities', 'doctorMilestones'))->render());
+        Helper::putCache('doctor.single.' . $doctor->slug, view('admin.template.doctor.single', compact('doctor', 'doctorSpecialities', 'doctorMilestones'))->render());
     }
     public function render()
     {

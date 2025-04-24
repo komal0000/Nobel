@@ -5,10 +5,10 @@
 @endsection
 
 @section('content')
-    @includeIf('front.cache.service.single.overview.' . $service->id)
-    @includeIf('front.cache.service.single.package.' . $service->id)
-    @includeIf('front.cache.service.single.benefit.' . $service->id)
-    @includeIf('front.cache.service.single.faqs.' . $service->id)
+    @includeIf('front.cache.service.single.overview.' . $slug)
+    @includeIf('front.cache.service.single.package.' . $slug)
+    @includeIf('front.cache.service.single.benefit.' . $slug)
+    @includeIf('front.cache.service.single.faqs.' . $slug)
 @endsection
 @section('js')
     <script>

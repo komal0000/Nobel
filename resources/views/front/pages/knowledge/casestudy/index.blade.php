@@ -6,22 +6,22 @@
 
 
 @section('content')
+    @includeIf('front.cache.knowledge.casestudy')
 @endsection
-@includeIf('front.cache.knowledge.casestudy')
 @section('js')
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             const selectWrap = $('#select-wrap');
             const defaultSelect = $('#default-select');
             const searchInput = $('#search-input');
             const caseStudyItems = $('.case-study-item');
 
-            defaultSelect.on('click', function(e) {
+            defaultSelect.on('click', function (e) {
                 e.stopPropagation();
                 selectWrap.toggleClass('active');
             });
 
-            $('#select-list li').on('click', function() {
+            $('#select-list li').on('click', function () {
                 let selectedText = $(this).text();
                 let selectedContent = $(this).data('content');
                 let selectedTarget = $(this).data('target');
@@ -39,7 +39,7 @@
                 filterItems();
             });
 
-            $(document).on('click', function() {
+            $(document).on('click', function () {
                 selectWrap.removeClass('active');
             });
 
@@ -52,7 +52,7 @@
                 const searchTerm = searchInput.val().toLowerCase();
                 const selectedCategory = $('#find-case-study-input').val();
 
-                filteredItems = caseStudyItems.filter(function() {
+                filteredItems = caseStudyItems.filter(function () {
                     const title = $(this).find('.title').text().toLowerCase();
                     const speciality = $(this).find('.speciality').text().toLowerCase();
                     const itemContent = $(this).data('content') || '';
@@ -118,7 +118,7 @@
                         $('<button>', {
                             text: i,
                             class: 'page-button mx-1 px-3 py-1' + (i === currentPage ? ' active' : ''),
-                            click: function(event) {
+                            click: function (event) {
                                 event.stopPropagation();
                                 event.preventDefault();
                                 $(this).blur();
@@ -147,7 +147,7 @@
             }
 
             // Event listeners for pagination
-            $('#prevPage').on('click', function(event) {
+            $('#prevPage').on('click', function (event) {
                 event.stopPropagation();
                 event.preventDefault();
                 $(this).blur();
@@ -157,7 +157,7 @@
                 return false;
             });
 
-            $('#nextPage').on('click', function(event) {
+            $('#nextPage').on('click', function (event) {
                 event.stopPropagation();
                 event.preventDefault();
                 $(this).blur();

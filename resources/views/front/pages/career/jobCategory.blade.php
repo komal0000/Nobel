@@ -1,7 +1,5 @@
 @extends('front.layout.app')
 
-@section('title', 'Home | Nobel Hospital')
-
 @section('metaData')
     @includeIf('front.cache.meta.career.jobCategory')
 @endsection

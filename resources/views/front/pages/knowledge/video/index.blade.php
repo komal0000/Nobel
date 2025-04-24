@@ -1,7 +1,5 @@
 @extends('front.layout.app')
 
-@section('title', 'Videos | Nobel Hospital')
-
 @section('metaData')
     @includeIf('front.cache.meta.knowledge.video')
 @endsection

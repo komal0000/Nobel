@@ -144,7 +144,7 @@ class SpecialityController extends Controller
         }
         if ($speciality->parent_speciality_id) {
             $parentSpeciality = DB::table('specialties')->find($speciality->parent_speciality_id);
-            Helper::putCache('speciality.single.' . $speciality->parent_speciality_id . '.subspecialization', view('admin.template.speciality.subspecialization', [
+            Helper::putCache('speciality.single.' . $speciality->slug . '.subspecialization', view('admin.template.speciality.subspecialization', [
                 'speciality' => $parentSpeciality
             ])->render());
             $this->renderSingle($speciality->parent_speciality_id);
@@ -155,7 +155,7 @@ class SpecialityController extends Controller
             'image' => asset(asset($speciality->single_page_image)) ,
             'url' => route('speciality.single', ['slug' => $speciality->slug])
         ]);
-        Helper::putCache('speciality.single.' . $speciality_id . '.overview', view('admin.template.speciality.overview', compact('speciality'))->render());
+        Helper::putCache('speciality.single.' . $speciality->slug . '.overview', view('admin.template.speciality.overview', compact('speciality'))->render());
     }
 
     public function renderTeamHead($speciality_id)
