@@ -3,7 +3,7 @@
     <a href="{{ route('admin.service.index') }}">Services</a> /
     <a href="{{ route('admin.service.package.type.index', ['service_id' => $packageType->service_id]) }}">Service Package
         Types</a> /
-    <span>{{ $packageType->type }}</span> /
+    <a href="{{ route('admin.service.package.index', ['type_id' => $packageType->id]) }}">{{ $packageType->type }}</a> /
     <span>Add Package</span>
 @endsection
 @section('content')
