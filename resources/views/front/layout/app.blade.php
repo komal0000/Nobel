@@ -18,6 +18,8 @@ $data = App\Helper::getSetting('top_favicon', true);
     <meta name="geo.region" content="NP">
     <meta name="geo.placename" content="Biratnagar">
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <link rel="canonical" href="{{ request()->url() }}">
 
     <link rel="icon" href="{{ asset($data) }}" type="image/x-icon">

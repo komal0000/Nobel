@@ -301,7 +301,7 @@ function setupEventListeners() {
     });
 
     // Footer accordion for mobile
-    
+
 
     // Why us mobile accordion
     $('.accor-list li, .list-accor li').on('click', function () {

@@ -45,7 +45,7 @@
                         </h4>
                         <hr class="m-0">
                         <div class="card-body d-flex justify-content-center" id="footer-4">
-                            <div style="width: 400px;">
+                            <div style="width: 800px;">
                                 <div class="gmap_canvas">
                                     <iframe id="gmap_canvas" src="" frameborder="0" scrolling="no" marginheight="0"
                                         marginwidth="0"></iframe>

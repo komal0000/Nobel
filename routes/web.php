@@ -248,7 +248,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::match(['GET', 'POST'], 'index/{type}', [SettingController::class, 'index'])->name('index');
         Route::match(['GET', 'POST'], '/contact', [SettingController::class, 'contact'])->name('contact');
         Route::match(['GET', 'POST'], '/colorscheme', [SettingController::class, 'colorScheme'])->name('colorscheme');
-        Route::post('requestCallBack', [SettingController::class, 'RequestCallBack'])->name('requestCallBack');
+        Route::match(['GET', 'POST'], '/requestCallBack/{new?}', [SettingController::class, 'RequestCallBack'])->name('requestCallBack');
     });
     Route::prefix('technology')->name('technology.')->group(function () {
         Route::match(['GET'], '', [TechnologyController::class, 'index'])->name('index');

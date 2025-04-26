@@ -102,7 +102,7 @@ class SettingController extends Controller
     public function contact(Request $request)
     {
         if ($request->getMethod() == "GET") {
-            $data = Helper::getSetting('contact') ?? ((object)([
+            $data = Helper::getSetting('contact') ?? ((object) ([
                 'map' => '',
                 'email' => '',
                 'phone' => '',
@@ -148,7 +148,7 @@ class SettingController extends Controller
             Helper::putCache('home.footerLink', view('admin.setting.template.footer', compact('data'))->render());
             Helper::putCache('contact.index', view('admin.setting.template.contact', compact('data'))->render());
             Helper::putCache('contact.map', view('admin.setting.template.map', compact('data'))->render());
-            return redirect()->back()->with('success', "Contact Saved Sucessfully");
+            return redirect()->back()->with('success', "Contact Saved Successfully");
         }
     }
 
@@ -162,7 +162,7 @@ class SettingController extends Controller
                 $colorScheme->value = '[]';
                 $colorScheme->save();
             }
-            $oldData  = json_decode($colorScheme->value, true);
+            $oldData = json_decode($colorScheme->value, true);
             return view('admin.setting.colorscheme', compact('colorScheme', 'oldData'));
         } else {
             Setting::updateOrCreate(
@@ -175,16 +175,55 @@ class SettingController extends Controller
         }
     }
 
-    public function RequestCallBack()
+    public function RequestCallBack(Request $request, bool $new = false)
     {
-        $setting = new Setting();
-        $setting->key = 'request_call_back';
-        $data = request()->validate([
-            'name' => 'required|string',
-            'phoneNumber' => 'required|string',
-            'email' => 'required|email',
+        if (Helper::G()) {
+            $requestCallBack = Setting::where('key', 'request_call_back')->first();
+            $values = json_decode($requestCallBack->value, true);
+            return view('admin.setting.callbackRequest', compact('values'));
+        }
+
+        $validatedData = $request->validate([
+            'data' => 'required|array',
+            'data.*.details' => 'required|array',
+            'data.*.details.name' => 'required|string',
+            'data.*.details.phoneNumber' => 'required|string',
+            'data.*.details.email' => 'required|email',
         ]);
-        $setting->value = json_encode($data);
-        $setting->save();
+
+        $setting = Setting::firstOrCreate(['key' => 'request_call_back']);
+
+        if ($new) {
+            $existing = json_decode($setting->value, true) ?? [];
+            $lastId = collect($existing)->pluck('id')->max() ?? 0;
+
+            $newData = [];
+            foreach ($validatedData['data'] as $index => $entry) {
+                $lastId++;
+                $newData[] = [
+                    'id' => $lastId,
+                    'details' => $entry['details'],
+                ];
+            }
+
+            $merged = array_merge($existing, $newData);
+            $setting->value = json_encode($merged);
+            $setting->save();
+            return response()->json(['message' => 'Saved successfully']);
+        } else {
+            // Replace entire data
+            $replaced = [];
+            foreach ($validatedData['data'] as $index => $entry) {
+                $replaced[] = [
+                    'id' => $index + 1, // Or just skip ID if not needed
+                    'details' => $entry['details'],
+                ];
+            }
+            $setting->value = json_encode($replaced);
+            $setting->save();
+            return response()->json(['message' => 'Saved successfully']);
+        }
+
     }
+
 }

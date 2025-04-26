@@ -20,7 +20,8 @@
                     <span>Emergency</span>
                 </a>
 
-                <a class="btn-action button-primary" data-bs-toggle="modal" data-bs-target="#callback-modal">
+                <a class="btn-action button-primary" style="cursor: pointer;" data-bs-toggle="modal"
+                    data-bs-target="#callback-modal">
                     <img src="{{ asset('front/assets/img/phone-icon.png') }}" alt="Call Back">
                     <span>Request Call</span>
                 </a>
@@ -31,7 +32,7 @@
                 </a>
             </div>
         </div>
-       
+
     </div>
 </section>
 <div class="modal fade" id="callback-modal">
@@ -41,7 +42,7 @@
                 <h2 class="modal-title heading-md text-center">Request Call Back</h2>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="">
+            <form action="{{ route('admin.setting.requestCallBack') }}" id="callback-form">
                 @csrf
                 <div class="row">
                     <div class="col-12">
@@ -65,11 +66,53 @@
                                 Address *</label>
                         </div>
                     </div>
+
                     <div class="col-12 submit-btn">
-                        <button class="w-100" id="submit-callback">Submit</button>
+                        <button class="w-100" id="submit-callback" type="submit">Submit</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 </div>
+@section('js')
+    <script>
+        $('#callback-form').on('submit', function (event) {
+            event.preventDefault(); // prevent page refresh
+
+            const formData = new FormData(this);
+
+            const newEntry = {
+                name: formData.get('name'),
+                phoneNumber: formData.get('phoneNumber'),
+                email: formData.get('email'),
+            };
+
+            console.log('New Entry:', newEntry);
+            const url = '{{ route("admin.setting.requestCallBack", ["new" => true]) }}';
+            // Now send it to your backend
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: {
+                    data: [
+                        {
+                            details: newEntry
+                        }
+                    ]
+                },
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // If you're using Laravel's CSRF protection
+                },
+                success: function (response) {
+                    alert('Saved successfully!');
+                    location.reload(); // reload page if you want to show updated data
+                },
+                error: function (error) {
+                    console.error(error);
+                    alert('Error saving!');
+                }
+            });
+        });
+    </script>
+@endsection

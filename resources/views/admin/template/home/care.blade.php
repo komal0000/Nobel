@@ -16,24 +16,24 @@
                                 <div class="click-text">
                                     <div class="block-head active">{{ $data->title }}</div>
                                     <div class="common-button">
-                                        <x-hoverBtn href="#" class="anchor-button">Know
+                                        <x-hoverBtn href="{{$data->link}}" class="anchor-button">Know
                                             More
                                         </x-hoverBtn>
                                     </div>
                                 </div>
-                                <a href="#" class="abc">
+                                <a href="{{$data->link}}" class="abc">
                                     <div datasrc="{{ asset($data->image) }}" class="click-circle active"></div>
                                 </a>
                             </div>
                         @elseif ($loop->index == 1)
                             <div class="why-block-b why-block blocking-hover wow fadeInRight">
-                                <a href="#" class="abc">
+                                <a href="{{$data->link}}" class="abc">
                                     <div datasrc="{{ asset($data->image) }}" class="click-circle active"></div>
                                 </a>
                                 <div class="click-text">
                                     <div class="block-head active">{{ $data->title }}</div>
                                     <div class="common-button">
-                                        <x-hoverBtn href="#" class="anchor-button">Know
+                                        <x-hoverBtn href="{{$data->link}}" class="anchor-button">Know
                                             More
                                         </x-hoverBtn>
                                     </div>
@@ -41,13 +41,13 @@
                             </div>
                         @elseif ($loop->index == 2)
                             <div class="why-block-c why-block blocking-hover wow fadeInRight">
-                                <a href="#" class="abc">
+                                <a href="{{$data->link}}" class="abc">
                                     <div datasrc="{{ asset($data->image) }}" class="click-circle active"></div>
                                 </a>
                                 <div class="click-text">
                                     <div class="block-head active">{{ $data->title }}</div>
                                     <div class="common-button">
-                                        <x-hoverBtn href="#" class="anchor-button">Know
+                                        <x-hoverBtn href="{{$data->link}}" class="anchor-button">Know
                                             More
                                         </x-hoverBtn>
                                     </div>
@@ -58,12 +58,12 @@
                                 <div class="click-text">
                                     <div class="block-head active">{{ $data->title }}</div>
                                     <div class="common-button">
-                                        <x-hoverBtn href="#" class="anchor-button">Know
+                                        <x-hoverBtn href="{{$data->link}}" class="anchor-button">Know
                                             More
                                         </x-hoverBtn>
                                     </div>
                                 </div>
-                                <a href="#" class="abc">
+                                <a href="{{$data->link}}" class="abc">
                                     <div datasrc="{{ asset($data->image) }}" class="click-circle active"></div>
                                 </a>
                             </div>
@@ -72,12 +72,12 @@
                                 <div class="click-text">
                                     <div class="block-head active">{{ $data->title }}</div>
                                     <div class="common-button">
-                                        <x-hoverBtn href="#" class="anchor-button">Know
+                                        <x-hoverBtn href="{{ route($data->link) }}" class="anchor-button">Know
                                             More
                                         </x-hoverBtn>
                                     </div>
                                 </div>
-                                <a href="#" class="abc">
+                                <a href="{{$data->link}}" class="abc">
                                     <div datasrc="{{ asset($data->image) }}" class="click-circle active"></div>
                                 </a>
                             </div>
@@ -97,10 +97,10 @@
                         <li onclick="expandResLi(this)">
                             <h3 class="heading-sm accor-heading">{{ $data->title }}</h3>
                             <div class="accor-collapse-wrapper">
-                                <img loading="lazy" src="{{ asset($data->image) }}" alt="Why Nobel"
-                                    width="460" height="460" class="ratio ratio-1x1">
+                                <img loading="lazy" src="{{ asset($data->image) }}" alt="Why Nobel" width="460" height="460"
+                                    class="ratio ratio-1x1">
                                 <div class="common-button">
-                                    <x-hoverBtn href="#" class="anchor-button">Know More
+                                    <x-hoverBtn href="{{$data->link}}" class="anchor-button">Know More
                                     </x-hoverBtn>
                                 </div>
                             </div>
