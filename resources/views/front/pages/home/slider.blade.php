@@ -42,7 +42,7 @@
                 <h2 class="modal-title heading-md text-center">Request Call Back</h2>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ route('admin.setting.requestCallBack') }}" id="callback-form">
+            <form action="{{ route('admin.setting.addRequestCallBack') }}" id="callback-form">
                 @csrf
                 <div class="row">
                     <div class="col-12">
@@ -89,10 +89,8 @@
             };
 
             console.log('New Entry:', newEntry);
-            const url = '{{ route("admin.setting.requestCallBack", ["new" => true]) }}';
-            // Now send it to your backend
             $.ajax({
-                url: url,
+                url: '{{ route("admin.setting.addRequestCallBack") }}',
                 type: 'POST',
                 data: {
                     data: [
@@ -102,11 +100,11 @@
                     ]
                 },
                 headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // If you're using Laravel's CSRF protection
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function (response) {
-                    alert('Saved successfully!');
-                    location.reload(); // reload page if you want to show updated data
+                    alert(response.message);
+                    location.reload(); 
                 },
                 error: function (error) {
                     console.error(error);
