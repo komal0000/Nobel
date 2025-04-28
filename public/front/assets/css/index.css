@@ -2002,6 +2002,9 @@ hr {
   text-align: center;
   width: 38%;
 }
+.why-hospital .why-wrapper .why-details .why-list .why-block-a .block-head {
+    height: 45px;
+}
 @media (min-width: 1199px) {
   .why-hospital .why-wrapper .why-details .why-list .why-block-a {
     top: -115px;

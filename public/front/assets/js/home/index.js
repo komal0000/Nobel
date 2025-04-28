@@ -230,6 +230,42 @@ function initSectionNavigation() {
     });
 }
 
+$('#callback-form').on('submit', function (event) {
+    event.preventDefault(); // prevent page refresh
+
+    const formData = new FormData(this);
+
+    const newEntry = {
+        name: formData.get('name'),
+        phoneNumber: formData.get('phoneNumber'),
+        email: formData.get('email'),
+    };
+
+    console.log('New Entry:', newEntry);
+    $.ajax({
+        url: callbackUrl,
+        type: 'POST',
+        data: {
+            data: [
+                {
+                    details: newEntry
+                }
+            ]
+        },
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (response) {
+            alert(response.message);
+            location.reload();
+        },
+        error: function (error) {
+            console.log(error);
+            alert('Error saving!');
+        }
+    });
+});
+
 /**
  * Set up all event listeners
  */
