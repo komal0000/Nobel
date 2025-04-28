@@ -42,7 +42,7 @@
                 <h2 class="modal-title heading-md text-center">Request Call Back</h2>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ route('admin.setting.addRequestCallBack') }}" id="callback-form">
+            <form action="{{ route('admin.setting.addRequestCallBack') }}" id="callback-form" >
                 @csrf
                 <div class="row">
                     <div class="col-12">
@@ -75,6 +75,3 @@
         </div>
     </div>
 </div>
-<script>
-    const callbackUrl = '{{route("admin.setting.addRequestCallBack")}}'
-</script>

@@ -160,8 +160,9 @@ class SpecialityController extends Controller
 
     public function renderTeamHead($speciality_id)
     {
+        $specialty = DB::table(Speciality::tableName)->where('id',$speciality_id)->first();
         $teamHead = DB::table('speciality_team_heads')->where('specialty_id', $speciality_id)->first();
-        Helper::putCache('speciality.single.' . $speciality_id . '.message', view('admin.template.speciality.teamHead', compact('teamHead'))->render());
+        Helper::putCache('speciality.single.' . $specialty->slug . '.message', view('admin.template.speciality.teamHead', compact('teamHead'))->render());
     }
 
     public function render()

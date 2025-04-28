@@ -243,7 +243,7 @@ $('#callback-form').on('submit', function (event) {
 
     console.log('New Entry:', newEntry);
     $.ajax({
-        url: callbackUrl,
+        url: this.action,
         type: 'POST',
         data: {
             data: [

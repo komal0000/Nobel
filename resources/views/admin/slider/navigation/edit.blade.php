@@ -13,7 +13,6 @@
                         <label for="icon">Icon <span style="color: red;">*</span></label>
                         <input type="file" name="icon" id="icon" class="form-control dropify" accept="image/*"
                             data-default-file="{{ asset($navigation->icon) }}">
-                        <small class="text-muted">Leave empty to keep current icon</small>
                     </div>
                 </div>
             </div>

@@ -21,7 +21,4 @@
 @endsection
 @section('js')
     <script src="{{ asset('front/assets/js/home/index.js') }}"></script>
-    <script>
-    $(document).ready(function() {console.log('testing')});
-    </script>
 @endsection
