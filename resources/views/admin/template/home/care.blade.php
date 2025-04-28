@@ -72,8 +72,8 @@
                                 <div class="click-text">
                                     <div class="block-head active">{{ $data->title }}</div>
                                     <div class="common-button">
-                                        <x-hoverBtn href="{{ route($data->link) }}" class="anchor-button">Know
-                                            More
+                                        <x-hoverBtn href="{{$data->link }}" class="anchor-button">
+                                            Know More
                                         </x-hoverBtn>
                                     </div>
                                 </div>
