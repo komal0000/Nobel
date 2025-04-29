@@ -94,11 +94,7 @@ $data =
                 </ul>
             </div>
         </nav>
-        <div class="feedback-contact">
-            <div class="cancer-care">
-                <img src="{{ asset('front/assets/img/nobel cancer.png') }}" alt="">
-            </div>
-        </div>
+       @includeIf('front.cache.home.mobileLogo')
     </div>
     <div class="sectionNavbarMainContainer d-none">
         <hr>

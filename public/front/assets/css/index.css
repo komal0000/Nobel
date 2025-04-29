@@ -2579,6 +2579,7 @@ hr {
     width: 100%;
     height: 100%;
     border-radius: 20px;
+    aspect-ratio: 3/2;
 }
 
 .services .main-container .service-slider .slide .body {

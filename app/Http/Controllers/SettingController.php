@@ -39,6 +39,7 @@ class SettingController extends Controller
             ],
             [
                 ["logo", "views/front/cache/home/logo.blade.php"],
+                ["mobileLogo","views/front/cache/home/mobileLogo.blade.php"]
             ],
         ],
         'philosophy' => [

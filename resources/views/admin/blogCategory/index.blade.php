@@ -49,8 +49,13 @@
                 <tr>
                     <td>{{ $category->title }}</td>
                     <td>
-                        <a href="{{ route('admin.blogCategory.index', ['type' => $type, 'parent_id' => $category->id]) }}"
+                        @if ($type == \App\Helper::blog_type_news)
+                            
+                        @else
+                            <a href="{{ route('admin.blogCategory.index', ['type' => $type, 'parent_id' => $category->id]) }}"
                             class="btn btn-info btn-sm">Sub Category</a>
+                        @endif
+                        
                         <a href="{{ route('admin.blogCategory.edit', ['category' => $category->id , 'parent_id' => $parent_id]) }}"
                             class="btn btn-warning btn-sm ">Edit</a>
                         <a href="{{ route('admin.blogCategory.del', ['category' => $category->id ,'parent_id' => $parent_id]) }}"
@@ -60,7 +65,7 @@
                             @php
                                 $typeNames = [];
                                 foreach (\App\Helper::blog_types as $key => $value) {
-                                    $typeNames[$key] = 'Manage ' . ucfirst(str_replace('_', ' ', $value)) . 's';
+                                    $typeNames[$key] = 'Manage ' . ucfirst(str_replace('_', ' ', $value)) ;
                                 }
                                 echo isset($typeNames[$type]) ? $typeNames[$type] : 'Manage Items';
                             @endphp
