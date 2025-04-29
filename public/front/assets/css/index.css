@@ -2272,6 +2272,9 @@ hr {
 
 .why-hospital .why-wrapper .why-details .why-list .why-block .click-text .block-head {
     width: 200px;
+    height: 2lh;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .why-hospital .why-wrapper .why-details .why-list .why-block .block-head {
@@ -2332,14 +2335,10 @@ hr {
 .why-hospital .why-wrapper .why-details .why-list .why-block-b {
     position: absolute;
     top: 130px;
-    right: -165px;
+    right: -215px;
     display: flex;
     gap: 20px;
     text-align: left;
-}
-
-.why-hospital .why-wrapper .why-details .why-list .why-block-b .click-text {
-    width: 150px;
 }
 
 @media (min-width: 1199px) {
@@ -2355,21 +2354,21 @@ hr {
     flex-wrap: wrap;
     gap: 20px;
     bottom: 10px;
-    right: -120px;
+    right: -150px;
     text-align: left;
 }
 
 @media (min-width: 1199px) {
     .why-hospital .why-wrapper .why-details .why-list .why-block-c {
         bottom: 10px;
-        right: -135px;
+        right: -165px;
     }
 }
 
 .why-hospital .why-wrapper .why-details .why-list .why-block-d {
     position: absolute;
     bottom: 10px;
-    left: -120px;
+    left: -150px;
     transform: translate(0, 0);
     text-align: right;
     display: flex;
@@ -2380,7 +2379,7 @@ hr {
 @media (min-width: 1199px) {
     .why-hospital .why-wrapper .why-details .why-list .why-block-d {
         bottom: 10px;
-        left: -135px;
+        left: -165px;
     }
 }
 
