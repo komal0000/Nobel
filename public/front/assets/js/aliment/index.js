@@ -1,5 +1,5 @@
 // Main JS file for all pages with alphabetical filtering
-$(document).ready(function() {
+$(document).ready(function () {
     // Initialize components
     initLetterSlider();
     initFilterAndPagination();
@@ -16,7 +16,7 @@ function equalizeCardHeight(selector) {
     const elements = $(selector);
     let maxHeight = 0;
 
-    elements.css('height', 'auto').each(function() {
+    elements.css('height', 'auto').each(function () {
         maxHeight = Math.max(maxHeight, $(this).height());
     });
 
@@ -51,21 +51,7 @@ function initFilterAndPagination() {
     const searchBox = $("input[name='searchBox']");
     const letterButtons = $(".char");
 
-    // Check for letter parameter in URL
-    const paramLetter = getUrlParameter('letter');
-    if (paramLetter) {
-        const letterButton = $(`.char-${paramLetter.toLowerCase()}`);
-        if (letterButton.length && !letterButton.prop("disabled")) {
-            letterButtons.removeClass("active");
-            letterButton.addClass("active");
-            selectedLetter = paramLetter.toLowerCase();
-        } else {
-            letterButtons.removeClass("active");
-            $('.char-all').addClass('active');
-            selectedLetter = "all";
-            if (paramLetter) alert('No Result Found For Letter ' + paramLetter);
-        }
-    }
+
 
     // Determine which letter filters should be enabled
     getAvailableLetters();
@@ -74,7 +60,7 @@ function initFilterAndPagination() {
     filterCards();
 
     // Set up event handlers
-    letterButtons.click(function() {
+    letterButtons.click(function () {
         if ($(this).prop("disabled")) return;
         letterButtons.removeClass("active");
         $(this).addClass("active");
@@ -99,12 +85,12 @@ function initFilterAndPagination() {
     // Helper functions for filtering and pagination
     function getAvailableLetters() {
         const letters = new Set();
-        cards.each(function() {
+        cards.each(function () {
             const title = $(this).find(".title").text().trim().toLowerCase();
             if (title.length) letters.add(title.charAt(0));
         });
 
-        letterButtons.each(function() {
+        letterButtons.each(function () {
             const letter = $(this).text().trim().toLowerCase();
             const isAvailable = letter === "all" || letters.has(letter);
             $(this)
@@ -115,10 +101,10 @@ function initFilterAndPagination() {
 
     function filterCards() {
         const searchText = searchBox.val().toLowerCase();
-        const filteredCards = cards.filter(function() {
+        const filteredCards = cards.filter(function () {
             const title = $(this).find(".title").text().trim().toLowerCase();
             return (selectedLetter === "all" || title.startsWith(selectedLetter)) &&
-                   title.includes(searchText);
+                title.includes(searchText);
         });
 
         showPage(1, filteredCards);
@@ -149,6 +135,29 @@ function initFilterAndPagination() {
             paginationContainer.append(button);
         }
     }
+
+    // Check for letter parameter in URL
+    const paramLetter = getUrlParameter('letter');
+    if (paramLetter) {
+        const letterButton = $(`.char-${paramLetter.toLowerCase()}`);
+        console.log('letterButton: ', letterButton);
+        console.log('Disabled Class: ', letterButton.hasClass("disabled"));
+
+
+        if (letterButton.length > 0 && !letterButton.hasClass("disabled")) {
+            letterButtons.removeClass("active");
+            letterButton.addClass("active");
+            selectedLetter = paramLetter.toLowerCase();
+
+
+        } else {
+            letterButtons.removeClass("active");
+            $('.char-all').addClass('active');
+            selectedLetter = "all";
+            console.log('paramLetter');
+            alert('No Result Found For Letter ' + paramLetter);
+        }
+    }
 }
 
 // Navigation functions
@@ -159,7 +168,7 @@ function initNavigation() {
 
     if ($sections.length && $sectionLinks.length) {
         // Generate navigation links from sections
-        $sections.each(function() {
+        $sections.each(function () {
             const sectionId = $(this).attr('id');
             const sectionName = $(this).data('content');
 
@@ -167,7 +176,7 @@ function initNavigation() {
             const $link = $('<a>')
                 .attr('href', `#${sectionId}`)
                 .text(sectionName)
-                .on('click', function(e) {
+                .on('click', function (e) {
                     e.preventDefault();
                     $('html, body').animate({
                         scrollTop: $(`#${sectionId}`).offset().top - 120
@@ -179,10 +188,10 @@ function initNavigation() {
         });
 
         // Active link highlighting when scrolling
-        $(window).on('scroll', function() {
+        $(window).on('scroll', function () {
             let current = '';
 
-            $sections.each(function() {
+            $sections.each(function () {
                 const sectionTop = $(this).offset().top;
                 if ($(window).scrollTop() >= (sectionTop - 150)) {
                     current = $(this).attr('id');
@@ -211,7 +220,7 @@ function getUrlParameter(name) {
 
 function toggleFeedback() {
     if ($(window).width() < 481) {
-        $(window).on("scroll", function() {
+        $(window).on("scroll", function () {
             $(".feedback-contact").toggleClass('hide-feedback', $(window).scrollTop() > 100);
         });
     } else {

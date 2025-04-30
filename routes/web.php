@@ -224,7 +224,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::get('', [JobController::class, 'index'])->name('index');
         Route::match(['GET', 'POST'], 'add', [JobController::class, 'add'])->name('add');
         Route::match(['GET', 'POST'], 'edit/{jobCategory_id}', [JobController::class, 'edit'])->name('edit');
-        Route::match(['GET', 'POST'], 'del/{jobCategory_id}', [JobController::class, 'del'])->name('del');
+        Route::match(['GET', 'POST'], 'del/{jobCategory_id}', [JobController::class, 'delete'])->name('del');
         Route::prefix('job')->name('job.')->group(function () {
             Route::get('index/{jobCategory_id}', [JobController::class, 'jobIndex'])->name('index');
             Route::match(['GET', 'POST'], 'add/{jobCategory_id}', [JobController::class, 'jobAdd'])->name('add');

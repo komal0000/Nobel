@@ -11,7 +11,7 @@
 @section('js')
     <script>
         // Wait for the document to be ready
-        $(document).ready(function() {
+        $(document).ready(function () {
             // Configuration
             const itemsPerPage = 5;
             let currentPage = 1;
@@ -37,18 +37,18 @@
                 const selectWrap = $('#select-wrap');
                 const defaultSelect = $('#default-select');
 
-                defaultSelect.on('click', function(e) {
+                defaultSelect.on('click', function (e) {
                     e.stopPropagation();
                     selectWrap.toggleClass('active');
                 });
 
                 // Close dropdown when clicking elsewhere
-                $(document).on('click', function() {
+                $(document).on('click', function () {
                     selectWrap.removeClass('active');
                 });
 
                 // Handle filter selection
-                $('#select-list li').on('click', function() {
+                $('#select-list li').on('click', function () {
                     let selectedText = $(this).text();
                     let selectedTarget = $(this).data('target');
 
@@ -68,7 +68,7 @@
 
             function setupPaginationListeners() {
                 // Previous page button
-                $('#prevPage').on('click', function() {
+                $('#prevPage').on('click', function () {
                     if (currentPage > 1) {
                         currentPage--;
                         updateDisplay();
@@ -76,7 +76,7 @@
                 });
 
                 // Next page button
-                $('#nextPage').on('click', function() {
+                $('#nextPage').on('click', function () {
                     const totalPages = Math.ceil(filteredJobs.length / itemsPerPage);
                     if (currentPage < totalPages) {
                         currentPage++;
@@ -85,7 +85,7 @@
                 });
 
                 // Page number buttons will be added dynamically
-                $('#paginationButtons').on('click', '.page-number', function() {
+                $('#paginationButtons').on('click', '.page-number', function () {
                     currentPage = parseInt($(this).text());
                     updateDisplay();
                 });
@@ -164,6 +164,21 @@
                 } else {
                     $('.no-results-message').hide();
                 }
+            }
+
+            function getUrlParameter(name) {
+                name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+                const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+                const results = regex.exec(location.search);
+                return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+            }
+
+            const paramJob = getUrlParameter('job');
+            if (paramJob) {
+                $('.default-item').text(paramJob);
+                $('#find-job-input').val(paramJob);
+                currentPage = 1;
+                filterItems();
             }
         });
     </script>
