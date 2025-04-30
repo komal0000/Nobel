@@ -1,10 +1,10 @@
 $(document).ready(function() {
     // Initialize components
     initLetterSlider();
-    initFilterAndPagination();
     initNavigation();
     equalizeCardHeight('.each-card');
     initScrollFunctions();
+    initFilterAndPagination();
 
     // Toggle navbar for mobile
     $('#toggle-navbar').click(toggleNavbar);
@@ -49,6 +49,11 @@ function initFilterAndPagination() {
     const paginationContainer = $("#paginationButtons");
     const searchBox = $("input[name='searchBox']");
     const letterButtons = $(".char");
+
+
+    // Initialize
+    getAvailableLetters();
+    filterCards();
 
     function getAvailableLetters() {
         const letters = new Set();
@@ -123,6 +128,8 @@ function initFilterAndPagination() {
         }
     });
 
+    
+
     // Check for letter parameter in URL
     const paramLetter = getUrlParameter('letter');
     if (paramLetter) {
@@ -142,9 +149,6 @@ function initFilterAndPagination() {
         }
     }
 
-    // Initialize
-    getAvailableLetters();
-    filterCards();
 }
 
 // Navigation and UI functions

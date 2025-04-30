@@ -50,6 +50,10 @@ function initFilterAndPagination() {
     const searchBox = $("input[name='searchBox']");
     const letterButtons = $(".char");
 
+    // Initialize
+    getAvailableLetters();
+    filterCards();
+
     // Get available letters for filtering
     function getAvailableLetters() {
         const letters = new Set();
@@ -146,9 +150,7 @@ function initFilterAndPagination() {
         }
     }
 
-    // Initialize
-    getAvailableLetters();
-    filterCards();
+    
 }
 
 // Navigation functions
