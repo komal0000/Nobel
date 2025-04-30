@@ -1,6 +1,7 @@
 @extends('admin.layout.app')
 
 @section('title')
+
     @php
         $typeNames = [];
         foreach (\App\Helper::blog_types as $key => $value) {
@@ -40,6 +41,7 @@
 @endsection
 
 @section('content')
+
     <form action="{{ route('admin.blogCategory.blog.edit', ['blog_id' => $blog->id, 'parent_id' => $parent_id]) }}"
         method="POST" enctype="multipart/form-data">
         @csrf

@@ -12,7 +12,10 @@ function extendSubMenu(el) {
 
 function extendKnowledgeSubMenu(el, event) {
     event.stopPropagation();
-    $(el).toggleClass('active-knowledge');
+    
+    if (window.innerWidth < 1200) {
+        $(el).toggleClass('active-knowledge');
+    }
 }
 
 function toggleFeedback() {
@@ -32,7 +35,7 @@ $('#toggle-navbar').on('click', function () {
         'transition': 'transform 0.3s ease'
     });
     console.log('toggle');
-    if($('#navbar').hasClass('show-navbar')) {
+    if ($('#navbar').hasClass('show-navbar')) {
         $('body').css('overflow', 'hidden');
     } else {
         $('body').css('overflow', 'auto');

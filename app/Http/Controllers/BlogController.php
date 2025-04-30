@@ -111,7 +111,6 @@ class BlogController extends Controller
     public function blogedit(Request $request, $blog_id)
     {
         $blog = Blog::where('id', $blog_id)->first();
-        // dd($blog);
         $blogCategory = DB::table('blog_categories')->where('id', $blog->blog_category_id)->first();
         $parent_id = $request->parent_id;
         if (Helper::G()) {
@@ -150,8 +149,8 @@ class BlogController extends Controller
     }
 
     public function renderSingle($blog_id, $type)
-    {
-        if($type = Helper::blog_type_blog) {
+    { 
+        if($type == Helper::blog_type_blog) {
             $blog = DB::table('blogs')->where('id', $blog_id)->first();
             $latestBlog = DB::table('blogs')->where('type', Helper::blog_type_blog)->orderBy('id', 'desc')->take(2)->get();
 
@@ -166,6 +165,8 @@ class BlogController extends Controller
         }
         
         //News case single page
+
+       
         if($type == Helper::blog_type_case_study){
             $case = DB::table('blogs')->where('id', $blog_id)->first();
             $latestCase = DB::table('blogs')->where('type', Helper::blog_type_case_study)->orderBy('id', 'desc')->take(2)->get();
@@ -197,7 +198,7 @@ class BlogController extends Controller
             Helper::putCache('home.update.'.$update->slug, view('admin.template.home.update.single', compact('update', 'latestUpdate'))->render());
         }
 
-        //News single page
+        //News single page    
         if($type == Helper::blog_type_news) {
             $news = DB::table('blogs')->where('id', $blog_id)->first();
             $latestNews = DB::table('blogs')->where('type', Helper::blog_type_news)->orderBy('id', 'desc')->take(2)->get();
@@ -214,7 +215,7 @@ class BlogController extends Controller
         if($type == Helper::blog_type_event) {
             $event = DB::table('blogs')->where('id', $blog_id)->first();
             $latestEvent = DB::table('blogs')->where('type', Helper::blog_type_event)->orderBy('id', 'desc')->take(2)->get();
-            Helper::putMetaCache('event.' . $event->slug, $data = [
+            Helper::putMetaCache('event.single.' . $event->slug, $data = [
                 'title' => $event->title,
                 'description' => $event->short_description,
                 'image' => asset(asset($event->image)),

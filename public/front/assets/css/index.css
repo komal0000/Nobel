@@ -6251,6 +6251,12 @@ hr {
     overflow: hidden;
 }
 
+#event-page .main-container .event-slider .slide .img-wrapper img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
 #event-page .main-container .event-slider .slide .img-wrapper .date {
     position: absolute;
     top: 20px;
@@ -8061,6 +8067,7 @@ hr {
 }
 
 #per-blog .blog .blog-main-img img {
+    max-height: 500px;
     height: 100%;
     width: 100%;
     -o-object-fit: cover;
@@ -9616,6 +9623,7 @@ hr {
 }
 
 #per-case-study .case-study img {
+    max-height: 500px;
     height: 100%;
     width: 100%;
     -o-object-fit: cover;
