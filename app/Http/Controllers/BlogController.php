@@ -144,13 +144,27 @@ class BlogController extends Controller
         $blog =  Blog::where('id', $blog_id)->first();
         $blog->delete();
         $this->render();
-        $this->deleteCache($blog_id, $blog->type);
+        $this->deleteCache($blog->slug, $blog->type);
 
         return redirect()->back()->with('delete_success', 'Successfully Blog Deleted');
     }
 
     public function renderSingle($blog_id, $type)
     {
+        if($type = Helper::blog_type_blog) {
+            $blog = DB::table('blogs')->where('id', $blog_id)->first();
+            $latestBlog = DB::table('blogs')->where('type', Helper::blog_type_blog)->orderBy('id', 'desc')->take(2)->get();
+
+            Helper::putMetaCache('knowledge.blog.' . $blog->slug, $data = [
+                'title' => $blog->title,
+                'description' => $blog->short_description,
+                'image' => asset(asset($blog->image)),
+                'url' => route('knowledge.blog.single', ['slug' => $blog->slug]),
+            ]);
+
+            Helper::putCache('knowledge.blog.' . $blog->slug, view('admin.template.knowledge.blog.single', compact('blog', 'latestBlog'))->render());
+        }
+        
         //News case single page
         if($type == Helper::blog_type_case_study){
             $case = DB::table('blogs')->where('id', $blog_id)->first();
@@ -284,7 +298,7 @@ class BlogController extends Controller
             'title' => 'Blogs',
             'description' => 'Blogs done by Nobel Hospital',
             'image' => asset('front/assets/img/meta-image.png'),
-            'url' => route('knowledge.blog'),
+            'url' => route('knowledge.blog.index'),
         ]);
         Helper::putCache('knowledge.blog', view('admin.template.knowledge.blog.index', compact('indexBlogs', 'featuredBlogs'))->render());
         Helper::putCache('event.index', view('admin.template.event.index', compact('indexNews', 'eventTypes'))->render());
@@ -298,19 +312,23 @@ class BlogController extends Controller
         Helper::putCache('home.newsEvent', view('admin.template.home.news', compact('newsData', 'eventData', 'latestNews', 'eventTypes',))->render());
         Helper::putCache('health.event', view('admin.template.health.event', compact('eventData')));
     }
-    public function deleteCache($blog_id, $type)
+    public function deleteCache($slug, $type)
     {
+        if ($type == Helper::blog_type_blog) {
+            Helper::deleteCache('knowledge.blog.' . $slug);
+            Helper::deleteMetaCache('knowledge.blog.' . $slug);
+        }
         if ($type == Helper::blog_type_news) {
-            Helper::deleteCache('home.news.' . $blog_id);
-            Helper::deleteMetaCache('home.news.' . $blog_id);
+            Helper::deleteCache('home.news.' . $slug);
+            Helper::deleteMetaCache('home.news.' . $slug);
         }
         if ($type == Helper::blog_type_event) {
-            Helper::deleteCache('event.single.' . $blog_id);
-            Helper::deleteMetaCache('event.' . $blog_id);
+            Helper::deleteCache('event.single.' . $slug);
+            Helper::deleteMetaCache('event.' . $slug);
         }
         if ($type == Helper::blog_type_update) {
-            Helper::deleteCache('home.update.' . $blog_id);
-            Helper::deleteMetaCache('home.update.' . $blog_id);
+            Helper::deleteCache('home.update.' . $slug);
+            Helper::deleteMetaCache('home.update.' . $slug);
         }
     }
 }

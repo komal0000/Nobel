@@ -41,7 +41,7 @@ $data =
                                 </a>
                                 <ul class="knowledge-drop-menu">
                                     <li>
-                                        <a href="{{ route('knowledge.blog') }}" class="drop-item">Blogs</a>
+                                        <a href="{{ route('knowledge.blog.index') }}" class="drop-item">Blogs</a>
                                     </li>
                                     <li>
                                         <a href="{{ route('knowledge.video') }}" class="drop-item">Videos</a>

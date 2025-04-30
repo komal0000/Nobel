@@ -14,9 +14,9 @@
                             </div>
                             <div class="body">
                                 <div class="type para-wrap mb-3">{{ $blogType->title }}</div>
-                                <div class="heading-md blog-title mb-3">
+                                <a href="{{ route('knowledge.blog.single', ['slug' => $blog->slug]) }}" class="heading-md blog-title mb-3">
                                     {{ $blog->title }}
-                                </div>
+                                </a>
                                 <div class="date-name para-wrap">
                                     <span
                                         class="date">{{ App\Helper::formatTimestampToDateString($blog->date) }}</span>
@@ -54,9 +54,9 @@
                             </div>
                             <div class="body">
                                 <div class="type para-wrap mb-3">{{ $blogType->title }}</div>
-                                <div class="heading-md blog-title mb-3">
+                                <a href="{{ route('knowledge.blog.single', ['slug' => $blog->slug]) }}" class="heading-md blog-title mb-3">
                                     {{ $blog->title }}
-                                </div>
+                                </a>
                                 <div class="date-name para-wrap">
                                     <span
                                         class="date">{{ App\Helper::formatTimestampToDateString($blog->date) }}</span>

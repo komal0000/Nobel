@@ -12,7 +12,7 @@
             {{ isset($typeNames[$blogCategory->type]) ? $typeNames[$blogCategory->type] . ' Categories' : 'Categories' }}
         </a> /
         @php
-            $parents = \App\Helper::getParentRoute($parent_id, 'blog_Categories', 'blogCategory', $blogCategory->type);
+            $parents = \App\Helper::getParentRoute($parent_id, 'blog_categories', 'blogCategory', $blogCategory->type);
         @endphp
         @foreach ($parents as $parent)
             <a

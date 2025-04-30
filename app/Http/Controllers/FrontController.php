@@ -112,6 +112,11 @@ class FrontController extends Controller
         return view('front.pages.knowledge.blog.index');
     }
 
+    public function blogSingle($slug) {
+        // $blog = DB::table('blogs')->where('slug', $slug)->first(['id']);
+        return view('front.pages.knowledge.blog.single', compact('slug'));
+    }
+
     public function casestudyIndex(){
         return view('front.pages.knowledge.casestudy.index');
     }

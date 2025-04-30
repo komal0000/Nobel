@@ -23,7 +23,7 @@
                     <ul class="footer-links">
                         <li><a href="#">Help Desk</a></li>
                         <li><a href="{{ route('about') }}">About us</a></li>
-                        <li><a href="{{ route('knowledge.blog') }}">Blogs</a></li>
+                        <li><a href="{{ route('knowledge.blog.index') }}">Blogs</a></li>
                         <li><a href="{{ route('careers') }}">Careers</a></li>
                         <li><a href="#">Feedback</a></li>
                         <li><a href="{{ route('contact') }}">Contact Us</a></li>

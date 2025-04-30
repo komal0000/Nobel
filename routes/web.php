@@ -81,7 +81,11 @@ Route::prefix('academicprogram')->name('academicprogram.')->group(function () {
 });
 
 Route::prefix('knowledge')->name('knowledge.')->group(function () {
-    Route::get('blog', [FrontController::class, 'blogIndex'])->name('blog');
+    // Route::get('blog', [FrontController::class, 'blogIndex'])->name('blog');
+    Route::prefix('blog')->name('blog.')->group(function() {
+        Route::get('index', [FrontController::class, 'blogIndex'])->name('index');
+        Route::get('{slug}', [FrontController::class, 'blogSingle'])->name('single');
+    });
     Route::get('video', [FrontController::class, 'videoIndex'])->name('video');
     Route::get('videos', [FrontController::class, 'videoAll'])->name('videos');
     Route::prefix('casestudy')->name('casestudy.')->group(function () {
