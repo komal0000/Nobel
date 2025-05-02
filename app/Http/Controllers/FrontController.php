@@ -155,9 +155,19 @@ class FrontController extends Controller
             'title' => 'Job Category',
             'description' => 'Job categories available in Nobel Hospital.',
             'keywords' => 'job, jobs, nobel job',
-            'url' => route('jobcategory')
+            'url' => route('jobs.jobcategory')
         ]);
         return view('front.pages.career.jobCategory');
+    }
+
+    public function jobDetail($slug) {
+
+      return view('front.pages.career.job.jobDetail', compact('slug'));
+    }
+
+    public function jobForm($slug) {
+
+      return view('front.pages.career.job.jobForm');
     }
 
     public function updateSingle($slug){

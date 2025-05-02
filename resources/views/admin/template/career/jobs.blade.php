@@ -14,7 +14,7 @@
                             <h3 class="heading">{{ $jobcategory->title }}</h3>
                             <p class="content">{{ $jobcategory->short_description }}</p>
                             <div class="d-flex justify-content-center know-btn">
-                                <x-hoverBtn href="{{ route('jobcategory', ['job' => $jobcategory->title]) }}">View Jobs</x-hoverBtn>
+                                <x-hoverBtn href="{{ route('jobs.jobcategory', ['job' => $jobcategory->title]) }}">View Jobs</x-hoverBtn>
                             </div>
                         </div>
                     </div>

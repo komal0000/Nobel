@@ -45,8 +45,8 @@
                                 <strong>{{ \App\Helper::formatTimestampToDateString($job->date) }}</strong>
                             </div>
                         </div>
-                        <div class="apply-btn">
-                            <x-hoverBtn>Apply</x-hoverBtn>
+                        <div class="apply-btn">@dump($job->slug)
+                            <x-hoverBtn href="{{ route('jobs.jobDetail.jobDetail', ['slug' => $job->slug]) }}">Apply</x-hoverBtn>
                         </div>
                     </div>
                 @endforeach

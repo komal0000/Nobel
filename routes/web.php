@@ -34,11 +34,19 @@ Route::get('/', [FrontController::class, 'index'])->name('index');
 Route::get('event', [FrontController::class, 'eventIndex'])->name('event');
 Route::get('contact', [FrontController::class, 'contact'])->name('contact');
 Route::get('careers', [FrontController::class, 'careers'])->name('careers');
-Route::get('jobcategory', [FrontController::class, 'jobCategory'])->name('jobcategory');
+
 Route::get('update/{slug}', [FrontController::class, 'updateSingle'])->name('update.single');
 Route::get('news/{slug}', [FrontController::class, 'newsSingle'])->name('news.single');
 Route::get('event/{slug}', [FrontController::class, 'eventSingle'])->name('event.single');
 Route::get('policy', [FrontController::class, 'policy'])->name('policy');
+
+Route::prefix('jobs')->name('jobs.')->group(function() {
+   Route::get('', [FrontController::class, 'jobCategory'])->name('jobcategory');
+   Route::prefix('{slug}')->name('jobDetail.')->group(function() {
+      Route::get('', [FrontController::class, 'jobDetail'])->name('jobDetail');
+      Route::match(['GET', 'POST'], 'form', [FrontController::class, 'jobForm'])->name('form');
+   });
+});
 
 
 Route::prefix('speciality')->name('speciality.')->group(function () {

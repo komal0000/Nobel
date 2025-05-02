@@ -7,6 +7,7 @@ use App\Models\Job;
 use App\Models\JobCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Traits\Dumpable;
 
 class JobController extends Controller
 {
@@ -81,6 +82,7 @@ class JobController extends Controller
             $job->job_category_id = $jobCategory->id;
             $job->save();
             $this->render();
+            $this->renderSingle($job->id);
 
             return redirect()->back()->with('success', 'Successfully Added Job');
         }
@@ -101,6 +103,7 @@ class JobController extends Controller
             $job->experience = $request->experience;
             $job->save();
             $this->render();
+            $this->renderSingle($job->id);
             return redirect()->back()->with('success', 'Successfully Updated Job');
         }
     }
@@ -117,5 +120,17 @@ class JobController extends Controller
         $jobcategories = DB::table('job_categories')->get(['id', 'title', 'icon','short_description']);
         Helper::putCache('career.jobcategory',view('admin.template.career.jobCategory', compact('jobcategories'))->render());
         Helper::putCache('career.job', view('admin.template.career.jobs', compact('jobcategories'))->render());
+    }
+
+    public function renderSingle($jobId)
+    {
+      $job = Job::where('id', $jobId)->first();
+      $jobCategory = JobCategory::where('id', $job->job_category_id)->value('title');
+      Helper::putMetaCache('career.job.' . $job->slug, $data = [
+         'title' => $job->title,
+         'description' => $job->short_description,
+         'url' => route('jobs.jobDetail.jobDetail', ['slug' => $job->slug]),
+      ]);
+      Helper::putCache('career.job.' . $job->slug, view('admin.template.career.job.jobDetail', compact('job', 'jobCategory'))->render());
     }
 }
