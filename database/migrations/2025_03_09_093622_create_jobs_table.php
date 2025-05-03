@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('description');
             $table->text('qualification');
             $table->string('experience');
-            $table->foreignId('job_category_id')->constrained('job_categories');
+            $table->foreignId('job_category_id')->constrained('job_categories')->onDelete('cascade');
             $table->timestamps();
         });
     }

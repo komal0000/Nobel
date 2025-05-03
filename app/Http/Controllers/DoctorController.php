@@ -162,4 +162,5 @@ class DoctorController extends Controller
         $doctorSpecialities = DB::table('doctor_specialities')->get();
         Helper::putCache('doctor.index', view('admin.template.doctor.index', compact('doctors', 'specialties', 'doctorSpecialities'))->render());
     }
+    
 }

@@ -165,9 +165,9 @@ class FrontController extends Controller
       return view('front.pages.career.job.jobDetail', compact('slug'));
     }
 
-    public function jobForm($slug) {
-
-      return view('front.pages.career.job.jobForm');
+    public function jobForm(Request $request, $slug) {
+      
+         return view('front.pages.career.job.jobForm', compact('slug'));
     }
 
     public function updateSingle($slug){

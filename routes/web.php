@@ -44,7 +44,8 @@ Route::prefix('jobs')->name('jobs.')->group(function() {
    Route::get('', [FrontController::class, 'jobCategory'])->name('jobcategory');
    Route::prefix('{slug}')->name('jobDetail.')->group(function() {
       Route::get('', [FrontController::class, 'jobDetail'])->name('jobDetail');
-      Route::match(['GET', 'POST'], 'form', [FrontController::class, 'jobForm'])->name('form');
+      Route::get('form', [FrontController::class, 'jobForm'])->name('form');
+      Route::post('form', [SettingController::class, 'jobRequest'])->name('form');
    });
 });
 

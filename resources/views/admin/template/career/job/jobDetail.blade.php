@@ -59,7 +59,7 @@
 <section id="job-detail-description">
    <div class="main-container">
       <div class="job-desc">
-         <div class="job-detail-title heading-md">
+         <div class="job-detail-title heading">
             Job Requirements
          </div>
          <ul>
@@ -69,7 +69,7 @@
          </ul>
       </div>
       <div class="job-obj">
-         <div class="job-detail-title heading-md">
+         <div class="job-detail-title heading">
             Job Description
          </div>
          <div>
