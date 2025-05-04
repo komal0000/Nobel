@@ -5073,8 +5073,10 @@ hr {
 
 #all-blogs .blog-card .img-wrapper,
 #featured-blogs .blog-card .img-wrapper {
-   position: relative;
-   padding-top: 60%;
+   width: 100%;
+   aspect-ratio: 4/3;;
+   overflow: hidden;
+   border-radius: 20px 20px 0 0;
 }
 
 #all-blogs .blog-card .img-wrapper img,
@@ -5083,12 +5085,6 @@ hr {
    height: 100%;
    -o-object-fit: cover;
    object-fit: cover;
-   border-radius: 20px;
-   position: absolute;
-   left: 0;
-   top: 0;
-   right: 0;
-   bottom: 0;
 }
 
 #all-blogs .blog-card .body,
@@ -8079,14 +8075,16 @@ hr {
 #per-blog .blog .blog-main-img {
    width: 100%;
    overflow: hidden;
+   border-radius: 20px;
 }
 
 #per-blog .blog .blog-main-img img {
-   max-height: 500px;
+   max-height: 600px;
    height: 100%;
    width: 100%;
    -o-object-fit: cover;
    object-fit: cover;
+   border-radius: 20px;
 }
 
 #per-blog .blog .blog-content {
@@ -9638,16 +9636,18 @@ hr {
 }
 
 #per-case-study .case-study img {
-   max-height: 500px;
-   height: 100%;
+   max-height: 600px;
+   height: auto;
    width: 100%;
    -o-object-fit: cover;
    object-fit: cover;
+   border-radius: 20px;
 }
 
 #per-case-study .case-study .case-study-main-img {
    width: 100%;
    overflow: hidden;
+   border-radius: 20px;
 }
 
 #per-case-study .case-study .author-profile {
@@ -11194,27 +11194,20 @@ hr {
    overflow: hidden;
 }
 
-#each-update .single-update .event-main-img .glightbox {
+#each-update .single-update .event-main-img {
    position: relative;
    border-radius: 20px;
    overflow: hidden;
+   max-height: 600px;
 }
 
-#each-update .single-update .event-main-img .glightbox img {
+#each-update .single-update .event-main-img img {
    width: 100%;
-   aspect-ratio: 3/2;
+   height: auto;
    -o-object-fit: cover;
    object-fit: cover;
 }
 
-#each-update .single-update .event-main-img .glightbox .play-icon {
-   position: absolute;
-   top: 50%;
-   left: 50%;
-   transform: translate(-50%, -50%);
-   width: auto;
-   height: auto;
-}
 
 #each-update .second-col .query-form form {
    max-width: 100%;

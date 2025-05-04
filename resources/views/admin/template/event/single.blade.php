@@ -49,7 +49,7 @@
                                     <img src="{{ asset($event->image) }}" alt="event Image">
                                 </div>
                                 <div class="body">
-                                    <div class="heading-md "><a href="/each-event">{{ $event->title }}</a></div>
+                                    <div class="heading-md "><a href="{{ route('event.single', $event->slug) }}">{{ $event->title }}</a></div>
                                     <div class="date">{{ App\Helper::formatTimestampToDateString($event->date) }}
                                     </div>
                                 </div>

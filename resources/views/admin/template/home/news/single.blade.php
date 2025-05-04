@@ -48,7 +48,7 @@
                                     <img src="{{ asset($news->image) }}" alt="event Image">
                                 </div>
                                 <div class="body">
-                                    <div class="heading-md "><a href="/each-event">{{ $news->title }}</a></div>
+                                    <div class="heading-md "><a href="{{ route('news.single', $news->slug) }}">{{ $news->title }}</a></div>
                                     <div class="date">{{ App\Helper::formatTimestampToDateString($news->date) }}
                                     </div>
                                 </div>
