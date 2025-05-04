@@ -175,17 +175,26 @@ class SettingController extends Controller
          );
          Helper::putCache('extra.colorScheme', view('admin.setting.template.colorScheme', ['data' => $request->except('_token')])->render());
          session()->flash('success', 'Color scheme successfully updated');
-         return response()->json(['succes4' => true]);
+         return response()->json(['success' => true]);
       }
    }
 
-   public function RequestCallBack(Request $request, bool $new = false)
+   public function RequestCallBack(Request $request)
    {
-      if (Helper::G()) {
+      if ($request->isMethod('get')) {
          $requestCallBack = Setting::where('key', 'request_call_back')->first();
          $values = json_decode($requestCallBack->value, true);
          return view('admin.setting.callbackRequest', compact('values'));
       } else {
+
+         if (!$request->has('data') || empty($request->data)) {
+            // If no data, set value to null or empty array
+            $setting = Setting::firstOrCreate(['key' => 'feedback']);
+            $setting->value = null; // Setting to null as specified
+            $setting->save();
+            return response()->json(['message' => 'All feedback cleared successfully']);
+         }
+
          $validatedData = $request->validate([
             'data' => 'required|array',
             'data.*.details' => 'required|array',
@@ -196,28 +205,30 @@ class SettingController extends Controller
 
          $setting = Setting::firstOrCreate(['key' => 'request_call_back']);
 
-
-         // Replace entire data
+         // Replace the entire data set
          $replaced = [];
          foreach ($validatedData['data'] as $index => $entry) {
             $replaced[] = [
-               'id' => $index + 1, // Or just skip ID if not needed
+               'id' => $index + 1,
                'details' => $entry['details'],
             ];
          }
+
          $setting->value = json_encode($replaced);
          $setting->save();
-         return response()->json(['message' => 'Submitted successfully']);
+
+         return response()->json(['success' => true, 'message' => 'Submitted successfully']);
       }
-
-
-
    }
+
 
    public function addCallbackRequest(Request $request)
    {
       $setting = Setting::firstOrCreate(['key' => 'request_call_back']);
-      $existing = json_decode($setting->value, true) ?? [];
+      $existing = null;
+      if (!empty($setting->value)) {
+         $existing = json_decode($setting->value, true) ?? [];
+      }
       $lastId = collect($existing)->pluck('id')->max() ?? 0;
 
       $validatedData = $request->validate([
@@ -243,6 +254,81 @@ class SettingController extends Controller
       return response()->json(['message' => 'Saved successfully']);
    }
 
+   public function feedback(Request $request)
+   {
+
+      if (Helper::G()) {
+         $feedback = Setting::where('key', 'feedback')->first();
+         $values = null;
+         if (!empty($feedback)) {
+            $values = json_decode($feedback->value, true);
+         }
+         return view('admin.setting.feedback', compact('values'));
+      } else {
+
+         if (!$request->has('data') || empty($request->data)) {
+            // If no data, set value to null or empty array
+            $setting = Setting::firstOrCreate(['key' => 'feedback']);
+            $setting->value = null; // Setting to null as specified
+            $setting->save();
+            return response()->json(['message' => 'All feedback cleared successfully']);
+         }
+         
+         $validatedData = $request->validate([
+            'data' => 'required|array',
+            'data.*.details' => 'required|array',
+            'data.*.details.name' => 'required|string',
+            'data.*.details.phoneNumber' => 'required|string',
+            'data.*.details.email' => 'required|email',
+            'data.*.details.message' => 'required|string',
+         ]);
+
+         $setting = Setting::firstOrCreate(['key' => 'feedback']);
+
+
+         // Replace entire data
+         $replaced = [];
+         foreach ($validatedData['data'] as $index => $entry) {
+            $replaced[] = [
+               'id' => $index + 1, // Or just skip ID if not needed
+               'details' => $entry['details'],
+            ];
+         }
+         $setting->value = json_encode($replaced);
+         $setting->save();
+         return response()->json(['message' => 'Submitted successfully']);
+      }
+   }
+
+   public function addFeedback(Request $request)
+   {
+      $setting = Setting::firstOrCreate(['key' => 'feedback'], ['value' => '']);
+      $existing = json_decode($setting->value, true) ?? [];
+      $lastId = collect($existing)->pluck('id')->max() ?? 0;
+
+      $validatedData = $request->validate([
+         'data' => 'required|array',
+         'data.*.details' => 'required|array',
+         'data.*.details.name' => 'required|string',
+         'data.*.details.phoneNumber' => 'required|string',
+         'data.*.details.email' => 'required|email',
+         'data.*.details.message' => 'required|string',
+      ]);
+
+      $newData = [];
+      foreach ($validatedData['data'] as $index => $entry) {
+         $lastId++;
+         $newData[] = [
+            'id' => $lastId,
+            'details' => $entry['details'],
+         ];
+      }
+
+      $merged = array_merge($existing, $newData);
+      $setting->value = json_encode($merged);
+      $setting->save();
+      return response()->json(['message' => 'Saved successfully']);
+   }
 
    public function jobRequest(Request $request, $slug)
    {

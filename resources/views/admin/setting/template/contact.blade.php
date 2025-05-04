@@ -57,29 +57,29 @@
                         </div>
                     </div>
                 </div>
-                <form class="form col-lg-7">
+                <form id="feedback-form" class="form col-lg-7" action="{{ route('admin.setting.addFeedback') }}" method="POST">
                     @csrf
                     <div class="heading-md mb-4">Feedback</div>
                     <div class="row">
                         <div class="mb-3 col-md-6">
-                            <label for="fullName">Name *</label>
-                            <input type="text" name="fullName" class="form-control" placeholder="Enter Your Name" required>
+                            <label for="name">Name *</label>
+                            <input type="text" name="name" class="form-control" placeholder="Enter Your Name" required>
                         </div>
                         <div class="mb-3 col-md-6">
                             <label for="email">Email Address *</label>
                             <input type="email" name="email" class="form-control" placeholder="Enter Your E-mail" required>
                         </div>
                         <div class="mb-3 col-md-6">
-                            <label for="mobileNumber">Mobile Number *</label>
-                            <input type="text" name="mobileNumber" class="form-control" placeholder="Enter Your Phone Number" required>
+                            <label for="phoneNumber">Mobile Number *</label>
+                            <input type="text" name="phoneNumber" class="form-control" placeholder="Enter Your Phone Number" required>
                         </div>
                         <div class=" mb-3 col-12">
-                            <label for="feedback">Your Message *</label>
-                            <textarea name="Feedback" class="form-control" placeholder="Enter your Message here" required></textarea>
+                            <label for="message">Your Message *</label>
+                            <textarea name="message" class="form-control" placeholder="Enter your Message here" required></textarea>
                         </div>
                     </div>
                     <div class="button align-self-center">
-                        <button class="submit-btn">Submit</button>
+                        <button type="submit" class="submit-btn">Submit</button>
                     </div>
                 </form>
             </div>

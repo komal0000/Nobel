@@ -263,8 +263,10 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::match(['GET', 'POST'], 'index/{type}', [SettingController::class, 'index'])->name('index');
         Route::match(['GET', 'POST'], '/contact', [SettingController::class, 'contact'])->name('contact');
         Route::match(['GET', 'POST'], '/colorscheme', [SettingController::class, 'colorScheme'])->name('colorscheme');
-        Route::match(['GET', 'POST'], '/requestCallBack', [SettingController::class, 'RequestCallBack'])->name('requestCallBack');
+        Route::match(['GET', 'POST'], '/request-callback', [SettingController::class, 'RequestCallBack'])->name('requestCallBack');
         Route::post('add', [SettingController::class, 'addCallbackRequest'])->name('addRequestCallBack');
+        Route::match(['GET', 'POST'], '/feedback', [SettingController::class, 'feedback'])->name('feedback');
+        Route::post('add-feedback', [SettingController::class, 'addFeedback'])->name('addFeedback');
     });
     Route::prefix('technology')->name('technology.')->group(function () {
         Route::match(['GET'], '', [TechnologyController::class, 'index'])->name('index');

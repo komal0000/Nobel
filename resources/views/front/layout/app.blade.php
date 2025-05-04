@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 @php
-$data = App\Helper::getSetting('top_favicon', true);
+    $data = App\Helper::getSetting('top_favicon', true);
 @endphp
 
 <head>
@@ -50,44 +50,47 @@ $data = App\Helper::getSetting('top_favicon', true);
         </main>
         @include('front.layout.footer')
         @include('front.layout.mobile-nav')
-      <div class="modal fade" id="callback-modal">
-         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content p-4">
-               <div class="modal-header p-0 pb-3 border-bottom-0">
-                  <h2 class="modal-title heading-md text-center">Request Call Back</h2>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-               </div>
-               <form action="{{ route('admin.setting.addRequestCallBack') }}" id="callback-form">
-                  @csrf
-                  <div class="row">
-                     <div class="col-12">
-                        <div class="form-floating mb-3">
-                           <input type="text" class="form-control" name="name" placeholder="Full Name *" required>
-                           <label for="name">Full Name *</label>
+        <div class="modal fade" id="callback-modal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content p-4">
+                    <div class="modal-header p-0 pb-3 border-bottom-0">
+                        <h2 class="modal-title heading-md text-center">Request Call Back</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="{{ route('admin.setting.addRequestCallBack') }}" id="callback-form">
+                        @csrf
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" name="name" placeholder="Full Name *"
+                                        required>
+                                    <label for="name">Full Name *</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating mb-3">
+                                    <input type="tel" class="form-control" name="phoneNumber"
+                                        placeholder="Phone Number *" required>
+                                    <label for="phoneNumber">Phone Number *</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" name="email"
+                                        placeholder="Email Address *" required>
+                                    <label for="email">Email
+                                        Address *</label>
+                                </div>
+                            </div>
+
+                            <div class="col-12 submit-btn">
+                                <button class="w-100" id="submit-callback" type="submit">Submit</button>
+                            </div>
                         </div>
-                     </div>
-                     <div class="col-12">
-                        <div class="form-floating mb-3">
-                           <input type="tel" class="form-control" name="phoneNumber" placeholder="Phone Number *" required>
-                           <label for="phoneNumber">Phone Number *</label>
-                        </div>
-                     </div>
-                     <div class="col-12">
-                        <div class="form-floating mb-3">
-                           <input type="email" class="form-control" name="email" placeholder="Email Address *" required>
-                           <label for="email">Email
-                              Address *</label>
-                        </div>
-                     </div>
-      
-                     <div class="col-12 submit-btn">
-                        <button class="w-100" id="submit-callback" type="submit">Submit</button>
-                     </div>
-                  </div>
-               </form>
+                    </form>
+                </div>
             </div>
-         </div>
-      </div>
+        </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
@@ -133,7 +136,7 @@ $data = App\Helper::getSetting('top_favicon', true);
 
 
     <script>
-        $(function () {
+        $(function() {
             const $sections = $('section[data-content]');
             const $sectionLinks = $('#sectionLinks');
             const $mainSectionNavbarContainer = $('.sectionNavbarMainContainer');
@@ -146,41 +149,41 @@ $data = App\Helper::getSetting('top_favicon', true);
                 toggleSectionNav(true);
                 $sectionLinks.empty();
 
-                $sections.each(function () {
+                $sections.each(function() {
                     const sectionId = $(this).attr('id');
                     const sectionName = $(this).data('content');
 
                     $('<li>')
                         .append(
                             $('<a>')
-                                .attr('href', `#${sectionId}`)
-                                .text(sectionName)
-                                .on('click', function (e) {
-                                    e.preventDefault();
-                                    scrolling = true;
+                            .attr('href', `#${sectionId}`)
+                            .text(sectionName)
+                            .on('click', function(e) {
+                                e.preventDefault();
+                                scrolling = true;
 
-                                    $('#sectionLinks a').removeClass('active');
-                                    $(this).addClass('active');
+                                $('#sectionLinks a').removeClass('active');
+                                $(this).addClass('active');
 
-                                    window.scrollTo({
-                                        top: $(`#${sectionId}`).offset().top - 120,
-                                    });
-                                    setTimeout(() => scrolling = false, 100);
+                                window.scrollTo({
+                                    top: $(`#${sectionId}`).offset().top - 120,
+                                });
+                                setTimeout(() => scrolling = false, 100);
 
-                                    scrollActiveLinkIntoView();
-                                })
+                                scrollActiveLinkIntoView();
+                            })
                         )
                         .appendTo($sectionLinks);
                 });
 
-                $(window).on('scroll', function () {
+                $(window).on('scroll', function() {
                     if (scrolling) return;
 
                     clearTimeout(scrollTimeout);
                     scrollTimeout = setTimeout(() => {
                         let currentId = '';
 
-                        $($sections.get().reverse()).each(function () {
+                        $($sections.get().reverse()).each(function() {
                             if ($(window).scrollTop() >= $(this).offset().top - 150) {
                                 currentId = $(this).attr('id');
                                 return false;
@@ -250,7 +253,7 @@ $data = App\Helper::getSetting('top_favicon', true);
 
                 const displayName = segmentNames[segment] ||
                     segment.replace(/-/g, ' ')
-                        .replace(/\b\w/g, l => l.toUpperCase());
+                    .replace(/\b\w/g, l => l.toUpperCase());
 
                 if (i === pathSegments.length - 1) {
                     breadcrumbsContainer.append(`
@@ -289,7 +292,42 @@ $data = App\Helper::getSetting('top_favicon', true);
     </script>
     @yield('js')
     <script>
-        $(window).on('load', function () {
+        $('#callback-form').on('submit', function(event) {
+            event.preventDefault(); // prevent page refresh
+
+            const formData = new FormData(this);
+
+            const newEntry = {
+                name: formData.get('name'),
+                phoneNumber: formData.get('phoneNumber'),
+                email: formData.get('email'),
+            };
+
+            console.log('New Entry:', newEntry);
+            $.ajax({
+                url: this.action,
+                type: 'POST',
+                data: {
+                    data: [{
+                        details: newEntry
+                    }]
+                },
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(response) {
+                    alert(response.message);
+                    location.reload();
+                },
+                error: function(error) {
+                    console.log(error);
+                    alert('Error saving!');
+                }
+            });
+        });
+
+
+        $(window).on('load', function() {
             adjustMainMargin();
             console.log('window loaded, adjusting margins');
         });

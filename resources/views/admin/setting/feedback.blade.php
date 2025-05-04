@@ -1,9 +1,9 @@
 @extends('admin.layout.app')
-@section('title', 'Callback Requests')
+@section('title', 'Feedbacks')
 
 @section('content')
     {{-- @dump($value) --}}
-    <form action="{{ route('admin.setting.requestCallBack') }}" method="POST">
+    <form action="{{ route('admin.setting.feedback') }}" method="POST">
         @csrf
 
         @if ($values !== null)
@@ -13,6 +13,7 @@
                         <th>Name</th>
                         <th>Phone Number</th>
                         <th>Email</th>
+                        <th>Message</th>
                         <th>Manage</th>
                     </tr>
                 </thead>
@@ -29,7 +30,10 @@
                                 {{ $value['details']['email'] }}
                             </td>
                             <td>
-                                <button onclick="deleteCallback({{ $value['id'] }})"
+                                {{ $value['details']['message'] }}
+                            </td>
+                            <td>
+                                <button onclick="deleteFeedback({{ $value['id'] }})"
                                     class="btn btn-sm btn-danger">Delete</button>
                             </td>
                         </tr>
@@ -40,6 +44,7 @@
                         <th>Name</th>
                         <th>Phone Number</th>
                         <th>Email</th>
+                        <th>Message</th>
                         <th>Manage</th>
                     </tr>
                 </tfoot>
@@ -49,32 +54,26 @@
 @endsection
 @section('js')
     <script>
-        let callbackData = @json($values);
+        let feedbackData = @json($values);
 
-        function deleteCallback(id) {
-            console.log("before delete: ", callbackData);
+        function deleteFeedback(id) {
+            console.log("before delete: ", feedbackData);
 
-            callbackData = callbackData.filter(item => item.id !== id);
+            feedbackData = feedbackData.filter(item => item.id !== id);
             const row = document.getElementById('tr_' + id);
-            
-            axios.post("{{ route('admin.setting.requestCallBack') }}", {
-                    data: callbackData,
+            axios.post("{{ route('admin.setting.feedback') }}", {
+                    data: feedbackData,
                     _token: '{{ csrf_token() }}'
                 })
                 .then(res => {
-                  if(res.status === 200) {
-                     row.remove();
-                     location.reload();
-                  } else {
-                     console.log('Error: ', res.data)
-                     alert('Failed to delete the data. Try again Later')
-                  }
+                  row.remove();
+                    location.reload();
                 })
                 .catch(error => {
                     console.error('Failed to save the data: ', error)
                 })
 
-            console.log("After Delete: ", callbackData);
+            console.log("After Delete: ", feedbackData);
 
         }
     </script>
