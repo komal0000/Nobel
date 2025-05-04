@@ -5074,7 +5074,8 @@ hr {
 #all-blogs .blog-card .img-wrapper,
 #featured-blogs .blog-card .img-wrapper {
    width: 100%;
-   aspect-ratio: 4/3;;
+   aspect-ratio: 4/3;
+   ;
    overflow: hidden;
    border-radius: 20px 20px 0 0;
 }
@@ -11370,7 +11371,9 @@ footer .footer-top .main-container .footer-row .footer-block .block-title {
       font-size: 15px;
       margin: 0;
       padding: 15px 50px 15px 0;
-      border-top: 1px solid #dadada;
+   }
+
+   footer .footer-top .main-container .footer-row .footer-block {
       border-bottom: 1px solid #dadada;
    }
 }

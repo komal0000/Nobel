@@ -2,7 +2,7 @@
     <div class="footer-top">
         <div class="main-container">
             <div class="footer-row d-flex justify-content-evenly">
-                <div class="footer-block" onclick="expand(this)">
+                <div class="footer-block" onclick="expandFooter(this)">
                     <h4 class="block-title">For Patients </h4>
                     <ul class="footer-links">
                         <li><a href="{{ route('doctor.index') }}">Find a Doctor</a></li>
@@ -13,11 +13,11 @@
                         {{-- <li><a href="#">CPR</a></li> --}}
                     </ul>
                 </div>
-                <div class="footer-block wow fadeInUp" onclick="expand(this)">
+                <div class="footer-block wow fadeInUp" onclick="expandFooter(this)">
                     <h4 class="block-title">Specialities</h4>
                     @includeif('front.cache.home.footer')
                 </div>
-                <div class="footer-block" onclick="expand(this)">
+                <div class="footer-block" onclick="expandFooter(this)">
                     <h4 class="block-title">Corporate</h4>
                     <ul class="footer-links">
                         <li><a href="{{ route('about') }}">About us</a></li>
@@ -38,3 +38,10 @@
         </div>
     </div>
 </footer>
+@section('js')
+      <script>
+        function expandFooter(el) {
+            $(el).toggleClass('active');
+          }
+      </script>
+@endsection

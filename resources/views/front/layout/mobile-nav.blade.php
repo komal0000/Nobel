@@ -13,7 +13,7 @@
             </button>
         </li>
         <li>
-            <a href="#">
+            <a href="{{ route('doctor.index') }}">
                 <div class="icon">
                     <img src="{{ asset('front/assets/img/doctor.svg') }}" alt="Doctor">
                 </div>
@@ -21,23 +21,7 @@
             </a>
         </li>
         <li>
-            <a href="#">
-                <div class="icon">
-                    <img src="{{ asset('front/assets/img/calendar-tick.svg') }}" alt="Appointment">
-                </div>
-                Book Apt.
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <div class="icon">
-                    <img src="{{ asset('front/assets/img/chat.svg') }}" alt="Chat">
-                </div>
-                Chat
-            </a>
-        </li>
-        <li>
-            <a href="#">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#callback-modal">
                 <div class="icon">
                     <img src="{{ asset('front/assets/img/call.svg') }}" alt="Call">
                 </div>
@@ -48,3 +32,4 @@
     </ul>
 
 </div>
+
