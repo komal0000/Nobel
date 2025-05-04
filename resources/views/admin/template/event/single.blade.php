@@ -40,27 +40,7 @@
             </div>
             <div class="col-lg-3">
                 <div class="second-col">
-                    <div class="query-form mb-4">
-                        <form action="">
-                            <div class="heading-md">Query Form</div>
-                            <div class="input-wrap">
-                                <label for="name">Name *</label>
-                                <input type="text" name="name" placeholder="Enter Your Name" required>
-                            </div>
-                            <div class="input-wrap">
-                                <label for="mobileNumber">Mobile Number *</label>
-                                <input type="text" name="mobileNumber" placeholder="Enter Your Phone Number"
-                                    required>
-                            </div>
-                            <div class="input-wrap">
-                                <label for="email">Email Address</label>
-                                <input type="text" name="email" placeholder="Enter Your E-mail">
-                            </div>
-                            <div class="btn-wrap w-100">
-                                <button>Submit</button>
-                            </div>
-                        </form>
-                    </div>
+                    
                     <div class="recent-event ">
                         <div class="heading mb-4">Recent Events</div>
                         @foreach ($latestEvent as $event)

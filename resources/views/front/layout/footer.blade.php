@@ -5,13 +5,12 @@
                 <div class="footer-block" onclick="expand(this)">
                     <h4 class="block-title">For Patients </h4>
                     <ul class="footer-links">
-                        <li><a href="#">Find a Doctor</a></li>
-                        <li><a href="#">Book Appointment</a></li>
-                        <li><a href="#">Treatments</a></li>
-                        <li><a href="#">Emergency 24x7</a></li>
-                        <li><a href="#">Technology</a></li>
-                        <li><a href="#">Patient Testimonials</a></li>
-                        <li><a href="#">CPR</a></li>
+                        <li><a href="{{ route('doctor.index') }}">Find a Doctor</a></li>
+                        <li><a href="{{ route('treatment.index') }}">Treatments</a></li>
+                        <li><a href="tel:102">Emergency 24x7</a></li>
+                        <li><a href="{{ route('technology.index') }}">Technology</a></li>
+                        <li><a href="{{ route('knowledge.videos', 'type_id=3') }}">Patient Testimonials</a></li>
+                        {{-- <li><a href="#">CPR</a></li> --}}
                     </ul>
                 </div>
                 <div class="footer-block wow fadeInUp" onclick="expand(this)">
@@ -21,13 +20,11 @@
                 <div class="footer-block" onclick="expand(this)">
                     <h4 class="block-title">Corporate</h4>
                     <ul class="footer-links">
-                        <li><a href="#">Help Desk</a></li>
                         <li><a href="{{ route('about') }}">About us</a></li>
                         <li><a href="{{ route('knowledge.blog.index') }}">Blogs</a></li>
                         <li><a href="{{ route('careers') }}">Careers</a></li>
-                        <li><a href="#">Feedback</a></li>
                         <li><a href="{{ route('contact') }}">Contact Us</a></li>
-                        <li><a href="#">News &amp; Events</a></li>
+                        <li><a href="{{ route('event') }}">News &amp; Events</a></li>
                         <li><a href="{{ route('policy') }}">Policies &amp; Forms</a></li>
                     </ul>
                 </div>

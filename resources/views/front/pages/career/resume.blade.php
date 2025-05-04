@@ -4,8 +4,9 @@
             Still Searching for the Right Position?
         </h1>
         <p>Let's Find Your Fit!</p>
-        <button class="resume" type="button" data-bs-toggle="modal" data-bs-target="#resume-modal">Submit Your
-            Resume</button>
+        {{-- <button class="resume" type="button" data-bs-toggle="modal" data-bs-target="#resume-modal">Submit Your
+            Resume</button> --}}
+         <x-hoverBtn href="{{ route('jobs.jobcategory') }}">Find Job</x-hoverBtn>
     </div>
     <div class="banner-img">
         <picture>

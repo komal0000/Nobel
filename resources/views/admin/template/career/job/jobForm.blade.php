@@ -159,7 +159,7 @@
                   </div>
                   <div class="mb-3 col-lg-4">
                      <label for="securedPercent">Percentage Secured or CGPA*</label>
-                     <input type="number" name="securedPercent" class="form-control" placeholder="Enter Percent">
+                     <input type="text" name="securedPercent" class="form-control" placeholder="Enter Percent">
                   </div>
 
                   <div class="mb-3 col-md-6">

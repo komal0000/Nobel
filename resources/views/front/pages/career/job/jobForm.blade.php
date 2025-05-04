@@ -99,7 +99,6 @@
 
       $('#form-step-3').on('submit', function (e) {
         e.preventDefault();
-        //   alert('form submitted');
       })
 
       $('#multiStepForm').on('submit', function (event) {
@@ -117,47 +116,12 @@
           console.log(pair[0], ':', pair[1]);
         }
 
-        // Validate resume file before submission
-        const resumeFile = formData.get('resume');
-        if (!resumeFile || !resumeFile.name) {
-          alert('Please select a resume file (PDF or DOCX format)');
-          $submitBtn.prop('disabled', false).html('Submit');
-          return;
-        }
-
-        // Set the correct content type for resume file
-        const fileExtension = resumeFile.name.split('.').pop().toLowerCase();
-        if (fileExtension !== 'pdf' && fileExtension !== 'doc' && fileExtension !== 'docx') {
-          alert('Resume must be in PDF or DOCX format');
-          $submitBtn.prop('disabled', false).html('Submit');
-          return;
-        }
-
-        // Validate completion year (must be 4 digits)
-        const completionYear = formData.get('completionYear');
-        if (!/^\d{4}$/.test(completionYear)) {
-          alert('Year of completion must be exactly 4 digits');
-          $submitBtn.prop('disabled', false).html('Submit');
-          return;
-        }
-
-        // Validate secured percent (must be numeric)
-        const securedPercent = formData.get('securedPercent');
-        if (securedPercent === '' || isNaN(securedPercent)) {
-          alert('Percentage secured or CGPA must be a valid number');
-          $submitBtn.prop('disabled', false).html('Submit');
-          return;
-        }
-
-        // The form data is already correctly formatted, no need to recreate it
-        // Just use the original formData object directly
-
         $.ajax({
           url: $(this).attr('action'), // Use the form's action attribute
           type: 'POST',
-          data: formData, // Use the original FormData directly
-          processData: false, // Important for FormData
-          contentType: false, // Important for FormData
+          data: formData,
+          processData: false,
+          contentType: false, 
           headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
           },
@@ -165,28 +129,11 @@
             alert(response.message || 'Your application has been submitted successfully!');
             location.reload();
           },
-          error: function (xhr, status, error) {
+          error: function (error) {
             // Enable the submit button again
             $submitBtn.prop('disabled', false).html('Submit');
-
-            // Handle validation errors
-            if (xhr.status === 422) {
-               try {
-                 const errors = xhr.responseJSON.errors;
-                 let errorMessage = 'Please correct the following errors:\n\n';
-
-                 for (const field in errors) {
-                   errorMessage += `• ${errors[field][0]}\n`;
-                 }
-
-                 alert(errorMessage);
-               } catch (e) {
-                 alert('Form validation failed. Please check your inputs and try again.');
-               }
-            } else {
-               alert('An error occurred while submitting your application. Please try again.');
-            }
-            console.error('Error details:', xhr.responseJSON);
+            alert('An error occurred while submitting your application. Please try again.');
+            console.error('Error details:', error);
           }
         });
       });

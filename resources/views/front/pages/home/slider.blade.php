@@ -15,7 +15,7 @@
                     <span>Feedback</span>
                 </a>
 
-                <a href="tel:100" class="btn-action button-primary emergency-btn">
+                <a href="tel:102" class="btn-action button-primary emergency-btn">
                     <img src="{{ asset('front/assets/img/emergency.png') }}" alt="Emergency">
                     <span>Emergency</span>
                 </a>

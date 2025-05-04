@@ -275,7 +275,7 @@ class SettingController extends Controller
 
          // Check if resume was uploaded
          if ($request->hasFile('resume') && $request->file('resume')->isValid()) {
-            $resumePath = $request->file('resume')->store('resumes', 'public');
+            $resumePath = $request->file('resume')->store('uploads/resumes/', 'public');
          } else {
             return response()->json(['error' => 'Resume file is required'], 422);
          }
@@ -311,7 +311,6 @@ class SettingController extends Controller
          $jobRequest->job_id = $job->id;
 
          $jobRequest->save();
-
          return response()->json(['message' => 'Your application has been submitted successfully.'], 200);
       } catch (\Exception $e) {
          \Illuminate\Support\Facades\Log::error('Job request error: ' . $e->getMessage());
