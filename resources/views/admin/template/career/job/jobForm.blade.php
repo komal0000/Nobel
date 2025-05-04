@@ -163,8 +163,8 @@
                   </div>
 
                   <div class="mb-3 col-md-6">
-                     <label for="resume">Resume (accepts only pdf, docx) *</label>
-                     <input class="file-input" type="file" accept=".pdf, .docx" name="resume" class="form-control"
+                     <label for="resume">Resume (accepts only pdf) *</label>
+                     <input class="file-input" type="file" accept=".pdf" name="resume" class="form-control"
                         required>
                   </div>
                   <div class=" mb-3 col-12">

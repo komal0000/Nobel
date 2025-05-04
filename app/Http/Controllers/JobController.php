@@ -111,9 +111,27 @@ class JobController extends Controller
 
    public function jobDelete($job_id)
    {
+      // JobRequest::where('job_id', $job_id)->delete();
       Job::where('id', $job_id)->delete();
       $this->render();
       return redirect()->back()->with('success', 'Successfully Deleted Job');
+   }
+
+   public function jobRequest($job_id)
+   {
+      if (Helper::G()) {
+         $job = Job::where('id', $job_id)->first();
+         $jobCategory = JobCategory::where('id', $job->job_category_id)->first();
+         $jobRequests = JobRequest::where('job_id', $job_id)->get();
+         return view('admin.jobCategory.job.request', compact('jobRequests', 'jobCategory'));
+      }
+   }
+
+   public function delJobRequest($jobRequestId)
+   {
+      JobRequest::where('id', $jobRequestId)->delete();
+      $this->render();
+      return redirect()->back()->with('success', 'Successfully Deleted Job Request.');
    }
 
    public function render()

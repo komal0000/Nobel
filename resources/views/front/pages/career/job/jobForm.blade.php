@@ -110,11 +110,7 @@
 
         const formData = new FormData(this); // Collect all form inputs
 
-        // Log the raw form data for debugging
-        console.log('Form data being submitted:');
-        for (const pair of formData.entries()) {
-          console.log(pair[0], ':', pair[1]);
-        }
+        
 
         $.ajax({
           url: $(this).attr('action'), // Use the form's action attribute

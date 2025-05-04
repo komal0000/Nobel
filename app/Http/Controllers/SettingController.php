@@ -274,10 +274,8 @@ class SettingController extends Controller
          // ]);
 
          // Check if resume was uploaded
-         if ($request->hasFile('resume') && $request->file('resume')->isValid()) {
+         if ($request->hasFile('resume')) {
             $resumePath = $request->file('resume')->store('uploads/resumes/', 'public');
-         } else {
-            return response()->json(['error' => 'Resume file is required'], 422);
          }
 
          // Find the job

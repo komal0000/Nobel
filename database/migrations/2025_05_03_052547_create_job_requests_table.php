@@ -32,7 +32,7 @@ return new class extends Migration {
          $table->string('percent_or_cgpa');
          $table->text('resume');
          $table->text('message');
-         $table->foreignId('job_id')->constrained('jobs');
+         $table->foreignId('job_id')->constrained('jobs')->onDelete('cascade');
          $table->timestamps();
       });
    }
