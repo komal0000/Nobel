@@ -43,7 +43,7 @@
             <div class="col-lg-3">
                 <div class="second-col">
                     <div class="recent-blog ">
-                        <div class="heading mb-4">Recent Blog</div>
+                        <div class="heading mb-4">Recent Blogs</div>
                         @foreach ($latestBlog as $latest)
                             <div class="blog-card mb-4">
                                 <div class="img-wrapper">

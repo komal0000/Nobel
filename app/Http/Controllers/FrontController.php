@@ -14,32 +14,17 @@ class FrontController extends Controller
     }
 
     public function contact(){
-        Helper::putMetaCache('contact', $data = [
-            'title' => 'Contact Us',
-            'description'=> 'Reach out to Nobel for appointments, inquiries, and hospital services. Get in touch with our expert medical team for assistance and patient care.',
-            'keywords' => 'contact us',
-            'url'=> route('contact')
-        ]);
+        
         return view('front.pages.contact.index');
     }
 
     public function careers(){
-        Helper::putMetaCache('career', $data = [
-            'title' => 'Career',
-            'description' => 'Reach out to Nobel for career opportunities.',
-            'keywords' => 'career, career nobel',
-            'url' => route('careers')
-        ]);
+        
         return view('front.pages.career.index');
     }
 
     public function specialityIndex(){
-        Helper::putMetaCache('speciality', $data = [
-            'title' => 'All Specialities',
-            'description' => 'Nobel is the best hospital in Nepal located in Biratnagar with multi-specialties and sub-specialities sections.',
-            'keywords' => 'specialities, all specialities, cardiac care, cancer care',
-            'url' => route('speciality.index')
-        ]);
+        
         return view('front.pages.speciality.index');
     }
     public function specialitySingle($slug){
@@ -48,12 +33,7 @@ class FrontController extends Controller
     }
 
     public function alimentIndex(){
-        Helper::putMetaCache('ailment', $data = [
-            'title' => 'All Ailments',
-            'description' => 'All Ailments section available in Nobel Hospital.',
-            'keywords' => 'ailments',
-            'url' => route('aliment.index')
-        ]);
+        
         return view('front.pages.aliment.index');
     }
     public function alimentSingle($slug){
@@ -62,12 +42,7 @@ class FrontController extends Controller
     }
 
     public function treatmentIndex(){
-        Helper::putMetaCache('treatment', $data = [
-            'title' => 'All Treatment',
-            'description' => 'All Treatment section available in Nobel Hospital.',
-            'keywords' => 'treatments',
-            'url' => route('treatment.index')
-        ]);
+        
         return view('front.pages.treatment.index');
     }
     public function treatmentSingle($slug){
@@ -76,12 +51,7 @@ class FrontController extends Controller
     }
 
     public function technologyIndex(){
-        Helper::putMetaCache('technology', $data = [
-            'title' => 'All Technologies',
-            'description' => 'All Technologies section available in Nobel Hospital.',
-            'keywords' => 'technology, technologies',
-            'url' => route('technology.index')
-        ]);
+        
         return view('front.pages.technology.index');
     }
     public function technologySingle($slug){
@@ -90,21 +60,11 @@ class FrontController extends Controller
     }
 
     public function downloadIndex(){
-        Helper::putMetaCache('download', $data = [
-            'title' => 'All Downloads',
-            'description' => 'All Downloads section available in Nobel Hospital.',
-            'keywords' => 'downloads',
-            'url' => route('download.index')
-        ]);
+        
         return view('front.pages.download.index');
     }
     public function eventIndex(){
-        Helper::putMetaCache('event.event', $data = [
-            'title' => 'All Events',
-            'description' => 'All Events section available in Nobel Hospital.',
-            'keywords' => 'event, events, event nobel',
-            'url' => route('event')
-        ]);
+        
         return view('front.pages.event.index');
     }
 
@@ -131,22 +91,12 @@ class FrontController extends Controller
     }
 
     public function videoIndex(){
-        Helper::putMetaCache('knowledge.video', $data = [
-            'title' => 'All Videos',
-            'description' => 'All Videos and categories available in Nobel Hospital.',
-            'keywords' => 'videos',
-            'url' => route('knowledge.video')
-        ]);
+        
         return view('front.pages.knowledge.video.index');
     }
 
     public function healthIndex(){
-        Helper::putMetaCache('healthLibrary', $data = [
-            'title' => 'Health Library',
-            'description' => 'Health Library of Nobel Hospital.',
-            'keywords' => 'health library, health library nobel',
-            'url' => route('healthlibrary.index')
-        ]);
+        
         return view('front.pages.health.index');
     }
 

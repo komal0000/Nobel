@@ -107,6 +107,13 @@ class TreatmentController extends Controller
 
             Helper::putCache('treatment.single.'.$treatment->id, view('admin.template.treatment.single', compact('treatment', 'treatments','treatmentSections'))->render());
         }
+
+         Helper::putMetaCache('treatment', $data = [
+            'title' => 'All Treatment',
+            'description' => 'All Treatment section available in Nobel Hospital.',
+            'keywords' => 'treatments',
+            'url' => route('treatment.index')
+         ]);
         Helper::putCache('treatment.index',view('admin.template.treatment.index', compact('treatments'))->render());
     }
 }

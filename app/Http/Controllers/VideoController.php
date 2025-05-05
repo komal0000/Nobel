@@ -85,6 +85,13 @@ class VideoController extends Controller
         $videoTypes = DB::table('video_types')->get(['id', 'title']);
 
         $videos = DB::table('videos')->get();
+
+         Helper::putMetaCache('knowledge.video', $data = [
+            'title' => 'All Videos',
+            'description' => 'All Videos and categories available in Nobel Hospital.',
+            'keywords' => 'videos',
+            'url' => route('knowledge.video')
+         ]);
         Helper::putCache('knowledge.video.all', view('admin.template.knowledge.video.singleType', compact('videoTypes', 'videos'))->render());
         Helper::putCache('health.knowledge.video', view('admin.template.health.knowledge.video', compact('videos'))->render());
         Helper::putCache('knowledge.video', view('admin.template.knowledge.video.index', compact('videoTypes'))->render());

@@ -59,6 +59,12 @@ class EmployeeTestimonialController extends Controller
     public function render()
     {
         $testimonials = DB::table('employee_testimonials')->get(['id', 'title', 'short_description', 'image']);
+         Helper::putMetaCache('career', $data = [
+            'title' => 'Career',
+            'description' => 'Reach out to Nobel for career opportunities.',
+            'keywords' => 'career, career nobel',
+            'url' => route('careers')
+         ]);
         Helper::putCache('career.testimonials', view('admin.template.career.EmployeeTestimonials', compact('testimonials'))->render());
     }
 }

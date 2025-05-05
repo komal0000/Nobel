@@ -137,6 +137,13 @@ class DownloadController extends Controller
     public function render(){
         $downloadMainType = DB::table('download_categories')->where('parent_id', null)->get();
         $downloads = DB::table('downloads')->get();
+
+         Helper::putMetaCache('download', $data = [
+            'title' => 'All Downloads',
+            'description' => 'All Downloads section available in Nobel Hospital.',
+            'keywords' => 'downloads',
+            'url' => route('download.index')
+         ]);
         Helper::putCache('health.download',view('admin.template.health.download',compact('downloads'))->render());
         Helper::putCache('download.index',view('admin.template.download.index',compact('downloadMainType','downloads'))->render());
     }

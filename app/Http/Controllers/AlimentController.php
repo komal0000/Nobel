@@ -188,6 +188,13 @@ class AlimentController extends Controller
 
             Helper::putCache('aliment.single.' . $aliment->id, view('admin.template.aliment.single', compact('aliment','alimentTypes'))->render());
         }
+
+         Helper::putMetaCache('ailment', $data = [
+            'title' => 'All Ailments',
+            'description' => 'All Ailments section available in Nobel Hospital.',
+            'keywords' => 'ailments',
+            'url' => route('aliment.index')
+         ]);
         Helper::putCache('aliment.index', view('admin.template.aliment.index', compact('aliments'))->render());
     }
 }

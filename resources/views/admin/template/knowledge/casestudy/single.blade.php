@@ -46,7 +46,7 @@
             <div class="col-lg-3">
                 <div class="second-col">
                     <div class="recent-case-study ">
-                        <div class="heading mb-4">Recent case-study</div>
+                        <div class="heading mb-4">Recent Case Studies</div>
                         @foreach ($latestCase as $caseItem)
                             <div class="case-study-card mb-4">
                                 <div class="img-wrapper">

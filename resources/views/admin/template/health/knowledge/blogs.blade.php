@@ -8,7 +8,7 @@
             <div class="body">
                 <div class="type mb-2">{{$blog->title}}</div>
                 <div class="heading-xs mb-2">{{$blog->short_description}}</div>
-                <x-hoverBtn class="para-wrap">Continue Reading</x-hoverBtn>
+                <x-hoverBtn href="{{ route('knowledge.blog.single', ['slug' => $blog->slug]) }}" class="para-wrap">Continue Reading</x-hoverBtn>
             </div>
         </div>
         @endforeach

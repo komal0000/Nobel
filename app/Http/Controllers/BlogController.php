@@ -245,7 +245,7 @@ class BlogController extends Controller
         $latestNews = DB::table('blogs')->where('type', Helper::blog_type_news)->where('is_featured', 1)->first();
         $updateData = DB::table('blogs')->where('type', Helper::blog_type_update)->get();
         //Event and news
-        $eventTypes = DB::table('blog_categories')->where('type', helper::blog_type_event)->get();
+        $eventTypes = DB::table('blog_categories')->where('type', Helper::blog_type_event)->get();
         $indexNews = DB::table('blogs')->where('type', Helper::blog_type_news)->get();
         //Blog Category
         $indexBlogs = DB::table('blogs')->where('type', Helper::blog_type_blog)->get();
@@ -255,6 +255,12 @@ class BlogController extends Controller
         }
         //Case Study
         $caseStudyTypes = DB::table('blog_categories')->where('type', helper::blog_type_case_study)->get();
+        $indexStudies = DB::table('blogs')
+         ->leftJoin('blog_categories', 'blogs.blog_category_id', '=', 'blog_categories.id')
+         ->where('blogs.type', Helper::blog_type_case_study)
+         ->select('blogs.*', 'blog_categories.title as blog_category_title')
+         ->get();
+      //   $studiesCategory = DB::table('blog_categories')->where('id', $indexStudies->blog_category_id)->get();
         Helper::putMetaCache('knowledge.casestudy', $data = [
             'title' => 'Case Studies',
             'description' => 'List of all the case studies done by Nobel Hospital',
@@ -262,7 +268,7 @@ class BlogController extends Controller
             'url' => route('knowledge.casestudy.index'),
         ]);
         Helper::putCache('knowledge.casestudy', view('admin.template.knowledge.casestudy.index', compact('caseStudyTypes')));
-
+        Helper::putCache('health.knowledge.studies', view('admin.template.health.knowledge.studies', compact('indexStudies')));
         //News Letter
         $newsLetterTypes = DB::table('blog_categories')->where('type', helper::blog_type_news_letter)->get();
         Helper::putMetaCache('knowledge.newsletter', $data = [
@@ -271,7 +277,7 @@ class BlogController extends Controller
             'image' => asset('front/assets/img/meta-image.png'),
             'url' => route('knowledge.newsletter'),
         ]);
-        Helper::putCache('knowledge.newsletter', view('admin.template.knowledge.newsletter.index', compact('newsLetterTypes')));
+        Helper::putCache('knowledge.newsletter', view('admin.template.knowledge.newsletter.index', compact('newsLetterTypes'))->render());
 
         //Academic Program
         $academicProgramTypes = DB::table('blog_categories')->where('type', helper::blog_type_acedemic_program)->get();
@@ -294,7 +300,7 @@ class BlogController extends Controller
         //Doctor Article
 
 
-        Helper::putCache('health.knowledge.blogs', view('admin.template.health.knowledge.blogs', compact('indexBlogs')));
+        Helper::putCache('health.knowledge.blogs', view('admin.template.health.knowledge.blogs', compact('indexBlogs'))->render());
         Helper::putMetaCache('knowledge.blogs.blog', $data = [
             'title' => 'Blogs',
             'description' => 'Blogs done by Nobel Hospital',

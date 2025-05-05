@@ -168,6 +168,13 @@ class SpecialityController extends Controller
     public function render()
     {
         $specialities = DB::table('specialties')->whereNull('parent_speciality_id')->get(['id', 'slug', 'title', 'icon']);
+        
+         Helper::putMetaCache('speciality', $data = [
+            'title' => 'All Specialities',
+            'description' => 'Nobel is the best hospital in Nepal located in Biratnagar with multi-specialties and sub-specialities sections.',
+            'keywords' => 'specialities, all specialities, cardiac care, cancer care',
+            'url' => route('speciality.index')
+         ]);
         Helper::putCache('home.speciality', view('admin.template.home.speciality', compact('specialities'))->render());
         Helper::putCache('home.teams', view('admin.template.home.teams', compact('specialities'))->render());
         Helper::putCache('home.header', view('admin.template.home.header', compact('specialities'))->render());

@@ -185,6 +185,12 @@ class TechnologyController extends Controller
             'url' => route('technology.single', ['slug' => $technology->slug]),
         ]);
 
+         Helper::putMetaCache('technology', $data = [
+            'title' => 'All Technologies',
+            'description' => 'All Technologies section available in Nobel Hospital.',
+            'keywords' => 'technology, technologies',
+            'url' => route('technology.index')
+         ]);
         Helper::putCache('technology.single.' . $technology_id, view('admin.template.technology.single', compact('technology', 'technologySections'))->render());
     }
 }

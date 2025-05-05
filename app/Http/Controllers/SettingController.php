@@ -149,6 +149,12 @@ class SettingController extends Controller
             ]
          ];
          Helper::setSetting('contact', $data);
+         Helper::putMetaCache('contact', $data = [
+            'title' => 'Contact Us',
+            'description' => 'Reach out to Nobel for appointments, inquiries, and hospital services. Get in touch with our expert medical team for assistance and patient care.',
+            'keywords' => 'contact us',
+            'url' => route('contact')
+         ]);
          Helper::putCache('home.footerLink', view('admin.setting.template.footer', compact('data'))->render());
          Helper::putCache('contact.index', view('admin.setting.template.contact', compact('data'))->render());
          Helper::putCache('contact.map', view('admin.setting.template.map', compact('data'))->render());

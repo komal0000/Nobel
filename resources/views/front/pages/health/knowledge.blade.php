@@ -11,6 +11,7 @@
         <div class="tab-content">
             @includeIf('front.cache.health.knowledge.blogs')
             @includeIf('front.cache.health.knowledge.video')
+            @includeIf('front.cache.health.knowledge.studies')
         </div>
     </div>
 </section>
