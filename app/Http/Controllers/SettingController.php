@@ -187,12 +187,12 @@ class SettingController extends Controller
          return view('admin.setting.callbackRequest', compact('values'));
       } else {
 
-         if (!$request->has('data') || empty($request->data)) {
-            // If no data, set value to null or empty array
-            $setting = Setting::firstOrCreate(['key' => 'feedback']);
+         $data = $request->input('data');
+         if (is_array($data) && count($data) === 0) {
+            $setting = Setting::firstOrCreate(['key' => 'request_call_back']);
             $setting->value = null; // Setting to null as specified
             $setting->save();
-            return response()->json(['message' => 'All feedback cleared successfully']);
+            return response()->json(['message' => 'All Callback Request has been cleared successfully']);
          }
 
          $validatedData = $request->validate([
@@ -217,7 +217,7 @@ class SettingController extends Controller
          $setting->value = json_encode($replaced);
          $setting->save();
 
-         return response()->json(['success' => true, 'message' => 'Submitted successfully']);
+         return response()->json(['success' => true, 'message' => 'Deleted successfully']);
       }
    }
 
@@ -225,10 +225,7 @@ class SettingController extends Controller
    public function addCallbackRequest(Request $request)
    {
       $setting = Setting::firstOrCreate(['key' => 'request_call_back']);
-      $existing = null;
-      if (!empty($setting->value)) {
-         $existing = json_decode($setting->value, true) ?? [];
-      }
+      $existing = json_decode($setting->value, true) ?? [];
       $lastId = collect($existing)->pluck('id')->max() ?? 0;
 
       $validatedData = $request->validate([
@@ -251,7 +248,7 @@ class SettingController extends Controller
       $merged = array_merge($existing, $newData);
       $setting->value = json_encode($merged);
       $setting->save();
-      return response()->json(['message' => 'Saved successfully']);
+      return response()->json(['message' => 'Your Request has been saved successfully']);
    }
 
    public function feedback(Request $request)
@@ -266,14 +263,14 @@ class SettingController extends Controller
          return view('admin.setting.feedback', compact('values'));
       } else {
 
-         if (!$request->has('data') || empty($request->data)) {
-            // If no data, set value to null or empty array
+         $data = $request->input('data');
+         if (is_array($data) && count($data) === 0) {
             $setting = Setting::firstOrCreate(['key' => 'feedback']);
             $setting->value = null; // Setting to null as specified
             $setting->save();
             return response()->json(['message' => 'All feedback cleared successfully']);
          }
-         
+
          $validatedData = $request->validate([
             'data' => 'required|array',
             'data.*.details' => 'required|array',
@@ -296,7 +293,7 @@ class SettingController extends Controller
          }
          $setting->value = json_encode($replaced);
          $setting->save();
-         return response()->json(['message' => 'Submitted successfully']);
+         return response()->json(['message' => 'Deleted successfully']);
       }
    }
 
@@ -327,7 +324,7 @@ class SettingController extends Controller
       $merged = array_merge($existing, $newData);
       $setting->value = json_encode($merged);
       $setting->save();
-      return response()->json(['message' => 'Saved successfully']);
+      return response()->json(['message' => 'Thanks for the feedback']);
    }
 
    public function jobRequest(Request $request, $slug)

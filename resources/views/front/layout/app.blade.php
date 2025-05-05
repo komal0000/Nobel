@@ -303,7 +303,6 @@
                 email: formData.get('email'),
             };
 
-            console.log('New Entry:', newEntry);
             $.ajax({
                 url: this.action,
                 type: 'POST',

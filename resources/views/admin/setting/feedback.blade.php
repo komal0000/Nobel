@@ -33,7 +33,7 @@
                                 {{ $value['details']['message'] }}
                             </td>
                             <td>
-                                <button onclick="deleteFeedback({{ $value['id'] }})"
+                                <button onclick="deleteFeedback(event, {{ $value['id'] }})"
                                     class="btn btn-sm btn-danger">Delete</button>
                             </td>
                         </tr>
@@ -56,7 +56,8 @@
     <script>
         let feedbackData = @json($values);
 
-        function deleteFeedback(id) {
+        function deleteFeedback(event, id) {
+         event.preventDefault();
             console.log("before delete: ", feedbackData);
 
             feedbackData = feedbackData.filter(item => item.id !== id);
