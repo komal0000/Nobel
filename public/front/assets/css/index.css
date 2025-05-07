@@ -2735,6 +2735,7 @@ hr {
 
 .national .main-container-2 .content .inter-doc .text .heading-sm {
    font-weight: 600;
+   color: var(--color-white);
 }
 
 .national .main-container-2 .content .inter-doc .text .para {
@@ -6786,9 +6787,10 @@ hr {
    flex: 1;
    width: 100%;
    height: auto;
+   max-height: 500px;
    border-radius: 25px;
-   -o-object-fit: cover;
-   object-fit: cover;
+   -o-object-fit: contain;
+   object-fit: contain;
 }
 
 .leader .main-container .leader-wrapper .slider-nav {
@@ -6820,7 +6822,8 @@ hr {
 
 .leader .main-container .leader-wrapper .slider-nav .each-card-nav img {
    width: 100%;
-   height: 100%;
+   height: 100px;
+   object-fit: contain;
    border-radius: 10px;
 }
 
@@ -7075,7 +7078,8 @@ hr {
 .intern .main-container .content .slide-wrapper .image-card img {
    border-radius: 20px;
    width: 100%;
-   aspect-ratio: 1/1;
+   height: 250px;
+   object-fit: contain;
 }
 
 .intern .main-container .content .para {

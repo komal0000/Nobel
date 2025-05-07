@@ -39,6 +39,13 @@
             -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
         }
+
+        #copiedText {
+            margin-top: 1.5rem;
+            z-index: 10;
+            font-size: 12px;
+            top: 0;
+        }
     </style>
 </head>
 
@@ -132,6 +139,18 @@
 
             $('main').css('margin-top', headerBaseHeight + 'px');
         }
+
+        $('#copyBtn').on('click', function(e) {
+            e.preventDefault();
+            const link = window.location.href;
+            navigator.clipboard.writeText(link).then(() => {
+                const copiedText = $('#copiedText');
+                copiedText.removeClass('d-none');
+                setTimeout(() => copiedText.addClass('d-none'), 1000);
+            }).catch((err) => {
+                console.error('Failed to copy:', err);
+            });
+        });
     </script>
 
 

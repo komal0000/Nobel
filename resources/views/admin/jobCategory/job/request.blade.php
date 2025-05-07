@@ -70,10 +70,15 @@
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <p><strong>Current Annual CTC:</strong>
-                                                {{ $jobRequest->current_annual_ctc ? 'Rs. ' . number_format($jobRequest->current_annual_ctc, 0) : 'N/A' }}
+                                                {{ is_numeric($jobRequest->current_annual_ctc)
+                                                    ? 'Rs. ' . number_format($jobRequest->current_annual_ctc, 0)
+                                                    : $jobRequest->current_annual_ctc ?? 'N/A' }}
                                             </p>
                                             <p><strong>Expected Annual CTC:</strong>
-                                                {{ 'Rs. ' . number_format($jobRequest->expected_annual_ctc, 0) }}</p>
+                                                {{ is_numeric($jobRequest->expected_annual_ctc)
+                                                    ? 'Rs. ' . number_format($jobRequest->expected_annual_ctc, 0)
+                                                    : $jobRequest->expected_annual_ctc ?? 'N/A' }}
+                                            </p>
                                             <p><strong>Notice Period:</strong> {{ $jobRequest->notice_period ?: 'N/A' }}
                                             </p>
                                         </div>

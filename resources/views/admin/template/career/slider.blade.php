@@ -12,6 +12,6 @@
             </div>
             @endforeach
         </div>
-        <x-hoverBtn class="explore-btn">Explore Jobs</x-hoverBtn>
+        <x-hoverBtn class="explore-btn" href="{{ route('jobs.jobcategory') }}">Explore Jobs</x-hoverBtn>
     </div>
 </section>
