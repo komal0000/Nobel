@@ -151,6 +151,14 @@
                 console.error('Failed to copy:', err);
             });
         });
+
+        $(document).ready(function() {
+            const lightBox = GLightbox({
+                selector: '.glightbox',
+                touchNavigation: true,
+                loop: true
+            });
+        });
     </script>
 
 

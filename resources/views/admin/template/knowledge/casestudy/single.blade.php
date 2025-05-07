@@ -4,7 +4,14 @@
             <div class="col-lg-9">
                 <div class="case-study">
                     <div class="case-study-main-img mb-3">
-                        <img src="{{ asset($case->image) }}" alt="case-study Image">
+                         @if (!empty($case->video_link))
+                           <a href="{{ asset($case->video_link) }}" class="glightbox">
+                              <img src="{{ asset($case->single_page_image) }}" alt="Case Main Image">
+                              <img class="play-icon" src="{{ asset('front/assets/img/play-icon.png') }}" alt="Play Icon">
+                           </a>
+                        @else
+                           <img src="{{ asset($case->single_page_image) }}" alt="Case Main Image">
+                        @endif
                     </div>
                     <div class="case-study-header">
                         <div class="heading mb-4">
@@ -40,7 +47,7 @@
                                 <i class="bi bi-twitter-x"></i>
                             </a>
                             <a
-                                href="mailto:?subject={{ urlencode($update->title) }}&body={{urlencode(url()->current())}}">
+                                href="mailto:?subject={{ urlencode($case->title) }}&body={{urlencode(url()->current())}}">
                                 <i class="bi bi-envelope"></i>
                             </a>
                         </div>

@@ -4,7 +4,14 @@
             <div class="col-lg-9">
                 <div class="single-update">
                     <div class="event-main-img mb-3">
-                        <img src="{{ asset($news->single_page_image) }}" alt="Staff">
+                     @if (!empty($news->video_link))
+                           <a href="{{ asset($news->video_link) }}" class="glightbox">
+                              <img src="{{ asset($news->single_page_image) }}" alt="News Main Image">
+                              <img class="play-icon" src="{{ asset('front/assets/img/play-icon.png') }}" alt="Play Icon">
+                           </a>
+                        @else
+                           <img src="{{ asset($news->single_page_image) }}" alt="News Main Image">
+                        @endif
                     </div>
                     <div class="update-header">
                         <div class="heading mb-4">
@@ -37,7 +44,7 @@
                                 <i class="bi bi-twitter-x"></i>
                             </a>
                             <a
-                                href="mailto:?subject={{ urlencode($update->title) }}&body={{urlencode(url()->current())}}">
+                                href="mailto:?subject={{ urlencode($news->title) }}&body={{urlencode(url()->current())}}">
                                 <i class="bi bi-envelope"></i>
                             </a>
                         </div>

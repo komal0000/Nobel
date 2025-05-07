@@ -5083,7 +5083,6 @@ hr {
 #featured-blogs .blog-card .img-wrapper {
    width: 100%;
    aspect-ratio: 4/3;
-   ;
    overflow: hidden;
    border-radius: 20px 20px 0 0;
 }
@@ -5099,7 +5098,6 @@ hr {
 #all-blogs .blog-card .body,
 #featured-blogs .blog-card .body {
    padding: 30px;
-   cursor: pointer;
 }
 
 #all-blogs .blog-card .body .type,
@@ -5112,6 +5110,7 @@ hr {
 #featured-blogs .blog-card .body .heading-md {
    font-weight: 700;
    color: var(--color-dark-grey);
+   display: block;
    height: 2lh;
    overflow: hidden;
    text-overflow: ellipsis;
@@ -8088,10 +8087,27 @@ hr {
    width: 100%;
    overflow: hidden;
    border-radius: 20px;
+   max-height: 600px;
+}
+
+#per-blog .blog .blog-main-img .glightbox {
+   position: relative;
+   border-radius: 20px;
+   overflow: hidden;
+   max-height: 600px
+}
+
+#per-blog .blog .blog-main-img .play-icon {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   width: auto;
+   height: auto;
 }
 
 #per-blog .blog .blog-main-img img {
-   max-height: 600px;
+   
    height: 100%;
    width: 100%;
    -o-object-fit: cover;
@@ -9659,7 +9675,24 @@ hr {
 #per-case-study .case-study .case-study-main-img {
    width: 100%;
    overflow: hidden;
+   max-height: 600px;
    border-radius: 20px;
+}
+
+#per-case-study .case-study .glightbox {
+   position: relative;
+   border-radius: 20px;
+   max-height: 600px;
+   overflow: hidden;
+}
+
+#per-case-study .case-study .glightbox .play-icon {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   width: auto;
+   height: auto;
 }
 
 #per-case-study .case-study .author-profile {
@@ -11213,11 +11246,27 @@ hr {
    max-height: 600px;
 }
 
+#each-update .single-update .glightbox {
+   position: relative;
+   border-radius: 20px;
+   max-height: 600px;
+   overflow: hidden;
+}
+
 #each-update .single-update .event-main-img img {
    width: 100%;
+   height: 100%;
+   -o-object-fit: contain;
+   object-fit: contain;
+}
+
+#each-update .single-update .glightbox .play-icon {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   width: auto;
    height: auto;
-   -o-object-fit: cover;
-   object-fit: cover;
 }
 
 
