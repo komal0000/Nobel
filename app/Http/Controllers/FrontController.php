@@ -181,7 +181,8 @@ class FrontController extends Controller
     }
     public function serviceSingle($slug){
         $service = DB::table('services')->where('slug',$slug)->first();
-        return view('front.pages.service.single',compact('slug'));
+        $sections = DB::table('service_sections')->where('service_id', $service->id)->get();
+        return view('front.pages.service.single',compact('slug', 'sections'));
     }
 
     public function about(){

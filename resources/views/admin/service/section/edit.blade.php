@@ -31,11 +31,11 @@
                 </div>
             </div>
             <div class="col-md-6 mb-3" id="short_desc1">
-                <label for="short_desc1">Description 1 <span style="color: red;">*</span></label>
+                <label for="short_desc1">Description 1 (Use Unordered List) <span style="color: red;">*</span></label>
                 <textarea name="short_desc1" id="short_desc1" class="form-control summernote" rows="3" required>{{ $section->short_desc1 }}</textarea>
             </div>
             <div class="col-md-6 mb-3" id="short_desc2">
-                <label for="short_desc2">Description 2</label>
+                <label for="short_desc2">Description 2 (Use Unordered List)</label>
                 <textarea name="short_desc2" id="short_desc2" class="form-control summernote" rows="3">{{ $section->short_desc2 }}</textarea>
             </div>
 

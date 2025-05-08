@@ -122,13 +122,14 @@ class ServicePackageController extends Controller
 
     public function render($type_name, $service_id)
     {
+       $service = DB::table('services')->where('id', $service_id)->first();
         if ($type_name == 'Type 1') {
             $packages1 = DB::table('service_packages')->where('type_name', $type_name)->get();
             $packageCategories = DB::table('package_categories')->get();
-            Helper::putCache('service.single.package.' . $service_id, view('admin.template.service.package.type1', compact('packages1','packageCategories'))->render());
+            Helper::putCache('service.single.package.' . $service->slug, view('admin.template.service.package.type1', compact('packages1','packageCategories'))->render());
         } else {
             $packages2 = DB::table('service_packages')->where('type_name', $type_name)->get();
-            Helper::putCache('service.single.package' . $service_id, view('admin.template.service.package.type2', compact('packages2'))->render());
+            Helper::putCache('service.single.package' . $service->slug, view('admin.template.service.package.type2', compact('packages2'))->render());
         }
     }
 }

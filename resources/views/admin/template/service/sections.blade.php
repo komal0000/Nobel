@@ -5,14 +5,11 @@
                 {{ $section->title }}
             </div>
             <div class="qn-body">
-                <div class="qn-list">
-                    <div class="qn-picture"> {{-- image aspect ratio: 4:2 --}}
-                        <img src="{{ asset($section->image) }}" height="400" width="800"
-                            alt="Second Opinion Image">
-                    </div>
-                    <div class="qn-list">
-                        {!! $section->short_desc1 !!}
-                    </div>
+                <div class="qn-picture"> {{-- image aspect ratio: 4:2 --}}
+                    <img src="{{ asset($section->image) }}" height="400" width="800" alt="Second Opinion Image">
+                </div>
+                <div class="qn-list ">
+                    {!! $section->short_desc1 !!}
                 </div>
 
             </div>
@@ -24,13 +21,12 @@
             <div class="heading text-center text-capitalize mb-4">
                 {{ $section->title }}
             </div>
-            <div class="qn-body">
+            <div class="qn-body qn-body-right flex-column-reverse flex-lg-row">
                 <div class="qn-list">
                     {!! $section->short_desc1 !!}
                 </div>
                 <div class="qn-picture"> {{-- image aspect ratio: 4:2 --}}
-                    <img src="{{ asset($section->image) }}" height="400" width="800"
-                        alt="Second Opinion Image">
+                    <img src="{{ asset($section->image) }}" height="400" width="800" alt="Second Opinion Image">
                 </div>
             </div>
         </div>
@@ -43,7 +39,7 @@
             </div>
             <div class="image-main">
                 <div class="image-left">
-                    {{ $section->short_desc1 }}
+                    {!! $section->short_desc1 !!}
                 </div>
                 <div class="image-middle">
                     <picture>
@@ -51,7 +47,7 @@
                     </picture>
                 </div>
                 <div class="image-right">
-                    {{ $section->short_desc2 }}
+                    {!! $section->short_desc2 !!}
                 </div>
             </div>
         </div>

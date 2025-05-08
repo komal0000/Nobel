@@ -9,6 +9,9 @@
     @includeIf('front.cache.service.single.package.' . $slug)
     @includeIf('front.cache.service.single.benefit.' . $slug)
     @includeIf('front.cache.service.single.faqs.' . $slug)
+    @foreach ($sections as $section)
+        @includeIf('front.cache.service.single.section.' . $slug . $section->id)
+    @endforeach
 @endsection
 @section('js')
     <script>

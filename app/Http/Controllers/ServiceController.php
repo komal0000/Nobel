@@ -105,7 +105,7 @@ class ServiceController extends Controller
 
     public function faqEdit(Request $request, $faq_id)
     {
-        $faq = DB::table('service_faqs')->where('id', $faq_id)->first();
+        $faq = ServiceFaq::findOrFail($faq_id);
         $service = Service::where('id', $faq->service_id)->first();
         if (Helper::G()) {
             return view('admin.service.faq.edit', compact('faq', 'service'));
@@ -245,15 +245,17 @@ class ServiceController extends Controller
         if ($service) {
             $faqs = DB::table('service_faqs')->where('service_id', $service_id)->get();
             $benefits = DB::table('service_steps')->where('service_id', $service_id)->get();
-            $section = DB::table('service_sections')->where('service_id', $service_id)->first();
+            $sections = DB::table('service_sections')->where('service_id', $service_id)->get();
             if ($faqs) {
                 Helper::putCache('service.single.faqs.' . $service->slug, view('admin.template.service.faqs', compact('faqs'))->render());
             }
             if ($benefits) {
                 Helper::putCache('service.single.benefit.' . $service->slug, view('admin.template.service.benefits', compact('benefits'))->render());
             }
-            if ($section) {
-                Helper::putCache('service.single.section.' . $service->slug, view('admin.template.service.sections', compact('section'))->render());
+            if ($sections) {
+               foreach ($sections as $section) {
+                  Helper::putCache('service.single.section.' . $service->slug . $section->id, view('admin.template.service.sections', compact('section'))->render());
+               }
             }
             Helper::putCache('service.single.overview.' . $service->slug, view('admin.template.service.overview', compact('service'))->render());
         }
