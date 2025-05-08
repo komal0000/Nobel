@@ -69,7 +69,7 @@
                                     <img src="{{ asset($caseItem->image) }}" alt="case-study Image">
                                 </div>
                                 <div class="body">
-                                    <div class="heading-md "><a href="/single-case-study">{{ $caseItem->title }}</a>
+                                    <div class="heading-md "><a href="{{ route('knowledge.casestudy.single', $caseItem->slug) }}">{{ $caseItem->title }}</a>
                                     </div>
                                     <div class="date">{{ App\Helper::formatTimestampToDateString($caseItem->date) }}
                                     </div>
