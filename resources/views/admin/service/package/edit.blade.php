@@ -32,8 +32,8 @@
                                 value="{{ $package->price ?? '' }}">
                         </div>
                         <div class="col-md-6 mb-2">
-                            <label for="age">Age</label>
-                            <input type="number" class="form-control" id="age" name="age"
+                            <label for="age">Age Group</label>
+                            <input type="text" class="form-control" id="age" name="age"
                                 value="{{ $package->age ?? '' }}">
                         </div>
                     </div>
