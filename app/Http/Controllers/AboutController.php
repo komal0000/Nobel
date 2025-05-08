@@ -80,5 +80,11 @@ class AboutController extends Controller
         $abouts = DB::table('abouts')->get();
         $awards = DB::table('awards')->get(['id','year', 'short_description']);
         Helper::putCache('about.index', view('admin.template.about.sections', compact('abouts','awards'))->render());
-    }
+      Helper::putMetaCache('aboutUs', $data = [
+         'title' => 'About Us',
+         'description' => 'About Nobel Hospital.',
+         'keywords' => 'about nobel',
+         'url' => route('about')
+      ]);
+      }
 }

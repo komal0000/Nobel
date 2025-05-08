@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    @includeIf('front.cache.treatment.single.' . $treatment->id)
+    @includeIf('front.cache.treatment.single.' . $slug)
 @endsection
 
 

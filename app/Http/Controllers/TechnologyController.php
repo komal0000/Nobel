@@ -168,7 +168,8 @@ class TechnologyController extends Controller
     {
         $technologies = DB::table('technologies')->where('specialty_id', $speciality_id)->take(3)->get();
         $technologiesIndex = DB::table('technologies')->get();
-        Helper::putCache('speciality.single.' . $speciality_id . '.technologies', view('admin.template.speciality.technology', compact('technologies'))->render());
+        $speciality = DB::table('specialties')->where('id', $speciality_id)->first();
+        Helper::putCache('speciality.single.' . $speciality->slug . '.technologies', view('admin.template.speciality.technology', compact('technologies'))->render());
         Helper::putCache('technology.index', view('admin.template.technology.index', compact('technologiesIndex'))->render());
         Helper::putCache('health.technology', view('admin.template.health.technology', compact('technologiesIndex'))->render());
     }
@@ -191,6 +192,6 @@ class TechnologyController extends Controller
             'keywords' => 'technology, technologies',
             'url' => route('technology.index')
          ]);
-        Helper::putCache('technology.single.' . $technology_id, view('admin.template.technology.single', compact('technology', 'technologySections'))->render());
+        Helper::putCache('technology.single.' . $technology->slug, view('admin.template.technology.single', compact('technology', 'technologySections'))->render());
     }
 }

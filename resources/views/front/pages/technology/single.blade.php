@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    @includeIf('front.cache.technology.single.' . $technology->id)
+    @includeIf('front.cache.technology.single.' . $slug)
 @endsection
 @section('js')
     <script src="{{ asset('front/assets/js/technology/single.js')}}"></script>

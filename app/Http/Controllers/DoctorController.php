@@ -161,6 +161,12 @@ class DoctorController extends Controller
         $specialties = DB::table('specialties')->whereNull('parent_speciality_id')->get();
         $doctorSpecialities = DB::table('doctor_specialities')->get();
         Helper::putCache('doctor.index', view('admin.template.doctor.index', compact('doctors', 'specialties', 'doctorSpecialities'))->render());
+         Helper::putMetaCache('doctor.doctor', $data = [
+            'title' => 'Doctors List',
+            'description' => 'All Doctors available in Nobel Hospital.',
+            'keywords' => 'doctor, doctors',
+            'url' => route('doctor.index')
+         ]);
     }
     
 }

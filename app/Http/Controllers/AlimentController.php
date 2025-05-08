@@ -171,8 +171,9 @@ class AlimentController extends Controller
     public function render($aliment_id, $speciality_id)
     {
         if ($speciality_id) {
-            $specialityAliments = Aliment::where('specialty_id', $speciality_id)->get();
-            Helper::putCache('speciality.single.' . $speciality_id . '.aliment.', view('admin.template.speciality.single.aliment', compact('specialityAliments'))->render());
+            $speciality = DB::table('specialties')->where('id', $speciality_id)->first();
+            $specialityAliments = Aliment::where('specialty_id', operator: $speciality_id)->get();
+            Helper::putCache('speciality.single.' . $speciality->slug . '.aliment.', view('admin.template.speciality.single.aliment', compact('specialityAliments'))->render());
         }
         $aliments = Aliment::get();
         $aliment = Aliment::where('id', $aliment_id)->first();
@@ -186,7 +187,7 @@ class AlimentController extends Controller
                 'url' => route('aliment.single', ['slug' => $aliment->slug]),
             ]);
 
-            Helper::putCache('aliment.single.' . $aliment->id, view('admin.template.aliment.single', compact('aliment','alimentTypes'))->render());
+            Helper::putCache('aliment.single.' . $aliment->slug, view('admin.template.aliment.single', compact('aliment','alimentTypes'))->render());
         }
 
          Helper::putMetaCache('ailment', $data = [

@@ -139,6 +139,12 @@ class JobController extends Controller
       $jobcategories = DB::table('job_categories')->get(['id', 'title', 'icon', 'short_description']);
       Helper::putCache('career.jobcategory', view('admin.template.career.jobCategory', compact('jobcategories'))->render());
       Helper::putCache('career.job', view('admin.template.career.jobs', compact('jobcategories'))->render());
+      Helper::putMetaCache('career.jobCategory', $data = [
+         'title' => 'Job Category',
+         'description' => 'Job categories available in Nobel Hospital.',
+         'keywords' => 'job, jobs, nobel job',
+         'url' => route('jobs.jobcategory')
+      ]);
    }
 
    public function renderSingle($jobId)

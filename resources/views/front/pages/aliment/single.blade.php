@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    @includeIf('front.cache.aliment.single.' . $ailment->id)
+    @includeIf('front.cache.aliment.single.' . $slug)
 @endsection
 @section('js')
     <script>

@@ -50,5 +50,11 @@ class PolicyController extends Controller
     {
         $policies = DB::table('policies')->get();
         Helper::putCache('policy.index', view('admin.template.policy.index', compact('policies'))->render());
+      Helper::putMetaCache('policy', $data = [
+         'title' => 'Policy',
+         'description' => 'Polices of Nobel Hospital.',
+         'keywords' => 'policy nobel',
+         'url' => route('policy')
+      ]);
     }
 }
