@@ -5,12 +5,12 @@
 @endsection
 
 @section('content')
-    @includeIf('front.cache.service.single.overview.' . $slug)
-    @includeIf('front.cache.service.single.package.' . $slug)
-    @includeIf('front.cache.service.single.benefit.' . $slug)
-    @includeIf('front.cache.service.single.faqs.' . $slug)
+    @includeIf('front.cache.service.' . $slug . '.overview')
+    @includeIf('front.cache.service.' . $slug . '.package')
+    @includeIf('front.cache.service.' . $slug . '.benefit')
+    @includeIf('front.cache.service.' . $slug . '.faqs')
     @foreach ($sections as $section)
-        @includeIf('front.cache.service.single.section.' . $slug . $section->id)
+        @includeIf('front.cache.service.' . $slug . '.section.' . $section->id)
     @endforeach
 @endsection
 @section('js')
@@ -118,21 +118,19 @@
                 $(this).closest('.filter').toggleClass('active');
             });
 
-            let selectedGender = '';
             let selectedCategory = '';
 
             $('.list li').on('click', function() {
                 let $filter = $(this).closest('.filter');
-
+                console.log($filter, ' :filter ');
                 $filter.find('.name').text($(this).text());
-
-                if ($filter.hasClass('gender-filter')) {
-                    selectedGender = $(this).data('gender-target');
-                } else if ($filter.hasClass('package-category-filter')) {
+                if ($filter.hasClass('package-category-filter')) {
                     selectedCategory = $(this).data('category-target');
                 }
 
                 $filter.removeClass('active');
+                console.log(selectedCategory, ' :Selected ');
+
             });
 
             $('.go-btn').on('click', function() {
@@ -142,10 +140,6 @@
             function filterCards() {
                 // Show all cards first
                 $('.package-card-col').show();
-
-                if (selectedGender) {
-                    $('.package-card-col').not(`[data-gender="${selectedGender}"]`).hide();
-                }
 
                 if (selectedCategory && selectedCategory !== 'all') {
                     $('.package-card-col').not(`[data-category="${selectedCategory}"]`).hide();

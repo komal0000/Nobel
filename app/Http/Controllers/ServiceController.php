@@ -247,17 +247,17 @@ class ServiceController extends Controller
             $benefits = DB::table('service_steps')->where('service_id', $service_id)->get();
             $sections = DB::table('service_sections')->where('service_id', $service_id)->get();
             if ($faqs) {
-                Helper::putCache('service.single.faqs.' . $service->slug, view('admin.template.service.faqs', compact('faqs'))->render());
+                Helper::putCache('service.' . $service->slug . '.faqs', view('admin.template.service.faqs', compact('faqs'))->render());
             }
             if ($benefits) {
-                Helper::putCache('service.single.benefit.' . $service->slug, view('admin.template.service.benefits', compact('benefits'))->render());
+                Helper::putCache('service.' . $service->slug . '.benefit', view('admin.template.service.benefits', compact('benefits'))->render());
             }
             if ($sections) {
                foreach ($sections as $section) {
-                  Helper::putCache('service.single.section.' . $service->slug . $section->id, view('admin.template.service.sections', compact('section'))->render());
+                  Helper::putCache('service.' . $service->slug . '.section.' . $section->id, view('admin.template.service.sections', compact('section'))->render());
                }
             }
-            Helper::putCache('service.single.overview.' . $service->slug, view('admin.template.service.overview', compact('service'))->render());
+            Helper::putCache('service.' . $service->slug . '.overview', view('admin.template.service.overview', compact('service'))->render());
         }
     }
     public function reder()

@@ -185,6 +185,10 @@ class FrontController extends Controller
         return view('front.pages.service.single',compact('slug', 'sections'));
     }
 
+    public function packageSingle($serviceSlug, $slug) {
+      return view('front.pages.service.package.single', compact('serviceSlug','slug'));
+    }
+
     public function about(){
         Helper::putMetaCache('aboutUs', $data = [
             'title' => 'About Us',

@@ -82,11 +82,12 @@ Route::prefix('technology')->name('technology.')->group(function () {
 Route::prefix('service')->name('service.')->group(function () {
     Route::get('', [FrontController::class, 'serviceIndex'])->name('index');
     Route::get('{slug}', [FrontController::class, 'serviceSingle'])->name('single');
+   Route::get('{serviceSlug}/{slug}', [FrontController::class, 'packageSingle'])->name('packageSingle');
 });
 Route::prefix('academicprogram')->name('academicprogram.')->group(function () {
     Route::get('', [FrontController::class, 'academicIndex'])->name('index');
     Route::get('list', [FrontController::class, 'academicAll'])->name('list');
-    Route::get('{slug}', [FrontController::class, 'academicSingle'])->name('single');
+    Route::get('{slug}/{title}', [FrontController::class, 'academicSingle'])->name('single');
 });
 
 Route::prefix('knowledge')->name('knowledge.')->group(function () {
