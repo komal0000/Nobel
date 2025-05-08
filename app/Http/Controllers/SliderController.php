@@ -153,6 +153,7 @@ class SliderController extends Controller
             $sliders = DB::table('sliders')->where('slider_type_id', $type_id)->get(['id', 'desktop_image', 'mobile_image']);
             Helper::putCache('career.internship.slider', view('admin.template.career.internship.slider', compact('sliders'))->render());
         }
+      Helper::putMetaCache('home.home', $data = []);
     }
 
     public function renderNavigation()

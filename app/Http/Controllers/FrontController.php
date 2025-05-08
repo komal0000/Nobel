@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\DB;
 class FrontController extends Controller
 {
     public function index(){
-        Helper::putMetaCache('home.home', $data = []);
         return view('front.index');
     }
 
@@ -28,7 +27,6 @@ class FrontController extends Controller
         return view('front.pages.speciality.index');
     }
     public function specialitySingle($slug){
-        $speciality = DB::table('specialties')->where('slug', $slug)->first(['id']);
         return view('front.pages.speciality.single',compact( 'slug'));
     }
 

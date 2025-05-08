@@ -128,25 +128,28 @@
             $(".accordion-type").each(function() {
                 var section = $(this);
                 var typeId = section.find('input[name="type_id"]').val();
-                formData.append("sections[" + typeId + "][title]", section.find("#title_" + typeId).val());
-                formData.append("sections[" + typeId + "][description]", section.find("#description_" + typeId)
-                    .val());
-
-                var sectionImage = section.find("#image_" + typeId)[0].files[0];
-                if (sectionImage) {
-                    formData.append("sections[" + typeId + "][image]", sectionImage);
-                }
-
                 var checkbox = section.find('input[name="show_on_frontend"]');
-                formData.append("sections[" + typeId + "][show_on_frontend]", checkbox.is(":checked") ? 1 : 0);
+                if (checkbox.is(':checked')) {
+                    formData.append("sections[" + typeId + "][title]", section.find("#title_" + typeId).val());
+                    formData.append("sections[" + typeId + "][description]", section.find("#description_" + typeId)
+                        .val());
+
+                    var sectionImage = section.find("#image_" + typeId)[0].files[0];
+                    if (sectionImage) {
+                        formData.append("sections[" + typeId + "][image]", sectionImage);
+                    }
+
+
+                    formData.append("sections[" + typeId + "][show_on_frontend]", checkbox.is(":checked") ? 1 : 0);
+                }
             });
 
             axios.post("{{ route('admin.aliment.edit', ['aliment_id' => '_id_']) }}".replace('_id_', aliment_id),
-                formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                })
+                    formData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    })
                 .then(function(response) {
                     if (response.data.success) {
                         location.reload();

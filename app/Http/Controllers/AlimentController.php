@@ -44,8 +44,8 @@ class AlimentController extends Controller
                 $aliment->single_page_image = $request->file('aliment_single_page_image')->store('uploads/aliments', 'public');
             }
 
+            
             $aliment->save();
-
             if ($request->has('sections') && is_array($request->sections)) {
                 foreach ($request->sections as $typeId => $sectionData) {
                     $section = new AlimentSection();
