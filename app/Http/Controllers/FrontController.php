@@ -2,10 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Helper;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-
 class FrontController extends Controller
 {
     public function index(){
@@ -144,9 +140,7 @@ class FrontController extends Controller
         return view('front.pages.policy.index');
     }
     public function serviceSingle($slug){
-        $service = DB::table('services')->where('slug',$slug)->first();
-        $sections = DB::table('service_sections')->where('service_id', $service->id)->get();
-        return view('front.pages.service.single',compact('slug', 'sections'));
+        return view('front.pages.service.single',compact('slug'));
     }
 
     public function packageSingle($serviceSlug, $slug) {

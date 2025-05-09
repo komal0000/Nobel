@@ -9,9 +9,15 @@
     @includeIf('front.cache.service.' . $slug . '.package')
     @includeIf('front.cache.service.' . $slug . '.benefit')
     @includeIf('front.cache.service.' . $slug . '.faqs')
-    @foreach ($sections as $section)
-        @includeIf('front.cache.service.' . $slug . '.section.' . $section->id)
-    @endforeach
+    @php
+        $path = resource_path('views/front/cache/service/' . $slug . '/section');
+        $files = \Illuminate\Support\Facades\File::exists($path) ? \Illuminate\Support\Facades\File::files($path) : [];
+    @endphp
+    @if ($files)
+        @foreach ($files as $file)
+            @includeIf('front.cache.service.' . $slug . '.section.' . basename($file->getFilename(), '.blade.php'))
+        @endforeach
+    @endif
 @endsection
 @section('js')
     <script>
