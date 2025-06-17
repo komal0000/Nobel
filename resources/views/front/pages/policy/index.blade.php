@@ -14,7 +14,7 @@
     </section>
     @includeIf('front.cache.policy.index')
 @endsection
-@push('js')
+@section('js')
     <script>
         $(document).ready(function() {
             // More specific selector for desktop list and mobile tabs
@@ -42,4 +42,4 @@
             });
         });
     </script>
-@endpush
+@endsection
