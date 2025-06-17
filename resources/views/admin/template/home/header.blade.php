@@ -1,5 +1,5 @@
 <ul class="drop-menu">
-    @foreach ($specialities as $speciality)
+   @foreach ($specialities->take(5) as $speciality)
         <li>
             <a href="{{ route('speciality.single', $speciality->slug) }}" class="drop-item">{{ $speciality->title }}</a>
         </li>

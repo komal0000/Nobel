@@ -24,12 +24,12 @@
                     </div>
                 </div>
                 <div class="btn-mobile ">
-                    <button class="btn">
+                    <a href="{{ route('contact') }}" class="btn">
                         Enquire Now
-                    </button>
-                    <button class="btn">
+                    </a>
+                    <a href="{{ route('doctor.index') }}" class="btn">
                         Find A Doctor
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
