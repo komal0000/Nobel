@@ -89,6 +89,7 @@ class TreatmentController extends Controller
     public function render($treatment_id)
     {
         $treatment = Treatment::find($treatment_id);
+      //   dd($treatment);
         if (!$treatment) return;
         $specialityId = $treatment->specialty_id;
         $speciality = DB::table('specialties')->where('id', $specialityId)->first();
