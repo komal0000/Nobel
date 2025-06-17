@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-md-4">
                 <label for="doctor_id">Doctor</label>
-                <select name="doctor_id" id="doctor_id" class="form-control">
+                <select name="doctor_id" id="doctor_id" class="form-control" required>
                     @foreach ($doctors as $doctor)
                         <option value="{{ $doctor->id }}">{{ $doctor->title }}</option>
                     @endforeach
