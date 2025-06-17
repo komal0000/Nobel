@@ -30,13 +30,6 @@ $(document).ready(function() {
         }
     ];
 
-    // Initialize sliders
-    $('.top-banner-slide').slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        centerMode: true,
-        arrows: false
-    });
 
     $('.team-slider, .content-slider').slick({
         slidesToShow: 3,

@@ -23,17 +23,6 @@
                         <img src="{{ asset($speciality->single_page_image) }}" alt="Mobile Heart Image">
                     </div>
                 </div>
-                <div class="top-banner-slide">
-                    <div class="each-slide">
-                        <div class="heading-xs">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi, aut.</div>
-                    </div>
-                    <div class="each-slide">
-                        <div class="heading-xs">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium nemo qui excepturi tenetur minima rerum.</div>
-                    </div>
-                    <div class="each-slide">
-                        <div class="heading-xs">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt eum sit voluptatum nihil obcaecati excepturi ipsum vel, in voluptates commodi.</div>
-                    </div>
-                </div>
                 <div class="btn-mobile ">
                     <button class="btn">
                         Enquire Now
