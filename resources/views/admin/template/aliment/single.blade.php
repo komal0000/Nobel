@@ -58,7 +58,7 @@
             ->first();
     @endphp
     @if ($alimentSection)
-      <section id="{{ str_replace(' ', '_', $type->title) }}" class="ailment-type-section" data-content="{{ str_replace(' ', '_', $type->title) }}">
+      <section id="{{ str_replace(' ', '_', $type->title) }}" class="ailment-type-section" data-content="{{ $type->title }}">
           <div class="main-container">
          <h2 class="ailment-type heading">
              {{ $alimentSection->title }}
