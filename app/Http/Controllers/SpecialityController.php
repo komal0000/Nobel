@@ -167,7 +167,10 @@ class SpecialityController extends Controller
 
     public function render()
     {
-        $specialities = DB::table('specialties')->whereNull('parent_speciality_id')->get(['id', 'slug', 'title', 'icon']);
+      $specialities = DB::table('specialties')
+          ->whereNull('parent_speciality_id')
+          ->orderBy('title', 'asc')
+          ->get(['id', 'slug', 'title', 'icon']);
         
          Helper::putMetaCache('speciality', $data = [
             'title' => 'All Specialities',
