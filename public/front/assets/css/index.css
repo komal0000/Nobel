@@ -9264,6 +9264,17 @@ hr {
    margin-top: 25px;
 }
 
+#all-videos .all-card .body .heading-sm {
+   margin-bottom: 8px;
+}
+
+#all-videos .all-card .body .para-wrap {
+   overflow: hidden;
+   display: -webkit-box;
+   -webkit-line-clamp: 4;
+   -webkit-box-orient: vertical;
+}
+
 #help-desk-container .content .content-wrapper button {
    border: none;
    background-color: transparent;
