@@ -109,7 +109,12 @@ class SettingController extends Controller
          $data = Helper::getSetting('contact') ?? ((object) ([
             'map' => '',
             'email' => '',
-            'phone' => '',
+            'phone' => [
+               'phone1' => '',
+               'phone2' => '',
+               'phone3' => '',
+               'phone4' => '',
+            ],
             'addr' => '',
             'title' => '',
             'short_desc' => '',
@@ -137,7 +142,12 @@ class SettingController extends Controller
          $data = [
             'map' => $request->map ?? '',
             'email' => $request->email ?? '',
-            'phone' => $request->phone ?? '',
+            'phone' => [
+               'phone1' => $request->phone1 ?? '',
+               'phone2' => $request->phone2 ?? '',
+               'phone3' => $request->phone3 ?? '',
+               'phone4' => $request->phone4 ?? '',
+            ],
             'addr' => $request->addr ?? '',
             'short_desc' => $request->short_desc ?? '',
             'others' => $others,
@@ -157,6 +167,7 @@ class SettingController extends Controller
          ]);
          Helper::putCache('home.footerLink', view('admin.setting.template.footer', compact('data'))->render());
          Helper::putCache('contact.index', view('admin.setting.template.contact', compact('data'))->render());
+         Helper::putCache('contact.header-contact', view('admin.template.home.header-contact', compact('data'))->render());
          Helper::putCache('contact.map', view('admin.setting.template.map', compact('data'))->render());
          return redirect()->back()->with('success', "Contact Saved Successfully");
       }

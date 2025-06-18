@@ -4,7 +4,6 @@
         (object) [
             'map' => '',
             'email' => '',
-            'phone' => '',
             'addr' => '',
             'short_desc' => '',
             'links' => (object) [
@@ -14,19 +13,31 @@
                 'twitter' => '',
             ],
         ];
+
+    $phones =
+        is_array($data->phone) || is_object($data->phone)
+            ? (object) $data->phone
+            : (object) [
+                'phone1' => '',
+                'phone2' => '',
+                'phone3' => '',
+                'phone4' => '',
+            ];
 @endphp
 <div class="mob-back-img">
-    <img src="{{ asset('front/assets/img/contact-us/contact-banner-xs.jpg') }}" alt="Mobile Background Image" class="img-fluid w-100">
+    <img src="{{ asset('front/assets/img/contact-us/contact-banner-xs.jpg') }}" alt="Mobile Background Image"
+        class="img-fluid w-100">
     <div class="banner-title">
         Contact Us
     </div>
 </div>
-<section class="contact" style="background-image: url('{{ asset('front/assets/img/contact-us/contact-banner-lg.jpg') }}');">
+<section class="contact"
+    style="background-image: url('{{ asset('front/assets/img/contact-us/contact-banner-lg.jpg') }}');">
     <div class="main-container">
         <div class="heading-group mb-5">
             <div class="heading text-center mb-3">Contact Us</div>
             <div class="text-center para-wrap">
-                <p>{{$data->short_desc}}</p>
+                <p>{{ $data->short_desc }}</p>
             </div>
         </div>
         <div class="form-container p-4">
@@ -39,7 +50,9 @@
                         </div>
                         <div class="info">
                             <div class="head">Phone Number</div>
-                            <a href="tel:+977{{$data->phone}}" class="number">+977-{{$data->phone}}</a>
+                            @foreach ($phones as $phone)
+                                <a href="tel:{{ $phone }}" class="number">{{ $phone }}</a>
+                            @endforeach
                         </div>
                     </div>
                     <div class="first d-flex gap-3 px-4 pt-2">
@@ -49,29 +62,36 @@
                         <div class="info border-bottom-1">
                             <div class="head">Follow Us</div>
                             <div class="socials d-flex gap-3">
-                                <a href="{{ $data->links->facebook }}" target="_blank"><i class="bi bi-facebook"></i></a>
-                                <a href="{{ $data->links->instagram }}" target="_blank"><i class="bi bi-instagram"></i></a>
+                                <a href="{{ $data->links->facebook }}" target="_blank"><i
+                                        class="bi bi-facebook"></i></a>
+                                <a href="{{ $data->links->instagram }}" target="_blank"><i
+                                        class="bi bi-instagram"></i></a>
                                 <a href="{{ $data->links->youtube }}" target="_blank"><i class="bi bi-youtube"></i></a>
-                                <a href="{{ $data->links->twitter }}" target="_blank"><i class="bi bi-twitter-x"></i></a>
+                                <a href="{{ $data->links->twitter }}" target="_blank"><i
+                                        class="bi bi-twitter-x"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <form id="feedback-form" class="form col-lg-7" action="{{ route('admin.setting.addFeedback') }}" method="POST">
+                <form id="feedback-form" class="form col-lg-7" action="{{ route('admin.setting.addFeedback') }}"
+                    method="POST">
                     @csrf
                     <div class="heading-md mb-4">Feedback</div>
                     <div class="row">
                         <div class="mb-3 col-md-6">
                             <label for="name">Name *</label>
-                            <input type="text" name="name" class="form-control" placeholder="Enter Your Name" required>
+                            <input type="text" name="name" class="form-control" placeholder="Enter Your Name"
+                                required>
                         </div>
                         <div class="mb-3 col-md-6">
                             <label for="email">Email Address *</label>
-                            <input type="email" name="email" class="form-control" placeholder="Enter Your E-mail" required>
+                            <input type="email" name="email" class="form-control" placeholder="Enter Your E-mail"
+                                required>
                         </div>
                         <div class="mb-3 col-md-6">
                             <label for="phoneNumber">Mobile Number *</label>
-                            <input type="text" name="phoneNumber" class="form-control" placeholder="Enter Your Phone Number" required>
+                            <input type="text" name="phoneNumber" class="form-control"
+                                placeholder="Enter Your Phone Number" required>
                         </div>
                         <div class=" mb-3 col-12">
                             <label for="message">Your Message *</label>
@@ -86,4 +106,3 @@
         </div>
     </div>
 </section>
-

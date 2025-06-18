@@ -1,11 +1,3 @@
-@php
-$data =
-    App\Helper::getSetting('contact') ??
-    (object) [
-        'email' => '',
-        'phone' => '',
-    ];
-@endphp
 <header class="site-header" id="site-header">
     <div class="main-container">
         @includeIf('front.cache.home.logo')
@@ -36,7 +28,8 @@ $data =
                                 <a href="{{ route('aliment.index') }}" class="drop-item">Ailments</a>
                             </li>
                             <li class="navbar-item knowledge-drop" onclick="extendKnowledgeSubMenu(this, event)">
-                                <a href="#" class="drop-item navbar-link knowledge-link d-flex justify-content-between">
+                                <a href="#"
+                                    class="drop-item navbar-link knowledge-link d-flex justify-content-between">
                                     <span>Knowledge</span> <i class="bi bi-chevron-right"></i>
                                 </a>
                                 <ul class="knowledge-drop-menu">
@@ -79,22 +72,12 @@ $data =
                         <a href="#" class="navbar-link">
                             Contact Us <i class="bi bi-chevron-down"></i>
                         </a>
-                        <ul class="drop-menu">
-                            <li>
-                                <a href="{{ route('contact') }}" class="drop-item">Contact Us</a>
-                            </li>
-                            <li>
-                                <a href="mailto:{{ $data->email }}" class="drop-item">{{ $data->email }}</a>
-                            </li>
-                            <li>
-                                <a href="tel:+977 {{ $data->phone }}" class="drop-item">{{ $data->phone }}</a>
-                            </li>
-                        </ul>
+                        @includeIf('front.cache.contact.header-contact')
                     </li>
                 </ul>
             </div>
         </nav>
-       @includeIf('front.cache.home.mobileLogo')
+        @includeIf('front.cache.home.mobileLogo')
     </div>
     <div class="sectionNavbarMainContainer d-none">
         <hr>

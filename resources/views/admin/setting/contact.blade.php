@@ -54,15 +54,41 @@
                         </div>
                         <hr>
                     </div>
+                    @php
+                        $phones =
+                            is_array($data->phone) || is_object($data->phone)
+                                ? (object) $data->phone
+                                : (object) [
+                                    'phone1' => '',
+                                    'phone2' => '',
+                                    'phone3' => '',
+                                    'phone4' => '',
+                                ];
+                    @endphp
                     <div class="col-md-6">
                         <label for="phone">Phone</label>
-                        <input type="tel" name="phone" id="phone" class="form-control"
-                        value="{{ $data->phone }}">
+                        <input type="tel" name="phone1" id="phone" class="form-control"
+                            value="{{ $phones->phone1 }}">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="phone">Phone</label>
+                        <input type="tel" name="phone2" id="phone" class="form-control"
+                            value="{{ $phones->phone2 }}">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="phone">Phone</label>
+                        <input type="tel" name="phone3" id="phone" class="form-control"
+                            value="{{ $phones->phone3 }}">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="phone">Phone</label>
+                        <input type="tel" name="phone4" id="phone" class="form-control"
+                            value="{{ $phones->phone4 }}">
                     </div>
                     <div class="col-md-6">
                         <label for="email">Email</label>
                         <input type="email" name="email" id="email" class="form-control"
-                        value="{{ $data->email }}">
+                            value="{{ $data->email }}">
                     </div>
                     <div class="col-md-6">
                         <label for="addr">Address</label>
@@ -83,22 +109,22 @@
                                 <div class="col-md-6">
                                     <label for="facebook">Facebook</label>
                                     <input type="text" name="facebook" id="facebook" class="form-control"
-                                        value="{{ $data->links->facebook ?? '' }}" >
+                                        value="{{ $data->links->facebook ?? '' }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="twitter">Twitter</label>
                                     <input type="text" name="twitter" id="twitter" class="form-control"
-                                        value="{{ $data->links->twitter ?? '' }}" >
+                                        value="{{ $data->links->twitter ?? '' }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="instagram">Instagram</label>
                                     <input type="text" name="instagram" id="instagram" class="form-control"
-                                        value="{{ $data->links->instagram ?? '' }}" >
+                                        value="{{ $data->links->instagram ?? '' }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="youtube">YouTube</label>
                                     <input type="text" name="youtube" id="youtube" class="form-control"
-                                        value="{{ $data->links->youtube ?? '' }}" >
+                                        value="{{ $data->links->youtube ?? '' }}">
                                 </div>
                             </div>
                         </div>
