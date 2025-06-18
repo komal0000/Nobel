@@ -1,5 +1,5 @@
 <div class="sp-wrapper">
-    @foreach ($specialities as $speciality)
+    @foreach ($specialities->take(5) as $speciality)
         <a href="{{ route('speciality.single', $speciality->slug) }}">
             <div class="speciality-row">
                 <img src="{{ asset($speciality->icon) }}" alt="Heart">

@@ -2,12 +2,9 @@
     <div class="wrapper">
         <picture class="img-wrap">
             @if ($treatment->single_page_image)
-                <source media="(min-width: 768px)" srcset="{{ asset($treatment->single_page_image) }}"
-                    type="image/webp">
-                <source media="(min-width: 320px)" srcset="{{ asset($treatment->single_page_image) }}"
-                    type="image/webp">
-                <img src="{{ asset($treatment->single_page_image) }}" class="img-fluid"
-                    alt="Treatment Banner Image">
+                <source media="(min-width: 768px)" srcset="{{ asset($treatment->single_page_image) }}" type="image/webp">
+                <source media="(min-width: 320px)" srcset="{{ asset($treatment->single_page_image) }}" type="image/webp">
+                <img src="{{ asset($treatment->single_page_image) }}" class="img-fluid" alt="Treatment Banner Image">
             @endif
         </picture>
         <div class="banner-wrapper">
@@ -60,6 +57,12 @@
             <div class="main-container">
                 <x-type2 heading="{{ $section->title }}" subHeading="{{ $section->description }}"
                     :items="$sectionSteps"></x-type2>
+            </div>
+        </section>
+    @elseif ($section->style_type == 3)
+        <section>
+            <div class="main-container">
+                <x-type3 heading="{{$section->title}}" content="{{$section->short_description}}" href="{{ asset($section->image) }}"></x-type3>
             </div>
         </section>
     @endif
