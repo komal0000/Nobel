@@ -28,26 +28,24 @@
                     $academicPrograms = App\Models\Blog::where('blog_category_id', $type->id)->get();
                 @endphp
                 @foreach ($academicPrograms as $academicProgram)
-                    <div class="col-md-4 col-lg-3">
-                        <a href="{{ route('academicprogram.single', ['slug' => $academicProgram->slug]) }}">
-                            <div class="col-md-6 col-xl-4 all-card" data-content="{{ trim($type->title) }}">
-                                <div class="each-card">
-                                    <div class="img-wrapper">
-                                        <img src="{{ asset($academicProgram->image) }}" alt="Thumbnail"
-                                            class="img-fluid">
+                    <a class="col-md-4 col-lg-3"
+                        href="{{ route('academicprogram.single', ['slug' => $academicProgram->slug]) }}">
+                        <div class="col-md-6 col-xl-4 all-card" data-content="{{ trim($type->title) }}">
+                            <div class="each-card">
+                                <div class="img-wrapper">
+                                    <img src="{{ asset($academicProgram->image) }}" alt="Thumbnail" class="img-fluid">
+                                </div>
+                                <div class="body">
+                                    <div class="heading-sm">
+                                        {{ $academicProgram->title }}
                                     </div>
-                                    <div class="body">
-                                        <div class="heading-sm">
-                                            {{ $academicProgram->title }}
-                                        </div>
-                                        <div class="para-wrap">
-                                            {{ $academicProgram->short_description }}
-                                        </div>
+                                    <div class="para-wrap">
+                                        {{ $academicProgram->short_description }}
                                     </div>
                                 </div>
                             </div>
-                        </a>
-                    </div>
+                        </div>
+                    </a>
                 @endforeach
             @endforeach
         </div>
