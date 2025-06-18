@@ -67,7 +67,6 @@
                                             <li>
                                                 <div class="para-wrap">
                                                     <p><strong>{{ $item->short_description ?? '' }}</strong></p>
-                                                    <br>
                                                     <p class="para-wrap-para">{{ $item->description ?? '' }}</p>
                                                 </div>
                                             </li>
