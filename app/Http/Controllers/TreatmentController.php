@@ -89,13 +89,13 @@ class TreatmentController extends Controller
     public function render($treatment_id)
     {
         $treatment = Treatment::find($treatment_id);
-      //   dd($treatment);
-        if (!$treatment) return;
-        $specialityId = $treatment->specialty_id;
-        $speciality = DB::table('specialties')->where('id', $specialityId)->first();
         $treatments = Treatment::all();
-        $specialityTreatment = Treatment::where('specialty_id', $specialityId)->get();
-        Helper::putCache('speciality.single.' . $speciality->slug . '.treatment',view('admin.template.speciality.single.treatment', compact('specialityTreatment'))->render());
+        if ($treatment->speciality_id) {
+           $specialityId = $treatment->specialty_id;
+           $speciality = DB::table('specialties')->where('id', $specialityId)->first();
+           $specialityTreatment = Treatment::where('specialty_id', $specialityId)->get();
+           Helper::putCache('speciality.single.' . $speciality->slug . '.treatment',view('admin.template.speciality.single.treatment', compact('specialityTreatment'))->render());
+        }
         if($treatment_id){
             $treatment = Treatment::where('id', $treatment_id)->first();
             $treatmentSections = DB::table('treatment_sections')->where('treatment_id', $treatment->id)->get();

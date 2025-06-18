@@ -138,6 +138,6 @@ class TreatmentSectionController extends Controller
     {
         $treatment = Treatment::findOrFail($treatment_id);
         $treatmentSections = TreatmentSection::where('treatment_id', $treatment_id)->get();
-        Helper::putCache('treatment.single.' . $treatment_id, view('admin.template.treatment.single', compact('treatmentSections', 'treatment'))->render());
+        Helper::putCache('treatment.single.' . $treatment->slug, view('admin.template.treatment.single', compact('treatmentSections', 'treatment'))->render());
     }
 }
