@@ -28,7 +28,7 @@
                     $academicPrograms = App\Models\Blog::where('blog_category_id', $type->id)->get();
                 @endphp
                 @foreach ($academicPrograms as $academicProgram)
-                    <a class="col-md-4 col-lg-3"
+                    <a class="col-md-4 col-lg-3 d-inline-block w-100"
                         href="{{ route('academicprogram.single', ['slug' => $academicProgram->slug]) }}">
                         <div class="col-md-6 col-xl-4 all-card" data-content="{{ trim($type->title) }}">
                             <div class="each-card">
