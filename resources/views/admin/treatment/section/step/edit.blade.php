@@ -21,7 +21,7 @@
         <span>Edit</span>
     @else
         <a href="{{ route('admin.treatment.index') }}">Treatments</a> /
-        <span>{{ $treatment->title }}</span>
+        <span>{{ $treatment->title }}</span> / 
         <a href="{{ route('admin.treatment.section.index', ['treatment_id' => $section->treatment_id]) }}">Sections</a> /
         <span>{{ $section->title }}</span> /
         <a href="{{ route('admin.treatment.section.step.index', ['section_id' => $section->id]) }}">Steps</a> /
