@@ -6,12 +6,12 @@
                    {{ $speciality->title }}
                 </h1>
                 <div class="buttons">
-                    <button class="btn me-3 mt-3">
+                    <a href="{{ route('contact') }}" class="btn me-3 mt-3">
                         Enquire Now
-                    </button>
-                    <button class="btn mt-3">
+                    </a>
+                    <a href="{{ route('doctor.index') }}" class="btn mt-3">
                         Find A Doctor
-                    </button>
+                    </a>
                 </div>
             </div>
             <div class="right">

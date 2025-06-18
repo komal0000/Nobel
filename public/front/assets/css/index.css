@@ -7950,6 +7950,12 @@ hr {
    text-overflow: ellipsis;
 }
 
+#dr-specialization .each-card img {
+   height: auto;
+   width: 100%;
+   max-height: 120px;
+}
+
 @media (max-width: 1199px) {
    #dr-specialization .each-card .body {
       font-size: 15px;

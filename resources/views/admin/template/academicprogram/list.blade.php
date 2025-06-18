@@ -25,16 +25,17 @@
         <div class="row g-4">
             @foreach ($academicProgramTypes as $type)
                 @php
-    $academicPrograms = App\Models\Blog::where('blog_category_id', $type->id)->get();
+                    $academicPrograms = App\Models\Blog::where('blog_category_id', $type->id)->get();
                 @endphp
                 @foreach ($academicPrograms as $academicProgram)
-                    <a href="{{ route('academicprogram.single', ['slug' => $academicProgram->slug]) }}">
-                        <div class="col-md-6 col-xl-4 all-card" data-content="{{ trim($type->title) }}">
-                            <div class="each-card">
-                                <div class="img-wrapper">
-                                    <img src="{{ asset($academicProgram->image) }}" alt="Thumbnail" class="img-fluid">
-                                </div>
-                                <div class="body">
+                    <div class="col-md-4 col-lg-3">
+                        <a href="{{ route('academicprogram.single', ['slug' => $academicProgram->slug]) }}">
+                            <div class="col-md-6 col-xl-4 all-card" data-content="{{ trim($type->title) }}">
+                                <div class="each-card">
+                                    <div class="img-wrapper">
+                                        <img src="{{ asset($academicProgram->image) }}" alt="Thumbnail"
+                                            class="img-fluid">
+                                    </div>
                                     <div class="body">
                                         <div class="heading-sm">
                                             {{ $academicProgram->title }}
@@ -45,8 +46,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                 @endforeach
             @endforeach
         </div>
