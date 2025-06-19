@@ -42,7 +42,7 @@ class ServicePackageController extends Controller
    public function index($type_id)
    {
       $packageType = ServicePackageType::where('id', $type_id)->first();
-      $packages = DB::table('service_packages')->where('id', $type_id)->get(['id', 'title', 'price', 'age']);
+      $packages = DB::table('service_packages')->where('service_package_type_id', $type_id)->get(['id', 'title', 'price', 'age']);
       return view('admin.service.package.index', compact('packages', 'packageType'));
    }
    public function add(Request $request, $type_id)
