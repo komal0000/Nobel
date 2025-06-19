@@ -12,19 +12,21 @@ class Speciality extends Model
     protected $table='specialties';
     const tableName='specialties';
 
-
     public function parent(){
         return $this->belongsTo(Speciality::class,'parent_speciality_id');
     }
 
-    public function subspecialities()
+    public function subspecialties()
     {
         return $this->hasMany(Speciality::class, 'parent_speciality_id');
     }
 
      protected $fillable = [
         'title',
-        'slug'
+        'slug',
+        'parent_speciality_id',
+        'icon',
+        'description'
     ];
 
     public function sluggable(): array
@@ -32,11 +34,8 @@ class Speciality extends Model
         return [
             'slug' => [
                 'source' => 'title',
+                'onUpdate' => true
             ]
         ];
-    }
-    public function shouldSlugUpdate()
-    {
-        return true;
     }
 }

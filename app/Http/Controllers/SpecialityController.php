@@ -144,7 +144,7 @@ class SpecialityController extends Controller
         }
         if ($speciality->parent_speciality_id) {
             $parentSpeciality = DB::table('specialties')->find($speciality->parent_speciality_id);
-            Helper::putCache('speciality.single.' . $speciality->slug . '.subspecialization', view('admin.template.speciality.subspecialization', [
+            Helper::putCache('speciality.single.' . $parentSpeciality->slug . '.subspecialization', view('admin.template.speciality.subspecialization', [
                 'speciality' => $parentSpeciality
             ])->render());
             $this->renderSingle($speciality->parent_speciality_id);
@@ -171,7 +171,7 @@ class SpecialityController extends Controller
           ->whereNull('parent_speciality_id')
           ->orderBy('title', 'asc')
           ->get(['id', 'slug', 'title', 'icon']);
-        
+
          Helper::putMetaCache('speciality', $data = [
             'title' => 'All Specialities',
             'description' => 'Nobel is the best hospital in Nepal located in Biratnagar with multi-specialties and sub-specialities sections.',

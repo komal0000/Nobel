@@ -5,10 +5,10 @@
         </div>
         <div class="sub-slider">
             @php
-$subSpecialties = App\Models\Speciality::where('parent_speciality_id', $speciality->id)->get();
+                $subSpecialties = App\Models\Speciality::where('parent_speciality_id', $speciality->id)->get();
             @endphp
 
-            @foreach($subSpecialties as $subSpecialty)
+            @foreach ($subSpecialties as $subSpecialty)
                 <div class="sub-card">
                     <div class="img-wrapper">
                         <img src="{{ asset($subSpecialty->icon) }}" alt="{{ $subSpecialty->title }}">
