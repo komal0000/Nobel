@@ -3,8 +3,16 @@ $data =
     App\Helper::getSetting('contact') ??
     (object) [
         'email' => '',
-        'phone' => '',
     ];
+    $phones =
+        is_array($data->phone) || is_object($data->phone)
+            ? (object) $data->phone
+            : (object) [
+                'phone1' => '',
+                'phone2' => '',
+                'phone3' => '',
+                'phone4' => '',
+            ];
 @endphp
 <section id="single-service-faq">
     <div class="main-container">
@@ -26,10 +34,12 @@ $data =
 <section id="single-service-connect">
     <div class="main-container" >
        <x-sliderComponent  mainClass="serviceSingle" heading="Connect With Us">
-          <div class="connect-card">
-             <i class="bi bi-telephone"></i>
-             <a href="tel:{{$data->phone}}">{{$data->phone}}</a>
-          </div>
+         @foreach ($phones as $phone)
+         <div class="connect-card">
+            <i class="bi bi-telephone"></i>
+            <a href="tel:{{$phone}}">{{$phone}}</a>
+         </div>
+         @endforeach
           <div class="connect-card">
              <i class="bi bi-envelope"></i>
              <a href="mailto:{{$data->email}}">{{$data->email}}</a>

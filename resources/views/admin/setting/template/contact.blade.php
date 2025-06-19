@@ -50,8 +50,10 @@
                         </div>
                         <div class="info">
                             <div class="head">Phone Number</div>
-                            @foreach ($phones as $phone)
-                                <a href="tel:{{ $phone }}" class="number">{{ $phone }}</a>
+                           @foreach ($phones as $key => $phone)
+                              @if (!empty($phone))
+                                 <a href="tel:{{ $phone }}" class="number">{{ $phone }}</a><br>
+                              @endif
                             @endforeach
                         </div>
                     </div>

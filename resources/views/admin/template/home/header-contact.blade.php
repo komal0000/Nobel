@@ -23,9 +23,9 @@
             <a href="mailto:{{ $data->email }}" class="drop-item">{{ $data->email }}</a>
         </li>
     @endif
-    @foreach ($phones as $phone)
-        <li>
-            <a href="tel:{{ $phone }}" class="drop-item">{{ $phone }}</a>
-        </li>
-    @endforeach
+   @foreach ($phones as $key => $phone)
+      <li>
+         <a href="tel:{{ $phone }}" class="drop-item">{{ $phone }}</a>
+      </li>
+   @endforeach
 </ul>

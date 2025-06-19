@@ -90,7 +90,7 @@ class TreatmentController extends Controller
     {
         $treatment = Treatment::find($treatment_id);
         $treatments = Treatment::all();
-        if ($treatment->speciality_id) {
+        if ($treatment->specialty_id) {
            $specialityId = $treatment->specialty_id;
            $speciality = DB::table('specialties')->where('id', $specialityId)->first();
            $specialityTreatment = Treatment::where('specialty_id', $specialityId)->get();

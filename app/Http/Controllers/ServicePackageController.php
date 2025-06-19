@@ -14,7 +14,6 @@ class ServicePackageController extends Controller
    public function typeIndex(Request $request, $service_id)
    {
       if (Helper::G()) {
-        // dd($service_id);
          $types = DB::table('service_package_types')->where('service_id',$service_id)->get(['id', 'type']);
          return view('admin.service.package.type.index', compact('service_id', 'types'));
       } else {
@@ -43,7 +42,7 @@ class ServicePackageController extends Controller
    public function index($type_id)
    {
       $packageType = ServicePackageType::where('id', $type_id)->first();
-      $packages = DB::table('service_packages')->get(['id', 'title', 'price', 'age']);
+      $packages = DB::table('service_packages')->where('id', $type_id)->get(['id', 'title', 'price', 'age']);
       return view('admin.service.package.index', compact('packages', 'packageType'));
    }
    public function add(Request $request, $type_id)
