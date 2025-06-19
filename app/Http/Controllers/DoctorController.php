@@ -140,6 +140,10 @@ class DoctorController extends Controller
     public function singleRender($doctor_id)
     {
         $doctor = Doctor::where('id', $doctor_id)->first();
+
+        if (!$doctor) {
+            return;
+        }
         Helper::putMetaCache('doctor.'.$doctor->slug, $data = [
             'title' => $doctor->title,
             'description' => $doctor->short_description,
@@ -168,5 +172,5 @@ class DoctorController extends Controller
             'url' => route('doctor.index')
          ]);
     }
-    
+
 }
