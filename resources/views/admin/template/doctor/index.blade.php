@@ -48,7 +48,6 @@
                                         {{ $doctor->position }}
                                     </div>
                                     <div class="doc-specialization">
-                                        <span>Specialization Name</span>
                                         <a href="{{ route('doctor.single', $doctor->slug) }}">View
                                             Profile</a>
                                     </div>
@@ -92,7 +91,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="/doctor-profile" class="meet-doc">Meet The Doctor</a>
                         </div>
                     </div>
                 @endforeach

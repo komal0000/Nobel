@@ -3605,6 +3605,10 @@ hr {
    margin-bottom: 15px;
 }
 
+.message {
+   padding-bottom: 0;
+}
+
 .team .main-container .title {
    color: var(--color-main);
    font-size: 60px;
