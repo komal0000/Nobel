@@ -36,9 +36,6 @@ class AlimentController extends Controller
             $aliment->title = $request->aliment_title;
             $aliment->short_description = $request->aliment_short_description;
             $aliment->specialty_id = $request->specialty_id;
-            if ($request->hasFile('aliment_icon')) {
-                $aliment->icon = $request->file('aliment_icon')->store('uploads/aliments', 'public');
-            }
 
             if ($request->hasFile('aliment_single_page_image')) {
                 $aliment->single_page_image = $request->file('aliment_single_page_image')->store('uploads/aliments', 'public');
@@ -81,9 +78,6 @@ class AlimentController extends Controller
             $aliment->title = $request->aliment_title;
             $aliment->short_description = $request->aliment_short_description;
 
-            if ($request->hasFile("aliment_icon")) {
-                $aliment->icon = $request->file('aliment_icon')->store('uploads/aliments', 'public');
-            }
             if ($request->hasFile("aliment_single_page_image")) {
                 $aliment->single_page_image = $request->file('aliment_single_page_image')->store('uploads/aliments', 'public');
             }

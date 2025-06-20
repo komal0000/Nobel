@@ -20,12 +20,7 @@
     <div class="row">
         <div class="col-md-7 mb-3">
             <div class="row">
-                <div class="col-md-6">
-                    <label for="aliment_icon">Icon 1:1<span style="color: red;">*</span></label>
-                    <input type="file" class="form-control dropify" id="aliment_icon" name="icon" accept="image/*"
-                        data-default-file="{{ asset($aliment->icon) }}">
-                </div>
-                <div class="col-md-6">
+                <div class="col-12">
                     <label for="aliment_single_page_image">Single Page Image <span style="color: red;">*</span></label>
                     <input type="file" class="form-control dropify" id="aliment_single_page_image"
                         name="single_page_image" accept="image/*"
@@ -114,11 +109,6 @@
             formData.append("aliment_id", "{{ $aliment->id }}");
             formData.append("aliment_title", $("#aliment_title").val());
             formData.append("aliment_short_description", $("#aliment_short_description").val());
-
-            var alimentIcon = $("#aliment_icon")[0].files[0];
-            if (alimentIcon) {
-                formData.append("aliment_icon", alimentIcon);
-            }
 
             var alimentSinglePageImage = $("#aliment_single_page_image")[0].files[0];
             if (alimentSinglePageImage) {
