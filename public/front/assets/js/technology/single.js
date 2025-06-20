@@ -90,10 +90,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Toggle navbar
-    $('#toggle-navbar').click(function() {
-        $('#navbar').toggleClass('show-navbar').css('transform', 'scale(1)');
-    });
 });
 
 // Menu functions

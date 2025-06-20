@@ -6,9 +6,6 @@ $(document).ready(function () {
     initNavigation();
     equalizeCardHeight('.your-card-selector'); // Make sure to replace with your actual card selector
     initScrollFunctions();
-
-    // Toggle navbar for mobile
-    $('#toggle-navbar').click(toggleNavbar);
 });
 
 // Function to equalize card heights for consistent UI
@@ -227,10 +224,6 @@ function toggleFeedback() {
         $(window).off("scroll");
         $(".feedback-contact").removeClass('hide-feedback');
     }
-}
-
-function toggleNavbar() {
-    $('#navbar').toggleClass('show-navbar').css('transform', 'scale(1)');
 }
 
 function extendSubMenu(el) {

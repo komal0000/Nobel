@@ -17,10 +17,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         ]
     });
-    // Navbar toggle functionality
-    $('#toggle-navbar').click(function () {
-        $('#navbar').toggleClass('show-navbar').css('transform', 'scale(1)');
-    });
 
     // Equal height cards
     function equalizeCardHeight(selector) {

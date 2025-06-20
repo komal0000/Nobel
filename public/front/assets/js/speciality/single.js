@@ -114,11 +114,6 @@ $(document).ready(function() {
         }
     });
 
-    // Toggle navbar
-    $('#toggle-navbar').click(function() {
-        $('#navbar').toggleClass('show-navbar').css('transform', 'scale(1)');
-    });
-
     // Initialize and handle resize events
     lifeHereSlider();
     equalizeCardHeight('.main-card');

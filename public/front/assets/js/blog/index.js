@@ -127,11 +127,6 @@ document.addEventListener('DOMContentLoaded', function() {
     $("#load-more-all").on("click", showMoreAll);
     $("#search-all-blogs").on("keyup", filterAllBlogs);
 
-    // Toggle navbar
-    $('#toggle-navbar').click(function() {
-        $('#navbar').toggleClass('show-navbar').css('transform', 'scale(1)');
-    });
-
     // Initial loading
     showMoreFeatured();
     showMoreAll();

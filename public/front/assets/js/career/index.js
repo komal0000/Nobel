@@ -169,13 +169,6 @@ $(document).ready(function () {
       toggleAward();
       lifeHereSlider();
    });
-
-   // Toggle navbar
-   $('#toggle-navbar').click(function () {
-      $('#navbar').toggleClass('show-navbar').css({
-         'transform': 'scale(1)'
-      });
-   });
 });
 
 // Tab change function

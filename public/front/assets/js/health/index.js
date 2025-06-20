@@ -223,11 +223,4 @@ document.addEventListener('DOMContentLoaded', function() {
     window.expand = function(el) {
         $(el).toggleClass('active');
     };
-
-    // Toggle navbar
-    $('#toggle-navbar').click(function() {
-        $('#navbar').toggleClass('show-navbar').css({
-            'transform': 'scale(1)'
-        });
-    });
 });

@@ -42,10 +42,4 @@ $(document).ready(function() {
             { breakpoint: 650, settings: { slidesToShow: 1 } }
         ]
     });
-
-    // Toggle navbar display
-    $('#toggle-navbar').click(function() {
-        console.log('click');
-        $('#navbar').toggleClass('show-navbar').css({ 'transform': 'scale(1)' });
-    });
 });
