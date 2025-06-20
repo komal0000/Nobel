@@ -36,10 +36,6 @@
                             <div class="heading-sm">
                                 {{ $video->title }}
                             </div>
-                            <div class="para-wrap">
-                                <span>Dr Name </span>
-                                | Field of Doctor
-                            </div>
                         </div>
                     </div>
                 @endforeach

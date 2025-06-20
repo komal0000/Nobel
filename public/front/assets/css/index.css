@@ -305,6 +305,10 @@ section:nth-of-type(odd) {
    color: var(--color-white);
 }
 
+#all-section .card-container .each-card {
+   height: 100%;
+}
+
 .type-1 .heading-group {
    width: 700px;
    max-width: 100%;

@@ -22,9 +22,5 @@
                 @endif
             </div>
         </div>
-        <div class="heading-xs team-line">
-            <span>{{ $specialityGallery->title ?? 'Heart Team' }}: </span>
-            {{ $specialityGallery->description ?? 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.' }}
-        </div>
     </div>
 </section>

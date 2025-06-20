@@ -164,10 +164,10 @@ class AlimentController extends Controller
 
     public function render($aliment_id, $speciality_id)
     {
-        if ($speciality_id) {
+       if ($speciality_id) {
             $speciality = DB::table('specialties')->where('id', $speciality_id)->first();
             $specialityAliments = Aliment::where('specialty_id', operator: $speciality_id)->get();
-            Helper::putCache('speciality.single.' . $speciality->slug . '.aliment.', view('admin.template.speciality.single.aliment', compact('specialityAliments'))->render());
+            Helper::putCache('speciality.single.' . $speciality->slug . '.aliment', view('admin.template.speciality.single.aliment', compact('specialityAliments'))->render());
         }
         $aliments = Aliment::get();
         $aliment = Aliment::where('id', $aliment_id)->first();
