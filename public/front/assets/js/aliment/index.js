@@ -4,21 +4,8 @@ $(document).ready(function () {
     initLetterSlider();
     initFilterAndPagination();
     initNavigation();
-    equalizeCardHeight('.your-card-selector'); // Make sure to replace with your actual card selector
     initScrollFunctions();
 });
-
-// Function to equalize card heights for consistent UI
-function equalizeCardHeight(selector) {
-    const elements = $(selector);
-    let maxHeight = 0;
-
-    elements.css('height', 'auto').each(function () {
-        maxHeight = Math.max(maxHeight, $(this).height());
-    });
-
-    elements.height(maxHeight);
-}
 
 // Initialize letter slider
 function initLetterSlider() {

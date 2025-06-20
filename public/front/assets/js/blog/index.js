@@ -1,12 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Function to equalize card heights
-    function equalizeCardHeight(selector) {
-        let maxHeight = 0;
-        $(selector).css('height', 'auto').each(function() {
-            maxHeight = Math.max(maxHeight, $(this).height());
-        });
-        $(selector).height(maxHeight);
-    }
 
     // Blog functionality
     const cardPerPage = 4;
@@ -132,7 +124,6 @@ document.addEventListener('DOMContentLoaded', function() {
     showMoreAll();
 
     // Make these functions available globally
-    window.equalizeCardHeight = equalizeCardHeight;
     window.extendSubMenu = extendSubMenu;
     window.extendKnowledgeSubMenu = extendKnowledgeSubMenu;
     window.expand = expand;

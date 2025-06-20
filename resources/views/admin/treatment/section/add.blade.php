@@ -37,7 +37,6 @@
                     <select class="form-control" id="style_type" name="style_type">
                         <option value="1">Type 1</option>
                         <option value="2">Type 2</option>
-                        <option value="3">Type 3</option>
                     </select>
                 </div>
             </div>

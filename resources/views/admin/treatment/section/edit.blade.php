@@ -40,7 +40,6 @@
                     <select class="form-control" id="style_type" name="style_type">
                         <option value="1" {{ $treatmentSection->style_type == 1 ? 'selected' : '' }}>Type 1</option>
                         <option value="2" {{ $treatmentSection->style_type == 2 ? 'selected' : '' }}>Type 2</option>
-                        <option value="3" {{ $treatmentSection->style_type == 3 ? 'selected' : '' }}>Type 3</option>
                     </select>
                 </div>
             </div>

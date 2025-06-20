@@ -18,14 +18,6 @@ document.addEventListener('DOMContentLoaded', function () {
         ]
     });
 
-    // Equal height cards
-    function equalizeCardHeight(selector) {
-        let maxHeight = 0;
-        $(selector).css('height', 'auto').each(function () {
-            maxHeight = Math.max(maxHeight, $(this).height());
-        });
-        $(selector).height(maxHeight);
-    }
 
     // Read more/less functionality
     const $para = $('.para-wrap');

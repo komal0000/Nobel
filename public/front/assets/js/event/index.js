@@ -1,10 +1,3 @@
-// Equalize card heights
-function equalizeCardHeight(selector) {
-    const $elements = $(selector).css('height', 'auto');
-    const maxHeight = Math.max(...$elements.map(function() { return $(this).height(); }).get());
-    $elements.height(maxHeight);
-}
-
 // Toggle active state for navigation menu items
 function extendSubMenu(el) {
     const $el = $(el);

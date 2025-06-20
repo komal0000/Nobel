@@ -1,18 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Function to equalize card heights
-    function equalizeCardHeight(selector) {
-        let maxHeight = 0;
-        const elements = document.querySelectorAll(selector);
-
-        elements.forEach(el => {
-            el.style.height = 'auto';
-            maxHeight = Math.max(maxHeight, el.offsetHeight);
-        });
-
-        elements.forEach(el => {
-            el.style.height = maxHeight + 'px';
-        });
-    }
 
     // Read More functionality
     const $para = $('.para-wrap');

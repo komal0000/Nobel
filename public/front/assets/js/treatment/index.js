@@ -2,25 +2,12 @@ $(document).ready(function() {
     // Initialize components
     initLetterSlider();
     initNavigation();
-    equalizeCardHeight('.each-card');
     initScrollFunctions();
     initFilterAndPagination();
 
     // Toggle navbar for mobile
     $('#toggle-navbar').click(toggleNavbar);
 });
-
-// Function to equalize card heights
-function equalizeCardHeight(selector) {
-    const elements = $(selector);
-    let maxHeight = 0;
-
-    elements.css('height', 'auto').each(function() {
-        maxHeight = Math.max(maxHeight, $(this).height());
-    });
-
-    elements.height(maxHeight);
-}
 
 // Initialize letter slider
 function initLetterSlider() {
@@ -240,7 +227,6 @@ function getUrlParameter(name) {
 }
 
 // Make functions available globally
-window.equalizeCardHeight = equalizeCardHeight;
 window.extendSubMenu = extendSubMenu;
 window.extendKnowledgeSubMenu = extendKnowledgeSubMenu;
 window.expand = expand;

@@ -3,24 +3,11 @@ $(document).ready(function() {
     initLetterSlider();
     initFilterAndPagination();
     initNavigation();
-    equalizeCardHeight('.each-card'); // Adjust selector if needed
     initScrollFunctions();
 
     // Toggle navbar for mobile
     $('#toggle-navbar').click(toggleNavbar);
 });
-
-// Function to equalize card heights for consistent UI
-function equalizeCardHeight(selector) {
-    const elements = $(selector);
-    let maxHeight = 0;
-
-    elements.css('height', 'auto').each(function() {
-        maxHeight = Math.max(maxHeight, $(this).height());
-    });
-
-    elements.height(maxHeight);
-}
 
 // Initialize letter slider
 function initLetterSlider() {
@@ -245,7 +232,6 @@ function expand(el) {
 }
 
 // Make functions available globally
-window.equalizeCardHeight = equalizeCardHeight;
 window.extendSubMenu = extendSubMenu;
 window.extendKnowledgeSubMenu = extendKnowledgeSubMenu;
 window.expand = expand;

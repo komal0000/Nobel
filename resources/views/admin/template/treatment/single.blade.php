@@ -59,12 +59,6 @@
                     :items="$sectionSteps"></x-type2>
             </div>
         </section>
-    @elseif ($section->style_type == 3)
-        <section>
-            <div class="main-container">
-                <x-type3 heading="{{$section->title}}" content="{{$section->short_description}}" href="{{ asset($section->image) }}"></x-type3>
-            </div>
-        </section>
     @endif
 @endforeach
 {{-- <section id="treated">

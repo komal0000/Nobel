@@ -26,11 +26,4 @@ $(document).ready(function() {
             }
         }]
     });
-
-    // Combine the resize events for performance
-    $(window).on('load resize', function() {
-        equalizeCardHeight('.doctor-card');
-        equalizeCardHeight('.testimonials-card');
-        equalizeCardHeight('.animated-card');
-    });
 });

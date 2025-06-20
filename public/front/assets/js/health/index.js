@@ -1,13 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
     toggleSectionNav(true);
-    // Card height equalization
-    function equalizeCardHeight(selector) {
-        let maxHeight = 0;
-        $(selector).css('height', 'auto').each(function() {
-            maxHeight = Math.max(maxHeight, $(this).height());
-        });
-        $(selector).height(maxHeight);
-    }
 
     // Search and letter functions
     function setMostSearched(el) {

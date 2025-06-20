@@ -1,12 +1,4 @@
 $(document).ready(function() {
-    // Initialize utility functions
-    function equalizeCardHeight(selector) {
-        let maxHeight = 0;
-        $(selector).css('height', 'auto').each(function() {
-            maxHeight = Math.max(maxHeight, $(this).height());
-        });
-        $(selector).height(maxHeight);
-    }
 
     // Common slider arrow configuration
     const arrowConfig = {
@@ -116,10 +108,8 @@ $(document).ready(function() {
 
     // Initialize and handle resize events
     lifeHereSlider();
-    equalizeCardHeight('.main-card');
 
     $(window).on('resize', function() {
-        equalizeCardHeight('.main-card');
         lifeHereSlider();
     });
 });

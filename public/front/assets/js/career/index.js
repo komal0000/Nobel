@@ -1,12 +1,4 @@
 $(document).ready(function () {
-   // Helper functions
-   function equalizeCardHeight(selector) {
-      let maxHeight = 0;
-      $(selector).css('height', 'auto').each(function () {
-         maxHeight = Math.max(maxHeight, $(this).height());
-      });
-      $(selector).height(maxHeight);
-   }
 
    // Slick slider initializations
    $('#slick-slider').slick({
