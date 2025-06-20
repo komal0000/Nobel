@@ -35,14 +35,14 @@ $data =
     <div class="main-container" >
        <x-sliderComponent  mainClass="serviceSingle" heading="Connect With Us">
          @foreach ($phones as $phone)
-         <div class="connect-card">
+         <div class="connect-card p-3 d-flex flex-column justify-content-center align-items-center">
             <i class="bi bi-telephone"></i>
-            <a href="tel:{{$phone}}">{{$phone}}</a>
+            <div class="text-center" href="tel:{{$phone}}">{{$phone}}</div>
          </div>
          @endforeach
-          <div class="connect-card">
+          <div class="connect-card p-3 d-flex flex-column justify-content-center align-items-center">
              <i class="bi bi-envelope"></i>
-             <a href="mailto:{{$data->email}}">{{$data->email}}</a>
+             <a class="text-center" href="mailto:{{$data->email}}">{{$data->email}}</a>
           </div>
        </x-sliderComponent>
     </div>

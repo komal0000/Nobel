@@ -52,7 +52,7 @@
                             <div class="head">Phone Number</div>
                            @foreach ($phones as $key => $phone)
                               @if (!empty($phone))
-                                 <a href="tel:{{ $phone }}" class="number">{{ $phone }}</a><br>
+                                 <div class="mb-0">{{ $phone }}</div>
                               @endif
                             @endforeach
                         </div>

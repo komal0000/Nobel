@@ -23,9 +23,9 @@
             <a href="mailto:{{ $data->email }}" class="drop-item">{{ $data->email }}</a>
         </li>
     @endif
-   @foreach ($phones as $key => $phone)
+   {{-- @foreach (array_slice((array)$phones, 0, 1) as $key => $phone) --}}
       <li>
-         <a href="tel:{{ $phone }}" class="drop-item">{{ $phone }}</a>
+         <div class="drop-item">{{ $phones->phone1 }}</div>
       </li>
-   @endforeach
+   {{-- @endforeach --}}
 </ul>

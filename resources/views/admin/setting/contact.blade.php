@@ -66,7 +66,7 @@
                                 ];
                     @endphp
                     <div class="col-md-6">
-                        <label for="phone">Phone</label>
+                        <label for="phone">Phone (Main)</label>
                         <input type="tel" name="phone1" id="phone" class="form-control"
                             value="{{ $phones->phone1 }}">
                     </div>
