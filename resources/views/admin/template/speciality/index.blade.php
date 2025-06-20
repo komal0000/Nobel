@@ -1,7 +1,14 @@
 <section id="all-specialities" data-content="All Specialities">
     <div class="main-container">
-        <div class="heading text-center mb-4">
-            All Specialities
+        <div class="heading-group mb-4">
+            <div class="heading text-center mb-2">
+                All Specialities
+            </div>
+            <div class="floating">
+                <input type="text" id="search-speciality" name="searchSpeciality" class="form-control"
+                    placeholder="Search Speciality">
+                <div class="search-icon"><i class="bi bi-search"></i></div>
+            </div>
         </div>
         <div class="specialities-cards">
             <div class="row">
