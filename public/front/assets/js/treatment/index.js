@@ -197,23 +197,6 @@ function toggleFeedback() {
     }
 }
 
-function toggleNavbar() {
-    $('#navbar').toggleClass('show-navbar').css('transform', 'scale(1)');
-}
-
-function extendSubMenu(el) {
-    if ($(el).hasClass('active-list')) {
-        $(el).removeClass('active-list');
-        return;
-    }
-    $('.navbar-item').removeClass('active-list');
-    $(el).addClass('active-list');
-}
-
-function extendKnowledgeSubMenu(el, event) {
-    event.stopPropagation();
-    $(el).toggleClass('active-knowledge');
-}
 
 function expand(el) {
     $(el).toggleClass('active');
@@ -226,8 +209,6 @@ function getUrlParameter(name) {
     return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
 }
 
-// Make functions available globally
-window.extendSubMenu = extendSubMenu;
 window.extendKnowledgeSubMenu = extendKnowledgeSubMenu;
 window.expand = expand;
 window.getUrlParameter = getUrlParameter;

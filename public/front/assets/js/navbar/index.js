@@ -1,6 +1,6 @@
 
 function extendSubMenu(el) {
-    if ($(window).width() < 1300) {
+    if ($(window).width() < 1200) {
         if ($(el).hasClass('active-list')) {
             $(el).removeClass('active-list');
             return;

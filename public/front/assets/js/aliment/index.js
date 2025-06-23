@@ -213,20 +213,6 @@ function toggleFeedback() {
     }
 }
 
-function extendSubMenu(el) {
-    if ($(el).hasClass('active-list')) {
-        $(el).removeClass('active-list');
-        return;
-    }
-    $('.navbar-item').removeClass('active-list');
-    $(el).addClass('active-list');
-}
-
-function extendKnowledgeSubMenu(el, event) {
-    event.stopPropagation();
-    $(el).toggleClass('active-knowledge');
-}
-
 function expand(el) {
     $(el).toggleClass('active');
 }

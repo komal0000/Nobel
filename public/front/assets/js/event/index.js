@@ -1,22 +1,3 @@
-// Toggle active state for navigation menu items
-function extendSubMenu(el) {
-    const $el = $(el);
-    if ($el.hasClass('active-list')) {
-        $el.removeClass('active-list');
-        return;
-    }
-    $('.navbar-item').removeClass('active-list');
-    $el.addClass('active-list');
-}
-
-// Toggle active state for knowledge submenu items
-function extendKnowledgeSubMenu(el, event) {
-    event.stopPropagation();
-    console.log('clicked');
-    const $el = $(el);
-    $el.toggleClass('active-knowledge');
-}
-
 // Toggle active class for expandable elements
 function expand(el) {
     $(el).toggleClass('active');

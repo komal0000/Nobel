@@ -139,25 +139,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize first tab slider
     initTabSlider("tab-1");
 
-    // Navigation functions
-    window.extendSubMenu = function(el) {
-        if ($(el).hasClass('active-list')) {
-            $(el).removeClass('active-list');
-            return;
-        }
-        $('.navbar-item').removeClass('active-list');
-        $(el).addClass('active-list');
-    };
-
-    window.extendKnowledgeSubMenu = function(el, event) {
-        event.stopPropagation();
-        if ($(el).hasClass('active-knowledge')) {
-            $(el).removeClass('active-knowledge');
-            return;
-        }
-        $(el).addClass('active-knowledge');
-    };
-
     // Feedback toggle function
     function toggleFeedback() {
         if ($(window).width() < 481) {
