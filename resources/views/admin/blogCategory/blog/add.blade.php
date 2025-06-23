@@ -45,21 +45,23 @@
         @csrf
         <div class="row">
             <div class="col-md-5">
-                <div class="col-md-12 mb-3">
-                    <div class="tab-pane mb-2" id="video" role="tabpanel" aria-labelledby="video-tab">
-                        <label for="video_link">Youtube link</label>
-                        <input type="url" name="video_link" class="form-control " placeholder="Enter Youtube Url"
-                            onchange="GetMedia(this)">
-                        <div id="video-preview-panel" style="display: none;">
-                            <hr>
-                            <div class="row">
-                                <div class="col-5">
-                                    <iframe id="video-video-preview" class="w-100" frameborder="0"></iframe>
+                @if ($blogCategory->type !== 6)
+                    <div class="col-md-12 mb-3">
+                        <div class="tab-pane mb-2" id="video" role="tabpanel" aria-labelledby="video-tab">
+                            <label for="video_link">Youtube link</label>
+                            <input type="url" name="video_link" class="form-control " placeholder="Enter Youtube Url"
+                                onchange="GetMedia(this)">
+                            <div id="video-preview-panel" style="display: none;">
+                                <hr>
+                                <div class="row">
+                                    <div class="col-5">
+                                        <iframe id="video-video-preview" class="w-100" frameborder="0"></iframe>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endif
                 <div class="row">
                     <div class="col-md-6">
                         <label for="image">
@@ -86,11 +88,19 @@
                             @endif
                         </label>
                     </div>
-                    <div class="col-md-6">
-                        <label for="single_page_image">Single Page Image</label>
-                        <input type="file" name="single_page_image" id="single_page_image" class="form-control dropify"
-                            accept="image/*">
-                    </div>
+                    @if ($blogCategory->type == 6)
+                        <div class="col-md-6">
+                            <label for="single_page_image">PDF</label>
+                            <input type="file" name="single_page_image" id="single_page_image"
+                                class="form-control dropify" accept=".pdf">
+                        </div>
+                    @else
+                        <div class="col-md-6">
+                            <label for="single_page_image">Single Page Image</label>
+                            <input type="file" name="single_page_image" id="single_page_image"
+                                class="form-control dropify" accept="image/*">
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="col-md-7">

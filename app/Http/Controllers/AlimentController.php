@@ -36,6 +36,9 @@ class AlimentController extends Controller
             $aliment->title = $request->aliment_title;
             $aliment->short_description = $request->aliment_short_description;
             $aliment->specialty_id = $request->specialty_id;
+            if ($request->hasFile('aliment_icon')) {
+                $aliment->icon = $request->file('aliment_icon')->store('uploads/aliments', 'public');
+            }
 
             if ($request->hasFile('aliment_single_page_image')) {
                 $aliment->single_page_image = $request->file('aliment_single_page_image')->store('uploads/aliments', 'public');
@@ -78,6 +81,9 @@ class AlimentController extends Controller
             $aliment->title = $request->aliment_title;
             $aliment->short_description = $request->aliment_short_description;
 
+            if ($request->hasFile("aliment_icon")) {
+                $aliment->icon = $request->file('aliment_icon')->store('uploads/aliments', 'public');
+            }
             if ($request->hasFile("aliment_single_page_image")) {
                 $aliment->single_page_image = $request->file('aliment_single_page_image')->store('uploads/aliments', 'public');
             }
@@ -164,7 +170,7 @@ class AlimentController extends Controller
 
     public function render($aliment_id, $speciality_id)
     {
-       if ($speciality_id) {
+        if ($speciality_id) {
             $speciality = DB::table('specialties')->where('id', $speciality_id)->first();
             $specialityAliments = Aliment::where('specialty_id', operator: $speciality_id)->get();
             Helper::putCache('speciality.single.' . $speciality->slug . '.aliment', view('admin.template.speciality.single.aliment', compact('specialityAliments'))->render());

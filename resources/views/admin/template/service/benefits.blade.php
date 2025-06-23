@@ -10,7 +10,7 @@
                             alt="">
                     </div>
                     <div class="card-title">
-                        {{ $benefit->short_desc }}
+                        {{ $benefit->title }}
                     </div>
                 </div>
             @endforeach
