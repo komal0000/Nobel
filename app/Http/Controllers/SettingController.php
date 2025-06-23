@@ -8,6 +8,7 @@ use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class SettingController extends Controller
 {
@@ -413,6 +414,108 @@ class SettingController extends Controller
       } catch (\Exception $e) {
          \Illuminate\Support\Facades\Log::error('Job request error: ' . $e->getMessage());
          return response()->json(['error' => 'An error occurred: ' . $e->getMessage()], 500);
+      }
+   }
+
+   public function nationalImageIndex()
+   {
+      $image = Setting::where('key', 'nationalImage')->first();
+      $data = null;
+      if (!empty($image)) {
+         $data = json_decode($image->value, true);
+      }
+      return view('admin.setting.nationalImage.index', compact('data'));
+   }
+   public function nationalImageAdd(Request $request)
+   {
+      if (Helper::G()) {
+         $image = Setting::where('key', 'nationalImage')->first();
+         $values = null;
+         if (!empty($image)) {
+            $values = json_decode($image->value, true);
+         }
+         return view('admin.setting.nationalImage.add', compact('values'));
+      } else {
+         $data = [];
+         if ($request->hasFile('desktop_image')) {
+            $desktopPath = $request->file('desktop_image')->store('uploads/national', 'public');
+            $data['desktopImage'] = $desktopPath;
+         }
+         if ($request->hasFile('mobile_image')) {
+            $mobilePath = $request->file('mobile_image')->store('uploads/national', 'public');
+            $data['mobileImage'] = $mobilePath;
+         }
+         if (!empty($data)) {
+            Setting::updateOrCreate(
+               ['key' => 'nationalImage'],
+               ['value' => json_encode($data)]
+            );
+            Helper::putCache('home.nationalImage', view('admin.setting.template.nationalImage', compact('data'))->render());
+            return redirect()->back()->with('success', 'National Image added successfully.');
+         } else {
+            return response()->json(['error' => 'No images uploaded'], 400);
+         }
+      }
+   }
+
+   public function nationalImageEdit(Request $request)
+   {
+      $image = Setting::where('key', 'nationalImage')->first();
+      $values = null;
+      if (!empty($image)) {
+         $values = json_decode($image->value, true);
+      }
+      if ($request->isMethod('get')) {
+         return view('admin.setting.nationalImage.edit', compact('values'));
+      } else {
+         $data = $values ?? [];
+
+         // Delete previous desktop image if new one is uploaded
+         if ($request->hasFile('desktopImage')) {
+            if (!empty($data['desktopImage']) && Storage::disk('public')->exists($data['desktopImage'])) {
+               Storage::disk('public')->delete($data['desktopImage']);
+            }
+            $desktopPath = $request->file('desktopImage')->store('uploads/national', 'public');
+            $data['desktopImage'] = $desktopPath;
+         }
+
+         // Delete previous mobile image if new one is uploaded
+         if ($request->hasFile('mobileImage')) {
+            if (!empty($data['mobileImage']) && Storage::disk('public')->exists($data['mobileImage'])) {
+               Storage::disk('public')->delete($data['mobileImage']);
+            }
+            $mobilePath = $request->file('mobileImage')->store('uploads/national', 'public');
+            $data['mobileImage'] = $mobilePath;
+         }
+
+         Setting::updateOrCreate(
+            ['key' => 'nationalImage'],
+            ['value' => json_encode($data)]
+         );
+         Helper::putCache('home.nationalImage', view('admin.setting.template.nationalImage', compact('data'))->render());
+         return redirect()->back()->with('success', 'Successfully updated.');
+      }
+   }
+
+   public function nationalImageDel(Request $request)
+   {
+      $image = Setting::where('key', 'nationalImage')->first();
+      if ($image) {
+         $values = json_decode($image->value, true);
+
+         // Delete previously saved files if they exist
+         if (!empty($values['desktopImage']) && Storage::disk('public')->exists($values['desktopImage'])) {
+            Storage::disk('public')->delete($values['desktopImage']);
+         }
+         if (!empty($values['mobileImage']) && Storage::disk('public')->exists($values['mobileImage'])) {
+            Storage::disk('public')->delete($values['mobileImage']);
+         }
+
+         $image->delete();
+         Helper::putCache('home.nationalImage', '');
+         return redirect()->back()->with('success', 'National image deleted successfully.');
+      } else {
+         return redirect()->back()->with('error', 'No national image found to delete.');
       }
    }
 

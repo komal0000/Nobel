@@ -14,7 +14,7 @@
     @includeIf('front.cache.home.care')
     @includeIf('front.cache.home.services')
     @includeIf('front.cache.home.videos')
-    @includeIf('front.pages.home.national')
+    @includeIf('front.cache.home.nationalImage')
     @includeIf('front.cache.home.updates')
     @includeIf('front.cache.home.awards')
     @includeIf('front.cache.home.newsEvent')
