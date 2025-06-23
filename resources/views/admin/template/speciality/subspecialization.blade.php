@@ -10,12 +10,14 @@
 
             @foreach ($subSpecialties as $subSpecialty)
                 <div class="sub-card">
-                    <div class="img-wrapper">
-                        <img src="{{ asset($subSpecialty->icon) }}" alt="{{ $subSpecialty->title }}">
-                    </div>
-                    <div class="heading-sm">
-                        {{ $subSpecialty->title }}
-                    </div>
+                    <a href="{{ $subSpecialty->slug }}">
+                        <div class="img-wrapper">
+                            <img src="{{ asset($subSpecialty->icon) }}" alt="{{ $subSpecialty->title }}">
+                        </div>
+                        <div class="heading-sm">
+                            {{ $subSpecialty->title }}
+                        </div>
+                    </a>
                 </div>
             @endforeach
         </div>
