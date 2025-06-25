@@ -7,6 +7,8 @@ use App\Models\Doctor;
 use App\Models\DoctorSpeciality;
 use App\Models\Milestone;
 use App\Models\Service;
+use App\Models\Speciality;
+use App\Models\SpecialityTeamHead;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -83,6 +85,12 @@ class DoctorController extends Controller
             }
             $this->render();
             $this->singleRender($doctor->id);
+
+            $teamHead = SpecialityTeamHead::where('doctor_id', $doctor_id)->first();
+
+            if($teamHead) {
+               $this->renderTeamHead($teamHead->specialty_id);
+            }
             return redirect()->back()->with('success', 'Doctor updated successfully');
         }
     }
@@ -171,6 +179,13 @@ class DoctorController extends Controller
             'keywords' => 'doctor, doctors',
             'url' => route('doctor.index')
          ]);
+    }
+
+    public function renderTeamHead($speciality_id)
+    {
+        $specialty = DB::table(Speciality::tableName)->where('id',$speciality_id)->first();
+        $teamHead = DB::table('speciality_team_heads')->where('specialty_id', $speciality_id)->first();
+        Helper::putCache('speciality.single.' . $specialty->slug . '.message', view('admin.template.speciality.teamHead', compact('teamHead'))->render());
     }
 
 }
