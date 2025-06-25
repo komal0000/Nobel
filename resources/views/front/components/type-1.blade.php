@@ -1,4 +1,4 @@
-@props(['heading' => 'Default Heading', 'subHeading' => 'Default sub-heading', 'items' => ''])
+@props(['heading' => '', 'subHeading' => '', 'items' => ''])
 <div class="type-1">
     <div class="heading-group mb-4">
         @if ($subHeading)
