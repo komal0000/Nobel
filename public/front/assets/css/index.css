@@ -7880,7 +7880,7 @@ hr {
    width: 75%;
    position: relative;
    z-index: 1;
-   max-width: 100%;
+   max-width: 550px;
    height: auto;
 }
 
