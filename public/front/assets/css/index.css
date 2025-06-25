@@ -7656,6 +7656,9 @@ hr {
 #doctor-list .list .doctor-card .header .doc-desc .heading-sm {
    margin-bottom: 5px;
    padding-right: 30px;
+   height: 2lh;
+   overflow: hidden;
+   text-overflow: ellipsis;
 }
 
 #doctor-list .list .doctor-card .header .doc-desc .post {
