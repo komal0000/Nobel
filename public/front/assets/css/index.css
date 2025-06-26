@@ -10564,7 +10564,7 @@ hr {
    min-height: 300px;
    display: flex;
    flex-direction: column;
-   justify-content: flex-start;
+   text-align: center;
 }
 
 #single-service-elder .package-list .package-slider .each-package .package-body ul li {
@@ -10577,7 +10577,7 @@ hr {
 
 #single-service-elder .package-list .package-slider .each-package .package-price {
    display: flex;
-   justify-content: space-between;
+   justify-content: center;
    align-items: center;
    border-top: 1px solid var(--border-color);
    padding: 15px;
