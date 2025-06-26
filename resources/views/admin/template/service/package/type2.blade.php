@@ -15,9 +15,9 @@
             }
         @endphp
         <div class="package-list">
-            <div class="package-slider">
+            <div class="package-slider overflow-hidden">
                 @foreach ($packages2 as $package)
-                    <div class="each-package" style="min-width: {{ $width }}">
+                    <div class="each-package" style="width: {{ $width }}">
                         <div class="heading-sm">{{ $package->title }}</div>
                         <div class="package-body">
                             <ul>

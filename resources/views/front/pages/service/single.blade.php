@@ -24,6 +24,7 @@
         $(document).ready(function() {
             const $para = $('.para-wrap');
             const $btn = $('.read-more-btn');
+            initPackageSlider();
 
             function checkOverflow() {
                 const $clone = $para.clone()
@@ -109,6 +110,55 @@
                     }
                 ]
             })
+
+            function initPackageSlider() {
+               if ($(window).width() < 1200) {
+                  if (!$('.package-slider').hasClass('slick-initialized')) {
+                     $('.package-slider').slick({
+                        slidesToShow: 4,
+                        slidesToScroll: 1,
+                        infinite: true,
+                        autoplay: true,
+                        autoplaySpeed: 3000,
+                        arrows: true,
+                        prevArrow: '<button class="slick-prev left-arrow"><img src="{{ asset('front/img/vector-left.png') }}" alt="Left Arrow"></button>',
+                        nextArrow: '<button class="slick-next right-arrow"><img src="{{ asset('front/img/vector-right.png') }}" alt="Right Arrow"></button>',
+                        responsive: [
+                           {
+                              breakpoint: 1299,
+                              settings: {
+                                 slidesToShow: 3
+                              }
+                           },
+                           {
+                              breakpoint: 991,
+                              settings: {
+                                 slidesToShow: 2
+                              }
+                           },
+                           {
+                              breakpoint: 500,
+                              settings: {
+                                 slidesToShow: 1
+                              }
+                           }
+                        ]
+                     });
+                  }
+               } else {
+                  if ($('.package-slider').hasClass('slick-initialized')) {
+                     $('.package-slider').slick('unslick');
+                  }
+               }
+            }
+
+            // Initialize on load
+            initPackageSlider();
+
+            // Re-initialize on resize
+            $(window).on('resize', function() {
+               initPackageSlider();
+            });
 
             $('.question').on('click', function() {
                 if ($(this).closest('.question-answer').hasClass('active')) {
