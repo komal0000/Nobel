@@ -1,4 +1,4 @@
-<section id="downloads" data-content="Downloads">
+<section id="download" data-content="Downloads">
     <div class="main-container">
         <div class="tabs-container mb-4">
             <button class="tab active">All</button>
