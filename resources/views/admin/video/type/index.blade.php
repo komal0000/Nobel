@@ -43,6 +43,7 @@
             <div class="col-md-4" style="display: none" id="doctor_select_div">
                 <label for="doctor_id">Doctor</label>
                 <select name="doctor_id" id="doctor_id" class="form-control">
+                     <option selected disabled>Select</option>
                     @foreach ($doctors as $doctor)
                         <option value="{{ $doctor->id }}">{{ $doctor->title }}</option>
                     @endforeach
@@ -73,8 +74,11 @@
                         <td>
                             @if ($type->home_video == 1)
                                 Home Videos
-                            @elseif($type->doctor_id =! null)
-                                Doctor Videos
+                            @elseif($type->doctor_id != null)
+                            @php
+                            $doctor = App\Models\Doctor::where('id', $type->doctor_id)->first();
+                            @endphp
+                                Doctor Videos ({{$doctor->title}})
                             @else
                                 Normal Videos
                             @endif

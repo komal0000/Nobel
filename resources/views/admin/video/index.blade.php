@@ -1,14 +1,17 @@
 @extends('admin.layout.app')
 @section('title')
-    <a href="{{ route('admin.video.type.index') }}">Video Types</a> /
-
-    <span>{{ $videoType->title }}</span> /
+    @php
+        $doctor = App\Models\Doctor::where('id', $videoType->doctor_id)->first();
+    @endphp
+    <a href="{{ route('admin.video.type.index') }}">Video Types /</a>
+    <span>{{ $videoType->title }}@if($doctor) ({{ $doctor->title }})@endif 
+      /</span> 
     <span>Videos</span>
 @endsection
 @section('content')
     <div class="p-3 shadow">
         <div class="row">
-            <input type="hidden" name="video_link" id="video_link" >
+            <input type="hidden" name="video_link" id="video_link">
             <div class="col-md-12 mb-3">
                 <div class="tab-pane pt-3 mb-2" id="video" role="tabpanel" aria-labelledby="video-tab">
                     <label for="youtube_link">Youtube link</label>
@@ -46,11 +49,13 @@
                     <div class="col-md-4 mb-4">
                         <div class="border rounded p-2 mb-2">
                             <div class="image">
-                                <iframe id="video-video-preview" class="w-100 h-100" frameborder="0" src="https://www.youtube.com/embed/{{ $video->video_link }}"></iframe>
+                                <iframe id="video-video-preview" class="w-100 h-100" frameborder="0"
+                                    src="https://www.youtube.com/embed/{{ $video->video_link }}"></iframe>
                             </div>
                             <br>
                             <div class="option">
-                                <a href="{{route('admin.video.del',['video_id'=>$video->id])}}" class="btn btn-danger">Delete</a>
+                                <a href="{{ route('admin.video.del', ['video_id' => $video->id]) }}"
+                                    class="btn btn-danger">Delete</a>
                             </div>
                         </div>
                     </div>
@@ -88,7 +93,7 @@
                     title: title,
                 })
                 .then(res => {
-                    if (res.data.success){
+                    if (res.data.success) {
                         location.reload();
                     }
                 })
