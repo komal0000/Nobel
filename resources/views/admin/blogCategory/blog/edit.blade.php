@@ -47,48 +47,50 @@
         @csrf
         <div class="row">
             <div class="col-md-5">
-                <div class="col-md-12 mb-3">
-                    <div class="tab-pane mb-2" id="video" role="tabpanel" aria-labelledby="video-tab">
-                        <label for="video_link">Youtube link</label>
-                        <input type="url" name="video_link" class="form-control" value="{{ $blog->video_link }}"
-                            placeholder="Enter Youtube Url" onchange="GetMedia(this)">
-                        <div id="video-preview-panel" style="display: none;">
-                            <hr>
-                            <div class="row">
-                                <div class="col-5">
-                                    <iframe id="video-video-preview" class="w-100" frameborder="0"></iframe>
+                @if ($blogCategory->type !== 6 && $blogCategory->type !== 7)
+                    <div class="col-md-12 mb-3">
+                        <div class="tab-pane mb-2" id="video" role="tabpanel" aria-labelledby="video-tab">
+                            <label for="video_link">Youtube link</label>
+                            <input type="url" name="video_link" class="form-control" value="{{ $blog->video_link }}"
+                                placeholder="Enter Youtube Url" onchange="GetMedia(this)">
+                            <div id="video-preview-panel" style="display: none;">
+                                <hr>
+                                <div class="row">
+                                    <div class="col-5">
+                                        <iframe id="video-video-preview" class="w-100" frameborder="0"></iframe>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endif
                 <div class="row">
                     <div class="col-md-6">
                         <label for="image"></label>
-                            @php
-                                $imageLabels = [
-                                    1 => 'Image 4:3',
-                                    2 => 'Image 4:3',
-                                    3 => 'Image 4:3',
-                                    4 => 'Icon',
-                                    5 => 'Image 4:3',
-                                    6 => 'PDF',
-                                ];
-                                $isRequired = in_array($blogCategory->type, [1, 2, 3, 5, 6]);
-                            @endphp
+                        @php
+                            $imageLabels = [
+                                1 => 'Image 4:3',
+                                2 => 'Image 4:3',
+                                3 => 'Image 4:3',
+                                4 => 'Icon',
+                                5 => 'Image 4:3',
+                                6 => 'PDF',
+                            ];
+                            $isRequired = in_array($blogCategory->type, [1, 2, 3, 5, 6]);
+                        @endphp
 
-                            {{ $imageLabels[$blogCategory->type] ?? 'Image' }}
-                            @if ($isRequired)
-                                <span style="color: red;">*</span>
-                            @endif
-                            @if ($blogCategory->type != 6)
-                                <input type="file" name="image" id="image" class="form-control dropify"
-                                    accept="image/*" data-default-file="{{ asset($blog->image) }}">
-                            @endif
-                            @if ($blogCategory->type == 6)
-                                <input type="file" name="pdf" id="pdf" class="form-control dropify"
-                                    accept="application/pdf" data-default-file="{{ asset($blog->image) }}">
-                            @endif
+                        {{ $imageLabels[$blogCategory->type] ?? 'Image' }}
+                        @if ($isRequired)
+                            <span style="color: red;">*</span>
+                        @endif
+                        @if ($blogCategory->type != 6)
+                            <input type="file" name="image" id="image" class="form-control dropify"
+                                accept="image/*" data-default-file="{{ asset($blog->image) }}">
+                        @endif
+                        @if ($blogCategory->type == 6)
+                            <input type="file" name="pdf" id="pdf" class="form-control dropify"
+                                accept="application/pdf" data-default-file="{{ asset($blog->image) }}">
+                        @endif
 
                     </div>
                     @if ($blogCategory->type == 6)
