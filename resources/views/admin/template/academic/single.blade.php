@@ -11,25 +11,33 @@
                             {{ $academic->title }}
                         </div>
                         <div class="heading-sm date mb-3">{{ App\Helper::formatTimestampToDateString($academic->date) }}
-                            |
-                            Read Time</div>
+                           </div>
                         <div class="share-links d-flex gap-3 fs-2 mb-5">
-                            <a href="#">
+                            <a id="copyBtn" href="#" class="position-relative text-decoration-none">
                                 <i class="bi bi-link-45deg"></i>
+                                <span id="copiedText"
+                                    class="position-absolute bottom-0 start-0 d-none border-gray-100 bg-transparent text-gray-700 rounded-1">
+                                    Copied!
+                                </span>
                             </a>
-                            <a href="#">
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}"
+                                target="_blank" rel="noopener noreferrer">
                                 <i class="bi bi-facebook"></i>
                             </a>
-                            <a href="#">
+                            <a href="https://wa.me/?text={{ urlencode(url()->current()) }}" target="_blank"
+                                rel="noopener noreferrer">
                                 <i class="bi bi-whatsapp"></i>
                             </a>
-                            <a href="#">
+                            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(url()->current()) }}"
+                                target="_blank" rel="noopener noreferrer">
                                 <i class="bi bi-linkedin"></i>
                             </a>
-                            <a href="#">
+                            <a href="https://twitter.com/intent/tweet?url={{ urlencode(url()->current()) }}"
+                                target="_blank" rel="noopener noreferrer">
                                 <i class="bi bi-twitter-x"></i>
                             </a>
-                            <a href="#">
+                            <a
+                                href="mailto:?subject={{ urlencode($academic->title) }}&body={{ urlencode(url()->current()) }}">
                                 <i class="bi bi-envelope"></i>
                             </a>
                         </div>
@@ -41,27 +49,6 @@
             </div>
             <div class="col-lg-3">
                 <div class="second-col">
-                    <div class="query-form mb-4">
-                        <form action="">
-                            <div class="heading-md">Query Form</div>
-                            <div class="input-wrap">
-                                <label for="name">Name *</label>
-                                <input type="text" name="name" placeholder="Enter Your Name" required>
-                            </div>
-                            <div class="input-wrap">
-                                <label for="mobileNumber">Mobile Number *</label>
-                                <input type="text" name="mobileNumber" placeholder="Enter Your Phone Number"
-                                    required>
-                            </div>
-                            <div class="input-wrap">
-                                <label for="email">Email Address</label>
-                                <input type="text" name="email" placeholder="Enter Your E-mail">
-                            </div>
-                            <div class="btn-wrap w-100">
-                                <button>Submit</button>
-                            </div>
-                        </form>
-                    </div>
                     <div class="recent-event ">
                         <div class="heading mb-4">Academic Programs</div>
                         @foreach ($latestAcademic as $academic)
