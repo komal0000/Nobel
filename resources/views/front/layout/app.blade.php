@@ -44,7 +44,7 @@
             margin-top: 1.5rem;
             z-index: 10;
             font-size: 12px;
-            top: 0;
+            top: 16px;
         }
     </style>
 </head>
