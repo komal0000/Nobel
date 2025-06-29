@@ -9472,7 +9472,7 @@ hr {
 }
 
 #about-mission:nth-of-type(odd) .content {
-   flex-direction: row !important;
+   flex-direction: row;
 }
 
 #about-mission .content {
@@ -9481,9 +9481,9 @@ hr {
    gap: 50px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 991px) {
    #about-mission .content {
-      flex-direction: column;
+      flex-direction: column !important;
    }
 }
 
@@ -9496,7 +9496,7 @@ hr {
    border-radius: 20px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 991px) {
    #about-mission .content .img-wrapper {
       width: 100%;
       padding: 0;
