@@ -406,7 +406,7 @@
                                     </svg>
                                 </i>
                                 <i class="sidenav-mini-icon"> F </i>
-                                <span class="item-name">New letter</span>
+                                <span class="item-name">News letter</span>
                             </a>
                         </li>
                     </ul>
