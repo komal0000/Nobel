@@ -9517,7 +9517,7 @@ hr {
    font-weight: 600;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 991px) {
    #about-mission .content .heading-sm {
       width: 100%;
    }
