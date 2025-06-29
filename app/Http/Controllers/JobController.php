@@ -145,19 +145,19 @@ class JobController extends Controller
          'keywords' => 'job, jobs, nobel job',
          'url' => route('jobs.jobcategory')
       ]);
-   }
-
-   public function renderSingle($jobId)
-   {
-      $job = Job::where('id', $jobId)->first();
       Helper::putMetaCache('career', $data = [
          'title' => 'Career',
          'description' => 'Reach out to Nobel for career opportunities.',
          'keywords' => 'career, career nobel',
          'url' => route('careers')
       ]);
+   }
+
+   public function renderSingle($jobId)
+   {
+      $job = Job::where('id', $jobId)->first();
       $jobCategory = JobCategory::where('id', $job->job_category_id)->value('title');
-      
+
       Helper::putMetaCache('career.job.' . $job->slug, $data = [
          'title' => $job->title,
          'description' => $job->short_description,
