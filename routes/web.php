@@ -268,12 +268,13 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::post('add', [SettingController::class, 'addCallbackRequest'])->name('addRequestCallBack');
         Route::match(['GET', 'POST'], '/feedback', [SettingController::class, 'feedback'])->name('feedback');
         Route::post('add-feedback', [SettingController::class, 'addFeedback'])->name('addFeedback');
-      Route::prefix('national-image')->name('nationalImage.')->group(function () {
+        Route::prefix('national-image')->name('nationalImage.')->group(function () {
           Route::get( 'index', [SettingController::class, 'nationalImageIndex'])->name('index');
           Route::match(['GET', 'POST'], 'add', [SettingController::class, 'nationalImageAdd'])->name('add');
           Route::match(['GET', 'POST'], 'edit', [SettingController::class, 'nationalImageEdit'])->name('edit');
           Route::get( 'del', [SettingController::class, 'nationalImageDel'])->name('del');
-      });
+       });
+       Route::match(['GET', 'POST'], '/healthLibrary', [SettingController::class, 'healthLibrary'])->name('healthLibrary');
     });
     Route::prefix('technology')->name('technology.')->group(function () {
         Route::match(['GET'], '', [TechnologyController::class, 'index'])->name('index');

@@ -9,7 +9,7 @@
     @include('front.pages.health.banner')
     @includeIF('front.cache.health.diseases')
     @include('front.pages.health.health-library')
-    @include('front.pages.health.health-care')
+    @includeIf('front.cache.health.health-care')
     @includeIF('front.cache.health.technology')
     @include('front.pages.health.knowledge')
     @includeIF('front.cache.health.download')
