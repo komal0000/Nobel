@@ -6,10 +6,16 @@
             <div class="about-package">
                 <div class="heading-lg mb-4">{{$package->title}}</div>
                 <ul>
-                    <li>Lab Tests: {{$package->labtest}}</li>
+                  @if($package->labtest)
+                  <li>Lab Tests: {{$package->labtest}}</li>
+                  @endif
+                  @if($package->age)
                     <li>Age Group: {{$package->age}}</li>
+                  @endif
                 </ul>
-                <div class="heading-md price">Rs. {{$package->price}}</div>
+                @if($package->price)
+                  <div class="heading-md price">Rs. {{$package->price}}</div>
+                @endif
             </div>
         </div>
     </section>

@@ -39,7 +39,6 @@
                                 <div class="package-title">
                                     {{ $package->title }}
                                 </div>
-                                <span class="price">Rs. {{ $package->price }}</span>
                                 <x-hoverBtn href="{{ route('service.packageSingle', ['serviceSlug'=> $service_slug, 'slug'=> $package->slug]) }}" class="para-wrap">Know More</x-hoverBtn>
                             </div>
                         </div>
