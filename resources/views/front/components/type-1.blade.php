@@ -67,7 +67,11 @@
                                             <li>
                                                 <div class="para-wrap">
                                                     <p><strong>{{ $item->short_description ?? '' }}</strong></p>
-                                                    <p class="para-wrap-para">{{ $item->description ?? '' }}</p>
+                                                    @if ($item->description)
+                                                        <p class="para-wrap-para">{{ $item->description ?? '' }}</p>
+                                                    @else
+                                                        <p class="para-wrap-para">{{ $item->long_description ?? '' }}</p>
+                                                    @endif
                                                 </div>
                                             </li>
                                         </ul>
@@ -103,7 +107,11 @@
                                             <div class="para-wrap">
                                                 <p><strong>{{ $items->short_description ?? '' }}</strong></p>
                                                 <br>
-                                                <p class="para-wrap-para">{{ $items->long_description ?? '' }}</p>
+                                                @if ($items->description)
+                                                   <p class="para-wrap-para">{{ $items->description ?? '' }}</p>
+                                                @else
+                                                   <p class="para-wrap-para">{{ $items->long_description ?? '' }}</p>
+                                                @endif
                                             </div>
                                         </li>
                                     </ul>
