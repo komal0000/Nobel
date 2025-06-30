@@ -103,7 +103,7 @@
                                             <div class="para-wrap">
                                                 <p><strong>{{ $items->short_description ?? '' }}</strong></p>
                                                 <br>
-                                                <p class="para-wrap-para">{{ $items->description ?? '' }}</p>
+                                                <p class="para-wrap-para">{{ $items->long_description ?? '' }}</p>
                                             </div>
                                         </li>
                                     </ul>
