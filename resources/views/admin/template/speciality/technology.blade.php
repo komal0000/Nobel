@@ -4,9 +4,6 @@
             <div class="heading">
                 Technology
             </div>
-            <div class="heading-xs">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, eligendi?
-            </div>
         </div>
         <div class="content-slider">
             @foreach ($technologies as $technology)

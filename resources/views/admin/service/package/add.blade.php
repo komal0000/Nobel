@@ -25,8 +25,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6 mb-2">
-                            <label for="price">Price <span style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="price" name="price" required>
+                            <label for="price">Price</label>
+                            <input type="text" class="form-control" id="price" name="price">
                         </div>
                         <div class="col-md-6 mb-2">
                             <label for="age">Age Group</label>
@@ -56,8 +56,8 @@
                     <input type="text" class="form-control" id="title" name="title" required>
                 </div>
                 <div class="col-md-6 mb-2">
-                    <label for="price">Price <span style="color: red;">*</span></label>
-                    <input type="text" class="form-control" id="price" name="price" required>
+                    <label for="price">Price </label>
+                    <input type="text" class="form-control" id="price" name="price">
                 </div>
             </div>
         @endif
