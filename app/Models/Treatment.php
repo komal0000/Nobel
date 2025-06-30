@@ -19,6 +19,7 @@ class Treatment extends Model
         return [
             'slug' => [
                 'source' => 'title',
+                'onUpdate' => true
             ]
         ];
     }

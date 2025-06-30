@@ -22,6 +22,7 @@ class Doctor extends Model
         return [
             'slug' => [
                 'source' => 'title',
+               'onUpdate' => true
             ]
         ];
     }
