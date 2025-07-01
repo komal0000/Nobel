@@ -9,7 +9,7 @@
             <div class="col-md-6 mb-3">
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="technology_image">Image 4:2 <span style="color: red">*</span></label>
+                        <label for="technology_image">Image (960x720px or 1920x1440px) <span style="color: red">*</span></label>
                         <input type="file" name="technology_image" id="technology_image" class="form-control dropify" required
                             accept="image/*">
                     </div>
@@ -62,7 +62,7 @@
                                         <h5 class="my-2">Section</h5>
                                         <input type="hidden" name="type_id" id="type_id" value="{{ $type->id }}">
                                         <div class="col-md-4 mb-3">
-                                            <label for="image_{{ $type->id }}">Image </label>
+                                            <label for="image_{{ $type->id }}">Image (500x500px or 1000x1000px)</label>
                                             <input type="file" name="image" id="image_{{ $type->id }}"
                                                 class="form-control dropify" accept="image/*">
                                         </div>
@@ -123,7 +123,7 @@
             $("#sectionData_" + typeId).append(`
                 <h5 class="my-2">Section Data</h5>
                 <div class="col-md-4 mb-3">
-                    <label for="section_image_${typeId}_${timestamp}">Image <span style="color: red;">*</span></label>
+                    <label for="section_image_${typeId}_${timestamp}">Image (500x500px or 1000x1000px)<span style="color: red;">*</span></label>
                     <input type="file" name="image" id="section_image_${typeId}_${timestamp}" class="form-control dropify" accept="image/*" required>
                 </div>
                 <div class="col-md-8">

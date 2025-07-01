@@ -11558,4 +11558,8 @@ footer .footer-bottom .copyright {
     overflow: hidden;
 }
 
+.cards-container .each-card .img-wrapper img {
+   aspect-ratio: 1/1;
+}
+
 /*# sourceMappingURL=index.css.map */

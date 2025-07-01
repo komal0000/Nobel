@@ -25,12 +25,12 @@
             <div class="col-md-6">
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="icon">Icon 1:1</label>
+                        <label for="icon">Image (500x500px or 1000x1000px)</label>
                         <input type="file" class="form-control dropify" id="icon" name="icon" accept="image/*"
                             data-default-file="{{ asset($treatment->icon) }}">
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="single_page_image">Single Page Image 4:1</label>
+                        <label for="single_page_image">Single Page Image (1920x480px)</label>
                         <input type="file" class="form-control dropify" id="single_page_image" name="single_page_image"
                             accept="image/*" data-default-file="{{ asset($treatment->single_page_image) }}">
                     </div>

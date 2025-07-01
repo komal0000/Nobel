@@ -8,7 +8,7 @@
         <div class="col-md-6 mb-3">
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <label for="technology_image">Image 4:2 <span style="color: red">*</span></label>
+                    <label for="technology_image">Image (960x720px or 1920x1440px) <span style="color: red">*</span></label>
                     <input type="file" name="technology_image" id="technology_image" class="form-control dropify"
                         accept="image/*" data-default-file="{{ asset($technology->image) }}">
                 </div>
@@ -80,7 +80,7 @@
                                     <h5 class="my-2">Section</h5>
                                     <input type="hidden" name="type_id" id="type_id" value="{{ $type->id }}">
                                     <div class="col-md-4 mb-3">
-                                        <label for="image">Image <span style="color: red;">*</span></label>
+                                        <label for="image">Image (500x500px or 1000x1000px)<span style="color: red;">*</span></label>
                                         <input type="file" name="image" id="image_{{ $type->id }}"
                                             class="form-control dropify" accept="image/*"
                                             data-default-file="{{ asset($section?->image) }}">
@@ -129,7 +129,7 @@
                                         <h5 class="my-2">Section Data</h5>
                                         <div class="row section-data-item">
                                             <div class="col-md-4 mb-3">
-                                                <label for="section_image_{{ $type->id }}_{{ $index }}">Image <span style="color: red;">*</span></label>
+                                                <label for="section_image_{{ $type->id }}_{{ $index }}">Image (500x500px or 1000x1000px)<span style="color: red;">*</span></label>
                                                 <input type="file" 
                                                     name="sections[{{ $type->id }}][section_data][{{ $index }}][image]"
                                                     id="section_image_{{ $type->id }}_{{ $index }}"
@@ -189,7 +189,7 @@
                 <h5 class="my-2">Section Data</h5>
                 <div class="row section-data-item">
                     <div class="col-md-4 mb-3">
-                        <label for="section_image_${typeId}_${nextIndex}">Image <span style="color: red;">*</span></label>
+                        <label for="section_image_${typeId}_${nextIndex}">Image (500x500px or 1000x1000px)<span style="color: red;">*</span></label>
                         <input type="file" 
                             name="sections[${typeId}][section_data][${nextIndex}][image]"
                             id="section_image_${typeId}_${nextIndex}" 
