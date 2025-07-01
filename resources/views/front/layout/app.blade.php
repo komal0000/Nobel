@@ -318,6 +318,7 @@
         }
     </script>
     @yield('js')
+    @stack('js')
     <script>
         $('#callback-form').on('submit', function(event) {
             event.preventDefault(); // prevent page refresh

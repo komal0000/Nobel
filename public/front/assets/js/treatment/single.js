@@ -60,11 +60,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Tab navigation
     $('.custom-tab').on('click', function (e) {
-        e.preventDefault();
-        $('.custom-tab').removeClass('active');
-        $('.custom-tab-panel').removeClass('active');
-        $(this).addClass('active');
-        $($(this).attr('href')).addClass('active');
+       // Find the parent component container
+       const componentContainer = $(this).closest('.type-2');
+
+       // Remove active states within this specific component
+       componentContainer.find('.type-2-tab').removeClass('active-btn');
+       componentContainer.find('.type-2-tabs').removeClass('active');
+
+       // Add active state to clicked button
+       $(this).addClass('active-btn');
+
+       // Get the target content ID
+       const targetId = $(this).data('target');
+
+       // Activate the corresponding content
+       const targetContent = componentContainer.find(`.type-2-tabs[data-content="${targetId}"]`);
+
+       if (targetContent.length) {
+          targetContent.addClass('active');
+          targetContent.find('.type-2-tab').addClass('active-btn');
+       }
     });
 
     $('.custom-tab-panel .custom-tab').on('click', function (e) {

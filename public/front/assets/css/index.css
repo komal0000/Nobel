@@ -474,7 +474,7 @@ section:nth-of-type(odd) {
 }
 
 .type-1 .content-wrapper .list .custom-tab-content .custom-tab-panel .content .col-wrap .para .para-wrap-para {
-   font-weight: 600;
+   font-weight: 500;
 }
 
 .type-1 .content-wrapper .list .custom-tab-content .custom-tab-panel .content .col-wrap .img-wrap {
@@ -5617,28 +5617,20 @@ hr {
 
 #treatment-banner .wrapper .banner-wrapper {
    line-height: 1.2;
-   width: 820px;
    margin: auto;
    padding: 20px;
-   max-width: 100%;
    text-align: center;
    color: #fff;
    position: absolute;
    top: 50%;
    left: 50%;
    transform: translate(-50%, -50%);
-}
-
-@media (min-width: 1200px) and (max-width: 1599px) {
-   #treatment-banner .wrapper .banner-wrapper {
-      width: 480px;
-   }
-}
-
-@media (min-width: 992px) and (max-width: 1199px) {
-   #treatment-banner .wrapper .banner-wrapper {
-      width: 350px;
-   }
+   max-width: calc(100% - 20px);
+   white-space: normal;
+   overflow-wrap: break-word;
+   background-color: rgba(0, 0, 0, 0.15);
+   border-radius: 15px;
+   z-index: 99;
 }
 
 #treatment-banner .wrapper .banner-wrapper button {
@@ -5869,28 +5861,20 @@ hr {
 
 #technology-banner .wrapper .banner-wrapper {
    line-height: 1.2;
-   width: 820px;
    margin: auto;
    padding: 20px;
-   max-width: 100%;
    text-align: center;
    color: #fff;
    position: absolute;
    top: 50%;
    left: 50%;
    transform: translate(-50%, -50%);
-}
-
-@media (min-width: 1200px) and (max-width: 1599px) {
-   #technology-banner .wrapper .banner-wrapper {
-      width: 480px;
-   }
-}
-
-@media (min-width: 992px) and (max-width: 1199px) {
-   #technology-banner .wrapper .banner-wrapper {
-      width: 350px;
-   }
+   max-width: calc(100% - 20px);
+   white-space: normal;
+   overflow-wrap: break-word;
+   background-color: rgba(0, 0, 0, 0.15);
+   border-radius: 15px;
+   z-index: 99;
 }
 
 #technology-banner .callback-form form {
@@ -6074,28 +6058,20 @@ hr {
 
 #ailment-banner .wrapper .banner-wrapper {
    line-height: 1.2;
-   width: 820px;
    margin: auto;
    padding: 20px;
-   max-width: 100%;
    text-align: center;
    color: #fff;
    position: absolute;
    top: 50%;
    left: 50%;
    transform: translate(-50%, -50%);
-}
-
-@media (min-width: 1200px) and (max-width: 1599px) {
-   #ailment-banner .wrapper .banner-wrapper {
-      width: 480px;
-   }
-}
-
-@media (min-width: 992px) and (max-width: 1199px) {
-   #ailment-banner .wrapper .banner-wrapper {
-      width: 350px;
-   }
+   max-width: calc(100% - 20px);
+   white-space: normal;
+   overflow-wrap: break-word;
+   background-color: rgba(0, 0, 0, 0.15);
+   border-radius: 15px;
+   z-index: 99;
 }
 
 #ailment-banner .callback-form form {
@@ -9902,28 +9878,20 @@ hr {
 
 #single-service-top-banner .wrapper .banner-wrapper {
    line-height: 1.2;
-   width: 820px;
    margin: auto;
    padding: 20px;
-   max-width: 100%;
    text-align: center;
    color: #fff;
    position: absolute;
    top: 50%;
    left: 50%;
    transform: translate(-50%, -50%);
-}
-
-@media (min-width: 1200px) and (max-width: 1599px) {
-   #single-service-top-banner .wrapper .banner-wrapper {
-      width: 480px;
-   }
-}
-
-@media (min-width: 992px) and (max-width: 1199px) {
-   #single-service-top-banner .wrapper .banner-wrapper {
-      width: 350px;
-   }
+   max-width: calc(100% - 20px);
+   white-space: normal;
+   overflow-wrap: break-word;
+   background-color: rgba(0, 0, 0, 0.15);
+   border-radius: 15px;
+   z-index: 99;
 }
 
 #single-service-top-banner .wrapper .banner-wrapper button {

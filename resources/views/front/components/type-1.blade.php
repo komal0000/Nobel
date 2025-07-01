@@ -137,6 +137,8 @@
             // Use event delegation on the document
             $(document).on('click', '.custom-tab', function(e) {
                 e.preventDefault();
+                console.log('working');
+                
 
                 // Find the parent component container
                 const componentContainer = $(this).closest('.type-1');
