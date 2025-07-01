@@ -61,11 +61,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // Tab navigation
     $('.custom-tab').on('click', function (e) {
        // Find the parent component container
-       const componentContainer = $(this).closest('.type-2');
+       const componentContainer = $(this).closest('.type-1');
 
        // Remove active states within this specific component
-       componentContainer.find('.type-2-tab').removeClass('active-btn');
-       componentContainer.find('.type-2-tabs').removeClass('active');
+       componentContainer.find('.type-1-tab').removeClass('active-btn');
+       componentContainer.find('.type-1-tabs').removeClass('active');
 
        // Add active state to clicked button
        $(this).addClass('active-btn');
@@ -74,11 +74,11 @@ document.addEventListener('DOMContentLoaded', function () {
        const targetId = $(this).data('target');
 
        // Activate the corresponding content
-       const targetContent = componentContainer.find(`.type-2-tabs[data-content="${targetId}"]`);
+       const targetContent = componentContainer.find(`.type-1-tabs[data-content="${targetId}"]`);
 
        if (targetContent.length) {
           targetContent.addClass('active');
-          targetContent.find('.type-2-tab').addClass('active-btn');
+          targetContent.find('.type-1-tab').addClass('active-btn');
        }
     });
 
