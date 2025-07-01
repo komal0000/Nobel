@@ -37,7 +37,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="col-md-12">
-                    <label for="icon">Icon 1:1 </label>
+                    <label for="icon">Icon 4:3 </label>
                     <input type="file" class="form-control dropify" id="icon" name="icon" accept="image/*"
                         data-default-file="{{ asset($SectionStep->icon) }}">
                 </div>
