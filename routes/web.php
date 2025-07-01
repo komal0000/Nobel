@@ -38,6 +38,7 @@ Route::get('careers', [FrontController::class, 'careers'])->name('careers');
 Route::get('update/{slug}', [FrontController::class, 'updateSingle'])->name('update.single');
 Route::get('news/{slug}', [FrontController::class, 'newsSingle'])->name('news.single');
 Route::get('event/{slug}', [FrontController::class, 'eventSingle'])->name('event.single');
+Route::get('academic/{slug}', [FrontController::class, 'academicSingle'])->name('academic.single');
 Route::get('policy', [FrontController::class, 'policy'])->name('policy');
 
 Route::prefix('jobs')->name('jobs.')->group(function() {

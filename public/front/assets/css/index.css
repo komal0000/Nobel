@@ -11550,4 +11550,12 @@ footer .footer-bottom .copyright {
    fill: none;
 }
 
+#doctor-videos .doctor-slider .video-card .para-wrap {
+   height: 5lh;
+   -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    overflow: hidden;
+}
+
 /*# sourceMappingURL=index.css.map */
