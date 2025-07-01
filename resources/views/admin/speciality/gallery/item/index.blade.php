@@ -47,7 +47,7 @@
                                 placeholder="Enter title" value="{{ $item->title }}">
                         </div>
                         <div class="form-group">
-                            <label for="description_{{ $item->id }}">Description </label>
+                            <label for="description_{{ $item->id }}">Description (25-30 words)</label>
                             <textarea name="description" class="form-control" id="description_update_{{ $item->id }}" rows="3"
                                 placeholder="Enter description">{!! old('description', $item->description) !!}</textarea>
                         </div>
@@ -69,7 +69,7 @@
                         <input type="text" name="title" class="form-control" placeholder="Enter title">
                     </div>
                     <div class="form-group">
-                        <label for="description">Description <span style="color: red;">*</span></label>
+                        <label for="description">Description (25-30 words) <span style="color: red;">*</span></label>
                         <textarea name="description" class="form-control" rows="3" placeholder="Enter description"></textarea>
                     </div>
                     <button type="button" class="btn btn-danger btn-sm remove-item">Remove</button>
@@ -105,7 +105,7 @@
                         <input type="text" name="title" class="form-control" placeholder="Enter title">
                     </div>
                     <div class="form-group">
-                        <label for="description">Description</label>
+                        <label for="description">Description (25-30 words)</label>
                         <textarea name="description" class="form-control" rows="3" placeholder="Enter description"></textarea>
                     </div>
                     <button type="button" class="btn btn-danger btn-sm remove-item">Remove</button>

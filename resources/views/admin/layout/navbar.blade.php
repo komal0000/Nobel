@@ -77,8 +77,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="flex-wrap d-flex justify-content-between align-items-center">
-                            <div>
-                                <h1>Demo !!!</h1>
+                            <div class="d-flex align-items-center">
+                                <h1>Nobel Medical</h1>
                             </div>
                         </div>
                     </div>
