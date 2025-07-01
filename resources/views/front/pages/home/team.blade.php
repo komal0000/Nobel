@@ -15,7 +15,6 @@
                 </p>
             </div>
             @includeIf('front.cache.home.teams')
-
         </div>
     </div>
     <picture class="image-block">

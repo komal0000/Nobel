@@ -35,7 +35,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="col-md-12">
-                    <label for="icon">Icon 4:3 <span style="color: red;">*</span></label>
+                    <label for="icon">Image (960x720px or 1920x1440px)<span style="color: red;">*</span></label>
                     <input type="file" class="form-control dropify" id="icon" name="icon" accept="image/*">
                 </div>
             </div>

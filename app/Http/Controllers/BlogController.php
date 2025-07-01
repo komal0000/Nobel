@@ -214,7 +214,7 @@ class BlogController extends Controller
         //Event single page
         if($type == Helper::blog_type_event) {
             $event = DB::table('blogs')->where('id', $blog_id)->first();
-            $latestEvent = DB::table('blogs')->where('type', Helper::blog_type_event)->orderBy('id', 'desc')->take(2)->get();
+            $latestEvent = DB::table('blogs')->where('type', Helper::blog_type_event)->orderBy('id', 'desc')->take(5)->get();
             Helper::putMetaCache('event.single.' . $event->slug, $data = [
                 'title' => $event->title,
                 'description' => $event->short_description,

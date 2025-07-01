@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="callback-form">
-        <form action="">
+        <form action="{{ route('') }}">
             <div class="heading-md">Request a Callback</div>
             <div class="input-wrap">
                 <label for="name">Name *</label>
