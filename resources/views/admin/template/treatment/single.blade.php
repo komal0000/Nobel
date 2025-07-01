@@ -13,8 +13,8 @@
             </div>
         </div>
     </div>
-    <div class="callback-form">
-        <form action="">
+    <div class="callback-frm">
+        <form action="{{ route('admin.setting.addRequestCallBack') }}">
             <div class="heading-md">Request a Callback</div>
             <div class="input-wrap">
                 <label for="name">Name *</label>
