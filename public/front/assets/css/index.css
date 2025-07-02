@@ -3665,7 +3665,7 @@ hr {
    width: calc(100% - 20px);
    margin: 20px;
    padding: 0;
-   /* height: 5lh; */
+   height: 5lh;
    align-self: center;
    -webkit-line-clamp: 5;
    -webkit-box-orient: vertical;
