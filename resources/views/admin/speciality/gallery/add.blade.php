@@ -33,7 +33,7 @@
                 <input type="text" class="form-control" id="title" name="title" required>
             </div>
             <div class="col-md-8 mb-3">
-                <label for="description">Description <span style="color: red;">*</span></label>
+                <label for="description">Description (~25 words) <span style="color: red;">*</span></label>
                 <textarea class="form-control" id="description" name="description" required></textarea>
             </div>
             <div class="col-md-12 d-flex justify-content-end">

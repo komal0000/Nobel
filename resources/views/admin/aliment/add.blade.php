@@ -23,12 +23,12 @@
             <div class="col-md-7 mb-3">
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="aliment_icon">Icon 1:1 <span style="color: red;">*</span></label>
+                        <label for="aliment_icon">Image (500x500px or 1000x1000px) <span style="color: red;">*</span></label>
                         <input type="file" class="form-control dropify" id="aliment_icon" name="aliment_icon"
                             accept="image/*" required>
                     </div>
                     <div class="col-md-6">
-                        <label for="aliment_single_page_image">Single Page Image <span style="color: red;">*</span></label>
+                        <label for="aliment_single_page_image">Single Page Image (1920x480px) <span style="color: red;">*</span></label>
                         <input type="file" class="form-control dropify" id="aliment_single_page_image"
                             name="aliment_single_page_image" accept="image/*" required>
                     </div>
@@ -40,7 +40,7 @@
                     <input type="text" class="form-control" id="aliment_title" name="aliment_title" required>
                 </div>
                 <div class="col-md-12 mb-3">
-                    <label for="aliment_short_description">Short Description <span style="color: red;">*</span></label>
+                    <label for="aliment_short_description">Short Description (25-30 words) <span style="color: red;">*</span></label>
                     <textarea class="form-control" id="aliment_short_description" name="aliment_short_description" required></textarea>
                 </div>
             </div>
@@ -70,7 +70,7 @@
                                         <input type="hidden" name="type_id" id="type_id_{{ $type->id }}"
                                             value="{{ $type->id }}">
                                         <div class="col-md-4 mb-3">
-                                            <label for="image_{{ $type->id }}">Image</label>
+                                            <label for="image_{{ $type->id }}">Image (500x500px or 1000x1000px)</label>
                                             <input type="file" name="image_{{ $type->id }}"
                                                 id="image_{{ $type->id }}" class="form-control dropify"
                                                 accept="image/*">

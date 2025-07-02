@@ -10,17 +10,17 @@
             <div class="col-md-7">
                 <div class="row">
                     <div class="col-md-4 mb-2">
-                        <label for="icon">Icon 1:1 <span style="color: red;">*</span></label>
+                        <label for="icon">Icon (16x16px or any 1:1 ratio) <span style="color: red;">*</span></label>
                         <input type="file" name="icon" id="icon" class="form-control dropify" accept="image/*"
                             required>
                     </div>
                     <div class="col-md-4 mb-2">
-                        <label for="image">Image 4:2 <span style="color: red;">*</span></label>
+                        <label for="image">Image (960x480px or 1920x960px) <span style="color: red;">*</span></label>
                         <input type="file" name="image" id="image" class="form-control dropify" accept="image/*"
                             required>
                     </div>
                     <div class="col-md-4 mb-2">
-                        <label for="single_page_image">Single Page Image 4:1<span style="color: red;">*</span></label>
+                        <label for="single_page_image">Single Page Image (1920x480px)<span style="color: red;">*</span></label>
                         <input type="file" name="single_page_image" id="single_page_image" class="form-control dropify"
                             accept="image/*" required>
                     </div>
@@ -32,7 +32,7 @@
                     <input type="text" name="title" id="title" class="form-control" required>
                 </div>
                 <div class="col-md-12 mb-2">
-                    <label for="short_desc">Short Description <span style="color: red;">*</span></label>
+                    <label for="short_desc">Short Description (30-40 words) <span style="color: red;">*</span></label>
                     <textarea name="short_desc" id="short_desc" class="form-control" required></textarea>
                 </div>
                 <div class="row">

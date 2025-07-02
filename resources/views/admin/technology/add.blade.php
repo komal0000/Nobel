@@ -14,7 +14,7 @@
                             accept="image/*">
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="technology_single_page_image">Singe Page Image 4:1 <span style="color: red">*</span></label>
+                        <label for="technology_single_page_image">Singe Page Image (1920x480px) <span style="color: red">*</span></label>
                         <input type="file" name="technology_single_page_image" id="technology_single_page_image" class="form-control dropify" required
                             accept="image/*">
                     </div>
@@ -34,7 +34,7 @@
                     </select>
                 </div>
                 <div class="col-md-12 mb-3">
-                    <label for="technology_short_description">Short Description <span style="color: red;">*</span></label>
+                    <label for="technology_short_description">Short Description (25-30 words) <span style="color: red;">*</span></label>
                     <textarea name="technology_short_description" id="technology_short_description"
                         class="form-control" required></textarea>
                 </div>
@@ -85,7 +85,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-md-12 mb-3">
-                                                    <label for="short_description_{{ $type->id }}">Short Description
+                                                    <label for="short_description_{{ $type->id }}">Short Description (25-30 words)
                                                         <span style="color: red;">*</span></label>
                                                     <textarea name="short_description" id="short_description_{{ $type->id }}" class="form-control" required></textarea>
                                                 </div>
@@ -133,7 +133,7 @@
                             <input type="text" name="title" id="section_title_${typeId}_${timestamp}" class="form-control" required>
                         </div>
                         <div class="col-md-12 mb-3">
-                            <label for="section_short_description_${typeId}_${timestamp}">Short Description <span style="color: red;">*</span></label>
+                            <label for="section_short_description_${typeId}_${timestamp}">Short Description (25-30 words) <span style="color: red;">*</span></label>
                             <textarea name="short_description" id="section_short_description_${typeId}_${timestamp}" class="form-control" required></textarea>
                         </div>
                         <div class="col-md-12 mb-3">

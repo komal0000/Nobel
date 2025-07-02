@@ -26,7 +26,7 @@
                 <input type="number" name="year" id="year" class="form-control" required>
             </div>
             <div class="col-md-8 mb-3">
-                <label for="description">Short Description <span style="color: red;">*</span></label>
+                <label for="description">Short Description (~5 words) <span style="color: red;">*</span></label>
                 <input type="text" name="description" id="description" class="form-control" required>
             </div>
             <div class="col-md-4">

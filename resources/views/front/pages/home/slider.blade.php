@@ -25,11 +25,6 @@
                     <img src="{{ asset('front/assets/img/phone-icon.png') }}" alt="Call Back">
                     <span>Request Call</span>
                 </a>
-
-                <a href="#" class="btn-action button-secondary">
-                    <img src="{{ asset('front/assets/img/whatsapp.png') }}" alt="WhatsApp">
-                    <span>WhatsApp</span>
-                </a>
             </div>
         </div>
 

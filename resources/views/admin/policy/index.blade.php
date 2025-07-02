@@ -24,7 +24,7 @@
                 <input type="text" name="title" id="title" class="form-control" required>
             </div>
             <div class="col-md-8 mb-3">
-                <label for="description">Description <span style="color: red;">*</span></label>
+                <label for="description">Description (~40 words)<span style="color: red;">*</span></label>
                 <textarea name="description" id="description" class="form-control" required></textarea>
             </div>
             <div class="col-md-4">
@@ -64,7 +64,7 @@
                                                 <input type="text" class="form-control" id="title_{{ $policy->id }}" value="{{ $policy->title }}">
                                             </div>
                                             <div class="mb-3">
-                                                <label for="description_{{ $policy->id }}">Description</label>
+                                                <label for="description_{{ $policy->id }}">Description (~40 words)</label>
                                                 <textarea class="form-control" id="description_{{ $policy->id }}">{{ $policy->description }}</textarea>
                                             </div>
                                         </div>

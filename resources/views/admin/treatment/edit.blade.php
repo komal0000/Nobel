@@ -43,7 +43,7 @@
                         value="{{ $treatment->title }}">
                 </div>
                 <div class="col-md-12 mb-3">
-                    <label for="short_description">Short Description</label>
+                    <label for="short_description">Short Description (25-30 words)</label>
                     <textarea class="form-control" id="short_description" name="short_description">{{ $treatment->short_description }}</textarea>
                 </div>
                 <div class="col-md-12 d-flex justify-content-end">

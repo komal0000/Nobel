@@ -37,7 +37,7 @@
                 <div class="col-md-4">
                     <div class="item-group border p-3 mb-3 rounded">
                         <div class="form-group">
-                            <label for="icon_{{ $item->id }}">Icon <span style="color: red;">*</span> </label>
+                            <label for="icon_{{ $item->id }}">Image (360x240px) <span style="color: red;">*</span> </label>
                             <input type="file" name="icon" class="form-control dropify" id="icon_update_{{ $item->id }}"
                                 data-height="100" data-default-file="{{ asset($item->icon) }}" accept="image/*">
                         </div>
@@ -60,7 +60,7 @@
             <div class="col-md-4">
                 <div class="item-group border p-3 mb-3 rounded">
                     <div class="form-group">
-                        <label for="icon">Icon <span style="color: red;">*</span></label>
+                        <label for="icon">Image (360x240px) <span style="color: red;">*</span></label>
                         <input type="file" name="icon" class="form-control dropify" data-height="100" id="icon"
                             accept="image/*">
                     </div>
@@ -96,7 +96,7 @@
               <div class="col-md-4">
                 <div class="item-group border p-3 mb-3 rounded">
                     <div class="form-group">
-                        <label for="icon">Icon</label>
+                        <label for="icon">Image (360x240px)</label>
                         <input type="file" name="icon" class="form-control dropify" data-height="100"
                             accept="image/*">
                     </div>

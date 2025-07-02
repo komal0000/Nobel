@@ -46,11 +46,11 @@
                         <input type="text" class="form-control" id="title" name="title">
                     </div>
                     <div class="col-md-12 mb-2">
-                        <label for="short_description">Short Description <span style="color: red;">*</span></label>
+                        <label for="short_description">Short Description (25-30 words) <span style="color: red;">*</span></label>
                         <input type="text" class="form-control" id="short_description" name="short_description">
                     </div>
                     <div class="col-md-12 mb-2">
-                        <label for="long_description">Long Description <span style="color: red;">*</span></label>
+                        <label for="long_description">Long Description (~40 words) <span style="color: red;">*</span></label>
                         <textarea class="form-control" id="long_description" name="long_description"></textarea>
                     </div>
                 </div>

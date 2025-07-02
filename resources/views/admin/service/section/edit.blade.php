@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="col-md-12 mb-3">
-                    <label for="image">Image</label>
+                    <label for="image">Image (960x720px or 1920x1440px)</label>
                     <input type="file" name="image" id="image" class="form-control dropify" data-default-file="{{ asset($section->image) }}">
                 </div>
             </div>

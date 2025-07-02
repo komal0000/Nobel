@@ -23,12 +23,12 @@
             <div class="col-md-6">
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="icon">Icon 1:1</label>
+                        <label for="icon">Icon (16x16px or any 1:1 ratio)</label>
                         <input type="file" class="form-control dropify" id="icon" name="icon" accept="image/*"
                             data-default-file="{{ asset($speciality->icon) }}">
                     </div>
                     <div class="col-md-6">
-                        <label for="single_page_image">Single Page Image 4:1 </label>
+                        <label for="single_page_image">Single Page Image (1920x480px) </label>
                         <input type="file" class="form-control dropify" id="single_page_image" name="single_page_image"
                             accept="image/*" data-default-file="{{ asset($speciality->single_page_image) }}">
                     </div>
@@ -41,7 +41,7 @@
                         value="{{ $speciality->title }}" required>
                 </div>
                 <div class="mb-3">
-                    <label for="short_description">Short Description</label>
+                    <label for="short_description">Short Description (25-30 words) </label>
                     <textarea class="form-control" id="short_description" name="short_description">{{ $speciality->short_description }}</textarea>
                 </div>
                 <div class="row">

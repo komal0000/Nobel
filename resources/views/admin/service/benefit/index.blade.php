@@ -12,7 +12,6 @@
         <thead>
             <tr>
                 <th>Title</th>
-                <th>Description</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -20,7 +19,6 @@
             @foreach ($benefits as $benefit)
                 <tr>
                     <td>{{ $benefit->title }}</td>
-                    <td>{{ Str::limit($benefit->short_desc, 100) }}</td>
                     <td>
                         <a href="{{ route('admin.service.benefit.edit', ['benefit_id' => $benefit->id]) }}"
                             class="btn btn-warning btn-sm">Edit</a>
@@ -33,7 +31,6 @@
         <tfoot>
             <tr>
                 <th>Title</th>
-                <th>Description</th>
                 <th>Actions</th>
             </tr>
         </tfoot>

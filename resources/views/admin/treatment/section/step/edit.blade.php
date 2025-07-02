@@ -50,12 +50,12 @@
                             value="{{ $SectionStep->title }}">
                     </div>
                     <div class="col-md-12 mb-2">
-                        <label for="short_description">Short Description</label>
+                        <label for="short_description">Short Description (25-30 words)</label>
                         <input type="text" class="form-control" id="short_description" name="short_description"
                             value="{{ $SectionStep->short_description }}">
                     </div>
                     <div class="col-md-12 mb-2">
-                        <label for="long_description">Long Description</label>
+                        <label for="long_description">Long Description (~40 words)</label>
                         <textarea class="form-control" id="long_description" name="long_description">{{ $SectionStep->description }}</textarea>
                     </div>
                 </div>

@@ -14,7 +14,7 @@
                 <input type="text" name="question" id="question" class="form-control" required>
             </div>
             <div class="col-md-12 mb-3">
-                <label for="answer">Answer <span style="color: red;">*</span></label>
+                <label for="answer">Answer (30-40 words) <span style="color: red;">*</span></label>
                 <textarea name="answer" id="answer" class="form-control" required></textarea>
             </div>
             <div class="col-md-12 d-flex justify-content-end">

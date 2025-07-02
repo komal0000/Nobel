@@ -42,7 +42,7 @@
             </div>
             <div class="col-md-7">
                 <div class="col-md-12 mb-3">
-                    <label for="description">Description</label>
+                    <label for="description">Description (25-30 words)</label>
                     <textarea class="form-control" id="description" name="description"></textarea>
                 </div>
                 <div class="col-md-12 d-flex justify-content-end">

@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="col-md-12 mb-3">
-                    <label for="image">Image 1:1 <span style="color: red;">*</span></label>
+                    <label for="image">Image (500x500px or 1000x1000px) <span style="color: red;">*</span></label>
                     <input type="file" class="form-control dropify" id="image" name="image" accept="image/*" required>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 <div class="col-md-12 mb-3">
-                    <label for="description">Description <span style="color: red;">*</span></label>
+                    <label for="description">Description (~40 words) <span style="color: red;">*</span></label>
                     <textarea class="form-control" id="description" name="description" required></textarea>
                 </div>
 

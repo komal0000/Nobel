@@ -17,12 +17,8 @@
             </div>
             <div class="col-md-6">
                 <div class="col-md-12 mb-3">
-                    <label for="title">Title <span style="color: red;">*</span></label>
+                    <label for="title">Title (5-8 words) <span style="color: red;">*</span></label>
                     <input type="text" name="title" id="title" class="form-control" required>
-                </div>
-                <div class="col-md-12 mb-3">
-                    <label for="short_desc">Short Description <span style="color: red;">*</span></label>
-                    <textarea name="short_desc" id="short_desc" class="form-control" rows="5" required></textarea>
                 </div>
             </div>
 

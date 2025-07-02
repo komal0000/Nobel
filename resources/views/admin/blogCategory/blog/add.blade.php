@@ -67,17 +67,17 @@
                         <label for="image">
                             @php
                                 $imageLabels = [
-                                    1 => 'Image 4:3',
-                                    2 => 'Image 4:3',
-                                    3 => 'Image 4:3',
+                                    1 => 'Image (960x720px or 1920x1440px)',
+                                    2 => 'Image (960x720px or 1920x1440px)',
+                                    3 => 'Image (960x720px or 1920x1440px)',
                                     4 => 'Icon',
-                                    5 => 'Image 4:3',
+                                    5 => 'Image (960x720px or 1920x1440px)',
                                     6 => 'PDF',
                                 ];
                                 $isRequired = in_array($blogCategory->type, [1, 2, 3, 5, 6]);
                             @endphp
 
-                            {{ $imageLabels[$blogCategory->type] ?? 'Image' }}
+                            {{ $imageLabels[$blogCategory->type] ?? 'Image (960x720px or 1920x1440px)' }}
                             @if ($isRequired)
                                 <span style="color: red;">*</span>
                             @endif
@@ -96,7 +96,7 @@
                         </div>
                     @else
                         <div class="col-md-6">
-                            <label for="single_page_image">Single Page Image</label>
+                            <label for="single_page_image">Single Page Image (960x720px or 1920x1440px)</label>
                             <input type="file" name="single_page_image" id="single_page_image"
                                 class="form-control dropify" accept="image/*">
                         </div>
@@ -146,7 +146,7 @@
                         </div>
                     @else
                         <div class="col-md-12">
-                            <label for="short_description">Short Description @if ($blogCategory->type == 6)
+                            <label for="short_description">Short Description (~40 words) @if ($blogCategory->type == 6)
                                 @else
                                     <span style="color: red;">*</span>
                                 @endif

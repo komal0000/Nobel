@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="col-md-12 mb-3">
-                    <label for="image">Image <span style="color: red;">*</span></label>
+                    <label for="image">Image (960x480px or 1920x960px) <span style="color: red;">*</span></label>
                     <input type="file" class="form-control dropify" id="image" name="image" accept="image/*"
                         required>
                 </div>
@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="col-md-12 mb-3">
-                    <label for="description">Description <span style="color: red;">*</span></label>
+                    <label for="description">Description (~80 words) <span style="color: red;">*</span></label>
                     <textarea class="form-control summernote" id="description" name="description" rows="5" required></textarea>
                 </div>
 

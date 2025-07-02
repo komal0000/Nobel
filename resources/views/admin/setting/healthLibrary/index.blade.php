@@ -38,7 +38,7 @@
                                 @enderror
                             </div>
                             <div class="col-md-12 mb-3">
-                                <label for="image_{{ $i }}">Image <span style="color: red;">*</span></label>
+                                <label for="image_{{ $i }}">Image (960x720px or 1920x1440px) <span style="color: red;">*</span></label>
                                 <input type="file" class="form-control dropify @error('items.' . $i . '.image') is-invalid @enderror"
                                     id="image_{{ $i }}" name="items[{{ $i }}][image]"
                                     accept="image/*"

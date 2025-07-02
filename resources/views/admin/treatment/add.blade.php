@@ -40,7 +40,7 @@
                     <input type="text" class="form-control" id="title" name="title">
                 </div>
                 <div class="col-md-12 mb-3">
-                    <label for="short_description">Short Description <span style="color: red;">*</span></label>
+                    <label for="short_description">Short Description (25-30 words) <span style="color: red;">*</span></label>
                     <textarea class="form-control" id="short_description" name="short_description"></textarea>
                 </div>
                 <div class="col-md-12 d-flex justify-content-end">

@@ -22,7 +22,7 @@
             <div class="col-md-6">
                 <div class="row">
                     <div class="col-md-12">
-                        <label for="icon">Icon</label>
+                        <label for="icon">Icon (16x16px or any 1:1 ratio)</label>
                         <input type="file" class="form-control dropify" id="icon" name="icon" accept="image/*">
                     </div>
                 </div>

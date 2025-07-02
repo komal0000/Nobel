@@ -13,7 +13,7 @@
                         accept="image/*" data-default-file="{{ asset($technology->image) }}">
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="technology_single_page_image">Single Page Image 4:1 <span style="color: red">*</span></label>
+                    <label for="technology_single_page_image">Single Page Image (1920x480px) <span style="color: red">*</span></label>
                     <input type="file" name="technology_single_page_image" id="technology_single_page_image"
                         class="form-control dropify" data-default-file="{{ asset($technology->single_page_image) }}"
                         required accept="image/*">
@@ -38,7 +38,7 @@
                 </select>
             </div>
             <div class="col-md-12 mb-3">
-                <label for="technology_short_description">Short Description <span style="color: red;">*</span></label>
+                <label for="technology_short_description">Short Description (25-30 words) <span style="color: red;">*</span></label>
                 <textarea name="technology_short_description" id="technology_short_description" class="form-control" required>{{ $technology->short_description }}</textarea>
             </div>
         </div>
@@ -109,7 +109,7 @@
                                                 </select>
                                             </div>
                                             <div class="col-md-12 mb-3">
-                                                <label for="short_description">Short Description <span
+                                                <label for="short_description">Short Description (25-30 words) <span
                                                         style="color: red;">*</span></label>
                                                 <textarea name="short_description" id="short_description_{{ $type->id }}" class="form-control">{{ $section?->short_description }}</textarea>
                                             </div>
@@ -146,7 +146,7 @@
                                                             class="form-control" value="{{ $sectionData->title }}">
                                                     </div>
                                                     <div class="col-md-12 mb-3">
-                                                        <label for="section_short_description_{{ $type->id }}_{{ $index }}">Short Description <span style="color: red;">*</span></label>
+                                                        <label for="section_short_description_{{ $type->id }}_{{ $index }}">Short Description (25-30 words) <span style="color: red;">*</span></label>
                                                         <textarea 
                                                             name="sections[{{ $type->id }}][section_data][{{ $index }}][short_description]"
                                                             id="section_short_description_{{ $type->id }}_{{ $index }}"
@@ -205,7 +205,7 @@
                                     class="form-control" required>
                             </div>
                             <div class="col-md-12 mb-3">
-                                <label for="section_short_description_${typeId}_${nextIndex}">Short Description <span style="color: red;">*</span></label>
+                                <label for="section_short_description_${typeId}_${nextIndex}">Short Description (25-30 words) <span style="color: red;">*</span></label>
                                 <textarea 
                                     name="sections[${typeId}][section_data][${nextIndex}][short_description]"
                                     id="section_short_description_${typeId}_${nextIndex}" 

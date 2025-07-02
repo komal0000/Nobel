@@ -13,7 +13,7 @@
                 <input type="text" class="form-control" id="title" name="title" required>
             </div>
             <div class="col-md-3 mb-2">
-                <label for="type">Type <span style="color: red;">*</span></label>
+                <label for="type">Type (Full Time/Part Time...) <span style="color: red;">*</span></label>
                 <input type="text" class="form-control" id="type" name="type" required>
             </div>
             <div class="col-md-3 mb-2">

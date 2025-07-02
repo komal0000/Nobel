@@ -34,7 +34,7 @@
                     value="{{ $specialityGallery->title }}" required>
             </div>
             <div class="col-md-8 mb-3">
-                <label for="description">Description</label>
+                <label for="description">Description (~25 words) </label>
                 <textarea class="form-control" id="description" name="description">{{ $specialityGallery->description }}</textarea>
             </div>
             <div class="col-md-12 d-flex justify-content-end">

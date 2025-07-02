@@ -11,20 +11,16 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="col-md-12 mb-3">
-                    <label for="icon">Icon </label>
+                    <label for="icon">Icon (16x16px or any 1:1 ratio)</label>
                     <input type="file" name="icon" id="icon" class="form-control dropify"
                         data-default-file="{{ $benefit->icon ? asset($benefit->icon) : '' }}">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="col-md-12 mb-3">
-                    <label for="title">Title <span style="color: red;">*</span></label>
+                    <label for="title">Title (5-8 words) <span style="color: red;">*</span></label>
                     <input type="text" name="title" id="title" class="form-control" required
                         value="{{ $benefit->title }}">
-                </div>
-                <div class="col-md-12 mb-3">
-                    <label for="short_desc">Short Description <span style="color: red;">*</span></label>
-                    <textarea name="short_desc" id="short_desc" class="form-control" rows="5" required>{{ $benefit->short_desc }}</textarea>
                 </div>
             </div>
 
