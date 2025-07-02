@@ -201,14 +201,18 @@ class SettingController extends Controller
     {
         if ($request->isMethod('get')) {
             $requestCallBack = Setting::where('key', 'request_call_back')->first();
-            $values = json_decode($requestCallBack->value, true);
+            $values = null; 
+            if($requestCallBack) {
+               $values = json_decode($requestCallBack->value, true);
+
+            }
             return view('admin.setting.callbackRequest', compact('values'));
         } else {
 
             $data = $request->input('data');
             if (is_array($data) && count($data) === 0) {
                 $setting = Setting::firstOrCreate(['key' => 'request_call_back']);
-                $setting->value = null; // Setting to null as specified
+                $setting->value = json_encode([]); // Setting to null as specified
                 $setting->save();
                 return response()->json(['message' => 'All Callback Request has been cleared successfully']);
             }
@@ -242,7 +246,7 @@ class SettingController extends Controller
 
     public function addCallbackRequest(Request $request)
     {
-        $setting = Setting::firstOrCreate(['key' => 'request_call_back']);
+        $setting = Setting::firstOrCreate(['key' => 'request_call_back'], ['value' => '']);
         $existing = json_decode($setting->value, true) ?? [];
         $lastId = collect($existing)->pluck('id')->max() ?? 0;
 
@@ -264,10 +268,12 @@ class SettingController extends Controller
         }
 
         $merged = array_merge($existing, $newData);
+
         $setting->value = json_encode($merged);
         $setting->save();
         return response()->json(['message' => 'Your Request has been saved successfully']);
-    }
+
+   }
 
     public function feedback(Request $request)
     {
@@ -284,7 +290,7 @@ class SettingController extends Controller
             $data = $request->input('data');
             if (is_array($data) && count($data) === 0) {
                 $setting = Setting::firstOrCreate(['key' => 'feedback']);
-                $setting->value = null; // Setting to null as specified
+                $setting->value = json_encode([]); // Setting to null as specified
                 $setting->save();
                 return response()->json(['message' => 'All feedback cleared successfully']);
             }

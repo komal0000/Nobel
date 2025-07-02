@@ -161,7 +161,6 @@
         });
     </script>
 
-
     <script>
         $(function() {
             const $sections = $('section[data-content]');
@@ -343,8 +342,8 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function(response) {
-                    alert(response.message);
-                    location.reload();
+                  alert(response.message);
+                  location.reload();
                 },
                 error: function(error) {
                     console.log(error);

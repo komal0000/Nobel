@@ -17,15 +17,15 @@
             <div class="heading-md">Request a Callback</div>
             <div class="input-wrap">
                 <label for="name">Name *</label>
-                <input type="text" name="name" placeholder="Enter Your Name" required>
+                <input type="text" name="name" id="name" placeholder="Enter Your Name" required>
             </div>
             <div class="input-wrap">
-                <label for="mobileNumber">Mobile Number *</label>
-                <input type="text" name="phoneNumber" placeholder="Enter Your Phone Number" required>
+                <label for="phoneNumber">Mobile Number *</label>
+                <input type="text" name="phoneNumber" id="phoneNumber" placeholder="Enter Your Phone Number" required>
             </div>
             <div class="input-wrap">
                 <label for="email">Email Address</label>
-                <input type="text" name="email" placeholder="Enter Your E-mail">
+                <input type="text" name="email" id="email" placeholder="Enter Your E-mail">
             </div>
             <div class="btn-wrap w-100">
                 <button>Submit</button>
