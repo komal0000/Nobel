@@ -49,6 +49,9 @@
                                 </ul>
                             </li>
                             <li>
+                              <a href="{{ route('gallery.index') }}" class="drop-item">Gallery</a>
+                          </li>
+                            <li>
                                 <a href="{{ route('event') }}" class="drop-item">Events</a>
                             </li>
                             <li>

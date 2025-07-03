@@ -150,4 +150,14 @@ class FrontController extends Controller
     public function about(){
         return view('front.pages.about.index');
     }
+
+    public function galleryIndex()
+    {
+      return view('front.pages.gallery.index');
+    }
+
+    public function gallerySingle($slug)
+    {
+      return view('front.pages.gallery.single', compact('slug'));
+    }
 }

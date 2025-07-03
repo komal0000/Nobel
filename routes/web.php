@@ -108,6 +108,9 @@ Route::prefix('knowledge')->name('knowledge.')->group(function () {
 
 Route::get('about', [FrontController::class, 'about'])->name('about');
 
+Route::get('gallery', [FrontController::class, 'galleryIndex'])->name('gallery.index');
+Route::get('gallery/{slug}', [FrontController::class, 'gallerySingle'])->name('gallery.single');
+
 Route::match(["GET", "POST"], 'login', [LoginController::class, 'login'])->name('login');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
@@ -218,7 +221,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         });
         Route::get('index/{type_id}', [GalleryController::class, 'index'])->name('index');
         Route::match(['GET', 'POST'], 'add/{type_id}', [GalleryController::class, 'add'])->name('add');
-        Route::post('edit/{gallery_id}', [GalleryController::class, 'edit'])->name('edit');
+        Route::match(['GET', 'POST'], 'edit/{gallery_id}', [GalleryController::class, 'edit'])->name('edit');
         Route::get('del/{gallery_id}', [GalleryController::class, 'del'])->name('del');
     });
 

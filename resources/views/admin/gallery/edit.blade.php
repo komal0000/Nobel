@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="col-md-12">
-                    <label for="image">Image <span style="color: red;">*</span></label>
+                    <label for="image">Image (Any ratio around same height)<span style="color: red;">*</span></label>
                     <input type="file" name="image" id="image" class="form-control dropify" data-default-file="{{ asset($gallery->image) }}">
                 </div>
             </div>
@@ -20,7 +20,7 @@
                     <input type="text" name="title" id="title" class="form-control" value="{{ $gallery->title }}">
                 </div>
                 <div class="col-md-12">
-                    <label for="description">Description </label>
+                    <label for="description">Description (less than 40 words)</label>
                     <textarea name="description" id="description" class="form-control">{{ $gallery->description }}</textarea>
                 </div>
             </div>
