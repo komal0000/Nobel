@@ -13,7 +13,8 @@
                         accept="image/*" data-default-file="{{ asset($technology->image) }}">
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="technology_single_page_image">Single Page Image (1920x480px) <span style="color: red">*</span></label>
+                    <label for="technology_single_page_image">Single Page Image (1920x480px) <span
+                            style="color: red">*</span></label>
                     <input type="file" name="technology_single_page_image" id="technology_single_page_image"
                         class="form-control dropify" data-default-file="{{ asset($technology->single_page_image) }}"
                         required accept="image/*">
@@ -28,17 +29,21 @@
             </div>
             <div class="col-md-12 mb-3">
                 <label for="specialty_id">Speciality <span style="color: red;">*</span></label>
-                <select name="specialty_id" id="specialty_id" class="form-control" required>
+                <select name="technologySpecialities[]" id="specialty_id" class="form-control select2" multiple required>
+                    @php
+                        $selectedSpecialities = $specialityTechnologies->pluck('speciality_id')->toArray();
+                    @endphp
                     @foreach ($specialities as $speciality)
                         <option value="{{ $speciality->id }}"
-                            {{ $speciality->id == $technology->specialty_id ? 'selected' : '' }}>
+                            {{ in_array($speciality->id, $selectedSpecialities) ? 'selected' : '' }}>
                             {{ $speciality->title }}
                         </option>
                     @endforeach
                 </select>
             </div>
             <div class="col-md-12 mb-3">
-                <label for="technology_short_description">Short Description (25-30 words) <span style="color: red;">*</span></label>
+                <label for="technology_short_description">Short Description (25-30 words) <span
+                        style="color: red;">*</span></label>
                 <textarea name="technology_short_description" id="technology_short_description" class="form-control" required>{{ $technology->short_description }}</textarea>
             </div>
         </div>
@@ -51,9 +56,8 @@
                         ->where('technology_id', $technology->id)
                         ->where('technology_section_type_id', $type->id)
                         ->first();
-                    $sectionDatas=[];
-                    if($section){
-
+                    $sectionDatas = [];
+                    if ($section) {
                         $sectionDatas = DB::table('technology_section_data')
                             ->where('technology_id', $technology->id)
                             ->where('technology_section_type_id', $type->id)
@@ -80,7 +84,8 @@
                                     <h5 class="my-2">Section</h5>
                                     <input type="hidden" name="type_id" id="type_id" value="{{ $type->id }}">
                                     <div class="col-md-4 mb-3">
-                                        <label for="image">Image (500x500px or 1000x1000px)<span style="color: red;">*</span></label>
+                                        <label for="image">Image (500x500px or 1000x1000px)<span
+                                                style="color: red;">*</span></label>
                                         <input type="file" name="image" id="image_{{ $type->id }}"
                                             class="form-control dropify" accept="image/*"
                                             data-default-file="{{ asset($section?->image) }}">
@@ -129,8 +134,9 @@
                                         <h5 class="my-2">Section Data</h5>
                                         <div class="row section-data-item">
                                             <div class="col-md-4 mb-3">
-                                                <label for="section_image_{{ $type->id }}_{{ $index }}">Image (500x500px or 1000x1000px)<span style="color: red;">*</span></label>
-                                                <input type="file" 
+                                                <label for="section_image_{{ $type->id }}_{{ $index }}">Image
+                                                    (500x500px or 1000x1000px)<span style="color: red;">*</span></label>
+                                                <input type="file"
                                                     name="sections[{{ $type->id }}][section_data][{{ $index }}][image]"
                                                     id="section_image_{{ $type->id }}_{{ $index }}"
                                                     data-default-file="{{ asset($sectionData->image) }}"
@@ -139,25 +145,28 @@
                                             <div class="col-md-8">
                                                 <div class="row">
                                                     <div class="col-md-6 mb-3">
-                                                        <label for="section_title_{{ $type->id }}_{{ $index }}">Title <span style="color: red;">*</span></label>
-                                                        <input type="text" 
+                                                        <label
+                                                            for="section_title_{{ $type->id }}_{{ $index }}">Title
+                                                            <span style="color: red;">*</span></label>
+                                                        <input type="text"
                                                             name="sections[{{ $type->id }}][section_data][{{ $index }}][title]"
                                                             id="section_title_{{ $type->id }}_{{ $index }}"
                                                             class="form-control" value="{{ $sectionData->title }}">
                                                     </div>
                                                     <div class="col-md-12 mb-3">
-                                                        <label for="section_short_description_{{ $type->id }}_{{ $index }}">Short Description (25-30 words) <span style="color: red;">*</span></label>
-                                                        <textarea 
-                                                            name="sections[{{ $type->id }}][section_data][{{ $index }}][short_description]"
-                                                            id="section_short_description_{{ $type->id }}_{{ $index }}"
-                                                            class="form-control">{{ $sectionData->short_description }}</textarea>
+                                                        <label
+                                                            for="section_short_description_{{ $type->id }}_{{ $index }}">Short
+                                                            Description (25-30 words) <span
+                                                                style="color: red;">*</span></label>
+                                                        <textarea name="sections[{{ $type->id }}][section_data][{{ $index }}][short_description]"
+                                                            id="section_short_description_{{ $type->id }}_{{ $index }}" class="form-control">{{ $sectionData->short_description }}</textarea>
                                                     </div>
                                                     <div class="col-md-12 mb-3">
-                                                        <label for="section_long_description_{{ $type->id }}_{{ $index }}">Long Description</label>
-                                                        <textarea 
-                                                            name="sections[{{ $type->id }}][section_data][{{ $index }}][long_description]"
-                                                            id="section_long_description_{{ $type->id }}_{{ $index }}"
-                                                            class="form-control">{{ $sectionData->long_description }}</textarea>
+                                                        <label
+                                                            for="section_long_description_{{ $type->id }}_{{ $index }}">Long
+                                                            Description</label>
+                                                        <textarea name="sections[{{ $type->id }}][section_data][{{ $index }}][long_description]"
+                                                            id="section_long_description_{{ $type->id }}_{{ $index }}" class="form-control">{{ $sectionData->long_description }}</textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -180,7 +189,7 @@
 @endsection
 @section('js')
     <script>
-         function addSectionData(event, typeId) {
+        function addSectionData(event, typeId) {
             event.preventDefault();
             // Find the next index for this section type
             var nextIndex = $('#sectionData_' + typeId + ' .section-data-item').length;
@@ -224,9 +233,9 @@
             `);
             $('.dropify').dropify();
         }
+
         function UpdateAll(technology_id) {
             var formData = new FormData();
-            formData.append("specialty_id", $("#specialty_id").val());
             formData.append("technology_title", $("#technology_title").val());
             formData.append("technology_short_description", $("#technology_short_description").val());
             var technologyImage = $("#technology_image")[0].files[0];
@@ -237,12 +246,20 @@
             if (technologySinglePageImage) {
                 formData.append("technology_single_page_image", technologySinglePageImage);
             }
+            let selectedSpecialities = $("#specialty_id").val();
+            if (selectedSpecialities) {
+                selectedSpecialities.forEach(function(id) {
+                    formData.append("technologySpecialities[]", id);
+                });
+            }
             $(".accordion-type").each(function() {
                 var section = $(this);
                 var typeId = section.find('input[name="type_id"]').val();
                 formData.append("sections[" + typeId + "][title]", section.find("#title_" + typeId).val());
-                formData.append("sections[" + typeId + "][short_description]", section.find("#short_description_" + typeId).val());
-                formData.append("sections[" + typeId + "][designType]", section.find("#designType_" + typeId).val());
+                formData.append("sections[" + typeId + "][short_description]", section.find("#short_description_" +
+                    typeId).val());
+                formData.append("sections[" + typeId + "][designType]", section.find("#designType_" + typeId)
+            .val());
                 var sectionImage = section.find("#image_" + typeId)[0]?.files[0];
                 if (sectionImage) {
                     formData.append("sections[" + typeId + "][image]", sectionImage);
@@ -255,11 +272,15 @@
                         var item = $(this);
                         var imageInput = item.find('input[type="file"]')[0];
                         if (imageInput && imageInput.files[0]) {
-                            formData.append(`sections[${typeId}][section_data][${index}][image]`, imageInput.files[0]);
+                            formData.append(`sections[${typeId}][section_data][${index}][image]`, imageInput
+                                .files[0]);
                         }
-                        formData.append(`sections[${typeId}][section_data][${index}][title]`, item.find(`#section_title_${typeId}_${index}`).val());
-                        formData.append(`sections[${typeId}][section_data][${index}][short_description]`, item.find('textarea[name$="[short_description]"]').val());
-                        formData.append(`sections[${typeId}][section_data][${index}][long_description]`, item.find('textarea[name$="[long_description]"]').val());
+                        formData.append(`sections[${typeId}][section_data][${index}][title]`, item.find(
+                            `#section_title_${typeId}_${index}`).val());
+                        formData.append(`sections[${typeId}][section_data][${index}][short_description]`,
+                            item.find('textarea[name$="[short_description]"]').val());
+                        formData.append(`sections[${typeId}][section_data][${index}][long_description]`,
+                            item.find('textarea[name$="[long_description]"]').val());
                     });
                 }
             });

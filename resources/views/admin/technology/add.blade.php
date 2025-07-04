@@ -27,7 +27,7 @@
                 </div>
                 <div class="col-md-12 mb-3">
                     <label for="specialty_id">Speciality <span style="color: red;">*</span></label>
-                    <select name="specialty_id" id="specialty_id" class="form-control" required>
+                    <select name="technologySpecialities[]" id="specialty_id" class="form-control select2" multiple required>
                         @foreach ($specialities as $speciality)
                             <option value="{{ $speciality->id }}">{{ $speciality->title }}</option>
                         @endforeach
@@ -148,7 +148,6 @@
 
         function saveAll() {
             var formData = new FormData();
-            formData.append("specialty_id", $("#specialty_id").val());
             formData.append("technology_title", $("#technology_title").val());
             formData.append("technology_short_description", $("#technology_short_description").val());
             var technologyImage = $("#technology_image")[0].files[0];
@@ -158,6 +157,12 @@
             }
             if (technologySinglePageImage) {
                 formData.append("technology_single_page_image", technologySinglePageImage);
+            }
+            let selectedSpecialities = $("#specialty_id").val();
+            if (selectedSpecialities) {
+                selectedSpecialities.forEach(function(id) {
+                    formData.append("technologySpecialities[]", id);
+                });
             }
             $(".accordion-type").each(function() {
                 var section = $(this);
