@@ -2,7 +2,6 @@
 @section('title', 'Callback Requests')
 
 @section('content')
-    {{-- @dump($value) --}}
     <form action="{{ route('admin.setting.requestCallBack') }}" method="POST">
         @csrf
 
@@ -13,6 +12,7 @@
                         <th>Name</th>
                         <th>Phone Number</th>
                         <th>Email</th>
+                        <th>Message</th>
                         <th>Manage</th>
                     </tr>
                 </thead>
@@ -29,6 +29,9 @@
                                 {{ $value['details']['email'] }}
                             </td>
                             <td>
+                              {{ $value['details']['message'] }}
+                          </td>
+                            <td>
                                 <button onclick="deleteCallback({{ $value['id'] }})"
                                     class="btn btn-sm btn-danger">Delete</button>
                             </td>
@@ -40,6 +43,7 @@
                         <th>Name</th>
                         <th>Phone Number</th>
                         <th>Email</th>
+                        <th>Message</th>
                         <th>Manage</th>
                     </tr>
                 </tfoot>
@@ -67,14 +71,12 @@
                      location.reload();
                   } else {
                      console.log('Error: ', res.data)
-                     alert('Failed to delete the data. Try again Later')
+                     alert('Failed to delete the data. Try again later.')
                   }
                 })
                 .catch(error => {
                     console.error('Failed to save the data: ', error)
                 })
-
-            console.log("After Delete: ", callbackData);
 
         }
     </script>

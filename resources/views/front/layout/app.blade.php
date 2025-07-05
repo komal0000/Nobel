@@ -64,31 +64,38 @@
                         <h2 class="modal-title heading-md text-center">Request Call Back</h2>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="{{ route('admin.setting.addRequestCallBack') }}" id="callback-form">
+                    <form action="{{ route('setting.addRequestCallBack') }}" id="callback-form">
                         @csrf
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" name="name" placeholder="Full Name *"
+                                    <input type="text" class="form-control" name="name" placeholder="Full Name*"
                                         required>
-                                    <label for="name">Full Name *</label>
+                                    <label for="name">Full Name*</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating mb-3">
                                     <input type="tel" class="form-control" name="phoneNumber"
-                                        placeholder="Phone Number *" required>
-                                    <label for="phoneNumber">Phone Number *</label>
+                                        placeholder="Phone Number*" required>
+                                    <label for="phoneNumber">Phone Number*</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating mb-3">
                                     <input type="email" class="form-control" name="email"
-                                        placeholder="Email Address *" required>
+                                        placeholder="Email Address">
                                     <label for="email">Email
-                                        Address *</label>
+                                        Address</label>
                                 </div>
                             </div>
+                            <div class="col-12">
+                              <div class="form-floating mb-3">
+                                  <input type="text" class="form-control" name="message"
+                                      placeholder="Enter Your Message*" required>
+                                  <label for="message">Enter Your Message*</label>
+                              </div>
+                          </div>
 
                             <div class="col-12 submit-btn">
                                 <button class="w-100" id="submit-callback" type="submit">Submit</button>
@@ -328,6 +335,7 @@
                 name: formData.get('name'),
                 phoneNumber: formData.get('phoneNumber'),
                 email: formData.get('email'),
+                message: formData.get('message'),
             };
 
             $.ajax({

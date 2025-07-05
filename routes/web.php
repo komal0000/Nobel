@@ -114,6 +114,9 @@ Route::get('gallery/{slug}', [FrontController::class, 'gallerySingle'])->name('g
 Route::match(["GET", "POST"], 'login', [LoginController::class, 'login'])->name('login');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
+Route::post('add', [SettingController::class, 'addCallbackRequest'])->name('setting.addRequestCallBack');
+Route::post('add-feedback', [SettingController::class, 'addFeedback'])->name('addFeedback');
+
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::prefix('speciality')->name('speciality.')->group(function () {
@@ -269,9 +272,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::match(['GET', 'POST'], '/contact', [SettingController::class, 'contact'])->name('contact');
         Route::match(['GET', 'POST'], '/colorscheme', [SettingController::class, 'colorScheme'])->name('colorscheme');
         Route::match(['GET', 'POST'], '/request-callback', [SettingController::class, 'RequestCallBack'])->name('requestCallBack');
-        Route::post('add', [SettingController::class, 'addCallbackRequest'])->name('addRequestCallBack');
+        
         Route::match(['GET', 'POST'], '/feedback', [SettingController::class, 'feedback'])->name('feedback');
-        Route::post('add-feedback', [SettingController::class, 'addFeedback'])->name('addFeedback');
+        
         Route::prefix('national-image')->name('nationalImage.')->group(function () {
           Route::get( 'index', [SettingController::class, 'nationalImageIndex'])->name('index');
           Route::match(['GET', 'POST'], 'add', [SettingController::class, 'nationalImageAdd'])->name('add');

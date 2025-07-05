@@ -14,7 +14,7 @@
         </div>
     </div>
     <div class="callback-form">
-        <form action="{{ route('admin.setting.addRequestCallBack') }}" method="post" id="callback-form">
+        <form action="{{ route('setting.addRequestCallBack') }}" method="post" id="callback-form">
             <div class="heading-md">Request a Callback</div>
             <div class="input-wrap">
                 <label for="name">Name *</label>
@@ -26,8 +26,12 @@
             </div>
             <div class="input-wrap">
                 <label for="email">Email Address</label>
-                <input type="text" name="email" id="email" placeholder="Enter Your E-mail">
+                <input type="email" name="email" id="email" placeholder="Enter Your E-mail">
             </div>
+            <div class="input-wrap">
+               <label for="message">Message *</label>
+               <input type="text" name="message" id="message" placeholder="Enter Your Message*" required>
+           </div>
             <div class="btn-wrap w-100">
                 <button>Submit</button>
             </div>
