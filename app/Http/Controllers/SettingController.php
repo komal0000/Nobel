@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helper;
+use App\Models\Irc;
 use App\Models\JobRequest;
 use App\Models\Setting;
 use Illuminate\Http\Request;
@@ -576,6 +577,30 @@ class SettingController extends Controller
          );
          Helper::putCache('health.health-care', view('admin.setting.template.healthLibrary', compact('data'))->render());
          return redirect()->back()->with('success', 'Health Library updated successfully.');
+      }
+   }
+
+   public function irc(Request $request)
+   {
+      $irc = Irc::first();
+      if (Helper::G()) {
+         return view('admin.setting.irc.index', compact('irc'));
+      } else {
+         if (!$irc) {
+            $irc = new Irc();
+         }
+         $irc->title = $request->title;
+         $irc->description = $request->description;
+         $irc->save();
+
+         Helper::putCache('irc.index', view('admin.setting.template.irc', compact('irc'))->render());
+         Helper::putMetaCache('irc', $data = [
+            'title' => 'IRC-NMCTH',
+            'description' => 'Nobel Medical College Teaching Hospital has established an Institutional Review Committee (IRC-NMCTH) in compliance with NHRC regulations, to oversee its obligations with respect to human participants as well as non human participants. IRC-NMCTH was established on January, 2015.',
+            'keywords' => 'nobel, irc, institutional review committee, nobel medical college',
+            'url' => route('irc')
+         ]);
+         return redirect()->back()->with('success', 'IRC updated successfully.');
       }
    }
 }

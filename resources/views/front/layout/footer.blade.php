@@ -1,4 +1,4 @@
-<footer class="mt-5" id="footer">
+<footer id="footer">
     <div class="footer-top">
         <div class="main-container">
             <div class="footer-row d-flex justify-content-evenly">
@@ -26,6 +26,7 @@
                         <li><a href="{{ route('contact') }}">Contact Us</a></li>
                         <li><a href="{{ route('event') }}">News &amp; Events</a></li>
                         <li><a href="{{ route('policy') }}">Policies &amp; Forms</a></li>
+                        <li><a href="{{ route('irc') }}">IRC-NMCTH</a></li>
                     </ul>
                 </div>
             </div>

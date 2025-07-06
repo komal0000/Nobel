@@ -160,4 +160,9 @@ class FrontController extends Controller
     {
       return view('front.pages.gallery.single', compact('slug'));
     }
+
+    public function irc()
+    {
+      return view('front.pages.irc.index');
+    }
 }

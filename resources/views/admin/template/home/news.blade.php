@@ -3,7 +3,7 @@
         <div class="heading text-center">
             News &amp; Events
         </div>
-        <x-hoverBtn class="common-button d-flex justify-content-center">View All News &amp; Events</x-hoverBtn>
+        <x-hoverBtn class="common-button d-flex justify-content-center" href="{{ route('event') }}">View All News &amp; Events</x-hoverBtn>
         <div class="d-flex flex-column flex-xl-row justify-content-between gap-5">
             @if ($latestNews)
                 <div class="post-card d-none d-xl-block">

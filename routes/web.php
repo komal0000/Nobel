@@ -110,12 +110,14 @@ Route::get('about', [FrontController::class, 'about'])->name('about');
 
 Route::get('gallery', [FrontController::class, 'galleryIndex'])->name('gallery.index');
 Route::get('gallery/{slug}', [FrontController::class, 'gallerySingle'])->name('gallery.single');
+Route::get('irc', [FrontController::class, 'irc'])->name('irc');
+
+Route::post('add', [SettingController::class, 'addCallbackRequest'])->name('setting.addRequestCallBack');
+Route::post('add-feedback', [SettingController::class, 'addFeedback'])->name('addFeedback');
 
 Route::match(["GET", "POST"], 'login', [LoginController::class, 'login'])->name('login');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::post('add', [SettingController::class, 'addCallbackRequest'])->name('setting.addRequestCallBack');
-Route::post('add-feedback', [SettingController::class, 'addFeedback'])->name('addFeedback');
 
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -282,6 +284,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
           Route::get( 'del', [SettingController::class, 'nationalImageDel'])->name('del');
        });
        Route::match(['GET', 'POST'], '/healthLibrary', [SettingController::class, 'healthLibrary'])->name('healthLibrary');
+       Route::match(['GET', 'POST'], 'irc', [SettingController::class, 'irc'])->name('irc');
     });
     Route::prefix('technology')->name('technology.')->group(function () {
         Route::match(['GET'], '', [TechnologyController::class, 'index'])->name('index');

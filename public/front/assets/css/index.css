@@ -2938,7 +2938,6 @@ hr {
 .update {
    background: url("/front/assets/img/updates-bg.jpg") center center/cover no-repeat;
    padding-top: 60px;
-   margin-bottom: 50px;
    background-color: var(--secondary-white) !important;
 }
 
@@ -3117,7 +3116,7 @@ hr {
    background-color: var(--secondary-white);
    font-size: 14px;
    font-weight: 600;
-   padding: 50px 0;
+   padding: 80px 0 50px;
 }
 
 @media (max-width: 768px) {
@@ -11383,6 +11382,8 @@ hr {
 
 footer {
    padding-bottom: 90px;
+   padding-top: 48px;
+   border-top: 1px solid #efefef;
 }
 
 footer .footer-top .main-container {
