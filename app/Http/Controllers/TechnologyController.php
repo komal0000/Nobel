@@ -111,15 +111,16 @@ class TechnologyController extends Controller
             $technology->single_page_image = $request->file('technology_single_page_image')->store('uploads/technologies', 'public');
          }
          $technology->save();
-
+         
          if ($request->has('technologySpecialities')) {
+            SpecialityTechnology::where('technology_id', $technology->id)->delete();
             foreach ($request->technologySpecialities as $specialities) {
                $specialityTechnology = new SpecialityTechnology();
                $specialityTechnology->speciality_id = $specialities;
                $specialityTechnology->technology_id = $technology->id;
                $specialityTechnology->save();
             }
-         }
+          }
 
          $specialityTechnologies = DB::table('speciality_technologies')->where('technology_id', $technology->id)->get();
          foreach ($specialityTechnologies as $specialityTechnology) {
