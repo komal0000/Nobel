@@ -4,7 +4,7 @@
             <div class="heading text-center">Technology</div>
         </div>
         <div class="technology-slider">
-            @foreach ($technologiesIndex as $technology)
+            @foreach ($technologiesLatest as $technology)
                 <div class="tech-card d-flex flex-column flex-xl-row-reverse m-3 rounded-4 overflow-hidden">
                     <div class="img-wrapper">
                         <img class="w-100 img-fluid" src="{{ asset($technology->image) }}" alt="Doctor">

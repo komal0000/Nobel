@@ -9,6 +9,8 @@ use App\Models\TechnologySection;
 use App\Models\TechnologySectionData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class TechnologyController extends Controller
@@ -34,7 +36,7 @@ class TechnologyController extends Controller
          if ($request->hasFile('technology_single_page_image')) {
             $technology->single_page_image = $request->file('technology_single_page_image')->store('uploads/technologies', 'public');
          }
-         
+
          $technology->short_description = $request->technology_short_description;
          $technology->save();
 
@@ -49,7 +51,7 @@ class TechnologyController extends Controller
 
          $specialityTechnologies = DB::table('speciality_technologies')->where('technology_id', $technology->id)->get();
          foreach ($specialityTechnologies as $specialityTechnology) {
-            $this->render($specialityTechnology->speciality_id);
+            $this->renderSpeciality($specialityTechnology->speciality_id);
          }
          if ($request->has('sections') && is_array($request->sections)) {
             foreach ($request->sections as $typeId => $sectionData) {
@@ -87,6 +89,7 @@ class TechnologyController extends Controller
                }
             }
          }
+         $this->render();
          $this->renderSingle($technology->id);
          session()->flash('success', 'Technology Successfully Added');
          return response()->json(['success' => true]);
@@ -111,7 +114,12 @@ class TechnologyController extends Controller
             $technology->single_page_image = $request->file('technology_single_page_image')->store('uploads/technologies', 'public');
          }
          $technology->save();
-         
+
+         $oldSpecialityIds = DB::table('speciality_technologies')
+            ->where('technology_id', $technology->id)
+            ->pluck('speciality_id')
+            ->toArray();
+
          if ($request->has('technologySpecialities')) {
             SpecialityTechnology::where('technology_id', $technology->id)->delete();
             foreach ($request->technologySpecialities as $specialities) {
@@ -120,12 +128,8 @@ class TechnologyController extends Controller
                $specialityTechnology->technology_id = $technology->id;
                $specialityTechnology->save();
             }
-          }
-
-         $specialityTechnologies = DB::table('speciality_technologies')->where('technology_id', $technology->id)->get();
-         foreach ($specialityTechnologies as $specialityTechnology) {
-            $this->render($specialityTechnology->speciality_id);
          }
+
          if ($request->has('sections') && is_array($request->sections)) {
             foreach ($request->sections as $typeId => $sectionData) {
                $section = TechnologySection::where('technology_section_type_id', $typeId)
@@ -173,7 +177,27 @@ class TechnologyController extends Controller
                   }
                }
             }
+
          }
+         
+         $specialityIds = $request->technologySpecialities;
+
+         $onlyOldIds = array_diff($oldSpecialityIds, $specialityIds);
+         $onlyNewIds = array_diff($specialityIds, $oldSpecialityIds);
+         $mergedSpeciality = array_merge($onlyOldIds, $onlyNewIds);
+
+         foreach ($oldSpecialityIds as $specialityId) {
+            $this->delCache($specialityId);
+            $this->renderSpeciality($specialityId);
+         }
+
+         if(!empty($mergedSpeciality)) {
+            foreach($mergedSpeciality as $merge) {
+               $this->renderSpeciality($merge);
+            }
+         }
+
+         $this->render();
          $this->renderSingle($technology_id);
          session()->flash('success', 'Technology Successfully updated');
          return response()->json(['success' => true]);
@@ -186,12 +210,39 @@ class TechnologyController extends Controller
       $technology = Technology::where('id', $technology_id)->first();
       TechnologySectionData::where('technology_id', $technology_id)->delete();
       TechnologySection::where('technology_id', $technology_id)->delete();
+      $specialityTechnologies = SpecialityTechnology::where('technology_id', $technology_id)->get();
+
+      $specialityIds = DB::table('speciality_technologies')
+         ->where('technology_id', $technology_id)
+         ->pluck('speciality_id');
+
+      foreach($specialityIds as $specialityId) {
+         $this->delCache($specialityId);
+      }
+
+      foreach ($specialityTechnologies as $st) {
+         $st->delete();
+      }
+
+      foreach ($specialityIds as $specialityId) {
+         $this->renderSpeciality($specialityId);
+      }
+
       $technology->delete();
-      $this->render($technology->specialty_id);
+      $this->render();
       return redirect()->back()->with('delete_success', 'Successfully Technology Deleted');
    }
 
-   public function render($speciality_id)
+   public function render()
+   {
+
+      $technologiesIndex = DB::table('technologies')->get();
+      $technologiesLatest = DB::table('technologies')->latest()->take(5)->get();
+      Helper::putCache('technology.index', view('admin.template.technology.index', compact('technologiesIndex'))->render());
+      Helper::putCache('health.technology', view('admin.template.health.technology', compact('technologiesLatest'))->render());
+   }
+
+   public function renderSpeciality($speciality_id)
    {
       $technologyIds = DB::table('speciality_technologies')
          ->where('speciality_id', $speciality_id)
@@ -199,11 +250,14 @@ class TechnologyController extends Controller
       $technologies = DB::table('technologies')
          ->whereIn('id', $technologyIds)
          ->get();
-      $technologiesIndex = DB::table('technologies')->get();
       $speciality = DB::table('specialties')->where('id', $speciality_id)->first();
       Helper::putCache('speciality.single.' . $speciality->slug . '.technologies', view('admin.template.speciality.technology', compact('technologies'))->render());
-      Helper::putCache('technology.index', view('admin.template.technology.index', compact('technologiesIndex'))->render());
-      Helper::putCache('health.technology', view('admin.template.health.technology', compact('technologiesIndex'))->render());
+   }
+
+   public function delCache($speciality_id)
+   {
+      $speciality = DB::table('specialties')->where('id', $speciality_id)->first();
+      Helper::deleteCache('speciality.single.' . $speciality->slug . '.technologies');
    }
 
    public function renderSingle($technology_id)
