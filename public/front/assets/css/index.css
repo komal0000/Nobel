@@ -11619,4 +11619,17 @@ footer .footer-bottom .copyright {
    object-position: center;
 }
 
+#irc-nobel .main-container {
+   max-width: 1000px;
+
+}
+
+#irc-nobel .heading {
+   border-bottom: 1px solid var(--border-color);
+   padding-bottom: 24px;
+   margin-bottom: 24px;
+   line-height: 1;
+   
+}
+
 /*# sourceMappingURL=index.css.map */
