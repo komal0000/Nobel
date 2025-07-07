@@ -86,10 +86,12 @@ class DoctorController extends Controller
             $this->render();
             $this->singleRender($doctor->id);
 
-            $teamHead = SpecialityTeamHead::where('doctor_id', $doctor_id)->first();
+            $teamHeads = SpecialityTeamHead::where('doctor_id', $doctor_id)->get();
 
-            if($teamHead) {
-               $this->renderTeamHead($teamHead->specialty_id);
+            if($teamHeads) {
+               foreach($teamHeads as $teamHead) {
+                  $this->renderTeamHead($teamHead->specialty_id);
+               }
             }
             return redirect()->back()->with('success', 'Doctor updated successfully');
         }
@@ -183,9 +185,10 @@ class DoctorController extends Controller
 
     public function renderTeamHead($speciality_id)
     {
-        $specialty = DB::table(Speciality::tableName)->where('id',$speciality_id)->first();
+        $speciality = DB::table(Speciality::tableName)->where('id',$speciality_id)->first();
+      //   dd($speciality);
         $teamHead = DB::table('speciality_team_heads')->where('specialty_id', $speciality_id)->first();
-        Helper::putCache('speciality.single.' . $specialty->slug . '.message', view('admin.template.speciality.teamHead', compact('teamHead'))->render());
+        Helper::putCache('speciality.single.' . $speciality->slug . '.message', view('admin.template.speciality.teamHead', compact('teamHead'))->render());
     }
 
 }

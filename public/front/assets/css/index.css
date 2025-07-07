@@ -7943,6 +7943,7 @@ hr {
    height: 50px;
    overflow: hidden;
    text-overflow: ellipsis;
+   text-align: center;
 }
 
 #dr-specialization .each-card img {

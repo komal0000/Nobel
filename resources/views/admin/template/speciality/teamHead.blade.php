@@ -1,5 +1,6 @@
 @php
     $doctor = \App\Models\Doctor::where('id', $teamHead->doctor_id)->first();
+   // dd($doctor);
 @endphp
 <section class="message">
     <div class="main-container">
@@ -8,7 +9,7 @@
                 {{ $doctor->short_description }}
             </div>
             <div class="img-block align-self-center text-center">
-                <img src="{{ asset($doctor->image) }}" alt="Chairman Image">
+                <img src="{{ asset($doctor->image) }}" alt="Doctor Image">
             </div>
             <div class="detail align-self-center text-center">
                 <div class="heading-lg name">
@@ -19,5 +20,6 @@
                 </div>
             </div>
         </div>
+        <div class="heading">Test</div>
     </div>
 </section>
