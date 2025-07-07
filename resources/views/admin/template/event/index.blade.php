@@ -9,48 +9,55 @@
     </picture>
     <div class="banner-title">News And Events</div>
 </section>
-<section id="event-page" data-content="News">
-    <div class="main-container">
-        <div class="heading-group mb-4">
-            <div class="heading text-center">News</div>
-            <x-hoverBtn class="button">View All News</x-hoverBtn>
-        </div>
-        <div class="event-slider">
-            @foreach ($indexNews as $news)
-                <div class="slide m-3">
-                    <div class="img-wrapper">
-                        <img src="{{ asset($news->image) }}" alt="Service Image" class="img-fluid">
-                        <div class="heading-xs date">{{ \App\Helper::formatTimestampToDateString($news->date) }}</div>
-                    </div>
-                    <div class="body">
-                        <h3 class="title heading-sm mb-2">{{ $news->title }}</h3>
-                        <div class="para-wrap location mb-2"><i class="bi bi-geo-alt-fill"></i> {{ $news->location }}
+@foreach ($newsTypes as $newsType)
+    <section id="event-page" data-content="News">
+        <div class="main-container">
+            <div class="heading-group mb-4">
+                <div class="heading text-center">{{$newsType->title}}</div>
+                <x-hoverBtn class="button" href="{{ route('news.list', $newsType->slug) }}">View All {{$newsType->title}}</x-hoverBtn>
+            </div>
+            <div class="event-slider">
+               @php
+                  $allNews = \App\Models\Blog::where('blog_category_id', $newsType->id)->get();
+               @endphp
+                @foreach ($allNews as $news)
+                    <div class="slide m-3">
+                        <div class="img-wrapper">
+                            <img src="{{ asset($news->image) }}" alt="News Image" class="img-fluid">
+                            <div class="heading-xs date">{{ \App\Helper::formatTimestampToDateString($news->date) }}
+                            </div>
                         </div>
-                        <div class="d-flex justify-content-between know-btn">
-                            <x-hoverBtn href="{{ route('news.single', ['slug' => $news->slug]) }}">View Event
-                                Details</x-hoverBtn>
+                        <div class="body">
+                            <h3 class="title heading-sm mb-2">{{ $news->title }}</h3>
+                            <div class="para-wrap location mb-2"><i class="bi bi-geo-alt-fill"></i>
+                                {{ $news->location }}
+                            </div>
+                            <div class="d-flex justify-content-between know-btn">
+                                <x-hoverBtn href="{{ route('news.single', ['slug' => $news->slug]) }}">View
+                                    Details</x-hoverBtn>
+                            </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
+            <div class="mobile-btn">
+                <x-hoverBtn href="{{ route('news.list', $newsType->slug) }}">View All {{ $newsType->title }}</x-hoverBtn>
+            </div>
         </div>
-        <div class="mobile-btn">
-            <x-hoverBtn>View All News</x-hoverBtn>
-        </div>
-    </div>
-</section>
+    </section>
+@endforeach
 @foreach ($eventTypes as $type)
-    <section id="event-page" data-content="{{$type->title}}">
+    <section id="event-page" data-content="{{ $type->title }}">
         <div class="main-container">
             <div class="heading-group mb-4">
                 <div class="heading text-center">{{ $type->title }}</div>
-                <x-hoverBtn class="button">View All {{ $type->title }}</x-hoverBtn>
+                <x-hoverBtn class="button" href="{{ route('event.list', $type->slug) }}">View All {{ $type->title }}</x-hoverBtn>
             </div>
             <div class="event-slider">
                 @php
-    $events = \App\Models\Blog::where('blog_category_id', $type->id)
-        ->where('type', App\Helper::blog_type_event)
-        ->get();
+                    $events = \App\Models\Blog::where('blog_category_id', $type->id)
+                        ->where('type', App\Helper::blog_type_event)
+                        ->get();
                 @endphp
                 @foreach ($events as $event)
                     <div class="slide m-3">
@@ -64,7 +71,7 @@
                             <div class="para-wrap location mb-2"><i class="bi bi-geo-alt-fill"></i>
                                 {{ $event->location }}</div>
                             <div class="d-flex justify-content-between know-btn">
-                                <x-hoverBtn href="{{ route('event.single', ['slug' => $event->slug]) }}">View Event
+                                <x-hoverBtn href="{{ route('event.single', ['slug' => $event->slug]) }}">View
                                     Details</x-hoverBtn>
                             </div>
                         </div>
@@ -72,7 +79,7 @@
                 @endforeach
             </div>
             <div class="mobile-btn">
-                <x-hoverBtn>View All News</x-hoverBtn>
+                <x-hoverBtn href="{{ route('event.list', $type->slug) }}">View All {{ $type->title }}</x-hoverBtn>
             </div>
         </div>
     </section>

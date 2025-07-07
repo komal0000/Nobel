@@ -114,7 +114,16 @@ class FrontController extends Controller
         return view('front.pages.event.single',compact('slug'));
     }
 
-    public function academicIndex(){
+   public function newsList($slug)
+   {
+      return view('front.pages.home.news.list', compact('slug'));
+   }
+   public function eventList($slug)
+   {
+      return view('front.pages.event.list', compact('slug'));
+   }
+
+   public function academicIndex(){
         return view('front.pages.academic.index');
     }
 

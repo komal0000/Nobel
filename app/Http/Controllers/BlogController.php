@@ -246,7 +246,28 @@ class BlogController extends Controller
         $updateData = DB::table('blogs')->where('type', Helper::blog_type_update)->get();
         //Event and news
         $eventTypes = DB::table('blog_categories')->where('type', Helper::blog_type_event)->get();
-        $indexNews = DB::table('blogs')->where('type', Helper::blog_type_news)->get();
+
+        foreach($eventTypes as $eventType) {
+            Helper::putCache('event.' . $eventType->slug, view('admin.template.event.list', compact('eventType'))->render());
+            Helper::putMetaCache('event.' . $eventType->slug, $data = [
+               'title' => $eventType->title,
+               'description' => 'List of all ' . $eventType->title . 'done by Nobel Hospital',
+               'image' => asset('front/assets/img/meta-image.png'),
+               'url' => route('event.list', $eventType->slug)
+            ]);
+         }
+        $newsTypes = DB::table('blog_categories')->where('type', Helper::blog_type_news)->get();
+        foreach ($newsTypes as $newsType) {
+         Helper::putCache('home.news.' . $newsType->slug, view('admin.template.home.news.list', compact('newsType'))->render());
+         Helper::putMetaCache('home.news.' . $newsType->slug, $data = [
+            'title' => $newsType->title,
+            'description' => 'List of all ' . $newsType->title . 'of Nobel Hospital',
+            'image' => asset('front/assets/img/meta-image.png'),
+            'url' => route('news.list', $newsType->slug),
+         ]);
+      }
+
+      $indexNews = DB::table('blogs')->where('type', Helper::blog_type_news)->get();
         //Blog Category
         $indexBlogs = DB::table('blogs')->where('type', Helper::blog_type_blog)->get();
         $featuredBlogs = DB::table('blogs')->where('type', Helper::blog_type_blog)->where('is_featured', 1)->get();
@@ -308,7 +329,7 @@ class BlogController extends Controller
             'url' => route('knowledge.blog.index'),
         ]);
         Helper::putCache('knowledge.blog', view('admin.template.knowledge.blog.index', compact('indexBlogs', 'featuredBlogs'))->render());
-        Helper::putCache('event.index', view('admin.template.event.index', compact('indexNews', 'eventTypes'))->render());
+        Helper::putCache('event.index', view('admin.template.event.index', compact('newsTypes', 'eventTypes'))->render());
         Helper::putMetaCache('event.event', $data = [
             'title' => 'Events',
             'description' => 'Events done by Nobel Hospital',
