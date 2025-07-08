@@ -20,6 +20,5 @@
                 </div>
             </div>
         </div>
-        <div class="heading">Test</div>
     </div>
 </section>
