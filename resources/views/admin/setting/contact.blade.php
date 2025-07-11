@@ -71,7 +71,7 @@
                             value="{{ $phones->phone1 }}">
                     </div>
                     <div class="col-md-6">
-                        <label for="phone">Phone</label>
+                        <label for="phone">Phone (International)</label>
                         <input type="tel" name="phone2" id="phone" class="form-control"
                             value="{{ $phones->phone2 }}">
                     </div>

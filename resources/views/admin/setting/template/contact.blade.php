@@ -75,7 +75,7 @@
                         </div>
                     </div>
                 </div>
-                <form id="feedback-form" class="form col-lg-7" action="{{ route('admin.setting.addFeedback') }}"
+                <form id="feedback-form" class="form col-lg-7" action="{{ route('addFeedback') }}"
                     method="POST">
                     @csrf
                     <div class="heading-md mb-4">Feedback</div>

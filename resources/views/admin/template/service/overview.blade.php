@@ -29,7 +29,7 @@
             </div>
             <div class="input-wrap">
                <label for="message">Message *</label>
-               <input type="text" name="message" id="message" placeholder="Enter Your Message*" required>
+               <input type="text" name="message" id="message" placeholder="Enter Your Message" required>
            </div>
             <div class="btn-wrap w-100">
                 <button>Submit</button>

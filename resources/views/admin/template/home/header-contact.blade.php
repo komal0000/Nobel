@@ -27,5 +27,8 @@
       <li>
          <div class="drop-item">{{ $phones->phone1 }}</div>
       </li>
+      <li>
+        <div class="drop-item">{{ $phones->phone2 }}</div>
+     </li>
    {{-- @endforeach --}}
 </ul>
