@@ -71,7 +71,7 @@
                             value="{{ $phones->phone1 }}">
                     </div>
                     <div class="col-md-6">
-                        <label for="phone">Phone (International)</label>
+                        <label for="phone">Phone</label>
                         <input type="tel" name="phone2" id="phone" class="form-control"
                             value="{{ $phones->phone2 }}">
                     </div>
@@ -97,6 +97,38 @@
                     <div class="col-md-6">
                         <label for="short_desc">Short Description</label>
                         <textarea name="short_desc" id="short_desc" class="form-control">{{ $data->short_desc }}</textarea>
+                    </div>
+
+                    <div class="col-12 py-t mt-3">
+                        <h5>International Contact Details</h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="intPhone">Phone</label>
+                                <input type="text" name="intPhone" id="intPhone" class="form-control"
+                                    value="{{ $intData->phone }}">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="intEmail">Email</label>
+                                <input type="email" name="intEmail" id="intEmail" class="form-control"
+                                    value="{{ $intData->title }}">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="Title">Title</label>
+                                <input type="text" name="intTitle" id="intTitle" class="form-control"
+                                    value="{{ $intData->email }}">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="intDesc">Description (~40 words)</label>
+                                <textarea name="intDesc" id="intDesc" class="form-control" rows="3">{{ $intData->short_desc }}</textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="intImage">Image (960x720px or 1920x1440px)</label>
+                                <input type="file" id="intImage" name="intImage" class="form-control dropify"
+                                    @if ($intData->image) data-default-file="{{ asset($intData->image) }}" @endif
+                                    accept="image/*">
+                            </div>
+
+                        </div>
                     </div>
 
                     <div class="col-12 py-3">

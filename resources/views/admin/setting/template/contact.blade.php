@@ -23,6 +23,17 @@
                 'phone3' => '',
                 'phone4' => '',
             ];
+
+    $intData =
+        App\Helper::getSetting('internationalContact') ??
+        (object) [
+            'email' => '',
+            'phone' => '',
+            'short_desc' => '',
+            'image' => '',
+        ];
+    $intPhone = explode(',', $intData->phone);
+    $emails = explode(',', $intData->email);
 @endphp
 <div class="mob-back-img">
     <img src="{{ asset('front/assets/img/contact-us/contact-banner-xs.jpg') }}" alt="Mobile Background Image"
@@ -50,11 +61,31 @@
                         </div>
                         <div class="info">
                             <div class="head">Phone Number</div>
-                           @foreach ($phones as $key => $phone)
-                              @if (!empty($phone))
-                                 <div class="mb-0">{{ $phone }}</div>
-                              @endif
+                            @foreach ($phones as $key => $phone)
+                                @if (!empty($phone))
+                                    <div class="mb-0">{{ $phone }}</div>
+                                @endif
                             @endforeach
+                        </div>
+                    </div>
+                    <div class="first for-border d-flex gap-3 w-100 px-4 py-2">
+                        <div class="logo align-self-center">
+                            <i class="bi bi-telephone-fill"></i>
+                        </div>
+                        <div class="info">
+                            <div class="head">International Contact</div>
+                            @if (!empty($intPhone))
+                                @foreach ($intPhone as $intP)
+                                    <div class="mb-0">{{ $intP }}</div>
+                                @endforeach
+                            @endif
+                            @if ($intData->email)
+                                @foreach ($emails as $email)
+                                <span class="para-wrap fw-semibold">Email: </span><a href="mailto:{{ $email }}"
+                                    class="mb-0">{{ $email }}</a>
+                                    
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                     <div class="first d-flex gap-3 px-4 pt-2">
@@ -75,8 +106,7 @@
                         </div>
                     </div>
                 </div>
-                <form id="feedback-form" class="form col-lg-7" action="{{ route('addFeedback') }}"
-                    method="POST">
+                <form id="feedback-form" class="form col-lg-7" action="{{ route('addFeedback') }}" method="POST">
                     @csrf
                     <div class="heading-md mb-4">Feedback</div>
                     <div class="row">

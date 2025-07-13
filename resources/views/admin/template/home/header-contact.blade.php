@@ -4,6 +4,14 @@
         (object) [
             'email' => '',
         ];
+
+    $intData =
+        App\Helper::getSetting('internationalContact') ??
+        (object) [
+            'phone' => '',
+            'email' => '',
+        ];
+    $firstPhone = explode(',', $intData->phone)[0];
     $phones =
         is_array($data->phone) || is_object($data->phone)
             ? (object) $data->phone
@@ -27,8 +35,10 @@
       <li>
          <div class="drop-item">{{ $phones->phone1 }}</div>
       </li>
+      @if ($intData->phone)
       <li>
-        <div class="drop-item">{{ $phones->phone2 }}</div>
+        <div class="drop-item"><span class="para-wrap fw-semibold">Int:</span> {{ $firstPhone }}</div>
      </li>
-   {{-- @endforeach --}}
+      
+      @endif
 </ul>
