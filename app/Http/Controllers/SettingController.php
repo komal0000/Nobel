@@ -133,6 +133,7 @@ class SettingController extends Controller
                 'email' => '',
                 'phone' => '',
                 'title' => '',
+                'short_title' => '',
                 'short_desc' => '',
                 'image' => ''
             ]));
@@ -173,6 +174,7 @@ class SettingController extends Controller
                 'email' => '',
                 'phone' => '',
                 'title' => '',
+                'shortTitle' => '',
                 'short_desc' => '',
                 'image' => ''
             ]));
@@ -182,6 +184,7 @@ class SettingController extends Controller
                     'email' => $request->intEmail ?? '',
                     'phone' => $request->intPhone ?? '',
                     'title' => $request->intTitle ?? '',
+                    'short_title' => $request->intShortTitle ?? '',
                     'short_desc' => $request->intDesc ?? '',
                     'image' => $request->file('intImage') ? $request->file('intImage')->store('uploads/settings', 'public') : '',
 
@@ -191,6 +194,7 @@ class SettingController extends Controller
                     'email' => $request->intEmail ?? '',
                     'phone' => $request->intPhone ?? '',
                     'title' => $request->intTitle ?? '',
+                    'short_title' => $request->intShortTitle ?? '',
                     'short_desc' => $request->intDesc ?? '',
                     'image' => $internationalData->image ?? '',
 

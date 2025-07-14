@@ -29,6 +29,8 @@
         (object) [
             'email' => '',
             'phone' => '',
+            'title' => '',
+            'short_title' => '',
             'short_desc' => '',
             'image' => '',
         ];
@@ -82,7 +84,7 @@
                             <i class="bi bi-telephone-fill"></i>
                         </div>
                         <div class="info">
-                            <div class="head">International Contact</div>
+                            <div class="head">{{ $intData->short_title}}</div>
                             @if (!empty($intPhones))
                                 @foreach ($intPhones as $i => $intP)
                                     @php

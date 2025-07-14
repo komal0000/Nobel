@@ -105,26 +105,31 @@
                             <div class="col-md-6">
                                 <label for="intPhone">Phone</label>
                                 <input type="text" name="intPhone" id="intPhone" class="form-control"
-                                    value="{{ $intData->phone }}">
+                                    value="{{ $intData->phone ?? '' }}">
                             </div>
                             <div class="col-md-6">
                                 <label for="intEmail">Email</label>
                                 <input type="email" name="intEmail" id="intEmail" class="form-control"
-                                    value="{{ $intData->email }}">
+                                    value="{{ $intData->email ?? '' }}">
                             </div>
                             <div class="col-md-6">
-                                <label for="Title">Title</label>
+                                <label for="intTitle">Title</label>
                                 <input type="text" name="intTitle" id="intTitle" class="form-control"
-                                    value="{{ $intData->title }}">
+                                    value="{{ $intData->title ?? '' }}">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="intShortTitle">Short Title (For contact us page)</label>
+                                <input type="text" name="intShortTitle" id="intShortTitle" class="form-control"
+                                    value="{{ $intData->short_title ?? '' }}">
                             </div>
                             <div class="col-md-6">
                                 <label for="intDesc">Description (~40 words)</label>
-                                <textarea name="intDesc" id="intDesc" class="form-control" rows="3">{{ $intData->short_desc }}</textarea>
+                                <textarea name="intDesc" id="intDesc" class="form-control" rows="3">{{ $intData->short_desc ?? '' }}</textarea>
                             </div>
                             <div class="col-md-6">
                                 <label for="intImage">Image (960x720px or 1920x1440px)</label>
                                 <input type="file" id="intImage" name="intImage" class="form-control dropify"
-                                    @if ($intData->image) data-default-file="{{ asset($intData->image) }}" @endif
+                                    @if ($intData->image) data-default-file="{{ asset($intData->image ?? '') }}" @endif
                                     accept="image/*">
                             </div>
 
