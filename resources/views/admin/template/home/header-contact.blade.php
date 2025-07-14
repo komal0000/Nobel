@@ -6,7 +6,7 @@
         ];
 
     $intData =
-        App\Helper::getSetting('internationalContact') ??
+        App\Helper::getSetting('intContact') ??
         (object) [
             'phone' => '',
             'email' => '',

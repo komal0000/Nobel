@@ -26,7 +26,7 @@
     </picture>
 </section>
 @php
-    $data =
+    $intData =
         App\Helper::getSetting('intContact') ??
         ((object) [
             'phone' => '',
@@ -34,19 +34,19 @@
             'short_desc' => '',
             'image' => '',
         ]);
-    $phones = explode(',', $data->phone);
+    $phones = explode(',', $intData->phone);
     $cleanPhones = array_map(function ($phone) {
         return preg_replace('/[^\d+]/', '', $phone);
 
     }, $phones);
-    $emails = explode(',', $data->email);
+    $emails = explode(',', $intData->email);
 @endphp
 
-@isset($data)
+@isset($intData)
     <section id="int-banner">
         <div class="main-container">
             <div class="heading-group">
-                <div class="heading">{{ $data->title }}</div>
+                <div class="heading">{{ $intData->title }}</div>
             </div>
             <div class="content-wrapper">
                 <div class="row g-4">
@@ -95,11 +95,11 @@
                     <div class="col-lg-8">
                         <div class="row g-4">
                             <div class="col-lg-6">
-                                <div class="desc para-wrap">{{ $data->short_desc ?? '' }}</div>
+                                <div class="desc para-wrap">{{ $intData->short_desc ?? '' }}</div>
                             </div>
                             <div class="col-lg-6 d-none d-lg-block">
                                 <div class="img-wrap square-image">
-                                    <img src="{{ asset($data->image) ?? '' }}"
+                                    <img src="{{ asset($intData->image) ?? '' }}"
                                         class="img-fluid w-100 object-fit-cover rounded-2" alt="Contact Information">
                                 </div>
                             </div>
