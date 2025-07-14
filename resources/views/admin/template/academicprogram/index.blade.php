@@ -35,6 +35,10 @@
             'image' => '',
         ]);
     $phones = explode(',', $data->phone);
+    $cleanPhones = array_map(function ($phone) {
+        return preg_replace('/[^\d+]/', '', $phone);
+
+    }, $phones);
     $emails = explode(',', $data->email);
 @endphp
 
@@ -42,7 +46,7 @@
     <section id="int-banner">
         <div class="main-container">
             <div class="heading-group">
-                <div class="heading">{{$data->title}}</div>
+                <div class="heading">{{ $data->title }}</div>
             </div>
             <div class="content-wrapper">
                 <div class="row g-4">
@@ -55,11 +59,14 @@
                                             <i class="bi bi-telephone-fill"></i>
                                         </div>
                                         <div class="phoneNumbers p-2">
-                                            @foreach ($phones as $key => $phone)
-                                                @if (!empty($phone))
-                                                    <div class="mb-0">{{ $phone }}</div>
-                                                @endif
-                                            @endforeach
+                                            @if (!empty($phones))
+                                                @foreach ($phones as $i => $phone)
+                                                    @php
+                                                        $cleanPhone = $cleanPhones[$i] ?? '';
+                                                    @endphp
+                                                    <a href="tel:{{$cleanPhone}}" class="mb-0 d-block">{{ $phone }}</a>
+                                                @endforeach
+                                            @endif
                                         </div>
                                     </div>
                                 </li>
@@ -72,10 +79,11 @@
                                         <div class="emails p-2">
                                             <div class="email">
                                                 @foreach ($emails as $key => $email)
-                                                @if (!empty($email))
-                                                    <a href="mailto:{{$email}}" class="mb-0">{{ $email }}</a>
-                                                @endif
-                                            @endforeach
+                                                    @if (!empty($email))
+                                                        <a href="mailto:{{ $email }}"
+                                                            class="mb-0">{{ $email }}</a>
+                                                    @endif
+                                                @endforeach
                                             </div>
                                         </div>
                                     </div>
@@ -91,8 +99,8 @@
                             </div>
                             <div class="col-lg-6 d-none d-lg-block">
                                 <div class="img-wrap square-image">
-                                    <img src="{{ asset($data->image) ?? '' }}" class="img-fluid w-100 object-fit-cover rounded-2"
-                                        alt="Contact Information">
+                                    <img src="{{ asset($data->image) ?? '' }}"
+                                        class="img-fluid w-100 object-fit-cover rounded-2" alt="Contact Information">
                                 </div>
                             </div>
                         </div>

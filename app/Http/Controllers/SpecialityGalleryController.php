@@ -15,11 +15,9 @@ class SpecialityGalleryController extends Controller
    {
       $parent_speciality_id = $request->parent_speciality_id;
       $speciality = DB::table('specialties')->where('id', $speciality_id)->first(['id', 'title']);
-      if ($parent_speciality_id) {
-         $specialityGallery = DB::table('speciality_galleries')->where('specialty_id', $parent_speciality_id)->get(['id', 'title', 'description']);
-      } else {
+
          $specialityGallery = DB::table('speciality_galleries')->where("specialty_id", $speciality_id)->get(['id', 'title', 'description']);
-      }
+
       return view('admin.speciality.gallery.index', compact("parent_speciality_id", 'speciality', 'specialityGallery'));
    }
 

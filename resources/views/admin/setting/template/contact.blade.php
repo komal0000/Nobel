@@ -32,7 +32,10 @@
             'short_desc' => '',
             'image' => '',
         ];
-    $intPhone = explode(',', $intData->phone);
+    $intPhones = explode(',', $intData->phone);
+    $intCleanPhone = array_map(function ($intPhone) {
+        return preg_replace('/[^\d+]/', '', $intPhone);
+    }, $intPhones);
     $emails = explode(',', $intData->email);
 @endphp
 <div class="mob-back-img">
@@ -61,11 +64,17 @@
                         </div>
                         <div class="info">
                             <div class="head">Phone Number</div>
-                            @foreach ($phones as $key => $phone)
-                                @if (!empty($phone))
-                                    <div class="mb-0">{{ $phone }}</div>
-                                @endif
-                            @endforeach
+                            @if (!empty($phones))
+                                @foreach ($phones as $phoneGroup)
+                                    @foreach (explode(',', $phoneGroup) as $phone)
+                                        @php
+                                            $phone = trim($phone);
+                                            $cleanP = preg_replace('/[^\d+]/', '', $phone);
+                                        @endphp
+                                        <a href="tel:{{ $cleanP }}" class="mb-0 d-block">{{ $phone }}</a>
+                                    @endforeach
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                     <div class="first for-border d-flex gap-3 w-100 px-4 py-2">
@@ -74,16 +83,18 @@
                         </div>
                         <div class="info">
                             <div class="head">International Contact</div>
-                            @if (!empty($intPhone))
-                                @foreach ($intPhone as $intP)
-                                    <div class="mb-0">{{ $intP }}</div>
+                            @if (!empty($intPhones))
+                                @foreach ($intPhones as $i => $intP)
+                                    @php
+                                        $cleanIntP = $intCleanPhone[$i] ?? '';
+                                    @endphp
+                                    <a href="tel:{{ $cleanIntP }}" class="mb-0 d-block">{{ $intP }}</a>
                                 @endforeach
                             @endif
                             @if ($intData->email)
                                 @foreach ($emails as $email)
-                                <span class="para-wrap fw-semibold">Email: </span><a href="mailto:{{ $email }}"
-                                    class="mb-0">{{ $email }}</a>
-                                    
+                                    <span class="para-wrap fw-semibold">Email: </span><a
+                                        href="mailto:{{ $email }}" class="mb-0">{{ $email }}</a>
                                 @endforeach
                             @endif
                         </div>

@@ -110,12 +110,12 @@
                             <div class="col-md-6">
                                 <label for="intEmail">Email</label>
                                 <input type="email" name="intEmail" id="intEmail" class="form-control"
-                                    value="{{ $intData->title }}">
+                                    value="{{ $intData->email }}">
                             </div>
                             <div class="col-md-6">
                                 <label for="Title">Title</label>
                                 <input type="text" name="intTitle" id="intTitle" class="form-control"
-                                    value="{{ $intData->email }}">
+                                    value="{{ $intData->title }}">
                             </div>
                             <div class="col-md-6">
                                 <label for="intDesc">Description (~40 words)</label>
