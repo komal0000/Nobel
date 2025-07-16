@@ -174,4 +174,8 @@ class FrontController extends Controller
     {
       return view('front.pages.irc.index');
     }
+    public function admission()
+    {
+        return view('front.pages.admission.index');
+    }
 }

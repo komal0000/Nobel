@@ -114,6 +114,7 @@ Route::get('about', [FrontController::class, 'about'])->name('about');
 Route::get('gallery', [FrontController::class, 'galleryIndex'])->name('gallery.index');
 Route::get('gallery/{slug}', [FrontController::class, 'gallerySingle'])->name('gallery.single');
 Route::get('irc', [FrontController::class, 'irc'])->name('irc');
+Route::get('admission', [FrontController::class, 'admission'])->name('admission');
 
 Route::post('add', [SettingController::class, 'addCallbackRequest'])->name('setting.addRequestCallBack');
 Route::post('add-feedback', [SettingController::class, 'addFeedback'])->name('addFeedback');
@@ -288,6 +289,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
        });
        Route::match(['GET', 'POST'], '/healthLibrary', [SettingController::class, 'healthLibrary'])->name('healthLibrary');
        Route::match(['GET', 'POST'], 'irc', [SettingController::class, 'irc'])->name('irc');
+        Route::match(['GET', 'POST'], 'admission', [SettingController::class, 'admission'])->name('admission');
     });
     Route::prefix('technology')->name('technology.')->group(function () {
         Route::match(['GET'], '', [TechnologyController::class, 'index'])->name('index');

@@ -12772,7 +12772,7 @@ footer .footer-bottom .copyright {
     object-position: center;
 }
 
-#irc-nobel .main-container {
+#irc-nobel,#admission-nobel .main-container {
     max-width: 1000px;
 }
 

@@ -69,6 +69,9 @@
                         <a href="{{ route('academicprogram.index') }}" class="navbar-link ">Academic Programs</a>
                     </li>
                     <li class="navbar-item">
+                        <a href="{{ route('admission') }}" class="navbar-link ">Admission</a>
+                    </li>
+                    <li class="navbar-item">
                         <a href="{{ route('careers') }}" class="navbar-link ">Career</a>
                     </li>
                     <li class="navbar-item" onclick="extendSubMenu(this)">

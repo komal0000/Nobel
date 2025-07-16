@@ -649,4 +649,26 @@ class SettingController extends Controller
             return redirect()->back()->with('success', 'IRC updated successfully.');
         }
     }
+
+    public function admission(Request $request)
+    {
+        $admission = Setting::firstOrCreate(['key' => 'admission'], ['value' => json_encode([])]);
+        
+        if(Helper::G())
+        {
+            return view('admin.setting.admission', compact('admission'));
+        } else {
+            $admission->value = $request->detail;
+            $admission->save();
+
+            Helper::putCache('admission.index', view('admin.setting.template.admission', compact('admission'))->render());
+            Helper::putMetaCache('admission', $data = [
+                'title' => 'Admission',
+                'description' => 'Nobel Medical College Teaching Hospital has established an Institutional Review Committee (IRC-NMCTH) in compliance with NHRC regulations, to oversee its obligations with respect to human participants as well as non human participants. IRC-NMCTH was established on January, 2015.',
+                'keywords' => 'nobel, admission, admission details, nobel medical college',
+                'url' => route('irc')
+            ]);
+            return redirect()->back()->with('success', 'Admission updated successfully.');
+        }
+    }
 }
