@@ -39,12 +39,12 @@ class SettingController extends Controller
             "Top",
             [
                 ['logo', 0],
-                ['mobileLogo', 0],
+                ['CancerLogo', 0],
                 ['favicon', 0],
             ],
             [
                 ["logo", "views/front/cache/home/logo.blade.php"],
-                ["mobileLogo", "views/front/cache/home/mobileLogo.blade.php"]
+                ["cancerLogo", "views/front/cache/home/cancerLogo.blade.php"]
             ],
         ],
         'philosophy' => [
