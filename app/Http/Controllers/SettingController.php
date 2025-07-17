@@ -652,23 +652,67 @@ class SettingController extends Controller
 
     public function admission(Request $request)
     {
-        $admission = Setting::firstOrCreate(['key' => 'admission'], ['value' => json_encode([])]);
-        
-        if(Helper::G())
-        {
-            return view('admin.setting.admission', compact('admission'));
+        if (Helper::G()) {
+            $admission = Setting::where('key', 'nobelAdmission')->first();
+            $values = null;
+            if (!empty($admission)) {
+                $values = json_decode($admission->value, true);
+            }
+            return view('admin.setting.admission', compact('values'));
         } else {
-            $admission->value = $request->detail;
-            $admission->save();
+            $data=[];
+            if ($request->hasFile('image')) {
+                $desktopPath = $request->file('image')->store('uploads/admission', 'public');
+                $data['image'] = $desktopPath;
+            }
+            $data['section-1'] = $request->section_1;
+            $data['section-2'] = $request->section_2;
 
-            Helper::putCache('admission.index', view('admin.setting.template.admission', compact('admission'))->render());
-            Helper::putMetaCache('admission', $data = [
-                'title' => 'Admission',
-                'description' => 'Nobel Medical College Teaching Hospital has established an Institutional Review Committee (IRC-NMCTH) in compliance with NHRC regulations, to oversee its obligations with respect to human participants as well as non human participants. IRC-NMCTH was established on January, 2015.',
-                'keywords' => 'nobel, admission, admission details, nobel medical college',
-                'url' => route('irc')
-            ]);
-            return redirect()->back()->with('success', 'Admission updated successfully.');
+            if(!empty($data)) {
+                Setting::updateOrCreate([
+                    'key' => 'nobelAdmission',
+                    'value' => json_encode($data)
+                ]);
+
+                Helper::putCache('admission.index', view('admin.setting.template.admission', compact('data'))->render());
+                Helper::putMetaCache('admission', $data = [
+                    'title' => 'Admission',
+                    'description' => 'Nobel Medical College Teaching Hospital has established an Institutional Review Committee (IRC-NMCTH) in compliance with NHRC regulations, to oversee its obligations with respect to human participants as well as non human participants. IRC-NMCTH was established on January, 2015.',
+                    'keywords' => 'nobel, admission, admission details, nobel medical college',
+                    'url' => route('irc')
+                ]);
+                return redirect()->back()->with('success', 'Admission updated successfully.');
+            } else {
+                return redirect()->back()->with('error', 'Failed to update admission data.');
+            }
+        }
+    }
+
+    public function meta(Request $request)
+    {
+        if (Helper::G()) {
+            $meta = Setting::where('key', 'meta')->first();
+            $values = null;
+            if (!empty($meta)) {
+                $values = json_decode($meta->value, true);
+            }
+            return view('admin.setting.meta', compact('values'));
+        } else {
+            $data = [];
+            $data['description'] = $request->description;
+            if (!empty($data)) {
+                Setting::updateOrCreate(
+                    ['key' => 'meta'],
+                    ['value' => json_encode($data)]
+                );
+                Helper::putMetaCache('home.home', $data = [
+                    'description' => $data['description'],
+                    'url' => route('index'),
+                ]);
+                return redirect()->back()->with('success', 'Meta data successfully updated.');
+            } else {
+                return response()->json(['error' => 'Failed to update meta data'], 400);
+            }
         }
     }
 }

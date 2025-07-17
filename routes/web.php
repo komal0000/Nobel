@@ -290,6 +290,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
        Route::match(['GET', 'POST'], '/healthLibrary', [SettingController::class, 'healthLibrary'])->name('healthLibrary');
        Route::match(['GET', 'POST'], 'irc', [SettingController::class, 'irc'])->name('irc');
         Route::match(['GET', 'POST'], 'admission', [SettingController::class, 'admission'])->name('admission');
+        Route::match(['GET', 'POST'], 'meta', [SettingController::class, 'meta'])->name('metaData');
     });
     Route::prefix('technology')->name('technology.')->group(function () {
         Route::match(['GET'], '', [TechnologyController::class, 'index'])->name('index');

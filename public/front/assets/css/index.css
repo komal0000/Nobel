@@ -12772,8 +12772,12 @@ footer .footer-bottom .copyright {
     object-position: center;
 }
 
-#irc-nobel,#admission-nobel .main-container {
+#irc-nobel .main-container {
     max-width: 1000px;
+}
+
+#admission-nobel .main-container {
+    max-width:1000px;
 }
 
 #irc-nobel .heading {
@@ -13008,6 +13012,34 @@ footer .footer-bottom .copyright {
 #int-banner .tab .phoneNumbers,
 .emails {
     border-left: 1px solid var(--border-color);
+}
+
+#admission-banner {
+    padding: 0;
+    position: relative;
+    padding: 0;
+
+}
+
+#admission-banner img {
+    width: 100%;
+    height: auto;
+}
+
+#admission-banner .title {
+    width: 100%;
+    text-align: center;
+    color: var(--color-white);
+    font-weight: 600;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#admission-nobel-1 .main-container, #admission-nobel-2 .main-container {
+    max-width: 1000px;
+    margin: auto;
 }
 
 /*# sourceMappingURL=index.css.map */
