@@ -163,6 +163,11 @@ class JobController extends Controller
          'description' => $job->short_description,
          'url' => route('jobs.jobDetail.jobDetail', ['slug' => $job->slug]),
       ]);
+        Helper::putMetaCache('career.job.' . $job->slug . '-form', $data = [
+            'title' => $job->title,
+            'description' => $job->short_description,
+            'url' => route('jobs.jobDetail.show-form', ['slug' => $job->slug]),
+        ]);
       Helper::putCache('career.job.' . $job->slug, view('admin.template.career.job.jobDetail', compact('job', 'jobCategory'))->render());
       Helper::putCache('career.job.' . $job->slug . '-form', view('admin.template.career.job.jobForm', compact('job', 'jobCategory'))->render());
    }

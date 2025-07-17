@@ -76,6 +76,6 @@
             {!! $job->description !!}
          </div>
       </div>
-      <x-hoverBtn href="{{ route('jobs.jobDetail.form', $job->slug) }}">Apply for this position</x-hoverBtn>
+      <x-hoverBtn href="{{ route('jobs.jobDetail.show-form', $job->slug) }}">Apply for this position</x-hoverBtn>
    </div>
 </section>
