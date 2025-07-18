@@ -6,8 +6,8 @@
     <form action="{{ route('admin.setting.admission') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="col-md-12 my-2">
-            <label for="image" class="form-label">Section 1 <span style="color: red;">*</span> </label>
-            <input type="file" name="image" id="image" class="dropify"  data-default-file="{{$values['image'] ?? ''}}" required>
+            <label for="image" class="form-label">Image <span style="color: red;">*</span> </label>
+            <input type="file" name="image" id="image" class="dropify"  data-default-file="{{$values['image'] ?? ''}}">
         </div>
         <div class="col-md-12 my-2">
             <label for="section-1" class="form-label">Section 1 <span style="color: red;">*</span> </label>

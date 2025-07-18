@@ -673,8 +673,10 @@ class SettingController extends Controller
                     'key' => 'nobelAdmission',
                     'value' => json_encode($data)
                 ]);
+                $admission = Setting::where('key', 'nobelAdmission')->first();
+                $admissionData = json_decode($admission->value);
 
-                Helper::putCache('admission.index', view('admin.setting.template.admission', compact('data'))->render());
+                Helper::putCache('admission.index', view('admin.setting.template.admission', compact('admissionData'))->render());
                 Helper::putMetaCache('admission', $data = [
                     'title' => 'Admission',
                     'description' => 'Nobel Medical College Teaching Hospital has established an Institutional Review Committee (IRC-NMCTH) in compliance with NHRC regulations, to oversee its obligations with respect to human participants as well as non human participants. IRC-NMCTH was established on January, 2015.',
