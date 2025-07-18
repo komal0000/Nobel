@@ -27,7 +27,7 @@
     <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
 
-    <link rel="stylesheet" href="{{ asset('front/assets/css/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/assets/css/index.css') }}?ver={{config('app.ver',1)}}">
 
     @yield('css')
     @includeIf('front.cache.extra.colorScheme')
@@ -113,7 +113,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
 
-    <script src="{{ asset('front/assets/js/navbar/index.js') }}"></script>
+    <script src="{{ asset('front/assets/js/navbar/index.js') }}?ver={{config('app.ver')}}"></script>
 
     <script>
         window.appConfig = window.appConfig || {};
