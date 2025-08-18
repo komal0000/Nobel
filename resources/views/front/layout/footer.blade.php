@@ -13,10 +13,7 @@
                         {{-- <li><a href="#">CPR</a></li> --}}
                     </ul>
                 </div>
-                <div class="footer-block wow fadeInUp" onclick="expandFooter(this)">
-                    <h4 class="block-title">Specialities</h4>
-                    @includeif('front.cache.home.footer')
-                </div>
+                @includeif('front.cache.home.footer')
                 <div class="footer-block" onclick="expandFooter(this)">
                     <h4 class="block-title">Corporate</h4>
                     <ul class="footer-links">
@@ -39,10 +36,14 @@
         </div>
     </div>
 </footer>
-@section('js')
-      <script>
+@push('js')
+    <script>
+        $(document).ready(function() {
+            console.log("footer has loaded!");
+        });
+
         function expandFooter(el) {
             $(el).toggleClass('active');
-          }
-      </script>
-@endsection
+        }
+    </script>
+@endpush

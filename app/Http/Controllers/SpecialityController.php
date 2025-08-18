@@ -172,16 +172,22 @@ class SpecialityController extends Controller
           ->orderBy('title', 'asc')
           ->get(['id', 'slug', 'title', 'icon']);
 
+        $label = DB::table('settings')->where('key', 'label')->first();
+        $specialityLabel = null;
+        if ($label) {
+            $specialityLabel = json_decode($label->value, true);
+        }
+
          Helper::putMetaCache('speciality', $data = [
             'title' => 'All Specialities',
             'description' => 'Nobel is the best hospital in Nepal located in Biratnagar with multi-specialties and sub-specialities sections.',
             'keywords' => 'specialities, all specialities, cardiac care, cancer care',
             'url' => route('speciality.index')
          ]);
-        Helper::putCache('home.speciality', view('admin.template.home.speciality', compact('specialities'))->render());
-        Helper::putCache('home.teams', view('admin.template.home.teams', compact('specialities'))->render());
-        Helper::putCache('home.header', view('admin.template.home.header', compact('specialities'))->render());
-        Helper::putCache('home.footer', view('admin.template.home.footer', compact('specialities'))->render());
-        Helper::putCache('speciality.index', view('admin.template.speciality.index', compact('specialities'))->render());
+        Helper::putCache('home.speciality', view('admin.template.home.speciality', compact('specialities', 'specialityLabel'))->render());
+        Helper::putCache('home.teams', view('admin.template.home.teams', compact('specialities', 'specialityLabel'))->render());
+        Helper::putCache('home.header', view('admin.template.home.header', compact('specialities', 'specialityLabel'))->render());
+        Helper::putCache('home.footer', view('admin.template.home.footer', compact('specialities', 'specialityLabel'))->render());
+        Helper::putCache('speciality.index', view('admin.template.speciality.index', compact('specialities', 'specialityLabel'))->render());
     }
 }

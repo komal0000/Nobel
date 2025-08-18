@@ -44,13 +44,13 @@ Route::get('event/list/{slug}', [FrontController::class, 'eventList'])->name('ev
 Route::get('news/{slug}', [FrontController::class, 'newsSingle'])->name('news.single');
 Route::get('event/{slug}', [FrontController::class, 'eventSingle'])->name('event.single');
 
-Route::prefix('jobs')->name('jobs.')->group(function() {
-   Route::get('', [FrontController::class, 'jobCategory'])->name('jobcategory');
-   Route::prefix('{slug}')->name('jobDetail.')->group(function() {
-      Route::get('', [FrontController::class, 'jobDetail'])->name('jobDetail');
-      Route::get('show-form', [FrontController::class, 'jobForm'])->name('show-form');
-      Route::post('form', [SettingController::class, 'jobRequest'])->name('form');
-   });
+Route::prefix('jobs')->name('jobs.')->group(function () {
+    Route::get('', [FrontController::class, 'jobCategory'])->name('jobcategory');
+    Route::prefix('{slug}')->name('jobDetail.')->group(function () {
+        Route::get('', [FrontController::class, 'jobDetail'])->name('jobDetail');
+        Route::get('show-form', [FrontController::class, 'jobForm'])->name('show-form');
+        Route::post('form', [SettingController::class, 'jobRequest'])->name('form');
+    });
 });
 
 
@@ -86,7 +86,7 @@ Route::prefix('technology')->name('technology.')->group(function () {
 Route::prefix('service')->name('service.')->group(function () {
     Route::get('', [FrontController::class, 'serviceIndex'])->name('index');
     Route::get('{slug}', [FrontController::class, 'serviceSingle'])->name('single');
-   Route::get('{serviceSlug}/{slug}', [FrontController::class, 'packageSingle'])->name('packageSingle');
+    Route::get('{serviceSlug}/{slug}', [FrontController::class, 'packageSingle'])->name('packageSingle');
 });
 Route::prefix('academicprogram')->name('academicprogram.')->group(function () {
     Route::get('', [FrontController::class, 'academicIndex'])->name('index');
@@ -96,7 +96,7 @@ Route::prefix('academicprogram')->name('academicprogram.')->group(function () {
 
 Route::prefix('knowledge')->name('knowledge.')->group(function () {
     // Route::get('blog', [FrontController::class, 'blogIndex'])->name('blog');
-    Route::prefix('blog')->name('blog.')->group(function() {
+    Route::prefix('blog')->name('blog.')->group(function () {
         Route::get('index', [FrontController::class, 'blogIndex'])->name('index');
         Route::get('{slug}', [FrontController::class, 'blogSingle'])->name('single');
     });
@@ -278,19 +278,20 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::match(['GET', 'POST'], '/contact', [SettingController::class, 'contact'])->name('contact');
         Route::match(['GET', 'POST'], '/colorscheme', [SettingController::class, 'colorScheme'])->name('colorscheme');
         Route::match(['GET', 'POST'], '/request-callback', [SettingController::class, 'RequestCallBack'])->name('requestCallBack');
-        
+
         Route::match(['GET', 'POST'], '/feedback', [SettingController::class, 'feedback'])->name('feedback');
-        
+
         Route::prefix('national-image')->name('nationalImage.')->group(function () {
-          Route::get( 'index', [SettingController::class, 'nationalImageIndex'])->name('index');
-          Route::match(['GET', 'POST'], 'add', [SettingController::class, 'nationalImageAdd'])->name('add');
-          Route::match(['GET', 'POST'], 'edit', [SettingController::class, 'nationalImageEdit'])->name('edit');
-          Route::get( 'del', [SettingController::class, 'nationalImageDel'])->name('del');
-       });
-       Route::match(['GET', 'POST'], '/healthLibrary', [SettingController::class, 'healthLibrary'])->name('healthLibrary');
-       Route::match(['GET', 'POST'], 'irc', [SettingController::class, 'irc'])->name('irc');
+            Route::get('index', [SettingController::class, 'nationalImageIndex'])->name('index');
+            Route::match(['GET', 'POST'], 'add', [SettingController::class, 'nationalImageAdd'])->name('add');
+            Route::match(['GET', 'POST'], 'edit', [SettingController::class, 'nationalImageEdit'])->name('edit');
+            Route::get('del', [SettingController::class, 'nationalImageDel'])->name('del');
+        });
+        Route::match(['GET', 'POST'], '/healthLibrary', [SettingController::class, 'healthLibrary'])->name('healthLibrary');
+        Route::match(['GET', 'POST'], 'irc', [SettingController::class, 'irc'])->name('irc');
         Route::match(['GET', 'POST'], 'admission', [SettingController::class, 'admission'])->name('admission');
         Route::match(['GET', 'POST'], 'meta', [SettingController::class, 'meta'])->name('metaData');
+        Route::match(['GET', 'POST'], 'label', [SettingController::class, 'label'])->name('label');
     });
     Route::prefix('technology')->name('technology.')->group(function () {
         Route::match(['GET'], '', [TechnologyController::class, 'index'])->name('index');

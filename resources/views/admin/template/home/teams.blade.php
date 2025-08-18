@@ -3,7 +3,7 @@
         <div class="select-wrap d-flex justify-content-center gap-2" style="margin-bottom: 20px;">
             <div class="find-doc-speciality-wrap">
                 <div class="default-speciality-wrap d-flex justify-content-between gap-5" id="default-speciality-wrap">
-                    <span class="default-speciality-item d-inline-block text-truncate">All Specialities</span>
+                    <span class="default-speciality-item d-inline-block text-truncate">All {{$specialityLabel['specialityPlural'] ?? 'Specialities'}}</span>
                     <div class="position-relative">
                         <span class="anchor-down-btn d-inline-block" style="border-color: #000"></span>
                     </div>

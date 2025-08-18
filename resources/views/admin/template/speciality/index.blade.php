@@ -2,11 +2,11 @@
     <div class="main-container">
         <div class="heading-group mb-4">
             <div class="heading text-center mb-2">
-                All Specialities
+                All {{$specialityLabel['specialityPlural'] ?? 'Specialities'}}
             </div>
             <div class="floating">
                 <input type="text" id="search-speciality" name="searchSpeciality" class="form-control"
-                    placeholder="Search Speciality">
+                    placeholder="Search">
                 <div class="search-icon"><i class="bi bi-search"></i></div>
             </div>
         </div>

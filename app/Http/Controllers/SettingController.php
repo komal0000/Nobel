@@ -660,7 +660,7 @@ class SettingController extends Controller
             }
             return view('admin.setting.admission', compact('values'));
         } else {
-            $data=[];
+            $data = [];
             if ($request->hasFile('image')) {
                 $desktopPath = $request->file('image')->store('uploads/admission', 'public');
                 $data['image'] = $desktopPath;
@@ -668,11 +668,11 @@ class SettingController extends Controller
             $data['section-1'] = $request->section_1;
             $data['section-2'] = $request->section_2;
 
-            if(!empty($data)) {
-                Setting::updateOrCreate([
-                    'key' => 'nobelAdmission',
-                    'value' => json_encode($data)
-                ]);
+            if (!empty($data)) {
+                Setting::updateOrCreate(
+                    ['key' => 'nobelAdmission'],
+                    ['value' => json_encode($data)]
+                );
                 $admission = Setting::where('key', 'nobelAdmission')->first();
                 $admissionData = json_decode($admission->value);
 
@@ -714,6 +714,49 @@ class SettingController extends Controller
                 return redirect()->back()->with('success', 'Meta data successfully updated.');
             } else {
                 return response()->json(['error' => 'Failed to update meta data'], 400);
+            }
+        }
+    }
+
+    public function label(Request $request)
+    {
+        if (Helper::G()) {
+            $label = Setting::where('key', 'label')->first();
+            $values = null;
+            if (!empty($label)) {
+                $values = json_decode($label->value, true);
+            }
+            return view('admin.setting.label', compact('values'));
+        } else {
+            $data = [];
+            $data['specialitySingle'] = $request->specialitySingle;
+            $data['specialityPlural'] = $request->specialityPlural;
+
+
+            if (!empty($data)) {
+                Setting::updateOrCreate(
+                    ['key' => 'label'],
+                    ['value' => json_encode($data)]
+                );
+                $specialities = DB::table('specialties')
+                    ->whereNull('parent_speciality_id')
+                    ->orderBy('title', 'asc')
+                    ->get(['id', 'slug', 'title', 'icon']);
+
+                $label = DB::table('settings')->where('key', 'label')->first();
+                $specialityLabel = null;
+                if ($label) {
+                    $specialityLabel = json_decode($label->value, true);
+                }
+                Helper::putCache('home.speciality', view('admin.template.home.speciality', compact('specialities', 'specialityLabel'))->render());
+                Helper::putCache('home.teams', view('admin.template.home.teams', compact('specialities', 'specialityLabel'))->render());
+                Helper::putCache('home.header', view('admin.template.home.header', compact('specialities', 'specialityLabel'))->render());
+                Helper::putCache('home.footer', view('admin.template.home.footer', compact('specialities', 'specialityLabel'))->render());
+                Helper::putCache('speciality.index', view('admin.template.speciality.index', compact('specialities', 'specialityLabel'))->render());
+
+                return redirect()->back()->with('success', 'Label updated successfully.');
+            } else {
+                return redirect()->back()->with('error', 'Failed to update label.');
             }
         }
     }

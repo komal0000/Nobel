@@ -45,9 +45,6 @@ $('#toggle-navbar').on('click', function () {
     $('.open-icon, .close-icon').toggleClass('d-none');
 });
 
-$('.footer-block').on('click', function () {
-    expand(this);
-});
 
 toggleFeedback();
 $(window).on('resize', toggleFeedback);

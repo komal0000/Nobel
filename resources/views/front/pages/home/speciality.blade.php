@@ -2,18 +2,8 @@
 
     <div class="main-container">
         <div class="specialities-inner d-flex flex-column flex-xl-row gap-2">
-            <div class="sp-inner-heading">
-                <h4 class="sp-subheading">Specialities</h4>
-                <h2 class="sp-heading">An Ecosystem for Clinical Excellence</h2>
-            </div>
-            <div class="sp-inner-care  fw-bold">
-                @includeIf('front.cache.home.speciality')
-                <div class="hover-button">
-                    <x-hoverBtn class="hover-btn" href="{{ route('speciality.index') }}">
-                        View All Specialities
-                    </x-hoverBtn>
-                </div>
-            </div>
+            @includeIf('front.cache.home.speciality')
+
             <div class="sp-inner-search">
                 <div class="sp-wrapper">
                     <h4 class="sp-subheading">Search By</h4>

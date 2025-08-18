@@ -5,9 +5,6 @@
             <div class="">
                 <ul class="nav-ul">
                     <li class="navbar-item" onclick="extendSubMenu(this)">
-                        <a href="#" class="navbar-link">
-                            Speciality <i class="bi bi-chevron-down"></i>
-                        </a>
                         @includeIf('front.cache.home.header')
                     </li>
                     <li class="navbar-item" onclick="extendSubMenu(this)">
