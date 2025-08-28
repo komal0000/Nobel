@@ -307,7 +307,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::prefix('sectiontype')->name('sectiontype.')->group(function () {
             Route::match(['GET', 'POST'], '/index', [TechnologySectionController::class, 'typeIndex'])->name('index');
             Route::post('edit/{type_id}', [TechnologySectionController::class, 'typeEdit'])->name('edit');
-            Route::get('de//{type_id}', [TechnologySectionController::class, 'typeDel'])->name('del');
+            Route::get('del/{type_id}', [TechnologySectionController::class, 'typeDel'])->name('del');
         });
     });
     Route::prefix('leadership')->name('leadership.')->group(function () {
@@ -398,4 +398,10 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::match(['GET', 'POST'], 'edit/{about_id}', [AboutController::class, 'edit'])->name('edit');
         Route::get('del/{about_id}', [AboutController::class, 'del'])->name('del');
     });
+});
+
+Route::redirect('/categories/notices', '/notice', 301);
+
+Route::fallback(function () {
+    return redirect()->route('index');
 });
