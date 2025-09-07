@@ -56,7 +56,7 @@
                 </x-sliderComponent>
             </div>
             <div class="events">
-                <div class="heading-sm">Upcoming Events</div>
+                <div class="heading-sm">Events</div>
                 <ul class="tabs d-flex justify-content-evenly p-0">
                     @foreach ($eventTypes as $type)
                         <li>
