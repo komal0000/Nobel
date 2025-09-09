@@ -8,8 +8,8 @@
         @csrf
         <div class="row">
             <div class="col-md-5 mb-3">
-                <label for="image">Image (500x720px)</label>
-                <input type="file" name="image" id="image" class="form-control dropify" accept="image/*">
+                <label for="image">Image (500x720px) <span style="color: red;">*</span></label>
+                <input type="file" name="image" id="image" class="form-control dropify" accept="image/*" required>
             </div>
             <div class="col-md-7 mb-3">
                 <div class="row">

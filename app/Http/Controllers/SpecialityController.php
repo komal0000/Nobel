@@ -8,6 +8,7 @@ use App\Models\Speciality;
 use App\Models\SpecialityGallery;
 use App\Models\SpecialityGalleryItem;
 use App\Models\SpecialityTeamHead;
+use App\Models\SpecialityTechnology;
 use App\Models\Technology;
 use App\Models\TechnologySection;
 use App\Models\TechnologySectionData;
@@ -81,31 +82,39 @@ class SpecialityController extends Controller
 
     public function del($speciality_id)
     {
-        $SpecialityGalleries = SpecialityGallery::where('specialty_id', $speciality_id)->get();
-        $technology = Technology::where('specialty_id', $speciality_id)->first();
-        $treatment = Treatment::where('specialty_id', $speciality_id)->first();
-
-        if ($treatment) {
-            $treatmentSection = TreatmentSection::where('treatment_id', $treatment->id)->first();
-            TreatmentStep::where('treatment_section_id', $treatmentSection->id)->delete();
-            $treatmentSection->delete();
-            $treatment->delete();
-        }
-        if ($SpecialityGalleries->isNotEmpty()) {
-            foreach ($SpecialityGalleries as $gallery) {
+        DB::transaction(function () use ($speciality_id) {
+            // Galleries + items
+            $galleries = SpecialityGallery::where('specialty_id', $speciality_id)->get();
+            foreach ($galleries as $gallery) {
                 SpecialityGalleryItem::where('speciality_gallery_id', $gallery->id)->delete();
                 $gallery->delete();
             }
-        }
-        Speciality::where('parent_speciality_id', $speciality_id)->delete();
-        if ($technology) {
-            $technology_id = $technology->id;
-            TechnologySectionData::where('technology_id', $technology_id)->delete();
-            TechnologySection::where('technology_id', $technology_id)->delete();
-            Technology::where('id', $technology_id)->delete();
-        }
-        DoctorSpeciality::where('speciality_id', $speciality_id)->delete();
-        Speciality::where('id', $speciality_id)->delete();
+
+            // Treatment: remove all sections & steps safely
+            $treatment = Treatment::where('specialty_id', $speciality_id)->first();
+            if ($treatment) {
+                $sections = TreatmentSection::where('treatment_id', $treatment->id)->get();
+                if ($sections->isNotEmpty()) {
+                    $sectionIds = $sections->pluck('id')->toArray();
+                    TreatmentStep::whereIn('treatment_section_id', $sectionIds)->delete();
+                    TreatmentSection::whereIn('id', $sectionIds)->delete();
+                }
+                $treatment->delete();
+            }
+
+            // Remove direct child specialities
+            Speciality::where('parent_speciality_id', $speciality_id)->delete();
+
+            // Pivot rows for this speciality (this removes the links only)
+            $specTechPivots = SpecialityTechnology::where('specialty_id', $speciality_id)->get();
+            if ($specTechPivots->isNotEmpty()) {
+                SpecialityTechnology::where('specialty_id', $speciality_id)->delete();
+            }
+
+            DoctorSpeciality::where('speciality_id', $speciality_id)->delete();
+            Speciality::where('id', $speciality_id)->delete();
+        });
+
         $this->render();
         $this->renderSingle($speciality_id);
         return redirect()->back()->with("delete_success", "Speciality Successfully Deleted");
