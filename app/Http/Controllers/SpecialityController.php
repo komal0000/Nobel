@@ -106,9 +106,9 @@ class SpecialityController extends Controller
             Speciality::where('parent_speciality_id', $speciality_id)->delete();
 
             // Pivot rows for this speciality (this removes the links only)
-            $specTechPivots = SpecialityTechnology::where('specialty_id', $speciality_id)->get();
+            $specTechPivots = SpecialityTechnology::where('speciality_id', $speciality_id)->get();
             if ($specTechPivots->isNotEmpty()) {
-                SpecialityTechnology::where('specialty_id', $speciality_id)->delete();
+                SpecialityTechnology::where('speciality_id', $speciality_id)->delete();
             }
 
             DoctorSpeciality::where('speciality_id', $speciality_id)->delete();
