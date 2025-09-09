@@ -27,7 +27,7 @@
                             required>
                     </div>
                     <div class="col-md-6">
-                        <label for="single_page_image">Single Page Image (1920x480px) <span style="color: red;">*</span> </label>
+                        <label for="single_page_image">Single Page Image (1920x1440px) <span style="color: red;">*</span> </label>
                         <input type="file" class="form-control dropify" id="single_page_image" name="single_page_image"
                             accept="image/*" required>
                     </div>
