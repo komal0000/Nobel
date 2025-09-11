@@ -53,9 +53,6 @@
                                             <br>
                                             <span class="post">{{ $research->position }}</span>
                                         </div>
-                                        <div class="speciality">{{ $type->title }} <a href="">View
-                                                Profile</a>
-                                        </div>
                                     @endif
                                 </div>
                             </div>

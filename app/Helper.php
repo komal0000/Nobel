@@ -22,7 +22,9 @@ class Helper
         6 => 'news_letter',
         7 => 'acedemic_program',
         8 => 'doctor_article',
-        9 => 'Research'
+        9 => 'Research',
+        10 => 'Notice',
+        11 => 'Journal'
     ];
 
     const blog_type_blog = 1;
@@ -33,6 +35,9 @@ class Helper
     const blog_type_news_letter = 6;
     const blog_type_acedemic_program = 7;
     const blog_type_research = 9;
+    const blog_type_notice = 10;
+    const blog_type_journal = 11;
+
 
     public static function G(): bool
     {

@@ -20,7 +20,6 @@
                                 <div class="date-name para-wrap">
                                     <span
                                         class="date">{{ App\Helper::formatTimestampToDateString($blog->date) }}</span>
-                                    <span class="name">Dr Name</span>
                                 </div>
                             </div>
                         </div>
@@ -60,7 +59,6 @@
                                 <div class="date-name para-wrap">
                                     <span
                                         class="date">{{ App\Helper::formatTimestampToDateString($blog->date) }}</span>
-                                    <span class="name">Dr Name</span>
                                 </div>
                             </div>
                         </div>

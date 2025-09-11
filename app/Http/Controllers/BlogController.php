@@ -63,7 +63,7 @@ class BlogController extends Controller
     public function blogindex(Request $request, $blogCategory_id, $type)
     {
         $blogs = DB::table('blogs')->where('blog_category_id', $blogCategory_id)->get();
-        $parent_id  = $request->parent_id;
+        $parent_id = $request->parent_id;
         if ($parent_id) {
             $blogCategory = DB::table('blog_categories')->where('id', $parent_id)->where('id', $blogCategory_id)->where('type', $type)->first();
         } else {
@@ -86,8 +86,9 @@ class BlogController extends Controller
 
             if ($request->hasFile('image')) {
                 $blog->image = $request->file('image')->store("uploads/blogcategory/{$blogCategory->type}", 'public');
-            };
-            if($request->hasFile('single_page_image')) {
+            }
+            ;
+            if ($request->hasFile('single_page_image')) {
                 $blog->single_page_image = $request->file('single_page_image')->store("uploads/blogcategory/{$blogCategory->type}");
             }
             $blog->type = $type;
@@ -120,7 +121,7 @@ class BlogController extends Controller
             if ($request->hasFile('image')) {
                 $blog->image = $request->file('image')->store("uploads/blogcategory/{$blogCategory->type}", 'public');
             }
-            if($request->hasFile('single_page_image')) {
+            if ($request->hasFile('single_page_image')) {
                 $blog->single_page_image = $request->file('single_page_image')->store("uploads/blogcategory/{$blogCategory->type}", 'public');
             }
             $blog->text = $request->text;
@@ -135,13 +136,13 @@ class BlogController extends Controller
             $blog->date = Helper::convertDateToInteger($request->date);
             $blog->save();
             $this->render();
-            $this->renderSingle($blog_id , $blog->type);
+            $this->renderSingle($blog_id, $blog->type);
             return redirect()->back()->with('success', 'Blog Successfully updated');
         }
     }
     public function blogdel($blog_id)
     {
-        $blog =  Blog::where('id', $blog_id)->first();
+        $blog = Blog::where('id', $blog_id)->first();
         $blog->delete();
         $this->render();
         $this->deleteCache($blog->slug, $blog->type);
@@ -150,8 +151,8 @@ class BlogController extends Controller
     }
 
     public function renderSingle($blog_id, $type)
-    { 
-        if($type == Helper::blog_type_blog) {
+    {
+        if ($type == Helper::blog_type_blog) {
             $blog = DB::table('blogs')->where('id', $blog_id)->first();
             $latestBlog = DB::table('blogs')->where('type', Helper::blog_type_blog)->orderBy('id', 'desc')->take(5)->get();
 
@@ -164,11 +165,11 @@ class BlogController extends Controller
 
             Helper::putCache('knowledge.blog.' . $blog->slug, view('admin.template.knowledge.blog.single', compact('blog', 'latestBlog'))->render());
         }
-        
+
         //News case single page
 
-       
-        if($type == Helper::blog_type_case_study){
+
+        if ($type == Helper::blog_type_case_study) {
             $case = DB::table('blogs')->where('id', $blog_id)->first();
             $latestCase = DB::table('blogs')->where('type', Helper::blog_type_case_study)->orderBy('id', 'desc')->take(5)->get();
 
@@ -179,11 +180,11 @@ class BlogController extends Controller
                 'url' => route('knowledge.casestudy.single', ['slug' => $case->slug]),
             ]);
 
-            Helper::putCache('knowledge.casestudy.'.$case->slug, view('admin.template.knowledge.casestudy.single', compact('case', 'latestCase'))->render());
+            Helper::putCache('knowledge.casestudy.' . $case->slug, view('admin.template.knowledge.casestudy.single', compact('case', 'latestCase'))->render());
         }
 
         // Research
-        if($type == Helper::blog_type_research) {
+        if ($type == Helper::blog_type_research) {
             // Copied whole case studies section that's why variable names can be odd
             $research = DB::table('blogs')->where('id', $blog_id)->first();
             $latestResearch = DB::table('blogs')->where('type', Helper::blog_type_research)->orderBy('id', 'desc')->take(5)->get();
@@ -198,12 +199,12 @@ class BlogController extends Controller
         }
 
         //update single page
-        if($type == Helper::blog_type_update){
+        if ($type == Helper::blog_type_update) {
             $update = DB::table('blogs')->where('id', $blog_id)->first();
             $latestUpdate = DB::table('blogs')->where('type', Helper::blog_type_update)->orderBy('id', 'desc')->take(5)->get();
 
-            if($update){
-                Helper::putMetaCache('home.update.'.$update->slug, $data = [
+            if ($update) {
+                Helper::putMetaCache('home.update.' . $update->slug, $data = [
                     'title' => $update->title,
                     'description' => $update->short_description,
                     'image' => asset(asset($update->image)),
@@ -211,11 +212,11 @@ class BlogController extends Controller
                 ]);
             }
 
-            Helper::putCache('home.update.'.$update->slug, view('admin.template.home.update.single', compact('update', 'latestUpdate'))->render());
+            Helper::putCache('home.update.' . $update->slug, view('admin.template.home.update.single', compact('update', 'latestUpdate'))->render());
         }
 
         //News single page    
-        if($type == Helper::blog_type_news) {
+        if ($type == Helper::blog_type_news) {
             $news = DB::table('blogs')->where('id', $blog_id)->first();
             $latestNews = DB::table('blogs')->where('type', Helper::blog_type_news)->orderBy('id', 'desc')->take(5)->get();
             Helper::putMetaCache('home.news.' . $news->slug, $data = [
@@ -224,11 +225,11 @@ class BlogController extends Controller
                 'image' => asset(asset($news->image)),
                 'url' => route('news.single', ['slug' => $news->slug]),
             ]);
-            Helper::putCache('home.news.'.$news->slug, view('admin.template.home.news.single', compact('news', 'latestNews'))->render());
+            Helper::putCache('home.news.' . $news->slug, view('admin.template.home.news.single', compact('news', 'latestNews'))->render());
         }
 
         //Event single page
-        if($type == Helper::blog_type_event) {
+        if ($type == Helper::blog_type_event) {
             $event = DB::table('blogs')->where('id', $blog_id)->first();
             $latestEvent = DB::table('blogs')->where('type', Helper::blog_type_event)->orderBy('id', 'desc')->take(5)->get();
             Helper::putMetaCache('event.single.' . $event->slug, $data = [
@@ -237,11 +238,11 @@ class BlogController extends Controller
                 'image' => asset(asset($event->image)),
                 'url' => route('event.single', ['slug' => $event->slug]),
             ]);
-            Helper::putCache('event.single.'.$event->slug, view('admin.template.event.single', compact('event', 'latestEvent'))->render());
+            Helper::putCache('event.single.' . $event->slug, view('admin.template.event.single', compact('event', 'latestEvent'))->render());
         }
 
         //Academic single page
-        if($type == Helper::blog_type_acedemic_program) {
+        if ($type == Helper::blog_type_acedemic_program) {
             $academic = DB::table('blogs')->where('id', $blog_id)->first();
             $latestAcademic = DB::table('blogs')->where('type', Helper::blog_type_acedemic_program)->orderBy('id', 'desc')->take(5)->get();
             Helper::putMetaCache('academic.' . $academic->slug, $data = [
@@ -250,7 +251,33 @@ class BlogController extends Controller
                 'image' => asset(asset($academic->image)),
                 'url' => route('academicprogram.single', ['slug' => $academic->slug]),
             ]);
-            Helper::putCache('academic.single.'.$academic->slug, view('admin.template.academic.single', compact('academic', 'latestAcademic'))->render());
+            Helper::putCache('academic.single.' . $academic->slug, view('admin.template.academic.single', compact('academic', 'latestAcademic'))->render());
+        }
+
+        if ($type == Helper::blog_type_notice) {
+            $notice = DB::table('blogs')->where('id', $blog_id)->first();
+            $latestNotice = DB::table('blogs')->where('type', Helper::blog_type_notice)->orderBy('id', 'desc')->take(5)->get();
+
+            Helper::putMetaCache('knowledge.notice.' . $notice->slug, $data = [
+                'title' => $notice->title,
+                'description' => $notice->short_description,
+                'image' => asset(asset($notice->image)),
+                'url' => route('knowledge.notice.single', ['slug' => $notice->slug]),
+            ]);
+            Helper::putCache('knowledge.notice.' . $notice->slug, view('admin.template.knowledge.notice.single', compact('notice', 'latestNotice'))->render());
+        }
+
+        if ($type == Helper::blog_type_journal) {
+            $journal = DB::table('blogs')->where('id', $blog_id)->first();
+            $latestJournal = DB::table('blogs')->where('type', Helper::blog_type_journal)->orderBy('id', 'desc')->take(5)->get();
+
+            Helper::putMetaCache('knowledge.journal.' . $journal->slug, $data = [
+                'title' => $journal->title,
+                'description' => $journal->short_description,
+                'image' => asset(asset($journal->image)),
+                'url' => route('knowledge.journal.single', ['slug' => $journal->slug]),
+            ]);
+            Helper::putCache('knowledge.journal.' . $journal->slug, view('admin.template.knowledge.journal.single', compact('journal', 'latestJournal'))->render());
         }
     }
     public function render()
@@ -263,27 +290,27 @@ class BlogController extends Controller
         //Event and news
         $eventTypes = DB::table('blog_categories')->where('type', Helper::blog_type_event)->get();
 
-        foreach($eventTypes as $eventType) {
+        foreach ($eventTypes as $eventType) {
             Helper::putCache('event.' . $eventType->slug, view('admin.template.event.list', compact('eventType'))->render());
             Helper::putMetaCache('event.' . $eventType->slug, $data = [
-               'title' => $eventType->title,
-               'description' => 'List of all ' . $eventType->title . 'done by Kathmandu Medical College',
-               'image' => asset('front/assets/img/meta-image.png'),
-               'url' => route('event.list', $eventType->slug)
+                'title' => $eventType->title,
+                'description' => 'List of all ' . $eventType->title . 'done by Kathmandu Medical College',
+                'image' => asset('front/assets/img/meta-image.png'),
+                'url' => route('event.list', $eventType->slug)
             ]);
-         }
+        }
         $newsTypes = DB::table('blog_categories')->where('type', Helper::blog_type_news)->get();
         foreach ($newsTypes as $newsType) {
-         Helper::putCache('home.news.' . $newsType->slug, view('admin.template.home.news.list', compact('newsType'))->render());
-         Helper::putMetaCache('home.news.' . $newsType->slug, $data = [
-            'title' => $newsType->title,
-            'description' => 'List of all ' . $newsType->title . 'of Kathmandu Medical College',
-            'image' => asset('front/assets/img/meta-image.png'),
-            'url' => route('news.list', $newsType->slug),
-         ]);
-      }
+            Helper::putCache('home.news.' . $newsType->slug, view('admin.template.home.news.list', compact('newsType'))->render());
+            Helper::putMetaCache('home.news.' . $newsType->slug, $data = [
+                'title' => $newsType->title,
+                'description' => 'List of all ' . $newsType->title . 'of Kathmandu Medical College',
+                'image' => asset('front/assets/img/meta-image.png'),
+                'url' => route('news.list', $newsType->slug),
+            ]);
+        }
 
-      $indexNews = DB::table('blogs')->where('type', Helper::blog_type_news)->get();
+        $indexNews = DB::table('blogs')->where('type', Helper::blog_type_news)->get();
         //Blog Category
         $indexBlogs = DB::table('blogs')->where('type', Helper::blog_type_blog)->get();
         $featuredBlogs = DB::table('blogs')->where('type', Helper::blog_type_blog)->where('is_featured', 1)->get();
@@ -294,11 +321,11 @@ class BlogController extends Controller
         $caseStudyTypes = DB::table('blog_categories')->where('type', helper::blog_type_case_study)->get();
 
         $indexStudies = DB::table('blogs')
-         ->leftJoin('blog_categories', 'blogs.blog_category_id', '=', 'blog_categories.id')
-         ->where('blogs.type', Helper::blog_type_case_study)
-         ->select('blogs.*', 'blog_categories.title as blog_category_title')
-         ->get();
-      //   $studiesCategory = DB::table('blog_categories')->where('id', $indexStudies->blog_category_id)->get();
+            ->leftJoin('blog_categories', 'blogs.blog_category_id', '=', 'blog_categories.id')
+            ->where('blogs.type', Helper::blog_type_case_study)
+            ->select('blogs.*', 'blog_categories.title as blog_category_title')
+            ->get();
+        //   $studiesCategory = DB::table('blog_categories')->where('id', $indexStudies->blog_category_id)->get();
         Helper::putMetaCache('knowledge.casestudy', $data = [
             'title' => 'Case Studies',
             'description' => 'List of all the case studies done by Kathmandu Medical College',
@@ -307,7 +334,7 @@ class BlogController extends Controller
         ]);
         Helper::putCache('knowledge.casestudy', view('admin.template.knowledge.casestudy.index', compact('caseStudyTypes')));
         Helper::putCache('health.knowledge.studies', view('admin.template.health.knowledge.studies', compact('indexStudies')));
-        
+
         // Research
         $researchTypes = DB::table('blog_categories')->where('type', helper::blog_type_research)->get();
         $committee = Setting::where('key', 'researchCommittee')->first();
@@ -324,6 +351,26 @@ class BlogController extends Controller
         ]);
         Helper::putCache('knowledge.research', view('admin.template.knowledge.research.index', compact('researchTypes', 'researchCommittee')));
 
+        // Notice
+        $noticeTypes = DB::table('blog_categories')->where('type', helper::blog_type_notice)->get();
+        Helper::putMetaCache('knowledge.notice', $data = [
+            'title' => 'Notices',
+            'description' => 'List of all the notices made by Kathmandu Medical College',
+            'image' => asset('front/assets/img/meta-image.png'),
+            'url' => route('knowledge.notice.index'),
+        ]);
+        Helper::putCache('knowledge.notice', view('admin.template.knowledge.notice.index', compact('noticeTypes')));
+
+        // Journal
+        $journalTypes = DB::table('blog_categories')->where('type', helper::blog_type_journal)->get();
+        Helper::putMetaCache('knowledge.notice', $data = [
+            'title' => 'Journals',
+            'description' => 'List of all the journals made by Kathmandu Medical College',
+            'image' => asset('front/assets/img/meta-image.png'),
+            'url' => route('knowledge.journal.index'),
+        ]);
+        Helper::putCache('knowledge.journal', view('admin.template.knowledge.journal.index', compact('journalTypes')));
+
 
         //News Letter
         $newsLetterTypes = DB::table('blog_categories')->where('type', helper::blog_type_news_letter)->get();
@@ -338,7 +385,7 @@ class BlogController extends Controller
         //Academic Program
         $academicProgramTypes = DB::table('blog_categories')->where('type', helper::blog_type_acedemic_program)->get();
         $academicPrograms = DB::table('blogs')->where('type', Helper::blog_type_acedemic_program)->get();
-        Helper::putCache('academic.list', view('admin.template.academicprogram.list', compact('academicProgramTypes','academicPrograms')));
+        Helper::putCache('academic.list', view('admin.template.academicprogram.list', compact('academicProgramTypes', 'academicPrograms')));
         Helper::putMetaCache('academic.list', $data = [
             'title' => 'Academic Programs List',
             'description' => 'List of all the Academic Programs done by Kathmandu Medical College',
@@ -372,7 +419,7 @@ class BlogController extends Controller
             'url' => route('event'),
         ]);
         Helper::putCache('home.updates', view('admin.template.home.update', compact('updateData'))->render());
-        Helper::putCache('home.newsEvent', view('admin.template.home.news', compact('newsData', 'eventData', 'latestNews', 'eventTypes',))->render());
+        Helper::putCache('home.newsEvent', view('admin.template.home.news', compact('newsData', 'eventData', 'latestNews', 'eventTypes', ))->render());
         Helper::putCache('health.event', view('admin.template.health.event', compact('eventData')));
     }
     public function deleteCache($slug, $type)

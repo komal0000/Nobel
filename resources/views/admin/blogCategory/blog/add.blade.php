@@ -45,7 +45,7 @@
         @csrf
         <div class="row">
             <div class="col-md-5">
-                @if ($blogCategory->type !== 6 && $blogCategory->type !== 7)
+                @if ($blogCategory->type !== 6 && $blogCategory->type !== 7 && $blogCategory->type !== 10)
                     <div class="col-md-12 mb-3">
                         <div class="tab-pane mb-2" id="video" role="tabpanel" aria-labelledby="video-tab">
                             <label for="video_link">Youtube link</label>
@@ -88,7 +88,7 @@
                             @endif
                         </label>
                     </div>
-                    @if ($blogCategory->type == 6)
+                    @if ($blogCategory->type == 6 || $blogCategory->type == 10)
                         <div class="col-md-6">
                             <label for="single_page_image">PDF</label>
                             <input type="file" name="single_page_image" id="single_page_image"

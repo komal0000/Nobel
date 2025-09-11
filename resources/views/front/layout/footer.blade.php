@@ -23,7 +23,7 @@
                         <li><a href="{{ route('contact') }}">Contact Us</a></li>
                         <li><a href="{{ route('event') }}">News &amp; Events</a></li>
                         <li><a href="{{ route('policy') }}">Policies &amp; Forms</a></li>
-                        <li><a href="{{ route('irc') }}">IRC-NMCTH</a></li>
+                        <li><a href="{{ route('irc') }}">IRC</a></li>
                     </ul>
                 </div>
             </div>

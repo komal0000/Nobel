@@ -1,6 +1,6 @@
-<section id="case-studies" data-content="Case Studies">
+<section id="case-studies" data-content="Journal">
     <div class="main-container">
-        <div class="heading text-center mb-4">Case Studies</div>
+        <div class="heading text-center mb-4">Journals</div>
         <div class="filters">
             <div class="select-field">
                 <div class="default-select d-flex" id="default-select">
@@ -11,7 +11,7 @@
                     <ul class="select-list" id="select-list">
                         <li data-target="All">All</li>
 
-                        @foreach ($caseStudyTypes as $type)
+                        @foreach ($journalTypes as $type)
                             <li data-target="{{ Str::slug($type->title) }}">{{ $type->title }}</li>
                         @endforeach
                     </ul>
@@ -25,33 +25,35 @@
         </div>
         <div class="case-study-content">
             <div class="row g-2" id="case-study-list">
-                @foreach ($caseStudyTypes as $type)
+                @foreach ($journalTypes as $type)
                     @php
-                        $caseStudies = App\Models\Blog::where('blog_category_id', $type->id)->get();
+                        $journals = App\Models\Blog::where('blog_category_id', $type->id)->get();
                     @endphp
-                    @foreach ($caseStudies as $case)
+                    @foreach ($journals as $journal)
                         <div class="col-xl-4 col-md-6 case-study-item" data-content="{{ Str::slug($type->title) }}">
                             <div class="slide m-3">
-                                <a href="{{ route('knowledge.casestudy.single', ['slug' => $case->slug]) }}">
+                                <a href="{{ route('knowledge.journal.single', ['slug' => $journal->slug]) }}">
                                     <div class="img-wrapper">
-                                        <img src="{{ asset($case->image) }}" alt="Service Image"
+                                        <img src="{{ asset($journal->image) }}" alt="Service Image"
                                             class="img-fluid w-100">
                                         <div class="heading-xs date">
-                                            {{ App\Helper::formatTimestampToDateString($case->date) }}</div>
+                                            {{ App\Helper::formatTimestampToDateString($journal->date) }}</div>
                                     </div>
                                 </a>
                                 <div class="body">
-                                    <div class="para-wrap">{{ $type->title }}</div>
-                                    <a href="{{ route('knowledge.casestudy.single', ['slug' => $case->slug]) }}">
-                                        <h3 class="title heading-sm">{{ $case->title }}</h3>
+                                    <div class="para-wrap">{{$type->title}}</div>
+                                    <a href="{{ route('knowledge.journal.single', ['slug' => $journal->slug]) }}">
+                                        <h3 class="title heading-sm">{{ $journal->title }}</h3>
                                     </a>
-                                    <div class="name-post">
-                                        <span class="name">
-                                            Dr {{ $case->submitted_by }}
-                                        </span>
-                                        <br>
-                                        <span class="post">{{ $case->position }}</span>
-                                    </div>
+                                    @if ($journal->submitted_by)
+                                        <div class="name-post">
+                                            <span class="name">
+                                                Dr {{ $journal->submitted_by }}
+                                            </span>
+                                            <br>
+                                            <span class="post">{{ $journal->position }}</span>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>

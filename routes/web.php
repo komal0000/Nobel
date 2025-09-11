@@ -110,6 +110,14 @@ Route::prefix('knowledge')->name('knowledge.')->group(function () {
         Route::get('index', [FrontController::class, 'researchIndex'])->name('index');
         Route::get('{slug}', [FrontController::class, 'researchSingle'])->name('single');
     });
+    Route::prefix('notice')->name('notice.')->group(function () {
+        Route::get('index', [FrontController::class, 'noticeIndex'])->name('index');
+        Route::get('{slug}', [FrontController::class, 'noticeSingle'])->name('single');
+    });
+    Route::prefix('journal')->name('journal.')->group(function () {
+        Route::get('index', [FrontController::class, 'journalIndex'])->name('index');
+        Route::get('{slug}', [FrontController::class, 'journalSingle'])->name('single');
+    });
     Route::get('newsletter', [FrontController::class, 'newsLetterIndex'])->name('newsletter');
 });
 

@@ -39,7 +39,7 @@ class SettingController extends Controller
             "Top",
             [
                 ['logo', 0],
-                ['CancerLogo', 0],
+                ['JournalLogo', 0],
                 ['favicon', 0],
             ],
             [
