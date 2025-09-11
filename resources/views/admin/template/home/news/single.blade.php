@@ -17,8 +17,7 @@
                         <div class="heading mb-4">
                             {{ $news->title }}
                         </div>
-                        <div class="heading-sm date mb-3">{{ App\Helper::formatTimestampToDateString($news->date) }} |
-                            Read Time</div>
+                        <div class="heading-sm date mb-3">{{ App\Helper::formatTimestampToDateString($news->date) }}</div>
                         <div class="share-links d-flex gap-3 fs-2 mb-5">
                             <a id="copyBtn" href="#" class="position-relative text-decoration-none">
                                 <i class="bi bi-link-45deg"></i>

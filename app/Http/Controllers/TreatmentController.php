@@ -112,7 +112,7 @@ class TreatmentController extends Controller
 
          Helper::putMetaCache('treatment', $data = [
             'title' => 'All Treatment',
-            'description' => 'All Treatment section available in Nobel Hospital.',
+            'description' => 'All Treatment section available in Kathmandu Medical College.',
             'keywords' => 'treatments',
             'url' => route('treatment.index')
          ]);

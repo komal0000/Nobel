@@ -75,6 +75,16 @@ class FrontController extends Controller
         return view('front.pages.knowledge.casestudy.single',compact('slug'));
     }
 
+    public function researchIndex()
+    {
+        return view('front.pages.knowledge.research.index');
+    }
+
+    public function researchSingle($slug)
+    {
+        return view('front.pages.knowledge.research.single', compact('slug'));
+    }
+
     public function newsLetterIndex(){
         return view('front.pages.knowledge.newsLetter.index');
     }

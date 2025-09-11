@@ -1,12 +1,12 @@
 @extends('front.layout.app')
 
 @section('metaData')
-    @includeIf('front.cache.meta.knowledge.casestudy')
+    @includeIf('front.cache.meta.knowledge.research')
 @endsection
 
 
 @section('content')
-    @include('front.cache.knowledge.casestudy')
+    @includeIf('front.cache.knowledge.research')
 @endsection
 @section('js')
     <script>
@@ -77,7 +77,7 @@
                 // Display message if no results found
                 if (totalItems === 0) {
                     $('#case-study-list').append(
-                        '<div class="col-12 text-center my-5"><h3>No case studies found</h3></div>');
+                        '<div class="col-12 text-center my-5"><h3>No researches found</h3></div>');
                 }
 
                 // Reset to first page after filtering
@@ -103,7 +103,7 @@
                 // If no items to show and no message displayed, show message
                 if (filteredItems.length === 0) {
                     $('#case-study-list').append(
-                        '<div class="col-12 text-center my-5"><h3>No case studies found</h3></div>');
+                        '<div class="col-12 text-center my-5"><h3>No researches found</h3></div>');
                 }
 
                 updatePaginationButtons(page);

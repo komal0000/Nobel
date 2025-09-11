@@ -1,24 +1,31 @@
-<section id="each-update" data-content="Update">
+<section id="per-case-study" data-content="Research">
     <div class="main-container">
         <div class="row g-5">
             <div class="col-lg-9">
-                <div class="single-update">
-                    <div class="event-main-img mb-3">
-                        @if (!empty($update->video_link))
-                           <a href="{{ asset($update->video_link) }}" class="glightbox">
-                              <img src="{{ asset($update->single_page_image) }}" alt="Update Main Image">
-                              <img class="play-icon" src="{{ asset('front/assets/img/play-icon.png') }}" alt="Play Icon">
-                           </a>
+                <div class="case-study">
+                    <div class="case-study-main-img mb-3">
+                        @if (!empty($research->video_link))
+                            <a href="{{ asset($research->video_link) }}" class="glightbox">
+                                <img src="{{ asset($research->single_page_image) }}" alt="Case Main Image">
+                                <img class="play-icon" src="{{ asset('front/assets/img/play-icon.png') }}"
+                                    alt="Play Icon">
+                            </a>
                         @else
-                           <img src="{{ asset($update->single_page_image) }}" alt="Update Main Image">
+                            <img src="{{ asset($research->single_page_image) }}" alt="Research Main Image">
                         @endif
                     </div>
-                    <div class="update-header">
+                    <div class="case-study-header">
                         <div class="heading mb-4">
-                            {{ $update->title }}
+                            {{ $research->title }}
                         </div>
-                        <div class="heading-sm date mb-3">{{ App\Helper::formatTimestampToDateString($update->date) }}</div>
-                        <div class="share-links d-flex gap-3 fs-2 mb-5">
+                        <div class="heading-sm mb-1">
+                            @if ($research->submitted_by)
+                                By <strong>{{ $research->submitted_by }}</strong> in <strong>Speciality Name</strong>
+                            @endif
+                        </div>
+                        <div class="heading-sm date mb-3">{{ App\Helper::formatTimestampToDateString($research->date) }}
+                        </div>
+                        <div class="share-links d-flex gap-3 fs-2 mb-4">
                             <a id="copyBtn" href="#" class="position-relative text-decoration-none">
                                 <i class="bi bi-link-45deg"></i>
                                 <span id="copiedText"
@@ -43,30 +50,32 @@
                                 <i class="bi bi-twitter-x"></i>
                             </a>
                             <a
-                                href="mailto:?subject={{ urlencode($update->title) }}&body={{ urlencode(url()->current()) }}">
+                                href="mailto:?subject={{ urlencode($research->title) }}&body={{ urlencode(url()->current()) }}">
                                 <i class="bi bi-envelope"></i>
                             </a>
                         </div>
                     </div>
-                    <p class="para-wrap my-3">
-                        {!! $update->text !!}
-                    </p>
+                    <div class="case-study-content">
+                        <p class="para-wrap my-3">
+                            {!! $research->text !!}
+                        </p>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-3">
                 <div class="second-col">
-                    <div class="recent-event ">
-                        <div class="heading mb-4">Recent Updates</div>
-                        @foreach ($latestUpdate as $update)
-                            <div class="event-card mb-4">
+                    <div class="recent-case-study ">
+                        <div class="heading mb-4">Recent Researches</div>
+                        @foreach ($latestResearch as $caseItem)
+                            <div class="case-study-card mb-4">
                                 <div class="img-wrapper">
-                                    <img src="{{ asset($update->image) }}" alt="event Image">
+                                    <img src="{{ asset($caseItem->image) }}" alt="case-study Image">
                                 </div>
                                 <div class="body">
                                     <div class="heading-md "><a
-                                            href="{{ route('update.single', $update->slug) }}">{{ $update->title }}</a>
+                                            href="{{ route('knowledge.casestudy.single', $caseItem->slug) }}">{{ $caseItem->title }}</a>
                                     </div>
-                                    <div class="date">{{ App\Helper::formatTimestampToDateString($update->date) }}
+                                    <div class="date">{{ App\Helper::formatTimestampToDateString($caseItem->date) }}
                                     </div>
                                 </div>
                             </div>

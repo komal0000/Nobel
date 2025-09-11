@@ -106,6 +106,10 @@ Route::prefix('knowledge')->name('knowledge.')->group(function () {
         Route::get('index', [FrontController::class, 'caseStudyIndex'])->name('index');
         Route::get('{slug}', [FrontController::class, 'caseStudySingle'])->name('single');
     });
+    Route::prefix('research')->name('research.')->group(function () {
+        Route::get('index', [FrontController::class, 'researchIndex'])->name('index');
+        Route::get('{slug}', [FrontController::class, 'researchSingle'])->name('single');
+    });
     Route::get('newsletter', [FrontController::class, 'newsLetterIndex'])->name('newsletter');
 });
 
@@ -292,6 +296,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::match(['GET', 'POST'], 'admission', [SettingController::class, 'admission'])->name('admission');
         Route::match(['GET', 'POST'], 'meta', [SettingController::class, 'meta'])->name('metaData');
         Route::match(['GET', 'POST'], 'label', [SettingController::class, 'label'])->name('label');
+        Route::match(['GET', 'POST'], 'research-committee', [SettingController::class, 'addResearchCommittee'])->name('researchCommittee');
+        Route::post('research-committee-edit/{id}', [SettingController::class, 'updateResearchCommittee'])->name('researchCommitteeUpdate');
+        Route::get('del-research-committee/{id}', [SettingController::class, 'delResearchCommittee'])->name('delResearchCommittee');
     });
     Route::prefix('technology')->name('technology.')->group(function () {
         Route::match(['GET'], '', [TechnologyController::class, 'index'])->name('index');

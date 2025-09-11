@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helper;
 use App\Models\Blog;
 use App\Models\BlogCategory;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -181,6 +182,21 @@ class BlogController extends Controller
             Helper::putCache('knowledge.casestudy.'.$case->slug, view('admin.template.knowledge.casestudy.single', compact('case', 'latestCase'))->render());
         }
 
+        // Research
+        if($type == Helper::blog_type_research) {
+            // Copied whole case studies section that's why variable names can be odd
+            $research = DB::table('blogs')->where('id', $blog_id)->first();
+            $latestResearch = DB::table('blogs')->where('type', Helper::blog_type_research)->orderBy('id', 'desc')->take(5)->get();
+
+            Helper::putMetaCache('knowledge.research.' . $research->slug, $data = [
+                'title' => $research->title,
+                'description' => $research->short_description,
+                'image' => asset(asset($research->image)),
+                'url' => route('knowledge.research.single', ['slug' => $research->slug]),
+            ]);
+            Helper::putCache('knowledge.research.' . $research->slug, view('admin.template.knowledge.research.single', compact('research', 'latestResearch'))->render());
+        }
+
         //update single page
         if($type == Helper::blog_type_update){
             $update = DB::table('blogs')->where('id', $blog_id)->first();
@@ -251,7 +267,7 @@ class BlogController extends Controller
             Helper::putCache('event.' . $eventType->slug, view('admin.template.event.list', compact('eventType'))->render());
             Helper::putMetaCache('event.' . $eventType->slug, $data = [
                'title' => $eventType->title,
-               'description' => 'List of all ' . $eventType->title . 'done by Nobel Hospital',
+               'description' => 'List of all ' . $eventType->title . 'done by Kathmandu Medical College',
                'image' => asset('front/assets/img/meta-image.png'),
                'url' => route('event.list', $eventType->slug)
             ]);
@@ -261,7 +277,7 @@ class BlogController extends Controller
          Helper::putCache('home.news.' . $newsType->slug, view('admin.template.home.news.list', compact('newsType'))->render());
          Helper::putMetaCache('home.news.' . $newsType->slug, $data = [
             'title' => $newsType->title,
-            'description' => 'List of all ' . $newsType->title . 'of Nobel Hospital',
+            'description' => 'List of all ' . $newsType->title . 'of Kathmandu Medical College',
             'image' => asset('front/assets/img/meta-image.png'),
             'url' => route('news.list', $newsType->slug),
          ]);
@@ -276,6 +292,7 @@ class BlogController extends Controller
         }
         //Case Study
         $caseStudyTypes = DB::table('blog_categories')->where('type', helper::blog_type_case_study)->get();
+
         $indexStudies = DB::table('blogs')
          ->leftJoin('blog_categories', 'blogs.blog_category_id', '=', 'blog_categories.id')
          ->where('blogs.type', Helper::blog_type_case_study)
@@ -284,17 +301,35 @@ class BlogController extends Controller
       //   $studiesCategory = DB::table('blog_categories')->where('id', $indexStudies->blog_category_id)->get();
         Helper::putMetaCache('knowledge.casestudy', $data = [
             'title' => 'Case Studies',
-            'description' => 'List of all the case studies done by Nobel Hospital',
+            'description' => 'List of all the case studies done by Kathmandu Medical College',
             'image' => asset('front/assets/img/meta-image.png'),
             'url' => route('knowledge.casestudy.index'),
         ]);
         Helper::putCache('knowledge.casestudy', view('admin.template.knowledge.casestudy.index', compact('caseStudyTypes')));
         Helper::putCache('health.knowledge.studies', view('admin.template.health.knowledge.studies', compact('indexStudies')));
+        
+        // Research
+        $researchTypes = DB::table('blog_categories')->where('type', helper::blog_type_research)->get();
+        $committee = Setting::where('key', 'researchCommittee')->first();
+        $researchCommittee = [];
+        if ($committee && !empty($committee->value)) {
+            $researchCommittee = json_decode($committee->value) ?? [];
+        }
+
+        Helper::putMetaCache('knowledge.research', $data = [
+            'title' => 'Researches',
+            'description' => 'List of all the researches done by Kathmandu Medical College',
+            'image' => asset('front/assets/img/meta-image.png'),
+            'url' => route('knowledge.research.index'),
+        ]);
+        Helper::putCache('knowledge.research', view('admin.template.knowledge.research.index', compact('researchTypes', 'researchCommittee')));
+
+
         //News Letter
         $newsLetterTypes = DB::table('blog_categories')->where('type', helper::blog_type_news_letter)->get();
         Helper::putMetaCache('knowledge.newsletter', $data = [
             'title' => 'News Letter',
-            'description' => 'List of all the News Letter done by Nobel Hospital',
+            'description' => 'List of all the News Letter done by Kathmandu Medical College',
             'image' => asset('front/assets/img/meta-image.png'),
             'url' => route('knowledge.newsletter'),
         ]);
@@ -306,14 +341,14 @@ class BlogController extends Controller
         Helper::putCache('academic.list', view('admin.template.academicprogram.list', compact('academicProgramTypes','academicPrograms')));
         Helper::putMetaCache('academic.list', $data = [
             'title' => 'Academic Programs List',
-            'description' => 'List of all the Academic Programs done by Nobel Hospital',
+            'description' => 'List of all the Academic Programs done by Kathmandu Medical College',
             'image' => asset('front/assets/img/meta-image.png'),
             'url' => route('academicprogram.list'),
         ]);
         Helper::putCache('academic.index', view('admin.template.academicprogram.index', compact('academicProgramTypes')));
         Helper::putMetaCache('academic.academic', $data = [
             'title' => 'Academic Programs',
-            'description' => 'Academic Programs done by Nobel Hospital',
+            'description' => 'Academic Programs done by Kathmandu Medical College',
             'image' => asset('front/assets/img/meta-image.png'),
             'url' => route('academicprogram.index'),
         ]);
@@ -324,7 +359,7 @@ class BlogController extends Controller
         Helper::putCache('health.knowledge.blogs', view('admin.template.health.knowledge.blogs', compact('indexBlogs'))->render());
         Helper::putMetaCache('knowledge.blogs.blog', $data = [
             'title' => 'Blogs',
-            'description' => 'Blogs done by Nobel Hospital',
+            'description' => 'Blogs done by Kathmandu Medical College',
             'image' => asset('front/assets/img/meta-image.png'),
             'url' => route('knowledge.blog.index'),
         ]);
@@ -332,7 +367,7 @@ class BlogController extends Controller
         Helper::putCache('event.index', view('admin.template.event.index', compact('newsTypes', 'eventTypes'))->render());
         Helper::putMetaCache('event.event', $data = [
             'title' => 'Events',
-            'description' => 'Events done by Nobel Hospital',
+            'description' => 'Events done by Kathmandu Medical College',
             'image' => asset('front/assets/img/meta-image.png'),
             'url' => route('event'),
         ]);

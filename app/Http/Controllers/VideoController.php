@@ -88,7 +88,7 @@ class VideoController extends Controller
 
          Helper::putMetaCache('knowledge.videos', $data = [
             'title' => 'All Videos',
-            'description' => 'All Videos and categories available in Nobel Hospital.',
+            'description' => 'All Videos and categories available in Kathmandu Medical College.',
             'keywords' => 'videos',
             'url' => route('knowledge.videos')
          ]);

@@ -61,7 +61,7 @@ class EmployeeTestimonialController extends Controller
         $testimonials = DB::table('employee_testimonials')->get(['id', 'title', 'short_description', 'image']);
          Helper::putMetaCache('career', $data = [
             'title' => 'Career',
-            'description' => 'Reach out to Nobel for career opportunities.',
+            'description' => 'Reach out to KMC for career opportunities.',
             'keywords' => 'career, career nobel',
             'url' => route('careers')
          ]);

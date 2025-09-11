@@ -189,8 +189,8 @@ class SpecialityController extends Controller
 
          Helper::putMetaCache('speciality', $data = [
             'title' => 'All Specialities',
-            'description' => 'Nobel is the best hospital in Nepal located in Biratnagar with multi-specialties and sub-specialities sections.',
-            'keywords' => 'specialities, all specialities, cardiac care, cancer care',
+            'description' => 'Kathmandu Medical College is one of the best hospital in Nepal located in Kathmandu with multi-department and sub-department sections.',
+            'keywords' => 'department, all departments, cardiac care, cancer care',
             'url' => route('speciality.index')
          ]);
         Helper::putCache('home.speciality', view('admin.template.home.speciality', compact('specialities', 'specialityLabel'))->render());

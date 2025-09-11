@@ -140,7 +140,7 @@ class DownloadController extends Controller
 
          Helper::putMetaCache('download', $data = [
             'title' => 'All Downloads',
-            'description' => 'All Downloads section available in Nobel Hospital.',
+            'description' => 'All Downloads section available in Kathmandu Medical College.',
             'keywords' => 'downloads',
             'url' => route('download.index')
          ]);

@@ -41,6 +41,9 @@
                                             Studies</a>
                                     </li>
                                     <li>
+                                        <a href="{{ route('knowledge.research.index') }}" class="drop-item">Research</a>
+                                    </li>
+                                    <li>
                                         <a href="{{ route('knowledge.newsletter') }}" class="drop-item">News Letter</a>
                                     </li>
                                 </ul>

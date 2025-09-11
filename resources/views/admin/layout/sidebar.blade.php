@@ -396,6 +396,20 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link " href="{{ route('admin.blogCategory.index', ['type' => '9']) }}">
+                                <i class="icon">
+                                    <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
+                                        viewBox="0 0 24 24" fill="currentColor">
+                                        <g>
+                                            <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                        </g>
+                                    </svg>
+                                </i>
+                                <i class="sidenav-mini-icon"> E </i>
+                                <span class="item-name">Research</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link " href="{{ route('admin.blogCategory.index', ['type' => '6']) }}">
                                 <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
@@ -517,62 +531,76 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                           <a class="nav-link " href="{{ route('admin.setting.irc') }}">
-                               <i class="icon">
-                                   <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
-                                       viewBox="0 0 24 24" fill="currentColor">
-                                       <g>
-                                           <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
-                                       </g>
-                                   </svg>
-                               </i>
-                               <i class="sidenav-mini-icon"> A </i>
-                               <span class="item-name">IRC</span>
-                           </a>
-                       </li>
-                       <li class="nav-item">
-                           <a class="nav-link " href="{{ route('admin.setting.admission') }}">
-                               <i class="icon">
-                                   <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
-                                       viewBox="0 0 24 24" fill="currentColor">
-                                       <g>
-                                           <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
-                                       </g>
-                                   </svg>
-                               </i>
-                               <i class="sidenav-mini-icon"> A </i>
-                               <span class="item-name">Admission</span>
-                           </a>
-                       </li>
-                       <li class="nav-item">
-                           <a class="nav-link " href="{{ route('admin.setting.metaData') }}">
-                               <i class="icon">
-                                   <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
-                                       viewBox="0 0 24 24" fill="currentColor">
-                                       <g>
-                                           <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
-                                       </g>
-                                   </svg>
-                               </i>
-                               <i class="sidenav-mini-icon"> A </i>
-                               <span class="item-name">Meta Data</span>
-                           </a>
-                       </li>
-                       <li class="nav-item">
-                           <a class="nav-link " href="{{ route('admin.setting.label') }}">
-                               <i class="icon">
-                                   <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
-                                       viewBox="0 0 24 24" fill="currentColor">
-                                       <g>
-                                           <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
-                                       </g>
-                                   </svg>
-                               </i>
-                               <i class="sidenav-mini-icon"> A </i>
-                               <span class="item-name">Labeling</span>
-                           </a>
-                       </li>
-                           <li class="nav-item">
+                            <a class="nav-link " href="{{ route('admin.setting.irc') }}">
+                                <i class="icon">
+                                    <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
+                                        viewBox="0 0 24 24" fill="currentColor">
+                                        <g>
+                                            <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                        </g>
+                                    </svg>
+                                </i>
+                                <i class="sidenav-mini-icon"> A </i>
+                                <span class="item-name">IRC</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="{{ route('admin.setting.admission') }}">
+                                <i class="icon">
+                                    <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
+                                        viewBox="0 0 24 24" fill="currentColor">
+                                        <g>
+                                            <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                        </g>
+                                    </svg>
+                                </i>
+                                <i class="sidenav-mini-icon"> A </i>
+                                <span class="item-name">Admission</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="{{ route('admin.setting.metaData') }}">
+                                <i class="icon">
+                                    <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
+                                        viewBox="0 0 24 24" fill="currentColor">
+                                        <g>
+                                            <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                        </g>
+                                    </svg>
+                                </i>
+                                <i class="sidenav-mini-icon"> A </i>
+                                <span class="item-name">Meta Data</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="{{ route('admin.setting.label') }}">
+                                <i class="icon">
+                                    <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
+                                        viewBox="0 0 24 24" fill="currentColor">
+                                        <g>
+                                            <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                        </g>
+                                    </svg>
+                                </i>
+                                <i class="sidenav-mini-icon"> A </i>
+                                <span class="item-name">Labeling</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="{{ route('admin.setting.researchCommittee') }}">
+                                <i class="icon">
+                                    <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
+                                        viewBox="0 0 24 24" fill="currentColor">
+                                        <g>
+                                            <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                        </g>
+                                    </svg>
+                                </i>
+                                <i class="sidenav-mini-icon"> A </i>
+                                <span class="item-name">Research Committee</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link " href="{{ route('admin.setting.healthLibrary') }}">
                                 <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
@@ -587,19 +615,19 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                           <a class="nav-link " href="{{ route('admin.setting.nationalImage.index') }}">
-                               <i class="icon">
-                                   <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
-                                       viewBox="0 0 24 24" fill="currentColor">
-                                       <g>
-                                           <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
-                                       </g>
-                                   </svg>
-                               </i>
-                               <i class="sidenav-mini-icon"> A </i>
-                               <span class="item-name">National Image</span>
-                           </a>
-                       </li>
+                            <a class="nav-link " href="{{ route('admin.setting.nationalImage.index') }}">
+                                <i class="icon">
+                                    <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
+                                        viewBox="0 0 24 24" fill="currentColor">
+                                        <g>
+                                            <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                        </g>
+                                    </svg>
+                                </i>
+                                <i class="sidenav-mini-icon"> A </i>
+                                <span class="item-name">National Image</span>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link " href="{{ route('admin.slider.navigation.index') }}">
                                 <i class="icon">
@@ -716,7 +744,8 @@
                         <li class="nav-item">
                             <a class="nav-link " href="{{ route('admin.setting.requestCallBack') }}">
                                 <i class="icon">
-                                    <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                                    <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
+                                        viewBox="0 0 24 24" fill="currentColor">
                                         <g>
                                             <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
                                         </g>
@@ -729,7 +758,8 @@
                         <li class="nav-item">
                             <a class="nav-link " href="{{ route('admin.setting.feedback') }}">
                                 <i class="icon">
-                                    <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                                    <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
+                                        viewBox="0 0 24 24" fill="currentColor">
                                         <g>
                                             <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
                                         </g>

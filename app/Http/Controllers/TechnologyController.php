@@ -274,7 +274,7 @@ class TechnologyController extends Controller
 
       Helper::putMetaCache('technology', $data = [
          'title' => 'All Technologies',
-         'description' => 'All Technologies section available in Nobel Hospital.',
+         'description' => 'All Technologies section available in Kathmandu Medical College.',
          'keywords' => 'technology, technologies',
          'url' => route('technology.index')
       ]);

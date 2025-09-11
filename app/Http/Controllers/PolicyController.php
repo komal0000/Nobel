@@ -52,7 +52,7 @@ class PolicyController extends Controller
         Helper::putCache('policy.index', view('admin.template.policy.index', compact('policies'))->render());
       Helper::putMetaCache('policy', $data = [
          'title' => 'Policy',
-         'description' => 'Polices of Nobel Hospital.',
+         'description' => 'Polices of Kathmandu Medical College.',
          'keywords' => 'policy nobel',
          'url' => route('policy')
       ]);

@@ -22,6 +22,7 @@ class Helper
         6 => 'news_letter',
         7 => 'acedemic_program',
         8 => 'doctor_article',
+        9 => 'Research'
     ];
 
     const blog_type_blog = 1;
@@ -31,6 +32,7 @@ class Helper
     const blog_type_case_study = 5;
     const blog_type_news_letter = 6;
     const blog_type_acedemic_program = 7;
+    const blog_type_research = 9;
 
     public static function G(): bool
     {
@@ -56,7 +58,7 @@ class Helper
     public static function formatTimestampToDateString(int $timestamp): string
     {
         $date = Carbon::createFromTimestamp($timestamp);
-        return $date->format('d F ,Y');
+        return $date->format('d F, Y');
     }
 
     public static function getMonthName(int $timestamp): string
@@ -209,8 +211,8 @@ class Helper
         }
 
         // Extract values with defaults
-        $title = ($data['title'] ?? null) ? $data['title'] . ' | Nobel Hospital' : 'Nobel Hospital';
-        $description = $data['description'] ?? 'Nobel is a super-specialty healthcare hospital in Nepal, providing high-quality treatment including heart, liver, kidney transplants, and cancer care.';
+        $title = ($data['title'] ?? null) ? $data['title'] . ' | Kathmandu Medical College' : 'Kathmandu Medical College';
+        $description = $data['description'] ?? 'Kathmandu Medical College is a super-specialty healthcare hospital in Nepal, providing high-quality treatment including heart, liver, kidney transplants, and cancer care.';
         $keywords = $data['keywords'] ?? 'hospital, healthcare, medical services, patient care, emergency services, ';
         $image = $data['image'] ?? asset('front/assets/img/meta-image.png');
         $url = $data['url'] ?? request()->url();

@@ -141,13 +141,13 @@ class JobController extends Controller
       Helper::putCache('career.job', view('admin.template.career.jobs', compact('jobcategories'))->render());
       Helper::putMetaCache('career.jobCategory', $data = [
          'title' => 'Job Category',
-         'description' => 'Job categories available in Nobel Hospital.',
-         'keywords' => 'job, jobs, nobel job',
+         'description' => 'Job categories available in Kathmandu Medical College.',
+         'keywords' => 'job, jobs, kmc job',
          'url' => route('jobs.jobcategory')
       ]);
       Helper::putMetaCache('career', $data = [
          'title' => 'Career',
-         'description' => 'Reach out to Nobel for career opportunities.',
+         'description' => 'Reach out to Kathmandu Medical College for career opportunities.',
          'keywords' => 'career, career nobel',
          'url' => route('careers')
       ]);

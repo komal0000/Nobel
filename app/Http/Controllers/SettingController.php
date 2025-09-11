@@ -204,7 +204,7 @@ class SettingController extends Controller
             Helper::setSetting('intContact', $intData);
             Helper::putMetaCache('contact', $data = [
                 'title' => 'Contact Us',
-                'description' => 'Reach out to Nobel for appointments, inquiries, and hospital services. Get in touch with our expert medical team for assistance and patient care.',
+                'description' => 'Reach out to Kathmandu Medical College for appointments, inquiries, and hospital services. Get in touch with our expert medical team for assistance and patient care.',
                 'keywords' => 'contact us',
                 'url' => route('contact')
             ]);
@@ -641,9 +641,9 @@ class SettingController extends Controller
 
             Helper::putCache('irc.index', view('admin.setting.template.irc', compact('irc'))->render());
             Helper::putMetaCache('irc', $data = [
-                'title' => 'IRC-NMCTH',
-                'description' => 'Nobel Medical College Teaching Hospital has established an Institutional Review Committee (IRC-NMCTH) in compliance with NHRC regulations, to oversee its obligations with respect to human participants as well as non human participants. IRC-NMCTH was established on January, 2015.',
-                'keywords' => 'nobel, irc, institutional review committee, nobel medical college',
+                'title' => 'IRC',
+                'description' => 'Kathmandu Medical College has established an Institutional Review Committee (IRC) in compliance with NHRC regulations, to oversee its obligations with respect to human participants as well as non human participants.',
+                'keywords' => 'kmc, irc, institutional review committee, Kathmandu Medical College',
                 'url' => route('irc')
             ]);
             return redirect()->back()->with('success', 'IRC updated successfully.');
@@ -679,9 +679,9 @@ class SettingController extends Controller
                 Helper::putCache('admission.index', view('admin.setting.template.admission', compact('admissionData'))->render());
                 Helper::putMetaCache('admission', $data = [
                     'title' => 'Admission',
-                    'description' => 'Nobel Medical College Teaching Hospital has established an Institutional Review Committee (IRC-NMCTH) in compliance with NHRC regulations, to oversee its obligations with respect to human participants as well as non human participants. IRC-NMCTH was established on January, 2015.',
-                    'keywords' => 'nobel, admission, admission details, nobel medical college',
-                    'url' => route('irc')
+                    'description' => 'Kathmandu Medical College admission details.',
+                    'keywords' => 'nobel, admission, admission details, Kathmandu Medical College',
+                    'url' => route('admission')
                 ]);
                 return redirect()->back()->with('success', 'Admission updated successfully.');
             } else {
@@ -759,5 +759,179 @@ class SettingController extends Controller
                 return redirect()->back()->with('error', 'Failed to update label.');
             }
         }
+    }
+
+    public function addResearchCommittee(Request $request)
+    {
+        if (Helper::G()) {
+            // GET: show existing items
+            $committee = Setting::where('key', 'researchCommittee')->first();
+            $researchCommittees = [];
+            if ($committee && !empty($committee->value)) {
+                $researchCommittees = json_decode($committee->value) ?? [];
+            }
+            return view('admin.setting.researchCommittee', compact('researchCommittees'));
+        } else {
+            // POST: add new item
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'post' => 'required|string|max:255',
+                'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048'
+            ]);
+
+            $setting = Setting::firstOrCreate(['key' => 'researchCommittee'], ['value' => json_encode([])]);
+            $existing = json_decode($setting->value, true) ?? [];
+
+            // determine next id
+            $lastId = collect($existing)->pluck('id')->max() ?? 0;
+
+            $item = [];
+            $lastId++;
+            $item['id'] = $lastId;
+            $item['name'] = $request->input('name');
+            $item['post'] = $request->input('post');
+
+            if ($request->hasFile('icon')) {
+                $path = $request->file('icon')->store('uploads/researchCommittee', 'public');
+                $item['icon'] = $path;
+            } else {
+                $item['icon'] = '';
+            }
+
+            $existing[] = $item;
+            $setting->value = json_encode(array_values($existing));
+            $setting->save();
+
+            // Cache
+            $committee = Setting::where('key', 'researchCommittee')->first();
+            $researchCommittee = json_decode($committee->value) ?? [];
+            $researchTypes = DB::table('blog_categories')->where('type', helper::blog_type_research)->get();
+
+            Helper::putCache('knowledge.research', view('admin.template.knowledge.research.index', compact('researchTypes', 'researchCommittee')));
+
+            if ($request->wantsJson() || $request->ajax()) {
+                redirect()->back()->with('success', 'Research Committee Saved');
+                return response()->json(['success' => true, 'message' => 'Research Committee Saved', 'item' => $item]);
+            }
+            return redirect()->back()->with('success', 'Research Committee Saved');
+
+        }
+    }
+
+    public function updateResearchCommittee(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'post' => 'nullable|string|max:255',
+            'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048'
+        ]);
+
+        $setting = Setting::where('key', 'researchCommittee')->first();
+        if (!$setting) {
+            if ($request->wantsJson() || $request->ajax()) {
+                return response()->json(['success' => false, 'message' => 'No research committee data found'], 404);
+            }
+            return redirect()->back()->with('error', 'No research committee data found');
+        }
+
+        $items = json_decode($setting->value, true) ?? [];
+        $found = false;
+        foreach ($items as &$item) {
+            if ((int) $item['id'] === (int) $id) {
+                $found = true;
+                // update fields
+                if ($request->filled('name')) {
+                    $item['name'] = $request->input('name');
+                }
+                if ($request->filled('post')) {
+                    $item['post'] = $request->input('post');
+                }
+
+                if ($request->hasFile('icon')) {
+                    // delete old file if exists
+                    if (!empty($item['icon']) && Storage::disk('public')->exists($item['icon'])) {
+                        Storage::disk('public')->delete($item['icon']);
+                    }
+                    $path = $request->file('icon')->store('uploads/researchCommittee', 'public');
+                    $item['icon'] = $path;
+                }
+                break;
+            }
+        }
+
+        if (!$found) {
+            if ($request->wantsJson() || $request->ajax()) {
+                return response()->json(['success' => false, 'message' => 'Research committee not found'], 404);
+            }
+            return redirect()->back()->with('error', 'Research committee not found');
+        }
+
+        // save back
+        $setting->value = json_encode(array_values($items));
+        $setting->save();
+
+        // Cache
+        $committee = Setting::where('key', 'researchCommittee')->first();
+        $researchCommittee = json_decode($committee->value) ?? [];
+        $researchTypes = DB::table('blog_categories')->where('type', helper::blog_type_research)->get();
+
+        Helper::putCache('knowledge.research', view('admin.template.knowledge.research.index', compact('researchTypes', 'researchCommittee')));
+
+
+        if ($request->wantsJson() || $request->ajax()) {
+            redirect()->back()->with('success', 'Research committee updated');
+            return response()->json(['success' => true, 'message' => 'Research committee updated']);
+        }
+        return redirect()->back()->with('success', 'Research committee updated');
+    }
+
+    public function delResearchCommittee($id)
+    {
+        $setting = Setting::where('key', 'researchCommittee')->first();
+        if (!$setting) {
+            if (request()->wantsJson() || request()->ajax()) {
+                return response()->json(['success' => false, 'message' => 'No research committee data found'], 404);
+            }
+            return redirect()->back()->with('error', 'No research committee data found');
+        }
+
+        $items = json_decode($setting->value, true) ?? [];
+        $found = false;
+        $newItems = [];
+        foreach ($items as $item) {
+            if ((int) $item['id'] === (int) $id) {
+                $found = true;
+                // delete image if present
+                if (!empty($item['icon']) && Storage::disk('public')->exists($item['icon'])) {
+                    Storage::disk('public')->delete($item['icon']);
+                }
+                // skip adding to newItems to delete
+                continue;
+            }
+            $newItems[] = $item;
+        }
+
+        if (!$found) {
+            if (request()->wantsJson() || request()->ajax()) {
+                return response()->json(['success' => false, 'message' => 'Research committee not found'], 404);
+            }
+            return redirect()->back()->with('error', 'Research committee not found');
+        }
+
+        $setting->value = json_encode(array_values($newItems));
+        $setting->save();
+
+        // Cache
+        $committee = Setting::where('key', 'researchCommittee')->first();
+        $researchCommittee = json_decode($committee->value) ?? [];
+        $researchTypes = DB::table('blog_categories')->where('type', helper::blog_type_research)->get();
+
+        Helper::putCache('knowledge.research', view('admin.template.knowledge.research.index', compact('researchTypes', 'researchCommittee')));
+
+
+        // if (request()->wantsJson() || request()->ajax()) {
+        //     return response()->json(['success' => true, 'message' => 'Research committee deleted']);
+        // }
+        return redirect()->back()->with('success', 'Research committee deleted');
     }
 }

@@ -107,8 +107,8 @@ class GalleryController extends Controller
       Helper::putCache('gallery.index', view('admin.template.gallery.index', compact('galleryTypes')));
       Helper::putMetaCache('gallery.index', $data = [
          'title' => 'Gallery',
-         'description' => 'Galleries of Nobel Hospital.',
-         'keywords' => 'nobel gallery, nobel',
+         'description' => 'Galleries of Kathmandu Medical College.',
+         'keywords' => 'kmc gallery, kmc, kathmandu medical college',
          'url' => route('gallery.index')
       ]);
    }
@@ -120,8 +120,8 @@ class GalleryController extends Controller
       
       Helper::putMetaCache('gallery.' . $galleryType->slug, $data = [
          'title' => $galleryType->title,
-         'description' => $galleryType->title . ' of Nobel Hospital.',
-         'keywords' => $galleryType->title . ', nobel gallery, nobel',
+         'description' => $galleryType->title . ' of Kathmandu Medical College.',
+         'keywords' => $galleryType->title . ', kmc gallery, kmc',
          'url' => route('gallery.single', $galleryType->slug)
       ]);
       Helper::putCache('gallery.' . $galleryType->slug, view('admin.template.gallery.single', compact('galleries')));

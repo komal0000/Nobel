@@ -82,7 +82,7 @@ class AboutController extends Controller
         Helper::putCache('about.index', view('admin.template.about.sections', compact('abouts','awards'))->render());
       Helper::putMetaCache('aboutUs', $data = [
          'title' => 'About Us',
-         'description' => 'About Nobel Hospital.',
+         'description' => 'About Kathmandu Medical College.',
          'keywords' => 'about nobel',
          'url' => route('about')
       ]);

@@ -78,7 +78,7 @@
                     <div class="col-md-12">
                         <div class="flex-wrap d-flex justify-content-between align-items-center">
                             <div class="d-flex align-items-center">
-                                <h1>Nobel Medical</h1>
+                                <h1>Kathmandu Medical College</h1>
                             </div>
                         </div>
                     </div>

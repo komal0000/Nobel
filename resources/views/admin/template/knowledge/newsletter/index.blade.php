@@ -19,7 +19,7 @@
             </div>
             @foreach ($newsLetterTypes as $type)
                 @php
-    $newsLetters = App\Models\Blog::where('blog_category_id', $type->id)->get();
+                    $newsLetters = App\Models\Blog::where('blog_category_id', $type->id)->get();
                 @endphp
                 <div class="col-md-8 {{ $loop->first ? 'active' : '' }}" data-content="{{ Str::slug($type->title) }}">
                     <div class="row">

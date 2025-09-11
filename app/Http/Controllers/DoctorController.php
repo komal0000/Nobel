@@ -177,7 +177,7 @@ class DoctorController extends Controller
         Helper::putCache('doctor.index', view('admin.template.doctor.index', compact('doctors', 'specialties', 'doctorSpecialities'))->render());
          Helper::putMetaCache('doctor.doctor', $data = [
             'title' => 'Doctors List',
-            'description' => 'All Doctors available in Nobel Hospital.',
+            'description' => 'All Doctors available in Kathmandu Medical College.',
             'keywords' => 'doctor, doctors',
             'url' => route('doctor.index')
          ]);

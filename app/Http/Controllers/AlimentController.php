@@ -192,7 +192,7 @@ class AlimentController extends Controller
 
          Helper::putMetaCache('ailment', $data = [
             'title' => 'All Ailments',
-            'description' => 'All Ailments section available in Nobel Hospital.',
+            'description' => 'All Ailments section available in Kathmandu Medical College.',
             'keywords' => 'ailments',
             'url' => route('aliment.index')
          ]);
