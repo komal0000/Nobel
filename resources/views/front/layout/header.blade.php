@@ -83,7 +83,7 @@
                 </ul>
             </div>
         </nav>
-        @includeIf('front.cache.home.mobileLogo')
+        @includeIf('front.cache.home.cancerLogo')
     </div>
     <div class="sectionNavbarMainContainer d-none">
         <hr>
