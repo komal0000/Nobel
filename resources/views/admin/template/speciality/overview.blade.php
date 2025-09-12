@@ -2,7 +2,7 @@
     <div class="main-container">
         <div class="col-wrapper d-flex justify-content-center align-items-center flex-column flex-xl-row">
             <div class="left">
-                <h1 class="heading-lg">
+                <h1 class="heading-lg text-center">
                    {{ $speciality->title }}
                 </h1>
                 <div class="buttons">
