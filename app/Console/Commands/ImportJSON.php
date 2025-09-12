@@ -81,11 +81,6 @@ class ImportJSON extends Command
             $blog->creator_user_id = 1;
             $blog->blog_category_id = 1;
             $blog->date = Helper::convertDateToInteger($date);
-
-            // Store document link in datas field as JSON
-            if ($downloadedFile) {
-                $blog->datas = json_encode(['document_path' => $downloadedFile]);
-            }
             $blog->image = $downloadedImage; // Store image path if exists
             $blog->save();
 
