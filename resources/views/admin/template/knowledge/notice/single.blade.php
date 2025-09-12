@@ -3,7 +3,7 @@
         <div class="row g-5">
             <div class="col-lg-9">
                 <div class="case-study">
-                    <div class="case-study-main-img mb-3">
+                    <div class="mb-3">
                         @if (!empty($notice->video_link))
                             <a href="{{ asset($notice->video_link) }}" class="glightbox">
                                 <img src="{{ asset($notice->single_page_image) }}" alt="Case Main Image">
@@ -11,7 +11,7 @@
                                     alt="Play Icon">
                             </a>
                         @else
-                            <img src="{{ asset($notice->image) }}" alt="Notice Main Image">
+                            <img class="h-100 mh-100" src="{{ asset($notice->image) }}" alt="Notice Main Image">
                         @endif
                     </div>
                     

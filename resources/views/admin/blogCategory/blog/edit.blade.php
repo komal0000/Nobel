@@ -93,7 +93,7 @@
                         @endif
 
                     </div>
-                    @if ($blogCategory->type == 6 || $blogCategory->type !== 10)
+                    @if ($blogCategory->type == 6 || $blogCategory->type == 10)
                     <div class="col-md-6">
                             <label for="single_page_image">PDF</label>
                             <input type="file" name="single_page_image" id="single_page_image"
