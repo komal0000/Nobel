@@ -39,30 +39,54 @@ class ImportJSON extends Command
             $title = $item['title'];
             $date = $item['date'];
             $link = $item['link'] ?? null;
+            $imageUrl = $item['imageUrl'] ?? null;
             $type = 10; // Notice type
 
             $this->info("Processing: {$title}");
 
+            // Check if blog with same title already exists
+            $existingBlog = Blog::where('title', $title)->where('type', $type)->first();
+            if ($existingBlog) {
+                $this->info("Skipping - Blog already exists with ID: {$existingBlog->id}");
+                continue;
+            }
             $downloadedFile = null;
+            $downloadedImage = null;
 
             // Download file if link exists
             if ($link) {
-                $downloadedFile = $this->downloadFile($link, $title);
+                $downloadedFile = $this->downloadFile($link, $title, 'document');
                 if ($downloadedFile) {
-                    $this->info("Downloaded: {$downloadedFile}");
+                    $this->info("Downloaded document: {$downloadedFile}");
                 } else {
                     $this->error("Failed to download file from: {$link}");
+                }
+            }
+
+            // Download image if imageUrl exists
+            if ($imageUrl) {
+                $downloadedImage = $this->downloadFile($imageUrl, $title, 'image');
+                if ($downloadedImage) {
+                    $this->info("Downloaded image: {$downloadedImage}");
+                } else {
+                    $this->error("Failed to download image from: {$imageUrl}");
                 }
             }
 
             // Create blog entry
             $blog = new Blog();
             $blog->title = $title;
-            $blog->single_page_image = $downloadedFile;
+            $blog->single_page_image = $downloadedImage; // Use image for single_page_image
             $blog->type = $type;
             $blog->creator_user_id = 1;
-            $blog->blog_category_id = 9;
+            $blog->blog_category_id = 1;
             $blog->date = Helper::convertDateToInteger($date);
+
+            // Store document link in datas field as JSON
+            if ($downloadedFile) {
+                $blog->datas = json_encode(['document_path' => $downloadedFile]);
+            }
+            $blog->image = $downloadedImage; // Store image path if exists
             $blog->save();
 
             $this->info("Created blog entry with ID: {$blog->id}");
@@ -76,19 +100,21 @@ class ImportJSON extends Command
      *
      * @param string $url
      * @param string $title
+     * @param string $type (document|image)
      * @return string|null
      */
-    private function downloadFile($url, $title)
+    private function downloadFile($url, $title, $type = 'document')
     {
         try {
-            // Get file extension from URL or default to pdf
+            // Get file extension from URL or default based on type
             $urlParts = parse_url($url);
             $pathInfo = pathinfo($urlParts['path'] ?? '');
-            $extension = $pathInfo['extension'] ?? 'pdf';
+            $extension = $pathInfo['extension'] ?? ($type === 'image' ? 'jpg' : 'pdf');
 
             // Create a safe filename from title
             $safeTitle = Str::slug($title);
-            $filename = $safeTitle . '_' . time() . '.' . $extension;
+            $prefix = $type === 'image' ? 'img_' : 'doc_';
+            $filename = $prefix . $safeTitle . '_' . time() . '.' . $extension;
 
             // Download the file
             $response = Http::timeout(30)->get($url);
@@ -110,7 +136,7 @@ class ImportJSON extends Command
 
             return null;
         } catch (\Exception $e) {
-            $this->error("Error downloading file: " . $e->getMessage());
+            $this->error("Error downloading {$type}: " . $e->getMessage());
             return null;
         }
     }
