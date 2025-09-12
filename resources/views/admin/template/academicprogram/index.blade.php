@@ -40,13 +40,15 @@
 
     }, $phones);
     $emails = explode(',', $intData->email);
+
+    // dd($intData);
 @endphp
 
-@isset($intData)
+@if($intData)
     <section id="int-banner">
         <div class="main-container">
             <div class="heading-group">
-                <div class="heading">{{ $intData->title }}</div>
+                <div class="heading">{{ ($intData->title ?? '') }}</div>
             </div>
             <div class="content-wrapper">
                 <div class="row g-4">
@@ -110,7 +112,7 @@
             </div>
         </div>
     </section>
-@endisset
+@endif
 
 @foreach ($academicProgramTypes as $type)
     <section id="doctor-videos" data-content="Doctor Videos">
