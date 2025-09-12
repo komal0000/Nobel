@@ -4,7 +4,9 @@ namespace App\Console\Commands;
 
 use App\Helper;
 use App\Models\Blog;
+use App\Models\Setting;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -73,16 +75,16 @@ class ImportJSON extends Command
                 }
             }
 
-            // Create blog entry
             $blog = new Blog();
             $blog->title = $title;
             $blog->single_page_image = $downloadedImage; // Use image for single_page_image
             $blog->type = $type;
             $blog->creator_user_id = 1;
-            $blog->blog_category_id = 1;
+            $blog->blog_category_id = 9;
             $blog->date = Helper::convertDateToInteger($date);
             $blog->image = $downloadedImage; // Store image path if exists
             $blog->save();
+            $this->renderSingle($blog->id, $type);
 
             $this->info("Created blog entry with ID: {$blog->id}");
         }
@@ -134,5 +136,23 @@ class ImportJSON extends Command
             $this->error("Error downloading {$type}: " . $e->getMessage());
             return null;
         }
+    }
+
+      public function renderSingle($blog_id, $type)
+    {
+
+        if ($type == Helper::blog_type_notice) {
+            $notice = DB::table('blogs')->where('id', $blog_id)->first();
+            $latestNotice = DB::table('blogs')->where('type', Helper::blog_type_notice)->orderBy('id', 'desc')->take(5)->get();
+
+            Helper::putMetaCache('knowledge.notice.' . $notice->slug, $data = [
+                'title' => $notice->title,
+                'description' => $notice->short_description,
+                'image' => asset(asset($notice->image)),
+                'url' => route('knowledge.notice.single', ['slug' => $notice->slug]),
+            ]);
+            Helper::putCache('knowledge.notice.' . $notice->slug, view('admin.template.knowledge.notice.single', compact('notice', 'latestNotice'))->render());
+        }
+
     }
 }
