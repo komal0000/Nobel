@@ -13088,4 +13088,13 @@ footer .footer-bottom .copyright {
     font-size: 14px;
 }
 
+.academic-para-wrap {
+    height: 4lh;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 /*# sourceMappingURL=index.css.map */

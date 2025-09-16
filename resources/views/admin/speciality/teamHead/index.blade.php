@@ -56,6 +56,7 @@
                 .then(function(response) {
                     (response.data.status === 'success')
                     $('#teamHead_' + id).remove();
+                    window.location.reload();
 
                 })
                 .catch(function(error) {

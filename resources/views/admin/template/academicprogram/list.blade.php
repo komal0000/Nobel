@@ -18,7 +18,7 @@
             </div>
             <div class="floating">
                 <input type="text" id="search-all-video" name="allVideo" class="form-control"
-                    placeholder="Search All Videos">
+                    placeholder="Search">
                 <div class="search-icon"><i class="bi bi-search"></i></div>
             </div>
         </div>
@@ -39,7 +39,7 @@
                                     <div class="heading-sm">
                                         {{ $academicProgram->title }}
                                     </div>
-                                    <div class="para-wrap">
+                                    <div class="para-wrap academic-para-wrap">
                                         {{ $academicProgram->short_description }}
                                     </div>
                                 </div>

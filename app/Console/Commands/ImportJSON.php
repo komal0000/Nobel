@@ -77,7 +77,7 @@ class ImportJSON extends Command
 
             $blog = new Blog();
             $blog->title = $title;
-            $blog->single_page_image = $downloadedImage; // Use image for single_page_image
+            $blog->single_page_image = $downloadedFile; // Use image for single_page_image
             $blog->type = $type;
             $blog->creator_user_id = 1;
             $blog->blog_category_id = 9;

@@ -171,7 +171,11 @@ class SpecialityController extends Controller
     {
         $specialty = DB::table(Speciality::tableName)->where('id',$speciality_id)->first();
         $teamHead = DB::table('speciality_team_heads')->where('specialty_id', $speciality_id)->first();
-        Helper::putCache('speciality.single.' . $specialty->slug . '.message', view('admin.template.speciality.teamHead', compact('teamHead'))->render());
+        if (!empty($teamHead)) {
+            Helper::putCache('speciality.single.' . $specialty->slug . '.message', view('admin.template.speciality.teamHead', compact('teamHead'))->render());
+        } else {
+            Helper::deleteCache('speciality.single.' . $specialty->slug . '.message');
+        }
     }
 
     public function render()
