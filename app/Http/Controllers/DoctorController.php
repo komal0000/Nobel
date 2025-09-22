@@ -24,7 +24,7 @@ class DoctorController extends Controller
     public function add(Request $request)
     {
         if (Helper::G()) {
-            $specialties = DB::table('specialties')->whereNull('parent_speciality_id')->get();
+            $specialties = DB::table('specialties')->get();
             return view('admin.doctor.add', compact('specialties'));
         } else {
             $doctor = new Doctor();
@@ -57,7 +57,7 @@ class DoctorController extends Controller
     {
         $doctor = Doctor::where('id', $doctor_id)->first();
         if (Helper::G()) {
-            $specialties = DB::table('specialties')->whereNull('parent_speciality_id')->get();
+            $specialties = DB::table('specialties')->get();
             $doctorSpecialities = DB::table('doctor_specialities')->where('doctor_id', $doctor_id)->get();
             return view('admin.doctor.edit', compact('doctor', 'specialties', 'doctorSpecialities'));
         } else {

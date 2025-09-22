@@ -31,20 +31,20 @@ $(document).ready(function() {
         responsive: responsiveConfig
     });
 
-    $('.sub-slider').slick({
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        adaptiveHeight: false,
-        arrows: true,
-        ...arrowConfig,
-        responsive: [...responsiveConfig.slice(0, -1), {
-            breakpoint: 768,
-            settings: {
-                slidesToShow: 1,
-                centerMode: true
-            }
-        }]
-    });
+    // $('.sub-slider').slick({
+    //     slidesToShow: 4,
+    //     slidesToScroll: 1,
+    //     adaptiveHeight: false,
+    //     arrows: true,
+    //     ...arrowConfig,
+    //     responsive: [...responsiveConfig.slice(0, -1), {
+    //         breakpoint: 768,
+    //         settings: {
+    //             slidesToShow: 1,
+    //             centerMode: true
+    //         }
+    //     }]
+    // });
 
     // Initialize lightbox
     const lightBox = GLightbox({
