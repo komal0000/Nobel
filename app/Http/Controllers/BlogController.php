@@ -257,6 +257,7 @@ class BlogController extends Controller
         if ($type == Helper::blog_type_notice) {
             $notice = DB::table('blogs')->where('id', $blog_id)->first();
             $latestNotice = DB::table('blogs')->where('type', Helper::blog_type_notice)->orderBy('id', 'desc')->take(5)->get();
+            $homeNotices = DB::table('blogs')->where('type', Helper::blog_type_notice)->orderBy('created_at', 'desc')->limit(5)->get();
 
             Helper::putMetaCache('knowledge.notice.' . $notice->slug, $data = [
                 'title' => $notice->title,
@@ -265,6 +266,8 @@ class BlogController extends Controller
                 'url' => route('knowledge.notice.single', ['slug' => $notice->slug]),
             ]);
             Helper::putCache('knowledge.notice.' . $notice->slug, view('admin.template.knowledge.notice.single', compact('notice', 'latestNotice'))->render());
+            Helper::putCache('home.homeNotice', view('admin.template.home.notice', compact('homeNotices')));
+
         }
 
         if ($type == Helper::blog_type_journal) {
@@ -287,6 +290,7 @@ class BlogController extends Controller
         $newsData = DB::table('blogs')->where('type', Helper::blog_type_news)->where('is_featured', 0)->take(3)->get();
         $latestNews = DB::table('blogs')->where('type', Helper::blog_type_news)->where('is_featured', 1)->first();
         $updateData = DB::table('blogs')->where('type', Helper::blog_type_update)->get();
+        $homeNotices = DB::table('blogs')->where('type', Helper::blog_type_notice)->orderBy('created_at', 'desc')->limit(5)->get();
         //Event and news
         $eventTypes = DB::table('blog_categories')->where('type', Helper::blog_type_event)->get();
 
@@ -421,6 +425,7 @@ class BlogController extends Controller
         Helper::putCache('home.updates', view('admin.template.home.update', compact('updateData'))->render());
         Helper::putCache('home.newsEvent', view('admin.template.home.news', compact('newsData', 'eventData', 'latestNews', 'eventTypes', ))->render());
         Helper::putCache('health.event', view('admin.template.health.event', compact('eventData')));
+        Helper::putCache('home.homeNotice', view('admin.template.home.notice', compact('homeNotices')));
     }
     public function deleteCache($slug, $type)
     {

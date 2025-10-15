@@ -47,6 +47,9 @@
                                         <a href="{{ route('knowledge.notice.index') }}" class="drop-item">Notice</a>
                                     </li>
                                     <li>
+                                        <a href="{{ route('knowledge.journal.index') }}" class="drop-item">Journal</a>
+                                    </li>
+                                    <li>
                                         <a href="{{ route('knowledge.newsletter') }}" class="drop-item">News Letter</a>
                                     </li>
                                 </ul>

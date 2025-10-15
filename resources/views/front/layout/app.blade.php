@@ -16,7 +16,7 @@
 
     @yield('metaData')
     <meta name="geo.region" content="NP">
-    <meta name="geo.placename" content="Biratnagar">
+    <meta name="geo.placename" content="Kathmandu">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 

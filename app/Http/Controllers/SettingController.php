@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Helper;
+use App\Mail\CallbackRequestMail;
+use App\Mail\FeedbackMail;
 use App\Models\Irc;
 use App\Models\JobRequest;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class SettingController extends Controller
@@ -320,6 +323,18 @@ class SettingController extends Controller
 
         $setting->value = json_encode($merged);
         $setting->save();
+
+        $lastSubmitted = end($validatedData['data']);
+        $details = $lastSubmitted['details'] ?? [];
+        $payload = [
+            'name' => $details['name'] ?? '',
+            'email' => $details['email'] ?? '',
+            'mobile' => $details['phoneNumber'] ?? '',
+            'message' => $details['message'] ?? '',
+        ];
+        Log::info("data: ", [$payload]);
+        Mail::to('rijalamrit987@gmail.com')->queue(new CallbackRequestMail($payload));
+
         return response()->json(['message' => 'Your Request has been saved successfully']);
 
     }
@@ -354,7 +369,6 @@ class SettingController extends Controller
             ]);
 
             $setting = Setting::firstOrCreate(['key' => 'feedback']);
-
 
             // Replace entire data
             $replaced = [];
@@ -397,6 +411,21 @@ class SettingController extends Controller
         $merged = array_merge($existing, $newData);
         $setting->value = json_encode($merged);
         $setting->save();
+
+        // Saving and then sending to mail
+
+
+        $lastSubmitted = end($validatedData['data']);
+        $details = $lastSubmitted['details'] ?? [];
+        $payload = [
+            'name' => $details['name'] ?? '',
+            'email' => $details['email'] ?? '',
+            'mobile' => $details['phoneNumber'] ?? '',
+            'message' => $details['message'] ?? '',
+        ];
+        Mail::to('rijalamrit987@gmail.com')->queue(new FeedbackMail($payload));
+
+
         return response()->json(['message' => 'Thanks for the feedback']);
     }
 
@@ -465,6 +494,43 @@ class SettingController extends Controller
             $jobRequest->job_id = $job->id;
 
             $jobRequest->save();
+
+            $payload = [
+                'job_title' => $job->title ?? '',
+                'job_slug' => $job->slug ?? '',
+                'applicant' => [
+                    'name' => $request->name ?? '',
+                    'email' => $request->email ?? '',
+                    'contactNumber' => $request->contactNumber ?? '',
+                    'dob' => $request->dob ?? '',
+                    'gender' => $request->gender ?? '',
+                    'exp' => $request->exp ?? '',
+                ],
+                'professional' => [
+                    'orgName' => $request->orgName ?? '',
+                    'currentCost' => $request->currentCost ?? '',
+                    'expectedCost' => $request->expectedCost ?? '',
+                    'noticePeriod' => $request->noticePeriod ?? '',
+                    'currentDesignation' => $request->currentDesignation ?? '',
+                    'department' => $request->department ?? '',
+                    'yearExp' => $request->yearExp ?? '',
+                    'changeReason' => $request->changeReason ?? '',
+                ],
+                'education' => [
+                    'institution' => $request->institution ?? '',
+                    'degree' => $request->degree ?? '',
+                    'completionYear' => $request->completionYear ?? '',
+                    'securedPercent' => $request->securedPercent ?? '',
+                ],
+                'message' => $request->jobMessage ?? '',
+                'resume' => $resumePath, // storage path relative to public disk
+            ];
+
+            Log::info("job", [$payload]);
+
+            // Queue email to HR/admin
+            Mail::to('rijalamrit987@gmail.com')->queue(new \App\Mail\JobRequestMail($payload));
+
             return response()->json(['message' => 'Your application has been submitted successfully.'], 200);
         } catch (\Exception $e) {
             \Illuminate\Support\Facades\Log::error('Job request error: ' . $e->getMessage());

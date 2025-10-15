@@ -10,12 +10,12 @@
             </div>
 
             <div class="feedback-section">
-                <a href="{{ route('contact') }}" class="btn-action button-secondary feedback-btn">
+                <a href="{{ route('contact') }}" class="btn-action button-primary feedback-btn">
                     <img src="{{ asset('front/assets/img/feedback.png') }}" alt="Feedback">
                     <span>Feedback</span>
                 </a>
 
-                <a href="tel:102" class="btn-action button-primary emergency-btn">
+                <a href="tel:102" class="btn-action button-primary">
                     <img src="{{ asset('front/assets/img/emergency.png') }}" alt="Emergency">
                     <span>Emergency</span>
                 </a>
@@ -24,6 +24,22 @@
                     data-bs-target="#callback-modal">
                     <img src="{{ asset('front/assets/img/phone-icon.png') }}" alt="Call Back">
                     <span>Request Call</span>
+                </a>
+            </div>
+            
+            <div class="feedback-section">
+                <a href="https://reports.kmc.edu.np/login" target="_blank" class="btn-action button-primary feedback-btn">
+                    {{-- <img src="{{ asset('front/assets/img/feedback.png') }}" alt="Feedback"> --}}
+                    <span>Online Lab Report</span>
+                </a>
+
+                <a href="https://appointment.merodoctor.com/hospitals/service" target="_blank" class="btn-action button-primary feedback-btn">
+                    {{-- <img src="{{ asset('front/assets/img/emergency.png') }}" alt="Emergency"> --}}
+                    <span>Online Appointment</span>
+                </a>
+
+                <a href="{{ route('knowledge.newsletter') }}" class="btn-action button-primary" style="cursor: pointer;">
+                    <span>News Letter</span>
                 </a>
             </div>
         </div>
