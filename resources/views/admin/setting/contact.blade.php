@@ -98,6 +98,11 @@
                         <label for="short_desc">Short Description</label>
                         <textarea name="short_desc" id="short_desc" class="form-control">{{ $data->short_desc }}</textarea>
                     </div>
+                    <div class="col-md-6">
+                        <label for="requestEmail">Request Receiving Email</label>
+                        <input type="email" name="request_email" id="requestEmail" class="form-control"
+                            value="{{ $data->request_email ?? '' }}">
+                    </div>
 
                     <div class="col-12 py-t mt-3">
                         <h5>International Contact Details</h5>

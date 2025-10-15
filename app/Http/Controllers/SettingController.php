@@ -129,7 +129,8 @@ class SettingController extends Controller
                     'youtube' => '',
                     'instagram' => '',
                     'twitter' => '',
-                ]
+                ],
+                'request_email' => ''
             ]));
 
             $intData = Helper::getSetting('intContact') ?? ((object) ([
@@ -170,7 +171,8 @@ class SettingController extends Controller
                     'youtube' => $request->youtube ?? '',
                     'instagram' => $request->instagram ?? '',
                     'twitter' => $request->twitter ?? '',
-                ]
+                ],
+                'request_email' => $request->request_email ?? ''
             ];
 
             $internationalData = Helper::getSetting('intContact') ?? ((object) ([
@@ -332,8 +334,10 @@ class SettingController extends Controller
             'mobile' => $details['phoneNumber'] ?? '',
             'message' => $details['message'] ?? '',
         ];
-        Log::info("data: ", [$payload]);
-        Mail::to('rijalamrit987@gmail.com')->queue(new CallbackRequestMail($payload));
+        
+        $data = Helper::getSetting('contact');
+        $requestEmail = $data->request_email ?? '';
+        Mail::to($requestEmail)->queue(new CallbackRequestMail($payload));
 
         return response()->json(['message' => 'Your Request has been saved successfully']);
 
@@ -423,7 +427,10 @@ class SettingController extends Controller
             'mobile' => $details['phoneNumber'] ?? '',
             'message' => $details['message'] ?? '',
         ];
-        Mail::to('rijalamrit987@gmail.com')->queue(new FeedbackMail($payload));
+
+        $data = Helper::getSetting('contact');
+        $requestEmail = $data->request_email ?? '';
+        Mail::to($requestEmail)->queue(new FeedbackMail($payload));
 
 
         return response()->json(['message' => 'Thanks for the feedback']);
@@ -523,17 +530,16 @@ class SettingController extends Controller
                     'securedPercent' => $request->securedPercent ?? '',
                 ],
                 'message' => $request->jobMessage ?? '',
-                'resume' => $resumePath, // storage path relative to public disk
+                'resume' => $resumePath,
             ];
 
-            Log::info("job", [$payload]);
-
-            // Queue email to HR/admin
-            Mail::to('rijalamrit987@gmail.com')->queue(new \App\Mail\JobRequestMail($payload));
+            $data = Helper::getSetting('contact');
+            $requestEmail = $data->request_email ?? '';
+            Mail::to($requestEmail)->queue(new \App\Mail\JobRequestMail($payload));
 
             return response()->json(['message' => 'Your application has been submitted successfully.'], 200);
         } catch (\Exception $e) {
-            \Illuminate\Support\Facades\Log::error('Job request error: ' . $e->getMessage());
+            Log::error('Job request error: ' . $e->getMessage());
             return response()->json(['error' => 'An error occurred: ' . $e->getMessage()], 500);
         }
     }
