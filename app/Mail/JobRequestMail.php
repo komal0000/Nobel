@@ -25,22 +25,22 @@ class JobRequestMail extends Mailable
     /**
      * Get the message envelope.
      */
-    public function envelope(): Envelope
-    {
-        return new Envelope(
-            subject: 'Job Request Mail',
-        );
-    }
+    // public function envelope(): Envelope
+    // {
+    //     return new Envelope(
+    //         subject: 'Job Request Mail',
+    //     );
+    // }
 
     /**
      * Get the message content definition.
      */
-    public function content(): Content
-    {
-        return new Content(
-            markdown: 'emails.jobRequest',
-        );
-    }
+    // public function content(): Content
+    // {
+    //     return new Content(
+    //         markdown: 'emails.jobRequest',
+    //     );
+    // }
 
     /**
      * Get the attachments for the message.
@@ -63,8 +63,7 @@ class JobRequestMail extends Mailable
         // Attach resume from public storage if exists
         if (!empty($this->data['resume'])) {
             $resumeRelative = $this->data['resume'];
-            // $resumeFull = storage_path('app/public/' . ltrim($resumeRelative, '/'));
-            $resumeFull = 'https://www.rd.usda.gov/sites/default/files/pdf-sample_0.pdf';
+            $resumeFull = storage_path('app/public/' . ltrim($resumeRelative, '/'));
             if (file_exists($resumeFull)) {
                 $this->attach($resumeFull, [
                     'as' => basename($resumeFull),

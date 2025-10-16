@@ -337,7 +337,12 @@ class SettingController extends Controller
         
         $data = Helper::getSetting('contact');
         $requestEmail = $data->request_email ?? '';
-        Mail::to($requestEmail)->queue(new CallbackRequestMail($payload));
+
+        if (config('queue.default') === 'database') {
+            Mail::to($requestEmail)->queue(new CallbackRequestMail($payload));
+        } else {
+            Mail::to($requestEmail)->send(new CallbackRequestMail($payload));
+        }
 
         return response()->json(['message' => 'Your Request has been saved successfully']);
 
@@ -430,8 +435,11 @@ class SettingController extends Controller
 
         $data = Helper::getSetting('contact');
         $requestEmail = $data->request_email ?? '';
-        Mail::to($requestEmail)->queue(new FeedbackMail($payload));
-
+        if (config('queue.default') === 'database') {
+            Mail::to($requestEmail)->queue(new FeedbackMail($payload));
+        } else {
+            Mail::to($requestEmail)->send(new FeedbackMail($payload));
+        }
 
         return response()->json(['message' => 'Thanks for the feedback']);
     }
@@ -535,7 +543,11 @@ class SettingController extends Controller
 
             $data = Helper::getSetting('contact');
             $requestEmail = $data->request_email ?? '';
-            Mail::to($requestEmail)->queue(new \App\Mail\JobRequestMail($payload));
+            if(config('queue.default') === 'database') {
+                Mail::to($requestEmail)->queue(new \App\Mail\JobRequestMail($payload));
+            } else {
+                Mail::to($requestEmail)->send(new \App\Mail\JobRequestMail($payload));
+            }
 
             return response()->json(['message' => 'Your application has been submitted successfully.'], 200);
         } catch (\Exception $e) {

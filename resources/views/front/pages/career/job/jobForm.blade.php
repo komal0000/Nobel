@@ -107,7 +107,7 @@
         // Create spinner or loading indicator
         const $submitBtn = $('#formSubmit');
         $submitBtn.prop('disabled', true).html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');
-
+        $submitBtn.css('opacity', '0.5');
         const formData = new FormData(this); // Collect all form inputs
 
         

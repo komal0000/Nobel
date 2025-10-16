@@ -27,7 +27,7 @@
     <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
 
-    <link rel="stylesheet" href="{{ asset('front/assets/css/index.css') }}?ver={{config('app.ver',1)}}">
+    <link rel="stylesheet" href="{{ asset('front/assets/css/index.css') }}?ver={{ config('app.ver', 1) }}">
 
     @yield('css')
     @includeIf('front.cache.extra.colorScheme')
@@ -45,6 +45,21 @@
             z-index: 10;
             font-size: 12px;
             top: 16px;
+        }
+
+        #submit-callback[disabled] {
+            cursor: wait;
+            opacity: 0.8;
+        }
+
+        .btn-loading {
+            pointer-events: none;
+            opacity: 0.85;
+        }
+
+        .btn-loading .spinner-border {
+            vertical-align: middle;
+            margin-right: 0.5rem;
         }
     </style>
 </head>
@@ -90,12 +105,12 @@
                                 </div>
                             </div>
                             <div class="col-12">
-                              <div class="form-floating mb-3">
-                                  <input type="text" class="form-control" name="message"
-                                      placeholder="Enter Your Message*" required>
-                                  <label for="message">Enter Your Message*</label>
-                              </div>
-                          </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" name="message"
+                                        placeholder="Enter Your Message*" required>
+                                    <label for="message">Enter Your Message*</label>
+                                </div>
+                            </div>
 
                             <div class="col-12 submit-btn">
                                 <button class="w-100" id="submit-callback" type="submit">Submit</button>
@@ -113,7 +128,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
 
-    <script src="{{ asset('front/assets/js/navbar/index.js') }}?ver={{config('app.ver')}}"></script>
+    <script src="{{ asset('front/assets/js/navbar/index.js') }}?ver={{ config('app.ver') }}"></script>
 
     <script>
         window.appConfig = window.appConfig || {};
@@ -329,6 +344,20 @@
         $('#callback-form').on('submit', function(event) {
             event.preventDefault(); // prevent page refresh
 
+            const $form = $(this);
+            const $btn = $('#submit-callback');
+
+            // prevent double submits
+            if ($btn.prop('disabled')) return;
+
+            // save original button content to restore later
+            const originalHtml = $btn.html();
+
+            // show spinner and disable button
+            $btn.prop('disabled', true)
+                .addClass('btn-loading')
+                .html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Submitting...');
+
             const formData = new FormData(this);
 
             const newEntry = {
@@ -350,11 +379,15 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function(response) {
-                  alert(response.message);
-                  location.reload();
+                    // restore button and show response
+                    $btn.prop('disabled', false).removeClass('btn-loading').html(originalHtml);
+                    alert(response.message);
+                    location.reload();
                 },
                 error: function(error) {
                     console.log(error);
+                    // restore button when there is an error
+                    $btn.prop('disabled', false).removeClass('btn-loading').html(originalHtml);
                     alert('Error saving!');
                 }
             });

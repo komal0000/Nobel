@@ -144,7 +144,7 @@
                         </div>
                     </div>
                     <div class="button align-self-center">
-                        <button type="submit" class="submit-btn">Submit</button>
+                        <button type="submit" class="submit-btn" id="contact-us-submit-btn">Submit</button>
                     </div>
                 </form>
             </div>

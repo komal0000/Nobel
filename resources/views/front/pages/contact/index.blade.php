@@ -15,6 +15,10 @@ $('#feedback-form').on('submit', function (event) {
     event.preventDefault(); // prevent page refresh
 
     const formData = new FormData(this);
+    const $contactBtn = $('#contact-us-submit-btn');
+
+    $contactBtn.prop('disabled', true).html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');
+    $contactBtn.css('opacity', '0.5');
 
     const newEntry = {
         name: formData.get('name'),

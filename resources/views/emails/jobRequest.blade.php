@@ -37,3 +37,4 @@
 ## Resume
 You will find the resume attached to this email.
 @endif
+@endcomponent
