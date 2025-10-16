@@ -8,6 +8,8 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class JobRequestMail extends Mailable
 {
@@ -60,15 +62,46 @@ class JobRequestMail extends Mailable
         $favicon = \App\Helper::getSetting('top_favicon', true);
         $logoUrl = $favicon ? asset('storage/' . ltrim($favicon, '/')) : null;
 
-        // Attach resume from public storage if exists
+        // Attach resume from public storage if exists (use Storage helpers and normalize path)
         if (!empty($this->data['resume'])) {
-            $resumeRelative = $this->data['resume'];
-            $resumeFull = storage_path('app/public/' . ltrim($resumeRelative, '/'));
-            if (file_exists($resumeFull)) {
-                $this->attach($resumeFull, [
-                    'as' => basename($resumeFull),
-                    'mime' => mime_content_type($resumeFull) ?: 'application/octet-stream'
+            $resumeRelative = ltrim($this->data['resume'], '/');
+            $disk = 'public';
+
+            if (Storage::disk($disk)->exists($resumeRelative)) {
+                // Determine MIME type using the local file path to avoid calling a method
+                // that may not exist on the filesystem contract.
+                $mime = 'application/octet-stream';
+                try {
+                    // path() is available for local disks (like 'public') and gives an absolute path.
+                    $filePath = Storage::disk($disk)->path($resumeRelative);
+                    if (is_file($filePath)) {
+                        if (function_exists('finfo_open')) {
+                            $finfo = finfo_open(FILEINFO_MIME_TYPE);
+                            $detected = $finfo ? finfo_file($finfo, $filePath) : false;
+                            if ($finfo) {
+                                finfo_close($finfo);
+                            }
+                            if ($detected) {
+                                $mime = $detected;
+                            }
+                        } elseif (function_exists('mime_content_type')) {
+                            $detected = @mime_content_type($filePath);
+                            if ($detected) {
+                                $mime = $detected;
+                            }
+                        }
+                    }
+                } catch (\Throwable $e) {
+                    Log::warning('Failed to detect MIME type for resume', ['path' => $resumeRelative, 'error' => $e->getMessage()]);
+                }
+
+                $this->attachFromStorageDisk($disk, $resumeRelative, basename($resumeRelative), [
+                    'mime' => $mime,
                 ]);
+            } else {
+                // Log full intended path for debugging
+                $resumeFull = storage_path('app/' . $disk . '/' . $resumeRelative);
+                Log::warning('Resume not found for email attach', ['relative' => $resumeRelative, 'full' => $resumeFull]);
             }
         }
 
