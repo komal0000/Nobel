@@ -29,10 +29,10 @@
                                 {{ $value['details']['email'] }}
                             </td>
                             <td>
-                              {{ $value['details']['message'] }}
-                          </td>
+                                {{ $value['details']['message'] }}
+                            </td>
                             <td>
-                                <button onclick="deleteCallback({{ $value['id'] }})"
+                                <button onclick="deleteCallback(event, {{ $value['id'] }})"
                                     class="btn btn-sm btn-danger">Delete</button>
                             </td>
                         </tr>
@@ -55,24 +55,24 @@
     <script>
         let callbackData = @json($values);
 
-        function deleteCallback(id) {
-            console.log("before delete: ", callbackData);
+        function deleteCallback(event, id) {
+            event.preventDefault();
 
             callbackData = callbackData.filter(item => item.id !== id);
             const row = document.getElementById('tr_' + id);
-            
+
             axios.post("{{ route('admin.setting.requestCallBack') }}", {
                     data: callbackData,
                     _token: '{{ csrf_token() }}'
                 })
                 .then(res => {
-                  if(res.status === 200) {
-                     row.remove();
-                     location.reload();
-                  } else {
-                     console.log('Error: ', res.data)
-                     alert('Failed to delete the data. Try again later.')
-                  }
+                    if (res.status === 200) {
+                        row.remove();
+                        location.reload();
+                    } else {
+                        console.log('Error: ', res.data)
+                        alert('Failed to delete the data. Try again later.')
+                    }
                 })
                 .catch(error => {
                     console.error('Failed to save the data: ', error)

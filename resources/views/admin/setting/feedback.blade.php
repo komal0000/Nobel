@@ -57,8 +57,7 @@
         let feedbackData = @json($values);
 
         function deleteFeedback(event, id) {
-         event.preventDefault();
-            console.log("before delete: ", feedbackData);
+            event.preventDefault();
 
             feedbackData = feedbackData.filter(item => item.id !== id);
             const row = document.getElementById('tr_' + id);
@@ -67,14 +66,12 @@
                     _token: '{{ csrf_token() }}'
                 })
                 .then(res => {
-                  row.remove();
+                    row.remove();
                     location.reload();
                 })
                 .catch(error => {
                     console.error('Failed to save the data: ', error)
                 })
-
-            console.log("After Delete: ", feedbackData);
 
         }
     </script>

@@ -249,7 +249,7 @@ class SettingController extends Controller
         }
     }
 
-    public function RequestCallBack(Request $request)
+    public function requestCallBack(Request $request)
     {
         if ($request->isMethod('get')) {
             $requestCallBack = Setting::where('key', 'request_call_back')->first();
