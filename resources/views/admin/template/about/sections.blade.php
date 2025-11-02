@@ -1,9 +1,9 @@
 @foreach ($abouts as $about)
-    {{-- <section id="about-nobel">
+    {{-- <section id="about-kmc">
         <div class="main-container">
             <div class="d-flex flex-column flex-md-row gap-4">
                 <div class="img-wrap">
-                    <img src="{{ asset($about->image) }}" alt="About Nobel Image">
+                    <img src="{{ asset($about->image) }}" alt="About kmc Image">
                 </div>
                 <div class="content align-self-center d-flex flex-column gap-4">
                     <div class="heading">

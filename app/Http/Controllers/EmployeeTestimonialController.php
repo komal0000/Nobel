@@ -62,7 +62,7 @@ class EmployeeTestimonialController extends Controller
          Helper::putMetaCache('career', $data = [
             'title' => 'Career',
             'description' => 'Reach out to KMC for career opportunities.',
-            'keywords' => 'career, career nobel',
+            'keywords' => 'career, career kmc',
             'url' => route('careers')
          ]);
         Helper::putCache('career.testimonials', view('admin.template.career.EmployeeTestimonials', compact('testimonials'))->render());

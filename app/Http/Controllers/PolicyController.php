@@ -53,7 +53,7 @@ class PolicyController extends Controller
       Helper::putMetaCache('policy', $data = [
          'title' => 'Policy',
          'description' => 'Polices of Kathmandu Medical College.',
-         'keywords' => 'policy nobel',
+         'keywords' => 'policy kmc',
          'url' => route('policy')
       ]);
     }

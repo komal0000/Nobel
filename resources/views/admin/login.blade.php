@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Nobel</title>
+    <title>KMC</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="admin/assets/images/favicon.ico">
@@ -81,7 +81,7 @@
                                                 </svg>
                                             </div>
                                         </div>
-                                        <h4 class="logo-title ms-3">Nobel</h4>
+                                        <h4 class="logo-title ms-3">Kathmandu Medical College</h4>
                                     </a>
                                     <h2 class="mb-2 text-center">Sign In</h2>
                                     <p class="text-center">Login to stay connected.</p>

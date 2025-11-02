@@ -97,7 +97,7 @@
                         <li onclick="expandResLi(this)">
                             <h3 class="heading-sm accor-heading">{{ $data->title }}</h3>
                             <div class="accor-collapse-wrapper">
-                                <img loading="lazy" src="{{ asset($data->image) }}" alt="Why Nobel" width="460" height="460"
+                                <img loading="lazy" src="{{ asset($data->image) }}" alt="Why KMC" width="460" height="460"
                                     class="ratio ratio-1x1">
                                 <div class="common-button">
                                     <x-hoverBtn href="{{$data->link}}" class="anchor-button">Know More

@@ -148,7 +148,7 @@ class JobController extends Controller
       Helper::putMetaCache('career', $data = [
          'title' => 'Career',
          'description' => 'Reach out to Kathmandu Medical College for career opportunities.',
-         'keywords' => 'career, career nobel',
+         'keywords' => 'career, career kmc',
          'url' => route('careers')
       ]);
    }

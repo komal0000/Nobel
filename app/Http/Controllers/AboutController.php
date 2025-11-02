@@ -83,7 +83,7 @@ class AboutController extends Controller
       Helper::putMetaCache('aboutUs', $data = [
          'title' => 'About Us',
          'description' => 'About Kathmandu Medical College.',
-         'keywords' => 'about nobel',
+         'keywords' => 'about kmc',
          'url' => route('about')
       ]);
       }
