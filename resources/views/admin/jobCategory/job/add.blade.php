@@ -10,32 +10,32 @@
         <div class="row">
             <div class="col-md-3 mb-2">
                 <label for="title">Title <span style="color: red;">*</span></label>
-                <input type="text" class="form-control" id="title" name="title" required>
+                <input type="text" class="form-control" id="title" name="title" >
             </div>
             <div class="col-md-3 mb-2">
-                <label for="type">Type (Full Time/Part Time...) <span style="color: red;">*</span></label>
-                <input type="text" class="form-control" id="type" name="type" required>
+                <label for="type">Type (Full Time/Part Time...)</label>
+                <input type="text" class="form-control" id="type" name="type" >
             </div>
             <div class="col-md-3 mb-2">
-                <label for="location">Location <span style="color: red;">*</span></label>
-                <input type="text" class="form-control" id="location" name="location" required>
+                <label for="location">Location</label>
+                <input type="text" class="form-control" id="location" name="location" >
             </div>
             <div class="col-md-3 mb-2">
-                <label for="date">Date <span style="color: red;">*</span></label>
-                <input type="date" class="form-control" id="date" name="date" required>
+                <label for="date">Date</label>
+                <input type="date" class="form-control" id="date" name="date" >
             </div>
 
             <div class="col-md-6 mb-2">
-                <label for="qualification">Qualification <span style="color: red;">*</span></label>
-                <input type="text" class="form-control" id="qualification" name="qualification" required>
+                <label for="qualification">Qualification</label>
+                <input type="text" class="form-control" id="qualification" name="qualification" >
             </div>
             <div class="col-md-6 mb-2">
-                <label for="experience">Experience <span style="color: red;">*</span></label>
-                <input type="text" class="form-control" id="experience" name="experience" required>
+                <label for="experience">Experience</label>
+                <input type="text" class="form-control" id="experience" name="experience" >
             </div>
             <div class="col-md-12 mb-3">
-                <label for="description">Description <span style="color: red;">*</span></label>
-                <textarea class="form-control summernote" id="description" name="description" required></textarea>
+                <label for="description">Description</label>
+                <textarea class="form-control summernote" id="description" name="description" ></textarea>
             </div>
             <div class="col-md-12 d-flex justify-content-end">
                 <button type="submit" class="btn btn-success">
