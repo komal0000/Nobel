@@ -610,20 +610,20 @@ class SettingController extends Controller
             $data = $values ?? [];
 
             // Delete previous desktop image if new one is uploaded
-            if ($request->hasFile('desktopImage')) {
+            if ($request->hasFile('desktop_image')) {
                 if (!empty($data['desktopImage']) && Storage::disk('public')->exists($data['desktopImage'])) {
                     Storage::disk('public')->delete($data['desktopImage']);
                 }
-                $desktopPath = $request->file('desktopImage')->store('uploads/national', 'public');
+                $desktopPath = $request->file('desktop_image')->store('uploads/national', 'public');
                 $data['desktopImage'] = $desktopPath;
             }
 
             // Delete previous mobile image if new one is uploaded
-            if ($request->hasFile('mobileImage')) {
+            if ($request->hasFile('mobile_image')) {
                 if (!empty($data['mobileImage']) && Storage::disk('public')->exists($data['mobileImage'])) {
                     Storage::disk('public')->delete($data['mobileImage']);
                 }
-                $mobilePath = $request->file('mobileImage')->store('uploads/national', 'public');
+                $mobilePath = $request->file('mobile_image')->store('uploads/national', 'public');
                 $data['mobileImage'] = $mobilePath;
             }
 
