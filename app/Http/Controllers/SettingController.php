@@ -334,7 +334,7 @@ class SettingController extends Controller
             'mobile' => $details['phoneNumber'] ?? '',
             'message' => $details['message'] ?? '',
         ];
-        
+
         $data = Helper::getSetting('contact');
         $requestEmail = $data->request_email ?? '';
 
