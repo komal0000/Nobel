@@ -14,6 +14,7 @@
     @includeIf('front.cache.home.care')
     @includeIf('front.cache.home.homeNotice')
     @includeIf('front.cache.home.services')
+    @includeIf('front.cache.home.job')
     @includeIf('front.cache.home.videos')
     @includeIf('front.cache.home.nationalImage')
     @includeIf('front.cache.home.updates')

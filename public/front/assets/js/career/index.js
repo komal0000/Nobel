@@ -180,10 +180,69 @@ $(document).ready(function () {
       }]
    });
 
+    function latestCareer() {
+        let $slider = $('#career-slider');
+
+        // Check if slider exists
+        if ($slider.length === 0) {
+            return;
+        }
+
+        // Count number of cards
+        let cardCount = $slider.find('.each-card').length;
+
+        // Destroy existing slick instance if already initialized
+        if ($slider.hasClass('slick-initialized')) {
+            $slider.slick('unslick');
+        }
+
+        // Determine how many slides to show based on screen width
+        let slidesToShow = 4;
+        let windowWidth = $(window).width();
+
+        if (windowWidth < 576) {
+            slidesToShow = 1;
+        } else if (windowWidth < 768) {
+            slidesToShow = 2;
+        } else if (windowWidth < 1200) {
+            slidesToShow = 3;
+        }
+
+        // Only initialize slick if we have more cards than slidesToShow
+        // Otherwise, just display cards normally
+        // if (cardCount > slidesToShow) {
+            $slider.slick({
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                infinite: true,
+                prevArrow: '<button class="slick-prev left-arrow"><img src="/front/assets/img/vector-left.png" alt="Left Arrow"></button>',
+                nextArrow: '<button class="slick-next right-arrow"><img src="/front/assets/img/vector-right.png" alt="Right Arrow"></button>',
+                responsive: [
+                    {
+                        breakpoint: 1200,
+                        settings: {
+                            slidesToShow: 3,
+                        }
+                    }, {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 2,
+                        }
+                    }, {
+                        breakpoint: 576,
+                        settings: {
+                            slidesToShow: 1,
+                        }
+                    }]
+            });
+        // }
+    }
+
    // Initialize responsive sliders
    slickToggler();
    toggleAward();
    lifeHereSlider();
+   latestCareer();
 
    // Add window resize handlers
    let resizeTimer;

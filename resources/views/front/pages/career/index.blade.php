@@ -5,6 +5,7 @@
 
 @section('content')
     @includeIf('front.cache.career.slider')
+    @includeIf('front.cache.career.latestJobs')
     @includeIf('front.cache.career.job')
     @include('front.pages.career.testinomial')
     @includeIf('front.cache.career.leaderships')

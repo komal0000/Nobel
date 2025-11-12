@@ -139,6 +139,16 @@ class JobController extends Controller
       $jobcategories = DB::table('job_categories')->get(['id', 'title', 'icon', 'short_description']);
       Helper::putCache('career.jobcategory', view('admin.template.career.jobCategory', compact('jobcategories'))->render());
       Helper::putCache('career.job', view('admin.template.career.jobs', compact('jobcategories'))->render());
+      
+      $careers = DB::table('jobs')
+        ->join('job_categories', 'jobs.job_category_id', '=', 'job_categories.id')
+        ->select('jobs.*', 'job_categories.title as category_title', 'job_categories.icon as category_icon')
+        ->latest()
+        ->take(5)
+        ->get();
+      Helper::putCache('home.job', view('admin.template.home.career', compact('careers'))->render());
+      Helper::putCache('career.latestJobs', view('admin.template.career.latestJobs', compact('careers'))->render());
+
       Helper::putMetaCache('career.jobCategory', $data = [
          'title' => 'Job Category',
          'description' => 'Job categories available in Kathmandu Medical College.',
