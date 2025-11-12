@@ -13262,8 +13262,8 @@ footer .footer-bottom .copyright {
 
 .home-career .main-container .career-slider .career-slide .body .career-title {
     line-height: 1.2;
-    height: 1lh;
-    -webkit-line-clamp: 1;
+    height: 2lh;
+    -webkit-line-clamp: 2;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     overflow: hidden;
@@ -13331,8 +13331,8 @@ footer .footer-bottom .copyright {
 
 .latest-career .main-container .career-slider .career-slide .body .career-title {
     line-height: 1.2;
-    height: 1lh;
-    -webkit-line-clamp: 1;
+    height: 2lh;
+    -webkit-line-clamp: 2;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     overflow: hidden;

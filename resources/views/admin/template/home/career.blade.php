@@ -9,15 +9,15 @@
             @if ($careers->isNotEmpty())
                 @foreach ($careers as $career)
                     <div class="career-slide m-3">
-                        <div class="header d-flex justify-content-start gap-4">
+                        <div class="header d-flex justify-content-start gap-3">
                             <div class="img-wrapper">
                                 <img src="{{ asset($career->category_icon) }}" alt="Job Icon" class="img-fluid">
                             </div>
-                                <h3 class="title category-title fs-4 fw-bold mb-0">{{ $career->category_title ?? 'Job Category' }}</h3>
+                                <h3 class="title category-title fs-5 fw-bold mb-0">{{ $career->category_title ?? 'Job Category' }}</h3>
                         </div>
-                        <div class="body mt-4 d-flex justify-content-between gap-2">
-                            <p class="career-title fw-semibold fs-5 mb-0">{{ $career->title }}</p>
-                            <div class="d-flex justify-content-center know-btn">
+                        <div class="body mt-2 d-flex flex-column">
+                            <p class="career-title fw-semibold fs-6 mb-0">{{ $career->title }}</p>
+                            <div class=" know-btn align-self-end">
                                 <x-hoverBtn
                                     href="{{ route('jobs.jobDetail.jobDetail', ['slug' => $career->slug]) }}">View</x-hoverBtn>
                             </div>
