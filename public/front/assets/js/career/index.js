@@ -35,11 +35,11 @@ $(document).ready(function () {
          slidesToShow = 3;
       }
 
-      // Only initialize slick if we have more cards than slidesToShow
-      // Otherwise, just display cards normally
-      if (cardCount > slidesToShow) {
+      // Only initialize slick if we have at least as many cards as slidesToShow
+      // Otherwise, just display cards normally as a flex/grid
+      if (cardCount >= slidesToShow) {
          $slider.slick({
-            slidesToShow: 4,
+            slidesToShow: slidesToShow,
             slidesToScroll: 1,
             infinite: true,
             prevArrow: '<button class="slick-prev left-arrow"><img src="/front/assets/img/vector-left.png" alt="Left Arrow"></button>',
@@ -208,11 +208,11 @@ $(document).ready(function () {
             slidesToShow = 3;
         }
 
-        // Only initialize slick if we have more cards than slidesToShow
-        // Otherwise, just display cards normally
-        // if (cardCount > slidesToShow) {
-            $slider.slick({
-                slidesToShow: 4,
+      // Only initialize slick if we have at least as many cards as slidesToShow
+      // Otherwise, just display cards normally
+    //   if (cardCount >= slidesToShow) {
+         $slider.slick({
+            slidesToShow: slidesToShow,
                 slidesToScroll: 1,
                 infinite: true,
                 prevArrow: '<button class="slick-prev left-arrow"><img src="/front/assets/img/vector-left.png" alt="Left Arrow"></button>',
@@ -235,7 +235,7 @@ $(document).ready(function () {
                         }
                     }]
             });
-        // }
+        //  }
     }
 
    // Initialize responsive sliders
