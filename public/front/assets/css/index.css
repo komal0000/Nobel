@@ -12269,6 +12269,15 @@ img {
     font-weight: 500;
 }
 
+#job-detail-description .job-obj {
+    overflow-x: auto;
+}
+
+#job-detail-description .job-obj img {
+    max-width: 100%;
+    height: auto;
+}
+
 #job-form-header .desc .category-type {
     display: flex;
     gap: 20px;

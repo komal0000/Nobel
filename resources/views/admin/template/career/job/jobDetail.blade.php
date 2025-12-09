@@ -1,81 +1,91 @@
 <section id="job-detail-links">
-   <div class="main-container d-flex justify-content-between">
-      <x-hoverBtn class="heading-xs" href="/career">Back to Careers</x-hoverBtn>
-      <x-hoverBtn class="heading-xs" href="/jobs">Back to Job Listing</x-hoverBtn>
-   </div>
+    <div class="main-container d-flex justify-content-between">
+        <x-hoverBtn class="heading-xs" href="/career">Back to Careers</x-hoverBtn>
+        <x-hoverBtn class="heading-xs" href="/jobs">Back to Job Listing</x-hoverBtn>
+    </div>
 </section>
 <section id="job-detail-header">
-   <div class="main-container">
-      <div class="desc">
-         <div class="heading mb-3"><span class="me-2">{{$job->title}} </span>
-            <i class="bi bi-share" data-bs-toggle="modal" data-bs-target="#shareModal"></i>
-         </div>
-         <div class="category-type mb-3 para-wrap">
-            <div class="category">Category: <strong>{{$jobCategory}} </strong></div>
-            <div class="type">
-               Type: <strong>{{$job->type}} </strong>
+    <div class="main-container">
+        <div class="desc">
+            <div class="heading mb-3"><span class="me-2">{{ $job->title }} </span>
+                <i class="bi bi-share" data-bs-toggle="modal" data-bs-target="#shareModal"></i>
             </div>
-         </div>
-         <div class="date">
-            <i class="bi bi-calendar"></i> : <strong>{{ \App\Helper::formatTimestampToDateString($job->date) }}</strong>
-         </div>
-      </div>
-   </div>
-   <div class="modal" id="shareModal" tabindex="-1">
-      <div class="modal-dialog modal-dialog-centered">
-         <div class="modal-content">
-            <div class="modal-header border-bottom-0 pb-0">
-               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="category-type mb-3 para-wrap">
+                <div class="category">Category: <strong>{{ $jobCategory }} </strong></div>
+                <div class="type">
+                    Type: <strong>{{ $job->type }} </strong>
+                </div>
             </div>
-            <div class="modal-body p-0">
-               <div class="heading text-center mb-3">
-                  Share Profile Via
-               </div>
-               <div class="share-links d-flex justify-content-center gap-3 fs-2 mb-5">
-                  <a href="#">
-                     <i class="bi bi-link-45deg"></i>
-                  </a>
-                  <a href="#">
-                     <i class="bi bi-facebook"></i>
-                  </a>
-                  <a href="#">
-                     <i class="bi bi-whatsapp"></i>
-                  </a>
-                  <a href="#">
-                     <i class="bi bi-linkedin"></i>
-                  </a>
-                  <a href="#">
-                     <i class="bi bi-twitter-x"></i>
-                  </a>
-                  <a href="#">
-                     <i class="bi bi-envelope"></i>
-                  </a>
-               </div>
+            <div class="date">
+                <i class="bi bi-calendar"></i> :
+                <strong>{{ \App\Helper::formatTimestampToDateString($job->date) }}</strong>
             </div>
-         </div>
-      </div>
-   </div>
+        </div>
+    </div>
+    <div class="modal" id="shareModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-bottom-0 pb-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <div class="heading text-center mb-3">
+                        Share Profile Via
+                    </div>
+                    <div class="share-links d-flex justify-content-center gap-3 fs-2 mb-5">
+                        <a id="copyBtn" href="#" class="position-relative text-decoration-none">
+                            <i class="bi bi-link-45deg"></i>
+                            <span id="copiedText"
+                                class="position-absolute bottom-0 start-0 d-none border-gray-100 bg-transparent text-gray-700 rounded-1">
+                                Copied!
+                            </span>
+                        </a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('jobs.jobDetail.jobDetail', ['slug' => $job->slug])) }}"
+                            target="_blank" rel="noopener noreferrer">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="https://wa.me/?text={{ urlencode(route('jobs.jobDetail.jobDetail', ['slug' => $job->slug])) }}" target="_blank"
+                            rel="noopener noreferrer">
+                            <i class="bi bi-whatsapp"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(route('jobs.jobDetail.jobDetail', ['slug' => $job->slug])) }}"
+                            target="_blank" rel="noopener noreferrer">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                        <a href="https://twitter.com/intent/tweet?url={{ urlencode(route('jobs.jobDetail.jobDetail', ['slug' => $job->slug])) }}" target="_blank"
+                            rel="noopener noreferrer">
+                            <i class="bi bi-twitter-x"></i>
+                        </a>
+                        <a
+                            href="mailto:?subject={{ urlencode($job->title) }}&body={{ urlencode(route('jobs.jobDetail.jobDetail', ['slug' => $job->slug])) }}">
+                            <i class="bi bi-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 <section id="job-detail-description">
-   <div class="main-container">
-      <div class="job-desc">
-         <div class="job-detail-title heading">
-            Job Requirements
-         </div>
-         <ul>
-            <li> Qualification: <strong>{{$job->qualification ?? '-'}}</strong></li>
-            <li> Experience: <strong>{{$job->experience ?? '-'}}</strong></li>
-            <li> Location: <strong>{{$job->location ?? '-'}}</strong></li>
-         </ul>
-      </div>
-      <div class="job-obj">
-         <div class="job-detail-title heading">
-            Job Description
-         </div>
-         <div>
-            {!! $job->description !!}
-         </div>
-      </div>
-      <x-hoverBtn href="{{ route('jobs.jobDetail.show-form', $job->slug) }}">Apply for this position</x-hoverBtn>
-   </div>
+    <div class="main-container">
+        <div class="job-desc">
+            <div class="job-detail-title heading">
+                Job Requirements
+            </div>
+            <ul>
+                <li> Qualification: <strong>{{ $job->qualification ?? '-' }}</strong></li>
+                <li> Experience: <strong>{{ $job->experience ?? '-' }}</strong></li>
+                <li> Location: <strong>{{ $job->location ?? '-' }}</strong></li>
+            </ul>
+        </div>
+            <div class="job-obj">
+                <div class="job-detail-title heading">
+                    Job Description
+                </div>
+                <div>
+                    {!! $job->description !!}
+                </div>
+            </div>
+        <x-hoverBtn href="{{ route('jobs.jobDetail.show-form', $job->slug) }}">Apply for this position</x-hoverBtn>
+    </div>
 </section>

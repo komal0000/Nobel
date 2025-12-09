@@ -5,7 +5,7 @@
                 <div class="case-study">
                     <div class="case-study-main-img mb-3">
                          @if (!empty($case->video_link))
-                           <a href="{{ asset($case->video_link) }}" class="glightbox">
+                           <a href="{{ asset(path: $case->video_link) }}" class="glightbox">
                               <img src="{{ asset($case->single_page_image) }}" alt="Case Main Image">
                               <img class="play-icon" src="{{ asset('front/assets/img/play-icon.png') }}" alt="Play Icon">
                            </a>
@@ -30,24 +30,24 @@
                                     Copied!
                                 </span>
                             </a>
-                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}"
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('knowledge.casestudy.single', ['slug' => $case->slug])) }}"
                                 target="_blank" rel="noopener noreferrer">
                                 <i class="bi bi-facebook"></i>
                             </a>
-                            <a href="https://wa.me/?text={{ urlencode(url()->current()) }}" target="_blank"
+                            <a href="https://wa.me/?text={{ urlencode(route('knowledge.casestudy.single', ['slug' => $case->slug])) }}" target="_blank"
                                 rel="noopener noreferrer">
                                 <i class="bi bi-whatsapp"></i>
                             </a>
-                            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(url()->current()) }}"
+                            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(route('knowledge.casestudy.single', ['slug' => $case->slug])) }}"
                                 target="_blank" rel="noopener noreferrer">
                                 <i class="bi bi-linkedin"></i>
                             </a>
-                            <a href="https://twitter.com/intent/tweet?url={{ urlencode(url()->current()) }}"
+                            <a href="https://twitter.com/intent/tweet?url={{ urlencode(route('knowledge.casestudy.single', ['slug' => $case->slug])) }}"
                                 target="_blank" rel="noopener noreferrer">
                                 <i class="bi bi-twitter-x"></i>
                             </a>
                             <a
-                                href="mailto:?subject={{ urlencode($case->title) }}&body={{urlencode(url()->current())}}">
+                                href="mailto:?subject={{ urlencode($case->title) }}&body={{urlencode(route('knowledge.casestudy.single', ['slug' => $case->slug]))}}">
                                 <i class="bi bi-envelope"></i>
                             </a>
                         </div>
