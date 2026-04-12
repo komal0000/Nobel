@@ -33,7 +33,7 @@
                     <span>Online Lab Report</span>
                 </a>
 
-                <a href="https://appointment.merodoctor.com/hospitals/service" target="_blank" class="btn-action button-primary feedback-btn">
+                <a href="https://appointment.kmc.edu.np/" target="_blank" class="btn-action button-primary feedback-btn">
                     {{-- <img src="{{ asset('front/assets/img/emergency.png') }}" alt="Emergency"> --}}
                     <span>Online Appointment</span>
                 </a>

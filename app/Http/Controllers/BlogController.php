@@ -154,7 +154,7 @@ class BlogController extends Controller
     {
         if ($type == Helper::blog_type_blog) {
             $blog = DB::table('blogs')->where('id', $blog_id)->first();
-            $latestBlog = DB::table('blogs')->where('type', Helper::blog_type_blog)->orderBy('id', 'desc')->take(5)->get();
+            $latestBlog = DB::table('blogs')->where('type', Helper::blog_type_blog)->orderBy('date', 'desc')->take(5)->get();
 
             Helper::putMetaCache('knowledge.blog.' . $blog->slug, $data = [
                 'title' => $blog->title,
@@ -171,7 +171,7 @@ class BlogController extends Controller
 
         if ($type == Helper::blog_type_case_study) {
             $case = DB::table('blogs')->where('id', $blog_id)->first();
-            $latestCase = DB::table('blogs')->where('type', Helper::blog_type_case_study)->orderBy('id', 'desc')->take(5)->get();
+            $latestCase = DB::table('blogs')->where('type', Helper::blog_type_case_study)->orderBy('date', 'desc')->take(5)->get();
 
             Helper::putMetaCache('knowledge.casestudy.' . $case->slug, $data = [
                 'title' => $case->title,
@@ -187,7 +187,7 @@ class BlogController extends Controller
         if ($type == Helper::blog_type_research) {
             // Copied whole case studies section that's why variable names can be odd
             $research = DB::table('blogs')->where('id', $blog_id)->first();
-            $latestResearch = DB::table('blogs')->where('type', Helper::blog_type_research)->orderBy('id', 'desc')->take(5)->get();
+            $latestResearch = DB::table('blogs')->where('type', Helper::blog_type_research)->orderBy('date', 'desc')->take(5)->get();
 
             Helper::putMetaCache('knowledge.research.' . $research->slug, $data = [
                 'title' => $research->title,
@@ -201,7 +201,7 @@ class BlogController extends Controller
         //update single page
         if ($type == Helper::blog_type_update) {
             $update = DB::table('blogs')->where('id', $blog_id)->first();
-            $latestUpdate = DB::table('blogs')->where('type', Helper::blog_type_update)->orderBy('id', 'desc')->take(5)->get();
+            $latestUpdate = DB::table('blogs')->where('type', Helper::blog_type_update)->orderBy('date', 'desc')->take(5)->get();
 
             if ($update) {
                 Helper::putMetaCache('home.update.' . $update->slug, $data = [
@@ -218,7 +218,7 @@ class BlogController extends Controller
         //News single page    
         if ($type == Helper::blog_type_news) {
             $news = DB::table('blogs')->where('id', $blog_id)->first();
-            $latestNews = DB::table('blogs')->where('type', Helper::blog_type_news)->orderBy('id', 'desc')->take(5)->get();
+            $latestNews = DB::table('blogs')->where('type', Helper::blog_type_news)->orderBy('date', 'desc')->take(5)->get();
             Helper::putMetaCache('home.news.' . $news->slug, $data = [
                 'title' => $news->title,
                 'description' => $news->short_description,
@@ -231,7 +231,7 @@ class BlogController extends Controller
         //Event single page
         if ($type == Helper::blog_type_event) {
             $event = DB::table('blogs')->where('id', $blog_id)->first();
-            $latestEvent = DB::table('blogs')->where('type', Helper::blog_type_event)->orderBy('id', 'desc')->take(5)->get();
+            $latestEvent = DB::table('blogs')->where('type', Helper::blog_type_event)->orderBy('date', 'desc')->take(5)->get();
             Helper::putMetaCache('event.single.' . $event->slug, $data = [
                 'title' => $event->title,
                 'description' => $event->short_description,
@@ -244,7 +244,7 @@ class BlogController extends Controller
         //Academic single page
         if ($type == Helper::blog_type_acedemic_program) {
             $academic = DB::table('blogs')->where('id', $blog_id)->first();
-            $latestAcademic = DB::table('blogs')->where('type', Helper::blog_type_acedemic_program)->orderBy('id', 'desc')->take(5)->get();
+            $latestAcademic = DB::table('blogs')->where('type', Helper::blog_type_acedemic_program)->orderBy('date', 'desc')->take(5)->get();
             Helper::putMetaCache('academic.' . $academic->slug, $data = [
                 'title' => $academic->title,
                 'description' => $academic->short_description,
@@ -256,7 +256,7 @@ class BlogController extends Controller
 
         if ($type == Helper::blog_type_notice) {
             $notice = DB::table('blogs')->where('id', $blog_id)->first();
-            $latestNotice = DB::table('blogs')->where('type', Helper::blog_type_notice)->orderBy('id', 'desc')->take(5)->get();
+            $latestNotice = DB::table('blogs')->where('type', Helper::blog_type_notice)->orderBy('date', 'desc')->take(5)->get();
             $homeNotices = DB::table('blogs')->where('type', Helper::blog_type_notice)->orderBy('created_at', 'desc')->limit(5)->get();
 
             Helper::putMetaCache('knowledge.notice.' . $notice->slug, $data = [
@@ -272,7 +272,7 @@ class BlogController extends Controller
 
         if ($type == Helper::blog_type_journal) {
             $journal = DB::table('blogs')->where('id', $blog_id)->first();
-            $latestJournal = DB::table('blogs')->where('type', Helper::blog_type_journal)->orderBy('id', 'desc')->take(5)->get();
+            $latestJournal = DB::table('blogs')->where('type', Helper::blog_type_journal)->orderBy('date', 'desc')->take(5)->get();
 
             Helper::putMetaCache('knowledge.journal.' . $journal->slug, $data = [
                 'title' => $journal->title,
@@ -286,10 +286,10 @@ class BlogController extends Controller
     public function render()
     {
         //Home page
-        $eventData = DB::table('blogs')->where('type', Helper::blog_type_event)->get();
-        $newsData = DB::table('blogs')->where('type', Helper::blog_type_news)->where('is_featured', 0)->take(3)->get();
-        $latestNews = DB::table('blogs')->where('type', Helper::blog_type_news)->where('is_featured', 1)->first();
-        $updateData = DB::table('blogs')->where('type', Helper::blog_type_update)->get();
+        $eventData = DB::table('blogs')->where('type', Helper::blog_type_event)->orderBy('date', 'desc')->get();
+        $newsData = DB::table('blogs')->where('type', Helper::blog_type_news)->where('is_featured', 0)->orderBy('date', 'desc')->take(3)->get();
+        $latestNews = DB::table('blogs')->where('type', Helper::blog_type_news)->where('is_featured', 1)->orderBy('date', 'desc')->first();
+        $updateData = DB::table('blogs')->where('type', Helper::blog_type_update)->orderBy('date', 'desc')->get();
         $homeNotices = DB::table('blogs')->where('type', Helper::blog_type_notice)->orderBy('created_at', 'desc')->limit(5)->get();
         //Event and news
         $eventTypes = DB::table('blog_categories')->where('type', Helper::blog_type_event)->get();
@@ -314,10 +314,10 @@ class BlogController extends Controller
             ]);
         }
 
-        $indexNews = DB::table('blogs')->where('type', Helper::blog_type_news)->get();
+        $indexNews = DB::table('blogs')->where('type', Helper::blog_type_news)->orderBy('date', 'desc')->get();
         //Blog Category
-        $indexBlogs = DB::table('blogs')->where('type', Helper::blog_type_blog)->get();
-        $featuredBlogs = DB::table('blogs')->where('type', Helper::blog_type_blog)->where('is_featured', 1)->get();
+        $indexBlogs = DB::table('blogs')->where('type', Helper::blog_type_blog)->orderBy('date', 'desc')->get();
+        $featuredBlogs = DB::table('blogs')->where('type', Helper::blog_type_blog)->where('is_featured', 1)->orderBy('date', 'desc')->get();
         if ($featuredBlogs->isEmpty()) {
             $featuredBlogs = collect(); // Ensure an empty collection if no featured blogs
         }
@@ -328,6 +328,7 @@ class BlogController extends Controller
             ->leftJoin('blog_categories', 'blogs.blog_category_id', '=', 'blog_categories.id')
             ->where('blogs.type', Helper::blog_type_case_study)
             ->select('blogs.*', 'blog_categories.title as blog_category_title')
+            ->orderBy('date', 'desc')
             ->get();
         //   $studiesCategory = DB::table('blog_categories')->where('id', $indexStudies->blog_category_id)->get();
         Helper::putMetaCache('knowledge.casestudy', $data = [
@@ -388,7 +389,7 @@ class BlogController extends Controller
 
         //Academic Program
         $academicProgramTypes = DB::table('blog_categories')->where('type', helper::blog_type_acedemic_program)->get();
-        $academicPrograms = DB::table('blogs')->where('type', Helper::blog_type_acedemic_program)->get();
+        $academicPrograms = DB::table('blogs')->where('type', Helper::blog_type_acedemic_program)->orderBy('date', 'desc')->get();
         Helper::putCache('academic.list', view('admin.template.academicprogram.list', compact('academicProgramTypes', 'academicPrograms')));
         Helper::putMetaCache('academic.list', $data = [
             'title' => 'Academic Programs List',

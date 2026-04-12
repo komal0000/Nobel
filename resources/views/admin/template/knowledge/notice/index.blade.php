@@ -27,7 +27,7 @@
             <div class="row g-2" id="case-study-list">
                 @foreach ($noticeTypes as $type)
                     @php
-                        $notices = App\Models\Blog::where('blog_category_id', $type->id)->get();
+                        $notices = App\Models\Blog::where('blog_category_id', $type->id)->orderBy('date', 'desc')->get();
                     @endphp
                     @foreach ($notices as $notice)
                         <div class="col-xl-4 col-md-6 case-study-item" data-content="{{ Str::slug($type->title) }}">
