@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Show homepage modal with slight delay
     setTimeout(function () {
-        $("#homepageModal").modal("show");
+        $(".homepageModal").modal("show");
     }, 500);
 
     // Initialize section navigation

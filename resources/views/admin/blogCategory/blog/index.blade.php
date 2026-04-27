@@ -15,7 +15,9 @@
             $parents = \App\Helper::getParentRoute($parent_id, 'blog_categories', 'blogCategory', $type);
         @endphp
         @foreach ($parents as $parent)
-            <a href="{{ route('admin.blogCategory.index', ['type' => $type, 'parent_id' => $parent->id]) }}">{{ $parent->title }}</a> /
+            <a
+                href="{{ route('admin.blogCategory.index', ['type' => $type, 'parent_id' => $parent->id]) }}">{{ $parent->title }}</a>
+            /
         @endforeach
         <span>Sub Category</span> /
         <span>{{ isset($typeNames[$type]) ? rtrim($typeNames[$type], 's') : 'Content' }}</span>
@@ -38,17 +40,17 @@
         class="btn btn-primary">Add</a>
 @endsection
 @section('content')
-    <table id="datatable" class="table table-striped" data-toggle="data-table">
+    <table id="" class="table table-striped dataTable" data-toggle="data-table">
         <thead>
             <tr>
-                <th>Title</th>
+                <th style="max-width: 60vw">Title</th>
                 <th>Manage</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($blogs as $blog)
                 <tr>
-                    <td>{{ $blog->title }}</td>
+                    <td style="max-width: 60vw; white-space: normal; word-break: break-word">{{ $blog->title }}</td>
                     <td>
                         <a href="{{ route('admin.blogCategory.blog.edit', ['blog_id' => $blog->id, 'parent_id' => $parent_id]) }}"
                             class="btn btn-warning btn-sm ">Edit</a>
@@ -60,9 +62,10 @@
         </tbody>
         <tfoot>
             <tr>
-                <th>Title</th>
+                <th style="max-width: 60vw">Title</th>
                 <th>Manage</th>
             </tr>
         </tfoot>
     </table>
 @endsection
+

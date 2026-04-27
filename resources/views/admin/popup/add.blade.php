@@ -25,6 +25,11 @@
                     <label for="link">Link</label>
                     <input type="text" name="link" id="link" class="form-control">
                 </div>
+                <div class="col-md-12 mb-2">
+                    <label for="download_file">File</label>
+                    <input type="file" name="download_file" id="downloadFile" class="form-control dropify" accept="application/pdf"
+                            required>
+                </div>
                 <div class="col-md-12 d-flex justify-content-end">
                     <button class="btn btn-primary">
                         Save

@@ -11,7 +11,7 @@ class PopupController extends Controller
 {
     public function index()
     {
-        $popups = DB::table('popups')->get(['id', 'title', 'image', 'is_active']);
+        $popups = DB::table('popups')->get(['id', 'title', 'image', 'is_active', 'download_file']);
         return view('admin.popup.index', compact('popups'));
     }
 
@@ -26,6 +26,9 @@ class PopupController extends Controller
 
             if ($request->hasFile('image')) {
                 $popup->image = $request->file('image')->store('uploads/popup', 'public');
+            }
+            if ($request->hasFile('download_file')) {
+                $popup->download_file = $request->file('download_file')->store('uploads/popup', 'public');
             }
 
             $popup->save();
@@ -75,7 +78,7 @@ class PopupController extends Controller
 
     public function render()
     {
-        $popups = DB::table('popups')->get(['id', 'title', 'image', 'is_active']);
+        $popups = DB::table('popups')->get(['id', 'title', 'image', 'is_active', 'download_file']);
         Helper::putCache('home.popup', view('admin.template.home.popup', compact('popups'))->render());
     }
 }

@@ -62,7 +62,7 @@ class BlogController extends Controller
 
     public function blogindex(Request $request, $blogCategory_id, $type)
     {
-        $blogs = DB::table('blogs')->where('blog_category_id', $blogCategory_id)->get();
+        $blogs = DB::table('blogs')->where('blog_category_id', $blogCategory_id)->orderBy('date', 'desc')->get();
         $parent_id = $request->parent_id;
         if ($parent_id) {
             $blogCategory = DB::table('blog_categories')->where('id', $parent_id)->where('id', $blogCategory_id)->where('type', $type)->first();

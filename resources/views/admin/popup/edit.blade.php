@@ -20,11 +20,18 @@
             <div class="col-md-6">
                 <div class="col-md-12 mb-2">
                     <label for="title">Title</label>
-                    <input type="text" name="title" id="title" class="form-control" value="{{ $popup->title }}" required>
+                    <input type="text" name="title" id="title" class="form-control" value="{{ $popup->title }}"
+                        required>
                 </div>
                 <div class="col-md-12 mb-2">
                     <label for="link">Link</label>
                     <input type="text" name="link" id="link" class="form-control" value="{{ $popup->link }}">
+                </div>
+                <div class="col-md-12 mb-2">
+                    <label for="downloadFile">File (pdf only)</label>
+                    <input type="file" name="download_file" id="downloadFile" class="form-control dropify"
+                        data-default-file="{{ asset($popup->download_file) }}" accept="application/pdf">
+                    <small class="text-muted">Leave empty to keep current image</small>
                 </div>
                 <div class="col-md-12 d-flex justify-content-end">
                     <button class="btn btn-primary">
