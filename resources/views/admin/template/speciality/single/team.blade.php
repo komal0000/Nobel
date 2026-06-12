@@ -14,8 +14,9 @@
                             <div class="img-wrapper">
                                 <img src="{{ asset($item->icon) }}" alt="{{ $item->title }}" class="img-fluid">
                             </div>
-                            <div class="body text-left para-wrap">
-                                {{ $item->description  }}
+                            <div class="heading-sm text-center mb-0 mt-2">{{ $item->title }} </div>
+                            <div class="body text-left para-wrap mt-2">
+                                {{ $item->description }}
                             </div>
                         </div>
                     @endforeach

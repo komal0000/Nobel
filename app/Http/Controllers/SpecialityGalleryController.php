@@ -119,10 +119,12 @@ class SpecialityGalleryController extends Controller
       $speciality = DB::table('specialties')->find($speciality_id);
       $specialityGallery = DB::table('speciality_galleries')->where('specialty_id', $speciality_id)->first(['id', 'title', 'specialty_id', 'description']);
 
-      $galleryItems = collect();
-      if ($specialityGallery) {
-         $galleryItems = DB::table('speciality_gallery_items')->where('speciality_gallery_id', $specialityGallery->id)->get();
+      if (!$specialityGallery) {
+         Helper::deleteCache('speciality.single.' . $speciality->slug . '.team');
+         return;
       }
+
+      $galleryItems = DB::table('speciality_gallery_items')->where('speciality_gallery_id', $specialityGallery->id)->get();
       Helper::putCache('speciality.single.' . $speciality->slug . '.team', view('admin.template.speciality.single.team', compact('specialityGallery', 'galleryItems'))->render());
    }
 }

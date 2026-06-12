@@ -44,7 +44,7 @@
     // dd($intData);
 @endphp
 
-@if($intData)
+@if(array_filter((array) $intData))
     <section id="int-banner">
         <div class="main-container">
             <div class="heading-group">

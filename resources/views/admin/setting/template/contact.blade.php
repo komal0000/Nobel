@@ -79,28 +79,28 @@
                             @endif
                         </div>
                     </div>
-                    <div class="first for-border d-flex gap-3 w-100 px-4 py-2">
-                        <div class="logo align-self-center">
-                            <i class="bi bi-telephone-fill"></i>
-                        </div>
-                        <div class="info">
-                            <div class="head">{{ $intData->short_title}}</div>
-                            @if (!empty($intPhones))
+                    @if (array_filter((array) $intPhones))
+                        <div class="first for-border d-flex gap-3 w-100 px-4 py-2">
+                            <div class="logo align-self-center">
+                                <i class="bi bi-telephone-fill"></i>
+                            </div>
+                            <div class="info">
+                                <div class="head">{{ $intData->short_title }}</div>
                                 @foreach ($intPhones as $i => $intP)
                                     @php
                                         $cleanIntP = $intCleanPhone[$i] ?? '';
                                     @endphp
                                     <a href="tel:{{ $cleanIntP }}" class="mb-0 d-block">{{ $intP }}</a>
                                 @endforeach
-                            @endif
-                            @if ($intData->email)
-                                @foreach ($emails as $email)
-                                    <span class="para-wrap fw-semibold">Email: </span><a
-                                        href="mailto:{{ $email }}" class="mb-0">{{ $email }}</a>
-                                @endforeach
-                            @endif
+                                @if ($intData->email)
+                                    @foreach ($emails as $email)
+                                        <span class="para-wrap fw-semibold">Email: </span><a
+                                            href="mailto:{{ $email }}" class="mb-0">{{ $email }}</a>
+                                    @endforeach
+                                @endif
+                            </div>
                         </div>
-                    </div>
+                    @endif
                     <div class="first d-flex gap-3 px-4 pt-2">
                         <div class="logo align-self-center">
                             <i class="bi bi-share-fill"></i>
