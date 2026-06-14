@@ -165,6 +165,21 @@
             $('.select-wrap').toggleClass('active');
         });
 
+        // Specialty Search functionality
+        $('#speciality-search').on('keyup', function() {
+            var value = $(this).val().toLowerCase();
+            $('#select-list li').filter(function() {
+                // Ignore "All Specialities" item or filter it as well? The user usually wants "All Specialities" to stay, but it's okay to filter it.
+                // It's better to always show "All Specialities" so users can reset.
+                if ($(this).data('target') === 'all') return;
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+
+        $('#speciality-search').on('click', function(event) {
+            event.stopPropagation();
+        });
+
         // Tab functionality
         $('.tab').click(function () {
             let card = $(this).closest('.doctor-card');

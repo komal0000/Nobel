@@ -18,6 +18,9 @@
                     <span class="anchor-down-btn" style="border-color: #000"></span>
                 </div>
                 <div class="select-wrap" id="select-wrap">
+                    <div class="search-wrap px-2 py-2" style="position: sticky; top: 0; background: #fff; z-index: 1;">
+                        <input type="text" id="speciality-search" class="form-control" placeholder="Search specialities...">
+                    </div>
                     <ul class="select-list" id="select-list">
                         <li data-target="all">All Specialities</li>
                         @foreach ($specialties as $specialty)
