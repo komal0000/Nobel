@@ -23,8 +23,22 @@
                     </div>
                     <ul class="select-list" id="select-list">
                         <li data-target="all">All Specialities</li>
+                        @php
+                            $getFamily = function($specialtyId) use (&$getFamily, $specialties) {
+                                $family = [];
+                                $children = $specialties->where('parent_speciality_id', $specialtyId);
+                                foreach ($children as $child) {
+                                    $family[] = $child->title;
+                                    $family = array_merge($family, $getFamily($child->id));
+                                }
+                                return $family;
+                            };
+                        @endphp
                         @foreach ($specialties as $specialty)
-                            <li>{{ $specialty->title }}</li>
+                            @php
+                                $familyTitles = array_merge([$specialty->title], $getFamily($specialty->id));
+                            @endphp
+                            <li data-family="{{ implode('|', $familyTitles) }}">{{ $specialty->title }}</li>
                         @endforeach
                     </ul>
                     <input type="hidden" name="find-doc-speciality" id="find-doc-speciality-input">

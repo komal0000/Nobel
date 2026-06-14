@@ -24,16 +24,19 @@
 
             // Apply filter if specified
             let $visibleCards;
-            if (filterValue && filterValue !== 'All Specialities') {
+            if (filterValue) {
                 // Filter by text in specialization list items
                 $visibleCards = $('.doctor-card-col').filter(function () {
                     let found = false;
                     $(this).find('.for-specialization li').each(function () {
                         const text = $(this).text().trim().toLowerCase();
-                        if (text.includes(filterValue.toLowerCase())) {
-                            found = true;
-                            return false; // Break the each loop once found
+                        for (let i = 0; i < filterValue.length; i++) {
+                            if (text.includes(filterValue[i])) {
+                                found = true;
+                                break;
+                            }
                         }
+                        if (found) return false; // Break the each loop once found
                     });
                     return found;
                 });
@@ -146,14 +149,22 @@
         $('.select-list li').click(function () {
             let selectedText = $(this).text();
             let selectedValue = $(this).data('target');
+            let familyData = $(this).data('family');
 
             // Update dropdown display
             $('.default-item').text(selectedText);
             $('.select-wrap').removeClass('active');
-            $('#find-doc-speciality-input').val(selectedValue);
+            $('#find-doc-speciality-input').val(selectedValue || selectedText);
 
             // Set filter value based on selection
-            filteredValue = selectedValue === 'all' ? null : selectedText;
+            if (selectedValue === 'all' || selectedText === 'All Specialities') {
+                filteredValue = null;
+            } else if (familyData) {
+                filteredValue = familyData.toLowerCase().split('|');
+            } else {
+                filteredValue = [selectedText.toLowerCase()];
+            }
+            
             currentPage = 1;
             console.log(filteredValue, 'filter');
 
