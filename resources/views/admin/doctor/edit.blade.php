@@ -10,7 +10,7 @@
             <div class="col-md-5 mb-3">
                 <label for="image">Image (500x720px)</label>
                 <input type="file" name="image" id="image" class="form-control dropify"
-                    data-default-file="{{ asset( $doctor->image) }}" accept="image/*">
+                    data-default-file="{{ asset($doctor->image) }}" accept="image/*">
             </div>
             <div class="col-md-7 mb-3">
                 <div class="row">
@@ -25,7 +25,8 @@
                             value="{{ $doctor->position }}" required>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="location">Location <span style="color: red;">*</span></label>
+                        {{-- User wanted to show NMC number instead of Location so I just changed the label name --}}
+                        <label for="location">NMC Number <span style="color: red;">*</span></label>
                         <input type="text" name="location" id="location" class="form-control"
                             value="{{ $doctor->location }}" required>
                     </div>
@@ -103,8 +104,9 @@
             if (newlyUnselected.length > 0) {
                 const specialtyId = newlyUnselected[0];
                 console.log(specialtyId);
-                axios.get("{{ route('admin.doctor.speciality.del', ['doctor_id'=>':doc','speciality_id' => ':ID']) }}".replace(
-                        ':ID', specialtyId).replace(':doc', {{ $doctor->id }}))
+                axios.get("{{ route('admin.doctor.speciality.del', ['doctor_id' => ':doc', 'speciality_id' => ':ID']) }}"
+                        .replace(
+                            ':ID', specialtyId).replace(':doc', {{ $doctor->id }}))
                     .then(response => {
                         if (response.data.success) {
                             console.log(`Successfully removed specialty ${specialtyId}`);

@@ -12,7 +12,7 @@
                         {{ json_decode($doctor->qualification, true)[0] ?? '' }}
                     @endif
                 </p>
-                <p class="location"><i class="bi bi-geo-alt">{{ $doctor->location }}</i></p>
+                <p class="location"> {{ $doctor->location }}</i></p>
 
             </div>
 
@@ -23,7 +23,7 @@
     <div class="main-container">
         <div class="heading mb-4">About {{ $doctor->title }}</div>
         <div class="para-wrap">
-            {{$doctor->short_description}}
+            {{ $doctor->short_description }}
         </div>
     </div>
 </section>

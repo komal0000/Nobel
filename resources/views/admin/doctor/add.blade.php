@@ -22,7 +22,8 @@
                         <input type="text" name="position" id="position" class="form-control" required>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="location">Location <span style="color: red;">*</span></label>
+                        {{-- User wanted to show NMC number instead of Location so I just changed the label name --}}
+                        <label for="location">NMC Number <span style="color: red;">*</span></label>
                         <input type="text" name="location" id="location" class="form-control" required>
                     </div>
 
@@ -53,7 +54,8 @@
             <div class="row shadow p-3 mb-3">
                 <div class="col-md-12">
                     <label for="doctorSpecialities">Choose Specialities</label>
-                    <select name="doctorSpeciality[]" class="form-control select2" id="doctorSpecialities" multiple="multiple">
+                    <select name="doctorSpeciality[]" class="form-control select2" id="doctorSpecialities"
+                        multiple="multiple">
                         @foreach ($specialties as $speciality)
                             <option value="{{ $speciality->id }}">{{ $speciality->title }}</option>
                         @endforeach
