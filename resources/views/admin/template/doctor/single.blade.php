@@ -5,7 +5,7 @@
                 <img src="{{ asset($doctor->image) }}" alt="Doctor Image">
             </div>
             <div class="details align-self-center position-relative z-10">
-                <h4 class="name">Dr. {{ $doctor->title }}</h4>
+                <h4 class="name">{{ $doctor->title }}</h4>
                 <p class="post">{{ $doctor->position }}</p>
                 <p>
                     @if (!empty(json_decode($doctor->qualification, true)))

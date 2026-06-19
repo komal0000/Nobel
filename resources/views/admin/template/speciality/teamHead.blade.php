@@ -1,6 +1,6 @@
 @php
     $doctor = \App\Models\Doctor::where('id', $teamHead->doctor_id)->first();
-   // dd($doctor);
+    // dd($doctor);
 @endphp
 <section class="message">
     <div class="main-container">
@@ -13,7 +13,7 @@
             </div>
             <div class="detail align-self-center text-center">
                 <div class="heading-lg name">
-                    Dr. {{ $doctor->title }}
+                    {{ $doctor->title }}
                 </div>
                 <div class="heading-sm role">
                     {{ $doctor->position }}

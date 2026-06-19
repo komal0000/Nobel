@@ -19,26 +19,26 @@
                 </div>
                 <div class="select-wrap" id="select-wrap">
                     <div class="search-wrap px-2 py-2" style="position: sticky; top: 0; background: #fff; z-index: 1;">
-                        <input type="text" id="speciality-search" class="form-control" placeholder="Search specialities...">
+                        <input type="text" id="speciality-search" class="form-control"
+                            placeholder="Search specialities...">
                     </div>
                     <ul class="select-list" id="select-list">
                         <li data-target="all">All Specialities</li>
                         @php
-                            $getFamily = function($specialtyId) use (&$getFamily, $specialties) {
-                                $family = [];
-                                $children = $specialties->where('parent_speciality_id', $specialtyId);
-                                foreach ($children as $child) {
-                                    $family[] = $child->title;
-                                    $family = array_merge($family, $getFamily($child->id));
-                                }
-                                return $family;
-                            };
+                            $excluded = ['Administrative Department', 'Medical Education Department'];
+                            $filtered = $specialties->filter(fn($s) => !in_array($s->title, $excluded));
+                            $parentSpecialties = $filtered
+                                ->filter(fn($s) => is_null($s->parent_speciality_id))
+                                ->sortBy('title');
+                            $subSpecialties = $filtered
+                                ->filter(fn($s) => !is_null($s->parent_speciality_id))
+                                ->sortBy('title');
                         @endphp
-                        @foreach ($specialties as $specialty)
-                            @php
-                                $familyTitles = array_merge([$specialty->title], $getFamily($specialty->id));
-                            @endphp
-                            <li data-family="{{ implode('|', $familyTitles) }}">{{ $specialty->title }}</li>
+                        @foreach ($parentSpecialties as $specialty)
+                            <li>{{ $specialty->title }}</li>
+                        @endforeach
+                        @foreach ($subSpecialties as $specialty)
+                            <li>{{ $specialty->title }}</li>
                         @endforeach
                     </ul>
                     <input type="hidden" name="find-doc-speciality" id="find-doc-speciality-input">
@@ -59,7 +59,7 @@
                                         <i class="bi bi-share"></i>
                                     </button>
                                     <div class="heading-sm">
-                                        Dr. {{ $doctor->title }}
+                                        {{ $doctor->title }}
                                     </div>
                                     <div class="post">
                                         {{ $doctor->position }}
