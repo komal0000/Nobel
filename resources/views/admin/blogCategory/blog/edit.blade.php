@@ -95,9 +95,9 @@
                     </div>
                     @if ($blogCategory->type == 6 || $blogCategory->type == 10)
                     <div class="col-md-6">
-                            <label for="single_page_image">PDF</label>
+                            <label for="single_page_image">PDF / DOC / DOCX</label>
                             <input type="file" name="single_page_image" id="single_page_image"
-                                class="form-control dropify" accept=".pdf" data-default-file="{{ asset($blog->single_page_image) }}">
+                                class="form-control dropify" accept=".pdf,.doc,.docx" data-default-file="{{ asset($blog->single_page_image) }}">
                         </div>
                     @else
                         <div class="col-md-6">

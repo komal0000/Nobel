@@ -57,9 +57,17 @@
                         </div>
                     </div>
                     @if ($notice->single_page_image)
+                        @php
+                            $extension = pathinfo($notice->single_page_image, PATHINFO_EXTENSION);
+                            $isDoc = in_array(strtolower($extension), ['doc', 'docx']);
+                        @endphp
                         <div>
-                            <a class="btn btn-primary" href="{{ asset($notice->single_page_image) }}"
-                                target="_blank">Download File</a>
+                            @if ($isDoc)
+                                <a class="btn btn-primary" href="{{ asset($notice->single_page_image) }}" download>Download File</a>
+                            @else
+                                <a class="btn btn-primary" href="{{ asset($notice->single_page_image) }}"
+                                    target="_blank">Download File</a>
+                            @endif
                         </div>
                     @endif
                     <div class="case-study-content">
