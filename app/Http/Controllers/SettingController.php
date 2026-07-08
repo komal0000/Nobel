@@ -16,17 +16,16 @@ use Illuminate\Support\Facades\Storage;
 
 class SettingController extends Controller
 {
-
     const Setting = [
 
         'copy' => [
-            "CopyRight",
+            'CopyRight',
             [
                 ['copyright', 1],
-            ]
+            ],
         ],
         'home_description' => [
-            "Home Description",
+            'Home Description',
             [
                 ['SpecialityTitle', 1],
                 ['TeamTitle', 1],
@@ -35,50 +34,51 @@ class SettingController extends Controller
                 ['TeamDescription', 2],
             ],
             [
-                ["homeSpecialityTitle", "views/front/cache/home/specialityTitle.blade.php"],
+                ['homeSpecialityTitle', 'views/front/cache/home/specialityTitle.blade.php'],
             ],
         ],
         'top' => [
-            "Top",
+            'Top',
             [
                 ['logo', 0],
                 ['JournalLogo', 0],
                 ['favicon', 0],
             ],
             [
-                ["logo", "views/front/cache/home/logo.blade.php"],
-                ["cancerLogo", "views/front/cache/home/cancerLogo.blade.php"]
+                ['logo', 'views/front/cache/home/logo.blade.php'],
+                ['cancerLogo', 'views/front/cache/home/cancerLogo.blade.php'],
             ],
         ],
         'philosophy' => [
-            "Philosophy",
+            'Philosophy',
             [
                 ['title', 1],
                 ['description', 2],
                 ['image', 0],
             ],
             [
-                ["philosophy", "views/front/cache/career/philosophy.blade.php"],
+                ['philosophy', 'views/front/cache/career/philosophy.blade.php'],
             ],
         ],
         'internship' => [
-            "Internship",
+            'Internship',
             [
                 ['title', 1],
                 ['description', 2],
             ],
             [
-                ["internship", "views/front/cache/career/internship.blade.php"],
+                ['internship', 'views/front/cache/career/internship.blade.php'],
             ],
         ],
     ];
+
     public function index($type, Request $request)
     {
         $data = self::Setting[$type];
         $curdata = [];
-        if ($request->getMethod() == "POST") {
+        if ($request->getMethod() == 'POST') {
             foreach ($data[1] as $key => $attr) {
-                $k = $type . '_' . $attr[0];
+                $k = $type.'_'.$attr[0];
                 try {
                     if (($attr[1] == 0)) {
                         $s = Helper::setSetting($k, $request->file($k)->store('uploads/settings', 'public'), true);
@@ -93,15 +93,16 @@ class SettingController extends Controller
             if (isset($data[2])) {
                 if (is_array($data[2])) {
                     foreach ($data[2] as $key => $pathData) {
-                        file_put_contents(resource_path($pathData[1]), view('admin.setting.template.' . $pathData[0], compact('curdata'))->render());
+                        file_put_contents(resource_path($pathData[1]), view('admin.setting.template.'.$pathData[0], compact('curdata'))->render());
                     }
                 } else {
 
-                    Helper::putCache(resource_path($data[2]), view('admin.setting.template.' . $type, compact('curdata'))->render());
+                    Helper::putCache(resource_path($data[2]), view('admin.setting.template.'.$type, compact('curdata'))->render());
                 }
             } else {
-                Helper::putCache($type, view('admin.setting.template.' . $type, compact('curdata'))->render());
+                Helper::putCache($type, view('admin.setting.template.'.$type, compact('curdata'))->render());
             }
+
             return redirect()->back();
         } else {
             return view('admin.setting.index', compact('data', 'type'));
@@ -110,7 +111,7 @@ class SettingController extends Controller
 
     public function contact(Request $request)
     {
-        if ($request->getMethod() == "GET") {
+        if ($request->getMethod() == 'GET') {
             $data = Helper::getSetting('contact') ?? ((object) ([
                 'map' => '',
                 'email' => '',
@@ -130,7 +131,7 @@ class SettingController extends Controller
                     'instagram' => '',
                     'twitter' => '',
                 ],
-                'request_email' => ''
+                'request_email' => '',
             ]));
 
             $intData = Helper::getSetting('intContact') ?? ((object) ([
@@ -139,18 +140,19 @@ class SettingController extends Controller
                 'title' => '',
                 'short_title' => '',
                 'short_desc' => '',
-                'image' => ''
+                'image' => '',
             ]));
+
             return view('admin.setting.contact', compact('data', 'intData'));
         } else {
             $others = [];
             if ($request->filled('others')) {
                 foreach ($request->others as $key => $other) {
                     array_push($others, [
-                        'name' => $request->input('name_' . $other) ?? '',
-                        'phone' => $request->input('phone_' . $other) ?? '',
-                        'designation' => $request->input('designation_' . $other) ?? '',
-                        'email' => $request->input('email_' . $other) ?? '',
+                        'name' => $request->input('name_'.$other) ?? '',
+                        'phone' => $request->input('phone_'.$other) ?? '',
+                        'designation' => $request->input('designation_'.$other) ?? '',
+                        'email' => $request->input('email_'.$other) ?? '',
                     ]);
                 }
             }
@@ -172,7 +174,7 @@ class SettingController extends Controller
                     'instagram' => $request->instagram ?? '',
                     'twitter' => $request->twitter ?? '',
                 ],
-                'request_email' => $request->request_email ?? ''
+                'request_email' => $request->request_email ?? '',
             ];
 
             $internationalData = Helper::getSetting('intContact') ?? ((object) ([
@@ -181,7 +183,7 @@ class SettingController extends Controller
                 'title' => '',
                 'shortTitle' => '',
                 'short_desc' => '',
-                'image' => ''
+                'image' => '',
             ]));
 
             if ($request->hasFile('intImage')) {
@@ -211,18 +213,18 @@ class SettingController extends Controller
                 'title' => 'Contact Us',
                 'description' => 'Reach out to Kathmandu Medical College for appointments, inquiries, and hospital services. Get in touch with our expert medical team for assistance and patient care.',
                 'keywords' => 'contact us',
-                'url' => route('contact')
+                'url' => route('contact'),
             ]);
 
             $academicProgramTypes = DB::table('blog_categories')->where('type', helper::blog_type_acedemic_program)->get();
             Helper::putCache('academic.index', view('admin.template.academicprogram.index', compact('academicProgramTypes')));
 
-
             Helper::putCache('home.footerLink', view('admin.setting.template.footer', compact('data'))->render());
             Helper::putCache('contact.index', view('admin.setting.template.contact', compact('data'))->render());
             Helper::putCache('contact.header-contact', view('admin.template.home.header-contact', compact('data'))->render());
             Helper::putCache('contact.map', view('admin.setting.template.map', compact('data'))->render());
-            return redirect()->back()->with('success', "Contact Saved Successfully");
+
+            return redirect()->back()->with('success', 'Contact Saved Successfully');
         }
     }
 
@@ -230,13 +232,14 @@ class SettingController extends Controller
     {
         if (Helper::G()) {
             $colorScheme = Setting::where('key', 'color_scheme')->first();
-            if (!$colorScheme) {
-                $colorScheme = new Setting();
+            if (! $colorScheme) {
+                $colorScheme = new Setting;
                 $colorScheme->key = 'color_scheme';
                 $colorScheme->value = '[]';
                 $colorScheme->save();
             }
             $oldData = json_decode($colorScheme->value, true);
+
             return view('admin.setting.colorscheme', compact('colorScheme', 'oldData'));
         } else {
             Setting::updateOrCreate(
@@ -245,6 +248,7 @@ class SettingController extends Controller
             );
             Helper::putCache('extra.colorScheme', view('admin.setting.template.colorScheme', ['data' => $request->except('_token')])->render());
             session()->flash('success', 'Color scheme successfully updated');
+
             return response()->json(['success' => true]);
         }
     }
@@ -258,6 +262,7 @@ class SettingController extends Controller
                 $values = json_decode($requestCallBack->value, true);
 
             }
+
             return view('admin.setting.callbackRequest', compact('values'));
         } else {
 
@@ -266,6 +271,7 @@ class SettingController extends Controller
                 $setting = Setting::firstOrCreate(['key' => 'request_call_back']);
                 $setting->value = json_encode([]); // Setting to null as specified
                 $setting->save();
+
                 return response()->json(['message' => 'All Callback Request has been cleared successfully']);
             }
 
@@ -296,7 +302,6 @@ class SettingController extends Controller
         }
     }
 
-
     public function addCallbackRequest(Request $request)
     {
         $setting = Setting::firstOrCreate(['key' => 'request_call_back'], ['value' => '']);
@@ -309,7 +314,7 @@ class SettingController extends Controller
             'data.*.details.name' => 'required|string',
             'data.*.details.phoneNumber' => 'required|string',
             'data.*.details.email' => 'nullable|email',
-            'data.*.details.message' => 'required|string'
+            'data.*.details.message' => 'required|string',
         ]);
 
         $newData = [];
@@ -354,9 +359,10 @@ class SettingController extends Controller
         if (Helper::G()) {
             $feedback = Setting::where('key', 'feedback')->first();
             $values = null;
-            if (!empty($feedback)) {
+            if (! empty($feedback)) {
                 $values = json_decode($feedback->value, true);
             }
+
             return view('admin.setting.feedback', compact('values'));
         } else {
 
@@ -365,6 +371,7 @@ class SettingController extends Controller
                 $setting = Setting::firstOrCreate(['key' => 'feedback']);
                 $setting->value = json_encode([]); // Setting to null as specified
                 $setting->save();
+
                 return response()->json(['message' => 'All feedback cleared successfully']);
             }
 
@@ -389,6 +396,7 @@ class SettingController extends Controller
             }
             $setting->value = json_encode($replaced);
             $setting->save();
+
             return response()->json(['message' => 'Deleted successfully']);
         }
     }
@@ -422,7 +430,6 @@ class SettingController extends Controller
         $setting->save();
 
         // Saving and then sending to mail
-
 
         $lastSubmitted = end($validatedData['data']);
         $details = $lastSubmitted['details'] ?? [];
@@ -480,12 +487,12 @@ class SettingController extends Controller
 
             // Find the job
             $job = DB::table('jobs')->where('slug', $slug)->first();
-            if (!$job) {
+            if (! $job) {
                 return response()->json(['error' => 'Job not found'], 404);
             }
 
             // Create new job request
-            $jobRequest = new JobRequest();
+            $jobRequest = new JobRequest;
             $jobRequest->name = $request->name;
             $jobRequest->email = $request->email;
             $jobRequest->phone_number = $request->contactNumber;
@@ -543,7 +550,7 @@ class SettingController extends Controller
 
             $data = Helper::getSetting('contact');
             $requestEmail = $data->request_email ?? '';
-            if(config('queue.default') === 'database') {
+            if (config('queue.default') === 'database') {
                 Mail::to($requestEmail)->queue(new \App\Mail\JobRequestMail($payload));
             } else {
                 Mail::to($requestEmail)->send(new \App\Mail\JobRequestMail($payload));
@@ -551,8 +558,9 @@ class SettingController extends Controller
 
             return response()->json(['message' => 'Your application has been submitted successfully.'], 200);
         } catch (\Exception $e) {
-            Log::error('Job request error: ' . $e->getMessage());
-            return response()->json(['error' => 'An error occurred: ' . $e->getMessage()], 500);
+            Log::error('Job request error: '.$e->getMessage());
+
+            return response()->json(['error' => 'An error occurred: '.$e->getMessage()], 500);
         }
     }
 
@@ -560,19 +568,22 @@ class SettingController extends Controller
     {
         $image = Setting::where('key', 'nationalImage')->first();
         $data = null;
-        if (!empty($image)) {
+        if (! empty($image)) {
             $data = json_decode($image->value, true);
         }
+
         return view('admin.setting.nationalImage.index', compact('data'));
     }
+
     public function nationalImageAdd(Request $request)
     {
         if (Helper::G()) {
             $image = Setting::where('key', 'nationalImage')->first();
             $values = null;
-            if (!empty($image)) {
+            if (! empty($image)) {
                 $values = json_decode($image->value, true);
             }
+
             return view('admin.setting.nationalImage.add', compact('values'));
         } else {
             $data = [];
@@ -584,12 +595,13 @@ class SettingController extends Controller
                 $mobilePath = $request->file('mobile_image')->store('uploads/national', 'public');
                 $data['mobileImage'] = $mobilePath;
             }
-            if (!empty($data)) {
+            if (! empty($data)) {
                 Setting::updateOrCreate(
                     ['key' => 'nationalImage'],
                     ['value' => json_encode($data)]
                 );
                 Helper::putCache('home.nationalImage', view('admin.setting.template.nationalImage', compact('data'))->render());
+
                 return redirect()->back()->with('success', 'National Image added successfully.');
             } else {
                 return response()->json(['error' => 'No images uploaded'], 400);
@@ -601,7 +613,7 @@ class SettingController extends Controller
     {
         $image = Setting::where('key', 'nationalImage')->first();
         $values = null;
-        if (!empty($image)) {
+        if (! empty($image)) {
             $values = json_decode($image->value, true);
         }
         if ($request->isMethod('get')) {
@@ -611,7 +623,7 @@ class SettingController extends Controller
 
             // Delete previous desktop image if new one is uploaded
             if ($request->hasFile('desktop_image')) {
-                if (!empty($data['desktopImage']) && Storage::disk('public')->exists($data['desktopImage'])) {
+                if (! empty($data['desktopImage']) && Storage::disk('public')->exists($data['desktopImage'])) {
                     Storage::disk('public')->delete($data['desktopImage']);
                 }
                 $desktopPath = $request->file('desktop_image')->store('uploads/national', 'public');
@@ -620,7 +632,7 @@ class SettingController extends Controller
 
             // Delete previous mobile image if new one is uploaded
             if ($request->hasFile('mobile_image')) {
-                if (!empty($data['mobileImage']) && Storage::disk('public')->exists($data['mobileImage'])) {
+                if (! empty($data['mobileImage']) && Storage::disk('public')->exists($data['mobileImage'])) {
                     Storage::disk('public')->delete($data['mobileImage']);
                 }
                 $mobilePath = $request->file('mobile_image')->store('uploads/national', 'public');
@@ -632,6 +644,7 @@ class SettingController extends Controller
                 ['value' => json_encode($data)]
             );
             Helper::putCache('home.nationalImage', view('admin.setting.template.nationalImage', compact('data'))->render());
+
             return redirect()->back()->with('success', 'Successfully updated.');
         }
     }
@@ -643,15 +656,16 @@ class SettingController extends Controller
             $values = json_decode($image->value, true);
 
             // Delete previously saved files if they exist
-            if (!empty($values['desktopImage']) && Storage::disk('public')->exists($values['desktopImage'])) {
+            if (! empty($values['desktopImage']) && Storage::disk('public')->exists($values['desktopImage'])) {
                 Storage::disk('public')->delete($values['desktopImage']);
             }
-            if (!empty($values['mobileImage']) && Storage::disk('public')->exists($values['mobileImage'])) {
+            if (! empty($values['mobileImage']) && Storage::disk('public')->exists($values['mobileImage'])) {
                 Storage::disk('public')->delete($values['mobileImage']);
             }
 
             $image->delete();
             Helper::putCache('home.nationalImage', '');
+
             return redirect()->back()->with('success', 'National image deleted successfully.');
         } else {
             return redirect()->back()->with('error', 'No national image found to delete.');
@@ -662,6 +676,7 @@ class SettingController extends Controller
     {
         if (Helper::G()) {
             $healthLibrary = Setting::where('key', 'healthLibrary')->first();
+
             return view('admin.setting.healthLibrary.index', compact('healthLibrary'));
         } else {
             $existingHealthLibrary = Setting::where('key', 'healthLibrary')->first();
@@ -674,7 +689,7 @@ class SettingController extends Controller
                 if ($request->filled("items.{$i}.title") || $request->filled("items.{$i}.link") || $request->hasFile("items.{$i}.image")) {
                     $rules["items.{$i}.title"] = 'required|string|max:255';
 
-                    if (!isset($existingData[$i]['image']) || !$existingData[$i]['image']) {
+                    if (! isset($existingData[$i]['image']) || ! $existingData[$i]['image']) {
                         $rules["items.{$i}.image"] = 'required|image|mimes:jpeg,png,jpg,gif|max:2048';
                     } else {
                         $rules["items.{$i}.image"] = 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048';
@@ -687,13 +702,13 @@ class SettingController extends Controller
                 if ($request->filled("items.{$i}.title") && $request->filled("items.{$i}.link")) {
                     $itemData = [
                         'title' => $request->input("items.{$i}.title"),
-                        'link' => $request->input("items.{$i}.link")
+                        'link' => $request->input("items.{$i}.link"),
                     ];
 
                     if ($request->hasFile("items.{$i}.image")) {
                         $imagePath = $request->file("items.{$i}.image")->store("uploads/healthLibrary/{$i}", 'public');
                         $itemData['image'] = $imagePath;
-                    } else if (isset($existingData[$i]['image'])) {
+                    } elseif (isset($existingData[$i]['image'])) {
                         $itemData['image'] = $existingData[$i]['image'];
                     }
 
@@ -706,6 +721,7 @@ class SettingController extends Controller
                 ['value' => json_encode($data)]
             );
             Helper::putCache('health.health-care', view('admin.setting.template.healthLibrary', compact('data'))->render());
+
             return redirect()->back()->with('success', 'Health Library updated successfully.');
         }
     }
@@ -716,8 +732,8 @@ class SettingController extends Controller
         if (Helper::G()) {
             return view('admin.setting.irc.index', compact('irc'));
         } else {
-            if (!$irc) {
-                $irc = new Irc();
+            if (! $irc) {
+                $irc = new Irc;
             }
             $irc->title = $request->title;
             $irc->description = $request->description;
@@ -728,8 +744,9 @@ class SettingController extends Controller
                 'title' => 'IRC',
                 'description' => 'Kathmandu Medical College has established an Institutional Review Committee (IRC) in compliance with NHRC regulations, to oversee its obligations with respect to human participants as well as non human participants.',
                 'keywords' => 'kmc, irc, institutional review committee, Kathmandu Medical College',
-                'url' => route('irc')
+                'url' => route('irc'),
             ]);
+
             return redirect()->back()->with('success', 'IRC updated successfully.');
         }
     }
@@ -739,9 +756,10 @@ class SettingController extends Controller
         if (Helper::G()) {
             $admission = Setting::where('key', 'nobelAdmission')->first();
             $values = null;
-            if (!empty($admission)) {
+            if (! empty($admission)) {
                 $values = json_decode($admission->value, true);
             }
+
             return view('admin.setting.admission', compact('values'));
         } else {
             $data = [];
@@ -752,7 +770,7 @@ class SettingController extends Controller
             $data['section-1'] = $request->section_1;
             $data['section-2'] = $request->section_2;
 
-            if (!empty($data)) {
+            if (! empty($data)) {
                 Setting::updateOrCreate(
                     ['key' => 'nobelAdmission'],
                     ['value' => json_encode($data)]
@@ -765,8 +783,9 @@ class SettingController extends Controller
                     'title' => 'Admission',
                     'description' => 'Kathmandu Medical College admission details.',
                     'keywords' => 'nobel, admission, admission details, Kathmandu Medical College',
-                    'url' => route('admission')
+                    'url' => route('admission'),
                 ]);
+
                 return redirect()->back()->with('success', 'Admission updated successfully.');
             } else {
                 return redirect()->back()->with('error', 'Failed to update admission data.');
@@ -779,14 +798,15 @@ class SettingController extends Controller
         if (Helper::G()) {
             $meta = Setting::where('key', 'meta')->first();
             $values = null;
-            if (!empty($meta)) {
+            if (! empty($meta)) {
                 $values = json_decode($meta->value, true);
             }
+
             return view('admin.setting.meta', compact('values'));
         } else {
             $data = [];
             $data['description'] = $request->description;
-            if (!empty($data)) {
+            if (! empty($data)) {
                 Setting::updateOrCreate(
                     ['key' => 'meta'],
                     ['value' => json_encode($data)]
@@ -795,6 +815,7 @@ class SettingController extends Controller
                     'description' => $data['description'],
                     'url' => route('index'),
                 ]);
+
                 return redirect()->back()->with('success', 'Meta data successfully updated.');
             } else {
                 return response()->json(['error' => 'Failed to update meta data'], 400);
@@ -807,17 +828,17 @@ class SettingController extends Controller
         if (Helper::G()) {
             $label = Setting::where('key', 'label')->first();
             $values = null;
-            if (!empty($label)) {
+            if (! empty($label)) {
                 $values = json_decode($label->value, true);
             }
+
             return view('admin.setting.label', compact('values'));
         } else {
             $data = [];
             $data['specialitySingle'] = $request->specialitySingle;
             $data['specialityPlural'] = $request->specialityPlural;
 
-
-            if (!empty($data)) {
+            if (! empty($data)) {
                 Setting::updateOrCreate(
                     ['key' => 'label'],
                     ['value' => json_encode($data)]
@@ -851,16 +872,17 @@ class SettingController extends Controller
             // GET: show existing items
             $committee = Setting::where('key', 'researchCommittee')->first();
             $researchCommittees = [];
-            if ($committee && !empty($committee->value)) {
+            if ($committee && ! empty($committee->value)) {
                 $researchCommittees = json_decode($committee->value) ?? [];
             }
+
             return view('admin.setting.researchCommittee', compact('researchCommittees'));
         } else {
             // POST: add new item
             $request->validate([
                 'name' => 'required|string|max:255',
                 'post' => 'required|string|max:255',
-                'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048'
+                'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             ]);
 
             $setting = Setting::firstOrCreate(['key' => 'researchCommittee'], ['value' => json_encode([])]);
@@ -895,8 +917,10 @@ class SettingController extends Controller
 
             if ($request->wantsJson() || $request->ajax()) {
                 redirect()->back()->with('success', 'Research Committee Saved');
+
                 return response()->json(['success' => true, 'message' => 'Research Committee Saved', 'item' => $item]);
             }
+
             return redirect()->back()->with('success', 'Research Committee Saved');
 
         }
@@ -907,14 +931,15 @@ class SettingController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'post' => 'nullable|string|max:255',
-            'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048'
+            'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 
         $setting = Setting::where('key', 'researchCommittee')->first();
-        if (!$setting) {
+        if (! $setting) {
             if ($request->wantsJson() || $request->ajax()) {
                 return response()->json(['success' => false, 'message' => 'No research committee data found'], 404);
             }
+
             return redirect()->back()->with('error', 'No research committee data found');
         }
 
@@ -933,7 +958,7 @@ class SettingController extends Controller
 
                 if ($request->hasFile('icon')) {
                     // delete old file if exists
-                    if (!empty($item['icon']) && Storage::disk('public')->exists($item['icon'])) {
+                    if (! empty($item['icon']) && Storage::disk('public')->exists($item['icon'])) {
                         Storage::disk('public')->delete($item['icon']);
                     }
                     $path = $request->file('icon')->store('uploads/researchCommittee', 'public');
@@ -943,10 +968,11 @@ class SettingController extends Controller
             }
         }
 
-        if (!$found) {
+        if (! $found) {
             if ($request->wantsJson() || $request->ajax()) {
                 return response()->json(['success' => false, 'message' => 'Research committee not found'], 404);
             }
+
             return redirect()->back()->with('error', 'Research committee not found');
         }
 
@@ -961,21 +987,23 @@ class SettingController extends Controller
 
         Helper::putCache('knowledge.research', view('admin.template.knowledge.research.index', compact('researchTypes', 'researchCommittee')));
 
-
         if ($request->wantsJson() || $request->ajax()) {
             redirect()->back()->with('success', 'Research committee updated');
+
             return response()->json(['success' => true, 'message' => 'Research committee updated']);
         }
+
         return redirect()->back()->with('success', 'Research committee updated');
     }
 
     public function delResearchCommittee($id)
     {
         $setting = Setting::where('key', 'researchCommittee')->first();
-        if (!$setting) {
+        if (! $setting) {
             if (request()->wantsJson() || request()->ajax()) {
                 return response()->json(['success' => false, 'message' => 'No research committee data found'], 404);
             }
+
             return redirect()->back()->with('error', 'No research committee data found');
         }
 
@@ -986,19 +1014,21 @@ class SettingController extends Controller
             if ((int) $item['id'] === (int) $id) {
                 $found = true;
                 // delete image if present
-                if (!empty($item['icon']) && Storage::disk('public')->exists($item['icon'])) {
+                if (! empty($item['icon']) && Storage::disk('public')->exists($item['icon'])) {
                     Storage::disk('public')->delete($item['icon']);
                 }
+
                 // skip adding to newItems to delete
                 continue;
             }
             $newItems[] = $item;
         }
 
-        if (!$found) {
+        if (! $found) {
             if (request()->wantsJson() || request()->ajax()) {
                 return response()->json(['success' => false, 'message' => 'Research committee not found'], 404);
             }
+
             return redirect()->back()->with('error', 'Research committee not found');
         }
 
@@ -1011,7 +1041,6 @@ class SettingController extends Controller
         $researchTypes = DB::table('blog_categories')->where('type', helper::blog_type_research)->get();
 
         Helper::putCache('knowledge.research', view('admin.template.knowledge.research.index', compact('researchTypes', 'researchCommittee')));
-
 
         // if (request()->wantsJson() || request()->ajax()) {
         //     return response()->json(['success' => true, 'message' => 'Research committee deleted']);
